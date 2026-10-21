@@ -1234,6 +1234,19 @@
         {
           "result": "pass",
           "note": "After the title fix and rebuild, all four affected text-session and not-found E2E scenarios passed again, including intro/report title assertions."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-21 integration E2E run could not reliably navigate from setup to the room; shared clock/lifecycle failure.",
+          "note": "Correcting lifecycle and clock setup; retest includes text flows."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes after stable recorder clock and pre-navigation clock pause. Hook draft test updated to await the required speech cancellation before typing; four hook/recorder tests pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
         }
       ],
       "regression_of": null,
@@ -1263,6 +1276,24 @@
         {
           "result": "pass",
           "note": "After the title fix and rebuild, all four affected text-session and not-found E2E scenarios passed again, including intro/report title assertions."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-21 integration E2E run could not reliably navigate from setup to the room; shared clock/lifecycle failure.",
+          "note": "Correcting lifecycle and clock setup; retest includes text flows."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Early end passes; skip-dialog Escape focus assertion runs before the frozen clock permits focus restoration.",
+          "note": "Advance the browser clock by 1 ms after Escape; keep the exact focus assertion."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes: limits/cap, Type instead and text flows. Full unit/component coverage suite passes; timer announcement tests verify each threshold once."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
         }
       ],
       "regression_of": null,
@@ -1690,6 +1721,216 @@
         {
           "result": "pass",
           "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-056",
+      "ac_reference": "FR-09–FR-13; E2E-06",
+      "milestone": "M2 Voice loop",
+      "title": "Three-question voice flow",
+      "status": "resolved",
+      "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
+      "description": "Three-question voice flow",
+      "steps_to_reproduce": ["Run the matching voice E2E spec."],
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Initial integration run failed: clock pause races and a production render loop prevented reliable recording and navigation.",
+          "note": "Bundler inlined the default clock callback, changing effect dependency identity; stabilised it with useCallback. Test clock now pauses before navigation at a fixed time."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes after stable recorder clock and pre-navigation clock pause. Hook draft test updated to await the required speech cancellation before typing; four hook/recorder tests pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": "voice-clock-lifecycle",
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-057",
+      "ac_reference": "FR-10; FR-11; FR-14; E2E-07",
+      "milestone": "M2 Voice loop",
+      "title": "Think, answer and character limits",
+      "status": "resolved",
+      "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
+      "description": "Think, answer and character limits",
+      "steps_to_reproduce": ["Run the matching voice E2E spec."],
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Initial integration run failed: clock pause races and a production render loop prevented reliable recording and navigation.",
+          "note": "Bundler inlined the default clock callback, changing effect dependency identity; stabilised it with useCallback. Test clock now pauses before navigation at a fixed time."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes: limits/cap, Type instead and text flows. Full unit/component coverage suite passes; timer announcement tests verify each threshold once."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected untyped vi.fn mock call extraction in announcement tests.",
+          "note": "Typed the announcement spy as (text: string) => void; no application or assertion changes."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": "voice-clock-lifecycle",
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-058",
+      "ac_reference": "FR-15; E2E-08",
+      "milestone": "M2 Voice loop",
+      "title": "Speech-error recovery UI",
+      "status": "resolved",
+      "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
+      "description": "Speech-error recovery UI",
+      "steps_to_reproduce": ["Run the matching voice E2E spec."],
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Initial integration run failed: clock pause races and a production render loop prevented reliable recording and navigation.",
+          "note": "Bundler inlined the default clock callback, changing effect dependency identity; stabilised it with useCallback. Test clock now pauses before navigation at a fixed time."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes after stable recorder clock and pre-navigation clock pause. Hook draft test updated to await the required speech cancellation before typing; four hook/recorder tests pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": "voice-clock-lifecycle",
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-059",
+      "ac_reference": "FR-16; FR-55; E2E-09",
+      "milestone": "M2 Voice loop",
+      "title": "Visibility and offline speech handling",
+      "status": "resolved",
+      "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
+      "description": "Visibility and offline speech handling",
+      "steps_to_reproduce": ["Run the matching voice E2E spec."],
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Initial integration run failed: clock pause races and a production render loop prevented reliable recording and navigation.",
+          "note": "Bundler inlined the default clock callback, changing effect dependency identity; stabilised it with useCallback. Test clock now pauses before navigation at a fixed time."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Offline-one-answer fallback passes. Hidden/offline recording correctly reaches review with words retained, but the paused clock prevents the post-mount notice timer from firing.",
+          "note": "Wait for review heading, then advance 1 ms to publish the notice before asserting exact copy."
+        },
+        {
+          "result": "pass",
+          "note": "All three interruption E2Es pass: hidden asking/replay, frozen thinking, hidden recording, offline stop/no restart and offline one-answer-only text fallback. Review notice published after mount with fake-clock advancement."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": "voice-clock-lifecycle",
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-060",
+      "ac_reference": "FR-12; E2E-10",
+      "milestone": "M2 Voice loop",
+      "title": "Type instead preserves transcript and session mode",
+      "status": "resolved",
+      "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
+      "description": "Type instead preserves transcript and session mode",
+      "steps_to_reproduce": ["Run the matching voice E2E spec."],
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Initial integration run failed: clock pause races and a production render loop prevented reliable recording and navigation.",
+          "note": "Bundler inlined the default clock callback, changing effect dependency identity; stabilised it with useCallback. Test clock now pauses before navigation at a fixed time."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes: limits/cap, Type instead and text flows. Full unit/component coverage suite passes; timer announcement tests verify each threshold once."
+        },
+        {
+          "result": "pass",
+          "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": "voice-clock-lifecycle",
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-063",
+      "ac_reference": "FR-09–FR-16; T-21; A-14; A-15; A-20; A-25",
+      "milestone": "M2 Voice loop",
+      "title": "Physical desktop Chrome three-question voice pass",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "Chrome 155.0.8059.85 / physical Chrome, Edge, Safari, Android and iOS",
+      "description": "Physical desktop Chrome three-question voice pass",
+      "steps_to_reproduce": [
+        "Complete the manual speech checks specified in T-21 and TRD §26 with a physical microphone."
+      ],
+      "expected_result": "Three spoken answers complete and browser assumptions are measured.",
+      "attempts": [
+        {
+          "result": "blocked",
+          "actual_result": "No human microphone input or physical Safari/Edge/Android/iOS session available.",
+          "note": "Owner follow-up is recorded in docs/PROGRESS.md instead of ClickUp. Live Chrome 155 text pass retained three edited answers; keyboard rate control worked, but audible preview/recognition was not verified. No browser errors appeared in the live tab log."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-064",
+      "ac_reference": "FR-09–FR-16; T-21; A-14; A-15; A-20; A-25",
+      "milestone": "M2 Voice loop",
+      "title": "Physical browser assumptions A-14, A-15, A-20, A-25",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "Chrome 155.0.8059.85 / physical Chrome, Edge, Safari, Android and iOS",
+      "description": "Physical browser assumptions A-14, A-15, A-20, A-25",
+      "steps_to_reproduce": [
+        "Complete the manual speech checks specified in T-21 and TRD §26 with a physical microphone."
+      ],
+      "expected_result": "Three spoken answers complete and browser assumptions are measured.",
+      "attempts": [
+        {
+          "result": "blocked",
+          "actual_result": "No human microphone input or physical Safari/Edge/Android/iOS session available.",
+          "note": "Owner follow-up is recorded in docs/PROGRESS.md instead of ClickUp. Live Chrome 155 text pass retained three edited answers; keyboard rate control worked, but audible preview/recognition was not verified. No browser errors appeared in the live tab log."
         }
       ],
       "regression_of": null,

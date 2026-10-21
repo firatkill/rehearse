@@ -16,8 +16,9 @@ it('TC-040 TRD 11.3 persists drafts, debounces edits and recovers a failed write
   act(() => {
     view.result.current.send({ type: 'START_INTERVIEW' });
   });
-  act(() => {
+  await act(async () => {
     view.result.current.send({ type: 'START_ANSWERING', now: Date.now() });
+    await Promise.resolve();
   });
   act(() => {
     view.result.current.onDraft('I improved delivery.');

@@ -291,3 +291,26 @@ it('TC-035 UT-18 empty drafts resume behind a gesture; scored and completed sess
   ).toBe('feedback');
   expect(resumePhase({ ...record, status: 'completed' }, []).kind).toBe('done');
 });
+
+it('TC-060 FR-12 D-60 Type instead preserves the live recorder payload', () => {
+  const s = state({ kind: 'answering', startedAt: now, answerMode: 'voice' }, true);
+  const next = reduce(s, { type: 'TYPE_INSTEAD', rawTranscript: 'My partial spoken words' });
+  expect(next.phase).toMatchObject({ kind: 'answering', answerMode: 'text' });
+  expect(next.answers[0]?.transcript).toBe('My partial spoken words');
+  expect(next.session?.currentMode).toBe('text');
+});
+it('TC-059 FR-55 offline start uses text only for this answer and edits raw text', () => {
+  const s = {
+    ...state({ kind: 'thinking', remainingMs: 1000, paused: false, wasPaused: false }, true),
+    online: false,
+  };
+  const started = reduce(s, { type: 'START_ANSWERING', now });
+  expect(started.phase).toMatchObject({ answerMode: 'text' });
+  expect(started.mode).toBe('voice');
+  expect(started.session?.currentMode).toBe('voice');
+  const reviewed = reduce(started, { type: 'TEXT_REVIEW', transcript: 'Offline answer' });
+  expect(
+    reduce(reviewed, { type: 'EDIT', transcript: 'Edited offline answer' }).answers[0]
+      ?.rawTranscript,
+  ).toBe('Edited offline answer');
+});

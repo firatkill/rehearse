@@ -10,8 +10,9 @@ import {
 import { capText, fullText } from '@/lib/speech/transcript';
 import type { SpeechRecognitionCtor, StopReason } from '@/lib/speech/types';
 import type { Timing } from '@/lib/storage/schema';
-const monotonicNow = () => performance.now();
-export function useRecorder(Ctor: SpeechRecognitionCtor | null, now = monotonicNow) {
+export function useRecorder(Ctor: SpeechRecognitionCtor | null, clock?: () => number) {
+  // Keep the production clock callback stable even when the bundler inlines defaults.
+  const now = useCallback(() => clock?.() ?? performance.now(), [clock]);
   const [snapshot, setSnapshot] = useState(initialRecorder);
   const current = useRef(snapshot);
   const instance = useRef<ReturnType<typeof createRecognizer> | null>(null);

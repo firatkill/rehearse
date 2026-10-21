@@ -54,7 +54,7 @@ export type RoomEvent =
   | { type: 'RECORDER_STOPPED'; reason: StopReason; rawTranscript: string; timing: Timing }
   | { type: 'RECORDER_FAILED'; fail: FailKind; rawTranscript: string }
   | { type: 'TEXT_REVIEW'; transcript: string }
-  | { type: 'TYPE_INSTEAD' }
+  | { type: 'TYPE_INSTEAD'; rawTranscript?: string }
   | { type: 'RETRY_RECORDING'; now: number }
   | { type: 'EDIT'; transcript: string }
   | { type: 'OPEN_DIALOG'; dialog: 'record-again' | 'skip' | 'end' }
@@ -167,8 +167,9 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
   };
 }
 function answering(state: RoomState, now: number, mode = state.mode): RoomState {
+  if (!state.online) mode = 'text';
   return {
-    ...updateAnswer({ ...state, mode }, { mode, status: 'draft' }, now),
+    ...updateAnswer(state, { mode, status: 'draft' }, now),
     phase: { kind: 'answering', startedAt: now, answerMode: mode },
     dialog: null,
   };
@@ -328,7 +329,13 @@ export function roomReducer(state: RoomState, event: RoomEvent, now: number): Ro
       )
         return state;
       const updated = {
-        ...state,
+        ...(event.rawTranscript === undefined
+          ? state
+          : updateAnswer(
+              state,
+              { rawTranscript: event.rawTranscript, transcript: event.rawTranscript },
+              now,
+            )),
         mode: 'text' as const,
         session: state.session ? { ...state.session, currentMode: 'text' as const } : null,
       };
@@ -344,7 +351,7 @@ export function roomReducer(state: RoomState, event: RoomEvent, now: number): Ro
             state,
             {
               transcript: event.transcript,
-              ...(state.mode === 'text' ? { rawTranscript: event.transcript } : {}),
+              ...(current?.mode === 'text' ? { rawTranscript: event.transcript } : {}),
             },
             now,
           )
