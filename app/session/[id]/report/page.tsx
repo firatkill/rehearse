@@ -1,6 +1,6 @@
-import { ReportPlaceholder } from '@/components/room/report-placeholder';
+import { ReportLoader } from '@/components/report/report-loader';
 export const metadata = { title: 'Session report · Rehearse' };
 export default async function ReportPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  return <ReportPlaceholder id={id} />;
+  return <ReportLoader id={id} />;
 }

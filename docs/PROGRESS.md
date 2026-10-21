@@ -34,8 +34,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280           |
 | T-27 | `POST /api/feedback`                                               | blocked | fde48e6           |
 | T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | f5c8387           |
-| T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | this commit       |
-| T-30 | Report page, chart, Markdown export and print                      | todo    | —                 |
+| T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | 267cd8b           |
+| T-30 | Report page, chart, Markdown export and print                      | done    | this commit       |
 | T-31 | Sample session and `/sample`                                       | todo    | —                 |
 | T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | todo    | —                 |
 | T-33 | Persistence wiring and recovery after reload                       | todo    | —                 |
@@ -110,3 +110,5 @@ T-27 full E2E: all 33 tests pass on ports 3240–3243.
 T-27 CI passed: https://github.com/firatkill/rehearse/actions/runs/39625319993. T-28 connects scoring, persistence, accessible feedback cards, bounded retries and exact error states. 410 unit/component and 38 E2E tests pass, including three-question scored text and mocked voice flows; lint, typecheck, build and coverage gates pass.
 
 T-28 CI passed: https://github.com/firatkill/rehearse/actions/runs/39626602747. T-29 implements shared deterministic report aggregates, one-attempt summary generation and the scoped summary API. 433 unit/component and 38 E2E tests pass; lint, typecheck, build and coverage gates pass. Live summary quality remains deferred under D-64.
+
+T-29 CI passed: https://github.com/firatkill/rehearse/actions/runs/39627414478. T-30 replaces the placeholder report with summary/fallback states, deterministic tables and chart, focus tips, expandable answers, Markdown download and print restoration. All 444 unit/component and 43 browser tests pass, with typecheck, build and coverage gates. The transcript assertion is scoped to its disclosure because verified evidence may repeat it.

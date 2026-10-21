@@ -2567,6 +2567,19 @@
         {
           "result": "pass",
           "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-30 voice report assertion matched both the verified evidence quote and the retained transcript.",
+          "note": "Scope the transcript assertion to its disclosure paragraph, per PRD §9.7; retain the visibility assertion."
+        },
+        {
+          "result": "pass",
+          "note": "T-30 targeted report/browser checks pass; corrected transcript locator passes all three voice tests. Component/Markdown tests pass; abort guards and URL stub corrections pass lint."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
         }
       ],
       "regression_of": null,
@@ -2703,6 +2716,103 @@
         {
           "result": "pass",
           "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-084",
+      "ac_reference": "FR-28–FR-31; CT-07; E2E-19",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Report states and chart",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock provider and speech",
+      "description": "Report states and chart",
+      "steps_to_reproduce": ["Run T-30 report, summary-error and Markdown cases."],
+      "expected_result": "PRD §9.8 and TRD §17.1–§17.4.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 10 report component/hook/Markdown cases pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-30 targeted report/browser checks pass; corrected transcript locator passes all three voice tests. Component/Markdown tests pass; abort guards and URL stub corrections pass lint."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-085",
+      "ac_reference": "FR-29; CT-07; E2E-20",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Summary retry and fallback",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock provider and speech",
+      "description": "Summary retry and fallback",
+      "steps_to_reproduce": ["Run T-30 report, summary-error and Markdown cases."],
+      "expected_result": "PRD §9.8 and TRD §17.1–§17.4.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 10 report component/hook/Markdown cases pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint flagged AbortSignal narrowing across an awaited repository write.",
+          "note": "Read the current signal through a function to retain cancellation checks."
+        },
+        {
+          "result": "pass",
+          "note": "T-30 targeted report/browser checks pass; corrected transcript locator passes all three voice tests. Component/Markdown tests pass; abort guards and URL stub corrections pass lint."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-086",
+      "ac_reference": "FR-32; UT-28; E2E-19",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Markdown export and print",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock provider and speech",
+      "description": "Markdown export and print",
+      "steps_to_reproduce": ["Run T-30 report, summary-error and Markdown cases."],
+      "expected_result": "PRD §9.8 and TRD §17.1–§17.4.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 10 report component/hook/Markdown cases pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Typecheck required override modifiers on the URL test stub static methods.",
+          "note": "Add explicit override to the stub methods; production code unchanged."
+        },
+        {
+          "result": "pass",
+          "note": "T-30 targeted report/browser checks pass; corrected transcript locator passes all three voice tests. Component/Markdown tests pass; abort guards and URL stub corrections pass lint."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
         }
       ],
       "regression_of": null,

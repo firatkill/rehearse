@@ -37,8 +37,14 @@ test('TC-079 E2E-06 three voice answers retain edits and scores through report',
       .click();
   }
   await expect(page).toHaveURL(/\/report$/);
+  // T-30 report disclosures are collapsed by default (PRD §9.8).
+  for (const detail of await page.locator('details').all()) {
+    await detail.locator(':scope > summary').click();
+  }
   for (let i = 1; i <= 3; i++)
-    await expect(page.getByText(`I led project ${i} and improved delivery.`)).toBeVisible();
+    await expect(
+      page.locator('details > p').filter({ hasText: `I led project ${i} and improved delivery.` }),
+    ).toBeVisible();
   expect(await speech(page).runs()).toBe(3);
   expect(await speech(page).overlaps()).toBe(0);
   expect(await speech(page).active()).toBe(false);

@@ -1,0 +1,133 @@
+import { DIMENSIONS } from '@/lib/config';
+import {
+  DIMENSION_LABELS,
+  ROLE_LABELS,
+  SENIORITY_LABELS,
+  QUESTION_TYPE_LABELS,
+} from '@/lib/labels';
+import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
+import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
+import { aggregate } from './aggregate';
+export function escapeMd(s: string): string {
+  return s
+    .replace(/\\/g, '\\\\')
+    .replace(/[`*_\[\]<>#|~]/g, '\\$&')
+    .replace(/^(\d+)\./, '$1\\.')
+    .replace(/^[-+=]/, '\\$&');
+}
+export function reportFilename(session: SessionRecord) {
+  return `rehearse-${session.createdAt.slice(0, 10)}-${session.setup.role}.md`;
+}
+export function reportMarkdown(session: SessionRecord, answers: AnswerRecord[]): string {
+  const a = aggregate(answers, session.questions.length);
+  const e = escapeMd;
+  const summary = session.summary;
+  const lines = [
+    '# Rehearse session report',
+    '',
+    `- Date: ${session.createdAt.slice(0, 10)}`,
+    `- Role: ${ROLE_LABELS[session.setup.role]}, ${SENIORITY_LABELS[session.setup.seniority]}`,
+    `- Question types: ${session.setup.types.map((t) => QUESTION_TYPE_LABELS[t]).join(', ')}`,
+    `- Answered: ${answers.filter((a) => a.status === 'scored' || a.status === 'saved').length} of ${session.questions.length}`,
+    `- Seed: ${e(session.seed)} (question bank ${e(session.bankVersion)})`,
+  ];
+  if (a.overallMean !== null) lines.push(`- Overall: ${a.overallMean.toFixed(1)} / 4`);
+  if (summary) lines.push('', '## Summary', '', e(summary.headline), '', e(summary.paragraph));
+  if (a.focus.length)
+    lines.push(
+      '',
+      '## Focus on these next',
+      '',
+      ...a.focus.map(
+        (d, i) =>
+          `${i + 1}. **${DIMENSION_LABELS[d]}** (${a.dimensionMeans[d]?.toFixed(1)} / 4): ${e(summary?.focus_notes.find((n) => n.dimension === d)?.note ?? DIMENSION_TIPS[d])}`,
+      ),
+    );
+  lines.push(
+    '',
+    '## Scores by question',
+    '',
+    `| Dimension | ${session.questions.map((_, i) => `Q${i + 1}`).join(' | ')} | Average |`,
+    `| --------- | ${session.questions.map(() => '---').join(' | ')} | ------- |`,
+  );
+  for (const d of DIMENSIONS)
+    lines.push(
+      `| ${DIMENSION_LABELS[d]} | ${session.questions.map((_, i) => answers.find((a) => a.index === i)?.feedback?.scores[d].score ?? '—').join(' | ')} | ${a.dimensionMeans[d]?.toFixed(1) ?? '—'} |`,
+    );
+  lines.push(
+    `| Overall | ${a.perQuestion.map((q) => q.overall?.toFixed(1) ?? '—').join(' | ')} | ${a.overallMean?.toFixed(1) ?? '—'} |`,
+    '',
+    '## Delivery',
+    '',
+    `- Total words: ${a.delivery.totalWords}`,
+  );
+  if (a.delivery.avgWpm !== null)
+    lines.push(`- Average pace: ${a.delivery.avgWpm} words per minute`);
+  lines.push(`- Filler words: ${a.delivery.totalFillers}`);
+  if (a.delivery.longestPauseMs !== null)
+    lines.push(`- Longest pause: ${(a.delivery.longestPauseMs / 1000).toFixed(1)} s`);
+  if (summary) lines.push('', '## Next practice', '', e(summary.next_practice));
+  lines.push('', '## Answers');
+  for (const [index, q] of session.questions.entries()) {
+    const answer = answers.find((a) => a.index === index);
+    if (!answer || !['scored', 'saved', 'skipped'].includes(answer.status)) continue;
+    lines.push('', `### Question ${index + 1}: ${e(q.prompt)}`, '');
+    if (answer.status === 'skipped') {
+      lines.push('Skipped.');
+      continue;
+    }
+    const f = answer.feedback;
+    if (f) lines.push(`${QUESTION_TYPE_LABELS[q.type]} · Overall ${f.overall.toFixed(1)} / 4`, '');
+    lines.push(
+      '**Your answer**',
+      '',
+      ...answer.transcript.split('\n').map((line) => `> ${e(line)}`),
+    );
+    if (!f) {
+      lines.push(
+        '',
+        `- Total words: ${answer.metrics.words}`,
+        `- Filler words: ${answer.metrics.fillers.total}`,
+      );
+      if (answer.metrics.wpm !== null)
+        lines.push(`- Average pace: ${answer.metrics.wpm} words per minute`);
+      if (answer.metrics.longestPauseMs !== null)
+        lines.push(`- Longest pause: ${(answer.metrics.longestPauseMs / 1000).toFixed(1)} s`);
+      continue;
+    }
+    lines.push(
+      '',
+      '**Scores**',
+      '',
+      ...DIMENSIONS.map(
+        (d) => `- ${DIMENSION_LABELS[d]}: ${f.scores[d].score} / 4. ${e(f.scores[d].rationale)}`,
+      ),
+      '',
+      '**What worked**',
+      '',
+      ...f.strengths.map(
+        (s) => `- ${e(s.point)}${s.evidence === null ? '' : ` You said: "${e(s.evidence)}"`}`,
+      ),
+      '',
+      '**What to improve**',
+      '',
+      ...f.improvements.map(
+        (v, i) => `${i + 1}. ${e(v.point)} ${e(v.why)} Try saying: "${e(v.rewrite)}"`,
+      ),
+      '',
+      `**A likely follow-up question:** ${e(f.follow_up_question)}`,
+      '',
+      '**Outline of a strong answer**',
+      '',
+      ...f.model_answer_outline.map((t) => `- ${e(t)}`),
+    );
+  }
+  lines.push(
+    '',
+    '---',
+    '',
+    'Generated by Rehearse (https://rehearse.firatkil.com). Scores are a coaching aid from a language model, not a prediction of how an interviewer will judge you.',
+    '',
+  );
+  return lines.join('\n');
+}
