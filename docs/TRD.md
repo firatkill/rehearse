@@ -346,6 +346,7 @@ export const SUMMARY_LIMITS = {
 } as const;
 
 export const HTTP = {
+  FEEDBACK_CLIENT_TIMEOUT_MS: 55_000,
   BODY_MAX_BYTES: 32_768,
   IMPORT_MAX_BYTES: 5_000_000,
   LIMITER_TIMEOUT_MS: 1_500,
@@ -1784,15 +1785,19 @@ All request and response schemas live in `lib/api/contracts.ts` (shared by route
 - Error envelope (normative):
 
 ```ts
-export const ErrorBodySchema = z.object({
-  error: z.object({
-    code: z.enum(ERROR_CODES),
-    message: z.string(), // short English for developers; UI copy comes from the PRD by code
-    requestId: z.string(),
-    resetAt: z.string().datetime().optional(), // 429 only
-    sessionCallsRemaining: z.number().int().nonnegative().optional(), // feedback errors after the session counter was consumed
-  }),
-});
+export const ErrorBodySchema = z
+  .object({
+    error: z
+      .object({
+        code: z.enum(ERROR_CODES),
+        message: z.string(), // short English for developers; UI copy comes from the PRD by code
+        requestId: z.string(),
+        resetAt: z.string().datetime().optional(), // 429 only
+        sessionCallsRemaining: z.number().int().nonnegative().optional(), // feedback errors after the session counter was consumed
+      })
+      .strict(),
+  })
+  .strict();
 ```
 
 ### 12.2 `POST /api/sessions/start`
@@ -1820,21 +1825,27 @@ export const StartRequestSchema = z
 Response 200 **(normative)**:
 
 ```ts
-export const StartResponseSchema = z.object({
-  sessionId: z.string().uuid(),
-  seed: z.string().regex(SESSION.SEED_PATTERN),
-  bankVersion: z.string(),
-  questions: z.array(QuestionSnapshotSchema).min(3).max(5),
-  token: z.string().nullable(),
-  tokenExpiresAt: z.string().datetime().nullable(),
-  feedback: z.object({ enabled: z.boolean(), reason: z.enum(['readonly', 'practice']).nullable() }),
-  limits: z.object({
-    sessionsPerDay: z.number().int(),
-    feedbackPerDay: z.number().int(),
-    globalDaily: z.number().int(),
-  }),
-  demoMode: z.enum(['on', 'readonly', 'off']),
-});
+export const StartResponseSchema = z
+  .object({
+    sessionId: z.string().uuid(),
+    seed: z.string().regex(SESSION.SEED_PATTERN),
+    bankVersion: z.string(),
+    questions: z.array(QuestionSnapshotSchema).min(3).max(5),
+    token: z.string().nullable(),
+    tokenExpiresAt: z.string().datetime().nullable(),
+    feedback: z
+      .object({ enabled: z.boolean(), reason: z.enum(['readonly', 'practice']).nullable() })
+      .strict(),
+    limits: z
+      .object({
+        sessionsPerDay: z.number().int(),
+        feedbackPerDay: z.number().int(),
+        globalDaily: z.number().int(),
+      })
+      .strict(),
+    demoMode: z.enum(['on', 'readonly', 'off']),
+  })
+  .strict();
 ```
 
 Behaviour:
@@ -1872,23 +1883,29 @@ After schema validation: `transcript.trim()` with 0 words (section 16.1) → 400
 Response 200 **(normative)**:
 
 ```ts
-export const FeedbackResponseSchema = z.object({
-  feedback: FeedbackSchema, // section 15.2
-  meta: z.object({
-    model: z.string(),
-    promptVersion: z.string(),
-    bankVersion: z.string(),
-    latencyMs: z.number().int(),
-    attempts: z.number().int().min(1).max(2),
-    usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }),
-    costUsd: z.number().nonnegative(),
-    evidenceRemoved: z.number().int().nonnegative(),
-  }),
-  remaining: z.object({
-    session: z.number().int().nonnegative(),
-    visitorToday: z.number().int().nonnegative(),
-  }),
-});
+export const FeedbackResponseSchema = z
+  .object({
+    feedback: FeedbackSchema, // section 15.2
+    meta: z
+      .object({
+        model: z.string(),
+        promptVersion: z.string(),
+        bankVersion: z.string(),
+        latencyMs: z.number().int(),
+        attempts: z.number().int().min(1).max(2),
+        usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }).strict(),
+        costUsd: z.number().nonnegative(),
+        evidenceRemoved: z.number().int().nonnegative(),
+      })
+      .strict(),
+    remaining: z
+      .object({
+        session: z.number().int().nonnegative(),
+        visitorToday: z.number().int().nonnegative(),
+      })
+      .strict(),
+  })
+  .strict();
 ```
 
 Errors after the session counter was consumed (`PROVIDER_ERROR`, `PROVIDER_TIMEOUT`, `FEEDBACK_INVALID`, `FEEDBACK_QUOTA_EXCEEDED`, `GLOBAL_CAP_REACHED`, `INTERNAL_ERROR`) include `sessionCallsRemaining`. The client computes retries left as `max(0, sessionCallsRemaining − unscored)`, where `unscored` is the number of questions from the current index to the end that are not yet `scored`, `saved` or `skipped`, counting the current one. When the result is 0, the provider-error body's second sentence becomes "You have no spare retries left; trying again uses an attempt meant for a later question."
@@ -1966,7 +1983,7 @@ Response 200, no external calls:
 
 - `startSession(body)`, `requestFeedback(token, body, signal)`, `requestSummary(token, body, signal)` return a discriminated union `{ ok: true; data } | { ok: false; kind: 'http'; status; error: ErrorBody['error'] } | { ok: false; kind: 'network' } | { ok: false; kind: 'invalid-response' }`.
 - Success bodies are parsed with the response schemas; a parse failure is `invalid-response` (shown as the server error state).
-- The feedback request has a client timeout of 55 s (`AbortSignal.timeout`), reported as `network`.
+- The feedback request has a client timeout of 55 s (`HTTP.FEEDBACK_CLIENT_TIMEOUT_MS`, `AbortSignal.timeout`), reported as `network`.
 
 ## 13. Session token and rate limiting
 
