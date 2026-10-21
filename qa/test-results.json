@@ -62,7 +62,7 @@
     },
     {
       "tc_reference": "TC-003",
-      "ac_reference": "FR-44; FR-51; TRD \u00a75; UT-30",
+      "ac_reference": "FR-44; FR-51; TRD §5; UT-30",
       "milestone": "M0 Setup",
       "title": "Environment defaults and conditional requirements",
       "status": "resolved",
@@ -153,7 +153,7 @@
     },
     {
       "tc_reference": "TC-007",
-      "ac_reference": "NFR-13; TRD \u00a712.1; T-03",
+      "ac_reference": "NFR-13; TRD §12.1; T-03",
       "milestone": "M0 Setup",
       "title": "Request boundaries reject invalid bodies and origins",
       "status": "resolved",
@@ -176,7 +176,7 @@
     },
     {
       "tc_reference": "TC-008",
-      "ac_reference": "FR-56; TRD \u00a722; T-03",
+      "ac_reference": "FR-56; TRD §22; T-03",
       "milestone": "M0 Setup",
       "title": "Structured logging redacts sensitive fields",
       "status": "resolved",
@@ -194,7 +194,7 @@
     },
     {
       "tc_reference": "TC-009",
-      "ac_reference": "NFR-13; TRD \u00a721; T-03",
+      "ac_reference": "NFR-13; TRD §21; T-03",
       "milestone": "M0 Setup",
       "title": "Production responses carry fresh CSP and security headers",
       "status": "resolved",
@@ -203,6 +203,10 @@
         {
           "result": "pass",
           "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        },
+        {
+          "result": "pass",
+          "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
         }
       ],
       "regression_of": null,
@@ -212,7 +216,7 @@
     },
     {
       "tc_reference": "TC-010",
-      "ac_reference": "T-04; TRD \u00a725; NFR-17",
+      "ac_reference": "T-04; TRD §25; NFR-17",
       "milestone": "M0 Setup",
       "title": "Unit and component runners, coverage and four E2E servers",
       "status": "resolved",
@@ -234,7 +238,11 @@
         },
         {
           "result": "pass",
-          "note": "Owner-approved E2E_BASE_PORT=3240 starts the four servers on 3240\u20133243. All eight Chromium tests pass without touching the other project; default CI ports remain 3200\u20133203 (D-55)."
+          "note": "Owner-approved E2E_BASE_PORT=3240 starts the four servers on 3240–3243. All eight Chromium tests pass without touching the other project; default CI ports remain 3200–3203 (D-55)."
+        },
+        {
+          "result": "pass",
+          "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
         }
       ],
       "regression_of": null,
@@ -302,7 +310,7 @@
     },
     {
       "tc_reference": "TC-014",
-      "ac_reference": "NFR-08; NFR-09; PRD \u00a79.1",
+      "ac_reference": "NFR-08; NFR-09; PRD §9.1",
       "milestone": "M0 Setup",
       "title": "Layout shell and keyboard skip link",
       "status": "resolved",
@@ -316,6 +324,10 @@
         {
           "result": "pass",
           "note": "Affected checks passed after fixing title and link styling. Final suite: 36 unit/component tests, 8 Chromium E2E tests; axe zero serious/critical in both themes, keyboard skip focus and no overflow at 360/1024 px. Lint/typecheck/build passed; coverage 100% lines/functions, 96% branches."
+        },
+        {
+          "result": "pass",
+          "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
         }
       ],
       "regression_of": null,
@@ -325,7 +337,7 @@
     },
     {
       "tc_reference": "TC-015",
-      "ac_reference": "PRD \u00a79.2; PRD \u00a79.13",
+      "ac_reference": "PRD §9.2; PRD §9.13",
       "milestone": "M0 Setup",
       "title": "Banners and error-page copy",
       "status": "resolved",
@@ -334,6 +346,10 @@
         {
           "result": "pass",
           "note": "Component tests cover banner order/offline events/room header/error recovery; Chromium verifies readonly/off banners and 404."
+        },
+        {
+          "result": "pass",
+          "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
         }
       ],
       "regression_of": null,
@@ -481,6 +497,106 @@
         {
           "result": "pass",
           "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-022",
+      "ac_reference": "FR-41, FR-42; UT-09",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Visitor identity rotates by UTC day",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mock LLM and memory limiter; fake Upstash only",
+      "description": "Visitor identity rotates by UTC day",
+      "steps_to_reproduce": ["Run limiter-contract, visitor and quotas unit tests."],
+      "expected_result": "Header precedence and stable daily hashes; changing UTC date or secret changes the hash.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "11 targeted tests passed. Header precedence and stable daily hashes; changing UTC date or secret changes the hash."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-023",
+      "ac_reference": "FR-41, FR-42; UT-10",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Daily limits and session TTL match across adapters",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mock LLM and memory limiter; fake Upstash only",
+      "description": "Daily limits and session TTL match across adapters",
+      "steps_to_reproduce": ["Run limiter-contract, visitor and quotas unit tests."],
+      "expected_result": "Memory and fake Upstash share limit/reset, independent-key and counter-expiry assertions.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "11 targeted tests passed. Memory and fake Upstash share limit/reset, independent-key and counter-expiry assertions."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-024",
+      "ac_reference": "FR-51; UT-10",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Limiter failures fail closed",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mock LLM and memory limiter; fake Upstash only",
+      "description": "Limiter failures fail closed",
+      "steps_to_reproduce": ["Run limiter-contract, visitor and quotas unit tests."],
+      "expected_result": "Timeout reason, rejected calls, malformed counter and delayed response all reject with LimiterUnavailableError.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "11 targeted tests passed. Timeout reason, rejected calls, malformed counter and delayed response all reject with LimiterUnavailableError."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-025",
+      "ac_reference": "FR-41, FR-42; UT-11",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Quota checks consume in specified order",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mock LLM and memory limiter; fake Upstash only",
+      "description": "Quota checks consume in specified order",
+      "steps_to_reproduce": ["Run limiter-contract, visitor and quotas unit tests."],
+      "expected_result": "Denial codes, early exit and no refunds match TRD 13.6.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "11 targeted tests passed. Denial codes, early exit and no refunds match TRD 13.6."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
         }
       ],
       "regression_of": null,
