@@ -67,6 +67,29 @@
         {
           "result": "pass",
           "note": "T-33 final pnpm lint passed after all ledger edits; build, typecheck, 490 unit/component and 49 E2E tests also pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-34 build found the delete callback renamed at the call site but not in the DataControls signature.",
+          "note": "Updated the prop signature; delete-all clears the UI without reopening the deleted database."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Next build then caught Playwright-only exact option in a Testing Library getByRole call.",
+          "note": "Use Testing Library’s exact string-name matching without the unsupported option."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 production build passes after both typing corrections; no expected behaviour changed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-34 lint rejected shorthand void callbacks, directly invoked state-setting refresh in an effect, and a broad Function test cast.",
+          "note": "Use braced callbacks, schedule repository refresh through a Promise callback, and give the test control its callable signature."
+        },
+        {
+          "result": "pass",
+          "note": "Affected-file lint, production build, typecheck and all 494 unit/component tests pass after the corrections."
         }
       ],
       "regression_of": null,
@@ -142,6 +165,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -180,6 +211,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -218,6 +257,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -265,6 +312,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -308,6 +363,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -346,6 +409,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -416,6 +487,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -500,6 +579,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -560,6 +647,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -610,6 +705,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -685,6 +788,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -755,6 +866,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -796,6 +915,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -837,6 +964,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -885,6 +1020,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -926,6 +1069,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -981,6 +1132,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1022,6 +1181,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1067,6 +1234,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1112,6 +1287,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1157,6 +1340,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1202,6 +1393,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1251,6 +1450,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1300,6 +1507,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1352,6 +1567,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1399,6 +1622,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1446,6 +1677,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1487,6 +1726,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1528,6 +1775,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1569,6 +1824,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1660,6 +1923,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1738,6 +2009,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1785,6 +2064,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1830,6 +2117,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1875,6 +2170,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1925,6 +2228,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -1970,6 +2281,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2024,6 +2343,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2104,6 +2431,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2171,6 +2506,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2220,6 +2563,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2315,6 +2666,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2367,6 +2726,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2419,6 +2786,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2471,6 +2846,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2528,6 +2911,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2585,6 +2976,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2642,6 +3041,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2696,6 +3103,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2750,6 +3165,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2818,6 +3241,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2884,6 +3315,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -2960,6 +3399,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3039,6 +3486,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3119,6 +3574,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3181,6 +3644,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3277,6 +3748,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3323,6 +3802,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3392,6 +3879,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3446,6 +3941,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3515,6 +4018,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3560,6 +4071,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3605,6 +4124,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3650,6 +4177,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3695,6 +4230,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3742,6 +4285,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3789,6 +4340,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3850,6 +4409,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3900,6 +4467,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -3989,6 +4564,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4034,6 +4617,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4101,6 +4692,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4186,6 +4785,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4231,6 +4838,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4276,6 +4891,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4344,6 +4967,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4406,6 +5037,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4473,6 +5112,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4535,6 +5182,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4608,6 +5263,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4662,6 +5325,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4692,6 +5363,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4722,6 +5401,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4756,6 +5443,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4787,6 +5482,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4813,6 +5516,14 @@
         {
           "result": "pass",
           "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,
@@ -4835,6 +5546,68 @@
         {
           "result": "manual_required",
           "note": "Not performed: requires owner Chrome and a real microphone. Follow-up is recorded in docs/PROGRESS.md under the repository override."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-097",
+      "ac_reference": "FR-36; CT-08; E2E-17",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "History list and navigation",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "Mock services; isolated browser storage",
+      "description": "History list and navigation",
+      "steps_to_reproduce": ["Run history component and browser scenarios."],
+      "expected_result": "PRD §9.9 exact states and confirmed deletion, including blocked deletion and preference isolation.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "History browser selector matched text including the hidden mobile column label, so the exact In progress text locator found no element.",
+          "note": "Select the accessible table cell name, which excludes the aria-hidden mobile label. Four component cases and the blocked-delete browser case already passed; no expected result changed."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-098",
+      "ac_reference": "FR-38; CT-08; E2E-17",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Confirmed deletion",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "Mock services; isolated browser storage",
+      "description": "Confirmed deletion",
+      "steps_to_reproduce": ["Run history component and browser scenarios."],
+      "expected_result": "PRD §9.9 exact states and confirmed deletion, including blocked deletion and preference isolation.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "History browser selector matched text including the hidden mobile column label, so the exact In progress text locator found no element.",
+          "note": "Select the accessible table cell name, which excludes the aria-hidden mobile label. Four component cases and the blocked-delete browser case already passed; no expected result changed."
+        },
+        {
+          "result": "pass",
+          "note": "T-34 regression: 494 unit/component and 51 E2E tests pass; build/typecheck and coverage gates pass. History ordering, navigation, dialog cancellation, cascading delete, blocked single-request deletion and 360 px layout verified."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-34 retest after lint corrections: all 494 unit/component and 51 E2E tests pass; build/typecheck pass, existing coverage gates remain satisfied."
         }
       ],
       "regression_of": null,

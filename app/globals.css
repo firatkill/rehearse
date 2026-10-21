@@ -247,3 +247,42 @@ main {
   align-items: center;
   min-width: 44px;
 }
+
+.history-table th,
+.history-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.history-label {
+  display: none;
+}
+@media (max-width: 719px) {
+  .history-table,
+  .history-table tbody,
+  .history-table tr,
+  .history-table td {
+    display: block;
+  }
+  .history-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .history-table tr {
+    border: 1px solid var(--rule);
+    margin-bottom: 16px;
+    padding: 12px;
+  }
+  .history-table td {
+    border: 0;
+    padding: 4px 0;
+  }
+  .history-label {
+    display: block;
+    color: var(--ink-3);
+    font-size: 14px;
+  }
+}

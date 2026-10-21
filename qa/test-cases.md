@@ -903,19 +903,19 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 
 ## M4 — Local storage, history, import and export
 
-| TC ID  | Reference                     | Title                                  | Priority | Automatable | Expected result                                                                                                            |
-| ------ | ----------------------------- | -------------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------- |
-| TC-091 | FR-34; UT-12                  | IndexedDB lifecycle                    | High     | yes         | Exact schema; closed writes reject; blocked timeout keeps fallback and closes late connection; mismatched versions reject. |
-| TC-092 | FR-34; UT-13                  | Repository parity                      | High     | yes         | Both implementations obey the same contract and isolate unrelated preferences.                                             |
-| TC-093 | FR-34; D-20; UT-14            | Upgrade safety                         | High     | yes         | Data retained, by_role index present, migrated records validate without read-time writes.                                  |
-| TC-094 | FR-39; UT-12; E2E-23          | Storage selection and fallback         | High     | yes         | Stable memory fallback and cause-specific banner; session still completes.                                                 |
-| TC-095 | FR-35; E2E-16                 | Checkpoint reload recovery             | High     | yes         | Restored draft opens review; thinking shows Continue; scored feedback restored; no automatic resubmission.                 |
-| TC-096 | FR-35; NFR-14; TRD §11.3      | Write failures and persistence request | High     | yes         | State copied to memory; correct single banner; storage.persist requested only once after completion.                       |
-| TC-097 | FR-36; CT-08; E2E-17          | History list and navigation            | High     | yes         | Exact copy and columns; newest first; correct destination; empty and unreadable states.                                    |
-| TC-098 | FR-38; CT-08; E2E-17          | Confirmed deletion                     | High     | yes         | Cancel preserves data; deletion cascades; only rehearse preferences removed; one pending delete succeeds after unblock.    |
-| TC-099 | FR-37; UT-15; E2E-18          | Portable export and import             | High     | yes         | Tokens nulled, newest first, correct filename; imported origin, practice mode; duplicate counts; atomic bundles.           |
-| TC-100 | FR-37; NFR-18; UT-15; E2E-18  | Import validation and size budget      | High     | yes         | Exact errors; oversize rejected before reading; invalid handling awaits owner clarification; maximal session below 100 KB. |
-| TC-101 | FR-35; T-33 manual acceptance | Physical voice reload                  | High     | no          | Review restores spoken draft and the exact restored notice.                                                                |
+| TC ID  | Reference                     | Title                                  | Priority | Automatable | Expected result                                                                                                                                |
+| ------ | ----------------------------- | -------------------------------------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| TC-091 | FR-34; UT-12                  | IndexedDB lifecycle                    | High     | yes         | Exact schema; closed writes reject; blocked timeout keeps fallback and closes late connection; mismatched versions reject.                     |
+| TC-092 | FR-34; UT-13                  | Repository parity                      | High     | yes         | Both implementations obey the same contract and isolate unrelated preferences.                                                                 |
+| TC-093 | FR-34; D-20; UT-14            | Upgrade safety                         | High     | yes         | Data retained, by_role index present, migrated records validate without read-time writes.                                                      |
+| TC-094 | FR-39; UT-12; E2E-23          | Storage selection and fallback         | High     | yes         | Stable memory fallback and cause-specific banner; session still completes.                                                                     |
+| TC-095 | FR-35; E2E-16                 | Checkpoint reload recovery             | High     | yes         | Restored draft opens review; thinking shows Continue; scored feedback restored; no automatic resubmission.                                     |
+| TC-096 | FR-35; NFR-14; TRD §11.3      | Write failures and persistence request | High     | yes         | State copied to memory; correct single banner; storage.persist requested only once after completion.                                           |
+| TC-097 | FR-36; CT-08; E2E-17          | History list and navigation            | High     | yes         | Exact copy and columns; newest first; correct destination; empty and unreadable states.                                                        |
+| TC-098 | FR-38; CT-08; E2E-17          | Confirmed deletion                     | High     | yes         | Cancel preserves data; deletion cascades; only rehearse preferences removed; one pending delete succeeds after unblock.                        |
+| TC-099 | FR-37; UT-15; E2E-18          | Portable export and import             | High     | yes         | Tokens nulled, newest first, correct filename; imported origin, practice mode; duplicate counts; atomic bundles.                               |
+| TC-100 | FR-37; NFR-18; UT-15; E2E-18  | Import validation and size budget      | High     | yes         | Exact errors; oversize rejected before reading; invalid bundles counted independently under owner-approved D-68; maximal session below 100 KB. |
+| TC-101 | FR-35; T-33 manual acceptance | Physical voice reload                  | High     | no          | Review restores spoken draft and the exact restored notice.                                                                                    |
 
 ### TC-091 — IndexedDB lifecycle
 
@@ -995,7 +995,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM/memory limiter; fake-indexeddb and injectable clocks for unit tests; unique browser data and mocked speech except the explicitly manual case.
 - Steps: Use malformed/newer/oversize files and invalid session bundles; serialise maximal five-question fixture.
-- Expected: Exact errors; oversize rejected before reading; invalid handling awaits owner clarification; maximal session below 100 KB.
+- Expected: Exact errors; oversize rejected before reading; invalid bundles counted independently under owner-approved D-68; maximal session below 100 KB.
 
 ### TC-101 — Physical voice reload
 

@@ -4,53 +4,53 @@ Local repository setup completed on 2026-10-21. Initial specifications and agent
 
 Tasks are executed in order. Stop for owner review at each milestone boundary. A completion commit is recorded only after the task acceptance checks pass.
 
-| Task | Description                                                        | Status  | Completion commit                |
-| ---- | ------------------------------------------------------------------ | ------- | -------------------------------- |
-| T-01 | Scaffold the repository, tooling and CI skeleton                   | done    | b0a87d3                          |
-| T-02 | Configuration, environment, errors and labels                      | done    | a45e7e3                          |
-| T-03 | Logging, request id and security headers                           | done    | 1756087                          |
-| T-04 | Test runners and full CI                                           | done    | 1e662d3                          |
-| T-05 | Design tokens, fonts, layout shell, theme and banners              | done    | 42a528c                          |
-| T-06 | Question schema, loader, validator and the 15 example questions    | done    | f8383ee                          |
-| T-07 | Write the remaining 105 questions                                  | done    | 1475f7a                          |
-| T-08 | Seeded PRNG and deterministic selection                            | done    | 95957c3                          |
-| T-09 | Rate-limit adapter, visitor id and quotas                          | done    | a79a194                          |
-| T-10 | Session token                                                      | done    | 5fd2f24                          |
-| T-11 | API contracts, client and `POST /api/sessions/start`               | done    | b9d7f85                          |
-| T-12 | `GET /api/health`                                                  | done    | 59c4c15                          |
-| T-13 | Record schemas, repository interface and memory repository         | done    | 95b6e18                          |
-| T-14 | Setup page                                                         | done    | f40159a                          |
-| T-15 | Room state machine                                                 | done    | 4df5f00                          |
-| T-16 | Words, fillers and the delivery block (text mode)                  | done    | ec8a2b6                          |
-| T-17 | Text-mode interview room                                           | done    | e88dca0                          |
-| T-18 | Capability detection, microphone check and setup capability states | done    | eac718d                          |
-| T-19 | Recognizer adapter, transcript assembly and recorder machine       | done    | 8eb3c8b                          |
-| T-20 | Speech synthesis, voices, captions and the voice picker            | done    | 46134d9                          |
-| T-21 | Voice room integration                                             | blocked | dcd7293                          |
-| T-22 | Voice delivery metrics                                             | done    | 678d785                          |
-| T-23 | Voice E2E with the speech mock                                     | done    | 742ba00                          |
-| T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148                          |
-| T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b                          |
-| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280                          |
-| T-27 | `POST /api/feedback`                                               | blocked | fde48e6                          |
-| T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | f5c8387                          |
-| T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | 267cd8b                          |
-| T-30 | Report page, chart, Markdown export and print                      | done    | 8618b04                          |
-| T-31 | Sample session and `/sample`                                       | done    | 6796b4c                          |
-| T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | done    | 1f52ade                          |
-| T-33 | Persistence wiring and recovery after reload                       | blocked | this commit (manual TC-101 only) |
-| T-34 | History page and deletion                                          | todo    | —                                |
-| T-35 | Export and import                                                  | todo    | —                                |
-| T-36 | Golden set                                                         | todo    | —                                |
-| T-37 | Eval runner, metrics, thresholds and budget guard                  | todo    | —                                |
-| T-38 | Eval workflow                                                      | todo    | —                                |
-| T-39 | Complete the E2E suite                                             | todo    | —                                |
-| T-40 | Landing, `/how-it-works` and `/privacy`                            | todo    | —                                |
-| T-41 | Accessibility, responsive, motion, theme and security pass         | todo    | —                                |
-| T-42 | Performance budgets                                                | todo    | —                                |
-| T-43 | Provision Upstash and OpenAI; verify free tiers                    | todo    | —                                |
-| T-44 | Vercel deployment, DNS and runbook test                            | todo    | —                                |
-| T-45 | README, demo GIF, browser verification and release                 | todo    | —                                |
+| Task | Description                                                        | Status  | Completion commit            |
+| ---- | ------------------------------------------------------------------ | ------- | ---------------------------- |
+| T-01 | Scaffold the repository, tooling and CI skeleton                   | done    | b0a87d3                      |
+| T-02 | Configuration, environment, errors and labels                      | done    | a45e7e3                      |
+| T-03 | Logging, request id and security headers                           | done    | 1756087                      |
+| T-04 | Test runners and full CI                                           | done    | 1e662d3                      |
+| T-05 | Design tokens, fonts, layout shell, theme and banners              | done    | 42a528c                      |
+| T-06 | Question schema, loader, validator and the 15 example questions    | done    | f8383ee                      |
+| T-07 | Write the remaining 105 questions                                  | done    | 1475f7a                      |
+| T-08 | Seeded PRNG and deterministic selection                            | done    | 95957c3                      |
+| T-09 | Rate-limit adapter, visitor id and quotas                          | done    | a79a194                      |
+| T-10 | Session token                                                      | done    | 5fd2f24                      |
+| T-11 | API contracts, client and `POST /api/sessions/start`               | done    | b9d7f85                      |
+| T-12 | `GET /api/health`                                                  | done    | 59c4c15                      |
+| T-13 | Record schemas, repository interface and memory repository         | done    | 95b6e18                      |
+| T-14 | Setup page                                                         | done    | f40159a                      |
+| T-15 | Room state machine                                                 | done    | 4df5f00                      |
+| T-16 | Words, fillers and the delivery block (text mode)                  | done    | ec8a2b6                      |
+| T-17 | Text-mode interview room                                           | done    | e88dca0                      |
+| T-18 | Capability detection, microphone check and setup capability states | done    | eac718d                      |
+| T-19 | Recognizer adapter, transcript assembly and recorder machine       | done    | 8eb3c8b                      |
+| T-20 | Speech synthesis, voices, captions and the voice picker            | done    | 46134d9                      |
+| T-21 | Voice room integration                                             | blocked | dcd7293                      |
+| T-22 | Voice delivery metrics                                             | done    | 678d785                      |
+| T-23 | Voice E2E with the speech mock                                     | done    | 742ba00                      |
+| T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148                      |
+| T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b                      |
+| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280                      |
+| T-27 | `POST /api/feedback`                                               | blocked | fde48e6                      |
+| T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | f5c8387                      |
+| T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | 267cd8b                      |
+| T-30 | Report page, chart, Markdown export and print                      | done    | 8618b04                      |
+| T-31 | Sample session and `/sample`                                       | done    | 6796b4c                      |
+| T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | done    | 1f52ade                      |
+| T-33 | Persistence wiring and recovery after reload                       | blocked | 16c2eb7 (manual TC-101 only) |
+| T-34 | History page and deletion                                          | done    | this commit                  |
+| T-35 | Export and import                                                  | todo    | —                            |
+| T-36 | Golden set                                                         | todo    | —                            |
+| T-37 | Eval runner, metrics, thresholds and budget guard                  | todo    | —                            |
+| T-38 | Eval workflow                                                      | todo    | —                            |
+| T-39 | Complete the E2E suite                                             | todo    | —                            |
+| T-40 | Landing, `/how-it-works` and `/privacy`                            | todo    | —                            |
+| T-41 | Accessibility, responsive, motion, theme and security pass         | todo    | —                            |
+| T-42 | Performance budgets                                                | todo    | —                            |
+| T-43 | Provision Upstash and OpenAI; verify free tiers                    | todo    | —                            |
+| T-44 | Vercel deployment, DNS and runbook test                            | todo    | —                            |
+| T-45 | README, demo GIF, browser verification and release                 | todo    | —                            |
 
 ## Open questions for the owner
 
@@ -137,3 +137,7 @@ T-32: IndexedDB migrations, repository and stable selection facade implemented. 
 T-32 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/39660925984. T-33 is in progress; TC-101 needs an owner physical Chrome voice-recording reload check. Mocked speech does not satisfy that check.
 
 T-33 implementation and automated acceptance passed: restored drafts/review edits/thinking/feedback, storage fallback and versionchange banners, once-only persistence request, and sample storage isolation. Final regression: 490 unit/component and 49 E2E tests; coverage thresholds, build and typecheck passed. Physical Chrome voice reload TC-101 remains unverified; independent T-34 can proceed.
+
+T-33 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/39663016318. T-34 implements history and confirmed deletion; export/import controls follow in T-35 as planned.
+
+T-34: history list, resume/report actions, single deletion and blocked delete-all implemented. CT-08 and E2E-17 pass, including 360 px layout and preference isolation. Final regression: 494 unit/component and 51 E2E tests, build/typecheck and coverage gates passed.
