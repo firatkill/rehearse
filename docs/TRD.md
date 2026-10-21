@@ -2148,7 +2148,7 @@ export class InvalidOutputError extends Error {}
 `lib/llm/openai.ts` implements it with the AI SDK. **Verify at build time (A-10)** which of these the installed major documents, and use it behind the same interface:
 
 - Option A (AI SDK 5): `generateObject({ model: openai(CHAT_MODEL), schema, schemaName, system, prompt, maxOutputTokens, temperature, maxRetries: 0, abortSignal, providerOptions: { openai: { strictJsonSchema: false, ...(reasoningEffort ? { reasoningEffort } : {}) } } })`; read `result.object` and `result.usage`; invalid output throws `NoObjectGeneratedError`.
-- Option B (AI SDK 6 and later, where `generateObject` is deprecated): `generateText({ model: openai(CHAT_MODEL), output: Output.object({ schema, name: schemaName }), system, prompt, maxOutputTokens, temperature, maxRetries: 0, abortSignal, providerOptions: { openai: { strictJsonSchema: false, … } } })`; read `result.output` and `result.usage`; check the installed docs for the exact error class thrown when no valid output is produced.
+- Option B (AI SDK 6 and later, where `generateObject` is deprecated): `generateText({ model: openai(CHAT_MODEL), output: Output.object({ schema, name: schemaName }), instructions: system, prompt, maxOutputTokens, temperature, maxRetries: 0, abortSignal, providerOptions: { openai: { strictJsonSchema: false, … } } })`; read `result.output` and `result.usage`; check the installed docs for the exact error class thrown when no valid output is produced.
 
 In both, check the installed `@ai-sdk/openai` docs for the default of `strictJsonSchema` (it has changed between majors) and always pass `false` explicitly. Record the option used as a decisions log row. Rules:
 

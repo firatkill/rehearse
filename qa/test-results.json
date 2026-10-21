@@ -2086,6 +2086,89 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-066",
+      "ac_reference": "FR-45; UT-29",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Token cost calculation",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; fake AI SDK; external fetch blocked",
+      "description": "Token cost calculation",
+      "steps_to_reproduce": ["Run cost.test.ts and openai-provider.test.ts with Vitest."],
+      "expected_result": "TRD \u00a714.0 and \u00a723.1 contracts hold without real network calls.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial targeted run: 20 tests pass. Extended tests and full coverage run: 296 tests pass."
+        },
+        {
+          "result": "pass",
+          "note": "Final provider/cost slice verification: 296 unit/component tests, 33 E2E tests, lint, typecheck after build, production build and QA ledger pass. Coverage: 98.86% lines, 91.77% branches, 100% functions; OpenAI adapter is excluded by the existing TRD coverage policy and tested with the fake SDK."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-070",
+      "ac_reference": "FR-45; FR-51; T-24; A-10",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "OpenAI adapter contract",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; fake AI SDK; external fetch blocked",
+      "description": "OpenAI adapter contract",
+      "steps_to_reproduce": ["Run cost.test.ts and openai-provider.test.ts with Vitest."],
+      "expected_result": "TRD \u00a714.0 and \u00a723.1 contracts hold without real network calls.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial targeted run: 20 tests pass. Extended tests and full coverage run: 296 tests pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected deprecated SDK system option, redundant cache-detail optional chain and an untyped nested assertion. Concurrent typecheck also read Next-generated routes during build.",
+          "note": "Use SDK 7 instructions, required cache detail object and typed unknown call inspection. Run typecheck after build."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted retest passes all 23 provider/cost cases after fixes."
+        },
+        {
+          "result": "pass",
+          "note": "Final provider/cost slice verification: 296 unit/component tests, 33 E2E tests, lint, typecheck after build, production build and QA ledger pass. Coverage: 98.86% lines, 91.77% branches, 100% functions; OpenAI adapter is excluded by the existing TRD coverage policy and tested with the fake SDK."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-088",
+      "ac_reference": "FR-19; T-24; A-01; A-02; A-03",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Live model verification",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "Owner-configured live OpenAI project required",
+      "description": "Confirm exact model access and temperature support with the owner-only toy call.",
+      "steps_to_reproduce": [
+        "Owner configures local credentials and runs model-listing and toy structured-output checks."
+      ],
+      "expected_result": "Exact model is available and returns a valid object with approved settings.",
+      "attempts": [
+        {
+          "result": "blocked",
+          "note": "No local OpenAI key is configured. No live request made. Owner follow-up recorded in docs/PROGRESS.md; no external ticket per repository override."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }
