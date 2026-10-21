@@ -1,0 +1,68 @@
+[
+  {
+    "id": "sdl-001",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid"],
+    "topic": "file-upload",
+    "prompt": "Design a feature that lets users upload a profile photo and see it everywhere in the app. Walk me through the main parts and the trade-offs.",
+    "follow_up_hints": [
+      "Where do the image bytes go, and does your server touch them?",
+      "How do you handle a 20 MB photo from a phone?",
+      "How does a changed photo show up everywhere quickly?"
+    ],
+    "what_good_looks_like": [
+      "Asks or states requirements: size limits, formats, how many users",
+      "Separates file storage from the database record that points to it",
+      "Covers resizing, validation and serving through a cache or CDN",
+      "Discusses at least one trade-off, such as direct upload versus going through the server"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-002",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "topic": "notifications",
+    "prompt": "Design a system that emails a user when someone comments on their post. How do you avoid sending duplicates or flooding people with email?",
+    "follow_up_hints": [
+      "What happens if the email provider is down for an hour?",
+      "Where does the user's preference live?",
+      "How would you batch ten comments in a minute?"
+    ],
+    "what_good_looks_like": [
+      "Decouples the comment write from sending with a queue or outbox",
+      "Explains deduplication with an idempotency key per notification",
+      "Covers batching or rate limiting per recipient and user preferences",
+      "Handles provider failure with retries and backoff"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-003",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "topic": "llm-streaming",
+    "prompt": "Design a chat feature that streams answers from a language model to the browser. What are the parts, and what happens when the connection drops halfway?",
+    "follow_up_hints": [
+      "Which transport would you use, and why?",
+      "Where is the conversation stored, and when is a message saved?",
+      "How do you stop paying for tokens nobody will read?"
+    ],
+    "what_good_looks_like": [
+      "Names the parts: client, API route, model provider, storage, and the transport between them",
+      "Explains when partial output is persisted and how the client resumes or retries",
+      "Covers cancelling the upstream request when the user leaves",
+      "Mentions limits on cost and abuse such as rate limits and output caps"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

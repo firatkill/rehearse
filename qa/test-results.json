@@ -327,6 +327,48 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-016",
+      "ac_reference": "FR-01, FR-03; UT-03",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Question schema rejects invalid records",
+      "status": "resolved",
+      "description": "Validate the normative bank and malformed fixture inputs without external services.",
+      "steps_to_reproduce": ["Run bank unit tests and questions:validate --allow-incomplete."],
+      "expected_result": "Normative examples pass; schema and integrity violations are rejected.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Lint/typecheck/build pass. Full coverage run passed 46 tests with the prescribed T-07 todo; added normative-content equality test then passed all 11 bank tests. Eight browser regressions pass. Coverage: 100% lines/functions, 96.62% branches. Validator prints all 45 cells and accepts the 15 examples in incomplete mode."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-017",
+      "ac_reference": "FR-01, FR-03; UT-03",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Bank validator enforces integrity",
+      "status": "resolved",
+      "description": "Validate the normative bank and malformed fixture inputs without external services.",
+      "steps_to_reproduce": ["Run bank unit tests and questions:validate --allow-incomplete."],
+      "expected_result": "Normative examples pass; schema and integrity violations are rejected.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Lint/typecheck/build pass. Full coverage run passed 46 tests with the prescribed T-07 todo; added normative-content equality test then passed all 11 bank tests. Eight browser regressions pass. Coverage: 100% lines/functions, 96.62% branches. Validator prints all 45 cells and accepts the 15 examples in incomplete mode."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

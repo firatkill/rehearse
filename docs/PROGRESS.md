@@ -11,7 +11,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-03 | Logging, request id and security headers                           | done   | 1756087           |
 | T-04 | Test runners and full CI                                           | done   | 1e662d3           |
 | T-05 | Design tokens, fonts, layout shell, theme and banners              | done   | 42a528c           |
-| T-06 | Question schema, loader, validator and the 15 example questions    | todo   | —                 |
+| T-06 | Question schema, loader, validator and the 15 example questions    | doing  | —                 |
 | T-07 | Write the remaining 105 questions                                  | todo   | —                 |
 | T-08 | Seeded PRNG and deterministic selection                            | todo   | —                 |
 | T-09 | Rate-limit adapter, visitor id and quotas                          | todo   | —                 |
@@ -58,7 +58,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## Verification limits
 
-- M0 (T-01–T-05) is complete; stop before T-06 for owner review. [Milestone QA report](../qa/M0-REPORT.md).
+- M0 (T-01–T-05) is complete. Owner authorised M1 continuation on 2026-10-21. [Milestone QA report](../qa/M0-REPORT.md).
 - All five CI jobs passed on T-05: https://github.com/firatkill/rehearse/actions/runs/39566353571.
 - 36 unit/component tests and eight Chromium tests pass. Coverage: 100% lines/functions, 96% branches. Shell axe checks pass in both themes.
 - No real microphone, Safari, screen-reader, live LLM, Upstash or deployed-environment verification yet; these belong to later tasks. Health and eval remain the planned T-04 stubs.
