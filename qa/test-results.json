@@ -369,6 +369,30 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-018",
+      "ac_reference": "FR-02, FR-03; UT-03",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Complete bank meets distribution and coverage",
+      "status": "open",
+      "description": "Complete the fixed question bank and preserve existing application behaviour.",
+      "steps_to_reproduce": [
+        "Run questions:validate, coverage, build, and the existing E2E suite."
+      ],
+      "expected_result": "All content constraints and existing checks pass.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Content validation, 48 tests, coverage and build passed, but Playwright could not bind port 3200 (EADDRINUSE).",
+          "note": "Pre-run port check was clear; another process claimed the port before startup. Waiting without terminating unrelated work; no timeout or test change."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

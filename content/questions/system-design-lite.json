@@ -64,5 +64,539 @@
     "time_limit_s": 180,
     "status": "active",
     "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-004",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "shared-checklist",
+    "prompt": "Sketch a small shared checklist for a project team. How would updates remain understandable when two people change the same item?",
+    "follow_up_hints": [
+      "What is the smallest useful record shape?",
+      "How would a conflict appear to users?"
+    ],
+    "what_good_looks_like": [
+      "Defines items, ownership and a simple update flow",
+      "Explains concurrent updates without silent data loss",
+      "Includes loading, failure and conflict states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-005",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "appointment-slots",
+    "prompt": "Design a simple appointment-slot picker for one service provider. How would you prevent two visitors from booking the same slot?",
+    "follow_up_hints": [
+      "Where is availability enforced?",
+      "What happens if confirmation is interrupted?"
+    ],
+    "what_good_looks_like": [
+      "Defines slots and bookings with a clear source of truth",
+      "Explains atomic reservation or equivalent conflict handling",
+      "Provides a recoverable confirmation flow"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-006",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "saved-searches",
+    "prompt": "Sketch a feature that lets a user save a search and run it again later. What would you store and what would you recompute?",
+    "follow_up_hints": [
+      "How would changed search options affect old saves?",
+      "What should happen when results no longer exist?"
+    ],
+    "what_good_looks_like": [
+      "Separates saved criteria from transient results",
+      "Explains validation and evolution of saved settings",
+      "Defines useful empty and invalid-search states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-007",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "feedback-inbox",
+    "prompt": "Design a small feedback inbox where a team can label and resolve incoming reports. How would a report move through the system?",
+    "follow_up_hints": [
+      "What information does the triager need?",
+      "How would duplicate reports be handled?"
+    ],
+    "what_good_looks_like": [
+      "Defines a minimal report record and status lifecycle",
+      "Explains intake, triage and resolution ownership",
+      "Considers duplicates, permissions and failure feedback"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-008",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "export-jobs",
+    "prompt": "Sketch a feature that exports a user’s records into a downloadable file. How would it work when generation takes a minute?",
+    "follow_up_hints": [
+      "How does the user find a completed export?",
+      "How would access to the file expire?"
+    ],
+    "what_good_looks_like": [
+      "Separates export request, processing and download",
+      "Defines job state and a safe result reference",
+      "Considers authorisation, expiry and retry behaviour"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-009",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "reading-progress",
+    "prompt": "Design reading-progress tracking that works across two devices. How would you decide which progress to show?",
+    "follow_up_hints": [
+      "What if one device was offline?",
+      "Which information represents meaningful progress?"
+    ],
+    "what_good_looks_like": [
+      "Defines a small progress record and update rule",
+      "Explains reconciliation of delayed or conflicting updates",
+      "Keeps user control over an unexpected position"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-010",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "draft-autosave",
+    "prompt": "Sketch autosave for a short editor. How would you keep users confident that their latest changes are safe?",
+    "follow_up_hints": [
+      "When should a save be triggered?",
+      "What happens if the page closes during a save?"
+    ],
+    "what_good_looks_like": [
+      "Explains local draft state and server or browser persistence",
+      "Prevents older saves from overwriting newer content",
+      "Shows truthful saving, saved and failed states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-011",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "team-invitations",
+    "prompt": "Design an invitation flow for a small team workspace. How would an invitation be accepted safely?",
+    "follow_up_hints": [
+      "What should make an invitation invalid?",
+      "What if the same invitation is opened twice?"
+    ],
+    "what_good_looks_like": [
+      "Defines the invitation’s scope, expiry and intended recipient",
+      "Explains single-use or idempotent acceptance with authorisation",
+      "Handles expired and already-used invitations clearly"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-012",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "status-page",
+    "prompt": "Sketch a small status page that reports whether a few product features are available. How would you avoid showing misleading green indicators?",
+    "follow_up_hints": [
+      "Which checks represent actual user-facing health?",
+      "What if the status data itself is stale?"
+    ],
+    "what_good_looks_like": [
+      "Separates feature health from mere process availability",
+      "Defines freshness and failure semantics for status signals",
+      "Displays uncertainty when checks cannot be trusted"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-013",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "activity-feed",
+    "prompt": "Design a small activity feed for a project. How would you keep the feed useful as events arrive while someone is reading?",
+    "follow_up_hints": ["Which events belong in the feed?", "How would pagination remain stable?"],
+    "what_good_looks_like": [
+      "Defines relevant event fields and ordering",
+      "Explains incremental loading without disruptive jumps",
+      "Considers duplicates, permissions and empty states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-014",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "preferences-sync",
+    "prompt": "Sketch synchronised user preferences for a web app. How should defaults, saved settings and changes from another tab interact?",
+    "follow_up_hints": [
+      "Which preferences can apply immediately?",
+      "What happens when saving fails?"
+    ],
+    "what_good_looks_like": [
+      "Defines defaults and a validated preference record",
+      "Explains update propagation and conflict handling",
+      "Keeps the interface usable when persistence is unavailable"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-015",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "image-gallery",
+    "prompt": "Design a small image gallery with upload, browse and delete actions. How would metadata and stored files stay consistent?",
+    "follow_up_hints": [
+      "What happens if an upload stops halfway?",
+      "How would you limit unsafe or oversized input?"
+    ],
+    "what_good_looks_like": [
+      "Separates file storage from validated metadata",
+      "Explains bounded upload and cleanup of incomplete work",
+      "Defines permissions and predictable deletion behaviour"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-016",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "announcement-board",
+    "prompt": "Sketch a board where an administrator schedules short announcements. How would publication and expiry work?",
+    "follow_up_hints": [
+      "Which clock controls visibility?",
+      "How could an administrator preview an unpublished message?"
+    ],
+    "what_good_looks_like": [
+      "Defines announcement content, schedule and state",
+      "Enforces publication boundaries using a trusted clock",
+      "Separates preview access from public visibility"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-017",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "bookmark-library",
+    "prompt": "Design a personal bookmark library with tags and search. What would the smallest useful implementation look like?",
+    "follow_up_hints": [
+      "How would duplicate bookmarks be treated?",
+      "What happens when a linked page disappears?"
+    ],
+    "what_good_looks_like": [
+      "Defines bookmarks and tags without unnecessary complexity",
+      "Explains create, edit, search and delete flows",
+      "Handles duplicate input and unavailable destinations"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-018",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "limited-stock",
+    "prompt": "Sketch a small ordering flow for a limited batch of items. How would you avoid confirming more orders than can be fulfilled?",
+    "follow_up_hints": [
+      "When is stock reserved or released?",
+      "What happens after an uncertain payment result?"
+    ],
+    "what_good_looks_like": [
+      "Defines an inventory invariant and reservation lifecycle",
+      "Explains failure recovery around payment and confirmation",
+      "Prevents duplicate submissions from consuming stock twice"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-019",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "form-submissions",
+    "prompt": "Design a short application form that can be saved and submitted later. How would you distinguish drafts from completed submissions?",
+    "follow_up_hints": [
+      "Which checks belong at final submission?",
+      "Can a submitted record still change?"
+    ],
+    "what_good_looks_like": [
+      "Defines draft and submitted states with clear transitions",
+      "Separates partial draft validation from final requirements",
+      "Explains retry safety and user-visible confirmation"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-020",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "usage-dashboard",
+    "prompt": "Sketch a dashboard showing daily usage for one product feature. How would you make its numbers understandable and affordable to compute?",
+    "follow_up_hints": [
+      "What exactly counts as one use?",
+      "How would late events affect yesterday’s total?"
+    ],
+    "what_good_looks_like": [
+      "Defines the event and aggregation boundaries",
+      "Explains bounded collection and daily aggregation",
+      "Communicates freshness, missing data and correction behaviour"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-021",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "moderation-queue",
+    "prompt": "Design a small moderation queue for user-submitted text. How would reviewers claim work without reviewing the same item twice?",
+    "follow_up_hints": [
+      "What happens when a reviewer leaves mid-review?",
+      "How are decisions recorded?"
+    ],
+    "what_good_looks_like": [
+      "Defines item state and temporary review ownership",
+      "Explains recovery from abandoned claims",
+      "Records decisions with appropriate permissions and audit context"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-022",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "offline-notes",
+    "prompt": "Sketch a notes feature that remains usable without a connection. How would it synchronise when the connection returns?",
+    "follow_up_hints": [
+      "How would edits to the same note be reconciled?",
+      "What should the user see before synchronisation finishes?"
+    ],
+    "what_good_looks_like": [
+      "Separates local editing from remote synchronisation",
+      "Defines stable identifiers and conflict handling",
+      "Shows honest pending and failed synchronisation states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-023",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "account-data-download",
+    "prompt": "Design a small self-service download of a user’s stored profile data. How would you ensure the file contains only that user’s data?",
+    "follow_up_hints": ["Where is access checked?", "How would a stale download link behave?"],
+    "what_good_looks_like": [
+      "Defines the export scope and authorised requester",
+      "Explains safe generation, retrieval and expiry",
+      "Considers incomplete export and retry states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-024",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "simple-audit-trail",
+    "prompt": "Sketch an audit trail for changes to a project’s settings. What would you record and how would people inspect it?",
+    "follow_up_hints": [
+      "Which sensitive values should never be stored in the trail?",
+      "How would a failed change appear?"
+    ],
+    "what_good_looks_like": [
+      "Defines meaningful change events and actor context",
+      "Avoids recording secrets or unnecessary personal content",
+      "Distinguishes attempted changes from committed changes"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-025",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-document-helper",
+    "prompt": "Design a small assistant that answers questions about a handful of uploaded documents. How would it show what supports an answer?",
+    "follow_up_hints": [
+      "What happens when no passage supports a response?",
+      "How would document access affect retrieval?"
+    ],
+    "what_good_looks_like": [
+      "Defines upload, retrieval and answer boundaries",
+      "Scopes evidence to authorised documents and the question",
+      "Provides citations or an explicit insufficient-evidence state"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-026",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-draft-review",
+    "prompt": "Sketch a tool that drafts a short message for a user to review before sending. How would you keep the user in control?",
+    "follow_up_hints": [
+      "What can the user edit before sending?",
+      "What happens if generation fails or produces unsuitable text?"
+    ],
+    "what_good_looks_like": [
+      "Separates generation from the final send action",
+      "Validates output and preserves editing and rejection options",
+      "Defines bounded retries and clear failure states"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-027",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-label-suggestions",
+    "prompt": "Design a feature that suggests labels for incoming support reports. How would you introduce it without disrupting the existing workflow?",
+    "follow_up_hints": [
+      "What happens when confidence is low?",
+      "How would corrections improve evaluation?"
+    ],
+    "what_good_looks_like": [
+      "Keeps suggestions distinct from confirmed labels",
+      "Defines validation, fallback and human correction paths",
+      "Measures task-level usefulness and systematic errors"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-028",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-summary-preview",
+    "prompt": "Sketch a feature that summarises a long discussion for someone joining late. How would you communicate the summary’s limits?",
+    "follow_up_hints": [
+      "How could the reader check an important claim?",
+      "What if the discussion changes during generation?"
+    ],
+    "what_good_looks_like": [
+      "Defines the source snapshot and summary scope",
+      "Preserves access to supporting discussion context",
+      "Handles stale input, missing evidence and generation failure"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-029",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-budgeted-search",
+    "prompt": "Design a small AI-assisted search feature with a daily spending limit. How would the product behave when the budget is exhausted?",
+    "follow_up_hints": [
+      "Where is the budget checked before work begins?",
+      "What useful fallback can remain available?"
+    ],
+    "what_good_looks_like": [
+      "Places cost enforcement on the trusted server boundary",
+      "Explains bounded calls and failure-closed quota handling",
+      "Provides an understandable non-AI fallback or retry time"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-030",
+    "type": "system-design-lite",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-evaluation-workbench",
+    "prompt": "Sketch a small internal tool for comparing two versions of an AI prompt on saved examples. How would a reviewer decide whether a change is ready?",
+    "follow_up_hints": [
+      "How would repeated runs and cost be bounded?",
+      "What information must be kept with each result?"
+    ],
+    "what_good_looks_like": [
+      "Defines versioned examples, runs and evaluation criteria",
+      "Captures comparable results with explicit budgets",
+      "Highlights regressions and separates measured evidence from judgement"
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
   }
 ]
