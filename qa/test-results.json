@@ -228,6 +228,101 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-011",
+      "ac_reference": "NFR-17; T-04",
+      "milestone": "M0 Setup",
+      "title": "Full CI skeleton passes",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "All five jobs passed on 1e662d3: https://github.com/firatkill/rehearse/actions/runs/39565447187"
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-012",
+      "ac_reference": "NFR-08; CT-06",
+      "milestone": "M0 Setup",
+      "title": "Announcer suppresses duplicates and limits queue",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Fake-timer tests verify clear/set delay, duplicate suppression, minimum interval, queue cap and cleanup."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-013",
+      "ac_reference": "FR-53; E2E-26",
+      "milestone": "M0 Setup",
+      "title": "Theme persists across reload",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Chromium verified dark system theme, toggle to light, reload persistence, toggle back to dark."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-014",
+      "ac_reference": "NFR-08; NFR-09; PRD \u00a79.1",
+      "milestone": "M0 Setup",
+      "title": "Layout shell and keyboard skip link",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Axe found a missing document title and footer links distinguishable only by colour.",
+          "note": "Added the exact PRD 9.3 document title and underlined links; retest pending."
+        },
+        {
+          "result": "pass",
+          "note": "Affected checks passed after fixing title and link styling. Final suite: 36 unit/component tests, 8 Chromium E2E tests; axe zero serious/critical in both themes, keyboard skip focus and no overflow at 360/1024 px. Lint/typecheck/build passed; coverage 100% lines/functions, 96% branches."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-015",
+      "ac_reference": "PRD \u00a79.2; PRD \u00a79.13",
+      "milestone": "M0 Setup",
+      "title": "Banners and error-page copy",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright Chromium",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Component tests cover banner order/offline events/room header/error recovery; Chromium verifies readonly/off banners and 404."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

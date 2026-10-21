@@ -9,8 +9,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-01 | Scaffold the repository, tooling and CI skeleton                   | done   | b0a87d3           |
 | T-02 | Configuration, environment, errors and labels                      | done   | a45e7e3           |
 | T-03 | Logging, request id and security headers                           | done   | 1756087           |
-| T-04 | Test runners and full CI                                           | doing  | —                 |
-| T-05 | Design tokens, fonts, layout shell, theme and banners              | todo   | —                 |
+| T-04 | Test runners and full CI                                           | done   | 1e662d3           |
+| T-05 | Design tokens, fonts, layout shell, theme and banners              | doing  | —                 |
 | T-06 | Question schema, loader, validator and the 15 example questions    | todo   | —                 |
 | T-07 | Write the remaining 105 questions                                  | todo   | —                 |
 | T-08 | Seeded PRNG and deterministic selection                            | todo   | —                 |
