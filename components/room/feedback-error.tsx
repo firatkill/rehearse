@@ -105,9 +105,11 @@ export function FeedbackError({
     }
   return (
     <section className="space-y-4">
-      <h2 tabIndex={-1} data-phase-focus={focus === 'heading' || undefined}>
-        {title}
-      </h2>
+      <div role="alert" aria-live="assertive" aria-atomic="true">
+        <h2 tabIndex={-1} data-phase-focus={focus === 'heading' || undefined}>
+          {title}
+        </h2>
+      </div>
       <p>
         <SafeText text={body} />
       </p>
@@ -124,7 +126,11 @@ export function FeedbackError({
         <Button data-phase-focus={focus === 'save' || undefined} onClick={onSave}>
           Save without feedback
         </Button>
-        {restart && <Link href="/setup">Start a new session</Link>}
+        {restart && (
+          <Link className="inline-flex min-w-11 items-center" href="/setup">
+            Start a new session
+          </Link>
+        )}
       </div>
     </section>
   );

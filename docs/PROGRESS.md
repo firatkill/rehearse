@@ -123,3 +123,5 @@ T-30 CI passed: https://github.com/firatkill/rehearse/actions/runs/39629175254. 
 No live LLM/eval, Upstash, physical microphone or Safari/mobile speech verification was performed. D-64 defers the live eval gate until T-37. Physical M2 checks TC-063/TC-064 remain outstanding. Local full checks should run sequentially; four Vitest workers avoid competing with other applications. The unchanged card test passed on isolated retest and in the final full suite after a loaded-machine timeout.
 
 Final M3 spec review corrected feedback/summary failure logging to TRD §20 levels and added the safe summary item count from §22. The shared mapping and actual API log levels have spec-derived tests. All 472 unit/component and 44 E2E tests pass after the correction; the handoff remains at M3 with no T-32 work.
+
+Final M3 UI review corrected blocking-error announcements, normative score-bar geometry/tokens and report/footer touch targets. Targeted browser checks passed for feedback errors, speech errors and reports; final regression results are recorded in the QA ledger. No M4 work started.

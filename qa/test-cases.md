@@ -673,33 +673,33 @@ Expected: Dated evidence logged; no unsupported inference of manual browser succ
 
 Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 before M3 code. Live acceptance and sample generation remain owner checks.
 
-| TC     | References                          | Title                                    | Priority | Automatable | Expected result                                                                                                                               |
-| ------ | ----------------------------------- | ---------------------------------------- | -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| TC-066 | FR-45; UT-29                        | Token cost calculation                   | High     | yes         | Use TRD §23.1 formula, clamping uncached tokens at zero.                                                                                      |
-| TC-067 | FR-51; UT-39                        | Deterministic mock feedback              | High     | yes         | Identical output; scores and flags follow TRD §15.6.                                                                                          |
-| TC-068 | FR-51; UT-39                        | Mock failure triggers and cancellation   | High     | yes         | Specified errors, invalid output and delay; no network calls.                                                                                 |
-| TC-069 | FR-51; UT-39                        | Mock summary                             | High     | yes         | Headline and next practice use computed labels; ordered notes; fixed paragraph.                                                               |
-| TC-070 | FR-45; FR-51; T-24; A-10            | OpenAI adapter contract                  | High     | yes         | Structured output, maxRetries 0, explicit non-strict schema, configured temperature/reasoning; safe mapped errors.                            |
-| TC-071 | FR-19; FR-23; UT-21                 | Untrusted-text sanitization              | High     | yes         | Exact normative sanitization.                                                                                                                 |
-| TC-072 | FR-19; FR-23; UT-22                 | Exact prompts and rubric                 | High     | yes         | Byte-exact copy, trusted/untrusted block order and matching versions.                                                                         |
-| TC-073 | FR-20–FR-23; UT-23                  | Feedback normalization                   | High     | yes         | TRD §15.3 rejects invalid fields and applies deterministic caps.                                                                              |
-| TC-074 | FR-20; UT-24                        | Quoted evidence verification             | High     | yes         | Only supported whole-word evidence survives; removed count accurate.                                                                          |
-| TC-075 | FR-19; UT-25                        | Feedback retries and deadline            | High     | yes         | At most two attempts, bounded deadline, usage accumulated and exact error codes.                                                              |
-| TC-076 | FR-19; FR-40–FR-45; FR-56; UT-33    | Feedback API boundaries                  | High     | yes         | Normative check order and error statuses, remaining calls, valid success response, TRD §20 log levels and no transcript in logs.              |
-| TC-077 | FR-20–FR-22; CT-03                  | Feedback card                            | High     | yes         | Accessible scores, exact copy, evidence only when present, disclaimer and metadata.                                                           |
-| TC-078 | FR-23; NFR-10; CT-09                | Safe model and visitor text              | High     | yes         | Literal text; no HTML execution; placeholders styled.                                                                                         |
-| TC-079 | FR-19; FR-26; FR-27; E2E-05; E2E-06 | Full feedback sessions                   | High     | yes         | Scored answers and retained edits reach the report, replacing D-58 staged assertions.                                                         |
-| TC-080 | FR-26; FR-27; E2E-11                | Feedback errors and retry controls       | High     | yes         | Exact copy, allowed retry actions, remaining attempts, progress text and keyboard focus.                                                      |
-| TC-081 | FR-28–FR-30; UT-27                  | Report aggregates                        | High     | yes         | Exact means, tie order, focus order, trend and delivery null handling.                                                                        |
-| TC-082 | FR-29; UT-26                        | Summary generation                       | High     | yes         | Recomputed focus ordering; missing notes null; invalid required text fails.                                                                   |
-| TC-083 | FR-29; FR-40–FR-45; UT-34           | Summary API boundaries                   | High     | yes         | Normative status, check order and validated response.                                                                                         |
-| TC-084 | FR-28–FR-32; CT-07; E2E-19          | Report states and chart                  | High     | yes         | Exact report copy and table; chart excludes unscored data and hides below two scores.                                                         |
-| TC-085 | FR-29; E2E-20                       | Summary retry and fallback               | High     | yes         | One eligible automatic call; fallback tips; retries only when permitted.                                                                      |
-| TC-086 | FR-32; UT-28; E2E-19                | Markdown export and print                | High     | yes         | Escaped deterministic Markdown and filename; details open then restore; actions hidden in print.                                              |
-| TC-087 | FR-33; UT-40; E2E-21                | Static sample report                     | High     | yes         | Three seeded scored fictional answers, summary and valid export; no API/limiter/storage use; mock allowed only with explicit validation flag. |
-| TC-088 | FR-19; T-24; A-01; A-02; A-03       | Live model verification                  | High     | no          | Pinned model available, accepts settings and returns valid object; published prices recorded.                                                 |
-| TC-089 | FR-19; FR-56; T-27                  | Live feedback and token-size measurement | High     | no          | Valid feedback; measured token sizes compared to TRD §23.2; update if >20% different.                                                         |
-| TC-090 | FR-33; T-31                         | Live sample provenance                   | High     | no          | Real model outputs validate without --allow-mock; no fictional output claimed as live.                                                        |
+| TC     | References                          | Title                                    | Priority | Automatable | Expected result                                                                                                                                                     |
+| ------ | ----------------------------------- | ---------------------------------------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TC-066 | FR-45; UT-29                        | Token cost calculation                   | High     | yes         | Use TRD §23.1 formula, clamping uncached tokens at zero.                                                                                                            |
+| TC-067 | FR-51; UT-39                        | Deterministic mock feedback              | High     | yes         | Identical output; scores and flags follow TRD §15.6.                                                                                                                |
+| TC-068 | FR-51; UT-39                        | Mock failure triggers and cancellation   | High     | yes         | Specified errors, invalid output and delay; no network calls.                                                                                                       |
+| TC-069 | FR-51; UT-39                        | Mock summary                             | High     | yes         | Headline and next practice use computed labels; ordered notes; fixed paragraph.                                                                                     |
+| TC-070 | FR-45; FR-51; T-24; A-10            | OpenAI adapter contract                  | High     | yes         | Structured output, maxRetries 0, explicit non-strict schema, configured temperature/reasoning; safe mapped errors.                                                  |
+| TC-071 | FR-19; FR-23; UT-21                 | Untrusted-text sanitization              | High     | yes         | Exact normative sanitization.                                                                                                                                       |
+| TC-072 | FR-19; FR-23; UT-22                 | Exact prompts and rubric                 | High     | yes         | Byte-exact copy, trusted/untrusted block order and matching versions.                                                                                               |
+| TC-073 | FR-20–FR-23; UT-23                  | Feedback normalization                   | High     | yes         | TRD §15.3 rejects invalid fields and applies deterministic caps.                                                                                                    |
+| TC-074 | FR-20; UT-24                        | Quoted evidence verification             | High     | yes         | Only supported whole-word evidence survives; removed count accurate.                                                                                                |
+| TC-075 | FR-19; UT-25                        | Feedback retries and deadline            | High     | yes         | At most two attempts, bounded deadline, usage accumulated and exact error codes.                                                                                    |
+| TC-076 | FR-19; FR-40–FR-45; FR-56; UT-33    | Feedback API boundaries                  | High     | yes         | Normative check order and error statuses, remaining calls, valid success response, TRD §20 log levels and no transcript in logs.                                    |
+| TC-077 | FR-20–FR-22; CT-03                  | Feedback card                            | High     | yes         | Accessible scores, exact copy, evidence only when present, disclaimer and metadata; TRD §19.2 bars use four 12 × 6 px segments, 2 px gaps and the specified tokens. |
+| TC-078 | FR-23; NFR-10; CT-09                | Safe model and visitor text              | High     | yes         | Literal text; no HTML execution; placeholders styled.                                                                                                               |
+| TC-079 | FR-19; FR-26; FR-27; E2E-05; E2E-06 | Full feedback sessions                   | High     | yes         | Scored answers and retained edits reach the report, replacing D-58 staged assertions.                                                                               |
+| TC-080 | FR-26; FR-27; E2E-11                | Feedback errors and retry controls       | High     | yes         | Exact copy, allowed retry actions, remaining attempts, progress text and keyboard focus; blocking error H2 is announced assertively (NFR-08; TRD §19.4).            |
+| TC-081 | FR-28–FR-30; UT-27                  | Report aggregates                        | High     | yes         | Exact means, tie order, focus order, trend and delivery null handling.                                                                                              |
+| TC-082 | FR-29; UT-26                        | Summary generation                       | High     | yes         | Recomputed focus ordering; missing notes null; invalid required text fails.                                                                                         |
+| TC-083 | FR-29; FR-40–FR-45; UT-34           | Summary API boundaries                   | High     | yes         | Normative status, check order and validated response.                                                                                                               |
+| TC-084 | FR-28–FR-32; CT-07; E2E-19          | Report states and chart                  | High     | yes         | Exact report copy and table; chart excludes unscored data and hides below two scores; visible touch targets meet 44 × 44 px (NFR-09; TRD §19.4).                    |
+| TC-085 | FR-29; E2E-20                       | Summary retry and fallback               | High     | yes         | One eligible automatic call; fallback tips; retries only when permitted.                                                                                            |
+| TC-086 | FR-32; UT-28; E2E-19                | Markdown export and print                | High     | yes         | Escaped deterministic Markdown and filename; details open then restore; actions hidden in print.                                                                    |
+| TC-087 | FR-33; UT-40; E2E-21                | Static sample report                     | High     | yes         | Three seeded scored fictional answers, summary and valid export; no API/limiter/storage use; mock allowed only with explicit validation flag.                       |
+| TC-088 | FR-19; T-24; A-01; A-02; A-03       | Live model verification                  | High     | no          | Pinned model available, accepts settings and returns valid object; published prices recorded.                                                                       |
+| TC-089 | FR-19; FR-56; T-27                  | Live feedback and token-size measurement | High     | no          | Valid feedback; measured token sizes compared to TRD §23.2; update if >20% different.                                                                               |
+| TC-090 | FR-33; T-31                         | Live sample provenance                   | High     | no          | Real model outputs validate without --allow-mock; no fictional output claimed as live.                                                                              |
 
 ### TC-066 — Token cost calculation
 
@@ -795,7 +795,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM, memory limiter, blocked external fetch; fake providers/clocks as applicable; speech mock for browser voice paths.
 - Steps: Render scores, all flags, evidence/null evidence and metadata.
-- Expected: Accessible scores, exact copy, evidence only when present, disclaimer and metadata.
+- Expected: Accessible scores, exact copy, evidence only when present, disclaimer and metadata; TRD §19.2 bars use four 12 × 6 px segments, 2 px gaps and the specified tokens.
 
 ### TC-078 — Safe model and visitor text
 
@@ -819,7 +819,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM, memory limiter, blocked external fetch; fake providers/clocks as applicable; speech mock for browser voice paths.
 - Steps: Exercise timeout, invalid, provider error, quotas, slow response and save-without-feedback.
-- Expected: Exact copy, allowed retry actions, remaining attempts, progress text and keyboard focus.
+- Expected: Exact copy, allowed retry actions, remaining attempts, progress text and keyboard focus; blocking error H2 is announced assertively (NFR-08; TRD §19.4).
 
 ### TC-081 — Report aggregates
 
@@ -851,7 +851,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM, memory limiter, blocked external fetch; fake providers/clocks as applicable; speech mock for browser voice paths.
 - Steps: Render completed/in-progress/no-scored reports, mixed statuses, summary states and fewer than two scores.
-- Expected: Exact report copy and table; chart excludes unscored data and hides below two scores.
+- Expected: Exact report copy and table; chart excludes unscored data and hides below two scores; visible touch targets meet 44 × 44 px (NFR-09; TRD §19.4).
 
 ### TC-085 — Summary retry and fallback
 

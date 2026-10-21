@@ -4,6 +4,9 @@ import { scenarios, speech } from './helpers';
 test('TC-058 E2E-08 permission denial offers focused text fallback', async ({ page }, info) => {
   await prepareVoice(page, info, scenarios.micDenied);
   await expect(page.getByRole('heading', { name: 'Microphone access is blocked' })).toBeVisible();
+  await expect(page.locator('main [aria-live=assertive]')).toHaveText(
+    'Microphone access is blocked',
+  );
   await expect(page.getByRole('button', { name: 'Type instead' })).toBeFocused();
   await page.getByRole('button', { name: 'Type instead' }).click();
   await expect(page.getByLabel('Your answer')).toBeFocused();

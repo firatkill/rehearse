@@ -37,6 +37,9 @@ it.each(cases)(
       />,
     );
     const heading = screen.getByRole('heading', { name: title });
+    expect(screen.getByRole('alert')).toHaveTextContent(title);
+    expect(screen.getByRole('alert')).toHaveAttribute('aria-live', 'assertive');
+    expect(screen.getByRole('alert')).toHaveAttribute('aria-atomic', 'true');
     const save = screen.getByRole('button', { name: 'Save without feedback' });
     const retry = screen.queryByRole('button', { name: 'Try again' });
     expect(container.querySelector('[data-phase-focus]')).toBe(

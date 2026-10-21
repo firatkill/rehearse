@@ -35,6 +35,15 @@
         {
           "result": "pass",
           "note": "Frozen install, lint, typecheck, production build, prod high-severity audit, exact-version check and react-server server-only import passed. T-01 has no application tests by specification."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Build typecheck rejected nullable textContent passed as Playwright diagnostic message in report test.",
+          "note": "Use a non-null diagnostic fallback; no assertion or runtime behaviour changed."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
         }
       ],
       "regression_of": null,
@@ -98,6 +107,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -124,6 +137,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -150,6 +167,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -185,6 +206,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -216,6 +241,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -242,6 +271,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -300,6 +333,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -372,6 +409,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -420,6 +461,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -458,6 +503,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -521,6 +570,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -579,6 +632,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -608,6 +665,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -637,6 +698,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -673,6 +738,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -702,6 +771,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -745,6 +818,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -774,6 +851,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -807,6 +888,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -840,6 +925,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -873,6 +962,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -906,6 +999,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -943,6 +1040,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -980,6 +1081,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1020,6 +1125,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1055,6 +1164,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1090,6 +1203,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1119,6 +1236,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1148,6 +1269,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1177,6 +1302,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1256,6 +1385,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1322,6 +1455,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1357,6 +1494,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1390,6 +1531,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1423,6 +1568,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1461,6 +1610,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1494,6 +1647,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1536,6 +1693,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1595,6 +1756,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1650,6 +1815,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1687,6 +1856,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1770,6 +1943,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1810,6 +1987,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1850,6 +2031,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1890,6 +2075,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1935,6 +2124,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -1980,6 +2173,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2025,6 +2222,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2067,6 +2268,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2109,6 +2314,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2165,6 +2374,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2219,6 +2432,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2283,6 +2500,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2346,6 +2567,14 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2414,6 +2643,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2464,6 +2697,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2548,6 +2785,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2582,6 +2823,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2639,6 +2884,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2681,6 +2930,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2738,6 +2991,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2771,6 +3028,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2804,6 +3065,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2837,6 +3102,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2870,6 +3139,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2905,6 +3178,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2940,6 +3217,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -2989,6 +3270,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3027,6 +3312,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3091,6 +3380,23 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Normative review found score segments 32 × 4 px with 4 px gaps and the wrong empty token instead of TRD §19.2 dimensions/tokens.",
+          "note": "Final milestone source review; adding spec-derived browser and component regression assertions before retest."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted browser run: three checks passed; error announcement locator also matched Next.js route announcer and report touch-target check exposed 18 px inline footer links. Scope app announcement inside main (framework route announcements remain intact), fix footer target boxes; rendered score dimensions and tokens passed before target assertion."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3124,6 +3430,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3170,6 +3480,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3221,6 +3535,23 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Normative review found blocking feedback headings lacked the TRD §19.4 assertive region.",
+          "note": "Final milestone source review; adding spec-derived browser and component regression assertions before retest."
+        },
+        {
+          "result": "fail",
+          "note": "Targeted browser run: three checks passed; error announcement locator also matched Next.js route announcer and report touch-target check exposed 18 px inline footer links. Scope app announcement inside main (framework route announcements remain intact), fix footer target boxes; rendered score dimensions and tokens passed before target assertion."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3254,6 +3585,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3287,6 +3622,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3343,6 +3682,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3380,6 +3723,23 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Normative review found report disclosure summaries lacked minimum touch-target height; inline report action links did not establish a minimum-size box.",
+          "note": "Final milestone source review; adding spec-derived browser and component regression assertions before retest."
+        },
+        {
+          "result": "fail",
+          "note": "Targeted browser run: three checks passed; error announcement locator also matched Next.js route announcer and report touch-target check exposed 18 px inline footer links. Scope app announcement inside main (framework route announcements remain intact), fix footer target boxes; rendered score dimensions and tokens passed before target assertion."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3422,6 +3782,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3464,6 +3828,18 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "fail",
+          "note": "Targeted browser run: three checks passed; error announcement locator also matched Next.js route announcer and report touch-target check exposed 18 px inline footer links. Scope app announcement inside main (framework route announcements remain intact), fix footer target boxes; rendered score dimensions and tokens passed before target assertion."
+        },
+        {
+          "result": "pass",
+          "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,
@@ -3521,6 +3897,10 @@
         {
           "result": "pass",
           "note": "Final M3 normative logging fix: all 472 unit/component tests and 44 E2E tests pass, with build, typecheck and coverage gates (98.60% lines, 91.74% branches, 100% functions). API tests assert actual per-code log levels and safe summary item counts."
+        },
+        {
+          "result": "pass",
+          "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
         }
       ],
       "regression_of": null,

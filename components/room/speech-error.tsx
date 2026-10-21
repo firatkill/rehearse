@@ -30,7 +30,9 @@ export function SpeechError({
   const retryFirst = error === 'no-speech';
   return (
     <section className="space-y-4">
-      <h2>{copy[error][0]}</h2>
+      <div role="alert" aria-live="assertive" aria-atomic="true">
+        <h2>{copy[error][0]}</h2>
+      </div>
       <p>{copy[error][1]}</p>
       <div className="flex flex-wrap gap-3">
         <Button data-phase-focus onClick={retryFirst ? onRetry : onType}>
