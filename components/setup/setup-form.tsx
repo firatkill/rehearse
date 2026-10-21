@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button';
 import { SafeText } from '@/components/common/safe-text';
 import { CapabilityNotice } from './capability-notice';
 import { QuotaPanel } from './quota-panel';
+import { MicCheck } from './mic-check';
+import { useCapabilities } from '@/hooks/use-capabilities';
 
 const defaults: Setup = { ...SETUP_DEFAULTS, types: [...SETUP_DEFAULTS.types], voiceURI: null };
 function readPreferences() {
@@ -63,7 +65,13 @@ export function SetupForm({
     }
   }, [stored]);
   const [changed, setChanged] = useState<Setup | null>(null);
-  const setup = changed ?? preferences;
+  const capabilities = useCapabilities();
+  const selected = changed ?? preferences;
+  const setup: Setup = {
+    ...selected,
+    mode: capabilities && !capabilities.recognition ? 'text' : selected.mode,
+    readAloud: capabilities && !capabilities.synthesis ? false : selected.readAloud,
+  };
   const [pending, setPending] = useState(false);
   const [validation, setValidation] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -149,7 +157,7 @@ export function SetupForm({
   }
   return (
     <>
-      <CapabilityNotice />
+      <CapabilityNotice capabilities={capabilities} />
       <form
         className="space-y-6 py-6"
         onSubmit={(event) => {
@@ -248,6 +256,12 @@ export function SetupForm({
               <input
                 type="radio"
                 name="mode"
+                disabled={mode === 'voice' && capabilities !== null && !capabilities.recognition}
+                aria-describedby={
+                  mode === 'voice' && capabilities !== null && !capabilities.recognition
+                    ? 'voice-unavailable'
+                    : undefined
+                }
                 checked={setup.mode === mode}
                 onChange={() => {
                   change({ mode });
@@ -257,6 +271,10 @@ export function SetupForm({
             </label>
           ))}
         </fieldset>
+        {capabilities !== null && !capabilities.recognition && (
+          <p id="voice-unavailable">Not available in this browser.</p>
+        )}
+        {setup.mode === 'voice' && <MicCheck />}
         <p>
           Each visitor can get feedback on {sessionsPerDay} sessions a day so the demo stays free to
           run.

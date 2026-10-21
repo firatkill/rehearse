@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { SetupForm } from '@/components/setup/setup-form';
 import { startSession } from '@/lib/api/client';
 import { record } from '../fixtures/records';
+import { useCapabilities } from '@/hooks/use-capabilities';
 import type { StartResponse } from '@/lib/api/contracts';
 
 const mocks = vi.hoisted(() => ({
@@ -14,6 +15,7 @@ vi.mock('@/hooks/use-repository', () => ({
   useRepository: () => ({ createSession: mocks.createSession }),
 }));
 vi.mock('@/lib/api/client', () => ({ startSession: vi.fn() }));
+vi.mock('@/hooks/use-capabilities', () => ({ useCapabilities: vi.fn() }));
 const response: StartResponse = {
   sessionId: record.id,
   seed: record.seed,
@@ -29,6 +31,13 @@ beforeEach(() => {
   vi.useRealTimers();
   localStorage.clear();
   vi.clearAllMocks();
+  vi.mocked(useCapabilities).mockReturnValue({
+    secureContext: true,
+    recognition: true,
+    synthesis: true,
+    mediaDevices: true,
+    indexedDb: true,
+  });
 });
 function show(seed: string | null = null, mode: 'on' | 'readonly' = 'on') {
   return render(<SetupForm demoMode={mode} sessionsPerDay={3} initialSeed={seed} />);
@@ -123,4 +132,52 @@ it.each([
   expect(mocks.createSession.mock.calls[0]?.[0]).toMatchObject({
     feedback: { enabled: false, reason },
   });
+});
+
+it.each([
+  [true, true, true, 'Voice answers are available in this browser.'],
+  [
+    true,
+    false,
+    true,
+    'This browser can read questions aloud but can’t transcribe speech, so you’ll type your answers. For voice answers, use Chrome or Edge.',
+  ],
+  [
+    true,
+    true,
+    false,
+    'This browser can transcribe your answers but can’t read questions aloud. Questions will appear as text.',
+  ],
+  [
+    true,
+    false,
+    false,
+    'This browser can’t read questions aloud or transcribe speech. You can still practise by reading the questions and typing your answers.',
+  ],
+  [false, false, true, 'Voice needs a secure (https) connection. You can type your answers.'],
+] as const)(
+  'TC-048 CT-01 capability notice and Voice availability %s/%s/%s',
+  (secureContext, recognition, synthesis, copy) => {
+    vi.mocked(useCapabilities).mockReturnValue({
+      secureContext,
+      recognition,
+      synthesis,
+      mediaDevices: true,
+      indexedDb: true,
+    });
+    show();
+    expect(screen.getByText(copy)).toBeVisible();
+    if (!recognition) {
+      expect(screen.getByLabelText('Voice: answer out loud')).toBeDisabled();
+      expect(screen.getByLabelText('Voice: answer out loud')).toHaveAccessibleDescription(
+        'Not available in this browser.',
+      );
+      expect(screen.getByLabelText('Text: type your answers')).toBeChecked();
+    }
+  },
+);
+it('TC-048 CT-01 neutral placeholder before browser detection', () => {
+  vi.mocked(useCapabilities).mockReturnValue(null);
+  show();
+  expect(screen.getByText('Checking what this browser supports…')).toBeVisible();
 });
