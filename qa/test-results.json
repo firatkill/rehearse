@@ -141,6 +141,65 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-007",
+      "ac_reference": "NFR-13; TRD \u00a712.1; T-03",
+      "milestone": "M0 Setup",
+      "title": "Request boundaries reject invalid bodies and origins",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Next 16.4.2; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Strict lint rejected shorthand void assertions; subsequent format check rejected ESLint autofix formatting.",
+          "note": "Expanded assertion bodies and applied Prettier; no assertion changed."
+        },
+        {
+          "result": "pass",
+          "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-008",
+      "ac_reference": "FR-56; TRD \u00a722; T-03",
+      "milestone": "M0 Setup",
+      "title": "Structured logging redacts sensitive fields",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Next 16.4.2; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-009",
+      "ac_reference": "NFR-13; TRD \u00a721; T-03",
+      "milestone": "M0 Setup",
+      "title": "Production responses carry fresh CSP and security headers",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Next 16.4.2; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }
