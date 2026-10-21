@@ -2106,6 +2106,8 @@ function daily(bucket: DailyBucket, limit: number): Ratelimit {
 
 ### 13.6 Check order (normative, `lib/ratelimit/quotas.ts`)
 
+The successful feedback quota result carries both session remaining and visitor daily remaining for the response in §12.3.
+
 | Route               | Order                                                                                                                                                                                                                          | Denied code                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | start (feedback on) | `consumeDaily('sessions_ip', visitor, RATE_LIMIT_SESSIONS_PER_IP_DAILY)`                                                                                                                                                       | `SESSION_QUOTA_EXCEEDED`                                                      |

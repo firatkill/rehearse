@@ -4,7 +4,7 @@ import type { ErrorCode } from '@/lib/errors';
 import type { Limiter, LimitResult } from './types';
 
 export type QuotaResult =
-  | { ok: true; remaining: number }
+  | { ok: true; remaining: number; visitorRemaining?: number }
   | { ok: false; code: ErrorCode; resetAt: Date; remaining: number };
 type TokenQuota = { sid: string; fb: number; sm: number; exp: number };
 function result(value: LimitResult, code: ErrorCode, remaining = value.remaining): QuotaResult {
@@ -42,11 +42,12 @@ export async function checkFeedback(
     env.RATE_LIMIT_FEEDBACK_PER_IP_DAILY,
   );
   if (!visitorLimit.ok) return result(visitorLimit, 'FEEDBACK_QUOTA_EXCEEDED', session.remaining);
-  return result(
+  const global = result(
     await limiter.consumeDaily('llm_global', 'global', env.RATE_LIMIT_GLOBAL_LLM_DAILY),
     'GLOBAL_CAP_REACHED',
     session.remaining,
   );
+  return global.ok ? { ...global, visitorRemaining: visitorLimit.remaining } : global;
 }
 export async function checkSummary(
   limiter: Limiter,
