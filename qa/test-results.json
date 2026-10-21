@@ -231,6 +231,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -291,6 +295,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -357,6 +365,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -408,6 +420,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -454,6 +470,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -962,6 +982,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -998,6 +1022,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -1075,6 +1103,61 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-037",
+      "ac_reference": "FR-24, FR-25, FR-59; UT-04, UT-05",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Deterministic words and filler counting",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "description": "Deterministic words and filler counting",
+      "steps_to_reproduce": ["Run words.test.ts, fillers.test.ts and delivery-metrics.test.tsx."],
+      "expected_result": "Normative tokenisation and contextual filler rules; text has no measured speech metrics.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "24 targeted tests passed, including every UT-04/UT-05 vector, enabled filler filtering, breakdown ordering and text-mode metric copy."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejects the normative m.index ?? 0 fallback because current TypeScript guarantees the index.",
+          "note": "Preserved byte-exact TRD behaviour with a narrowly documented lint exception."
+        },
+        {
+          "result": "pass",
+          "note": "Lint, typecheck, 183 tests, coverage and build pass. Metrics have 100% line coverage; global 98.82% lines, 90.14% branches, 100% functions. All 11 existing E2E tests pass. Text metrics are recomputed by room answer updates; voice metrics remain T-22."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-038",
+      "ac_reference": "FR-24, FR-25; CT-04 text subset",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Text-mode delivery display",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "description": "Text-mode delivery display",
+      "steps_to_reproduce": ["Run words.test.ts, fillers.test.ts and delivery-metrics.test.tsx."],
+      "expected_result": "Normative tokenisation and contextual filler rules; text has no measured speech metrics.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "24 targeted tests passed, including every UT-04/UT-05 vector, enabled filler filtering, breakdown ordering and text-mode metric copy."
+        },
+        {
+          "result": "pass",
+          "note": "Lint, typecheck, 183 tests, coverage and build pass. Metrics have 100% line coverage; global 98.82% lines, 90.14% branches, 100% functions. All 11 existing E2E tests pass. Text metrics are recomputed by room answer updates; voice metrics remain T-22."
         }
       ],
       "regression_of": null,

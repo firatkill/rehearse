@@ -161,6 +161,7 @@ it('TC-035 UT-18 text review, edit and record-again update records and dialogs',
     rawTranscript: 'Edited answer',
     transcript: 'Edited answer',
   });
+  expect(s.answers[0]?.metrics).toMatchObject({ words: 2, fillers: { total: 0 } });
   const voice = reduce(state({ kind: 'review', notice: null }, true), {
     type: 'EDIT',
     transcript: 'Edited voice',

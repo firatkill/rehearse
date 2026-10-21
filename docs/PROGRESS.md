@@ -20,8 +20,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-12 | `GET /api/health`                                                  | done   | 59c4c15           |
 | T-13 | Record schemas, repository interface and memory repository         | done   | 95b6e18           |
 | T-14 | Setup page                                                         | done   | f40159a           |
-| T-15 | Room state machine                                                 | done   | this commit       |
-| T-16 | Words, fillers and the delivery block (text mode)                  | todo   | —                 |
+| T-15 | Room state machine                                                 | done   | 4df5f00           |
+| T-16 | Words, fillers and the delivery block (text mode)                  | done   | this commit       |
 | T-17 | Text-mode interview room                                           | todo   | —                 |
 | T-18 | Capability detection, microphone check and setup capability states | todo   | —                 |
 | T-19 | Recognizer adapter, transcript assembly and recorder machine       | todo   | —                 |
