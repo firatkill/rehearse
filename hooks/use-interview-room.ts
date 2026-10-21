@@ -294,8 +294,7 @@ export function useInterviewRoom(id: string) {
       void persist((repo) =>
         repo.putAnswer({
           ...updated,
-          metrics:
-            answer.mode === 'text' ? computeDelivery({ ...updated, mode: 'text' }) : answer.metrics,
+          metrics: computeDelivery(updated),
         }),
       );
     }, ANSWER.DRAFT_SAVE_INTERVAL_MS);

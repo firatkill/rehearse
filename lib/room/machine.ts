@@ -157,8 +157,7 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
     updatedAt: at,
   };
   const answer = { ...base, ...patch, updatedAt: at };
-  // Voice timing is added in T-22; text metrics stay current after every edit.
-  if (answer.mode === 'text') answer.metrics = computeDelivery({ ...answer, mode: 'text' });
+  answer.metrics = computeDelivery(answer);
   return {
     ...state,
     answers: [...state.answers.filter((a) => a.index !== state.index), answer].sort(

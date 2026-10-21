@@ -1937,6 +1937,58 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-061",
+      "ac_reference": "FR-24; UT-06",
+      "milestone": "M2 Voice loop",
+      "title": "Voice delivery timing, raw pace and edited word count",
+      "status": "resolved",
+      "environment": "Vitest; injectable recognition timing; no browser services",
+      "description": "Voice delivery timing, raw pace and edited word count",
+      "steps_to_reproduce": ["Run delivery, pauses and voice-metrics test files."],
+      "expected_result": "Normative TRD §16.2/§16.4 and PRD §9.7 values.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "The new delivery test file lacked its Vitest and computeDelivery imports.",
+          "note": "Added the missing imports; no assertions or application behaviour changed."
+        },
+        {
+          "result": "pass",
+          "note": "T-22 verification: five targeted metrics tests, all 273 unit/component tests and all 30 E2E tests pass. Lint, typecheck, build and coverage gates pass (98.85% lines, 91.77% branches, 100% functions). A-21 recorded in D-61."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-062",
+      "ac_reference": "FR-24; UT-07",
+      "milestone": "M2 Voice loop",
+      "title": "Pause ordering and thresholds",
+      "status": "resolved",
+      "environment": "Vitest; injectable recognition timing; no browser services",
+      "description": "Pause ordering and thresholds",
+      "steps_to_reproduce": ["Run delivery, pauses and voice-metrics test files."],
+      "expected_result": "Normative TRD §16.2/§16.4 and PRD §9.7 values.",
+      "attempts": [
+        {
+          "result": "pass",
+          "actual_result": "Pause boundary tests passed.",
+          "note": "Unsorted offsets, duplicates, fewer than two events and 3000ms boundary covered."
+        },
+        {
+          "result": "pass",
+          "note": "T-22 verification: five targeted metrics tests, all 273 unit/component tests and all 30 E2E tests pass. Lint, typecheck, build and coverage gates pass (98.85% lines, 91.77% branches, 100% functions). A-21 recorded in D-61."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

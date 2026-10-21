@@ -26,6 +26,7 @@ test('TC-056 E2E-06 three voice answers retain edited transcripts through practi
     await expect(page.getByLabel('Your answer')).toHaveValue(
       'I led the project and improved delivery.',
     );
+    await expect(page.getByText('Not enough speech to measure')).toBeVisible();
     await page.getByLabel('Your answer').fill(`I led project ${index + 1} and improved delivery.`);
     await page.getByRole('button', { name: 'Save and continue' }).click();
     await page

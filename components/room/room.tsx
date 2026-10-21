@@ -232,7 +232,7 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
       )}
       {kind === 'saved' && answer && question && (
         <section className="space-y-4">
-          <DeliveryMetrics metrics={answer.metrics} />
+          <DeliveryMetrics metrics={answer.metrics} mode={answer.mode} />
           <h2>What interviewers listen for</h2>
           <ul>
             {question.what_good_looks_like.map((text) => (
