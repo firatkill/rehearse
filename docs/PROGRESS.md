@@ -31,8 +31,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-23 | Voice E2E with the speech mock                                     | done    | 742ba00           |
 | T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148           |
 | T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b           |
-| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | this commit       |
-| T-27 | `POST /api/feedback`                                               | todo    | —                 |
+| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280           |
+| T-27 | `POST /api/feedback`                                               | blocked | this commit       |
 | T-28 | Feedback UI: skeleton, card, errors and retries                    | todo    | —                 |
 | T-29 | Aggregates, summary generation and `POST /api/summary`             | todo    | —                 |
 | T-30 | Report page, chart, Markdown export and print                      | todo    | —                 |
@@ -55,6 +55,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 ## Open questions for the owner
 
 - M3: owner approved staged live eval and missing mock copy (D-64/D-65); no pending decision.
+- T-27: owner-only live feedback and token-size measurement remain pending (TC-089).
 - T-24: live model verification TC-088 needs owner-configured credentials and the owner-only toy call; no local key is configured.
 
 - T-21 physical QA remains required: a three-question spoken Chrome session and A-14/A-15/A-20/A-25 on Chrome/Edge/Safari/Android/iOS (TC-063/TC-064). Automated speech mocks and the live Chrome text pass do not satisfy these checks.
@@ -101,3 +102,7 @@ T-24 implementation is complete; status is blocked only on the owner-only live m
 T-25: exact normative v1 prompts, rubric and sanitized user templates implemented. 338 unit/component tests, 33 E2E tests, lint, typecheck, build and coverage pass (98.98% lines, 91.01% branches, 100% functions). Live eval is deferred under D-64.
 
 T-25 CI passed: https://github.com/firatkill/rehearse/actions/runs/39622355076. T-26 normalization, evidence verification and bounded orchestration pass 376 unit/component and 33 E2E tests, lint, typecheck, build and coverage. Local full browser runs should not overlap lint/coverage on this machine; unchanged affected tests passed in isolation and the final full run. Live eval remains deferred under D-64.
+
+T-26 CI passed: https://github.com/firatkill/rehearse/actions/runs/39623630129. T-27 implementation and automated API acceptance are complete; only owner live acceptance TC-089 remains blocked. All 390 unit/component tests and coverage gates pass (98.95% lines, 91.61% branches, 100% functions), with lint, typecheck and build.
+
+T-27 full E2E: all 33 tests pass on ports 3240–3243.

@@ -62,7 +62,7 @@
     },
     {
       "tc_reference": "TC-003",
-      "ac_reference": "FR-44; FR-51; TRD \u00a75; UT-30",
+      "ac_reference": "FR-44; FR-51; TRD §5; UT-30",
       "milestone": "M0 Setup",
       "title": "Environment defaults and conditional requirements",
       "status": "resolved",
@@ -162,7 +162,7 @@
     },
     {
       "tc_reference": "TC-007",
-      "ac_reference": "NFR-13; TRD \u00a712.1; T-03",
+      "ac_reference": "NFR-13; TRD §12.1; T-03",
       "milestone": "M0 Setup",
       "title": "Request boundaries reject invalid bodies and origins",
       "status": "resolved",
@@ -185,7 +185,7 @@
     },
     {
       "tc_reference": "TC-008",
-      "ac_reference": "FR-56; TRD \u00a722; T-03",
+      "ac_reference": "FR-56; TRD §22; T-03",
       "milestone": "M0 Setup",
       "title": "Structured logging redacts sensitive fields",
       "status": "resolved",
@@ -203,7 +203,7 @@
     },
     {
       "tc_reference": "TC-009",
-      "ac_reference": "NFR-13; TRD \u00a721; T-03",
+      "ac_reference": "NFR-13; TRD §21; T-03",
       "milestone": "M0 Setup",
       "title": "Production responses carry fresh CSP and security headers",
       "status": "resolved",
@@ -219,31 +219,31 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-11 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-12 regression: all eight E2E tests pass on 3240\u20133243; smoke now validates full health response."
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         },
         {
           "result": "pass",
-          "note": "T-13 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-14 final regression: all eleven E2E tests passed on 3240\u20133243."
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -253,7 +253,7 @@
     },
     {
       "tc_reference": "TC-010",
-      "ac_reference": "T-04; TRD \u00a725; NFR-17",
+      "ac_reference": "T-04; TRD §25; NFR-17",
       "milestone": "M0 Setup",
       "title": "Unit and component runners, coverage and four E2E servers",
       "status": "resolved",
@@ -275,7 +275,7 @@
         },
         {
           "result": "pass",
-          "note": "Owner-approved E2E_BASE_PORT=3240 starts the four servers on 3240\u20133243. All eight Chromium tests pass without touching the other project; default CI ports remain 3200\u20133203 (D-55)."
+          "note": "Owner-approved E2E_BASE_PORT=3240 starts the four servers on 3240–3243. All eight Chromium tests pass without touching the other project; default CI ports remain 3200–3203 (D-55)."
         },
         {
           "result": "pass",
@@ -283,31 +283,31 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-11 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-12 regression: all eight E2E tests pass on 3240\u20133243; smoke now validates full health response."
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         },
         {
           "result": "pass",
-          "note": "T-13 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-14 final regression: all eleven E2E tests passed on 3240\u20133243."
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -369,15 +369,15 @@
         },
         {
           "result": "pass",
-          "note": "T-14 final regression: all eleven E2E tests passed on 3240\u20133243."
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -387,7 +387,7 @@
     },
     {
       "tc_reference": "TC-014",
-      "ac_reference": "NFR-08; NFR-09; PRD \u00a79.1",
+      "ac_reference": "NFR-08; NFR-09; PRD §9.1",
       "milestone": "M0 Setup",
       "title": "Layout shell and keyboard skip link",
       "status": "resolved",
@@ -408,31 +408,31 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-11 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-12 regression: all eight E2E tests pass on 3240\u20133243; smoke now validates full health response."
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         },
         {
           "result": "pass",
-          "note": "T-13 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-14 final regression: all eleven E2E tests passed on 3240\u20133243."
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -442,7 +442,7 @@
     },
     {
       "tc_reference": "TC-015",
-      "ac_reference": "PRD \u00a79.2; PRD \u00a79.13",
+      "ac_reference": "PRD §9.2; PRD §9.13",
       "milestone": "M0 Setup",
       "title": "Banners and error-page copy",
       "status": "resolved",
@@ -458,31 +458,31 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-11 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-12 regression: all eight E2E tests pass on 3240\u20133243; smoke now validates full health response."
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         },
         {
           "result": "pass",
-          "note": "T-13 regression: eight E2E tests passed on 3240\u20133243."
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-14 final regression: all eleven E2E tests passed on 3240\u20133243."
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -654,7 +654,7 @@
         },
         {
           "result": "pass",
-          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240\u20133243. No live Upstash calls."
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
         }
       ],
       "regression_of": null,
@@ -679,7 +679,7 @@
         },
         {
           "result": "pass",
-          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240\u20133243. No live Upstash calls."
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
         }
       ],
       "regression_of": null,
@@ -704,7 +704,7 @@
         },
         {
           "result": "pass",
-          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240\u20133243. No live Upstash calls."
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
         }
       ],
       "regression_of": null,
@@ -729,7 +729,7 @@
         },
         {
           "result": "pass",
-          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240\u20133243. No live Upstash calls."
+          "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
         }
       ],
       "regression_of": null,
@@ -758,7 +758,7 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -787,7 +787,7 @@
         },
         {
           "result": "pass",
-          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240\u20133243."
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -986,15 +986,15 @@
         },
         {
           "result": "pass",
-          "note": "Final full browser suite: 11 passed on 3240\u20133243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
@@ -1039,15 +1039,15 @@
         },
         {
           "result": "pass",
-          "note": "Final full browser suite: 11 passed on 3240\u20133243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+          "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
         },
         {
           "result": "fail",
@@ -1092,7 +1092,7 @@
         },
         {
           "result": "pass",
-          "note": "Final full browser suite: 11 passed on 3240\u20133243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
         }
       ],
       "regression_of": null,
@@ -1102,7 +1102,7 @@
     },
     {
       "tc_reference": "TC-035",
-      "ac_reference": "FR-08\u2013FR-18, FR-35; UT-18",
+      "ac_reference": "FR-08–FR-18, FR-35; UT-18",
       "milestone": "M1 Question bank, setup and text-mode room",
       "title": "Room transitions and recovery",
       "status": "resolved",
@@ -1117,7 +1117,7 @@
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -1142,7 +1142,7 @@
         },
         {
           "result": "pass",
-          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240\u20133243."
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -1207,7 +1207,7 @@
     },
     {
       "tc_reference": "TC-039",
-      "ac_reference": "FR-12\u2013FR-14; CT-05",
+      "ac_reference": "FR-12–FR-14; CT-05",
       "milestone": "M1 Question bank, setup and text-mode room",
       "title": "Review validation and editing",
       "status": "resolved",
@@ -1231,7 +1231,7 @@
         },
         {
           "result": "pass",
-          "note": "Full existing Chromium suite: 15 tests passed on 3240\u20133243."
+          "note": "Full existing Chromium suite: 15 tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -1241,7 +1241,7 @@
     },
     {
       "tc_reference": "TC-040",
-      "ac_reference": "FR-08, FR-10, FR-12\u2013FR-18; E2E-05",
+      "ac_reference": "FR-08, FR-10, FR-12–FR-18; E2E-05",
       "milestone": "M1 Question bank, setup and text-mode room",
       "title": "Readonly text session completes",
       "status": "resolved",
@@ -1256,7 +1256,7 @@
         },
         {
           "result": "fail",
-          "actual_result": "Persistence test expected six words for the five-word text \u201cI improved delivery with tests.\u201d",
+          "actual_result": "Persistence test expected six words for the five-word text “I improved delivery with tests.”",
           "note": "Corrected the test to the normative word algorithm; no product behaviour changed."
         },
         {
@@ -1265,7 +1265,7 @@
         },
         {
           "result": "pass",
-          "note": "Full existing Chromium suite: 15 tests passed on 3240\u20133243."
+          "note": "Full existing Chromium suite: 15 tests passed on 3240–3243."
         },
         {
           "result": "pass",
@@ -1303,11 +1303,11 @@
       "attempts": [
         {
           "result": "pass",
-          "note": "Targeted Chromium E2E passed on ports 3240\u20133243."
+          "note": "Targeted Chromium E2E passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "Full existing Chromium suite: 15 tests passed on 3240\u20133243."
+          "note": "Full existing Chromium suite: 15 tests passed on 3240–3243."
         },
         {
           "result": "pass",
@@ -1350,11 +1350,11 @@
       "attempts": [
         {
           "result": "pass",
-          "note": "Targeted Chromium E2E passed on ports 3240\u20133243."
+          "note": "Targeted Chromium E2E passed on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "Full existing Chromium suite: 15 tests passed on 3240\u20133243."
+          "note": "Full existing Chromium suite: 15 tests passed on 3240–3243."
         },
         {
           "result": "pass",
@@ -1393,7 +1393,7 @@
         {
           "result": "fail",
           "actual_result": "Next route announcer retained Session not found during initial room loading; report document title retained the last question title.",
-          "note": "Set loading title to Interview \u00b7 Rehearse and add the PRD 9.9 report metadata. Retest pending."
+          "note": "Set loading title to Interview · Rehearse and add the PRD 9.9 report metadata. Retest pending."
         },
         {
           "result": "info",
@@ -1401,7 +1401,7 @@
         },
         {
           "result": "pass",
-          "note": "Rebuilt and repeated setup \u2192 intro \u2192 answer \u2192 review \u2192 save \u2192 end \u2192 report in native Firefox Nightly 157.0. Initial room title/route announcement now Interview \u00b7 Rehearse; final window/tab title Session report \u00b7 Rehearse. Cancel button receives dialog focus. Screenshot confirms readable report. Original three-question completion also passed. Stock Firefox release, real speech and per-step network capture were not checked."
+          "note": "Rebuilt and repeated setup → intro → answer → review → save → end → report in native Firefox Nightly 157.0. Initial room title/route announcement now Interview · Rehearse; final window/tab title Session report · Rehearse. Cancel button receives dialog focus. Screenshot confirms readable report. Original three-question completion also passed. Stock Firefox release, real speech and per-step network capture were not checked."
         }
       ],
       "regression_of": null,
@@ -1516,7 +1516,7 @@
       "steps_to_reproduce": [
         "Run transcript.test.ts, recorder-machine.test.ts and recorder.test.tsx."
       ],
-      "expected_result": "TRD 9.3\u20139.6 reducer rows, transcript rebuilding and resource cleanup hold.",
+      "expected_result": "TRD 9.3–9.6 reducer rows, transcript rebuilding and resource cleanup hold.",
       "attempts": [
         {
           "result": "pass",
@@ -1529,7 +1529,7 @@
         },
         {
           "result": "pass",
-          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240\u20133243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
         }
       ],
       "regression_of": null,
@@ -1548,7 +1548,7 @@
       "steps_to_reproduce": [
         "Run transcript.test.ts, recorder-machine.test.ts and recorder.test.tsx."
       ],
-      "expected_result": "TRD 9.3\u20139.6 reducer rows, transcript rebuilding and resource cleanup hold.",
+      "expected_result": "TRD 9.3–9.6 reducer rows, transcript rebuilding and resource cleanup hold.",
       "attempts": [
         {
           "result": "pass",
@@ -1566,7 +1566,7 @@
         },
         {
           "result": "pass",
-          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240\u20133243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
         }
       ],
       "regression_of": null,
@@ -1585,7 +1585,7 @@
       "steps_to_reproduce": [
         "Run transcript.test.ts, recorder-machine.test.ts and recorder.test.tsx."
       ],
-      "expected_result": "TRD 9.3\u20139.6 reducer rows, transcript rebuilding and resource cleanup hold.",
+      "expected_result": "TRD 9.3–9.6 reducer rows, transcript rebuilding and resource cleanup hold.",
       "attempts": [
         {
           "result": "pass",
@@ -1603,7 +1603,7 @@
         },
         {
           "result": "pass",
-          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240\u20133243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
         }
       ],
       "regression_of": null,
@@ -1622,7 +1622,7 @@
       "steps_to_reproduce": [
         "Run transcript.test.ts, recorder-machine.test.ts and recorder.test.tsx."
       ],
-      "expected_result": "TRD 9.3\u20139.6 reducer rows, transcript rebuilding and resource cleanup hold.",
+      "expected_result": "TRD 9.3–9.6 reducer rows, transcript rebuilding and resource cleanup hold.",
       "attempts": [
         {
           "result": "pass",
@@ -1640,7 +1640,7 @@
         },
         {
           "result": "pass",
-          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240\u20133243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+          "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
         }
       ],
       "regression_of": null,
@@ -1657,7 +1657,7 @@
       "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
       "description": "Voice loading, English ordering and saved selection",
       "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
-      "expected_result": "Behaviours match PRD \u00a79.4 and TRD \u00a710.",
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
       "attempts": [
         {
           "result": "pass",
@@ -1674,7 +1674,7 @@
         },
         {
           "result": "pass",
-          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240\u20133243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
         }
       ],
       "regression_of": null,
@@ -1691,7 +1691,7 @@
       "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
       "description": "Speech chunks, sequencing, cancellation and captions",
       "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
-      "expected_result": "Behaviours match PRD \u00a79.4 and TRD \u00a710.",
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
       "attempts": [
         {
           "result": "pass",
@@ -1708,7 +1708,7 @@
         },
         {
           "result": "pass",
-          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240\u20133243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
         }
       ],
       "regression_of": null,
@@ -1725,7 +1725,7 @@
       "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
       "description": "Voice picker and preview controls",
       "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
-      "expected_result": "Behaviours match PRD \u00a79.4 and TRD \u00a710.",
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
       "attempts": [
         {
           "result": "pass",
@@ -1756,7 +1756,7 @@
         },
         {
           "result": "pass",
-          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240\u20133243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
         }
       ],
       "regression_of": null,
@@ -1766,14 +1766,14 @@
     },
     {
       "tc_reference": "TC-056",
-      "ac_reference": "FR-09\u2013FR-13; E2E-06",
+      "ac_reference": "FR-09–FR-13; E2E-06",
       "milestone": "M2 Voice loop",
       "title": "Three-question voice flow",
       "status": "resolved",
       "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
       "description": "Three-question voice flow",
       "steps_to_reproduce": ["Run the matching voice E2E spec."],
-      "expected_result": "Match PRD \u00a79.6 and TRD \u00a79\u201311 / \u00a725.",
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
       "attempts": [
         {
           "result": "fail",
@@ -1794,11 +1794,11 @@
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
@@ -1819,7 +1819,7 @@
       "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
       "description": "Think, answer and character limits",
       "steps_to_reproduce": ["Run the matching voice E2E spec."],
-      "expected_result": "Match PRD \u00a79.6 and TRD \u00a79\u201311 / \u00a725.",
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
       "attempts": [
         {
           "result": "fail",
@@ -1850,11 +1850,11 @@
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
@@ -1875,7 +1875,7 @@
       "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
       "description": "Speech-error recovery UI",
       "steps_to_reproduce": ["Run the matching voice E2E spec."],
-      "expected_result": "Match PRD \u00a79.6 and TRD \u00a79\u201311 / \u00a725.",
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
       "attempts": [
         {
           "result": "fail",
@@ -1892,11 +1892,11 @@
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
@@ -1930,7 +1930,7 @@
       "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
       "description": "Visibility and offline speech handling",
       "steps_to_reproduce": ["Run the matching voice E2E spec."],
-      "expected_result": "Match PRD \u00a79.6 and TRD \u00a79\u201311 / \u00a725.",
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
       "attempts": [
         {
           "result": "fail",
@@ -1952,11 +1952,11 @@
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
@@ -1990,7 +1990,7 @@
       "environment": "macOS; Chromium; production build; mocked speech; readonly server 3241",
       "description": "Type instead preserves transcript and session mode",
       "steps_to_reproduce": ["Run the matching voice E2E spec."],
-      "expected_result": "Match PRD \u00a79.6 and TRD \u00a79\u201311 / \u00a725.",
+      "expected_result": "Match PRD §9.6 and TRD §9–11 / §25.",
       "attempts": [
         {
           "result": "fail",
@@ -2007,11 +2007,11 @@
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 1: all 14 tests pass (14.9s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
-          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240\u20133243."
+          "note": "T-23 consecutive voice run 2: all 14 tests pass (10.6s), five required specs; mocked speech and readonly server on ports 3240–3243."
         },
         {
           "result": "pass",
@@ -2025,7 +2025,7 @@
     },
     {
       "tc_reference": "TC-063",
-      "ac_reference": "FR-09\u2013FR-16; T-21; A-14; A-15; A-20; A-25",
+      "ac_reference": "FR-09–FR-16; T-21; A-14; A-15; A-20; A-25",
       "milestone": "M2 Voice loop",
       "title": "Physical desktop Chrome three-question voice pass",
       "status": "manual_required",
@@ -2033,7 +2033,7 @@
       "environment": "Chrome 155.0.8059.85 / physical Chrome, Edge, Safari, Android and iOS",
       "description": "Physical desktop Chrome three-question voice pass",
       "steps_to_reproduce": [
-        "Complete the manual speech checks specified in T-21 and TRD \u00a726 with a physical microphone."
+        "Complete the manual speech checks specified in T-21 and TRD §26 with a physical microphone."
       ],
       "expected_result": "Three spoken answers complete and browser assumptions are measured.",
       "attempts": [
@@ -2050,7 +2050,7 @@
     },
     {
       "tc_reference": "TC-064",
-      "ac_reference": "FR-09\u2013FR-16; T-21; A-14; A-15; A-20; A-25",
+      "ac_reference": "FR-09–FR-16; T-21; A-14; A-15; A-20; A-25",
       "milestone": "M2 Voice loop",
       "title": "Physical browser assumptions A-14, A-15, A-20, A-25",
       "status": "manual_required",
@@ -2058,7 +2058,7 @@
       "environment": "Chrome 155.0.8059.85 / physical Chrome, Edge, Safari, Android and iOS",
       "description": "Physical browser assumptions A-14, A-15, A-20, A-25",
       "steps_to_reproduce": [
-        "Complete the manual speech checks specified in T-21 and TRD \u00a726 with a physical microphone."
+        "Complete the manual speech checks specified in T-21 and TRD §26 with a physical microphone."
       ],
       "expected_result": "Three spoken answers complete and browser assumptions are measured.",
       "attempts": [
@@ -2082,7 +2082,7 @@
       "environment": "Vitest; injectable recognition timing; no browser services",
       "description": "Voice delivery timing, raw pace and edited word count",
       "steps_to_reproduce": ["Run delivery, pauses and voice-metrics test files."],
-      "expected_result": "Normative TRD \u00a716.2/\u00a716.4 and PRD \u00a79.7 values.",
+      "expected_result": "Normative TRD §16.2/§16.4 and PRD §9.7 values.",
       "attempts": [
         {
           "result": "fail",
@@ -2108,7 +2108,7 @@
       "environment": "Vitest; injectable recognition timing; no browser services",
       "description": "Pause ordering and thresholds",
       "steps_to_reproduce": ["Run delivery, pauses and voice-metrics test files."],
-      "expected_result": "Normative TRD \u00a716.2/\u00a716.4 and PRD \u00a79.7 values.",
+      "expected_result": "Normative TRD §16.2/§16.4 and PRD §9.7 values.",
       "attempts": [
         {
           "result": "pass",
@@ -2158,7 +2158,7 @@
       "environment": "macOS; Node 24.10.0; fake AI SDK; external fetch blocked",
       "description": "Token cost calculation",
       "steps_to_reproduce": ["Run cost.test.ts and openai-provider.test.ts with Vitest."],
-      "expected_result": "TRD \u00a714.0 and \u00a723.1 contracts hold without real network calls.",
+      "expected_result": "TRD §14.0 and §23.1 contracts hold without real network calls.",
       "attempts": [
         {
           "result": "pass",
@@ -2183,7 +2183,7 @@
       "environment": "macOS; Node 24.10.0; fake AI SDK; external fetch blocked",
       "description": "OpenAI adapter contract",
       "steps_to_reproduce": ["Run cost.test.ts and openai-provider.test.ts with Vitest."],
-      "expected_result": "TRD \u00a714.0 and \u00a723.1 contracts hold without real network calls.",
+      "expected_result": "TRD §14.0 and §23.1 contracts hold without real network calls.",
       "attempts": [
         {
           "result": "pass",
@@ -2241,7 +2241,7 @@
       "environment": "macOS; mock provider; fake timers; external fetch blocked",
       "description": "Deterministic mock feedback",
       "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
-      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "expected_result": "Normative TRD §15.6 heuristics, triggers, copy and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2266,7 +2266,7 @@
       "environment": "macOS; mock provider; fake timers; external fetch blocked",
       "description": "Mock failure triggers and cancellation",
       "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
-      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "expected_result": "Normative TRD §15.6 heuristics, triggers, copy and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2291,7 +2291,7 @@
       "environment": "macOS; mock provider; fake timers; external fetch blocked",
       "description": "Mock summary",
       "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
-      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "expected_result": "Normative TRD §15.6 heuristics, triggers, copy and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2316,7 +2316,7 @@
       "environment": "macOS; Vitest; TRD fixtures; no network",
       "description": "Untrusted-text sanitization",
       "steps_to_reproduce": ["Run sanitize.test.ts and prompts.test.ts."],
-      "expected_result": "Normative TRD \u00a714 copy, sanitization and block ordering.",
+      "expected_result": "Normative TRD §14 copy, sanitization and block ordering.",
       "attempts": [
         {
           "result": "pass",
@@ -2341,7 +2341,7 @@
       "environment": "macOS; Vitest; TRD fixtures; no network",
       "description": "Exact prompts and rubric",
       "steps_to_reproduce": ["Run sanitize.test.ts and prompts.test.ts."],
-      "expected_result": "Normative TRD \u00a714 copy, sanitization and block ordering.",
+      "expected_result": "Normative TRD §14 copy, sanitization and block ordering.",
       "attempts": [
         {
           "result": "pass",
@@ -2359,7 +2359,7 @@
     },
     {
       "tc_reference": "TC-073",
-      "ac_reference": "FR-20\u2013FR-23; UT-23",
+      "ac_reference": "FR-20–FR-23; UT-23",
       "milestone": "M3 Feedback, rubric and report",
       "title": "Feedback normalization",
       "status": "resolved",
@@ -2368,7 +2368,7 @@
       "steps_to_reproduce": [
         "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
       ],
-      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "expected_result": "TRD §15.3–§15.4 validation, evidence caps, retries and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2395,7 +2395,7 @@
       "steps_to_reproduce": [
         "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
       ],
-      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "expected_result": "TRD §15.3–§15.4 validation, evidence caps, retries and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2422,7 +2422,7 @@
       "steps_to_reproduce": [
         "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
       ],
-      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "expected_result": "TRD §15.3–§15.4 validation, evidence caps, retries and usage.",
       "attempts": [
         {
           "result": "pass",
@@ -2451,6 +2451,53 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-076",
+      "ac_reference": "FR-19; FR-40–FR-45; FR-56; UT-33",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Feedback API boundaries",
+      "status": "resolved",
+      "environment": "Local Node; mock provider and memory limiter",
+      "description": "Feedback API boundaries",
+      "steps_to_reproduce": ["Run the specified feedback acceptance check."],
+      "expected_result": "TRD §12.3 and T-27 acceptance.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "14 route tests and three quota tests pass. Full suite: 390 unit/component tests; lint, typecheck, production build and coverage gates pass. Logs assert absence of transcript, token and provider details."
+        },
+        {
+          "result": "pass",
+          "note": "All 33 E2E tests pass on free ports 3240–3243. Ledger initially required automatable:false on the manual TC-089 entry; metadata corrected without changing test history."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-089",
+      "ac_reference": "FR-19; FR-56; T-27",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Live feedback and token-size measurement",
+      "status": "manual_required",
+      "environment": "Local Node; mock provider and memory limiter",
+      "description": "Live feedback and token-size measurement",
+      "steps_to_reproduce": ["Run the specified feedback acceptance check."],
+      "expected_result": "TRD §12.3 and T-27 acceptance.",
+      "attempts": [
+        {
+          "result": "manual_required",
+          "note": "Owner-only live request and token-size measurement remain pending: no local live credentials configured. See docs/PROGRESS.md. Mock checks do not satisfy this acceptance."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null,
+      "automatable": false
     }
   ]
 }

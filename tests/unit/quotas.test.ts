@@ -32,7 +32,11 @@ it('TC-025 UT-11 checks session, visitor and global in order and does not refund
   const limiter = createMemoryLimiter(() => now);
   const session = vi.spyOn(limiter, 'consumeSessionCounter');
   const daily = vi.spyOn(limiter, 'consumeDaily');
-  expect(await checkFeedback(limiter, 'visitor', token, env)).toEqual({ ok: true, remaining: 2 });
+  expect(await checkFeedback(limiter, 'visitor', token, env)).toEqual({
+    ok: true,
+    remaining: 2,
+    visitorRemaining: 9,
+  });
   expect(session).toHaveBeenCalledWith('fb', token.sid, token.fb, new Date(token.exp * 1000));
   expect(daily.mock.calls.map((call) => call[0])).toEqual(['feedback_ip', 'llm_global']);
   expect(session.mock.invocationCallOrder[0]!).toBeLessThan(daily.mock.invocationCallOrder[0]!);
