@@ -175,6 +175,7 @@ export function History() {
       {loaded && <HistoryList entries={entries} skipped={skipped} onDelete={setDeleting} />}
       <DataControls
         count={entries.length}
+        onChanged={refresh}
         onDeleted={() => {
           setEntries([]);
           setSkipped(0);

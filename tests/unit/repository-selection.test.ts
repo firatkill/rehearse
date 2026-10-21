@@ -68,3 +68,16 @@ it('TC-094 FR-39 blocked startup has only the blocked status and keeps memory fa
   expect((await getRepository()).persistent).toBe(false);
   expect(storageStatus()).toBe('blocked');
 });
+it('TC-098 FR-38 delete-all after a write-failure fallback also removes prior durable data', async () => {
+  const { getRepository, switchToMemoryRepository } = await import('@/hooks/use-repository');
+  const { storageStatus } = await import('@/lib/storage/status');
+  const persistent = await getRepository();
+  await persistent.createSession(record);
+  await persistent.putAnswer(answer);
+  const fallback = await switchToMemoryRepository(record, [answer], new Error('quota'));
+  await fallback.deleteAll();
+  expect((await indexedDB.databases()).map((db) => db.name)).not.toContain('rehearse');
+  expect(await fallback.listSessions()).toEqual({ sessions: [], skipped: 0 });
+  expect(await fallback.getAnswers(record.id)).toEqual([]);
+  expect(storageStatus()).toBe('not-saving');
+});

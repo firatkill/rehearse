@@ -105,8 +105,16 @@ export function clearPreferences() {
 }
 export async function deleteDb(db: IDBDatabase) {
   closeDb(db);
+  await deleteDatabase(db.name);
+}
+export async function deleteDatabase(name: string = STORAGE.DB_NAME) {
+  const existing = connections.get(name);
+  if (existing)
+    await existing.then(closeDb).catch(() => {
+      connections.delete(name);
+    });
   await new Promise<void>((resolve, reject) => {
-    const request = indexedDB.deleteDatabase(db.name);
+    const request = indexedDB.deleteDatabase(name);
     request.onblocked = () => {
       setStorageStatus('delete-blocked');
     };

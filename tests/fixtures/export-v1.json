@@ -1,0 +1,449 @@
+{
+  "format": "rehearse-export",
+  "formatVersion": 1,
+  "exportedAt": "2026-10-21T12:00:00.000Z",
+  "appVersion": "0.1.0",
+  "sessions": [
+    {
+      "session": {
+        "schemaVersion": 1,
+        "id": "1d95759d-ec94-47b9-80ba-bfa6db712915",
+        "origin": "sample",
+        "createdAt": "2026-10-21T15:52:23.970Z",
+        "updatedAt": "2026-10-21T15:52:25.378Z",
+        "completedAt": "2026-10-21T15:52:25.378Z",
+        "status": "completed",
+        "setup": {
+          "role": "full-stack",
+          "seniority": "mid",
+          "types": ["behavioral", "technical-concepts", "system-design-lite"],
+          "length": 3,
+          "mode": "voice",
+          "readAloud": true,
+          "voiceURI": null,
+          "rate": 1
+        },
+        "currentMode": "voice",
+        "seed": "5a3c0e11",
+        "bankVersion": "1.0.0",
+        "questions": [
+          {
+            "id": "beh-028",
+            "type": "behavioral",
+            "topic": "operational-documentation",
+            "prompt": "Describe documentation you wrote because an operational task was going wrong. What made it useful in practice?",
+            "follow_up_hints": [
+              "Who tried the instructions first?",
+              "How did you keep the document from becoming stale?"
+            ],
+            "what_good_looks_like": [
+              "Names a recurring task and a concrete failure mode",
+              "Describes actionable instructions tested by another person",
+              "Explains ownership or a trigger for updating the document"
+            ],
+            "time_limit_s": 120
+          },
+          {
+            "id": "tec-040",
+            "type": "technical-concepts",
+            "topic": "ai-model-selection",
+            "prompt": "Two models behave differently on the same product task. How would you choose between them without relying on a general benchmark?",
+            "follow_up_hints": [
+              "Which examples represent the product’s hardest cases?",
+              "What would trigger a later re-evaluation?"
+            ],
+            "what_good_looks_like": [
+              "Uses representative task-specific evaluation with consistent criteria",
+              "Compares quality, latency and cost under realistic conditions",
+              "Documents decision limits and a repeatable regression process"
+            ],
+            "time_limit_s": 90
+          },
+          {
+            "id": "sdl-017",
+            "type": "system-design-lite",
+            "topic": "bookmark-library",
+            "prompt": "Design a personal bookmark library with tags and search. What would the smallest useful implementation look like?",
+            "follow_up_hints": [
+              "How would duplicate bookmarks be treated?",
+              "What happens when a linked page disappears?"
+            ],
+            "what_good_looks_like": [
+              "Defines bookmarks and tags without unnecessary complexity",
+              "Explains create, edit, search and delete flows",
+              "Handles duplicate input and unavailable destinations"
+            ],
+            "time_limit_s": 180
+          }
+        ],
+        "feedback": {
+          "enabled": true,
+          "reason": null
+        },
+        "token": null,
+        "tokenExpiresAt": null,
+        "checkpoint": {
+          "index": 2,
+          "phase": "done",
+          "at": "2026-10-21T15:52:25.378Z"
+        },
+        "summary": {
+          "headline": "Your strongest area was Ownership; focus next on Specificity.",
+          "paragraph": "You have completed a practice session and have a baseline for your next attempt. Use the focus areas below to make your next answers more concrete.",
+          "focus_notes": [
+            {
+              "dimension": "specificity",
+              "note": "Practise Specificity: Name the system, the number and the constraint. One concrete detail beats three adjectives."
+            },
+            {
+              "dimension": "impact",
+              "note": "Practise Impact: End with a result you can measure or check, and what changed because of it."
+            },
+            {
+              "dimension": "structure",
+              "note": "Practise Structure: Open with one sentence of context, spend most of the answer on what you did, and end with the result."
+            }
+          ],
+          "next_practice": "Run another session with the same question types and aim to improve Specificity.",
+          "generated_at": "2026-10-21T15:52:25.376Z",
+          "model": "mock",
+          "prompt_version": "summary-v1"
+        },
+        "summaryStatus": "done"
+      },
+      "answers": [
+        {
+          "schemaVersion": 1,
+          "sessionId": "1d95759d-ec94-47b9-80ba-bfa6db712915",
+          "index": 0,
+          "questionId": "beh-028",
+          "mode": "voice",
+          "status": "scored",
+          "rawTranscript": "Our small team was repeatedly restoring the wrong version of a background worker during incidents. The deployment dashboard showed several similar build names, and the existing instructions assumed that everyone remembered which queue each worker served. During one incident I watched an experienced colleague follow the page correctly and still restart the wrong service. I treated that as a documentation problem rather than an individual mistake. I owned the replacement runbook and first walked through the task with someone who had never performed it. I wrote down the decisions they had to make, added a short check of the queue name before any command, and included the expected output after each step. I separated diagnosis from recovery and added a clear stop point when the observed output did not match. I also put the rollback command beside the deployment command so it was available under pressure. Before publishing, I tested the instructions in a staging environment and asked two teammates to complete the exercise without my help. Their questions showed that one screenshot concealed an important environment label, so I replaced it with a text example. Over the next six weeks, the median recovery exercise fell from eighteen minutes to seven, and nobody selected the wrong worker. The useful part was not the length of the document. It was that each action had a visible check and a safe next step.",
+          "transcript": "Our small team was repeatedly restoring the wrong version of a background worker during incidents. The deployment dashboard showed several similar build names, and the existing instructions assumed that everyone remembered which queue each worker served. During one incident I watched an experienced colleague follow the page correctly and still restart the wrong service. I treated that as a documentation problem rather than an individual mistake. I owned the replacement runbook and first walked through the task with someone who had never performed it. I wrote down the decisions they had to make, added a short check of the queue name before any command, and included the expected output after each step. I separated diagnosis from recovery and added a clear stop point when the observed output did not match. I also put the rollback command beside the deployment command so it was available under pressure. Before publishing, I tested the instructions in a staging environment and asked two teammates to complete the exercise without my help. Their questions showed that one screenshot concealed an important environment label, so I replaced it with a text example. Over the next six weeks, the median recovery exercise fell from eighteen minutes to seven, and nobody selected the wrong worker. The useful part was not the length of the document. It was that each action had a visible check and a safe next step.",
+          "timing": {
+            "recordingMs": 95800,
+            "firstResultOffsetMs": 800,
+            "resultOffsetsMs": [
+              800, 1100, 1400, 1700, 2000, 2300, 2600, 2900, 3200, 3500, 3800, 4100, 4400, 4700,
+              5000, 5300, 5600, 5900, 6200, 6500, 6800, 7100, 7400, 7700, 8000, 8300, 8600, 8900,
+              9200, 9500, 9800, 10100, 10400, 10700, 11000, 11300, 11600, 11900, 12200, 12500,
+              12800, 13100, 13400, 13700, 14000, 14300, 14600, 14900, 15200, 15500, 15800, 16100,
+              16400, 16700, 17000, 17300, 17600, 17900, 18200, 18500, 18800, 19100, 19400, 19700,
+              20000, 20300, 20600, 20900, 21200, 21500, 21800, 22100, 24100, 24400, 24700, 25000,
+              25300, 25600, 25900, 26200, 26500, 26800, 27100, 27400, 27700, 28000, 28300, 28600,
+              28900, 29200, 29500, 29800, 30100, 30400, 30700, 31000, 31300, 31600, 31900, 32200,
+              32500, 32800, 33100, 33400, 33700, 34000, 34300, 34600, 34900, 35200, 35500, 35800,
+              36100, 36400, 36700, 37000, 37300, 37600, 37900, 38200, 38500, 38800, 39100, 39400,
+              39700, 40000, 40300, 40600, 40900, 41200, 41500, 41800, 42100, 42400, 42700, 43000,
+              43300, 43600, 43900, 44200, 44500, 44800, 45100, 45400, 48400, 48700, 49000, 49300,
+              49600, 49900, 50200, 50500, 50800, 51100, 51400, 51700, 52000, 52300, 52600, 52900,
+              53200, 53500, 53800, 54100, 54400, 54700, 55000, 55300, 55600, 55900, 56200, 56500,
+              56800, 57100, 57400, 57700, 58000, 58300, 58600, 58900, 59200, 59500, 59800, 60100,
+              60400, 60700, 61000, 61300, 61600, 61900, 62200, 62500, 62800, 63100, 63400, 63700,
+              64000, 64300, 64600, 64900, 65200, 65500, 65800, 66100, 66400, 66700, 67000, 67300,
+              67600, 67900, 68200, 68500, 68800, 69100, 69400, 69700, 73700, 74000, 74300, 74600,
+              74900, 75200, 75500, 75800, 76100, 76400, 76700, 77000, 77300, 77600, 77900, 78200,
+              78500, 78800, 79100, 79400, 79700, 80000, 80300, 80600, 80900, 81200, 81500, 81800,
+              82100, 82400, 82700, 83000, 83300, 83600, 83900, 84200, 84500, 84800, 85100, 85400,
+              85700, 86000, 86300, 86600, 86900, 87200, 87500, 87800, 88100, 88400, 88700, 89000,
+              89300, 89600, 89900, 90200, 90500, 90800, 91100, 91400, 91700, 92000, 92300, 92600,
+              92900, 93200, 93500, 93800, 94100, 94400, 94700, 95000, 95300
+            ]
+          },
+          "metrics": {
+            "words": 231,
+            "speakingMs": 94500,
+            "wpm": 147,
+            "fillers": {
+              "total": 1,
+              "byPhrase": {
+                "so": 1
+              }
+            },
+            "longestPauseMs": 4000,
+            "longPauses": 2
+          },
+          "feedback": {
+            "scores": {
+              "structure": {
+                "score": 3,
+                "rationale": "Your answer is assessed for context, action and result markers."
+              },
+              "specificity": {
+                "score": 1,
+                "rationale": "Your answer is assessed for concrete numbers."
+              },
+              "ownership": {
+                "score": 4,
+                "rationale": "Your answer is assessed for personal and team contributions."
+              },
+              "impact": {
+                "score": 1,
+                "rationale": "Your answer is assessed for results and their measurement."
+              },
+              "relevance": {
+                "score": 4,
+                "rationale": "Your answer is assessed for overlap with the question."
+              },
+              "clarity": {
+                "score": 4,
+                "rationale": "Your answer is assessed for length and sentence structure."
+              }
+            },
+            "overall": 2.8,
+            "strengths": [
+              {
+                "point": "You described a concrete situation.",
+                "evidence": "Our small team was repeatedly restoring the wrong"
+              }
+            ],
+            "improvements": [
+              {
+                "point": "Quantify the result.",
+                "why": "A number makes the impact easy to remember.",
+                "rewrite": "As a result, [metric] went from [before] to [after]."
+              }
+            ],
+            "follow_up_question": "What would you do differently next time?",
+            "model_answer_outline": [
+              "Set the scene and explain your responsibility.",
+              "Describe the actions you took and why.",
+              "Close with the result and what you learnt."
+            ],
+            "flags": {
+              "off_topic": false,
+              "too_short": false,
+              "injection_suspected": false
+            }
+          },
+          "feedbackMeta": {
+            "model": "mock",
+            "promptVersion": "feedback-v1",
+            "latencyMs": 330,
+            "costUsd": 0
+          },
+          "attempts": 1,
+          "notice": null,
+          "createdAt": "2026-10-21T15:52:23.970Z",
+          "updatedAt": "2026-10-21T15:52:24.309Z"
+        },
+        {
+          "schemaVersion": 1,
+          "sessionId": "1d95759d-ec94-47b9-80ba-bfa6db712915",
+          "index": 1,
+          "questionId": "tec-040",
+          "mode": "voice",
+          "status": "scored",
+          "rawTranscript": "I would start with examples of the actual product task rather than a general leaderboard. For a support drafting feature, I would collect a set of fictional messages covering common requests, missing information and cases where the model should decline to guess. I would run both models with the same instructions and compare the drafts against a short checklist. The checklist would include whether the answer addresses the request, whether it invents facts and whether a person could use it with a small edit. I would also measure response time and the cost per draft, because a slightly better answer might not justify a much slower experience. I would ask another person to review some outputs without knowing which model produced them. Then I would choose the model that fits the product requirements and test it on more examples. I have not yet decided how many examples would be enough or what difference would count as meaningful. I would probably begin with the cheaper model if the results looked similar, while keeping the option to change it later.",
+          "transcript": "I would start with examples of the actual product task rather than a general leaderboard. For a support drafting feature, I would collect a set of fictional messages covering common requests, missing information and cases where the model should decline to guess. I would run both models with the same instructions and compare the drafts against a short checklist. The checklist would include whether the answer addresses the request, whether it invents facts and whether a person could use it with a small edit. I would also measure response time and the cost per draft, because a slightly better answer might not justify a much slower experience. I would ask another person to review some outputs without knowing which model produced them. Then I would choose the model that fits the product requirements and test it on more examples. I have not yet decided how many examples would be enough or what difference would count as meaningful. I would probably begin with the cheaper model if the results looked similar, while keeping the option to change it later.",
+          "timing": {
+            "recordingMs": 73900,
+            "firstResultOffsetMs": 800,
+            "resultOffsetsMs": [
+              800, 1100, 1400, 1700, 2000, 2300, 2600, 2900, 3200, 3500, 3800, 4100, 4400, 4700,
+              5000, 5300, 5600, 5900, 6200, 6500, 6800, 7100, 7400, 7700, 8000, 8300, 8600, 8900,
+              9200, 9500, 9800, 10100, 10400, 10700, 11000, 11300, 11600, 11900, 12200, 12500,
+              12800, 13100, 13400, 13700, 14000, 14300, 14600, 14900, 15200, 15500, 15800, 16100,
+              16400, 16700, 18700, 19000, 19300, 19600, 19900, 20200, 20500, 20800, 21100, 21400,
+              21700, 22000, 22300, 22600, 22900, 23200, 23500, 23800, 24100, 24400, 24700, 25000,
+              25300, 25600, 25900, 26200, 26500, 26800, 27100, 27400, 27700, 28000, 28300, 28600,
+              28900, 29200, 29500, 29800, 30100, 30400, 30700, 31000, 31300, 31600, 31900, 32200,
+              32500, 32800, 33100, 33400, 33700, 34000, 34300, 34600, 37600, 37900, 38200, 38500,
+              38800, 39100, 39400, 39700, 40000, 40300, 40600, 40900, 41200, 41500, 41800, 42100,
+              42400, 42700, 43000, 43300, 43600, 43900, 44200, 44500, 44800, 45100, 45400, 45700,
+              46000, 46300, 46600, 46900, 47200, 47500, 47800, 48100, 48400, 48700, 49000, 49300,
+              49600, 49900, 50200, 50500, 50800, 51100, 51400, 51700, 52000, 52300, 52600, 52900,
+              53200, 53500, 57500, 57800, 58100, 58400, 58700, 59000, 59300, 59600, 59900, 60200,
+              60500, 60800, 61100, 61400, 61700, 62000, 62300, 62600, 62900, 63200, 63500, 63800,
+              64100, 64400, 64700, 65000, 65300, 65600, 65900, 66200, 66500, 66800, 67100, 67400,
+              67700, 68000, 68300, 68600, 68900, 69200, 69500, 69800, 70100, 70400, 70700, 71000,
+              71300, 71600, 71900, 72200, 72500, 72800, 73100, 73400
+            ]
+          },
+          "metrics": {
+            "words": 178,
+            "speakingMs": 72600,
+            "wpm": 147,
+            "fillers": {
+              "total": 0,
+              "byPhrase": {}
+            },
+            "longestPauseMs": 4000,
+            "longPauses": 2
+          },
+          "feedback": {
+            "scores": {
+              "structure": {
+                "score": 1,
+                "rationale": "Your answer is assessed for context, action and result markers."
+              },
+              "specificity": {
+                "score": 1,
+                "rationale": "Your answer is assessed for concrete numbers."
+              },
+              "ownership": {
+                "score": 4,
+                "rationale": "Your answer is assessed for personal and team contributions."
+              },
+              "impact": {
+                "score": 1,
+                "rationale": "Your answer is assessed for results and their measurement."
+              },
+              "relevance": {
+                "score": 4,
+                "rationale": "Your answer is assessed for overlap with the question."
+              },
+              "clarity": {
+                "score": 4,
+                "rationale": "Your answer is assessed for length and sentence structure."
+              }
+            },
+            "overall": 2.5,
+            "strengths": [
+              {
+                "point": "You described a concrete situation.",
+                "evidence": "I would start with examples of the actual"
+              }
+            ],
+            "improvements": [
+              {
+                "point": "Quantify the result.",
+                "why": "A number makes the impact easy to remember.",
+                "rewrite": "As a result, [metric] went from [before] to [after]."
+              }
+            ],
+            "follow_up_question": "What would you do differently next time?",
+            "model_answer_outline": [
+              "Define the concept and explain how it works.",
+              "Give a concrete example of when to use it.",
+              "Discuss trade-offs and limitations."
+            ],
+            "flags": {
+              "off_topic": false,
+              "too_short": false,
+              "injection_suspected": false
+            }
+          },
+          "feedbackMeta": {
+            "model": "mock",
+            "promptVersion": "feedback-v1",
+            "latencyMs": 307,
+            "costUsd": 0
+          },
+          "attempts": 1,
+          "notice": null,
+          "createdAt": "2026-10-21T15:52:23.970Z",
+          "updatedAt": "2026-10-21T15:52:24.617Z"
+        },
+        {
+          "schemaVersion": 1,
+          "sessionId": "1d95759d-ec94-47b9-80ba-bfa6db712915",
+          "index": 2,
+          "questionId": "sdl-017",
+          "mode": "voice",
+          "status": "scored",
+          "rawTranscript": "I would make a page where you can paste a link and give it a title. There would be a list of the links and a box at the top for searching them. Tags would be useful because people could group their bookmarks by topic. I think a relational database would work, although I would need to look into exactly how the tables should be arranged. The interface should be simple and show the most recent bookmarks first. You could click a tag to see matching links, and perhaps change the title after saving. For search, I would initially try matching the text that the user typed against the title. There are probably issues with duplicate links and links that stop working, but I would leave those until later. I would also want the app to work on a phone. I have not thought through signing in, keeping different users separate or what should happen if a save request fails. Those details would need more design before implementation.",
+          "transcript": "I would make a page where you can paste a link and give it a title. There would be a list of the links and a box at the top for searching them. Tags would be useful because people could group their bookmarks by topic. I think a relational database would work, although I would need to look into exactly how the tables should be arranged. The interface should be simple and show the most recent bookmarks first. You could click a tag to see matching links, and perhaps change the title after saving. For search, I would initially try matching the text that the user typed against the title. There are probably issues with duplicate links and links that stop working, but I would leave those until later. I would also want the app to work on a phone. I have not thought through signing in, keeping different users separate or what should happen if a save request fails. Those details would need more design before implementation.",
+          "timing": {
+            "recordingMs": 69700,
+            "firstResultOffsetMs": 800,
+            "resultOffsetsMs": [
+              800, 1100, 1400, 1700, 2000, 2300, 2600, 2900, 3200, 3500, 3800, 4100, 4400, 4700,
+              5000, 5300, 5600, 5900, 6200, 6500, 6800, 7100, 7400, 7700, 8000, 8300, 8600, 8900,
+              9200, 9500, 9800, 10100, 10400, 10700, 11000, 11300, 11600, 11900, 12200, 12500,
+              12800, 13100, 13400, 13700, 14000, 14300, 14600, 14900, 15200, 15500, 17500, 17800,
+              18100, 18400, 18700, 19000, 19300, 19600, 19900, 20200, 20500, 20800, 21100, 21400,
+              21700, 22000, 22300, 22600, 22900, 23200, 23500, 23800, 24100, 24400, 24700, 25000,
+              25300, 25600, 25900, 26200, 26500, 26800, 27100, 27400, 27700, 28000, 28300, 28600,
+              28900, 29200, 29500, 29800, 30100, 30400, 30700, 31000, 31300, 31600, 31900, 32200,
+              32500, 35500, 35800, 36100, 36400, 36700, 37000, 37300, 37600, 37900, 38200, 38500,
+              38800, 39100, 39400, 39700, 40000, 40300, 40600, 40900, 41200, 41500, 41800, 42100,
+              42400, 42700, 43000, 43300, 43600, 43900, 44200, 44500, 44800, 45100, 45400, 45700,
+              46000, 46300, 46600, 46900, 47200, 47500, 47800, 48100, 48400, 48700, 49000, 49300,
+              49600, 49900, 50200, 54200, 54500, 54800, 55100, 55400, 55700, 56000, 56300, 56600,
+              56900, 57200, 57500, 57800, 58100, 58400, 58700, 59000, 59300, 59600, 59900, 60200,
+              60500, 60800, 61100, 61400, 61700, 62000, 62300, 62600, 62900, 63200, 63500, 63800,
+              64100, 64400, 64700, 65000, 65300, 65600, 65900, 66200, 66500, 66800, 67100, 67400,
+              67700, 68000, 68300, 68600, 68900, 69200
+            ]
+          },
+          "metrics": {
+            "words": 168,
+            "speakingMs": 68400,
+            "wpm": 147,
+            "fillers": {
+              "total": 0,
+              "byPhrase": {}
+            },
+            "longestPauseMs": 4000,
+            "longPauses": 2
+          },
+          "feedback": {
+            "scores": {
+              "structure": {
+                "score": 1,
+                "rationale": "Your answer is assessed for context, action and result markers."
+              },
+              "specificity": {
+                "score": 1,
+                "rationale": "Your answer is assessed for concrete numbers."
+              },
+              "ownership": {
+                "score": 4,
+                "rationale": "Your answer is assessed for personal and team contributions."
+              },
+              "impact": {
+                "score": 1,
+                "rationale": "Your answer is assessed for results and their measurement."
+              },
+              "relevance": {
+                "score": 4,
+                "rationale": "Your answer is assessed for overlap with the question."
+              },
+              "clarity": {
+                "score": 4,
+                "rationale": "Your answer is assessed for length and sentence structure."
+              }
+            },
+            "overall": 2.5,
+            "strengths": [
+              {
+                "point": "You described a concrete situation.",
+                "evidence": "I would make a page where you can"
+              }
+            ],
+            "improvements": [
+              {
+                "point": "Quantify the result.",
+                "why": "A number makes the impact easy to remember.",
+                "rewrite": "As a result, [metric] went from [before] to [after]."
+              }
+            ],
+            "follow_up_question": "What would you do differently next time?",
+            "model_answer_outline": [
+              "Clarify requirements and expected scale.",
+              "Describe components and the flow of data.",
+              "Discuss trade-offs and failure modes."
+            ],
+            "flags": {
+              "off_topic": false,
+              "too_short": false,
+              "injection_suspected": false
+            }
+          },
+          "feedbackMeta": {
+            "model": "mock",
+            "promptVersion": "feedback-v1",
+            "latencyMs": 441,
+            "costUsd": 0
+          },
+          "attempts": 1,
+          "notice": null,
+          "createdAt": "2026-10-21T15:52:23.970Z",
+          "updatedAt": "2026-10-21T15:52:25.058Z"
+        }
+      ]
+    }
+  ]
+}

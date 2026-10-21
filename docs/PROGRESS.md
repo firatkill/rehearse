@@ -39,8 +39,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-31 | Sample session and `/sample`                                       | done    | 6796b4c                      |
 | T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | done    | 1f52ade                      |
 | T-33 | Persistence wiring and recovery after reload                       | blocked | 16c2eb7 (manual TC-101 only) |
-| T-34 | History page and deletion                                          | done    | this commit                  |
-| T-35 | Export and import                                                  | todo    | —                            |
+| T-34 | History page and deletion                                          | done    | 91d9804                      |
+| T-35 | Export and import                                                  | done    | this commit                  |
 | T-36 | Golden set                                                         | todo    | —                            |
 | T-37 | Eval runner, metrics, thresholds and budget guard                  | todo    | —                            |
 | T-38 | Eval workflow                                                      | todo    | —                            |
@@ -141,3 +141,9 @@ T-33 implementation and automated acceptance passed: restored drafts/review edit
 T-33 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/39663016318. T-34 implements history and confirmed deletion; export/import controls follow in T-35 as planned.
 
 T-34: history list, resume/report actions, single deletion and blocked delete-all implemented. CT-08 and E2E-17 pass, including 360 px layout and preference isolation. Final regression: 494 unit/component and 51 E2E tests, build/typecheck and coverage gates passed.
+
+T-34 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/39664726305. T-35 applies D-68 per-session validation and checks bundle ownership/index consistency before atomic writes.
+
+## M4 milestone boundary
+
+T-32–T-35 implementation and automated QA are complete. T-33 remains blocked only on physical Chrome voice reload TC-101. Stop before M5/T-36. See [M4 QA report](../qa/M4-REPORT.md). Final local regression: 508 unit/component tests, 53 E2E tests, build/typecheck and coverage gates passed (97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%). Final lint, formatting and ledger integrity passed. CI verification follows push.
