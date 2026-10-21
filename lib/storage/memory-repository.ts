@@ -1,3 +1,4 @@
+import { migrateRecord } from './migrations';
 import { HTTP, STORAGE } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import {
@@ -15,7 +16,7 @@ export function createMemoryRepository(
 ): SessionRepository {
   const perform = <T>(work: () => T): Promise<T> => Promise.resolve().then(work);
   const readSession = (id: string): SessionRecord | null => {
-    const parsed = SessionRecordSchema.safeParse(store.sessions.get(id));
+    const parsed = SessionRecordSchema.safeParse(migrateRecord(store.sessions.get(id)));
     return parsed.success ? parsed.data : null;
   };
   const repository: SessionRepository = {
@@ -44,10 +45,12 @@ export function createMemoryRepository(
         const sessions: SessionRecord[] = [];
         let skipped = 0;
         for (const value of store.sessions.values()) {
-          const parsed = SessionRecordSchema.safeParse(value);
+          const parsed = SessionRecordSchema.safeParse(migrateRecord(value));
           if (parsed.success) sessions.push(parsed.data);
           else skipped++;
         }
+        for (const value of store.answers.values())
+          if (!AnswerRecordSchema.safeParse(migrateRecord(value)).success) skipped++;
         sessions.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
         return { sessions, skipped };
       }),
@@ -65,7 +68,7 @@ export function createMemoryRepository(
       perform(() =>
         [...store.answers.values()]
           .flatMap((value) => {
-            const parsed = AnswerRecordSchema.safeParse(value);
+            const parsed = AnswerRecordSchema.safeParse(migrateRecord(value));
             return parsed.success && parsed.data.sessionId === id ? [parsed.data] : [];
           })
           .sort((a, b) => a.index - b.index),

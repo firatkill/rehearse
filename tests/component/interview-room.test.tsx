@@ -1,9 +1,13 @@
 import { act, renderHook } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { beforeEach, expect, it, vi } from 'vitest';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
 import { useRepository } from '@/hooks/use-repository';
 import { record } from '../fixtures/records';
 const navigation = vi.hoisted(() => ({ replace: vi.fn() }));
+// These component cases exercise the memory repository; IndexedDB lifecycle has UT-12–14 coverage.
+beforeEach(() => {
+  vi.stubGlobal('indexedDB', undefined);
+});
 vi.mock('next/navigation', () => ({ useRouter: () => navigation }));
 it('TC-040 TRD 11.3 persists drafts, debounces edits and recovers a failed write in memory', async () => {
   const repo = useRepository();
@@ -54,7 +58,7 @@ it('TC-040 TRD 11.3 persists drafts, debounces edits and recovers a failed write
   });
   expect(failed).toHaveBeenCalledOnce();
   const fallback = useRepository();
-  expect(fallback).not.toBe(repo);
+  expect(fallback.persistent).toBe(false);
   expect((await fallback.getAnswers(record.id))[0]?.status).toBe('saved');
   expect(await fallback.getSession(record.id)).not.toBeNull();
   view.unmount();

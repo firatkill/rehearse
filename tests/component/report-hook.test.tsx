@@ -1,10 +1,13 @@
 import { act, renderHook } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { beforeEach, expect, it, vi } from 'vitest';
 import { useReport } from '@/hooks/use-report';
 import { useRepository } from '@/hooks/use-repository';
 import { requestSummary } from '@/lib/api/client';
 import { answer, record } from '../fixtures/records';
 import { feedbackLlm } from '../fixtures/feedback';
+beforeEach(() => {
+  vi.stubGlobal('indexedDB', undefined);
+});
 vi.mock('@/lib/api/client', () => ({ requestSummary: vi.fn() }));
 it('TC-085 FR-29 calls summary once, persists retryable failure and stops after exhausted quota', async () => {
   vi.setSystemTime(new Date(record.createdAt));
