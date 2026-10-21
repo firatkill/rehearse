@@ -3737,6 +3737,8 @@ Helpers in `tests/e2e/helpers.ts`:
 
 ### 25.4 E2E tests (Playwright, `tests/e2e`)
 
+M2 staging (D-58): E2E-06 uses the readonly server, Save and continue, and the placeholder report until T-28/T-30 add the feedback and full-report assertions.
+
 Config **(normative, `playwright.config.ts`)**:
 
 ```ts

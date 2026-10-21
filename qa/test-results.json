@@ -1341,6 +1341,102 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-046",
+      "ac_reference": "FR-54; UT-20",
+      "milestone": "M2 Voice",
+      "title": "Feature detection",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mocked speech",
+      "description": "Feature detection",
+      "steps_to_reproduce": [
+        "Run detect.test.ts, mic-check.test.tsx, setup-form.test.tsx and setup-capabilities.spec.ts."
+      ],
+      "expected_result": "TRD 9.1/9.2 detection and immediate track cleanup, with exact PRD 9.4 notices.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 targeted unit/component checks passed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint: normative browser boundary checks conflict with non-null DOM types; empty fake classes and async test callback need explicit bodies.",
+          "note": "Represent absent browser capabilities in WindowWithSpeech, preserve normative cast, and correct test fixture/callback typing."
+        },
+        {
+          "result": "pass",
+          "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-047",
+      "ac_reference": "FR-07; UT-20, CT-01, E2E-03",
+      "milestone": "M2 Voice",
+      "title": "Microphone permission and cleanup",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mocked speech",
+      "description": "Microphone permission and cleanup",
+      "steps_to_reproduce": [
+        "Run detect.test.ts, mic-check.test.tsx, setup-form.test.tsx and setup-capabilities.spec.ts."
+      ],
+      "expected_result": "TRD 9.1/9.2 detection and immediate track cleanup, with exact PRD 9.4 notices.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 targeted unit/component checks passed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint: normative browser boundary checks conflict with non-null DOM types; empty fake classes and async test callback need explicit bodies.",
+          "note": "Represent absent browser capabilities in WindowWithSpeech, preserve normative cast, and correct test fixture/callback typing."
+        },
+        {
+          "result": "pass",
+          "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-048",
+      "ac_reference": "FR-07, FR-54; CT-01, E2E-03",
+      "milestone": "M2 Voice",
+      "title": "Setup capability states",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; mocked speech",
+      "description": "Setup capability states",
+      "steps_to_reproduce": [
+        "Run detect.test.ts, mic-check.test.tsx, setup-form.test.tsx and setup-capabilities.spec.ts."
+      ],
+      "expected_result": "TRD 9.1/9.2 detection and immediate track cleanup, with exact PRD 9.4 notices.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 targeted unit/component checks passed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint: normative browser boundary checks conflict with non-null DOM types; empty fake classes and async test callback need explicit bodies.",
+          "note": "Represent absent browser capabilities in WindowWithSpeech, preserve normative cast, and correct test fixture/callback typing."
+        },
+        {
+          "result": "pass",
+          "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

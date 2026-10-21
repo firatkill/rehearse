@@ -305,7 +305,7 @@ Ordered tasks to build Rehearse from an empty folder to a deployed v1.0.0. Read 
 
 ### T-23 Voice E2E with the speech mock
 
-- **Goal**: Every voice path covered in Playwright with mocked recognition and synthesis.
+- **Goal**: Every voice path covered in Playwright with mocked recognition and synthesis. Under D-58, M2 uses the readonly server and practice-only saving with the placeholder report; T-28/T-30 add feedback/full report assertions.
 - **Implements**: Tests for FR-09 – FR-16; A-11 (first pass)
 - **Files**: `tests/e2e/helpers.ts` (scenarios), `tests/e2e/voice-session.spec.ts` (E2E-06), `voice-limits.spec.ts` (E2E-07), `speech-errors.spec.ts` (E2E-08), `tab-hidden.spec.ts` (E2E-09), `type-instead.spec.ts` (E2E-10).
 - **Steps**: Scenarios per TRD §25.3; use `page.clock` for timers. Record a first browser-support check (A-11) from MDN.

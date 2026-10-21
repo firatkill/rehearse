@@ -22,8 +22,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-14 | Setup page                                                         | done   | f40159a           |
 | T-15 | Room state machine                                                 | done   | 4df5f00           |
 | T-16 | Words, fillers and the delivery block (text mode)                  | done   | ec8a2b6           |
-| T-17 | Text-mode interview room                                           | done   | this commit       |
-| T-18 | Capability detection, microphone check and setup capability states | todo   | —                 |
+| T-17 | Text-mode interview room                                           | done   | e88dca0           |
+| T-18 | Capability detection, microphone check and setup capability states | done   | this commit       |
 | T-19 | Recognizer adapter, transcript assembly and recorder machine       | todo   | —                 |
 | T-20 | Speech synthesis, voices, captions and the voice picker            | todo   | —                 |
 | T-21 | Voice room integration                                             | todo   | —                 |
@@ -70,3 +70,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 ## M1 milestone boundary
 
 T-06–T-17 are implemented. Stop here for owner review before T-18. See [M1 QA report](../qa/M1-REPORT.md). Local verification: 196 unit/component tests, 15 Chromium E2E tests, lint, typecheck, production build and coverage gates pass. Firefox Nightly 157.0 completed three text answers through the report; title fixes were retested from setup through a saved-answer report. Stock Firefox release, real microphone/Safari, live LLM/Upstash and deployment remain unverified. Memory storage and the placeholder report are intentional until their later tasks. T-17 CI is checked after pushing this commit.
+
+## M2 in progress
+
+Owner authorised M2 continuation. M1 CI passed: https://github.com/firatkill/rehearse/actions/runs/39591865691. TC-046–TC-065 define the M2 QA scope before implementation. Owner approved staged E2E-06 practice-only saving until feedback/report implementation in M3 (D-58).

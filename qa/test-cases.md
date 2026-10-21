@@ -421,3 +421,250 @@ Expected: Text remains literal, no HTML element or link is created, and the plac
 ### T-17 execution detail
 
 TC-040 also verifies TRD §11.3 draft writes at 2 seconds, edit debouncing at 500 ms, and memory fallback after a failed write. TC-039 checks all six specified notices and the TRD §11.2 duration wording. TC-043 is a live native-browser pass, executed in the existing Firefox Nightly 157.0 build; this does not claim coverage of stock Firefox release or real speech. The report remains the T-17 placeholder until T-30.
+
+## M2 Voice — T-18–T-23
+
+All automated cases use mocked speech/LLM and the memory limiter. Physical microphone checks are separate manual cases.
+
+| TC     | Reference                            | Behaviour                                    | Priority | Automatable | Expected                                                                                                                                        |
+| ------ | ------------------------------------ | -------------------------------------------- | -------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| TC-046 | FR-54; UT-20                         | Feature detection                            | High     | yes         | Constructor precedence and all five notices match TRD 9.1; recognition requires a secure context.                                               |
+| TC-047 | FR-07; UT-20                         | Microphone permission and cleanup            | High     | yes         | Every granted track stops immediately; permission, device and other errors map to PRD 9.4 copy.                                                 |
+| TC-048 | FR-07, FR-54; CT-01, E2E-03          | Setup capability states                      | High     | yes         | Neutral server placeholder; unsupported Voice disabled with description and Text selected; notices exact.                                       |
+| TC-049 | FR-11, FR-15; UT-17                  | Transcript rebuilding and capping            | High     | yes         | No repeated results appended; interim retained on commit; single-space joins and specified word boundary cap.                                   |
+| TC-050 | FR-11, FR-15; UT-16                  | Recorder starts and restarts                 | High     | yes         | New run per restart; productive runs reset the consecutive-empty limit; max empty runs stop.                                                    |
+| TC-051 | FR-15; UT-16                         | Recorder error mapping                       | High     | yes         | Each outcome matches TRD 9.4/9.6; available transcript survives errors.                                                                         |
+| TC-052 | FR-11, NFR-14; UT-16                 | Stop grace and instance cleanup              | High     | yes         | Late final text retained; grace aborts; stale events ignored; timers and microphone instances cleaned up.                                       |
+| TC-053 | FR-04, FR-06; UT-19                  | English voice loading and selection          | High     | yes         | English voices sorted by spec; default fallback and missing-voice indication; late events resolve once.                                         |
+| TC-054 | FR-06, FR-09; UT-19                  | Chunked synthesis and cancellation           | High     | yes         | Exact chunk algorithm, ordered utterances, safety timeout and cancellation; silent prime before async work.                                     |
+| TC-055 | FR-04, FR-06; CT-02, E2E-02          | Voice picker and preview                     | High     | yes         | Exact labels, range bounds and preview text; no voices disables read-aloud.                                                                     |
+| TC-056 | FR-09–FR-13; E2E-06                  | Three-question voice flow                    | High     | yes         | No recognition/synthesis overlap; raw/edited transcripts retained and report reached. D-58 stages feedback/full-report assertions in T-28/T-30. |
+| TC-057 | FR-10, FR-11, FR-14; E2E-07          | Think, answer and character limits           | High     | yes         | Recording starts on timer expiry; stops at configured limit/cap; notices and threshold announcements exact.                                     |
+| TC-058 | FR-15; E2E-08                        | Speech-error recovery UI                     | High     | yes         | Correct copy/focus; partial words kept; Type instead remains usable.                                                                            |
+| TC-059 | FR-16, FR-55; E2E-09                 | Visibility and offline speech handling       | High     | yes         | Replay offered for interrupted TTS; thinking paused; recording stops; offline start uses text for this answer only; no automatic restart.       |
+| TC-060 | FR-12; E2E-10                        | Type instead preserves text and session mode | High     | yes         | Partial transcript retained and rest of session uses Text; no active microphone remains.                                                        |
+| TC-061 | FR-24; UT-06                         | Voice delivery metrics                       | High     | yes         | Words from edited text; pace/fillers from raw; speaking time excludes lead-in/trailing silence; pace null below 10 seconds.                     |
+| TC-062 | FR-24; UT-07                         | Pause estimates                              | High     | yes         | Nulls for insufficient offsets; gaps >=3000 ms counted; longest gap correct.                                                                    |
+| TC-063 | FR-09–FR-16; T-21 manual acceptance  | Desktop Chrome voice acceptance              | High     | no          | Full session completes; speech and recognition never overlap; text fallback remains available.                                                  |
+| TC-064 | FR-11, FR-15; A-14, A-15, A-20, A-25 | Physical browser speech assumptions          | High     | no          | Record observed behaviour and versions; propose any required spec change before implementing it.                                                |
+| TC-065 | FR-54; A-11, A-13, A-21              | Current Web Speech support evidence          | High     | yes         | Dated evidence logged; no unsupported inference of manual browser success.                                                                      |
+
+### TC-046: Feature detection
+
+Reference: FR-54; UT-20. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Compare secure Chrome-like, Firefox-like, recognition-only, neither, insecure and storage-less fake windows.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Constructor precedence and all five notices match TRD 9.1; recognition requires a secure context.
+
+### TC-047: Microphone permission and cleanup
+
+Reference: FR-07; UT-20. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Provide granted streams and each specified getUserMedia exception; click Check microphone.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Every granted track stops immediately; permission, device and other errors map to PRD 9.4 copy.
+
+### TC-048: Setup capability states
+
+Reference: FR-07, FR-54; CT-01, E2E-03. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Mount setup under each capability combination; choose/check the microphone.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Neutral server placeholder; unsupported Voice disabled with description and Text selected; notices exact.
+
+### TC-049: Transcript rebuilding and capping
+
+Reference: FR-11, FR-15; UT-17. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Apply repeated complete result lists, mixed finals/interims, commit across runs, and cap overlong text.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: No repeated results appended; interim retained on commit; single-space joins and specified word boundary cap.
+
+### TC-050: Recorder starts and restarts
+
+Reference: FR-11, FR-15; UT-16. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Start; deliver results and END; test six empty restarts and 20 productive runs.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: New run per restart; productive runs reset the consecutive-empty limit; max empty runs stop.
+
+### TC-051: Recorder error mapping
+
+Reference: FR-15; UT-16. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Exercise no-speech three times, network before/after words, permission/device/unknown/aborted errors.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Each outcome matches TRD 9.4/9.6; available transcript survives errors.
+
+### TC-052: Stop grace and instance cleanup
+
+Reference: FR-11, NFR-14; UT-16. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Stop with a late result, END or grace expiry; deliver stale instance events and unmount.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Late final text retained; grace aborts; stale events ignored; timers and microphone instances cleaned up.
+
+### TC-053: English voice loading and selection
+
+Reference: FR-04, FR-06; UT-19. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Load immediate/event/timeout voices; vary language/local/default and stored URI.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: English voices sorted by spec; default fallback and missing-voice indication; late events resolve once.
+
+### TC-054: Chunked synthesis and cancellation
+
+Reference: FR-06, FR-09; UT-19. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Split sentences/long text; speak chunks; cancel, interrupt, error or omit end; prime in click.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Exact chunk algorithm, ordered utterances, safety timeout and cancellation; silent prime before async work.
+
+### TC-055: Voice picker and preview
+
+Reference: FR-04, FR-06; CT-02, E2E-02. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Inspect loading/empty/online/fallback voices; change rate and preview/stop.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Exact labels, range bounds and preview text; no voices disables read-aloud.
+
+### TC-056: Three-question voice flow
+
+Reference: FR-09–FR-13; E2E-06. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Use happy mocked speech, captions, thinking, interim/final results, stop, edit, save and next.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: No recognition/synthesis overlap; raw/edited transcripts retained and report reached. D-58 stages feedback/full-report assertions in T-28/T-30.
+
+### TC-057: Think, answer and character limits
+
+Reference: FR-10, FR-11, FR-14; E2E-07. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Advance fake time through 15-second thinking and answer limit; emit an overlong transcript.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Recording starts on timer expiry; stops at configured limit/cap; notices and threshold announcements exact.
+
+### TC-058: Speech-error recovery UI
+
+Reference: FR-15; E2E-08. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Run denied, no-speech, network-with-words and network-without-words scenarios; retry or type.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Correct copy/focus; partial words kept; Type instead remains usable.
+
+### TC-059: Visibility and offline speech handling
+
+Reference: FR-16, FR-55; E2E-09. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Hide during asking/thinking/recording; go offline during/before recording, then reconnect.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Replay offered for interrupted TTS; thinking paused; recording stops; offline start uses text for this answer only; no automatic restart.
+
+### TC-060: Type instead preserves text and session mode
+
+Reference: FR-12; E2E-10. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Switch during asking, thinking, recording and errors, then advance.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Partial transcript retained and rest of session uses Text; no active microphone remains.
+
+### TC-061: Voice delivery metrics
+
+Reference: FR-24; UT-06. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Use raw and edited transcripts with short/long result-offset spans and trailing silence.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Words from edited text; pace/fillers from raw; speaking time excludes lead-in/trailing silence; pace null below 10 seconds.
+
+### TC-062: Pause estimates
+
+Reference: FR-24; UT-07. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Use fewer than two, unsorted, duplicate, and threshold-boundary offsets.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Nulls for insufficient offsets; gaps >=3000 ms counted; longest gap correct.
+
+### TC-063: Desktop Chrome voice acceptance
+
+Reference: FR-09–FR-16; T-21 manual acceptance. Priority: High. Automatable: no.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Complete three voice questions using a real microphone in desktop Chrome; note version.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Full session completes; speech and recognition never overlap; text fallback remains available.
+
+### TC-064: Physical browser speech assumptions
+
+Reference: FR-11, FR-15; A-14, A-15, A-20, A-25. Priority: High. Automatable: no.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Run four-minute speech/restarts on Chrome, Edge and Safari; Android duplication; Safari Siri-off and gesture checks.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Record observed behaviour and versions; propose any required spec change before implementing it.
+
+### TC-065: Current Web Speech support evidence
+
+Reference: FR-54; A-11, A-13, A-21. Priority: High. Automatable: yes.
+
+Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
+
+1. Read MDN/compat data and the Web Speech specification for support, on-device options and timestamps.
+2. Check the outcome and cleanup against the referenced PRD/TRD section.
+
+Expected: Dated evidence logged; no unsupported inference of manual browser success.
