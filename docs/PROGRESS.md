@@ -35,8 +35,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-27 | `POST /api/feedback`                                               | blocked | fde48e6           |
 | T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | f5c8387           |
 | T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | 267cd8b           |
-| T-30 | Report page, chart, Markdown export and print                      | done    | this commit       |
-| T-31 | Sample session and `/sample`                                       | todo    | —                 |
+| T-30 | Report page, chart, Markdown export and print                      | done    | 8618b04           |
+| T-31 | Sample session and `/sample`                                       | done    | this commit       |
 | T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | todo    | —                 |
 | T-33 | Persistence wiring and recovery after reload                       | todo    | —                 |
 | T-34 | History page and deletion                                          | todo    | —                 |
@@ -55,6 +55,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 ## Open questions for the owner
 
 - M3: owner approved staged live eval and missing mock copy (D-64/D-65); no pending decision.
+- T-31: before T-45, owner must generate the sample live, validate without --allow-mock, and remove the temporary CI flag (TC-090).
 - T-27: owner-only live feedback and token-size measurement remain pending (TC-089).
 - T-24: live model verification TC-088 needs owner-configured credentials and the owner-only toy call; no local key is configured.
 
@@ -112,3 +113,11 @@ T-27 CI passed: https://github.com/firatkill/rehearse/actions/runs/39625319993. 
 T-28 CI passed: https://github.com/firatkill/rehearse/actions/runs/39626602747. T-29 implements shared deterministic report aggregates, one-attempt summary generation and the scoped summary API. 433 unit/component and 38 E2E tests pass; lint, typecheck, build and coverage gates pass. Live summary quality remains deferred under D-64.
 
 T-29 CI passed: https://github.com/firatkill/rehearse/actions/runs/39627414478. T-30 replaces the placeholder report with summary/fallback states, deterministic tables and chart, focus tips, expandable answers, Markdown download and print restoration. All 444 unit/component and 43 browser tests pass, with typecheck, build and coverage gates. The transcript assertion is scoped to its disclosure because verified evidence may repeat it.
+
+## M3 milestone boundary
+
+T-24–T-31 implementation and automated QA are complete. Stop before M4/T-32 for owner review. T-24 and T-27 remain blocked only on owner live acceptance (TC-088/TC-089); the mock sample is explicitly permitted by T-31, with live replacement required before T-45 (TC-090). See [M3 QA report](../qa/M3-REPORT.md).
+
+T-30 CI passed: https://github.com/firatkill/rehearse/actions/runs/39629175254. Final local checks: lint, ledger integrity, 448 unit/component tests, 44 E2E tests, typecheck, production build, sample validation with --allow-mock, and coverage gates (98.79% lines, 91.63% branches, 100% functions). Strict sample validation correctly rejects mock provenance. T-31 CI is checked after pushing this commit.
+
+No live LLM/eval, Upstash, physical microphone or Safari/mobile speech verification was performed. D-64 defers the live eval gate until T-37. Physical M2 checks TC-063/TC-064 remain outstanding. Local full checks should run sequentially; four Vitest workers avoid competing with other applications. The unchanged card test passed on isolated retest and in the final full suite after a loaded-machine timeout.

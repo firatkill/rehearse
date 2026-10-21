@@ -90,6 +90,10 @@
         {
           "result": "pass",
           "note": "Targeted env and mock suites pass all 46 tests after correcting fixture setup."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -108,6 +112,10 @@
         {
           "result": "pass",
           "note": "21 unit tests pass; lint, typecheck and production build pass. Tests use mock/memory and an external-fetch guard."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -126,6 +134,10 @@
         {
           "result": "pass",
           "note": "21 unit tests pass; lint, typecheck and production build pass. Tests use mock/memory and an external-fetch guard."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -153,6 +165,10 @@
         {
           "result": "pass",
           "note": "Inventory parser now accepts digits; strict inventory equality passes for the approved E2E_BASE_PORT variable. Full 98-test suite passed."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -176,6 +192,10 @@
         {
           "result": "pass",
           "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -194,6 +214,10 @@
         {
           "result": "pass",
           "note": "29 unit tests, lint, typecheck and production build passed. Two HTTP responses on free port 3100 had fresh nonces on every script, microphone permission and no HTTPS upgrade; port 3000 was occupied."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -244,6 +268,10 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -308,6 +336,10 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -348,6 +380,10 @@
         {
           "result": "pass",
           "note": "Fake-timer tests verify clear/set delay, duplicate suppression, minimum interval, queue cap and cleanup."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -378,6 +414,10 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -433,6 +473,10 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -483,6 +527,10 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -504,6 +552,10 @@
         {
           "result": "pass",
           "note": "Lint/typecheck/build pass. Full coverage run passed 46 tests with the prescribed T-07 todo; added normative-content equality test then passed all 11 bank tests. Eight browser regressions pass. Coverage: 100% lines/functions, 96.62% branches. Validator prints all 45 cells and accepts the 15 examples in incomplete mode."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -525,6 +577,10 @@
         {
           "result": "pass",
           "note": "Lint/typecheck/build pass. Full coverage run passed 46 tests with the prescribed T-07 todo; added normative-content equality test then passed all 11 bank tests. Eight browser regressions pass. Coverage: 100% lines/functions, 96.62% branches. Validator prints all 45 cells and accepts the 15 examples in incomplete mode."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -553,6 +609,10 @@
         {
           "result": "pass",
           "note": "All five CI jobs, including the full E2E suite, passed on 1475f7a in an isolated runner: https://github.com/firatkill/rehearse/actions/runs/39570707129. Local port collision remains recorded; no test changed or weakened."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -574,6 +634,10 @@
         {
           "result": "pass",
           "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -609,6 +673,10 @@
         {
           "result": "pass",
           "note": "All 98 tests pass with the exhaustive checks split across 45 cells. Every original combination and assertion remains. Full coverage 100% lines/functions, 96.26% branches; select.ts and prng.ts each have 100% line coverage. Lint, typecheck and build pass."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -630,6 +698,10 @@
         {
           "result": "pass",
           "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -655,6 +727,10 @@
         {
           "result": "pass",
           "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -680,6 +756,10 @@
         {
           "result": "pass",
           "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -705,6 +785,10 @@
         {
           "result": "pass",
           "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -730,6 +814,10 @@
         {
           "result": "pass",
           "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -759,6 +847,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -788,6 +880,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -820,6 +916,10 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -847,6 +947,10 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -874,6 +978,10 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -895,6 +1003,10 @@
         {
           "result": "pass",
           "note": "Three UT-35 tests and four-server smoke checks pass. Full suite: 130 tests; 100% line/function coverage, 96.96% branches. Lint, typecheck, build and all eight E2E tests pass. Prompt version constants scaffolded under approved D-54; live eval deferred."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -916,6 +1028,10 @@
         {
           "result": "pass",
           "note": "Five targeted tests passed. Full suite: 135 tests; 100% lines/functions, 95.85% branches. Storage logic has 100% line coverage. Lint, typecheck, build and all eight E2E tests passed. IndexedDB and user-facing import/export remain T-32/T-35."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -937,6 +1053,10 @@
         {
           "result": "pass",
           "note": "Five targeted tests passed. Full suite: 135 tests; 100% lines/functions, 95.85% branches. Storage logic has 100% line coverage. Lint, typecheck, build and all eight E2E tests passed. IndexedDB and user-facing import/export remain T-32/T-35."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1008,6 +1128,10 @@
         {
           "result": "pass",
           "note": "All 11 setup component tests passed alone in 1.97s, without assertion or timeout changes. Avoid running full coverage and browser suites concurrently on this machine."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1066,6 +1190,10 @@
         {
           "result": "pass",
           "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1093,6 +1221,10 @@
         {
           "result": "pass",
           "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1118,6 +1250,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1143,6 +1279,10 @@
         {
           "result": "pass",
           "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1173,6 +1313,10 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, 183 tests, coverage and build pass. Metrics have 100% line coverage; global 98.82% lines, 90.14% branches, 100% functions. All 11 existing E2E tests pass. Text metrics are recomputed by room answer updates; voice metrics remain T-22."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1198,6 +1342,10 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, 183 tests, coverage and build pass. Metrics have 100% line coverage; global 98.82% lines, 90.14% branches, 100% functions. All 11 existing E2E tests pass. Text metrics are recomputed by room answer updates; voice metrics remain T-22."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1232,6 +1380,10 @@
         {
           "result": "pass",
           "note": "Full existing Chromium suite: 15 tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1283,6 +1435,10 @@
         {
           "result": "pass",
           "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1330,6 +1486,10 @@
         {
           "result": "pass",
           "note": "T-21 final verification: all 30 E2E tests and 268 unit/component tests pass. Lint, typecheck, build and coverage gates pass (98.82% lines, 91.52% branches, 100% functions). Live Chrome 155 text flow retained three edited answers; physical voice checks remain TC-063/TC-064."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1359,6 +1519,10 @@
         {
           "result": "pass",
           "note": "After the title fix and rebuild, all four affected text-session and not-found E2E scenarios passed again, including intro/report title assertions."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1434,6 +1598,10 @@
         {
           "result": "pass",
           "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1466,6 +1634,10 @@
         {
           "result": "pass",
           "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1498,6 +1670,10 @@
         {
           "result": "pass",
           "note": "T-18: lint, typecheck, production build, 220 unit/component tests and all 18 E2E tests pass. Coverage 98.87% lines, 90.92% branches, 100% functions; new speech detection/microphone modules fully covered. Voice picker remains T-20."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1530,6 +1706,10 @@
         {
           "result": "pass",
           "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1567,6 +1747,10 @@
         {
           "result": "pass",
           "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1604,6 +1788,10 @@
         {
           "result": "pass",
           "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1641,6 +1829,10 @@
         {
           "result": "pass",
           "note": "T-19 final verification: 247 unit/component tests, all 18 E2E tests on ports 3240–3243, lint, typecheck, production build and coverage gates pass. Overall lines 98.67%, branches 91.72%, functions 100%. Targeted 27 recorder/transcript tests pass; END ignores inactive states."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1675,6 +1867,10 @@
         {
           "result": "pass",
           "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1709,6 +1905,10 @@
         {
           "result": "pass",
           "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1757,6 +1957,10 @@
         {
           "result": "pass",
           "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1803,6 +2007,10 @@
         {
           "result": "pass",
           "note": "T-23 final full suite: 33 E2E tests pass; 273 unit/component tests pass. Lint, typecheck and production build pass. Coverage: 98.85% lines, 91.77% branches, 100% functions."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1859,6 +2067,10 @@
         {
           "result": "pass",
           "note": "T-23 final full suite: 33 E2E tests pass; 273 unit/component tests pass. Lint, typecheck and production build pass. Coverage: 98.85% lines, 91.77% branches, 100% functions."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1914,6 +2126,10 @@
         {
           "result": "pass",
           "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -1974,6 +2190,10 @@
         {
           "result": "pass",
           "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2016,6 +2236,10 @@
         {
           "result": "pass",
           "note": "T-23 final full suite: 33 E2E tests pass; 273 unit/component tests pass. Lint, typecheck and production build pass. Coverage: 98.85% lines, 91.77% branches, 100% functions."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2092,6 +2316,10 @@
         {
           "result": "pass",
           "note": "T-22 verification: five targeted metrics tests, all 273 unit/component tests and all 30 E2E tests pass. Lint, typecheck, build and coverage gates pass (98.85% lines, 91.77% branches, 100% functions). A-21 recorded in D-61."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2118,6 +2346,10 @@
         {
           "result": "pass",
           "note": "T-22 verification: five targeted metrics tests, all 273 unit/component tests and all 30 E2E tests pass. Lint, typecheck, build and coverage gates pass (98.85% lines, 91.77% branches, 100% functions). A-21 recorded in D-61."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2167,6 +2399,10 @@
         {
           "result": "pass",
           "note": "Final provider/cost slice verification: 296 unit/component tests, 33 E2E tests, lint, typecheck after build, production build and QA ledger pass. Coverage: 98.86% lines, 91.77% branches, 100% functions; OpenAI adapter is excluded by the existing TRD coverage policy and tested with the fake SDK."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2201,6 +2437,10 @@
         {
           "result": "pass",
           "note": "Final provider/cost slice verification: 296 unit/component tests, 33 E2E tests, lint, typecheck after build, production build and QA ledger pass. Coverage: 98.86% lines, 91.77% branches, 100% functions; OpenAI adapter is excluded by the existing TRD coverage policy and tested with the fake SDK."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2250,6 +2490,10 @@
         {
           "result": "pass",
           "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2275,6 +2519,10 @@
         {
           "result": "pass",
           "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2300,6 +2548,10 @@
         {
           "result": "pass",
           "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2325,6 +2577,10 @@
         {
           "result": "pass",
           "note": "T-25 final acceptance: 338 unit/component and 33 E2E tests, lint, typecheck, build and coverage gates pass (98.98% lines, 91.01% branches, 100% functions). No live eval under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2350,6 +2606,10 @@
         {
           "result": "pass",
           "note": "T-25 final acceptance: 338 unit/component and 33 E2E tests, lint, typecheck, build and coverage gates pass (98.98% lines, 91.01% branches, 100% functions). No live eval under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2377,6 +2637,10 @@
         {
           "result": "pass",
           "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2404,6 +2668,10 @@
         {
           "result": "pass",
           "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2445,6 +2713,10 @@
         {
           "result": "pass",
           "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2470,6 +2742,10 @@
         {
           "result": "pass",
           "note": "All 33 E2E tests pass on free ports 3240–3243. Ledger initially required automatable:false on the manual TC-089 entry; metadata corrected without changing test history."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2517,6 +2793,19 @@
         {
           "result": "pass",
           "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-31 full coverage run timed out the unchanged card case at 5 seconds under heavy machine load; 447 other tests passed.",
+          "note": "No timeout or assertion changes. Retest the affected card alone, then run final checks sequentially."
+        },
+        {
+          "result": "pass",
+          "note": "All 448 unit/component tests and coverage gates pass using four local Vitest workers, with no concurrent heavy checks. Sample browser test passes with zero API calls; strict validation rejects mock output and --allow-mock succeeds."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2542,6 +2831,10 @@
         {
           "result": "pass",
           "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2580,6 +2873,10 @@
         {
           "result": "pass",
           "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2623,6 +2920,10 @@
         {
           "result": "pass",
           "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2648,6 +2949,10 @@
         {
           "result": "pass",
           "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2673,6 +2978,10 @@
         {
           "result": "pass",
           "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2716,6 +3025,10 @@
         {
           "result": "pass",
           "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2745,6 +3058,10 @@
         {
           "result": "pass",
           "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2779,6 +3096,10 @@
         {
           "result": "pass",
           "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
         }
       ],
       "regression_of": null,
@@ -2813,6 +3134,83 @@
         {
           "result": "pass",
           "note": "Final T-30: all 444 unit/component and 43 E2E tests pass, with typecheck, production build and coverage gates (98.57% lines, 91.21% branches, 100% functions). Report downloads, print restoration, scored text/voice reports and summary recovery verified."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-087",
+      "ac_reference": "FR-33; UT-40; E2E-21",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Precomputed sample report",
+      "status": "resolved",
+      "environment": "Mock generation, Vitest and Chromium; no live calls",
+      "description": "Seeded fictional sample, validated before rendering",
+      "steps_to_reproduce": [
+        "Generate with LLM_MODE=mock and --mock, validate with --allow-mock, run sample tests."
+      ],
+      "expected_result": "TRD §17.5 and T-31 mock staging.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial three schema/aggregate/export tests pass; --allow-mock validation succeeds and strict live validation rejects mock provenance as required."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Added timing check found the pre-regeneration sample included an extra 300 ms in each synthetic pause.",
+          "note": "Set pause intervals to exactly 2000, 3000 and 4000 ms and regenerate the mock artifact."
+        },
+        {
+          "result": "pass",
+          "note": "Regenerated sample passes all four targeted tests including exact synthetic gap lengths."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Formatting check saw regenerated JSON and the new timing case before final formatting.",
+          "note": "Format generated artifact and test after regeneration."
+        },
+        {
+          "result": "pass",
+          "note": "All 448 unit/component tests and coverage gates pass using four local Vitest workers, with no concurrent heavy checks. Sample browser test passes with zero API calls; strict validation rejects mock output and --allow-mock succeeds."
+        },
+        {
+          "result": "pass",
+          "note": "M3 final regression: all 448 unit/component and 44 E2E tests pass. Local coverage uses four Vitest workers; browser suite retains four workers, 3-second expectations and 90-second test limits. No assertions or timeouts were weakened."
+        },
+        {
+          "result": "pass",
+          "note": "Final lint, formatting, typecheck, build, --allow-mock validation and ledger integrity pass. Milestone review covers all 25 designed M3 cases: 22 resolved, three owner live checks outstanding."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-090",
+      "ac_reference": "FR-33; T-31",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Live sample provenance",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "Owner live generation required before T-45",
+      "description": "Mock artifact is explicitly allowed during implementation, not accepted as live output.",
+      "steps_to_reproduce": [
+        "Owner runs sample:generate with live credentials, then sample:validate without --allow-mock and removes the temporary CI flag."
+      ],
+      "expected_result": "Validated real model output in the committed sample.",
+      "attempts": [
+        {
+          "result": "manual_required",
+          "note": "Not run: no live key configured. Mock sample permitted by T-31. Owner follow-up is recorded in docs/PROGRESS.md; no external task service is used."
         }
       ],
       "regression_of": null,
