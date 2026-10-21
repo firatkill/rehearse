@@ -417,3 +417,7 @@ Reference: NFR-13; TRD §19.5; CT-09 SafeText subset. Milestone: M1 Question ban
 1. Render visitor text containing literal HTML, Markdown punctuation and a bracketed placeholder.
 
 Expected: Text remains literal, no HTML element or link is created, and the placeholder receives the prescribed span.
+
+### T-17 execution detail
+
+TC-040 also verifies TRD §11.3 draft writes at 2 seconds, edit debouncing at 500 ms, and memory fallback after a failed write. TC-039 checks all six specified notices and the TRD §11.2 duration wording. TC-043 is a live native-browser pass, executed in the existing Firefox Nightly 157.0 build; this does not claim coverage of stock Firefox release or real speech. The report remains the T-17 placeholder until T-30.

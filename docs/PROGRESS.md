@@ -21,8 +21,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-13 | Record schemas, repository interface and memory repository         | done   | 95b6e18           |
 | T-14 | Setup page                                                         | done   | f40159a           |
 | T-15 | Room state machine                                                 | done   | 4df5f00           |
-| T-16 | Words, fillers and the delivery block (text mode)                  | done   | this commit       |
-| T-17 | Text-mode interview room                                           | todo   | —                 |
+| T-16 | Words, fillers and the delivery block (text mode)                  | done   | ec8a2b6           |
+| T-17 | Text-mode interview room                                           | done   | this commit       |
 | T-18 | Capability detection, microphone check and setup capability states | todo   | —                 |
 | T-19 | Recognizer adapter, transcript assembly and recorder machine       | todo   | —                 |
 | T-20 | Speech synthesis, voices, captions and the voice picker            | todo   | —                 |
@@ -66,3 +66,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 - No real microphone, Safari, screen-reader, live LLM, Upstash or deployed-environment verification yet; these belong to later tasks. Health is implemented in T-12; eval remains the planned stub until T-37.
 - The pnpm 12 Node launcher is required on this local machine because the older pnpm auto-switch returned ENOEXEC; CI uses the pinned version successfully.
 - No unresolved product choices. OWNER-DECISIONS.md’s project-specific no-database decision applies; approved exceptions are in the PRD decisions log.
+
+## M1 milestone boundary
+
+T-06–T-17 are implemented. Stop here for owner review before T-18. See [M1 QA report](../qa/M1-REPORT.md). Local verification: 196 unit/component tests, 15 Chromium E2E tests, lint, typecheck, production build and coverage gates pass. Firefox Nightly 157.0 completed three text answers through the report; title fixes were retested from setup through a saved-answer report. Stock Firefox release, real microphone/Safari, live LLM/Upstash and deployment remain unverified. Memory storage and the placeholder report are intentional until their later tasks. T-17 CI is checked after pushing this commit.

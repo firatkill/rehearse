@@ -204,7 +204,8 @@ export function SetupForm({
                   ref={index === 0 ? firstType : undefined}
                   type="checkbox"
                   checked={setup.types.includes(type)}
-                  aria-describedby={`description-${type}`}
+                  aria-invalid={validation || undefined}
+                  aria-describedby={`description-${type}${validation ? ' question-types-error' : ''}`}
                   onChange={() => {
                     change({
                       types: setup.types.includes(type)
@@ -218,7 +219,11 @@ export function SetupForm({
               <p id={`description-${type}`}>{descriptions[type]}</p>
             </div>
           ))}
-          {validation && <p role="alert">Choose at least one question type.</p>}
+          {validation && (
+            <p id="question-types-error" role="alert">
+              Choose at least one question type.
+            </p>
+          )}
         </fieldset>
         <fieldset className="space-y-2">
           <legend>Length</legend>
