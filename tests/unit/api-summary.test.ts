@@ -123,6 +123,7 @@ it('TC-083 UT-34 recomputes summary focus, returns metadata and logs no private 
   ]);
   expect(result.meta).toMatchObject({ model: 'mock', promptVersion: 'summary-v1', costUsd: 0 });
   expect(logs.join('')).toContain('summary.done');
+  expect(JSON.parse(logs[0]!) as { items: number }).toMatchObject({ items: 1 });
   expect(logs.join('')).not.toContain('Private improvement point');
   expect(logs.join('')).not.toContain('rh1.');
 });
@@ -164,4 +165,19 @@ it('TC-083 UT-34 unexpected failures stay private', async () => {
   });
   await error(request(), 500, 'INTERNAL_ERROR');
   expect(logs.join('')).not.toContain('private detail');
+});
+it('TC-083 UT-34 summary failures use the normative log levels', async () => {
+  await error(request({}, { authorization: '' }), 401, 'TOKEN_MISSING');
+  await error(request({}, { authorization: 'Bearer invalid' }), 401, 'TOKEN_INVALID');
+  vi.spyOn(providerModule, 'getProvider').mockImplementation(() => {
+    throw new Error('private summary detail');
+  });
+  await error(request(), 500, 'INTERNAL_ERROR');
+  const entries = logs.map((line) => JSON.parse(line) as { level: number; code: string });
+  expect(entries.map((entry) => [entry.code, entry.level])).toEqual([
+    ['TOKEN_MISSING', 30],
+    ['TOKEN_INVALID', 40],
+    ['INTERNAL_ERROR', 50],
+  ]);
+  expect(logs.join('')).not.toContain('private summary detail');
 });

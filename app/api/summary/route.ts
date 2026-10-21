@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
 import { getEnv } from '@/lib/env';
-import { AppError, httpStatus, type ErrorCode } from '@/lib/errors';
+import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/errors';
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { SummaryRequestSchema, SummaryResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
@@ -21,10 +21,14 @@ export async function POST(req: Request): Promise<Response> {
   const requestId = req.headers.get('x-request-id') ?? randomUUID();
   const started = Date.now();
   let attempts = 0;
+  let items: number | undefined;
+  let model: string | undefined;
   let logger: Logger | undefined;
   const fail = (code: ErrorCode, resetAt?: Date) => {
-    logger?.warn({
+    logger?.[errorLogLevel(code)]({
       event: 'summary.failed',
+      items,
+      model,
       requestId,
       code,
       attempts,
@@ -54,6 +58,7 @@ export async function POST(req: Request): Promise<Response> {
     const parsed = SummaryRequestSchema.safeParse(raw);
     if (!parsed.success) return fail('VALIDATION_FAILED');
     const body = parsed.data;
+    items = body.items.length;
     if (
       body.sessionId !== token.payload.sid ||
       new Set(body.items.map((item) => item.answerIndex)).size !== body.items.length ||
@@ -67,6 +72,7 @@ export async function POST(req: Request): Promise<Response> {
     const quota = await checkSummary(getLimiter(), token.payload, env);
     if (!quota.ok) return fail(quota.code, quota.resetAt);
     const provider = getProvider();
+    model = provider.modelId;
     const result = await generateSummary({
       items: body.items,
       role: token.payload.r,
@@ -102,6 +108,7 @@ export async function POST(req: Request): Promise<Response> {
     });
     logger.info({
       event: 'summary.done',
+      items,
       requestId,
       model: provider.modelId,
       promptVersion: SUMMARY_PROMPT_VERSION,
