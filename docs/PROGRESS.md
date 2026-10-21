@@ -6,7 +6,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 | Task | Description                                                        | Status | Completion commit |
 | ---- | ------------------------------------------------------------------ | ------ | ----------------- |
-| T-01 | Scaffold the repository, tooling and CI skeleton                   | doing  | —                 |
+| T-01 | Scaffold the repository, tooling and CI skeleton                   | done   | b0a87d3           |
 | T-02 | Configuration, environment, errors and labels                      | todo   | —                 |
 | T-03 | Logging, request id and security headers                           | todo   | —                 |
 | T-04 | Test runners and full CI                                           | todo   | —                 |
@@ -58,5 +58,5 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## Verification limits
 
-- T-01 scaffold and M0 QA cases are prepared locally. Local T-01 acceptance checks pass after the approved TypeScript exception (D-47). GitHub CI is pending the first implementation push.
+- T-01 scaffold and M0 QA cases are prepared locally. Local T-01 acceptance checks pass after the approved TypeScript exception (D-47). GitHub CI passed: https://github.com/firatkill/rehearse/actions/runs/39563712991.
 - No unresolved product choices were found in the initial review. OWNER-DECISIONS.md’s project-specific no-database decision applies.
