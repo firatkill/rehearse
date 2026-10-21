@@ -45,6 +45,10 @@ test('TC-079 E2E-05 scored text session retains all three edited answers', async
       .click();
   }
   await expect(page).toHaveURL(/\/report$/);
+  // T-30 report disclosures are collapsed by default (PRD §9.8).
+  for (const detail of await page.locator('details').all()) {
+    await detail.locator(':scope > summary').click();
+  }
   await expect(page).toHaveTitle('Session report · Rehearse');
   for (let index = 0; index < 3; index++)
     await expect(
@@ -79,6 +83,10 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
   ).toBeVisible();
   await page.getByRole('dialog').getByRole('button', { name: 'End session', exact: true }).click();
   await expect(page).toHaveURL(/\/report$/);
+  // T-30 report disclosures are collapsed by default (PRD §9.8).
+  for (const detail of await page.locator('details').all()) {
+    await detail.locator(':scope > summary').click();
+  }
   await expect(page.getByText('Skipped', { exact: true })).toBeVisible();
   await expect(page.getByText('I delivered a measurable result.')).toBeVisible();
 });

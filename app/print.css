@@ -1,2 +1,32 @@
 @media print {
+  @page {
+    margin: 18mm;
+  }
+  :root {
+    --ground: #ffffff;
+    --surface: #ffffff;
+    --ink: #000000;
+    --ink-2: #222222;
+    --ink-3: #444444;
+    --rule: #bbbbbb;
+    --accent: #000000;
+  }
+  header nav,
+  footer,
+  [data-print='hide'],
+  .banner {
+    display: none !important;
+  }
+  details > summary {
+    list-style: none;
+  }
+  section,
+  article,
+  tr {
+    break-inside: avoid;
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
