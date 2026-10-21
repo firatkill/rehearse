@@ -44,6 +44,15 @@
         {
           "result": "pass",
           "note": "UI correction targeted retest: production build passes; 16 feedback component checks and 11 report/feedback-error/speech-error browser checks pass. Verified assertive app error regions, score geometry/tokens and page-wide 44 px targets. Framework route announcer is excluded only from the app error-region selector."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected nullable IDBRequest.error as a Promise rejection reason.",
+          "note": "Add Error fallback to request failures; no user-facing errors changed."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 lint and formatting pass after normalising nullable IndexedDB request errors."
         }
       ],
       "regression_of": null,
@@ -111,6 +120,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -141,6 +154,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -171,6 +188,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -210,6 +231,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -245,6 +270,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -275,6 +304,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -337,6 +370,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -413,6 +450,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -465,6 +506,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -507,6 +552,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -574,6 +623,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -636,6 +689,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -669,6 +726,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -702,6 +763,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -742,6 +807,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -775,6 +844,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -822,6 +895,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -855,6 +932,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -892,6 +973,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -929,6 +1014,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -966,6 +1055,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1003,6 +1096,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1044,6 +1141,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1085,6 +1186,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1129,6 +1234,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1168,6 +1277,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1207,6 +1320,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1240,6 +1357,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1273,6 +1394,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1306,6 +1431,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1389,6 +1518,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1459,6 +1592,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1498,6 +1635,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1535,6 +1676,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1572,6 +1717,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1614,6 +1763,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1651,6 +1804,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1697,6 +1854,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1760,6 +1921,19 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Component test timed out while creating its repository: globally frozen timers also stalled fake-indexeddb startup.",
+          "note": "T-32 introduced async IndexedDB selection. These tests explicitly exercise in-memory behaviour; select unavailable IndexedDB in their fixtures. UT-12–14 and browser tests cover durable storage separately."
+        },
+        {
+          "result": "pass",
+          "note": "Affected hook tests pass with explicit memory backend. Replaced an implementation-specific object-identity assertion with the required nonpersistent fallback assertion; retained data preservation and write-order checks."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1819,6 +1993,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1860,6 +2038,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1947,6 +2129,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -1991,6 +2177,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2035,6 +2225,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2079,6 +2273,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2128,6 +2326,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2177,6 +2379,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2226,6 +2432,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2272,6 +2482,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2318,6 +2532,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2378,6 +2596,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2436,6 +2658,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2504,6 +2730,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2575,6 +2805,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2647,6 +2881,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2701,6 +2939,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2789,6 +3031,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2827,6 +3073,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2888,6 +3138,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2934,6 +3188,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -2995,6 +3253,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3032,6 +3294,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3069,6 +3335,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3106,6 +3376,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3143,6 +3417,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3182,6 +3460,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3221,6 +3503,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3274,6 +3560,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3316,6 +3606,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3397,6 +3691,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3434,6 +3732,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3484,6 +3786,19 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Component test timed out while creating its repository: globally frozen timers also stalled fake-indexeddb startup.",
+          "note": "T-32 introduced async IndexedDB selection. These tests explicitly exercise in-memory behaviour; select unavailable IndexedDB in their fixtures. UT-12–14 and browser tests cover durable storage separately."
+        },
+        {
+          "result": "pass",
+          "note": "Affected hook tests pass with explicit memory backend. Replaced an implementation-specific object-identity assertion with the required nonpersistent fallback assertion; retained data preservation and write-order checks."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3552,6 +3867,19 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Component test timed out while creating its repository: globally frozen timers also stalled fake-indexeddb startup.",
+          "note": "T-32 introduced async IndexedDB selection. These tests explicitly exercise in-memory behaviour; select unavailable IndexedDB in their fixtures. UT-12–14 and browser tests cover durable storage separately."
+        },
+        {
+          "result": "pass",
+          "note": "Affected hook tests pass with explicit memory backend. Replaced an implementation-specific object-identity assertion with the required nonpersistent fallback assertion; retained data preservation and write-order checks."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3589,6 +3917,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3626,6 +3958,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3686,6 +4022,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3740,6 +4080,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3786,6 +4130,23 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Component test timed out while creating its repository: globally frozen timers also stalled fake-indexeddb startup.",
+          "note": "T-32 introduced async IndexedDB selection. These tests explicitly exercise in-memory behaviour; select unavailable IndexedDB in their fixtures. UT-12–14 and browser tests cover durable storage separately."
+        },
+        {
+          "result": "fail",
+          "note": "First targeted retest began before report-hook fixture edit was applied; same startup timeout. Other three hook cases passed."
+        },
+        {
+          "result": "pass",
+          "note": "Affected hook tests pass with explicit memory backend. Replaced an implementation-specific object-identity assertion with the required nonpersistent fallback assertion; retained data preservation and write-order checks."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3840,6 +4201,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3901,6 +4266,10 @@
         {
           "result": "pass",
           "note": "Final M3 UI regression: all 472 unit/component tests and 44 E2E tests pass. Coverage remains 98.60% lines, 91.74% branches, 100% functions; production build and typecheck pass. Browser assertions cover exact score geometry/tokens, blocking error announcements and 44 px report-page targets."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,
@@ -3925,6 +4294,110 @@
         {
           "result": "manual_required",
           "note": "Not run: no live key configured. Mock sample permitted by T-31. Owner follow-up is recorded in docs/PROGRESS.md; no external task service is used."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-091",
+      "ac_reference": "FR-34; UT-12",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "IndexedDB lifecycle",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "fake-indexeddb, mock LLM and memory limiter",
+      "description": "Spec-derived durable storage tests.",
+      "steps_to_reproduce": ["Run unit storage lifecycle, upgrade, parity and selection suites."],
+      "expected_result": "TRD §7 lifecycle and repository contracts hold.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted lifecycle, upgrade and parity tests passed (15); selection passed (3), then expanded lifecycle/selection passed (9). TC-094 browser fallback remains scheduled for T-33."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-092",
+      "ac_reference": "FR-34; UT-13",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Repository parity",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "fake-indexeddb, mock LLM and memory limiter",
+      "description": "Spec-derived durable storage tests.",
+      "steps_to_reproduce": ["Run unit storage lifecycle, upgrade, parity and selection suites."],
+      "expected_result": "TRD §7 lifecycle and repository contracts hold.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted lifecycle, upgrade and parity tests passed (15); selection passed (3), then expanded lifecycle/selection passed (9). TC-094 browser fallback remains scheduled for T-33."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-093",
+      "ac_reference": "FR-34; D-20; UT-14",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Upgrade safety",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "fake-indexeddb, mock LLM and memory limiter",
+      "description": "Spec-derived durable storage tests.",
+      "steps_to_reproduce": ["Run unit storage lifecycle, upgrade, parity and selection suites."],
+      "expected_result": "TRD §7 lifecycle and repository contracts hold.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted lifecycle, upgrade and parity tests passed (15); selection passed (3), then expanded lifecycle/selection passed (9). TC-094 browser fallback remains scheduled for T-33."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-094",
+      "ac_reference": "FR-39; UT-12; E2E-23",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Storage selection and fallback",
+      "status": "open",
+      "automatable": true,
+      "environment": "fake-indexeddb, mock LLM and memory limiter",
+      "description": "Spec-derived durable storage tests.",
+      "steps_to_reproduce": ["Run unit storage lifecycle, upgrade, parity and selection suites."],
+      "expected_result": "TRD §7 lifecycle and repository contracts hold.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted lifecycle, upgrade and parity tests passed (15); selection passed (3), then expanded lifecycle/selection passed (9). TC-094 browser fallback remains scheduled for T-33."
+        },
+        {
+          "result": "pass",
+          "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
         }
       ],
       "regression_of": null,

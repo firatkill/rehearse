@@ -37,7 +37,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | 267cd8b           |
 | T-30 | Report page, chart, Markdown export and print                      | done    | 8618b04           |
 | T-31 | Sample session and `/sample`                                       | done    | 6796b4c           |
-| T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | todo    | —                 |
+| T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | done    | this commit       |
 | T-33 | Persistence wiring and recovery after reload                       | todo    | —                 |
 | T-34 | History page and deletion                                          | todo    | —                 |
 | T-35 | Export and import                                                  | todo    | —                 |
@@ -125,3 +125,9 @@ No live LLM/eval, Upstash, physical microphone or Safari/mobile speech verificat
 Final M3 spec review corrected feedback/summary failure logging to TRD §20 levels and added the safe summary item count from §22. The shared mapping and actual API log levels have spec-derived tests. All 472 unit/component and 44 E2E tests pass after the correction; the handoff remains at M3 with no T-32 work.
 
 Final M3 UI review corrected blocking-error announcements, normative score-bar geometry/tokens and report/footer touch targets. Targeted browser checks passed for feedback errors, speech errors and reports; final regression results are recorded in the QA ledger. No M4 work started.
+
+## M4 in progress
+
+Owner authorised continuation after M3. TC-091–TC-101 designed before implementation. Import validation granularity awaits the grouped owner clarification; T-32 work is independent. Physical voice reload remains a manual check.
+
+T-32: IndexedDB migrations, repository and stable selection facade implemented. UT-12–14 and selection tests pass; 487 unit/component and 44 E2E tests pass, storage line coverage 96.04%; lint, typecheck and production build pass. A-18 recorded as D-67. CI verification follows push.

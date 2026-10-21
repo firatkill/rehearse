@@ -1,10 +1,14 @@
 import { act, renderHook } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { beforeEach, expect, it, vi } from 'vitest';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
 import { useRepository } from '@/hooks/use-repository';
 import { requestFeedback } from '@/lib/api/client';
 import { record } from '../fixtures/records';
 import { feedbackLlm } from '../fixtures/feedback';
+// These component cases exercise the memory repository; IndexedDB lifecycle has UT-12–14 coverage.
+beforeEach(() => {
+  vi.stubGlobal('indexedDB', undefined);
+});
 vi.mock('next/navigation', () => ({ useRouter: () => ({ replace: vi.fn() }) }));
 vi.mock('@/lib/api/client', () => ({ requestFeedback: vi.fn() }));
 async function atReview() {
