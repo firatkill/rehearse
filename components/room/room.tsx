@@ -11,22 +11,45 @@ import { ROLE_LABELS, SENIORITY_LABELS, ANSWER_MODE_LABELS } from '@/lib/labels'
 import { formatDurationWords } from '@/lib/time';
 import { RecorderPanel } from './recorder-panel';
 import { SpeechError } from './speech-error';
-import { SESSION } from '@/lib/config';
+import { ANSWER, SESSION } from '@/lib/config';
 import { ProgressHeader } from './progress-header';
 import { QuestionPanel } from './question-panel';
 import { ThinkTimer } from './think-timer';
 import { TextAnswer } from './text-answer';
 import { ReviewPanel } from './review-panel';
 import { ResumeCard } from './resume-card';
+import { FeedbackCard } from './feedback-card';
+import { FeedbackSkeleton } from './feedback-skeleton';
+import { FeedbackError } from './feedback-error';
 import { DeliveryMetrics } from './delivery-metrics';
 
-export function Room({ id, offline }: { id: string; offline: boolean }) {
-  const { state, send, onDraft, online, recorder, activeChunk, readAloudError, capabilities } =
-    useInterviewRoom(id);
+export function Room({
+  id,
+  offline,
+  feedbackPerDay,
+  globalPerDay,
+}: {
+  id: string;
+  offline: boolean;
+  feedbackPerDay: number;
+  globalPerDay: number;
+}) {
+  const {
+    state,
+    send,
+    onDraft,
+    online,
+    recorder,
+    activeChunk,
+    readAloudError,
+    capabilities,
+    feedbackTransport,
+  } = useInterviewRoom(id);
   const { announce, message, registerEnd } = useShell();
   const root = useRef<HTMLDivElement>(null);
   const { session, phase, index } = state;
   const kind = phase.kind;
+  const feedbackOverall = state.answers.find((a) => a.index === index)?.feedback?.overall;
   const answerMode = phase.kind === 'answering' ? phase.answerMode : null;
   const limit = session?.questions[index]?.time_limit_s ?? 0;
   useEffect(
@@ -58,11 +81,25 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
               : 'Answer box open.'
             : kind === 'review'
               ? 'Review your answer.'
-              : kind === 'saved'
-                ? 'Answer saved.'
-                : '';
+              : kind === 'submitting'
+                ? 'Reading your answer…'
+                : kind === 'feedback'
+                  ? `Feedback ready. Overall ${feedbackOverall ?? ''} out of 4.`
+                  : kind === 'saved'
+                    ? 'Answer saved.'
+                    : '';
     announce(status);
-  }, [kind, index, state.mode, session, announce, answerMode, limit, readAloudError]);
+  }, [
+    kind,
+    index,
+    state.mode,
+    session,
+    announce,
+    answerMode,
+    limit,
+    readAloudError,
+    feedbackOverall,
+  ]);
   if (kind === 'loading') return <p>Loading your session…</p>;
   if (!session)
     return (
@@ -227,6 +264,62 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
           }}
           onRecordAgain={() => {
             send({ type: 'OPEN_DIALOG', dialog: 'record-again' });
+          }}
+        />
+      )}
+      {kind === 'submitting' && answer && (
+        <>
+          <label htmlFor="submitted-answer">Your answer</label>
+          <textarea
+            id="submitted-answer"
+            className="border-input w-full border p-3"
+            value={answer.transcript}
+            readOnly
+            rows={ANSWER.TEXTAREA_MIN_ROWS}
+          />
+          <FeedbackSkeleton />
+        </>
+      )}
+      {kind === 'feedback' && answer && question && (
+        <>
+          <FeedbackCard answer={answer} question={question} />
+          <Button
+            onClick={() => {
+              send({ type: 'NEXT' });
+            }}
+          >
+            {index + 1 === session.questions.length ? 'Finish and see report' : 'Next question'}
+          </Button>
+        </>
+      )}
+      {phase.kind === 'feedback-error' && (
+        <FeedbackError
+          code={phase.code}
+          requestId={phase.requestId}
+          retries={Math.max(
+            0,
+            (phase.sessionCallsRemaining ?? 0) -
+              session.questions
+                .slice(index)
+                .filter(
+                  (_, offset) =>
+                    !state.answers.some(
+                      (a) =>
+                        a.index === index + offset &&
+                        ['scored', 'saved', 'skipped'].includes(a.status),
+                    ),
+                ).length,
+          )}
+          network={feedbackTransport.network}
+          resetAt={feedbackTransport.resetAt}
+          feedbackPerDay={feedbackPerDay}
+          globalPerDay={globalPerDay}
+          online={online}
+          onRetry={() => {
+            send({ type: 'SUBMIT', now: Date.now() });
+          }}
+          onSave={() => {
+            send({ type: 'SAVE_WITHOUT_FEEDBACK' });
           }}
         />
       )}

@@ -6,14 +6,14 @@ test.beforeEach(async ({ page }, testInfo) => {
   await page.addInitScript(installSpeechMock, scenarios.noRecognition);
   await page.clock.install({ time: new Date('2026-10-21T12:00:00Z') });
   await page.clock.pauseAt(new Date('2026-10-21T12:01:00Z'));
-  await page.goto(`${serverUrl(testInfo, 1)}/setup`);
+  await page.goto(`${serverUrl(testInfo, 0)}/setup`);
   await page.getByLabel('Text: type your answers').check();
   await page.getByLabel('3 questions').check();
-  await page.getByRole('button', { name: 'Start session without feedback' }).click();
+  await page.getByRole('button', { name: 'Start session' }).click();
   await expect(page.getByRole('button', { name: 'Start the interview' })).toBeFocused();
   await expect(page).toHaveTitle('Interview · Rehearse');
 });
-test('TC-040 E2E-05 readonly text session retains all three edited answers', async ({ page }) => {
+test('TC-079 E2E-05 scored text session retains all three edited answers', async ({ page }) => {
   await page.getByRole('button', { name: 'Start the interview' }).click();
   await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
   await page.clock.runFor(2000);
@@ -35,7 +35,10 @@ test('TC-040 E2E-05 readonly text session retains all three edited answers', asy
     await page.getByRole('button', { name: 'Review answer' }).click();
     await expect(input).toBeFocused();
     await input.fill(`I improved delivery for project ${index + 1} with measurable results.`);
-    await page.getByRole('button', { name: 'Save and continue' }).click();
+    await page.getByRole('button', { name: 'Get feedback' }).click();
+    await expect(
+      page.getByRole('heading', { name: `Feedback on question ${index + 1}` }),
+    ).toBeFocused();
     await expect(page.getByRole('heading', { name: 'What interviewers listen for' })).toBeVisible();
     await page
       .getByRole('button', { name: index === 2 ? 'Finish and see report' : 'Next question' })
@@ -68,7 +71,7 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
   await page.getByRole('button', { name: 'Start answering now' }).click();
   await page.getByLabel('Your answer').fill('I delivered a measurable result.');
   await page.getByRole('button', { name: 'Review answer' }).click();
-  await page.getByRole('button', { name: 'Save and continue' }).click();
+  await page.getByRole('button', { name: 'Save without feedback' }).click();
   await page.getByRole('button', { name: 'End session', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep going' })).toBeFocused();
   await expect(
