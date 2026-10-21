@@ -29,8 +29,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-21 | Voice room integration                                             | blocked | dcd7293           |
 | T-22 | Voice delivery metrics                                             | done    | 678d785           |
 | T-23 | Voice E2E with the speech mock                                     | done    | 742ba00           |
-| T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | this commit       |
-| T-25 | Rubric, prompts, sanitization and versioning                       | todo    | —                 |
+| T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148           |
+| T-25 | Rubric, prompts, sanitization and versioning                       | done    | this commit       |
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | todo    | —                 |
 | T-27 | `POST /api/feedback`                                               | todo    | —                 |
 | T-28 | Feedback UI: skeleton, card, errors and retries                    | todo    | —                 |
@@ -97,3 +97,5 @@ Owner authorised continuation on 2026-10-21. M2 CI passed all five jobs: https:/
 T-24 provider/cost slice: normative interface, SDK 7 adapter and cost calculation implemented with 23 new contract/vector tests. All 296 unit/component and 33 E2E tests pass, with lint, typecheck, build, coverage and ledger gates. This is a partial task commit: mock provider, dispatcher and final model pinning remain; pending clarification and owner live verification are listed above.
 
 T-24 implementation is complete; status is blocked only on the owner-only live model/temperature check TC-088. Model candidate and documented prices are pinned in .env.example (D-66); availability and quality are not claimed. D-64/D-65 approve staged eval and mock copy. The provider/cost slice CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39616978679. Continue independent M3 tasks with live checks visibly pending.
+
+T-25: exact normative v1 prompts, rubric and sanitized user templates implemented. 338 unit/component tests, 33 E2E tests, lint, typecheck, build and coverage pass (98.98% lines, 91.01% branches, 100% functions). Live eval is deferred under D-64.

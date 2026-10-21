@@ -2280,6 +2280,56 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-071",
+      "ac_reference": "FR-19; FR-23; UT-21",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Untrusted-text sanitization",
+      "status": "resolved",
+      "environment": "macOS; Vitest; TRD fixtures; no network",
+      "description": "Untrusted-text sanitization",
+      "steps_to_reproduce": ["Run sanitize.test.ts and prompts.test.ts."],
+      "expected_result": "Normative TRD \u00a714 copy, sanitization and block ordering.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted 42 prompt/sanitization/mock tests pass; full coverage passes 338 unit/component tests. Initial v1 prompt content matches the TRD fixtures byte for byte. Live eval deferred under D-64, not claimed as run."
+        },
+        {
+          "result": "pass",
+          "note": "T-25 final acceptance: 338 unit/component and 33 E2E tests, lint, typecheck, build and coverage gates pass (98.98% lines, 91.01% branches, 100% functions). No live eval under D-64."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-072",
+      "ac_reference": "FR-19; FR-23; UT-22",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Exact prompts and rubric",
+      "status": "resolved",
+      "environment": "macOS; Vitest; TRD fixtures; no network",
+      "description": "Exact prompts and rubric",
+      "steps_to_reproduce": ["Run sanitize.test.ts and prompts.test.ts."],
+      "expected_result": "Normative TRD \u00a714 copy, sanitization and block ordering.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted 42 prompt/sanitization/mock tests pass; full coverage passes 338 unit/component tests. Initial v1 prompt content matches the TRD fixtures byte for byte. Live eval deferred under D-64, not claimed as run."
+        },
+        {
+          "result": "pass",
+          "note": "T-25 final acceptance: 338 unit/component and 33 E2E tests, lint, typecheck, build and coverage gates pass (98.98% lines, 91.01% branches, 100% functions). No live eval under D-64."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }
