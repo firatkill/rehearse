@@ -207,6 +207,10 @@
         {
           "result": "pass",
           "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -243,6 +247,10 @@
         {
           "result": "pass",
           "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -328,6 +336,10 @@
         {
           "result": "pass",
           "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -350,6 +362,10 @@
         {
           "result": "pass",
           "note": "T-09 regression: all 8 existing E2E tests pass using E2E_BASE_PORT=3240."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,
@@ -597,6 +613,64 @@
         {
           "result": "pass",
           "note": "Full suite: 109 tests; 100% lines/functions, 96.29% branches; limiter logic 100% lines. Lint, typecheck and production build pass. All 8 existing E2E tests pass on ports 3240–3243. No live Upstash calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-026",
+      "ac_reference": "FR-40; UT-08",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Signed token validates and rotates",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "description": "Signed token validates and rotates",
+      "steps_to_reproduce": ["Run tests/unit/token.test.ts and the complete coverage suite."],
+      "expected_result": "Exact signed payload validation, previous-secret rotation and normative time boundaries.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Four targeted tests passed, including unequal-length signatures and exact received-payload signing."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 113 tests; 100% lines/functions, 96.73% branches. Token logic has 100% line coverage. Typecheck and build pass. Initial lint flagged normative z.string().uuid() as deprecated; retained the required schema with a narrowly documented lint exception, then lint passed."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-027",
+      "ac_reference": "FR-40; UT-08",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Token time bounds enforced",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "description": "Token time bounds enforced",
+      "steps_to_reproduce": ["Run tests/unit/token.test.ts and the complete coverage suite."],
+      "expected_result": "Exact signed payload validation, previous-secret rotation and normative time boundaries.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Four targeted tests passed, including unequal-length signatures and exact received-payload signing."
+        },
+        {
+          "result": "pass",
+          "note": "Full suite: 113 tests; 100% lines/functions, 96.73% branches. Token logic has 100% line coverage. Typecheck and build pass. Initial lint flagged normative z.string().uuid() as deprecated; retained the required schema with a narrowly documented lint exception, then lint passed."
+        },
+        {
+          "result": "pass",
+          "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
         }
       ],
       "regression_of": null,

@@ -14,8 +14,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-06 | Question schema, loader, validator and the 15 example questions    | done   | f8383ee           |
 | T-07 | Write the remaining 105 questions                                  | done   | 1475f7a           |
 | T-08 | Seeded PRNG and deterministic selection                            | done   | 95957c3           |
-| T-09 | Rate-limit adapter, visitor id and quotas                          | done   | this commit       |
-| T-10 | Session token                                                      | todo   | —                 |
+| T-09 | Rate-limit adapter, visitor id and quotas                          | done   | a79a194           |
+| T-10 | Session token                                                      | done   | this commit       |
 | T-11 | API contracts, client and `POST /api/sessions/start`               | todo   | —                 |
 | T-12 | `GET /api/health`                                                  | todo   | —                 |
 | T-13 | Record schemas, repository interface and memory repository         | todo   | —                 |
