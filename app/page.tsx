@@ -1,7 +1,7 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = { title: 'Rehearse: practise interviews out loud' };
+
 export default function Home() {
-  return (
-    <main>
-      <h1>Rehearse</h1>
-    </main>
-  );
+  return <h1>Rehearse</h1>;
 }
