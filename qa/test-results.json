@@ -1580,6 +1580,122 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-053",
+      "ac_reference": "FR-06; UT-19",
+      "milestone": "M2 Voice loop",
+      "title": "Voice loading, English ordering and saved selection",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
+      "description": "Voice loading, English ordering and saved selection",
+      "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 13 targeted unit/component tests pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Typecheck rejected custom test chunk limits because the normative default infers literal 160; lint flagged mocked-method references, asynchronous abort narrowing and callback typing.",
+          "note": "Test vectors now use the normative 160-character limit. Corrected callback types; documented false positives for mutable AbortSignal and mocked methods."
+        },
+        {
+          "result": "pass",
+          "note": "260 unit/component tests, lint, typecheck, build and coverage gates pass. Lines 98.82%, branches 91.46%, functions 100%."
+        },
+        {
+          "result": "pass",
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-054",
+      "ac_reference": "FR-09; UT-19",
+      "milestone": "M2 Voice loop",
+      "title": "Speech chunks, sequencing, cancellation and captions",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
+      "description": "Speech chunks, sequencing, cancellation and captions",
+      "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 13 targeted unit/component tests pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Typecheck rejected custom test chunk limits because the normative default infers literal 160; lint flagged mocked-method references, asynchronous abort narrowing and callback typing.",
+          "note": "Test vectors now use the normative 160-character limit. Corrected callback types; documented false positives for mutable AbortSignal and mocked methods."
+        },
+        {
+          "result": "pass",
+          "note": "260 unit/component tests, lint, typecheck, build and coverage gates pass. Lines 98.82%, branches 91.46%, functions 100%."
+        },
+        {
+          "result": "pass",
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-055",
+      "ac_reference": "FR-04; FR-06; CT-02; E2E-02",
+      "milestone": "M2 Voice loop",
+      "title": "Voice picker and preview controls",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest mock speech; Chromium mock speech",
+      "description": "Voice picker and preview controls",
+      "steps_to_reproduce": ["Run T-20 unit/component and setup E2E tests."],
+      "expected_result": "Behaviours match PRD §9.4 and TRD §10.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Initial 13 targeted unit/component tests pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Typecheck rejected custom test chunk limits because the normative default infers literal 160; lint flagged mocked-method references, asynchronous abort narrowing and callback typing.",
+          "note": "Test vectors now use the normative 160-character limit. Corrected callback types; documented false positives for mutable AbortSignal and mocked methods."
+        },
+        {
+          "result": "pass",
+          "note": "260 unit/component tests, lint, typecheck, build and coverage gates pass. Lines 98.82%, branches 91.46%, functions 100%."
+        },
+        {
+          "result": "fail",
+          "actual_result": "E2E-02 could not locate the exact Voice label because the implicit select label included option text. Other 18 E2E tests passed.",
+          "note": "Replaced the enclosing label with an explicit htmlFor/id association; rerunning setup area."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Voice label now resolves; preview test clock.pauseAt(new Date()) failed because host time was behind the installed browser clock. Five other setup tests passed.",
+          "note": "Pause at browser Date.now() + 1000, then advance timers with page.clock as prescribed; no timeout changes."
+        },
+        {
+          "result": "pass",
+          "note": "Affected setup area retest: all six E2E tests pass, including preview stop/start and rate control. Five picker component tests also pass after label fix."
+        },
+        {
+          "result": "pass",
+          "note": "T-20 final full E2E suite: all 19 tests pass on ports 3240–3243. Typecheck, lint, production build, 260 unit/component tests and coverage gates pass. QA ledger integrity checked."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

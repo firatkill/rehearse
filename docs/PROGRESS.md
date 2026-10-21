@@ -24,8 +24,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-16 | Words, fillers and the delivery block (text mode)                  | done   | ec8a2b6           |
 | T-17 | Text-mode interview room                                           | done   | e88dca0           |
 | T-18 | Capability detection, microphone check and setup capability states | done   | eac718d           |
-| T-19 | Recognizer adapter, transcript assembly and recorder machine       | done   | this commit       |
-| T-20 | Speech synthesis, voices, captions and the voice picker            | todo   | —                 |
+| T-19 | Recognizer adapter, transcript assembly and recorder machine       | done   | 8eb3c8b           |
+| T-20 | Speech synthesis, voices, captions and the voice picker            | done   | this commit       |
 | T-21 | Voice room integration                                             | todo   | —                 |
 | T-22 | Voice delivery metrics                                             | todo   | —                 |
 | T-23 | Voice E2E with the speech mock                                     | todo   | —                 |
@@ -54,6 +54,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## Open questions for the owner
 
+- T-21: approval requested to add optional `rawTranscript` to `TYPE_INSTEAD` so the pure room reducer can preserve live words when switching to text.
+
 - T-01 owner check on GitHub: enable Dependabot alerts. Secret scanning and push protection are already enabled (verified through GitHub API).
 
 - No action needed on the other project’s ports: owner authorised E2E_BASE_PORT (D-55); local runs use free ports 3240–3243. T-07 E2E also passed in isolated CI (39570707129).
@@ -74,3 +76,5 @@ T-06–T-17 are implemented. Stop here for owner review before T-18. See [M1 QA 
 ## M2 in progress
 
 Owner authorised M2 continuation. M1 CI passed: https://github.com/firatkill/rehearse/actions/runs/39591865691. TC-046–TC-065 define the M2 QA scope before implementation. Owner approved staged E2E-06 practice-only saving until feedback/report implementation in M3 (D-58).
+
+T-19 CI passed: https://github.com/firatkill/rehearse/actions/runs/39594914682. T-20 adds voice selection, preview, chunked playback and captions; all 260 unit/component tests and 19 browser tests pass. Real voice-room integration and physical browser checks remain T-21–T-23.

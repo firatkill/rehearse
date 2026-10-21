@@ -19,6 +19,8 @@ import { SafeText } from '@/components/common/safe-text';
 import { CapabilityNotice } from './capability-notice';
 import { QuotaPanel } from './quota-panel';
 import { MicCheck } from './mic-check';
+import { VoicePicker } from './voice-picker';
+import { useVoices } from '@/hooks/use-voices';
 import { useCapabilities } from '@/hooks/use-capabilities';
 
 const defaults: Setup = { ...SETUP_DEFAULTS, types: [...SETUP_DEFAULTS.types], voiceURI: null };
@@ -66,11 +68,16 @@ export function SetupForm({
   }, [stored]);
   const [changed, setChanged] = useState<Setup | null>(null);
   const capabilities = useCapabilities();
+  const voiceState = useVoices();
   const selected = changed ?? preferences;
   const setup: Setup = {
     ...selected,
     mode: capabilities && !capabilities.recognition ? 'text' : selected.mode,
-    readAloud: capabilities && !capabilities.synthesis ? false : selected.readAloud,
+    readAloud:
+      (capabilities && !capabilities.synthesis) ||
+      (!voiceState.loading && voiceState.voices.length === 0)
+        ? false
+        : selected.readAloud,
   };
   const [pending, setPending] = useState(false);
   const [validation, setValidation] = useState(false);
@@ -273,6 +280,9 @@ export function SetupForm({
         </fieldset>
         {capabilities !== null && !capabilities.recognition && (
           <p id="voice-unavailable">Not available in this browser.</p>
+        )}
+        {capabilities?.synthesis && (
+          <VoicePicker setup={selected} {...voiceState} onChange={change} />
         )}
         {setup.mode === 'voice' && <MicCheck />}
         <p>
