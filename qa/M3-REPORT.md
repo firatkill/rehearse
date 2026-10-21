@@ -12,7 +12,7 @@ Implementation and automated checks are complete: 22 resolved cases, 3 manual ch
 - Sample validation with `--allow-mock` passed; strict validation correctly rejected the mock artifact. The sample page made zero API calls.
 - Text and mocked-voice sessions reached scored reports; error recovery, report tables/chart, Markdown download and print restoration passed.
 - No real model, Upstash or speech service was used in tests. D-64 defers live evaluation until T-37.
-- T-30 CI passed: https://github.com/firatkill/rehearse/actions/runs/39629175254. T-31 CI is checked after pushing.
+- T-30 CI passed: https://github.com/firatkill/rehearse/actions/runs/39629175254. T-31 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39631383645.
 
 ## Resolved
 

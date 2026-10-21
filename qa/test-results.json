@@ -3187,6 +3187,10 @@
         {
           "result": "pass",
           "note": "Final lint, formatting, typecheck, build, --allow-mock validation and ledger integrity pass. Milestone review covers all 25 designed M3 cases: 22 resolved, three owner live checks outstanding."
+        },
+        {
+          "result": "pass",
+          "note": "T-31 commit 6796b4c passed all five CI jobs: https://github.com/firatkill/rehearse/actions/runs/39631383645. M3 handoff documents record the exact finishing commit and remaining manual acceptance."
         }
       ],
       "regression_of": null,
