@@ -27,3 +27,17 @@ export function getLogger(): Logger {
   logger ??= createLogger(getEnv());
   return logger;
 }
+
+// Configuration can fail before getLogger() can read its settings. Log only validated names.
+export function logConfigurationFailure(error: unknown, destination?: DestinationStream): void {
+  const match =
+    error instanceof Error
+      ? /^Invalid environment variables: ([A-Z0-9_, .]+)$/.exec(error.message)
+      : null;
+  const options = { level: 'error', base: { app: 'rehearse', version: APP_VERSION } };
+  const fallback = destination ? pino(options, destination) : pino(options);
+  fallback.error({
+    event: 'config.invalid',
+    variables: match?.[1]?.split(', ') ?? [],
+  });
+}
