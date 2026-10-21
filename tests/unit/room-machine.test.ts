@@ -314,3 +314,17 @@ it('TC-059 FR-55 offline start uses text only for this answer and edits raw text
       ?.rawTranscript,
   ).toBe('Edited offline answer');
 });
+it('TC-095 FR-35 reload promotes a saved draft to review with the restored answer notice', () => {
+  const session = { ...record, checkpoint: { ...record.checkpoint, phase: 'answering' as const } };
+  const restored = roomReducer(
+    initialRoomState,
+    { type: 'LOADED', session, answers: [{ ...answer, status: 'draft', notice: null }] },
+    Date.parse(record.createdAt),
+  );
+  expect(restored.phase).toEqual({ kind: 'review', notice: 'restored' });
+  expect(restored.answers[0]).toMatchObject({
+    status: 'review',
+    notice: 'restored',
+    transcript: answer.transcript,
+  });
+});

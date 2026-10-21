@@ -6,6 +6,15 @@ test('TC-087 E2E-21 sample has a fictional banner, complete report and zero API 
 }, info) => {
   await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
   await page.addInitScript(installSpeechMock, scenarios.noRecognition);
+  await page.addInitScript(() => {
+    let calls = 0;
+    const open = indexedDB.open.bind(indexedDB);
+    indexedDB.open = (...args) => {
+      calls++;
+      return open(...args);
+    };
+    Object.defineProperty(window, 'sampleStorageCalls', { get: () => calls });
+  });
   const calls: string[] = [];
   page.on('request', (request) => {
     if (new URL(request.url()).pathname.startsWith('/api/')) calls.push(request.url());
@@ -33,4 +42,5 @@ test('TC-087 E2E-21 sample has a fictional banner, complete report and zero API 
   await page.getByRole('button', { name: 'Download Markdown' }).click();
   expect((await download).suggestedFilename()).toContain('full-stack.md');
   expect(calls).toEqual([]);
+  expect(await page.evaluate(() => Reflect.get(window, 'sampleStorageCalls') as unknown)).toBe(0);
 });

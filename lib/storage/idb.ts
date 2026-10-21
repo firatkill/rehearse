@@ -1,3 +1,4 @@
+import { version as appVersion } from '@/package.json';
 import { STORAGE } from '@/lib/config';
 import { MIGRATIONS, type Migration } from './migrations';
 import { setStorageStatus } from './status';
@@ -64,6 +65,8 @@ export function openDb(
       for (const migration of [...migrations].sort((a, b) => a.version - b.version))
         if (event.oldVersion < migration.version && migration.version <= version)
           migration.upgrade(request.result, tx);
+      if (event.oldVersion === 0 && request.result.objectStoreNames.contains('meta'))
+        tx.objectStore('meta').put({ key: 'createdWithAppVersion', value: appVersion });
     };
     request.onerror = () => {
       clearTimeout(timer);

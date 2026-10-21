@@ -44,8 +44,8 @@ export function useReport(id: string) {
       let repo = repository;
       try {
         return await repo.updateSession(id, patch);
-      } catch {
-        repo = await switchToMemoryRepository(current.session, current.answers);
+      } catch (error) {
+        repo = await switchToMemoryRepository(current.session, current.answers, error);
         return repo.updateSession(id, patch);
       }
     },
