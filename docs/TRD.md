@@ -3330,7 +3330,7 @@ Render it as `<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCR
 
 ## 20. Error handling matrix
 
-`lib/errors.ts` exports `ERROR_CODES` (the list below), `AppError(code, message)`, and `httpStatus(code)`.
+`lib/errors.ts` exports `ERROR_CODES` (the list below), `AppError(code, message)`, `httpStatus(code)` and `errorLogLevel(code)` (the Log level column).
 
 | Code                         | Status | Routes                   | When                              | Client state (PRD)                                    | Log level |
 | ---------------------------- | ------ | ------------------------ | --------------------------------- | ----------------------------------------------------- | --------- |

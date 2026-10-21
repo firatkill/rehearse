@@ -6,8 +6,8 @@ Implementation and automated checks are complete: 22 resolved cases, 3 manual ch
 
 ## Verification
 
-- 448 unit/component tests and 44 Chromium E2E tests passed.
-- Coverage: 98.79% lines, 91.63% branches, 100% functions; all configured thresholds passed.
+- 472 unit/component tests and 44 Chromium E2E tests passed.
+- Coverage: 98.60% lines, 91.74% branches, 100% functions; all configured thresholds passed.
 - Typecheck and production build passed. Final lint, formatting and ledger integrity checks passed.
 - Sample validation with `--allow-mock` passed; strict validation correctly rejected the mock artifact. The sample page made zero API calls.
 - Text and mocked-voice sessions reached scored reports; error recovery, report tables/chart, Markdown download and print restoration passed.
@@ -63,7 +63,7 @@ The PRD uses FR references rather than numbered AC-N identifiers. The table abov
 
 ## Regressions and root causes
 
-No unresolved product regression remains. The report transcript locator was scoped to its disclosure after verified evidence introduced a legitimate second copy of the sentence; the visibility assertion was retained. The unchanged feedback-card test timed out under machine load, then passed alone and in the final full suite. Earlier full-browser contention was addressed by running heavy checks sequentially. No timeout, coverage threshold or assertion was weakened.
+No unresolved product regression remains. Final normative review found feedback/summary failures were all logged at warn; they now use the TRD §20 per-code levels, with actual Pino-level assertions and safe summary item counts. The corrected code passed the complete local suite. The report transcript locator was scoped to its disclosure after verified evidence introduced a legitimate second copy of the sentence; the visibility assertion was retained. The unchanged feedback-card test timed out under machine load, then passed alone and in the final full suite. Earlier full-browser contention was addressed by running heavy checks sequentially. No timeout, coverage threshold or assertion was weakened.
 
 ## Audit trail
 
@@ -71,16 +71,16 @@ No M3 case was retracted or removed. All failures and retests remain in the appe
 
 ## Milestone review
 
-| Review item            | Verdict                                                                                                                                                                                                                                   |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ledger integrity       | Pass: schema, status vocabulary, final passing attempts and append-only history checked.                                                                                                                                                  |
-| Designed-case coverage | Pass: every case TC-066–TC-090 has a ledger entry; none missing.                                                                                                                                                                          |
-| Automation             | Pass: all 22 resolved M3 cases map to test source; three live checks are explicitly non-automatable here.                                                                                                                                 |
-| Retesting              | Pass: every resolved case ends in an actual passing run; failures remain in the history.                                                                                                                                                  |
-| Escalations            | Pass under the repository override: manual owner follow-ups are in PROGRESS.md, with no ClickUp or Slack.                                                                                                                                 |
-| Manual completion      | Needs attention: TC-088, TC-089 and TC-090 have not been performed. Inherited TC-063/TC-064 also remain open.                                                                                                                             |
-| Audit trail            | Pass: no M3 case or attempt removed; no retracted cases.                                                                                                                                                                                  |
-| Attempts advisory      | Earlier-milestone cases with repeated failures are resolved; no unresolved M3 cluster. Machine contention and selector ambiguity are documented above.                                                                                    |
-| Agent improvement      | Run heavy checks sequentially; finish fixture/artifact edits before formatting; inspect injected interfaces before writing fakes; scope repeated transcript/evidence assertions to their intended region. No plugin changes are required. |
+| Review item            | Verdict                                                                                                                                                                                                                                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ledger integrity       | Pass: schema, status vocabulary, final passing attempts and append-only history checked.                                                                                                                                                                                                                     |
+| Designed-case coverage | Pass: every case TC-066–TC-090 has a ledger entry; none missing.                                                                                                                                                                                                                                             |
+| Automation             | Pass: all 22 resolved M3 cases map to test source; three live checks are explicitly non-automatable here.                                                                                                                                                                                                    |
+| Retesting              | Pass: every resolved case ends in an actual passing run; failures remain in the history.                                                                                                                                                                                                                     |
+| Escalations            | Pass under the repository override: manual owner follow-ups are in PROGRESS.md, with no ClickUp or Slack.                                                                                                                                                                                                    |
+| Manual completion      | Needs attention: TC-088, TC-089 and TC-090 have not been performed. Inherited TC-063/TC-064 also remain open.                                                                                                                                                                                                |
+| Audit trail            | Pass: no M3 case or attempt removed; no retracted cases.                                                                                                                                                                                                                                                     |
+| Attempts advisory      | Earlier-milestone cases with repeated failures are resolved; no unresolved M3 cluster. Machine contention and selector ambiguity are documented above.                                                                                                                                                       |
+| Agent improvement      | Run heavy checks sequentially; finish fixture/artifact edits before formatting; inspect injected interfaces before writing fakes; verify operational log-level tables as well as response contracts; scope repeated transcript/evidence assertions to their intended region. No plugin changes are required. |
 
 Verdict: implementation and automated M3 QA are ready for owner review. Full live acceptance remains blocked by the named manual checks. Stop before M4/T-32.

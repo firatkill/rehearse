@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
 import { getEnv } from '@/lib/env';
-import { AppError, httpStatus, type ErrorCode } from '@/lib/errors';
+import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/errors';
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { FeedbackRequestSchema, FeedbackResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
   let remaining: number | undefined;
   let logger: Logger | undefined;
   const fail = (code: ErrorCode, resetAt?: Date) => {
-    logger?.warn({
+    logger?.[errorLogLevel(code)]({
       event: 'feedback.failed',
       requestId,
       questionId,

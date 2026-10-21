@@ -50,6 +50,39 @@ const statuses: Record<ErrorCode, number> = {
 export function httpStatus(code: ErrorCode): number {
   return statuses[code];
 }
+export function errorLogLevel(code: ErrorCode): 'info' | 'warn' | 'error' {
+  switch (code) {
+    case 'INTERNAL_ERROR':
+    case 'PROVIDER_ERROR':
+    case 'FEEDBACK_INVALID':
+    case 'LIMITER_UNAVAILABLE':
+      return 'error';
+    case 'TOKEN_INVALID':
+    case 'ORIGIN_FORBIDDEN':
+    case 'TOKEN_SCOPE':
+    case 'GLOBAL_CAP_REACHED':
+    case 'PROVIDER_TIMEOUT':
+      return 'warn';
+    case 'VALIDATION_FAILED':
+    case 'TRANSCRIPT_EMPTY':
+    case 'TRANSCRIPT_TOO_LONG':
+    case 'TOKEN_MISSING':
+    case 'TOKEN_EXPIRED':
+    case 'BODY_TOO_LARGE':
+    case 'UNSUPPORTED_MEDIA_TYPE':
+    case 'SESSION_QUOTA_EXCEEDED':
+    case 'FEEDBACK_QUOTA_EXCEEDED':
+    case 'SESSION_FEEDBACK_EXHAUSTED':
+    case 'SESSION_SUMMARY_EXHAUSTED':
+    case 'DEMO_OFF':
+    case 'DEMO_READONLY':
+      return 'info';
+    default: {
+      const exhaustive: never = code;
+      return exhaustive;
+    }
+  }
+}
 export class AppError extends Error {
   constructor(
     readonly code: ErrorCode,

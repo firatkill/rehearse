@@ -235,3 +235,18 @@ it('TC-076 UT-33 unexpected work errors retain quota counts and hide details', a
   expect(result.sessionCallsRemaining).toBe(4);
   expect(logs.join('')).not.toContain(text);
 });
+it('TC-076 UT-33 failure logs follow TRD §20 severity without private text', async () => {
+  await error(request({}, { authorization: '' }), 401, 'TOKEN_MISSING');
+  await error(request({}, { authorization: 'Bearer invalid' }), 401, 'TOKEN_INVALID');
+  vi.spyOn(providerModule, 'getProvider').mockImplementation(() => {
+    throw new Error('private provider detail');
+  });
+  await error(request(), 500, 'INTERNAL_ERROR');
+  const entries = logs.map((line) => JSON.parse(line) as { level: number; code: string });
+  expect(entries.map((entry) => [entry.code, entry.level])).toEqual([
+    ['TOKEN_MISSING', 30],
+    ['TOKEN_INVALID', 40],
+    ['INTERNAL_ERROR', 50],
+  ]);
+  expect(logs.join('')).not.toContain('private provider detail');
+});

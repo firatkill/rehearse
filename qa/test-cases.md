@@ -685,7 +685,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 | TC-073 | FR-20–FR-23; UT-23                  | Feedback normalization                   | High     | yes         | TRD §15.3 rejects invalid fields and applies deterministic caps.                                                                              |
 | TC-074 | FR-20; UT-24                        | Quoted evidence verification             | High     | yes         | Only supported whole-word evidence survives; removed count accurate.                                                                          |
 | TC-075 | FR-19; UT-25                        | Feedback retries and deadline            | High     | yes         | At most two attempts, bounded deadline, usage accumulated and exact error codes.                                                              |
-| TC-076 | FR-19; FR-40–FR-45; FR-56; UT-33    | Feedback API boundaries                  | High     | yes         | Normative check order and error statuses, remaining calls, valid success response and no transcript in logs.                                  |
+| TC-076 | FR-19; FR-40–FR-45; FR-56; UT-33    | Feedback API boundaries                  | High     | yes         | Normative check order and error statuses, remaining calls, valid success response, TRD §20 log levels and no transcript in logs.              |
 | TC-077 | FR-20–FR-22; CT-03                  | Feedback card                            | High     | yes         | Accessible scores, exact copy, evidence only when present, disclaimer and metadata.                                                           |
 | TC-078 | FR-23; NFR-10; CT-09                | Safe model and visitor text              | High     | yes         | Literal text; no HTML execution; placeholders styled.                                                                                         |
 | TC-079 | FR-19; FR-26; FR-27; E2E-05; E2E-06 | Full feedback sessions                   | High     | yes         | Scored answers and retained edits reach the report, replacing D-58 staged assertions.                                                         |
@@ -787,7 +787,7 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM, memory limiter, blocked external fetch; fake providers/clocks as applicable; speech mock for browser voice paths.
 - Steps: Submit missing/bad/expired/scoped tokens and invalid transcripts; exercise limiter and mock failures.
-- Expected: Normative check order and error statuses, remaining calls, valid success response and no transcript in logs.
+- Expected: Normative check order and error statuses, remaining calls, valid success response, TRD §20 log levels and no transcript in logs.
 
 ### TC-077 — Feedback card
 
@@ -842,8 +842,8 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - References: FR-29; FR-40–FR-45; UT-34.
 - Priority: High. Automatable: yes.
 - Preconditions: Mock LLM, memory limiter, blocked external fetch; fake providers/clocks as applicable; speech mock for browser voice paths.
-- Steps: Exercise token scope, third-call exhaustion, cap, readonly and success.
-- Expected: Normative status, check order and validated response.
+- Steps: Exercise token scope, third-call exhaustion, cap, readonly and success; inspect safe log fields and severity.
+- Expected: Normative status, check order, validated response, TRD §20 log levels and the TRD §22 item count without answer content.
 
 ### TC-084 — Report states and chart
 
