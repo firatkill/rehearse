@@ -1619,7 +1619,7 @@ Rules:
 
 ### 11.1 Room state machine (normative, `lib/room/machine.ts`)
 
-The room is a pure reducer `roomReducer(state, event): RoomState` plus effects in `hooks/use-interview-room.ts` (TTS, recorder, timers, API calls, persistence). All copy keys map to PRD §9.6.
+The room is a pure reducer `roomReducer(state, event, now: number): RoomState` plus effects in `hooks/use-interview-room.ts` (TTS, recorder, timers, API calls, persistence). All copy keys map to PRD §9.6. `now` is the current Unix time in milliseconds supplied by the effects layer; the reducer never reads the clock (D-57).
 
 ```ts
 export type SpeechErrorKind = FailKind; // 'permission' | 'no-device' | 'no-speech' | 'unavailable'

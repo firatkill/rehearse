@@ -227,6 +227,10 @@
         {
           "result": "pass",
           "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -283,6 +287,10 @@
         {
           "result": "pass",
           "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -345,6 +353,10 @@
         {
           "result": "pass",
           "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -392,6 +404,10 @@
         {
           "result": "pass",
           "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -434,6 +450,10 @@
         {
           "result": "pass",
           "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -938,6 +958,10 @@
         {
           "result": "pass",
           "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -970,6 +994,10 @@
         {
           "result": "pass",
           "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -997,6 +1025,56 @@
         {
           "result": "pass",
           "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-035",
+      "ac_reference": "FR-08–FR-18, FR-35; UT-18",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Room transitions and recovery",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; explicitly injected clock",
+      "description": "Room transitions and recovery",
+      "steps_to_reproduce": ["Run room-machine.test.ts and task acceptance commands."],
+      "expected_result": "TRD 11.1 transitions and 11.4 recovery, preserved partial answers, terminal records and guarded submissions.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "18 targeted reducer cases pass. Full suite: 159 tests; room machine 93.1% line coverage, above required 90%. Lint, typecheck and build pass. D-57 records the approved pure reducer clock argument. Full delivery computation belongs to the effects/persistence integration in T-16/T-17."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-036",
+      "ac_reference": "FR-14, FR-40; UT-18",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Room submit guards",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; explicitly injected clock",
+      "description": "Room submit guards",
+      "steps_to_reproduce": ["Run room-machine.test.ts and task acceptance commands."],
+      "expected_result": "TRD 11.1 transitions and 11.4 recovery, preserved partial answers, terminal records and guarded submissions.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "18 targeted reducer cases pass. Full suite: 159 tests; room machine 93.1% line coverage, above required 90%. Lint, typecheck and build pass. D-57 records the approved pure reducer clock argument. Full delivery computation belongs to the effects/persistence integration in T-16/T-17."
+        },
+        {
+          "result": "pass",
+          "note": "T-15 final browser regression: all 11 E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
