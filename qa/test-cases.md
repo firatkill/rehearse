@@ -398,3 +398,14 @@ Reference: FR-12; T-17 manual acceptance. Preconditions: corresponding task impl
 1. Complete three text questions in Firefox with mock LLM and memory limiter.
 
 Expected: Session completes without speech or real external services.
+
+### TC-044: Repository exchange contract (T-13 prerequisite)
+
+Reference: FR-37; TRD §7.5 and §7.7; UT-15 repository subset. Milestone: M1 Question bank, setup and text-mode room. Priority: High. Automatable: yes. Export/import controls and complete UT-15 remain T-35.
+
+Preconditions: an in-memory repository with a valid session and answer.
+
+1. Export the records, then import into a fresh repository twice.
+2. Try oversized, malformed, invalid-shape and newer-version files.
+
+Expected: Export strips tokens; import marks origin and disables feedback for resumable sessions; duplicate ids are skipped; invalid files are rejected.

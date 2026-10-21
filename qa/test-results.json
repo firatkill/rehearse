@@ -219,6 +219,10 @@
         {
           "result": "pass",
           "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
+        },
+        {
+          "result": "pass",
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -267,6 +271,10 @@
         {
           "result": "pass",
           "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
+        },
+        {
+          "result": "pass",
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -364,6 +372,10 @@
         {
           "result": "pass",
           "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
+        },
+        {
+          "result": "pass",
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -398,6 +410,10 @@
         {
           "result": "pass",
           "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
+        },
+        {
+          "result": "pass",
+          "note": "T-13 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -810,6 +826,48 @@
         {
           "result": "pass",
           "note": "Three UT-35 tests and four-server smoke checks pass. Full suite: 130 tests; 100% line/function coverage, 96.96% branches. Lint, typecheck, build and all eight E2E tests pass. Prompt version constants scaffolded under approved D-54; live eval deferred."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-032",
+      "ac_reference": "FR-34, FR-39; UT-13",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Memory repository satisfies the storage contract",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; in-memory storage",
+      "description": "Memory repository satisfies the storage contract",
+      "steps_to_reproduce": ["Run repository-contract.test.ts and task acceptance commands."],
+      "expected_result": "Validated CRUD, timestamps, ordering, cascade deletion and unreadable-record counts; safe v1 repository exchange.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Five targeted tests passed. Full suite: 135 tests; 100% lines/functions, 95.85% branches. Storage logic has 100% line coverage. Lint, typecheck, build and all eight E2E tests passed. IndexedDB and user-facing import/export remain T-32/T-35."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-044",
+      "ac_reference": "FR-37; TRD 7.5/7.7; UT-15 repository subset",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Repository exchange contract prerequisite",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; in-memory storage",
+      "description": "Repository exchange contract prerequisite",
+      "steps_to_reproduce": ["Run repository-contract.test.ts and task acceptance commands."],
+      "expected_result": "Validated CRUD, timestamps, ordering, cascade deletion and unreadable-record counts; safe v1 repository exchange.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Five targeted tests passed. Full suite: 135 tests; 100% lines/functions, 95.85% branches. Storage logic has 100% line coverage. Lint, typecheck, build and all eight E2E tests passed. IndexedDB and user-facing import/export remain T-32/T-35."
         }
       ],
       "regression_of": null,

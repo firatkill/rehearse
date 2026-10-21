@@ -17,8 +17,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-09 | Rate-limit adapter, visitor id and quotas                          | done   | a79a194           |
 | T-10 | Session token                                                      | done   | 5fd2f24           |
 | T-11 | API contracts, client and `POST /api/sessions/start`               | done   | b9d7f85           |
-| T-12 | `GET /api/health`                                                  | done   | this commit       |
-| T-13 | Record schemas, repository interface and memory repository         | todo   | —                 |
+| T-12 | `GET /api/health`                                                  | done   | 59c4c15           |
+| T-13 | Record schemas, repository interface and memory repository         | done   | this commit       |
 | T-14 | Setup page                                                         | todo   | —                 |
 | T-15 | Room state machine                                                 | todo   | —                 |
 | T-16 | Words, fillers and the delivery block (text mode)                  | todo   | —                 |
