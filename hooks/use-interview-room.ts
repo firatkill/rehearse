@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useReducer, useRef, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { requestFeedback } from '@/lib/api/client';
 import { ANSWER, SESSION } from '@/lib/config';
 import { initialRoomState, roomReducer, type RoomEvent } from '@/lib/room/machine';
 import { computeDelivery } from '@/lib/metrics/delivery';
@@ -39,6 +40,10 @@ export function useInterviewRoom(id: string) {
   const { play, cancel, activeChunk } = useTTS();
   const { voices } = useVoices();
   const [readAloudError, setReadAloudError] = useState(false);
+  const [feedbackTransport, setFeedbackTransport] = useState<{
+    network: boolean;
+    resetAt: string | null;
+  }>({ network: false, resetAt: null });
   const micPending = useRef(false);
   const [replay, setReplay] = useState(0);
   const [state, dispatch] = useReducer(
@@ -74,6 +79,7 @@ export function useInterviewRoom(id: string) {
   const send = useCallback(
     (event: RoomEvent) => {
       const current = latest.current;
+      if (event.type === 'SUBMIT') setFeedbackTransport({ network: false, resetAt: null });
       if (event.type === 'START_INTERVIEW') {
         if (micPending.current) return;
         if (capabilities?.synthesis) primeSynthesis(window.speechSynthesis);
@@ -142,6 +148,69 @@ export function useInterviewRoom(id: string) {
     };
   }, [id, repository, send]);
   const kind = state.phase.kind;
+  useEffect(() => {
+    if (kind !== 'submitting') return;
+    const current = latest.current;
+    const session = current.session;
+    const answer = current.answers.find((item) => item.index === current.index);
+    if (!session || !answer) return;
+    const controller = new AbortController();
+    const isAborted = () => controller.signal.aborted;
+    void (async () => {
+      await persist((repo) => repo.putAnswer(answer));
+      if (isAborted()) return;
+      if (!session.token) {
+        rawSend({
+          type: 'FEEDBACK_FAILED',
+          code: 'TOKEN_MISSING',
+          requestId: null,
+          sessionCallsRemaining: null,
+        });
+        return;
+      }
+      const result = await requestFeedback(
+        session.token,
+        {
+          sessionId: session.id,
+          answerIndex: answer.index,
+          questionId: answer.questionId,
+          mode: answer.mode,
+          transcript: answer.transcript,
+        },
+        controller.signal,
+      );
+      if (isAborted()) return;
+      if (result.ok) {
+        const { model, promptVersion, latencyMs, costUsd } = result.data.meta;
+        const meta = { model, promptVersion, latencyMs, costUsd };
+        await persist((repo) =>
+          repo.putAnswer({
+            ...answer,
+            status: 'scored',
+            feedback: result.data.feedback,
+            feedbackMeta: meta,
+            updatedAt: new Date().toISOString(),
+          }),
+        );
+        if (!isAborted()) rawSend({ type: 'FEEDBACK_OK', feedback: result.data.feedback, meta });
+      } else {
+        setFeedbackTransport({
+          network: result.kind === 'network',
+          resetAt: result.kind === 'http' ? (result.error.resetAt ?? null) : null,
+        });
+        rawSend({
+          type: 'FEEDBACK_FAILED',
+          code: result.kind === 'http' ? result.error.code : 'INTERNAL_ERROR',
+          requestId: result.kind === 'http' ? result.error.requestId : null,
+          sessionCallsRemaining:
+            result.kind === 'http' ? (result.error.sessionCallsRemaining ?? null) : null,
+        });
+      }
+    })();
+    return () => {
+      controller.abort();
+    };
+  }, [kind, state.index, persist, rawSend]);
   const paused = state.phase.kind === 'thinking' && state.phase.paused;
   const interrupted = state.phase.kind === 'asking' && state.phase.interrupted;
   const prompt = state.session?.questions[state.index]?.prompt ?? '';
@@ -322,5 +391,15 @@ export function useInterviewRoom(id: string) {
   const onDraft = useCallback((text: string) => {
     draft.current = text;
   }, []);
-  return { state, send, onDraft, online, recorder, activeChunk, readAloudError, capabilities };
+  return {
+    state,
+    send,
+    onDraft,
+    online,
+    recorder,
+    activeChunk,
+    readAloudError,
+    capabilities,
+    feedbackTransport,
+  };
 }

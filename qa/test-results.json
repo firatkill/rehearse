@@ -2498,6 +2498,124 @@
       "clickup_task": null,
       "retraction_reason": null,
       "automatable": false
+    },
+    {
+      "tc_reference": "TC-077",
+      "ac_reference": "FR-20–FR-22; CT-03",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Feedback card",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock LLM, memory limiter and speech mocks",
+      "description": "Feedback card",
+      "steps_to_reproduce": ["Run T-28 component and browser cases."],
+      "expected_result": "PRD §9.6–§9.7 and TRD §25 behavior.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Spec-derived component checks pass; browser verification in progress."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-078",
+      "ac_reference": "FR-23; NFR-10; CT-09",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Safe model and visitor text",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock LLM, memory limiter and speech mocks",
+      "description": "Safe model and visitor text",
+      "steps_to_reproduce": ["Run T-28 component and browser cases."],
+      "expected_result": "PRD §9.6–§9.7 and TRD §25 behavior.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Spec-derived component checks pass; browser verification in progress."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-079",
+      "ac_reference": "FR-19; FR-26; FR-27; E2E-05; E2E-06",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Full feedback sessions",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock LLM, memory limiter and speech mocks",
+      "description": "Full feedback sessions",
+      "steps_to_reproduce": ["Run T-28 component and browser cases."],
+      "expected_result": "PRD §9.6–§9.7 and TRD §25 behavior.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Spec-derived component checks pass; browser verification in progress."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-080",
+      "ac_reference": "FR-26; FR-27; E2E-11",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Feedback errors and retry controls",
+      "status": "resolved",
+      "environment": "Vitest / Chromium; mock LLM, memory limiter and speech mocks",
+      "description": "Feedback errors and retry controls",
+      "steps_to_reproduce": ["Run T-28 component and browser cases."],
+      "expected_result": "PRD §9.6–§9.7 and TRD §25 behavior.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Spec-derived component checks pass; browser verification in progress."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint flagged concise void callbacks and stale AbortSignal narrowing across awaits.",
+          "note": "Use block callbacks and re-read signal through a function; retain all abort guards."
+        },
+        {
+          "result": "pass",
+          "note": "Affected lint checks pass; 19 hook, error, skeleton and safe-render component tests pass. Earlier SafeText coverage retained alongside the new case."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected useRepository in a test helper and async act callbacks without awaits.",
+          "note": "Resolve the repository through renderHook and explicitly flush the act microtask."
+        },
+        {
+          "result": "pass",
+          "note": "Hook retest passes, lint passes, production rebuild passes. Targeted 11 browser tests pass, including full text and voice scoring, retry and slow progress."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-28: 410 unit/component tests, 38 E2E tests, lint, typecheck, production build and coverage gates pass. Coverage 98.95% lines, 91.61% branches, 100% functions. No live model or real speech calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

@@ -32,8 +32,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148           |
 | T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b           |
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280           |
-| T-27 | `POST /api/feedback`                                               | blocked | this commit       |
-| T-28 | Feedback UI: skeleton, card, errors and retries                    | todo    | —                 |
+| T-27 | `POST /api/feedback`                                               | blocked | fde48e6           |
+| T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | this commit       |
 | T-29 | Aggregates, summary generation and `POST /api/summary`             | todo    | —                 |
 | T-30 | Report page, chart, Markdown export and print                      | todo    | —                 |
 | T-31 | Sample session and `/sample`                                       | todo    | —                 |
@@ -75,7 +75,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## M1 milestone boundary
 
-T-06–T-17 are implemented. Stop here for owner review before T-18. See [M1 QA report](../qa/M1-REPORT.md). Local verification: 196 unit/component tests, 15 Chromium E2E tests, lint, typecheck, production build and coverage gates pass. Firefox Nightly 157.0 completed three text answers through the report; title fixes were retested from setup through a saved-answer report. Stock Firefox release, real microphone/Safari, live LLM/Upstash and deployment remain unverified. Memory storage and the placeholder report are intentional until their later tasks. T-17 CI is checked after pushing this commit.
+T-06–T-17 are implemented. Stop here for owner review before T-18. See [M1 QA report](../qa/M1-REPORT.md). Local verification: 196 unit/component tests, 15 Chromium E2E tests, lint, typecheck, production build and coverage gates pass. Firefox Nightly 157.0 completed three text answers through the report; title fixes were retested from setup through a saved-answer report. Stock Firefox release, real microphone/Safari, live LLM/Upstash and deployment remain unverified. Memory storage and the placeholder report are intentional until their later tasks. T-17 CI is checked after pushing fde48e6.
 
 ## M2 in progress
 
@@ -89,7 +89,7 @@ T-21 CI passed: https://github.com/firatkill/rehearse/actions/runs/39606885914. 
 
 ## M2 milestone boundary
 
-T-18–T-23 implementation and automated checks are complete. T-21 remains blocked only on physical acceptance TC-063/TC-064. Stop before M3 for owner review. See [M2 QA report](../qa/M2-REPORT.md). Verification: 273 unit/component tests, 33 E2E tests, two consecutive 14-test voice runs, lint, typecheck, build and coverage gates pass. T-22 CI passed: https://github.com/firatkill/rehearse/actions/runs/39607399315. T-23 CI is checked after pushing this commit.
+T-18–T-23 implementation and automated checks are complete. T-21 remains blocked only on physical acceptance TC-063/TC-064. Stop before M3 for owner review. See [M2 QA report](../qa/M2-REPORT.md). Verification: 273 unit/component tests, 33 E2E tests, two consecutive 14-test voice runs, lint, typecheck, build and coverage gates pass. T-22 CI passed: https://github.com/firatkill/rehearse/actions/runs/39607399315. T-23 CI is checked after pushing fde48e6.
 
 ## M3 in progress
 
@@ -106,3 +106,5 @@ T-25 CI passed: https://github.com/firatkill/rehearse/actions/runs/39622355076. 
 T-26 CI passed: https://github.com/firatkill/rehearse/actions/runs/39623630129. T-27 implementation and automated API acceptance are complete; only owner live acceptance TC-089 remains blocked. All 390 unit/component tests and coverage gates pass (98.95% lines, 91.61% branches, 100% functions), with lint, typecheck and build.
 
 T-27 full E2E: all 33 tests pass on ports 3240–3243.
+
+T-27 CI passed: https://github.com/firatkill/rehearse/actions/runs/39625319993. T-28 connects scoring, persistence, accessible feedback cards, bounded retries and exact error states. 410 unit/component and 38 E2E tests pass, including three-question scored text and mocked voice flows; lint, typecheck, build and coverage gates pass.

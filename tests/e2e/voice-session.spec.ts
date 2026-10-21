@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { prepareVoice, startAnswer } from './voice-helpers';
-import { speech } from './helpers';
-test('TC-056 E2E-06 three voice answers retain edited transcripts through practice-only report', async ({
+import { speech, scenarios } from './helpers';
+test('TC-079 E2E-06 three voice answers retain edits and scores through report', async ({
   page,
 }, info) => {
-  await prepareVoice(page, info);
+  await prepareVoice(page, info, scenarios.happy, true);
   await expect(page.getByRole('button', { name: 'Stop reading' })).toBeVisible();
   await page.clock.runFor(100);
   await expect(page.locator('h1 .underline')).toBeVisible();
@@ -28,7 +28,10 @@ test('TC-056 E2E-06 three voice answers retain edited transcripts through practi
     );
     await expect(page.getByText('Not enough speech to measure')).toBeVisible();
     await page.getByLabel('Your answer').fill(`I led project ${index + 1} and improved delivery.`);
-    await page.getByRole('button', { name: 'Save and continue' }).click();
+    await page.getByRole('button', { name: 'Get feedback' }).click();
+    await expect(
+      page.getByRole('heading', { name: `Feedback on question ${index + 1}` }),
+    ).toBeFocused();
     await page
       .getByRole('button', { name: index === 2 ? 'Finish and see report' : 'Next question' })
       .click();
