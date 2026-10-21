@@ -1,0 +1,37 @@
+structure (Structure): Is the answer organised so a listener can follow it?
+ 1: No clear definition or explanation; scattered statements.
+ 2: Defines the concept but does not explain how it works or when to use it.
+ 3: Defines it, explains the mechanism and gives a use case; trade-offs or an example missing.
+ 4: Defines it, explains the mechanism, gives a concrete example and names trade-offs or limits, in a logical order.
+
+specificity (Specificity): Are the claims concrete and checkable?
+ 1: Generic statements only; could describe anyone or any system.
+ 2: Some concrete details, but key facts are vague ("a big project", "it was slow").
+ 3: Concrete details for most claims: named systems, tools, constraints or numbers.
+ 4: Precise details throughout (numbers, systems, constraints, scale) without padding.
+
+ownership (Ownership): Is it clear what the candidate did and decided?
+ 1: Recites definitions or hedges everything without taking a position.
+ 2: Takes a position but does not justify it or connect it to their own work.
+ 3: Takes and justifies positions and refers to their own experience at least once.
+ 4: Commits to a recommendation with reasons, says when they would choose differently, and draws on their own experience.
+
+impact (Impact): Does the answer show results and consequences?
+ 1: No consequences of choices discussed.
+ 2: Benefits or costs mentioned in general terms.
+ 3: Concrete consequences of choices (performance, cost, user experience, maintenance) explained.
+ 4: Consequences quantified or bounded and linked to users or the business.
+
+relevance (Relevance): Does it answer the question that was asked, at this level?
+ 1: Does not answer the question asked.
+ 2: Partly answers it; a large part is off the point.
+ 3: Answers the question, with some detours.
+ 4: Answers exactly the question, pitched at the role and seniority.
+
+clarity (Clarity): Can a listener follow it the first time?
+ 1: Hard to follow: rambling, fragmented or contradictory.
+ 2: Understandable with effort; repetition or filler hides the point.
+ 3: Clear, with minor rambling or one confusing passage.
+ 4: Concise, ordered and easy to follow on first hearing; no needless repetition.
+
+Seniority: for senior candidates expect wider scope, trade-offs and influence on others; for junior candidates a smaller scope is fine when the reasoning is clear. Score against the stated seniority.

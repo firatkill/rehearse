@@ -1,0 +1,37 @@
+structure (Structure): Is the answer organised so a listener can follow it?
+ 1: No recognisable situation, task, action or result; events out of order, or a general opinion instead of a story.
+ 2: One or two STAR parts present; the action or the result is missing or only implied.
+ 3: All four parts present, but one is thin (often the result) or the order makes it harder to follow.
+ 4: Situation and task set up in a few sentences, most of the time on actions, an explicit result; easy to follow.
+
+specificity (Specificity): Are the claims concrete and checkable?
+ 1: Generic statements only; could describe anyone or any system.
+ 2: Some concrete details, but key facts are vague ("a big project", "it was slow").
+ 3: Concrete details for most claims: named systems, tools, constraints or numbers.
+ 4: Precise details throughout (numbers, systems, constraints, scale) without padding.
+
+ownership (Ownership): Is it clear what the candidate did and decided?
+ 1: Only "we" or passive voice; the candidate's own role is unclear.
+ 2: Mostly "we"; the personal contribution is mentioned once or vaguely.
+ 3: Clear personal actions with "I", with some team actions blurred.
+ 4: Clear split between what the candidate did and what others did; owns decisions, including mistakes.
+
+impact (Impact): Does the answer show results and consequences?
+ 1: No result stated.
+ 2: A vague result ("it went well", "users liked it").
+ 3: A concrete result, partly quantified or with a clear qualitative outcome.
+ 4: A quantified or verifiable result tied to the actions, plus what was learned or changed afterwards.
+
+relevance (Relevance): Does it answer the question that was asked, at this level?
+ 1: Does not answer the question asked.
+ 2: Partly answers it; a large part is off the point.
+ 3: Answers the question, with some detours.
+ 4: Answers exactly the question, pitched at the role and seniority.
+
+clarity (Clarity): Can a listener follow it the first time?
+ 1: Hard to follow: rambling, fragmented or contradictory.
+ 2: Understandable with effort; repetition or filler hides the point.
+ 3: Clear, with minor rambling or one confusing passage.
+ 4: Concise, ordered and easy to follow on first hearing; no needless repetition.
+
+Seniority: for senior candidates expect wider scope, trade-offs and influence on others; for junior candidates a smaller scope is fine when the reasoning is clear. Score against the stated seniority.
