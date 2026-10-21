@@ -10,7 +10,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-02 | Configuration, environment, errors and labels                      | done   | a45e7e3           |
 | T-03 | Logging, request id and security headers                           | done   | 1756087           |
 | T-04 | Test runners and full CI                                           | done   | 1e662d3           |
-| T-05 | Design tokens, fonts, layout shell, theme and banners              | doing  | —                 |
+| T-05 | Design tokens, fonts, layout shell, theme and banners              | done   | 42a528c           |
 | T-06 | Question schema, loader, validator and the 15 example questions    | todo   | —                 |
 | T-07 | Write the remaining 105 questions                                  | todo   | —                 |
 | T-08 | Seeded PRNG and deterministic selection                            | todo   | —                 |
@@ -58,5 +58,9 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## Verification limits
 
-- T-01 scaffold and M0 QA cases are prepared locally. Local T-01 acceptance checks pass after the approved TypeScript exception (D-47). GitHub CI passed: https://github.com/firatkill/rehearse/actions/runs/39563712991.
-- No unresolved product choices were found in the initial review. OWNER-DECISIONS.md’s project-specific no-database decision applies.
+- M0 (T-01–T-05) is complete; stop before T-06 for owner review. [Milestone QA report](../qa/M0-REPORT.md).
+- All five CI jobs passed on T-05: https://github.com/firatkill/rehearse/actions/runs/39566353571.
+- 36 unit/component tests and eight Chromium tests pass. Coverage: 100% lines/functions, 96% branches. Shell axe checks pass in both themes.
+- No real microphone, Safari, screen-reader, live LLM, Upstash or deployed-environment verification yet; these belong to later tasks. Health and eval remain the planned T-04 stubs.
+- The pnpm 12 Node launcher is required on this local machine because the older pnpm auto-switch returned ENOEXEC; CI uses the pinned version successfully.
+- No unresolved product choices. OWNER-DECISIONS.md’s project-specific no-database decision applies; approved exceptions are in the PRD decisions log.
