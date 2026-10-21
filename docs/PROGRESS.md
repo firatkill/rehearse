@@ -23,8 +23,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-15 | Room state machine                                                 | done   | 4df5f00           |
 | T-16 | Words, fillers and the delivery block (text mode)                  | done   | ec8a2b6           |
 | T-17 | Text-mode interview room                                           | done   | e88dca0           |
-| T-18 | Capability detection, microphone check and setup capability states | done   | this commit       |
-| T-19 | Recognizer adapter, transcript assembly and recorder machine       | todo   | —                 |
+| T-18 | Capability detection, microphone check and setup capability states | done   | eac718d           |
+| T-19 | Recognizer adapter, transcript assembly and recorder machine       | done   | this commit       |
 | T-20 | Speech synthesis, voices, captions and the voice picker            | todo   | —                 |
 | T-21 | Voice room integration                                             | todo   | —                 |
 | T-22 | Voice delivery metrics                                             | todo   | —                 |
