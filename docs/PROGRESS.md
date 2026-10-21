@@ -29,7 +29,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-21 | Voice room integration                                             | blocked | dcd7293           |
 | T-22 | Voice delivery metrics                                             | done    | 678d785           |
 | T-23 | Voice E2E with the speech mock                                     | done    | 742ba00           |
-| T-24 | LLM provider (live and mock), model pinning and cost estimate      | doing   | —                 |
+| T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | this commit       |
 | T-25 | Rubric, prompts, sanitization and versioning                       | todo    | —                 |
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | todo    | —                 |
 | T-27 | `POST /api/feedback`                                               | todo    | —                 |
@@ -54,7 +54,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 ## Open questions for the owner
 
-- M3: pending approval for staged live eval until T-37 and defining unspecified mock copy (TRD §15.6).
+- M3: owner approved staged live eval and missing mock copy (D-64/D-65); no pending decision.
 - T-24: live model verification TC-088 needs owner-configured credentials and the owner-only toy call; no local key is configured.
 
 - T-21 physical QA remains required: a three-question spoken Chrome session and A-14/A-15/A-20/A-25 on Chrome/Edge/Safari/Android/iOS (TC-063/TC-064). Automated speech mocks and the live Chrome text pass do not satisfy these checks.
@@ -92,6 +92,8 @@ T-18–T-23 implementation and automated checks are complete. T-21 remains block
 
 ## M3 in progress
 
-Owner authorised continuation on 2026-10-21. M2 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39608688255. M3 cases TC-066–TC-090 are designed before code. Pending owner clarification: staged live eval until T-37 and missing mock copy in TRD §15.6. T-24 live model request remains an owner-only acceptance check.
+Owner authorised continuation on 2026-10-21. M2 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39608688255. M3 cases TC-066–TC-090 are designed before code. Owner approved staged live eval until T-37 and defining missing mock copy (D-64/D-65). T-24 live model request remains an owner-only acceptance check.
 
 T-24 provider/cost slice: normative interface, SDK 7 adapter and cost calculation implemented with 23 new contract/vector tests. All 296 unit/component and 33 E2E tests pass, with lint, typecheck, build, coverage and ledger gates. This is a partial task commit: mock provider, dispatcher and final model pinning remain; pending clarification and owner live verification are listed above.
+
+T-24 implementation is complete; status is blocked only on the owner-only live model/temperature check TC-088. Model candidate and documented prices are pinned in .env.example (D-66); availability and quality are not claimed. D-64/D-65 approve staged eval and mock copy. The provider/cost slice CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39616978679. Continue independent M3 tasks with live checks visibly pending.

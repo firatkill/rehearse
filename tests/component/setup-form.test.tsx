@@ -117,7 +117,7 @@ it.each([
   show();
   fireEvent.click(screen.getByRole('button', { name: 'Start session' }));
   const h = await screen.findByRole('heading', { name: heading });
-  expect(h).toHaveFocus();
+  await waitFor(() => expect(h).toHaveFocus());
   if (reason === 'quota')
     expect(screen.getByRole('link', { name: 'See the sample report' })).toHaveAttribute(
       'href',

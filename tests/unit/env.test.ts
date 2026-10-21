@@ -50,6 +50,8 @@ describe('UT-30 — TRD §5, FR-44, FR-51, NFR-13', () => {
   });
   it('TC-003: live and Upstash require their conditional variables', () => {
     vi.stubEnv('LLM_MODE', undefined);
+    vi.stubEnv('CHAT_MODEL', undefined);
+    vi.stubEnv('PRICE_CACHED_INPUT_PER_MTOK', undefined);
     vi.stubEnv('RATE_LIMIT_BACKEND', undefined);
     vi.stubEnv('PRICE_INPUT_PER_MTOK', undefined);
     vi.stubEnv('PRICE_OUTPUT_PER_MTOK', undefined);

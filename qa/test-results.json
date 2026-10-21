@@ -81,6 +81,15 @@
         {
           "result": "pass",
           "note": "21 unit tests pass; lint, typecheck and production build pass. Tests use mock/memory and an external-fetch guard."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-24 model/prices populated .env.example; the conditional-required test no longer removed CHAT_MODEL or cached price.",
+          "note": "Updated fixture setup to explicitly remove those values; requirements and assertions unchanged."
+        },
+        {
+          "result": "pass",
+          "note": "Targeted env and mock suites pass all 46 tests after correcting fixture setup."
         }
       ],
       "regression_of": null,
@@ -990,6 +999,15 @@
         {
           "result": "pass",
           "note": "T-17 regression: setup component tests and full E2E pass; checkbox validation now exposes aria-invalid and links its error description."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-24 coverage concurrent with full browser suite: setup component timeout/focus assertions failed under load.",
+          "note": "No setup production change. Run the affected file separately before attributing the failure."
+        },
+        {
+          "result": "pass",
+          "note": "All 11 setup component tests passed alone in 1.97s, without assertion or timeout changes. Avoid running full coverage and browser suites concurrently on this machine."
         }
       ],
       "regression_of": null,
@@ -1030,6 +1048,24 @@
         {
           "result": "pass",
           "note": "T-16 browser regression: all 11 existing E2E tests passed on 3240\u20133243."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-24 coverage concurrent with full browser suite: setup component timeout/focus assertions failed under load.",
+          "note": "No setup production change. Run the affected file separately before attributing the failure."
+        },
+        {
+          "result": "pass",
+          "note": "All 11 setup component tests passed alone in 1.97s, without assertion or timeout changes. Avoid running full coverage and browser suites concurrently on this machine."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Full coverage alone reproduced a focus race after findByRole resolved but before QuotaPanel useEffect focused the heading.",
+          "note": "Await the specified focus condition with the existing waitFor timeout; do not weaken the focus assertion or change production behaviour."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
         }
       ],
       "regression_of": null,
@@ -2163,6 +2199,81 @@
         {
           "result": "blocked",
           "note": "No local OpenAI key is configured. No live request made. Owner follow-up recorded in docs/PROGRESS.md; no external ticket per repository override."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-067",
+      "ac_reference": "FR-51; UT-39",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Deterministic mock feedback",
+      "status": "resolved",
+      "environment": "macOS; mock provider; fake timers; external fetch blocked",
+      "description": "Deterministic mock feedback",
+      "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
+      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 mock tests pass. Replaced node:timers/promises with an abortable global timer so fake-clock delay assertions run deterministically (under one second)."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-068",
+      "ac_reference": "FR-51; UT-39",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Mock failure triggers and cancellation",
+      "status": "resolved",
+      "environment": "macOS; mock provider; fake timers; external fetch blocked",
+      "description": "Mock failure triggers and cancellation",
+      "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
+      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 mock tests pass. Replaced node:timers/promises with an abortable global timer so fake-clock delay assertions run deterministically (under one second)."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-069",
+      "ac_reference": "FR-51; UT-39",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Mock summary",
+      "status": "resolved",
+      "environment": "macOS; mock provider; fake timers; external fetch blocked",
+      "description": "Mock summary",
+      "steps_to_reproduce": ["Run tests/unit/mock-provider.test.ts."],
+      "expected_result": "Normative TRD \u00a715.6 heuristics, triggers, copy and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "29 mock tests pass. Replaced node:timers/promises with an abortable global timer so fake-clock delay assertions run deterministically (under one second)."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-24: 325 unit/component tests and 33 E2E tests pass; lint, typecheck and build pass. Coverage 98.96% lines, 90.98% branches, 100% functions. Setup focus retest passes with unchanged timeout."
         }
       ],
       "regression_of": null,
