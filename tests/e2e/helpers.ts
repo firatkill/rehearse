@@ -78,6 +78,7 @@ export async function setHidden(page: Page, hidden: boolean): Promise<void> {
 
 type SpeechControl = {
   runs: number;
+  overlaps: number;
   spoken: string[];
   active: {
     emit(text: string, final: boolean): void;
@@ -88,6 +89,12 @@ type SpeechControl = {
 
 export function speech(page: Page) {
   return {
+    active: () =>
+      page.evaluate(
+        () => (window as unknown as { __speech: SpeechControl }).__speech.active !== null,
+      ),
+    overlaps: () =>
+      page.evaluate(() => (window as unknown as { __speech: SpeechControl }).__speech.overlaps),
     emit: (text: string, final: boolean) =>
       page.evaluate(
         ({ text, final }) => {

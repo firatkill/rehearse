@@ -23,6 +23,7 @@ export function installSpeechMock(s: SpeechScenario): void {
   const w = window as unknown as Record<string, unknown>;
   const ctl = {
     runs: 0,
+    overlaps: 0,
     spoken: [] as string[],
     active: null as null | {
       emit(t: string, f: boolean): void;
@@ -45,8 +46,12 @@ export function installSpeechMock(s: SpeechScenario): void {
       private results: R[] = [];
       private timers: number[] = [];
       private done = false;
+      private run = 0;
       start(): void {
+        if (window.speechSynthesis?.speaking || window.speechSynthesis?.pending || ctl.active)
+          ctl.overlaps += 1;
         ctl.runs += 1;
+        this.run = ctl.runs;
         ctl.active = {
           emit: (t, f) => this.emit(t, f),
           fail: (c) => this.fail(c),
@@ -72,6 +77,7 @@ export function installSpeechMock(s: SpeechScenario): void {
         }, 20);
       }
       abort(): void {
+        if (ctl.runs === this.run) ctl.active = null;
         this.clear();
         window.setTimeout(() => {
           this.fail('aborted');
@@ -103,6 +109,7 @@ export function installSpeechMock(s: SpeechScenario): void {
       private finish(): void {
         if (this.done) return;
         this.done = true;
+        if (ctl.runs === this.run) ctl.active = null;
         this.clear();
         this.fire('end');
       }
@@ -129,6 +136,7 @@ export function installSpeechMock(s: SpeechScenario): void {
       paused: false,
       getVoices: () => voices,
       speak(u: Record<string, unknown> & { text: string }) {
+        if (ctl.active) ctl.overlaps += 1;
         const job = { cancelled: false, u };
         current = job;
         if (u.text.trim()) ctl.spoken.push(u.text); // primeSynthesis(' ') is not recorded
