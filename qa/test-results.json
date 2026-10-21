@@ -410,6 +410,83 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-019",
+      "ac_reference": "FR-05, NFR-16; UT-02",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Seeded PRNG has stable vectors",
+      "status": "resolved",
+      "description": "Verify the normative deterministic selection algorithm and its specified edge cases.",
+      "steps_to_reproduce": ["Run PRNG and selection tests with v8 coverage."],
+      "expected_result": "Deterministic vectors and selections, correct eligibility/balance, bounded fallback and exhaustion error.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-020",
+      "ac_reference": "FR-05, NFR-16; UT-01",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Selection is deterministic and balanced",
+      "status": "resolved",
+      "description": "Verify the normative deterministic selection algorithm and its specified edge cases.",
+      "steps_to_reproduce": ["Run PRNG and selection tests with v8 coverage."],
+      "expected_result": "Deterministic vectors and selections, correct eligibility/balance, bounded fallback and exhaustion error.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Under v8 coverage the monolithic 12,600-combination test exceeded the default test timeout.",
+          "note": "Split the identical checks into 45 independent cell tests, keeping every combination and assertion and retaining the default timeout."
+        },
+        {
+          "result": "fail",
+          "actual_result": "A targeted coverage run passed all 67 selected tests but failed global thresholds because unrelated files were not exercised.",
+          "note": "Retained all thresholds and ran the complete suite for the global coverage gate."
+        },
+        {
+          "result": "pass",
+          "note": "All 98 tests pass with the exhaustive checks split across 45 cells. Every original combination and assertion remains. Full coverage 100% lines/functions, 96.26% branches; select.ts and prng.ts each have 100% line coverage. Lint, typecheck and build pass."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-021",
+      "ac_reference": "FR-05; UT-01",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Selection fallback and exhaustion",
+      "status": "resolved",
+      "description": "Verify the normative deterministic selection algorithm and its specified edge cases.",
+      "steps_to_reproduce": ["Run PRNG and selection tests with v8 coverage."],
+      "expected_result": "Deterministic vectors and selections, correct eligibility/balance, bounded fallback and exhaustion error.",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Targeted normative vector, selection and fallback tests passed. Inline snapshots created as required by TRD 6.6."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }
