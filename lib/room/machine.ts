@@ -213,7 +213,16 @@ export function roomReducer(state: RoomState, event: RoomEvent, now: number): Ro
       return {
         ...state,
         session: event.session,
-        answers: event.answers,
+        answers: event.answers.map((answer) =>
+          phase.kind === 'review' && answer.index === event.session.checkpoint.index
+            ? {
+                ...answer,
+                status: 'review',
+                notice: phase.notice,
+                updatedAt: new Date(now).toISOString(),
+              }
+            : answer,
+        ),
         index: event.session.checkpoint.index,
         mode: event.session.currentMode,
         phase,

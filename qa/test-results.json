@@ -53,6 +53,20 @@
         {
           "result": "pass",
           "note": "T-32 lint and formatting pass after normalising nullable IndexedDB request errors."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-33 lint found callback-state narrowing, optional legacy browser API typing and an unsafe test matcher assignment.",
+          "note": "Use mutable callback state, document runtime feature detection against current DOM types, and compare the actual app version string."
+        },
+        {
+          "result": "fail",
+          "actual_result": "ESLint passed, but Prettier found the QA ledger edited while the check was running.",
+          "note": "Finish all result logging before the final format/lint pass; no product defect or test change."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 final pnpm lint passed after all ledger edits; build, typecheck, 490 unit/component and 49 E2E tests also pass."
         }
       ],
       "regression_of": null,
@@ -124,6 +138,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -158,6 +176,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -192,6 +214,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -235,6 +261,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -274,6 +304,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -308,6 +342,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -374,6 +412,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -454,6 +496,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -510,6 +556,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -556,6 +606,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -627,6 +681,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -693,6 +751,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -730,6 +792,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -767,6 +833,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -811,6 +881,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -848,6 +922,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -899,6 +977,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -936,6 +1018,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -977,6 +1063,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1018,6 +1108,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1059,6 +1153,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1100,6 +1198,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1145,6 +1247,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1190,6 +1296,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1238,6 +1348,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1281,6 +1395,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1324,6 +1442,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1361,6 +1483,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1398,6 +1524,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1435,6 +1565,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1522,6 +1656,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1596,6 +1734,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1639,6 +1781,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1680,6 +1826,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1721,6 +1871,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1767,6 +1921,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1808,6 +1966,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1858,6 +2020,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1934,6 +2100,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -1997,6 +2167,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2042,6 +2216,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2133,6 +2311,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2181,6 +2363,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2229,6 +2415,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2277,6 +2467,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2330,6 +2524,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2383,6 +2581,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2436,6 +2638,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2486,6 +2692,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2536,6 +2746,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2600,6 +2814,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2662,6 +2880,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2734,6 +2956,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2809,6 +3035,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2885,6 +3115,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -2943,6 +3177,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3035,6 +3273,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3077,6 +3319,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3142,6 +3388,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3192,6 +3442,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3257,6 +3511,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3298,6 +3556,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3339,6 +3601,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3380,6 +3646,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3421,6 +3691,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3464,6 +3738,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3507,6 +3785,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3564,6 +3846,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3610,6 +3896,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3695,6 +3985,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3736,6 +4030,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3799,6 +4097,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3880,6 +4182,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3921,6 +4227,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -3962,6 +4272,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4026,6 +4340,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4084,6 +4402,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4147,6 +4469,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4205,6 +4531,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4270,6 +4600,14 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 adds explicit no-IndexedDB browser assertion for sample. Storage startup is limited to setup, history and session routes; sample API and storage call counts are both zero."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4320,6 +4658,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4346,6 +4688,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4372,6 +4718,10 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
         }
       ],
       "regression_of": null,
@@ -4384,7 +4734,7 @@
       "ac_reference": "FR-39; UT-12; E2E-23",
       "milestone": "M4 Local storage, history, import and export",
       "title": "Storage selection and fallback",
-      "status": "open",
+      "status": "resolved",
       "automatable": true,
       "environment": "fake-indexeddb, mock LLM and memory limiter",
       "description": "Spec-derived durable storage tests.",
@@ -4398,6 +4748,93 @@
         {
           "result": "pass",
           "note": "T-32 final regression: 487 unit/component and 44 E2E tests pass. Storage line coverage 96.04% and all configured thresholds pass. Lint, typecheck and production build pass."
+        },
+        {
+          "result": "pass",
+          "note": "E2E-23 completed a three-answer text session with indexedDB undefined and the exact Not saving banner."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-095",
+      "ac_reference": "FR-35; E2E-16",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Checkpoint reload recovery",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "Mock browser/IndexedDB tests",
+      "description": "Checkpoint reload recovery",
+      "steps_to_reproduce": ["Follow the corresponding steps in qa/test-cases.md."],
+      "expected_result": "TRD §7.6, §11.3–11.4 and PRD storage/recovery behaviours hold.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Reload restored the review phase but left answer.notice null; thinking test paused mocked speech before reaching thinking.",
+          "note": "Set restored notice/status on the answer record; advance the speech mock clock before checking thinking. No timeout or expected outcome changed."
+        },
+        {
+          "result": "pass",
+          "note": "23 reducer/persistence unit tests and 3 targeted recovery/sample browser tests pass. Restored drafts and edits retain the review notice; thinking requires Continue; feedback restores; sample opens no IndexedDB connection."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-096",
+      "ac_reference": "FR-35; FR-39; NFR-14; TRD §11.3",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Write failures and persistence request",
+      "status": "resolved",
+      "automatable": true,
+      "environment": "Mock browser/IndexedDB tests",
+      "description": "Write failures and persistence request",
+      "steps_to_reproduce": ["Follow the corresponding steps in qa/test-cases.md."],
+      "expected_result": "TRD §7.6, §11.3–11.4 and PRD storage/recovery behaviours hold.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Persistence unit tests and browser failed-write/versionchange scenarios pass. Exactly one cause-specific banner; current answer retained in memory."
+        },
+        {
+          "result": "pass",
+          "note": "T-33 full regression: 490 unit/component and 49 E2E checks pass; build/typecheck and all coverage gates pass (97.94% lines, 91.49% branches, 98.31% functions). No physical microphone or live LLM used."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-101",
+      "ac_reference": "FR-35; T-33 manual acceptance",
+      "milestone": "M4 Local storage, history, import and export",
+      "title": "Physical voice reload",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "Owner physical Chrome microphone",
+      "description": "Physical voice reload",
+      "steps_to_reproduce": ["Follow the corresponding steps in qa/test-cases.md."],
+      "expected_result": "TRD §7.6, §11.3–11.4 and PRD storage/recovery behaviours hold.",
+      "attempts": [
+        {
+          "result": "manual_required",
+          "note": "Not performed: requires owner Chrome and a real microphone. Follow-up is recorded in docs/PROGRESS.md under the repository override."
         }
       ],
       "regression_of": null,

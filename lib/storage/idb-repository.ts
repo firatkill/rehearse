@@ -1,3 +1,4 @@
+import { requestPersistence } from './persist';
 import { AppError } from '@/lib/errors';
 import { deleteDb, openDb, requestResult, transaction, transactionDone } from './idb';
 import { migrateRecord } from './migrations';
@@ -71,6 +72,7 @@ export function createIndexedDbRepository(
       };
       await done;
       if (!updated) throw new AppError('INTERNAL_ERROR');
+      if (updated.status === 'completed') await requestPersistence(await db());
       return updated;
     },
     listSessions: async () => {

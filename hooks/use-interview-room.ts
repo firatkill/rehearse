@@ -59,11 +59,12 @@ export function useInterviewRoom(id: string) {
     writes.current = writes.current.then(async () => {
       try {
         await operation(activeRepository.current);
-      } catch {
+      } catch (error) {
         if (!snapshot.session) return;
         activeRepository.current = await switchToMemoryRepository(
           snapshot.session,
           snapshot.answers,
+          error,
         );
         await operation(activeRepository.current);
       }

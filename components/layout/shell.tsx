@@ -1,11 +1,20 @@
 'use client';
-import { createContext, useContext, useCallback, useMemo, useState, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+  type ReactNode,
+} from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Banners, type BannerProps } from './banners';
 import { LiveRegion } from '@/components/common/live-region';
+import { getRepository, useStorageStatus } from '@/hooks/use-repository';
 import { useAnnouncer } from '@/hooks/use-announcer';
 
 type ShellApi = {
@@ -29,6 +38,11 @@ export function Shell({
   ...banners
 }: BannerProps & { children: ReactNode; room?: boolean; endSession?: ReactNode }) {
   const path = usePathname();
+  const storage = useStorageStatus();
+  useEffect(() => {
+    if (path === '/setup' || path === '/history' || path.startsWith('/session/'))
+      void getRepository();
+  }, [path]);
   const room = roomOverride ?? /^\/session\/[^/]+$/.test(path);
   const { message, announce } = useAnnouncer();
   const [endHandler, setEndHandler] = useState<(() => void) | null>(null);
@@ -59,7 +73,12 @@ export function Shell({
           )
         }
       />
-      <Banners {...banners} notSaving={banners.notSaving || path.startsWith('/session/')} />
+      <Banners
+        {...banners}
+        notSaving={banners.notSaving || storage === 'not-saving'}
+        updatedElsewhere={banners.updatedElsewhere || storage === 'updated'}
+        blocked={banners.blocked || storage === 'blocked'}
+      />
       <noscript>
         Rehearse needs JavaScript for the interview room. The sample report and the write-up work
         without it.
