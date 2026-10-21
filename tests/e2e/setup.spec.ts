@@ -33,3 +33,18 @@ test('TC-034 E2E-02 readonly and maintenance setup states', async ({ page }, tes
   ).toBeVisible();
   await expect(page.getByRole('radio')).toHaveCount(0);
 });
+
+test('TC-055 E2E-02 FR-06 preview voice and speaking rate', async ({ page }, testInfo) => {
+  await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(testInfo) });
+  await page.addInitScript(installSpeechMock, scenarios.happy);
+  await page.clock.install();
+  await page.goto('/setup');
+  await expect(page.getByLabel('Voice', { exact: true })).toBeEnabled();
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 1000));
+  await page.getByRole('button', { name: 'Preview voice', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Stop preview' })).toBeVisible();
+  await page.getByRole('button', { name: 'Stop preview' }).click();
+  await expect(page.getByRole('button', { name: 'Preview voice', exact: true })).toBeVisible();
+  await page.getByLabel('Speaking rate').fill('1.2');
+  await expect(page.getByText('1.2×', { exact: true })).toBeVisible();
+});
