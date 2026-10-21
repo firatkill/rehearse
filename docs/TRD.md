@@ -1678,7 +1678,7 @@ export type RoomEvent =
   | { type: 'RECORDER_STOPPED'; reason: StopReason; rawTranscript: string; timing: Timing }
   | { type: 'RECORDER_FAILED'; fail: FailKind; rawTranscript: string }
   | { type: 'TEXT_REVIEW'; transcript: string }
-  | { type: 'TYPE_INSTEAD' }
+  | { type: 'TYPE_INSTEAD'; rawTranscript?: string }
   | { type: 'RETRY_RECORDING'; now: number }
   | { type: 'EDIT'; transcript: string }
   | { type: 'OPEN_DIALOG'; dialog: 'record-again' | 'skip' | 'end' }

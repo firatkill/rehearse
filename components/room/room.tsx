@@ -8,6 +8,9 @@ import { ConfirmDialog } from '@/components/common/confirm-dialog';
 import { SafeText } from '@/components/common/safe-text';
 import { Button } from '@/components/ui/button';
 import { ROLE_LABELS, SENIORITY_LABELS, ANSWER_MODE_LABELS } from '@/lib/labels';
+import { formatDurationWords } from '@/lib/time';
+import { RecorderPanel } from './recorder-panel';
+import { SpeechError } from './speech-error';
 import { SESSION } from '@/lib/config';
 import { ProgressHeader } from './progress-header';
 import { QuestionPanel } from './question-panel';
@@ -18,11 +21,14 @@ import { ResumeCard } from './resume-card';
 import { DeliveryMetrics } from './delivery-metrics';
 
 export function Room({ id, offline }: { id: string; offline: boolean }) {
-  const { state, send, onDraft, online } = useInterviewRoom(id);
+  const { state, send, onDraft, online, recorder, activeChunk, readAloudError, capabilities } =
+    useInterviewRoom(id);
   const { announce, message, registerEnd } = useShell();
   const root = useRef<HTMLDivElement>(null);
   const { session, phase, index } = state;
   const kind = phase.kind;
+  const answerMode = phase.kind === 'answering' ? phase.answerMode : null;
+  const limit = session?.questions[index]?.time_limit_s ?? 0;
   useEffect(
     () =>
       registerEnd(() => {
@@ -42,17 +48,21 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
     if (target instanceof HTMLTextAreaElement)
       target.setSelectionRange(target.value.length, target.value.length);
     const status =
-      kind === 'thinking'
-        ? `${SESSION.THINK_SECONDS} seconds to think.`
-        : kind === 'answering'
-          ? 'Answer box open.'
-          : kind === 'review'
-            ? 'Review your answer.'
-            : kind === 'saved'
-              ? 'Answer saved.'
-              : '';
+      kind === 'asking'
+        ? `The interviewer is reading question ${index + 1}.`
+        : kind === 'thinking'
+          ? `${SESSION.THINK_SECONDS} seconds to think.${readAloudError ? ' Read-aloud didn’t work, so the question is shown as text.' : ''}`
+          : kind === 'answering'
+            ? answerMode === 'voice'
+              ? `Recording. ${formatDurationWords(limit)} to answer.`
+              : 'Answer box open.'
+            : kind === 'review'
+              ? 'Review your answer.'
+              : kind === 'saved'
+                ? 'Answer saved.'
+                : '';
     announce(status);
-  }, [kind, index, state.mode, session, announce]);
+  }, [kind, index, state.mode, session, announce, answerMode, limit, readAloudError]);
   if (kind === 'loading') return <p>Loading your session…</p>;
   if (!session)
     return (
@@ -101,6 +111,13 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
               {session.questions.length} questions · {ROLE_LABELS[session.setup.role]},{' '}
               {SENIORITY_LABELS[session.setup.seniority]} · {ANSWER_MODE_LABELS[state.mode]} answers
             </p>
+            {state.mode === 'voice' && (
+              <p>
+                When you start, your browser will ask to use the microphone. Speech is transcribed
+                by your browser’s speech service; read how on the{' '}
+                <Link href="/privacy">privacy page</Link>.
+              </p>
+            )}
             {!session.feedback.enabled && (
               <p>
                 Feedback is off for this session. You’ll see your transcript and delivery numbers.
@@ -112,7 +129,64 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
           </section>
         )
       ) : (
-        question && <QuestionPanel prompt={question.prompt} />
+        question && <QuestionPanel prompt={question.prompt} activeChunk={activeChunk} />
+      )}
+      {phase.kind === 'asking' && (
+        <div className="flex flex-wrap gap-3">
+          {!phase.interrupted && (
+            <Button
+              variant="outline"
+              onClick={() => {
+                send({ type: 'STOP_READING' });
+              }}
+            >
+              Stop reading
+            </Button>
+          )}
+          <Button
+            data-phase-focus
+            onClick={() => {
+              send({ type: 'START_ANSWERING', now: Date.now() });
+            }}
+          >
+            Start answering now
+          </Button>
+        </div>
+      )}
+      {capabilities?.synthesis && (phase.kind === 'asking' || phase.kind === 'thinking') && (
+        <Button
+          variant="outline"
+          onClick={() => {
+            send({ type: 'REPLAY' });
+          }}
+        >
+          Replay question
+        </Button>
+      )}
+      {phase.kind === 'answering' && phase.answerMode === 'voice' && question && (
+        <RecorderPanel
+          transcript={recorder.ctx.transcript}
+          startedAt={phase.startedAt}
+          limit={question.time_limit_s}
+          announce={announce}
+          onStop={() => {
+            recorder.stop('user');
+          }}
+          onLimit={() => {
+            recorder.stop('time_limit');
+          }}
+        />
+      )}
+      {phase.kind === 'speech-error' && (
+        <SpeechError
+          error={phase.error}
+          onType={() => {
+            send({ type: 'TYPE_INSTEAD' });
+          }}
+          onRetry={() => {
+            send({ type: 'RETRY_RECORDING', now: Date.now() });
+          }}
+        />
       )}
       {phase.kind === 'thinking' && (
         <ThinkTimer
@@ -178,17 +252,16 @@ export function Room({ id, offline }: { id: string; offline: boolean }) {
           </Button>
         </section>
       )}
-      {state.mode === 'voice' &&
-        ['asking', 'thinking', 'answering', 'speech-error'].includes(kind) && (
-          <Button
-            className="min-h-11"
-            onClick={() => {
-              send({ type: 'TYPE_INSTEAD' });
-            }}
-          >
-            Type instead
-          </Button>
-        )}
+      {state.mode === 'voice' && ['asking', 'thinking', 'answering'].includes(kind) && (
+        <Button
+          className="min-h-11"
+          onClick={() => {
+            send({ type: 'TYPE_INSTEAD' });
+          }}
+        >
+          Type instead
+        </Button>
+      )}
       {['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind) && (
         <Button
           variant="outline"

@@ -1,9 +1,11 @@
 import { expect, test } from '@playwright/test';
-import { scenarios, uniqueIp, serverUrl, setHidden } from './helpers';
+import { scenarios, uniqueIp, serverUrl, setHidden, speech } from './helpers';
 import { installSpeechMock } from './speech-mock';
 test.beforeEach(async ({ page }, testInfo) => {
   await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(testInfo) });
   await page.addInitScript(installSpeechMock, scenarios.noRecognition);
+  await page.clock.install({ time: new Date('2026-10-21T12:00:00Z') });
+  await page.clock.pauseAt(new Date('2026-10-21T12:01:00Z'));
   await page.goto(`${serverUrl(testInfo, 1)}/setup`);
   await page.getByLabel('Text: type your answers').check();
   await page.getByLabel('3 questions').check();
@@ -12,9 +14,11 @@ test.beforeEach(async ({ page }, testInfo) => {
   await expect(page).toHaveTitle('Interview · Rehearse');
 });
 test('TC-040 E2E-05 readonly text session retains all three edited answers', async ({ page }) => {
-  await page.clock.install();
   await page.getByRole('button', { name: 'Start the interview' }).click();
   await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
+  await page.clock.runFor(2000);
+  expect((await speech(page).spoken()).some((text) => text.trim().length > 0)).toBe(true);
+  await expect(page.getByText('The answer box opens when the timer ends.')).toBeVisible();
   await setHidden(page, true);
   await page.clock.runFor(16000);
   await expect(page.getByRole('button', { name: 'Start answering now' })).toBeVisible();
@@ -53,6 +57,7 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
   await page.getByRole('button', { name: 'Skip question', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep answering' })).toBeFocused();
   await page.keyboard.press('Escape');
+  await page.clock.runFor(1); // Dialog focus restoration runs after unmount.
   await expect(page.getByRole('button', { name: 'Skip question', exact: true })).toBeFocused();
   await expect(page.getByLabel('Your answer')).toHaveValue('My draft remains here.');
   await page.getByRole('button', { name: 'Skip question', exact: true }).click();
