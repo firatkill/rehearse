@@ -211,6 +211,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -251,6 +255,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -340,6 +348,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -366,6 +378,10 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-11 regression: eight E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -671,6 +687,92 @@
         {
           "result": "pass",
           "note": "T-10 regression: all 8 existing E2E tests passed on ports 3240–3243."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-028",
+      "ac_reference": "FR-40, FR-44, FR-46; UT-31",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "API contracts and client boundary validation",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright; mock LLM, memory limiter",
+      "description": "API contracts and client boundary validation",
+      "steps_to_reproduce": [
+        "Run contracts.test.ts and api-start.test.ts, then task acceptance commands."
+      ],
+      "expected_result": "Normative request/response schemas and ordered start guards, scoped tokens and safe fallback modes.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "14 targeted tests passed across UT-31 and UT-32."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected unused destructuring bindings and unsafe matcher/array types in new tests.",
+          "note": "Replaced unused bindings, explicitly typed nested fixture arrays and used typed header/reset assertions; no assertions removed."
+        },
+        {
+          "result": "pass",
+          "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-029",
+      "ac_reference": "FR-40, FR-44, FR-46; UT-32",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Session start validates and supports all modes",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright; mock LLM, memory limiter",
+      "description": "Session start validates and supports all modes",
+      "steps_to_reproduce": [
+        "Run contracts.test.ts and api-start.test.ts, then task acceptance commands."
+      ],
+      "expected_result": "Normative request/response schemas and ordered start guards, scoped tokens and safe fallback modes.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "14 targeted tests passed across UT-31 and UT-32."
+        },
+        {
+          "result": "pass",
+          "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-030",
+      "ac_reference": "FR-41, FR-46, FR-51; UT-32",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Session quota and limiter outage",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright; mock LLM, memory limiter",
+      "description": "Session quota and limiter outage",
+      "steps_to_reproduce": [
+        "Run contracts.test.ts and api-start.test.ts, then task acceptance commands."
+      ],
+      "expected_result": "Normative request/response schemas and ordered start guards, scoped tokens and safe fallback modes.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "14 targeted tests passed across UT-31 and UT-32."
+        },
+        {
+          "result": "pass",
+          "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
         }
       ],
       "regression_of": null,
