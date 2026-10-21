@@ -1901,6 +1901,19 @@
         {
           "result": "pass",
           "note": "T-23 final full suite: 33 E2E tests pass; 273 unit/component tests pass. Lint, typecheck and production build pass. Coverage: 98.85% lines, 91.77% branches, 100% functions."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-26 full E2E: interview intro button did not appear within the existing 3-second assertion after session start in three tests.",
+          "note": "No room implementation changed. Inspect captured page state and rerun the two affected specs without concurrent lint/typecheck."
+        },
+        {
+          "result": "pass",
+          "note": "Affected speech-errors/tab-hidden specs pass all seven tests in 11.9s without code, assertion or timeout changes. Captured failure page was still on setup; run final browser suite without concurrent checks."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
         }
       ],
       "regression_of": null,
@@ -1948,6 +1961,19 @@
         {
           "result": "pass",
           "note": "T-23 final full suite: 33 E2E tests pass; 273 unit/component tests pass. Lint, typecheck and production build pass. Coverage: 98.85% lines, 91.77% branches, 100% functions."
+        },
+        {
+          "result": "fail",
+          "actual_result": "T-26 full E2E: interview intro button did not appear within the existing 3-second assertion after session start in three tests.",
+          "note": "No room implementation changed. Inspect captured page state and rerun the two affected specs without concurrent lint/typecheck."
+        },
+        {
+          "result": "pass",
+          "note": "Affected speech-errors/tab-hidden specs pass all seven tests in 11.9s without code, assertion or timeout changes. Captured failure page was still on setup; run final browser suite without concurrent checks."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
         }
       ],
       "regression_of": null,
@@ -2324,6 +2350,101 @@
         {
           "result": "pass",
           "note": "T-25 final acceptance: 338 unit/component and 33 E2E tests, lint, typecheck, build and coverage gates pass (98.98% lines, 91.01% branches, 100% functions). No live eval under D-64."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-073",
+      "ac_reference": "FR-20\u2013FR-23; UT-23",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Feedback normalization",
+      "status": "resolved",
+      "environment": "Vitest; scripted providers and fake clocks; no external calls",
+      "description": "Feedback normalization",
+      "steps_to_reproduce": [
+        "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
+      ],
+      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "38 targeted feedback/evidence/orchestration tests pass; all 376 unit/component tests and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-074",
+      "ac_reference": "FR-20; UT-24",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Quoted evidence verification",
+      "status": "resolved",
+      "environment": "Vitest; scripted providers and fake clocks; no external calls",
+      "description": "Quoted evidence verification",
+      "steps_to_reproduce": [
+        "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
+      ],
+      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "38 targeted feedback/evidence/orchestration tests pass; all 376 unit/component tests and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-075",
+      "ac_reference": "FR-19; UT-25",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Feedback retries and deadline",
+      "status": "resolved",
+      "environment": "Vitest; scripted providers and fake clocks; no external calls",
+      "description": "Feedback retries and deadline",
+      "steps_to_reproduce": [
+        "Run normalize.test.ts, evidence.test.ts and generate-feedback.test.ts."
+      ],
+      "expected_result": "TRD \u00a715.3\u2013\u00a715.4 validation, evidence caps, retries and usage.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "38 targeted feedback/evidence/orchestration tests pass; all 376 unit/component tests and coverage gates pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Lint rejected an async fake-provider method with no await.",
+          "note": "Added an asynchronous boundary to the test provider; production behaviour unchanged."
+        },
+        {
+          "result": "pass",
+          "note": "All 12 orchestration tests pass after correcting the test provider."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Formatting check ran while the QA ledger had newly appended unformatted entries.",
+          "note": "Finish ledger edits and formatting before the final lint run."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-26: all 33 E2E tests pass without concurrent lint; 376 unit/component tests, lint, typecheck, build and coverage gates pass. Coverage: 98.95% lines, 91.32% branches, 100% functions. Live eval deferred under D-64."
         }
       ],
       "regression_of": null,

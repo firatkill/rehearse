@@ -30,8 +30,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-22 | Voice delivery metrics                                             | done    | 678d785           |
 | T-23 | Voice E2E with the speech mock                                     | done    | 742ba00           |
 | T-24 | LLM provider (live and mock), model pinning and cost estimate      | blocked | 1765148           |
-| T-25 | Rubric, prompts, sanitization and versioning                       | done    | this commit       |
-| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | todo    | —                 |
+| T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b           |
+| T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | this commit       |
 | T-27 | `POST /api/feedback`                                               | todo    | —                 |
 | T-28 | Feedback UI: skeleton, card, errors and retries                    | todo    | —                 |
 | T-29 | Aggregates, summary generation and `POST /api/summary`             | todo    | —                 |
@@ -99,3 +99,5 @@ T-24 provider/cost slice: normative interface, SDK 7 adapter and cost calculatio
 T-24 implementation is complete; status is blocked only on the owner-only live model/temperature check TC-088. Model candidate and documented prices are pinned in .env.example (D-66); availability and quality are not claimed. D-64/D-65 approve staged eval and mock copy. The provider/cost slice CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39616978679. Continue independent M3 tasks with live checks visibly pending.
 
 T-25: exact normative v1 prompts, rubric and sanitized user templates implemented. 338 unit/component tests, 33 E2E tests, lint, typecheck, build and coverage pass (98.98% lines, 91.01% branches, 100% functions). Live eval is deferred under D-64.
+
+T-25 CI passed: https://github.com/firatkill/rehearse/actions/runs/39622355076. T-26 normalization, evidence verification and bounded orchestration pass 376 unit/component and 33 E2E tests, lint, typecheck, build and coverage. Local full browser runs should not overlap lint/coverage on this machine; unchanged affected tests passed in isolation and the final full run. Live eval remains deferred under D-64.
