@@ -47,6 +47,10 @@ it('TC-033 CT-01 shows defaults, saves preferences and focuses missing question 
   fireEvent.click(screen.getByRole('button', { name: 'Start session' }));
   expect(screen.getByRole('alert')).toHaveTextContent('Choose at least one question type.');
   expect(screen.getByLabelText('Behavioral')).toHaveFocus();
+  expect(screen.getByLabelText('Behavioral')).toHaveAttribute('aria-invalid', 'true');
+  expect(screen.getByLabelText('Behavioral')).toHaveAccessibleDescription(
+    expect.stringContaining('Choose at least one question type.'),
+  );
   expect(startSession).not.toHaveBeenCalled();
 });
 it('TC-033 CT-01 honours a seed and creates the session before navigating', async () => {
