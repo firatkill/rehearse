@@ -1,0 +1,156 @@
+[
+  {
+    "id": "beh-001",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "deadlines-scope",
+    "prompt": "Tell me about a time you had to deliver something important with less time than you needed. What did you cut, and how did you decide?",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-002",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "incident-debugging",
+    "prompt": "Describe a production bug or incident you helped fix under pressure. Walk me through how you found the cause.",
+    "follow_up_hints": [
+      "What did you check first, and why?",
+      "How did you know the fix worked?",
+      "What did you change so it would not happen again?"
+    ],
+    "what_good_looks_like": [
+      "Sets the scene briefly: what broke, who was affected, how urgent it was",
+      "Shows a methodical search for the cause rather than lucky guesses",
+      "Separates the immediate fix from the long-term prevention",
+      "Is clear about their own part versus the team's"
+    ],
+    "time_limit_s": 150,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-003",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid"],
+    "topic": "disagreement-upward",
+    "prompt": "Tell me about a time you disagreed with a technical decision made by someone more senior than you. What did you do?",
+    "follow_up_hints": [
+      "How did you raise it, and in what setting?",
+      "What evidence did you bring?",
+      "What did you do once the decision was final?"
+    ],
+    "what_good_looks_like": [
+      "Describes the decision and the specific concern, not a personality clash",
+      "Raised the concern with evidence and at a sensible time",
+      "Committed to the outcome once decided, even if it went the other way",
+      "Reflects on what they learned about influencing decisions"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-004",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "influence-cross-team",
+    "prompt": "Tell me about a technical decision you drove that other teams had to live with for a long time. How did you get them on board?",
+    "follow_up_hints": [
+      "Who disagreed, and what did you change because of them?",
+      "How did you make the decision reversible, or not?",
+      "How did you check later that it was the right call?"
+    ],
+    "what_good_looks_like": [
+      "Frames the decision, the options considered and why it mattered beyond one team",
+      "Shows how they gathered input and handled objections",
+      "Mentions how the decision was written down and communicated",
+      "Gives a long-term outcome, including any costs that appeared later"
+    ],
+    "time_limit_s": 150,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-005",
+    "type": "behavioral",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "user-feedback",
+    "prompt": "Tell me about something you shipped that did not work the way users expected. How did you find out, and what did you change?",
+    "follow_up_hints": [
+      "Could you have caught it before release?",
+      "How did you decide what to change first?",
+      "How did you know the change helped?"
+    ],
+    "what_good_looks_like": [
+      "Describes the gap between intent and actual user behaviour concretely",
+      "Explains the signal that revealed it: data, support tickets, user sessions",
+      "Shows a deliberate change and a way of measuring whether it worked",
+      "Takes ownership without blaming users"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-006",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid"],
+    "topic": "receiving-feedback",
+    "prompt": "What is the most useful piece of feedback you have received on your work, and what did you do differently afterwards?",
+    "follow_up_hints": [
+      "How did you react when you first heard it?",
+      "How did the person giving it know things had changed?",
+      "Have you given similar feedback to someone else since?"
+    ],
+    "what_good_looks_like": [
+      "Quotes or paraphrases the feedback specifically",
+      "Is honest about the initial reaction",
+      "Describes a concrete, lasting change in behaviour",
+      "Shows evidence that the change made a difference"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-007",
+    "type": "behavioral",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "topic": "ai-output-quality",
+    "prompt": "Tell me about a time a feature using a language model gave wrong or harmful output to users. How did you detect it, and what did you put in place?",
+    "follow_up_hints": [
+      "How long was it live before you noticed?",
+      "What did you measure afterwards?",
+      "What did you decide not to fix, and why?"
+    ],
+    "what_good_looks_like": [
+      "Describes the failure concretely and who was affected",
+      "Explains how it was detected and how quickly",
+      "Separates the immediate mitigation from lasting safeguards such as evals, validation or human review",
+      "States how they verified the safeguards worked"
+    ],
+    "time_limit_s": 150,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

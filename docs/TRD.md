@@ -2030,7 +2030,12 @@ export type LimitResult = { ok: boolean; remaining: number; resetAt: Date };
 
 export interface Limiter {
   consumeDaily(bucket: DailyBucket, id: string, limit: number): Promise<LimitResult>;
-  consumeSessionCounter(kind: 'fb' | 'sm', sid: string, limit: number): Promise<LimitResult>;
+  consumeSessionCounter(
+    kind: 'fb' | 'sm',
+    sid: string,
+    limit: number,
+    tokenExpiresAt: Date,
+  ): Promise<LimitResult>;
 }
 
 export class LimiterUnavailableError extends Error {}
@@ -2068,7 +2073,7 @@ function daily(bucket: DailyBucket, limit: number): Ratelimit {
 - `consumeDaily`: `const r = await daily(bucket, limit).limit(id)`; if `r.reason === 'timeout'` (the library allows the request on timeout by default) throw `LimiterUnavailableError` (fail closed, D-14); network errors also throw it. `await r.pending`. Return `{ ok: r.success, remaining: r.remaining, resetAt: new Date(r.reset) }`.
 - The fixed window of `'1 d'` aligns to UTC midnight because the library computes the window as `floor(now / windowMs)` (verify, A-06; if not aligned, set `resetAt` from the returned `reset` anyway, and change the PRD wording "per UTC day" to "per 24-hour window" with a decision).
 - `llm_global` uses the id `global`.
-- `consumeSessionCounter`: key `rehearse:tok:<sid>:<kind>`; one pipeline request `SET key 0 NX EX TOKEN_COUNTER_TTL_S` then `INCR key`; `count = result[1]`; `ok = count <= limit`; `remaining = max(0, limit - count)`; `resetAt = token exp`. Wrap in `Promise.race` with a `LIMITER_TIMEOUT_MS` timer; timeout or error throws `LimiterUnavailableError`.
+- `consumeSessionCounter`: key `rehearse:tok:<sid>:<kind>`; one pipeline request `SET key 0 NX EX TOKEN_COUNTER_TTL_S` then `INCR key`; `count = result[1]`; `ok = count <= limit`; `remaining = max(0, limit - count)`; `resetAt = tokenExpiresAt` (explicit argument, D-51). Wrap in `Promise.race` with a `LIMITER_TIMEOUT_MS` timer; timeout or error throws `LimiterUnavailableError`.
 - Command budget per request (verify against the free tier, A-05): start ≈ 2 commands, feedback ≈ 6, summary ≈ 4.
 
 ### 13.5 Memory implementation (`lib/ratelimit/memory.ts`)
@@ -2080,11 +2085,11 @@ function daily(bucket: DailyBucket, limit: number): Ratelimit {
 
 ### 13.6 Check order (normative, `lib/ratelimit/quotas.ts`)
 
-| Route               | Order                                                                                                                                                                                              | Denied code                                                                   |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| start (feedback on) | `consumeDaily('sessions_ip', visitor, RATE_LIMIT_SESSIONS_PER_IP_DAILY)`                                                                                                                           | `SESSION_QUOTA_EXCEEDED`                                                      |
-| feedback            | 1. `consumeSessionCounter('fb', sid, token.fb)` 2. `consumeDaily('feedback_ip', visitor, RATE_LIMIT_FEEDBACK_PER_IP_DAILY)` 3. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)` | `SESSION_FEEDBACK_EXHAUSTED`, `FEEDBACK_QUOTA_EXCEEDED`, `GLOBAL_CAP_REACHED` |
-| summary             | 1. `consumeSessionCounter('sm', sid, token.sm)` 2. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)`                                                                             | `SESSION_SUMMARY_EXHAUSTED`, `GLOBAL_CAP_REACHED`                             |
+| Route               | Order                                                                                                                                                                                                                          | Denied code                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| start (feedback on) | `consumeDaily('sessions_ip', visitor, RATE_LIMIT_SESSIONS_PER_IP_DAILY)`                                                                                                                                                       | `SESSION_QUOTA_EXCEEDED`                                                      |
+| feedback            | 1. `consumeSessionCounter('fb', sid, token.fb, new Date(token.exp * 1000))` 2. `consumeDaily('feedback_ip', visitor, RATE_LIMIT_FEEDBACK_PER_IP_DAILY)` 3. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)` | `SESSION_FEEDBACK_EXHAUSTED`, `FEEDBACK_QUOTA_EXCEEDED`, `GLOBAL_CAP_REACHED` |
+| summary             | 1. `consumeSessionCounter('sm', sid, token.sm, new Date(token.exp * 1000))` 2. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)`                                                                             | `SESSION_SUMMARY_EXHAUSTED`, `GLOBAL_CAP_REACHED`                             |
 
 Each step consumes before the next runs; there are no refunds (D-11). A denial at step 2 or 3 has already consumed earlier steps; this is accepted and documented in a code comment. Any `LimiterUnavailableError` → 503 `LIMITER_UNAVAILABLE`.
 

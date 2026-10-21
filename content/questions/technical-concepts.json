@@ -1,0 +1,112 @@
+[
+  {
+    "id": "tec-001",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "rendering-strategy",
+    "prompt": "Explain the difference between rendering a page on the server and rendering it in the browser. When would you choose each for a product page?",
+    "follow_up_hints": [
+      "What happens to search engines and link previews in each case?",
+      "Where does personalised content fit?",
+      "How does caching change the picture?"
+    ],
+    "what_good_looks_like": [
+      "Explains what work happens where and what the user sees first in each approach",
+      "Connects the choice to concrete effects: first load, interactivity, SEO, server cost",
+      "Mentions hybrid options such as static generation or streaming",
+      "Gives a reasoned recommendation for a specific kind of page"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-002",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "topic": "idempotency",
+    "prompt": "What does it mean for an API endpoint to be idempotent, and how would you make an endpoint that creates a payment safe to retry?",
+    "follow_up_hints": [
+      "Where would you store the idempotency key, and for how long?",
+      "What happens if two identical requests arrive at the same moment?",
+      "What should the second response look like?"
+    ],
+    "what_good_looks_like": [
+      "Defines idempotency in terms of repeated requests having the same effect",
+      "Explains why retries happen: timeouts, network errors, double clicks",
+      "Describes an idempotency key with a uniqueness guarantee in storage",
+      "Covers concurrent duplicates and returning the original result"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-003",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "database-indexing",
+    "prompt": "How do you decide whether a database query needs an index? Explain what you would look at and what an index costs.",
+    "follow_up_hints": [
+      "How would you confirm the index is actually used?",
+      "When would an index make things worse?",
+      "How does column order matter in a composite index?"
+    ],
+    "what_good_looks_like": [
+      "Starts from evidence: slow query logs, query plans, row counts",
+      "Explains what an index does to lookups in plain terms",
+      "Names the costs: write overhead, storage, maintenance",
+      "Mentions verifying the effect after adding it"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-004",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "topic": "llm-evaluation",
+    "prompt": "When you put a language model behind a product feature, how do you decide its answers are good enough to ship? Describe how you would measure it.",
+    "follow_up_hints": [
+      "Where would your test cases come from?",
+      "How would you catch a regression after a prompt change?",
+      "What would you measure once it is live?"
+    ],
+    "what_good_looks_like": [
+      "Defines what good means for this feature before measuring",
+      "Describes a test set with expected outcomes, including hard and adversarial cases",
+      "Mentions automated checks in CI and thresholds that block a release",
+      "Covers monitoring and feedback after launch"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-005",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "web-performance",
+    "prompt": "A page in your app feels slow on mid-range phones. How would you find out why, and what would you check first?",
+    "follow_up_hints": [
+      "How would you reproduce it if your own phone is fast?",
+      "Which numbers would you track before and after?",
+      "How would you stop it from regressing?"
+    ],
+    "what_good_looks_like": [
+      "Measures before changing anything, on realistic devices or throttled profiles",
+      "Distinguishes loading, rendering and interaction slowness",
+      "Names likely causes such as large JavaScript bundles, images or long tasks",
+      "Mentions a budget or check that prevents regressions"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

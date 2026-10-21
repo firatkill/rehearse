@@ -1,0 +1,4 @@
+{
+  "bankVersion": "1.0.0",
+  "files": ["behavioral.json", "technical-concepts.json", "system-design-lite.json"]
+}

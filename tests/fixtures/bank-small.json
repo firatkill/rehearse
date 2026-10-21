@@ -1,0 +1,266 @@
+[
+  {
+    "id": "beh-001",
+    "type": "behavioral",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-beh-1",
+    "prompt": "Describe how you approached fixture situation 1 for behavioral.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-002",
+    "type": "behavioral",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-beh-2",
+    "prompt": "Describe how you approached fixture situation 2 for behavioral.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-003",
+    "type": "behavioral",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-beh-3",
+    "prompt": "Describe how you approached fixture situation 3 for behavioral.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-004",
+    "type": "behavioral",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-beh-4",
+    "prompt": "Describe how you approached fixture situation 4 for behavioral.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-001",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-tec-1",
+    "prompt": "Describe how you approached fixture situation 1 for technical-concepts.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-002",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-tec-2",
+    "prompt": "Describe how you approached fixture situation 2 for technical-concepts.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-003",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-tec-3",
+    "prompt": "Describe how you approached fixture situation 3 for technical-concepts.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-004",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-tec-4",
+    "prompt": "Describe how you approached fixture situation 4 for technical-concepts.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-001",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-sdl-1",
+    "prompt": "Describe how you approached fixture situation 1 for system-design-lite.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-002",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-sdl-2",
+    "prompt": "Describe how you approached fixture situation 2 for system-design-lite.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-003",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-sdl-3",
+    "prompt": "Describe how you approached fixture situation 3 for system-design-lite.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-004",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "fixture-sdl-4",
+    "prompt": "Describe how you approached fixture situation 4 for system-design-lite.",
+    "follow_up_hints": [
+      "Who agreed to the cut, and how did you tell them?",
+      "What happened to the parts you cut?",
+      "Would you make the same call again?"
+    ],
+    "what_good_looks_like": [
+      "Names the deadline, what was at stake and who depended on it",
+      "Explains the criteria used to decide what to cut or simplify",
+      "Describes how and when stakeholders were told",
+      "States what shipped, how it went, and what happened to the cut scope"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]
