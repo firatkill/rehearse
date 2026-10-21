@@ -215,6 +215,10 @@
         {
           "result": "pass",
           "note": "T-11 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         }
       ],
       "regression_of": null,
@@ -259,6 +263,10 @@
         {
           "result": "pass",
           "note": "T-11 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         }
       ],
       "regression_of": null,
@@ -352,6 +360,10 @@
         {
           "result": "pass",
           "note": "T-11 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         }
       ],
       "regression_of": null,
@@ -382,6 +394,10 @@
         {
           "result": "pass",
           "note": "T-11 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-12 regression: all eight E2E tests pass on 3240–3243; smoke now validates full health response."
         }
       ],
       "regression_of": null,
@@ -773,6 +789,27 @@
         {
           "result": "pass",
           "note": "Lint, typecheck, all 127 tests, coverage (100% lines/functions; 96.96% branches), build and all 8 E2E tests passed. Curl against dev:mock on port 3100 returned three questions and rh1 token. Initial feedback/summary schemas use approved D-52 eval deferral; strict responses apply D-53. No live provider calls."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-031",
+      "ac_reference": "FR-47; UT-35",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Health response is complete and local",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; mock LLM/memory limiter",
+      "description": "Validate health metadata and safe configuration failure handling.",
+      "steps_to_reproduce": ["Run api-health.test.ts and smoke.spec.ts."],
+      "expected_result": "Specified fields and headers, no provider/limiter calls, safe 500 with variable-name-only logging.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Three UT-35 tests and four-server smoke checks pass. Full suite: 130 tests; 100% line/function coverage, 96.96% branches. Lint, typecheck, build and all eight E2E tests pass. Prompt version constants scaffolded under approved D-54; live eval deferred."
         }
       ],
       "regression_of": null,
