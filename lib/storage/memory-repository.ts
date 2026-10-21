@@ -1,12 +1,9 @@
+import { clearPreferences, deleteDatabase } from './idb';
+import { storageStatus, setStorageStatus } from './status';
 import { migrateRecord } from './migrations';
-import { HTTP, STORAGE } from '@/lib/config';
+import { buildExport, readImport } from './export';
 import { AppError } from '@/lib/errors';
-import {
-  SessionRecordSchema,
-  AnswerRecordSchema,
-  ExportFileSchema,
-  type SessionRecord,
-} from './schema';
+import { SessionRecordSchema, AnswerRecordSchema, type SessionRecord } from './schema';
 import type { SessionRepository } from './repository';
 
 type MemoryStore = { sessions: Map<string, unknown>; answers: Map<string, unknown> };
@@ -73,66 +70,31 @@ export function createMemoryRepository(
           })
           .sort((a, b) => a.index - b.index),
       ),
-    exportAll: async (appVersion) => {
-      const { sessions } = await repository.listSessions();
-      return ExportFileSchema.parse({
-        format: 'rehearse-export',
-        formatVersion: STORAGE.EXPORT_FORMAT_VERSION,
-        exportedAt: clock().toISOString(),
-        appVersion,
-        sessions: await Promise.all(
-          sessions.map(async (session) => ({
-            session: { ...session, token: null, tokenExpiresAt: null },
-            answers: await repository.getAnswers(session.id),
-          })),
-        ),
-      });
-    },
+    exportAll: (appVersion) => buildExport(repository, appVersion, clock),
     importAll: async (file) => {
-      if (file.size > HTTP.IMPORT_MAX_BYTES) throw new AppError('VALIDATION_FAILED');
-      let raw: unknown;
-      try {
-        raw = JSON.parse(await file.text()) as unknown;
-      } catch {
-        throw new AppError('VALIDATION_FAILED');
-      }
-      const parsed = ExportFileSchema.safeParse(raw);
-      if (!parsed.success || parsed.data.formatVersion !== STORAGE.EXPORT_FORMAT_VERSION)
-        throw new AppError('VALIDATION_FAILED');
+      const { bundles, invalid } = await readImport(file);
       let imported = 0;
       let skipped = 0;
-      for (const { session, answers } of parsed.data.sessions) {
+      for (const { session, answers } of bundles) {
         if (store.sessions.has(session.id)) {
           skipped++;
           continue;
         }
-        const importedSession = SessionRecordSchema.parse({
-          ...session,
-          origin: 'import',
-          token: null,
-          tokenExpiresAt: null,
-          ...(session.status === 'in_progress'
-            ? { feedback: { enabled: false, reason: 'practice' } }
-            : {}),
-        });
-        store.sessions.set(session.id, importedSession);
+        store.sessions.set(session.id, session);
         for (const answer of answers)
           store.answers.set(`${answer.sessionId}:${answer.index}`, answer);
         imported++;
       }
-      return { imported, skipped, invalid: 0 };
+      return { imported, skipped, invalid };
     },
-    deleteAll: () =>
-      perform(() => {
-        store.sessions.clear();
-        store.answers.clear();
-        if (typeof localStorage !== 'undefined') {
-          for (let i = localStorage.length - 1; i >= 0; i--) {
-            const key = localStorage.key(i);
-            if (key?.startsWith('rehearse-')) localStorage.removeItem(key);
-          }
-        }
-      }),
+    deleteAll: async () => {
+      const previous = storageStatus();
+      if (typeof indexedDB !== 'undefined') await deleteDatabase();
+      else clearPreferences();
+      store.sessions.clear();
+      store.answers.clear();
+      setStorageStatus(previous === 'updated' ? 'updated' : 'not-saving');
+    },
   };
   return repository;
 }

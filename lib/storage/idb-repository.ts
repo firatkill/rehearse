@@ -4,7 +4,7 @@ import { deleteDb, openDb, requestResult, transaction, transactionDone } from '.
 import { migrateRecord } from './migrations';
 import { SessionRecordSchema, AnswerRecordSchema, type SessionRecord } from './schema';
 import type { SessionRepository } from './repository';
-import { createMemoryRepository } from './memory-repository';
+import { buildExport, readImport } from './export';
 
 export function createIndexedDbRepository(
   initial: IDBDatabase,
@@ -121,32 +121,31 @@ export function createIndexedDbRepository(
         })
         .sort((a, b) => a.index - b.index);
     },
-    exportAll: async (version) => {
-      const memory = createMemoryRepository(undefined, clock);
-      for (const session of (await repo.listSessions()).sessions) {
-        await memory.createSession(session);
-        for (const answer of await repo.getAnswers(session.id)) await memory.putAnswer(answer);
-      }
-      return memory.exportAll(version);
-    },
+    exportAll: (version) => buildExport(repo, version, clock),
     importAll: async (file) => {
-      const memory = createMemoryRepository();
-      const result = await memory.importAll(file);
+      const { bundles, invalid } = await readImport(file);
       let imported = 0;
       let skipped = 0;
-      for (const session of (await memory.listSessions()).sessions) {
-        if (await repo.getSession(session.id)) {
-          skipped++;
-          continue;
-        }
-        const answers = await memory.getAnswers(session.id);
+      for (const { session, answers } of bundles) {
         await write(['sessions', 'answers'], (tx) => {
-          tx.objectStore('sessions').put(session);
-          for (const answer of answers) tx.objectStore('answers').put(answer);
+          const store = tx.objectStore('sessions');
+          const existing = store.get(session.id);
+          existing.onsuccess = () => {
+            if (existing.result !== undefined) {
+              skipped++;
+              return;
+            }
+            try {
+              store.put(session);
+              for (const answer of answers) tx.objectStore('answers').put(answer);
+              imported++;
+            } catch {
+              tx.abort();
+            }
+          };
         });
-        imported++;
       }
-      return { imported, skipped, invalid: result.invalid };
+      return { imported, skipped, invalid };
     },
     deleteAll: async () => {
       const current = await db();
