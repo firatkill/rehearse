@@ -1,0 +1,7 @@
+.next
+coverage
+playwright-report
+test-results
+eval/results
+pnpm-lock.yaml
+.eval-tmp

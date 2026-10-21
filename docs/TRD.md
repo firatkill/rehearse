@@ -79,29 +79,31 @@ Rules that follow from the diagram:
 
 Rule: **pin exact versions at implementation time.** Run `pnpm view <package> version` for each package on the day task T-01 starts, install that version, and write it without range operators. Record the date in the README "Versions" line. Do not upgrade majors during the project without a decisions log entry.
 
-| Area | Choice | Major version expected at implementation | Notes |
-|---|---|---|---|
-| Runtime | Node.js | 22 LTS or newer LTS | `.nvmrc` holds the major; `engines.node` is `>=22` |
-| Package manager | pnpm | 10.x or newer | `packageManager` pins the exact version |
-| Framework | Next.js (App Router) | 16.x | Request interception file is `proxy.ts` on 16.x; on 15.x it is `middleware.ts` (A-09) |
-| UI library | React | 19.x | |
-| Language | TypeScript | 5.x or newer | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `noFallthroughCasesInSwitch` |
-| Styling | Tailwind CSS | 4.x | CSS-first config in `app/globals.css` via `@theme` |
-| Components | shadcn/ui (CLI `shadcn`) | latest CLI | Copied into `components/ui`: `button`, `checkbox`, `radio-group`, `select`, `slider`, `textarea`, `label`, `dialog`, `alert-dialog`, `collapsible`, `table`, `separator`, `skeleton` (A-19) |
-| Icons | `lucide-react` | latest stable | Only the icons listed in section 19.2 |
-| Validation | Zod | 4.x | All boundaries |
-| LLM SDK | `ai` (Vercel AI SDK) + `@ai-sdk/openai` | 5.x or newer | API names differ between majors (section 14.0, A-10) |
-| Rate limiting | `@upstash/ratelimit` + `@upstash/redis` | 2.x / 1.x | REST client, works in Vercel functions (A-06) |
-| Markdown (static pages only) | `react-markdown` | 10.x or newer | `skipHtml`, no `rehype-raw` (section 19.5) |
-| Logging | `pino` | 9.x or newer | JSON to stdout |
-| Script runner | `tsx` | 4.x | Runs `scripts/*.ts` |
-| Env in scripts | `cross-env` | 7.x or newer | |
-| Unit and component tests | Vitest + `@vitest/coverage-v8`, `@testing-library/react`, `@testing-library/user-event`, `jsdom`, `fake-indexeddb` | 3.x or newer / latest / latest / latest / 6.x | Two Vitest projects: `unit` (node) and `component` (jsdom); `esbuild: { jsx: 'automatic' }` (A-18) |
-| E2E | `@playwright/test` + `@axe-core/playwright` | 1.5x or newer / 4.x | Chromium only in CI; speech APIs mocked (section 25.3) |
-| Lint and format | ESLint (flat config) + `typescript-eslint` + `eslint-config-next`, Prettier + `prettier-plugin-tailwindcss` | 9.x / 8.x / matching Next / 3.x | |
-| Hosting | Vercel Hobby | n/a | Personal, non-commercial (A-07) |
-| Rate-limit store | Upstash Redis free | n/a | Only service besides Vercel and OpenAI (A-05) |
-| CI | GitHub Actions | n/a | Free for public repositories (A-16) |
+| Area                         | Choice                                                                                                             | Major version expected at implementation      | Notes                                                                                                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Runtime                      | Node.js                                                                                                            | 22 LTS or newer LTS                           | `.nvmrc` holds the major; `engines.node` is `>=22`                                                                                                                                          |
+| Package manager              | pnpm                                                                                                               | 10.x or newer                                 | `packageManager` pins the exact version                                                                                                                                                     |
+| Framework                    | Next.js (App Router)                                                                                               | 16.x                                          | Request interception file is `proxy.ts` on 16.x; on 15.x it is `middleware.ts` (A-09)                                                                                                       |
+| UI library                   | React                                                                                                              | 19.x                                          |                                                                                                                                                                                             |
+| Language                     | TypeScript                                                                                                         | 5.x or newer                                  | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `noFallthroughCasesInSwitch`                                                                      |
+| Styling                      | Tailwind CSS                                                                                                       | 4.x                                           | CSS-first config in `app/globals.css` via `@theme`                                                                                                                                          |
+| Components                   | shadcn/ui (CLI `shadcn`)                                                                                           | latest CLI                                    | Copied into `components/ui`: `button`, `checkbox`, `radio-group`, `select`, `slider`, `textarea`, `label`, `dialog`, `alert-dialog`, `collapsible`, `table`, `separator`, `skeleton` (A-19) |
+| Icons                        | `lucide-react`                                                                                                     | latest stable                                 | Only the icons listed in section 19.2                                                                                                                                                       |
+| Validation                   | Zod                                                                                                                | 4.x                                           | All boundaries                                                                                                                                                                              |
+| LLM SDK                      | `ai` (Vercel AI SDK) + `@ai-sdk/openai`                                                                            | 5.x or newer                                  | API names differ between majors (section 14.0, A-10)                                                                                                                                        |
+| Rate limiting                | `@upstash/ratelimit` + `@upstash/redis`                                                                            | 2.x / 1.x                                     | REST client, works in Vercel functions (A-06)                                                                                                                                               |
+| Markdown (static pages only) | `react-markdown`                                                                                                   | 10.x or newer                                 | `skipHtml`, no `rehype-raw` (section 19.5)                                                                                                                                                  |
+| Logging                      | `pino`                                                                                                             | 9.x or newer                                  | JSON to stdout                                                                                                                                                                              |
+| Script runner                | `tsx`                                                                                                              | 4.x                                           | Runs `scripts/*.ts`                                                                                                                                                                         |
+| Env in scripts               | `cross-env`                                                                                                        | 7.x or newer                                  |                                                                                                                                                                                             |
+| Unit and component tests     | Vitest + `@vitest/coverage-v8`, `@testing-library/react`, `@testing-library/user-event`, `jsdom`, `fake-indexeddb` | 3.x or newer / latest / latest / latest / 6.x | Two Vitest projects: `unit` (node) and `component` (jsdom); `esbuild: { jsx: 'automatic' }` (A-18)                                                                                          |
+| E2E                          | `@playwright/test` + `@axe-core/playwright`                                                                        | 1.5x or newer / 4.x                           | Chromium only in CI; speech APIs mocked (section 25.3)                                                                                                                                      |
+| Lint and format              | ESLint (flat config) + `typescript-eslint` + `eslint-config-next`, Prettier + `prettier-plugin-tailwindcss`        | 9.x / 8.x / matching Next / 3.x               |                                                                                                                                                                                             |
+| Hosting                      | Vercel Hobby                                                                                                       | n/a                                           | Personal, non-commercial (A-07)                                                                                                                                                             |
+| Rate-limit store             | Upstash Redis free                                                                                                 | n/a                                           | Only service besides Vercel and OpenAI (A-05)                                                                                                                                               |
+| CI                           | GitHub Actions                                                                                                     | n/a                                           | Free for public repositories (A-16)                                                                                                                                                         |
+
+Shadcn support dependencies (D-49): `radix-ui` 1.8.1, `cn` 0.5.0 and `class-variance-authority` 0.7.1 are approved runtime dependencies for the copied components.
 
 Not allowed: any database, any other runtime service, paid dependency, analytics, error-tracking SaaS, client-side tracking, cookies, an IndexedDB library, a state-management library (use `useReducer`), a charting library (the one chart is hand-written SVG), any speech API other than the browser's.
 
@@ -220,11 +222,24 @@ Prettier (`.prettierrc.json`): `{ "singleQuote": true, "semi": true, "trailingCo
 `lib/config.ts` **(normative)**. Values that change per environment are env vars (section 5); everything else is here.
 
 ```ts
-export const ROLES = ['frontend', 'backend', 'full-stack', 'product-engineer', 'ai-product-engineer'] as const;
+export const ROLES = [
+  'frontend',
+  'backend',
+  'full-stack',
+  'product-engineer',
+  'ai-product-engineer',
+] as const;
 export const SENIORITIES = ['junior', 'mid', 'senior'] as const;
 export const QUESTION_TYPES = ['behavioral', 'technical-concepts', 'system-design-lite'] as const;
 export const ANSWER_MODES = ['voice', 'text'] as const;
-export const DIMENSIONS = ['structure', 'specificity', 'ownership', 'impact', 'relevance', 'clarity'] as const;
+export const DIMENSIONS = [
+  'structure',
+  'specificity',
+  'ownership',
+  'impact',
+  'relevance',
+  'clarity',
+] as const;
 
 export const SETUP_DEFAULTS = {
   role: 'full-stack',
@@ -364,55 +379,55 @@ export const EVAL = { CONCURRENCY: 4, DEFAULT_MAX_COST_USD: 0.5 } as const;
 
 ### 4.1 Why these numbers
 
-| Constant | Reason |
-|---|---|
-| `THINK_SECONDS = 15` | Brief. Long enough to choose a story, short enough to feel like an interview. |
-| `TOKEN_TTL_S = 7_200` | A 5-question session takes 20–30 minutes; 2 hours allows breaks and a reload. |
-| `FEEDBACK_RETRY_ALLOWANCE = 2` | Covers transient provider errors without refunds (D-11). |
-| `MAX_CHARS = 4_000` | Brief. About 650 words, more than 4 minutes of speech. |
-| `SHORT_WORDS = 40` | Under about 20 seconds of speech; a real answer is rarely this short. |
-| `MAX_RESTARTS = 6` | Engines end recognition sessions after silence, after about a minute of audio, or (Chrome Android, iOS Safari) after every utterance. The counter therefore counts only *consecutive* runs that produced no result (it resets when a run delivers a result), so a long answer with many natural restarts never hits it; 6 consecutive empty runs means the engine is stuck (A-14). |
-| `NO_SPEECH_AUTO_RESTARTS = 2` | Avoids an error after a natural pause before the first word. |
-| `CHUNK_MAX_CHARS = 160` | Chrome (notably with online Google voices) can stop an utterance that lasts longer than about 15 s. 160 characters is about 12 s of speech at the slowest rate (0.8); sentence chunks avoid the cut-off (A-15). |
-| `ATTEMPT_TIMEOUT_MS = 20_000`, `FEEDBACK_DEADLINE_MS = 45_000` | Two attempts fit under a 60 s `maxDuration` with margin; p95 target is 9 s. |
-| `PACE` 120–160 | Common guidance for comfortable conversational pace; shown as guidance, never scored. |
-| `LIMITER_TIMEOUT_MS = 1_500` | Upstash REST round trips from `fra1` are expected in tens of milliseconds; 1.5 s means the service is unhealthy. |
+| Constant                                                       | Reason                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `THINK_SECONDS = 15`                                           | Brief. Long enough to choose a story, short enough to feel like an interview.                                                                                                                                                                                                                                                                                                      |
+| `TOKEN_TTL_S = 7_200`                                          | A 5-question session takes 20–30 minutes; 2 hours allows breaks and a reload.                                                                                                                                                                                                                                                                                                      |
+| `FEEDBACK_RETRY_ALLOWANCE = 2`                                 | Covers transient provider errors without refunds (D-11).                                                                                                                                                                                                                                                                                                                           |
+| `MAX_CHARS = 4_000`                                            | Brief. About 650 words, more than 4 minutes of speech.                                                                                                                                                                                                                                                                                                                             |
+| `SHORT_WORDS = 40`                                             | Under about 20 seconds of speech; a real answer is rarely this short.                                                                                                                                                                                                                                                                                                              |
+| `MAX_RESTARTS = 6`                                             | Engines end recognition sessions after silence, after about a minute of audio, or (Chrome Android, iOS Safari) after every utterance. The counter therefore counts only _consecutive_ runs that produced no result (it resets when a run delivers a result), so a long answer with many natural restarts never hits it; 6 consecutive empty runs means the engine is stuck (A-14). |
+| `NO_SPEECH_AUTO_RESTARTS = 2`                                  | Avoids an error after a natural pause before the first word.                                                                                                                                                                                                                                                                                                                       |
+| `CHUNK_MAX_CHARS = 160`                                        | Chrome (notably with online Google voices) can stop an utterance that lasts longer than about 15 s. 160 characters is about 12 s of speech at the slowest rate (0.8); sentence chunks avoid the cut-off (A-15).                                                                                                                                                                    |
+| `ATTEMPT_TIMEOUT_MS = 20_000`, `FEEDBACK_DEADLINE_MS = 45_000` | Two attempts fit under a 60 s `maxDuration` with margin; p95 target is 9 s.                                                                                                                                                                                                                                                                                                        |
+| `PACE` 120–160                                                 | Common guidance for comfortable conversational pace; shown as guidance, never scored.                                                                                                                                                                                                                                                                                              |
+| `LIMITER_TIMEOUT_MS = 1_500`                                   | Upstash REST round trips from `fra1` are expected in tens of milliseconds; 1.5 s means the service is unhealthy.                                                                                                                                                                                                                                                                   |
 
 ## 5. Environment variables
 
 `lib/env.ts` parses `process.env` with Zod on the first call of `getEnv()` (memoized), not at import time, so `next build` needs no runtime secrets. The module starts with `import 'server-only'`.
 
-| Name | Required | Example | Description |
-|---|---|---|---|
-| `LLM_MODE` | No | `live` | `live` or `mock`. Default `live`. `mock` is rejected when `VERCEL_ENV=production`. |
-| `OPENAI_API_KEY` | When live | `sk-proj-...` | Project-scoped key from the OpenAI project "rehearse" (section 28.2). |
-| `CHAT_MODEL` | When live | `<pin at build time, A-01>` | Model for feedback and summary. Documented default: "the provider's current small, cheap model", pinned to an exact id in T-24. In mock mode the effective model id is `mock`. |
-| `CHAT_MODEL_SUPPORTS_TEMPERATURE` | No | `true` | `false` for models that reject `temperature` (A-02). |
-| `CHAT_REASONING_EFFORT` | No | *(empty)* | For reasoning models only: the lowest supported effort value (for example `minimal` or `low`), passed as a provider option (A-02). Empty means not sent. |
-| `MAX_OUTPUT_TOKENS_FEEDBACK` | No | `900` | Integer 300–4000 (raise only for reasoning models, A-02). |
-| `MAX_OUTPUT_TOKENS_SUMMARY` | No | `400` | Integer 150–2000. |
-| `PRICE_INPUT_PER_MTOK` | When live | `0` | USD per 1M input tokens for `CHAT_MODEL`, copied from the provider pricing page (A-03). |
-| `PRICE_OUTPUT_PER_MTOK` | When live | `0` | USD per 1M output tokens for `CHAT_MODEL`. |
-| `PRICE_CACHED_INPUT_PER_MTOK` | No | *(empty)* | USD per 1M cached input tokens if the provider reports them; defaults to `PRICE_INPUT_PER_MTOK`. |
-| `DEMO_MODE` | No | `on` | `on`, `readonly` or `off` (FR-44). Default `on`. |
-| `SESSION_SECRET` | Yes | 64 hex chars | HMAC key for session tokens. `openssl rand -hex 32`. Min length 32. |
-| `SESSION_SECRET_PREVIOUS` | No | 64 hex chars | Accepted for verification only, for key rotation (section 13.1). |
-| `IP_HASH_SECRET` | Yes | 64 hex chars | Secret for the daily visitor salt (section 13.2). Different from `SESSION_SECRET`. Min length 32. |
-| `RATE_LIMIT_BACKEND` | No | `upstash` | `upstash` or `memory`. Default `upstash`. `memory` is rejected when `VERCEL_ENV=production`. |
-| `UPSTASH_REDIS_REST_URL` | When upstash | `https://<name>.upstash.io` | From the Upstash console. |
-| `UPSTASH_REDIS_REST_TOKEN` | When upstash | `AX...` | From the Upstash console. The standard token, not the read-only one. |
-| `RATE_LIMIT_SESSIONS_PER_IP_DAILY` | No | `3` | FR-41. |
-| `RATE_LIMIT_FEEDBACK_PER_IP_DAILY` | No | `20` | FR-41. |
-| `RATE_LIMIT_GLOBAL_LLM_DAILY` | No | `150` | FR-42. Feedback plus summary calls, all visitors. Choose with the rule in section 23.3. |
-| `NEXT_PUBLIC_SITE_URL` | Yes | `https://rehearse.firatkil.com` | Canonical origin for the origin check and metadata. Local: `http://localhost:3000`. Server code reads it only through `getEnv()`, never as a literal `process.env.NEXT_PUBLIC_SITE_URL` expression (Next.js inlines those at build time and E2E servers use different values on one build). |
-| `ALLOWED_ORIGINS` | No | `https://rehearse-git-main-firatkill.vercel.app` | Comma-separated extra origins. `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL` are added automatically as `https://<value>` when set. |
-| `LOG_LEVEL` | No | `info` | pino level. |
-| `MOCK_LLM_DELAY_MS` | No | `300` | Delay of mock feedback and summary responses. E2E sets `50`. |
-| `EVAL_MAX_COST_USD` | Eval | `0.50` | Budget guard (section 18.7). |
-| `EVAL_REPEATS` | No | `2` | Runs per golden item (D-22). |
-| `VERCEL_ENV`, `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` | Set by Vercel | — | Read only. |
-| `NODE_ENV` | Set by Next.js / Vitest | — | Read only. `development` adds `'unsafe-eval'` to the CSP. |
-| `GITHUB_STEP_SUMMARY` | Set by GitHub Actions | — | `pnpm eval --ci` appends its Markdown summary here. |
+| Name                                                                                                      | Required                | Example                                          | Description                                                                                                                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------- | ----------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `LLM_MODE`                                                                                                | No                      | `live`                                           | `live` or `mock`. Default `live`. `mock` is rejected when `VERCEL_ENV=production`.                                                                                                                                                                                                          |
+| `OPENAI_API_KEY`                                                                                          | When live               | `sk-proj-...`                                    | Project-scoped key from the OpenAI project "rehearse" (section 28.2).                                                                                                                                                                                                                       |
+| `CHAT_MODEL`                                                                                              | When live               | `<pin at build time, A-01>`                      | Model for feedback and summary. Documented default: "the provider's current small, cheap model", pinned to an exact id in T-24. In mock mode the effective model id is `mock`.                                                                                                              |
+| `CHAT_MODEL_SUPPORTS_TEMPERATURE`                                                                         | No                      | `true`                                           | `false` for models that reject `temperature` (A-02).                                                                                                                                                                                                                                        |
+| `CHAT_REASONING_EFFORT`                                                                                   | No                      | _(empty)_                                        | For reasoning models only: the lowest supported effort value (for example `minimal` or `low`), passed as a provider option (A-02). Empty means not sent.                                                                                                                                    |
+| `MAX_OUTPUT_TOKENS_FEEDBACK`                                                                              | No                      | `900`                                            | Integer 300–4000 (raise only for reasoning models, A-02).                                                                                                                                                                                                                                   |
+| `MAX_OUTPUT_TOKENS_SUMMARY`                                                                               | No                      | `400`                                            | Integer 150–2000.                                                                                                                                                                                                                                                                           |
+| `PRICE_INPUT_PER_MTOK`                                                                                    | When live               | `0`                                              | USD per 1M input tokens for `CHAT_MODEL`, copied from the provider pricing page (A-03).                                                                                                                                                                                                     |
+| `PRICE_OUTPUT_PER_MTOK`                                                                                   | When live               | `0`                                              | USD per 1M output tokens for `CHAT_MODEL`.                                                                                                                                                                                                                                                  |
+| `PRICE_CACHED_INPUT_PER_MTOK`                                                                             | No                      | _(empty)_                                        | USD per 1M cached input tokens if the provider reports them; defaults to `PRICE_INPUT_PER_MTOK`.                                                                                                                                                                                            |
+| `DEMO_MODE`                                                                                               | No                      | `on`                                             | `on`, `readonly` or `off` (FR-44). Default `on`.                                                                                                                                                                                                                                            |
+| `SESSION_SECRET`                                                                                          | Yes                     | 64 hex chars                                     | HMAC key for session tokens. `openssl rand -hex 32`. Min length 32.                                                                                                                                                                                                                         |
+| `SESSION_SECRET_PREVIOUS`                                                                                 | No                      | 64 hex chars                                     | Accepted for verification only, for key rotation (section 13.1).                                                                                                                                                                                                                            |
+| `IP_HASH_SECRET`                                                                                          | Yes                     | 64 hex chars                                     | Secret for the daily visitor salt (section 13.2). Different from `SESSION_SECRET`. Min length 32.                                                                                                                                                                                           |
+| `RATE_LIMIT_BACKEND`                                                                                      | No                      | `upstash`                                        | `upstash` or `memory`. Default `upstash`. `memory` is rejected when `VERCEL_ENV=production`.                                                                                                                                                                                                |
+| `UPSTASH_REDIS_REST_URL`                                                                                  | When upstash            | `https://<name>.upstash.io`                      | From the Upstash console.                                                                                                                                                                                                                                                                   |
+| `UPSTASH_REDIS_REST_TOKEN`                                                                                | When upstash            | `AX...`                                          | From the Upstash console. The standard token, not the read-only one.                                                                                                                                                                                                                        |
+| `RATE_LIMIT_SESSIONS_PER_IP_DAILY`                                                                        | No                      | `3`                                              | FR-41.                                                                                                                                                                                                                                                                                      |
+| `RATE_LIMIT_FEEDBACK_PER_IP_DAILY`                                                                        | No                      | `20`                                             | FR-41.                                                                                                                                                                                                                                                                                      |
+| `RATE_LIMIT_GLOBAL_LLM_DAILY`                                                                             | No                      | `150`                                            | FR-42. Feedback plus summary calls, all visitors. Choose with the rule in section 23.3.                                                                                                                                                                                                     |
+| `NEXT_PUBLIC_SITE_URL`                                                                                    | Yes                     | `https://rehearse.firatkil.com`                  | Canonical origin for the origin check and metadata. Local: `http://localhost:3000`. Server code reads it only through `getEnv()`, never as a literal `process.env.NEXT_PUBLIC_SITE_URL` expression (Next.js inlines those at build time and E2E servers use different values on one build). |
+| `ALLOWED_ORIGINS`                                                                                         | No                      | `https://rehearse-git-main-firatkill.vercel.app` | Comma-separated extra origins. `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL` are added automatically as `https://<value>` when set.                                                                                                                                    |
+| `LOG_LEVEL`                                                                                               | No                      | `info`                                           | pino level.                                                                                                                                                                                                                                                                                 |
+| `MOCK_LLM_DELAY_MS`                                                                                       | No                      | `300`                                            | Delay of mock feedback and summary responses. E2E sets `50`.                                                                                                                                                                                                                                |
+| `EVAL_MAX_COST_USD`                                                                                       | Eval                    | `0.50`                                           | Budget guard (section 18.7).                                                                                                                                                                                                                                                                |
+| `EVAL_REPEATS`                                                                                            | No                      | `2`                                              | Runs per golden item (D-22).                                                                                                                                                                                                                                                                |
+| `VERCEL_ENV`, `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` | Set by Vercel           | —                                                | Read only.                                                                                                                                                                                                                                                                                  |
+| `NODE_ENV`                                                                                                | Set by Next.js / Vitest | —                                                | Read only. `development` adds `'unsafe-eval'` to the CSP.                                                                                                                                                                                                                                   |
+| `GITHUB_STEP_SUMMARY`                                                                                     | Set by GitHub Actions   | —                                                | `pnpm eval --ci` appends its Markdown summary here.                                                                                                                                                                                                                                         |
 
 Zod rules: integer limits and token caps via `z.coerce.number().int()` with the ranges above (quotas `.positive()`); prices via `z.coerce.number().nonnegative()` (default 0; live eval refuses 0, section 18.7); secrets `z.string().min(32)`; booleans via `z.enum(['true','false']).transform(v => v === 'true')`; `superRefine` enforces "required when live" (`OPENAI_API_KEY`, `CHAT_MODEL`, `PRICE_INPUT_PER_MTOK`, `PRICE_OUTPUT_PER_MTOK`), "required when upstash" (`UPSTASH_*`), and "mock and memory forbidden in production". `SESSION_SECRET` and `IP_HASH_SECRET` must differ. The error message lists missing or invalid variables by name, never values.
 
@@ -451,54 +466,71 @@ export const QuestionSchema = z
     roles: z.array(z.enum(ROLES)).min(1),
     seniority: z.array(z.enum(SENIORITIES)).min(1),
     topic: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
-    prompt: z.string().min(20).max(320).refine((s) => words(s) <= QUESTION_BANK.PROMPT_MAX_WORDS, {
-      message: `prompt must have at most ${QUESTION_BANK.PROMPT_MAX_WORDS} words`,
-    }),
+    prompt: z
+      .string()
+      .min(20)
+      .max(320)
+      .refine((s) => words(s) <= QUESTION_BANK.PROMPT_MAX_WORDS, {
+        message: `prompt must have at most ${QUESTION_BANK.PROMPT_MAX_WORDS} words`,
+      }),
     follow_up_hints: z.array(z.string().min(10).max(200)).min(2).max(4),
     what_good_looks_like: z.array(z.string().min(10).max(160)).min(3).max(5),
-    time_limit_s: z.number().int().min(QUESTION_BANK.TIME_LIMIT_MIN_S).max(QUESTION_BANK.TIME_LIMIT_MAX_S),
+    time_limit_s: z
+      .number()
+      .int()
+      .min(QUESTION_BANK.TIME_LIMIT_MIN_S)
+      .max(QUESTION_BANK.TIME_LIMIT_MAX_S),
     status: z.enum(['active', 'retired']),
     added_in: z.string().regex(/^\d+\.\d+\.\d+$/),
   })
   .strict()
   .superRefine((q, ctx) => {
-    const prefix = { behavioral: 'beh', 'technical-concepts': 'tec', 'system-design-lite': 'sdl' }[q.type];
-    if (!q.id.startsWith(`${prefix}-`)) ctx.addIssue({ code: 'custom', message: `id prefix must be ${prefix}` });
-    if (new Set(q.roles).size !== q.roles.length) ctx.addIssue({ code: 'custom', message: 'duplicate role' });
-    if (new Set(q.seniority).size !== q.seniority.length) ctx.addIssue({ code: 'custom', message: 'duplicate seniority' });
+    const prefix = { behavioral: 'beh', 'technical-concepts': 'tec', 'system-design-lite': 'sdl' }[
+      q.type
+    ];
+    if (!q.id.startsWith(`${prefix}-`))
+      ctx.addIssue({ code: 'custom', message: `id prefix must be ${prefix}` });
+    if (new Set(q.roles).size !== q.roles.length)
+      ctx.addIssue({ code: 'custom', message: 'duplicate role' });
+    if (new Set(q.seniority).size !== q.seniority.length)
+      ctx.addIssue({ code: 'custom', message: 'duplicate seniority' });
   });
 
 export type Question = z.infer<typeof QuestionSchema>;
 
-export const ManifestSchema = z.object({
-  bankVersion: z.string().regex(/^\d+\.\d+\.\d+$/),
-  files: z.array(z.string().regex(/^[a-z-]+\.json$/)).min(1),
-}).strict();
+export const ManifestSchema = z
+  .object({
+    bankVersion: z.string().regex(/^\d+\.\d+\.\d+$/),
+    files: z.array(z.string().regex(/^[a-z-]+\.json$/)).min(1),
+  })
+  .strict();
 
 /** What the browser receives and stores (no status, no added_in). */
-export const QuestionSnapshotSchema = z.object({
-  id: z.string(),
-  type: z.enum(QUESTION_TYPES),
-  topic: z.string(),
-  prompt: z.string(),
-  follow_up_hints: z.array(z.string()),
-  what_good_looks_like: z.array(z.string()),
-  time_limit_s: z.number().int(),
-}).strict();
+export const QuestionSnapshotSchema = z
+  .object({
+    id: z.string(),
+    type: z.enum(QUESTION_TYPES),
+    topic: z.string(),
+    prompt: z.string(),
+    follow_up_hints: z.array(z.string()),
+    what_good_looks_like: z.array(z.string()),
+    time_limit_s: z.number().int(),
+  })
+  .strict();
 export type QuestionSnapshot = z.infer<typeof QuestionSnapshotSchema>;
 ```
 
 Field semantics:
 
-| Field | Meaning |
-|---|---|
-| `roles` | Roles for which the question is eligible. Behavioral questions usually list all five. |
-| `seniority` | Levels for which the question is eligible. |
-| `topic` | Kebab-case theme. Selection avoids two questions with the same topic in a session. At most 4 questions share a topic. |
-| `prompt` | What the interviewer says. One question, at most 45 words, no sub-lists. |
-| `follow_up_hints` | Probes an interviewer might use; given to the model as context and shown in the report under "What interviewers listen for" only through `what_good_looks_like`. |
-| `what_good_looks_like` | 3–5 bullets describing a strong answer's content; passed to the model and shown to the candidate after feedback. |
-| `time_limit_s` | Voice recording limit and text-mode suggestion. Defaults by type in `QUESTION_BANK.DEFAULT_TIME_LIMIT_S`. |
+| Field                  | Meaning                                                                                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `roles`                | Roles for which the question is eligible. Behavioral questions usually list all five.                                                                            |
+| `seniority`            | Levels for which the question is eligible.                                                                                                                       |
+| `topic`                | Kebab-case theme. Selection avoids two questions with the same topic in a session. At most 4 questions share a topic.                                            |
+| `prompt`               | What the interviewer says. One question, at most 45 words, no sub-lists.                                                                                         |
+| `follow_up_hints`      | Probes an interviewer might use; given to the model as context and shown in the report under "What interviewers listen for" only through `what_good_looks_like`. |
+| `what_good_looks_like` | 3–5 bullets describing a strong answer's content; passed to the model and shown to the candidate after feedback.                                                 |
+| `time_limit_s`         | Voice recording limit and text-mode suggestion. Defaults by type in `QUESTION_BANK.DEFAULT_TIME_LIMIT_S`.                                                        |
 
 ### 6.3 Content rules and coverage matrix
 
@@ -520,11 +552,11 @@ Every question must satisfy all of these. The reviewer checks rules 1–8 by rea
 
 Target distribution for the 120 active questions at v1.0.0:
 
-| Type | Count | Notes |
-|---|---|---|
-| Behavioral | 50 | At least 35 eligible for all roles. At least 6 senior-only themes (influence, mentoring, strategy, hiring, cross-team trade-offs, technical debt decisions). At least 6 eligible for `ai-product-engineer` with AI-specific situations. |
-| Technical concepts | 40 | At least 8 per role (counting multi-role questions). At least 8 AI-specific (evaluation, prompt injection, structured output, streaming, latency and cost, retrieval, guardrails, model choice). |
-| System design lite | 30 | Small, product-sized systems answerable in 3 minutes. At least 5 eligible for junior for every role. At least 6 AI-specific. |
+| Type               | Count | Notes                                                                                                                                                                                                                                   |
+| ------------------ | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Behavioral         | 50    | At least 35 eligible for all roles. At least 6 senior-only themes (influence, mentoring, strategy, hiring, cross-team trade-offs, technical debt decisions). At least 6 eligible for `ai-product-engineer` with AI-specific situations. |
+| Technical concepts | 40    | At least 8 per role (counting multi-role questions). At least 8 AI-specific (evaluation, prompt injection, structured output, streaming, latency and cost, retrieval, guardrails, model choice).                                        |
+| System design lite | 30    | Small, product-sized systems answerable in 3 minutes. At least 5 eligible for junior for every role. At least 6 AI-specific.                                                                                                            |
 
 `pnpm questions:validate` prints the coverage matrix as a table with rows `role/type` and columns `junior | mid | senior`, marks cells below 5 with `!`, and exits 1 when any cell is below 5 or any rule 9–12 fails.
 
@@ -933,17 +965,24 @@ export type SelectionInput = {
 export function selectQuestions(bank: readonly Question[], input: SelectionInput): Question[] {
   const rng = mulberry32(seedToInt(input.seed));
   const types = QUESTION_BANK.TYPE_ORDER.filter((t) => input.types.includes(t));
-  const active = [...bank].filter((q) => q.status === 'active').sort((a, b) => (a.id < b.id ? -1 : 1));
+  const active = [...bank]
+    .filter((q) => q.status === 'active')
+    .sort((a, b) => (a.id < b.id ? -1 : 1));
 
   // 1. Slot types: round-robin over the selected types from an rng-chosen offset.
   const offset = Math.floor(rng() * types.length);
-  const slotTypes = Array.from({ length: input.length }, (_, i) => types[(offset + i) % types.length] as QuestionType);
+  const slotTypes = Array.from(
+    { length: input.length },
+    (_, i) => types[(offset + i) % types.length] as QuestionType,
+  );
 
   // 2. Pools, built and shuffled in TYPE_ORDER (consumes rng in a fixed order).
   const pools = new Map<QuestionType, Question[][]>();
   for (const t of types) {
     const ofType = active.filter((q) => q.type === t);
-    const tier1 = ofType.filter((q) => q.roles.includes(input.role) && q.seniority.includes(input.seniority));
+    const tier1 = ofType.filter(
+      (q) => q.roles.includes(input.role) && q.seniority.includes(input.seniority),
+    );
     const tier2 = ofType.filter((q) => q.roles.includes(input.role) && !tier1.includes(q));
     const tier3 = ofType.filter((q) => !tier1.includes(q) && !tier2.includes(q));
     pools.set(t, [shuffle(tier1, rng), shuffle(tier2, rng), shuffle(tier3, rng)]);
@@ -991,89 +1030,122 @@ Properties tested in UT-01: same input → same ids; different seeds produce dif
 
 ### 7.2 Object stores (version 1)
 
-| Store | keyPath | Indexes | Contents |
-|---|---|---|---|
-| `sessions` | `id` | `by_createdAt` (`createdAt`), `by_status` (`status`) | `SessionRecord` |
-| `answers` | `['sessionId', 'index']` | `by_sessionId` (`sessionId`) | `AnswerRecord` |
-| `meta` | `key` | — | `{ key: 'persistRequested', value: boolean }`, `{ key: 'createdWithAppVersion', value: string }` |
+| Store      | keyPath                  | Indexes                                              | Contents                                                                                         |
+| ---------- | ------------------------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `sessions` | `id`                     | `by_createdAt` (`createdAt`), `by_status` (`status`) | `SessionRecord`                                                                                  |
+| `answers`  | `['sessionId', 'index']` | `by_sessionId` (`sessionId`)                         | `AnswerRecord`                                                                                   |
+| `meta`     | `key`                    | —                                                    | `{ key: 'persistRequested', value: boolean }`, `{ key: 'createdWithAppVersion', value: string }` |
 
 Setup preferences and the theme live in `localStorage` (`rehearse-setup`, `rehearse-theme`) because they must be read synchronously before first paint or form render.
 
 ### 7.3 Record schemas (normative, `lib/storage/schema.ts`)
 
 ```ts
-export const CheckpointPhase = z.enum(['intro', 'asking', 'thinking', 'answering', 'review', 'submitting', 'feedback', 'done']);
+export const CheckpointPhase = z.enum([
+  'intro',
+  'asking',
+  'thinking',
+  'answering',
+  'review',
+  'submitting',
+  'feedback',
+  'done',
+]);
 
-export const SetupSchema = z.object({
-  role: z.enum(ROLES),
-  seniority: z.enum(SENIORITIES),
-  types: z.array(z.enum(QUESTION_TYPES)).min(1),
-  length: z.union([z.literal(3), z.literal(5)]),
-  mode: z.enum(ANSWER_MODES),
-  readAloud: z.boolean(),
-  voiceURI: z.string().max(500).nullable(),
-  rate: z.number().min(TTS.RATE_MIN).max(TTS.RATE_MAX),
-}).strict();
+export const SetupSchema = z
+  .object({
+    role: z.enum(ROLES),
+    seniority: z.enum(SENIORITIES),
+    types: z.array(z.enum(QUESTION_TYPES)).min(1),
+    length: z.union([z.literal(3), z.literal(5)]),
+    mode: z.enum(ANSWER_MODES),
+    readAloud: z.boolean(),
+    voiceURI: z.string().max(500).nullable(),
+    rate: z.number().min(TTS.RATE_MIN).max(TTS.RATE_MAX),
+  })
+  .strict();
 
-export const SessionRecordSchema = z.object({
-  schemaVersion: z.literal(1),
-  id: z.string().uuid(),
-  origin: z.enum(['live', 'sample', 'import']),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-  completedAt: z.string().datetime().nullable(),
-  status: z.enum(['in_progress', 'completed', 'ended_early']),
-  setup: SetupSchema,
-  currentMode: z.enum(ANSWER_MODES),
-  seed: z.string().regex(SESSION.SEED_PATTERN),
-  bankVersion: z.string(),
-  questions: z.array(QuestionSnapshotSchema).min(1).max(5),
-  feedback: z.object({
-    enabled: z.boolean(),
-    reason: z.enum(['readonly', 'quota', 'limiter_unavailable', 'practice']).nullable(),
-  }),
-  token: z.string().max(2_000).nullable(),
-  tokenExpiresAt: z.string().datetime().nullable(),
-  checkpoint: z.object({ index: z.number().int().min(0), phase: CheckpointPhase, at: z.string().datetime() }),
-  summary: SummarySchema.nullable(),            // section 15.5
-  summaryStatus: z.enum(['none', 'done', 'failed', 'unavailable']),
-}).strict();
+export const SessionRecordSchema = z
+  .object({
+    schemaVersion: z.literal(1),
+    id: z.string().uuid(),
+    origin: z.enum(['live', 'sample', 'import']),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+    completedAt: z.string().datetime().nullable(),
+    status: z.enum(['in_progress', 'completed', 'ended_early']),
+    setup: SetupSchema,
+    currentMode: z.enum(ANSWER_MODES),
+    seed: z.string().regex(SESSION.SEED_PATTERN),
+    bankVersion: z.string(),
+    questions: z.array(QuestionSnapshotSchema).min(1).max(5),
+    feedback: z.object({
+      enabled: z.boolean(),
+      reason: z.enum(['readonly', 'quota', 'limiter_unavailable', 'practice']).nullable(),
+    }),
+    token: z.string().max(2_000).nullable(),
+    tokenExpiresAt: z.string().datetime().nullable(),
+    checkpoint: z.object({
+      index: z.number().int().min(0),
+      phase: CheckpointPhase,
+      at: z.string().datetime(),
+    }),
+    summary: SummarySchema.nullable(), // section 15.5
+    summaryStatus: z.enum(['none', 'done', 'failed', 'unavailable']),
+  })
+  .strict();
 
-export const TimingSchema = z.object({
-  recordingMs: z.number().nonnegative().nullable(),
-  firstResultOffsetMs: z.number().nonnegative().nullable(),
-  resultOffsetsMs: z.array(z.number().nonnegative()).max(4_000),
-}).strict();
+export const TimingSchema = z
+  .object({
+    recordingMs: z.number().nonnegative().nullable(),
+    firstResultOffsetMs: z.number().nonnegative().nullable(),
+    resultOffsetsMs: z.array(z.number().nonnegative()).max(4_000),
+  })
+  .strict();
 
-export const DeliveryMetricsSchema = z.object({
-  words: z.number().int().nonnegative(),
-  speakingMs: z.number().nonnegative().nullable(),
-  wpm: z.number().nonnegative().nullable(),
-  fillers: z.object({ total: z.number().int().nonnegative(), byPhrase: z.record(z.string(), z.number().int().nonnegative()) }),
-  longestPauseMs: z.number().nonnegative().nullable(),
-  longPauses: z.number().int().nonnegative().nullable(),
-}).strict();
+export const DeliveryMetricsSchema = z
+  .object({
+    words: z.number().int().nonnegative(),
+    speakingMs: z.number().nonnegative().nullable(),
+    wpm: z.number().nonnegative().nullable(),
+    fillers: z.object({
+      total: z.number().int().nonnegative(),
+      byPhrase: z.record(z.string(), z.number().int().nonnegative()),
+    }),
+    longestPauseMs: z.number().nonnegative().nullable(),
+    longPauses: z.number().int().nonnegative().nullable(),
+  })
+  .strict();
 
-export const AnswerRecordSchema = z.object({
-  schemaVersion: z.literal(1),
-  sessionId: z.string().uuid(),
-  index: z.number().int().min(0).max(4),
-  questionId: z.string(),
-  mode: z.enum(ANSWER_MODES),
-  status: z.enum(['draft', 'review', 'submitted', 'scored', 'saved', 'skipped']),
-  rawTranscript: z.string().max(ANSWER.MAX_CHARS),
-  transcript: z.string().max(ANSWER.MAX_CHARS),
-  timing: TimingSchema,
-  metrics: DeliveryMetricsSchema,
-  feedback: FeedbackSchema.nullable(),          // section 15.2
-  feedbackMeta: z.object({
-    model: z.string(), promptVersion: z.string(), latencyMs: z.number(), costUsd: z.number(),
-  }).nullable(),
-  attempts: z.number().int().nonnegative(),
-  notice: z.enum(['time_limit', 'char_cap', 'tab_hidden', 'network', 'unexpected_stop', 'restored']).nullable(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-}).strict();
+export const AnswerRecordSchema = z
+  .object({
+    schemaVersion: z.literal(1),
+    sessionId: z.string().uuid(),
+    index: z.number().int().min(0).max(4),
+    questionId: z.string(),
+    mode: z.enum(ANSWER_MODES),
+    status: z.enum(['draft', 'review', 'submitted', 'scored', 'saved', 'skipped']),
+    rawTranscript: z.string().max(ANSWER.MAX_CHARS),
+    transcript: z.string().max(ANSWER.MAX_CHARS),
+    timing: TimingSchema,
+    metrics: DeliveryMetricsSchema,
+    feedback: FeedbackSchema.nullable(), // section 15.2
+    feedbackMeta: z
+      .object({
+        model: z.string(),
+        promptVersion: z.string(),
+        latencyMs: z.number(),
+        costUsd: z.number(),
+      })
+      .nullable(),
+    attempts: z.number().int().nonnegative(),
+    notice: z
+      .enum(['time_limit', 'char_cap', 'tab_hidden', 'network', 'unexpected_stop', 'restored'])
+      .nullable(),
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+  })
+  .strict();
 ```
 
 `rawTranscript` is what recognition produced; `transcript` is the edited text that is scored. In text mode both are equal.
@@ -1120,7 +1192,9 @@ export const ExportFileSchema = z.object({
   formatVersion: z.number().int().positive(),
   exportedAt: z.string().datetime(),
   appVersion: z.string(),
-  sessions: z.array(z.object({ session: SessionRecordSchema, answers: z.array(AnswerRecordSchema).max(5) })).max(1_000),
+  sessions: z
+    .array(z.object({ session: SessionRecordSchema, answers: z.array(AnswerRecordSchema).max(5) }))
+    .max(1_000),
 });
 ```
 
@@ -1141,7 +1215,10 @@ export interface SessionRepository {
   readonly persistent: boolean;
   createSession(session: SessionRecord): Promise<void>;
   getSession(id: string): Promise<SessionRecord | null>;
-  updateSession(id: string, patch: Partial<Omit<SessionRecord, 'id' | 'schemaVersion'>>): Promise<SessionRecord>;
+  updateSession(
+    id: string,
+    patch: Partial<Omit<SessionRecord, 'id' | 'schemaVersion'>>,
+  ): Promise<SessionRecord>;
   listSessions(): Promise<{ sessions: SessionRecord[]; skipped: number }>; // newest first by createdAt
   deleteSession(id: string): Promise<void>;
   putAnswer(answer: AnswerRecord): Promise<void>;
@@ -1156,14 +1233,14 @@ export interface SessionRepository {
 
 ## 8. Module boundaries
 
-| Module | May be imported by client code | Notes |
-|---|---|---|
-| `lib/config.ts`, `lib/labels.ts`, `lib/errors.ts` (codes and types only) | Yes | |
-| `lib/api/contracts.ts`, `lib/api/client.ts` | Yes | Shared Zod request/response schemas; typed fetch |
-| `lib/questions/schema.ts` | Yes (types and snapshot schema) | |
-| `lib/feedback/schema.ts`, `lib/feedback/rubric.ts`, `lib/summary/schema.ts` | Yes | Strict schemas parse responses; rubric renders `/how-it-works` |
-| `lib/metrics/**`, `lib/speech/**`, `lib/room/**`, `lib/storage/**`, `lib/report/**` | Yes | Browser-only APIs accessed inside functions, never at import time |
-| `lib/env.ts`, `lib/logger.ts`, `lib/request.ts`, `lib/hash.ts`, `lib/llm/**`, `lib/prompts/**`, `lib/ratelimit/**`, `lib/session/**`, `lib/questions/bank.ts`, `lib/questions/select.ts`, `lib/feedback/generate.ts`, `lib/feedback/normalize.ts`, `lib/feedback/evidence.ts`, `lib/summary/generate.ts`, `lib/cost/**` | No | Each starts with `import 'server-only'` (except pure helpers used by scripts, which are imported only by server modules; `normalize.ts` and `evidence.ts` are pure and also unit-tested directly) |
+| Module                                                                                                                                                                                                                                                                                                                  | May be imported by client code  | Notes                                                                                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lib/config.ts`, `lib/labels.ts`, `lib/errors.ts` (codes and types only)                                                                                                                                                                                                                                                | Yes                             |                                                                                                                                                                                                   |
+| `lib/api/contracts.ts`, `lib/api/client.ts`                                                                                                                                                                                                                                                                             | Yes                             | Shared Zod request/response schemas; typed fetch                                                                                                                                                  |
+| `lib/questions/schema.ts`                                                                                                                                                                                                                                                                                               | Yes (types and snapshot schema) |                                                                                                                                                                                                   |
+| `lib/feedback/schema.ts`, `lib/feedback/rubric.ts`, `lib/summary/schema.ts`                                                                                                                                                                                                                                             | Yes                             | Strict schemas parse responses; rubric renders `/how-it-works`                                                                                                                                    |
+| `lib/metrics/**`, `lib/speech/**`, `lib/room/**`, `lib/storage/**`, `lib/report/**`                                                                                                                                                                                                                                     | Yes                             | Browser-only APIs accessed inside functions, never at import time                                                                                                                                 |
+| `lib/env.ts`, `lib/logger.ts`, `lib/request.ts`, `lib/hash.ts`, `lib/llm/**`, `lib/prompts/**`, `lib/ratelimit/**`, `lib/session/**`, `lib/questions/bank.ts`, `lib/questions/select.ts`, `lib/feedback/generate.ts`, `lib/feedback/normalize.ts`, `lib/feedback/evidence.ts`, `lib/summary/generate.ts`, `lib/cost/**` | No                              | Each starts with `import 'server-only'` (except pure helpers used by scripts, which are imported only by server modules; `normalize.ts` and `evidence.ts` are pure and also unit-tested directly) |
 
 ESLint enforces the "No" column with `no-restricted-imports` for files in `components/**`, `hooks/**` and `app/**/` client components (`'use client'` files are matched by a custom rule or by placing client components under `components/`). `lib/feedback/rubric.ts`, `lib/metrics/**` and `lib/speech/**` must not import `next/*`.
 
@@ -1173,15 +1250,15 @@ ESLint enforces the "No" column with `no-restricted-imports` for files in `compo
 
 Expected support at the time of writing. **Verify at build time (A-11)** with MDN browser-compat data for `SpeechRecognition` and `SpeechSynthesis`, and by running a 3-question voice session by hand in each browser. Publish the verified table on `/how-it-works` and in the README, with the verification date.
 
-| Browser | SpeechRecognition | speechSynthesis | Where recognition audio goes (A-12) | Rehearse behaviour |
-|---|---|---|---|---|
-| Chrome desktop | Yes (`webkitSpeechRecognition`; unprefixed in some versions) | Yes, OS voices plus online "Google" voices | Google's servers | Voice |
-| Edge desktop | Yes (prefixed) | Yes, including online "Natural" voices | Microsoft's online speech service | Voice |
-| Chrome Android | Yes, with continuous-mode quirks (A-15) | Yes | Google | Voice |
-| Safari macOS | Yes (prefixed), partial: needs Siri and Dictation enabled; sessions may end early | Yes | Apple's servers, or on-device where supported | Voice, with restarts and fallback |
-| Safari iOS and all iOS browsers | Same WebKit engine, partial | Yes | Apple | Voice, with restarts and fallback |
-| Firefox | No | Yes | — | Text mode, questions read aloud |
-| Brave | Constructor exists, service usually fails with `network` or `not-allowed` | Yes | — | Falls back to text on the first error |
+| Browser                         | SpeechRecognition                                                                 | speechSynthesis                            | Where recognition audio goes (A-12)           | Rehearse behaviour                    |
+| ------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------- | ------------------------------------- |
+| Chrome desktop                  | Yes (`webkitSpeechRecognition`; unprefixed in some versions)                      | Yes, OS voices plus online "Google" voices | Google's servers                              | Voice                                 |
+| Edge desktop                    | Yes (prefixed)                                                                    | Yes, including online "Natural" voices     | Microsoft's online speech service             | Voice                                 |
+| Chrome Android                  | Yes, with continuous-mode quirks (A-15)                                           | Yes                                        | Google                                        | Voice                                 |
+| Safari macOS                    | Yes (prefixed), partial: needs Siri and Dictation enabled; sessions may end early | Yes                                        | Apple's servers, or on-device where supported | Voice, with restarts and fallback     |
+| Safari iOS and all iOS browsers | Same WebKit engine, partial                                                       | Yes                                        | Apple                                         | Voice, with restarts and fallback     |
+| Firefox                         | No                                                                                | Yes                                        | —                                             | Text mode, questions read aloud       |
+| Brave                           | Constructor exists, service usually fails with `network` or `not-allowed`         | Yes                                        | —                                             | Falls back to text on the first error |
 
 Rules:
 
@@ -1211,13 +1288,15 @@ export function detectCapabilities(w: WindowWithSpeech = window as WindowWithSpe
   return {
     secureContext,
     recognition: secureContext && getRecognitionCtor(w) !== null,
-    synthesis: typeof w.speechSynthesis !== 'undefined' && typeof w.SpeechSynthesisUtterance === 'function',
+    synthesis:
+      typeof w.speechSynthesis !== 'undefined' && typeof w.SpeechSynthesisUtterance === 'function',
     mediaDevices: typeof w.navigator?.mediaDevices?.getUserMedia === 'function',
     indexedDb: typeof w.indexedDB !== 'undefined' && w.indexedDB !== null,
   };
 }
 
-export type CapabilityNotice = 'voice' | 'synthesis-only' | 'recognition-only' | 'none' | 'insecure';
+export type CapabilityNotice =
+  'voice' | 'synthesis-only' | 'recognition-only' | 'none' | 'insecure';
 
 export function capabilityNotice(c: Capabilities): CapabilityNotice {
   if (!c.secureContext) return 'insecure';
@@ -1237,7 +1316,9 @@ export function capabilityNotice(c: Capabilities): CapabilityNotice {
 ```ts
 export type MicCheck = 'granted' | 'denied' | 'no-device' | 'error';
 
-export async function checkMicrophone(md: MediaDevices = navigator.mediaDevices): Promise<MicCheck> {
+export async function checkMicrophone(
+  md: MediaDevices = navigator.mediaDevices,
+): Promise<MicCheck> {
   try {
     const stream = await md.getUserMedia({ audio: true });
     for (const track of stream.getTracks()) track.stop(); // never keep the stream open
@@ -1266,7 +1347,10 @@ export type RecognizerHandlers = {
   onEnd(): void;
 };
 
-export function createRecognizer(Ctor: SpeechRecognitionCtor, h: RecognizerHandlers): { start(): void; stop(): void; abort(): void } {
+export function createRecognizer(
+  Ctor: SpeechRecognitionCtor,
+  h: RecognizerHandlers,
+): { start(): void; stop(): void; abort(): void } {
   const r = new Ctor();
   r.lang = SPEECH.LANG;
   r.continuous = true;
@@ -1293,7 +1377,8 @@ Restarts and the automatic start after the think timer call `start()` without a 
 The recorder is a pure reducer plus an effect runner in `hooks/use-recorder.ts`. The reducer never touches browser APIs.
 
 ```ts
-export type StopReason = 'user' | 'time_limit' | 'char_cap' | 'tab_hidden' | 'network' | 'unexpected_stop';
+export type StopReason =
+  'user' | 'time_limit' | 'char_cap' | 'tab_hidden' | 'network' | 'unexpected_stop';
 export type FailKind = 'permission' | 'no-device' | 'no-speech' | 'unavailable';
 
 export type RecorderState =
@@ -1306,19 +1391,23 @@ export type RecorderState =
   | { kind: 'failed'; fail: FailKind };
 
 export type RecorderCtx = {
-  transcript: TranscriptState;     // section 9.5
-  restarts: number;                // consecutive restarts of runs that produced no RESULT; reset to 0 when a run delivers a RESULT
-  noSpeechRestarts: number;        // restarts after no-speech with zero words; reset to 0 on START from idle/failed
-  sawNoSpeech: boolean;            // set by a no-speech error in the current run
-  runHadResult: boolean;           // set by any RESULT in the current run
-  startedAtMs: number | null;      // performance.now() at first START
+  transcript: TranscriptState; // section 9.5
+  restarts: number; // consecutive restarts of runs that produced no RESULT; reset to 0 when a run delivers a RESULT
+  noSpeechRestarts: number; // restarts after no-speech with zero words; reset to 0 on START from idle/failed
+  sawNoSpeech: boolean; // set by a no-speech error in the current run
+  runHadResult: boolean; // set by any RESULT in the current run
+  startedAtMs: number | null; // performance.now() at first START
   resultOffsetsMs: number[];
 };
 
 export type RecorderEvent =
   | { type: 'START'; now: number }
   | { type: 'RUN_STARTED' }
-  | { type: 'RESULT'; now: number; results: ReadonlyArray<{ transcript: string; isFinal: boolean }> }
+  | {
+      type: 'RESULT';
+      now: number;
+      results: ReadonlyArray<{ transcript: string; isFinal: boolean }>;
+    }
   | { type: 'ERROR'; code: string }
   | { type: 'END' }
   | { type: 'STOP'; reason: StopReason }
@@ -1328,27 +1417,27 @@ export type RecorderEvent =
 
 Transitions (an event not listed for a state is ignored):
 
-| From | Event | Condition | To | Effects |
-|---|---|---|---|---|
-| `idle`, `failed` | `START` | — | `starting(run+1)` (`run` is 0 from `idle`; `failed` keeps the last run number in the hook) | create recognizer, `start()`; set `startedAtMs` if null; keep `transcript.committed` (so "Try again" appends); reset `restarts`, `noSpeechRestarts`, `sawNoSpeech`, `runHadResult` |
-| `starting` | `RUN_STARTED` | — | `listening` | — |
-| `starting`, `listening` | `RESULT` | — | `listening` | rebuild run text (9.5); `runHadResult = true`; push `now - startedAtMs` to `resultOffsetsMs` (cap `SPEECH.RESULT_OFFSETS_MAX` entries); if total length ≥ `ANSWER.MAX_CHARS` → dispatch `STOP(char_cap)` |
-| `starting`, `listening` | `ERROR` `no-speech` | — | same | `sawNoSpeech = true` (an `END` follows) |
-| `starting`, `listening`, `restarting` | `ERROR` `not-allowed` | — | `failed(permission)` | `abort()` |
-| same | `ERROR` `service-not-allowed`, `language-not-supported`, `bad-grammar`, `phrases-not-supported`, `start-failed`, any unknown code | — | `failed(unavailable)` | `abort()`; committed text kept |
-| same | `ERROR` `audio-capture` | — | `failed(no-device)` | `abort()` |
-| same | `ERROR` `network` | words > 0 | `stopped(network)` | commit run text |
-| same | `ERROR` `network` | words = 0 | `failed(unavailable)` | — |
-| any | `ERROR` `aborted` | — | unchanged | ignored (we abort deliberately; an `END` follows) |
-| `starting`, `listening` | `END` | `sawNoSpeech` and words = 0 and `noSpeechRestarts < NO_SPEECH_AUTO_RESTARTS` | `restarting` | `noSpeechRestarts++`, schedule `RESTART_DUE` after `RESTART_DELAY_MS` |
-| `starting`, `listening` | `END` | `sawNoSpeech` and words = 0 and limit reached | `failed(no-speech)` | — |
-| `starting`, `listening` | `END` | otherwise, and (`runHadResult` or `restarts < MAX_RESTARTS`) | `restarting` | commit run text; `restarts = runHadResult ? 0 : restarts + 1`; schedule `RESTART_DUE` |
-| `starting`, `listening` | `END` | otherwise, and not `runHadResult` and `restarts ≥ MAX_RESTARTS` | `stopped(unexpected_stop)` | commit run text |
-| `restarting` | `RESTART_DUE` | — | `starting(run+1)` | new recognizer, `start()`; `sawNoSpeech = false`; `runHadResult = false` |
-| `starting`, `listening`, `restarting` | `STOP` | — | `stopping(reason)` | `stop()` (if `restarting`, cancel the timer and go straight to `stopped(reason)`); schedule `GRACE_TIMEOUT` after `STOP_GRACE_MS` |
-| `stopping` | `RESULT` | — | `stopping` | rebuild run text (final results often arrive after `stop()`) |
-| `stopping` | `END` | — | `stopped(reason)` | commit run text; cancel grace timer |
-| `stopping` | `GRACE_TIMEOUT` | — | `stopped(reason)` | `abort()`; commit run text |
+| From                                  | Event                                                                                                                             | Condition                                                                    | To                                                                                         | Effects                                                                                                                                                                                                  |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idle`, `failed`                      | `START`                                                                                                                           | —                                                                            | `starting(run+1)` (`run` is 0 from `idle`; `failed` keeps the last run number in the hook) | create recognizer, `start()`; set `startedAtMs` if null; keep `transcript.committed` (so "Try again" appends); reset `restarts`, `noSpeechRestarts`, `sawNoSpeech`, `runHadResult`                       |
+| `starting`                            | `RUN_STARTED`                                                                                                                     | —                                                                            | `listening`                                                                                | —                                                                                                                                                                                                        |
+| `starting`, `listening`               | `RESULT`                                                                                                                          | —                                                                            | `listening`                                                                                | rebuild run text (9.5); `runHadResult = true`; push `now - startedAtMs` to `resultOffsetsMs` (cap `SPEECH.RESULT_OFFSETS_MAX` entries); if total length ≥ `ANSWER.MAX_CHARS` → dispatch `STOP(char_cap)` |
+| `starting`, `listening`               | `ERROR` `no-speech`                                                                                                               | —                                                                            | same                                                                                       | `sawNoSpeech = true` (an `END` follows)                                                                                                                                                                  |
+| `starting`, `listening`, `restarting` | `ERROR` `not-allowed`                                                                                                             | —                                                                            | `failed(permission)`                                                                       | `abort()`                                                                                                                                                                                                |
+| same                                  | `ERROR` `service-not-allowed`, `language-not-supported`, `bad-grammar`, `phrases-not-supported`, `start-failed`, any unknown code | —                                                                            | `failed(unavailable)`                                                                      | `abort()`; committed text kept                                                                                                                                                                           |
+| same                                  | `ERROR` `audio-capture`                                                                                                           | —                                                                            | `failed(no-device)`                                                                        | `abort()`                                                                                                                                                                                                |
+| same                                  | `ERROR` `network`                                                                                                                 | words > 0                                                                    | `stopped(network)`                                                                         | commit run text                                                                                                                                                                                          |
+| same                                  | `ERROR` `network`                                                                                                                 | words = 0                                                                    | `failed(unavailable)`                                                                      | —                                                                                                                                                                                                        |
+| any                                   | `ERROR` `aborted`                                                                                                                 | —                                                                            | unchanged                                                                                  | ignored (we abort deliberately; an `END` follows)                                                                                                                                                        |
+| `starting`, `listening`               | `END`                                                                                                                             | `sawNoSpeech` and words = 0 and `noSpeechRestarts < NO_SPEECH_AUTO_RESTARTS` | `restarting`                                                                               | `noSpeechRestarts++`, schedule `RESTART_DUE` after `RESTART_DELAY_MS`                                                                                                                                    |
+| `starting`, `listening`               | `END`                                                                                                                             | `sawNoSpeech` and words = 0 and limit reached                                | `failed(no-speech)`                                                                        | —                                                                                                                                                                                                        |
+| `starting`, `listening`               | `END`                                                                                                                             | otherwise, and (`runHadResult` or `restarts < MAX_RESTARTS`)                 | `restarting`                                                                               | commit run text; `restarts = runHadResult ? 0 : restarts + 1`; schedule `RESTART_DUE`                                                                                                                    |
+| `starting`, `listening`               | `END`                                                                                                                             | otherwise, and not `runHadResult` and `restarts ≥ MAX_RESTARTS`              | `stopped(unexpected_stop)`                                                                 | commit run text                                                                                                                                                                                          |
+| `restarting`                          | `RESTART_DUE`                                                                                                                     | —                                                                            | `starting(run+1)`                                                                          | new recognizer, `start()`; `sawNoSpeech = false`; `runHadResult = false`                                                                                                                                 |
+| `starting`, `listening`, `restarting` | `STOP`                                                                                                                            | —                                                                            | `stopping(reason)`                                                                         | `stop()` (if `restarting`, cancel the timer and go straight to `stopped(reason)`); schedule `GRACE_TIMEOUT` after `STOP_GRACE_MS`                                                                        |
+| `stopping`                            | `RESULT`                                                                                                                          | —                                                                            | `stopping`                                                                                 | rebuild run text (final results often arrive after `stop()`)                                                                                                                                             |
+| `stopping`                            | `END`                                                                                                                             | —                                                                            | `stopped(reason)`                                                                          | commit run text; cancel grace timer                                                                                                                                                                      |
+| `stopping`                            | `GRACE_TIMEOUT`                                                                                                                   | —                                                                            | `stopped(reason)`                                                                          | `abort()`; commit run text                                                                                                                                                                               |
 
 "words" means `countWords(fullText(transcript))` (section 16.1).
 
@@ -1359,10 +1448,17 @@ The room dispatches `STOP` with: `user` ("Stop and review"), `time_limit` (elaps
 ```ts
 export type TranscriptState = { committed: string; runFinal: string; runInterim: string };
 
-const join = (...parts: string[]) => parts.map((p) => p.trim()).filter(Boolean).join(' ');
+const join = (...parts: string[]) =>
+  parts
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .join(' ');
 
 /** Rebuild the current run from the full result list on every event (robust to engines that resend results). */
-export function applyResults(s: TranscriptState, results: ReadonlyArray<{ transcript: string; isFinal: boolean }>): TranscriptState {
+export function applyResults(
+  s: TranscriptState,
+  results: ReadonlyArray<{ transcript: string; isFinal: boolean }>,
+): TranscriptState {
   const finals: string[] = [];
   const interims: string[] = [];
   for (const r of results) (r.isFinal ? finals : interims).push(r.transcript);
@@ -1390,19 +1486,19 @@ Display: committed and final text in `--ink`; interim text in `--ink-3`, italic,
 
 ### 9.6 Error mapping summary
 
-| Source | Code or condition | Recorder outcome | Room state (PRD §9.6) |
-|---|---|---|---|
-| `getUserMedia` | `NotAllowedError`, `SecurityError` | — | Mic permission denied |
-| `getUserMedia` | `NotFoundError`, `OverconstrainedError` | — | No microphone |
-| `getUserMedia` | other | — | Recognition unavailable |
-| Recognition | `not-allowed` | `failed(permission)` | Mic permission denied |
-| Recognition | `audio-capture` | `failed(no-device)` | No microphone |
-| Recognition | `no-speech` ×3 with no words | `failed(no-speech)` | No speech detected |
-| Recognition | `service-not-allowed`, `language-not-supported`, `bad-grammar`, `phrases-not-supported`, `start-failed`, unknown | `failed(unavailable)` | Recognition unavailable |
-| Recognition | `network`, no words | `failed(unavailable)` | Recognition unavailable |
-| Recognition | `network`, some words | `stopped(network)` | Review with network notice |
-| Recognition | `end` after `MAX_RESTARTS` consecutive runs without a result | `stopped(unexpected_stop)` | Review with unexpected-stop notice |
-| Room | time limit, char cap, tab hidden, offline | `stopped(reason)` | Review with matching notice |
+| Source         | Code or condition                                                                                                | Recorder outcome           | Room state (PRD §9.6)              |
+| -------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------- |
+| `getUserMedia` | `NotAllowedError`, `SecurityError`                                                                               | —                          | Mic permission denied              |
+| `getUserMedia` | `NotFoundError`, `OverconstrainedError`                                                                          | —                          | No microphone                      |
+| `getUserMedia` | other                                                                                                            | —                          | Recognition unavailable            |
+| Recognition    | `not-allowed`                                                                                                    | `failed(permission)`       | Mic permission denied              |
+| Recognition    | `audio-capture`                                                                                                  | `failed(no-device)`        | No microphone                      |
+| Recognition    | `no-speech` ×3 with no words                                                                                     | `failed(no-speech)`        | No speech detected                 |
+| Recognition    | `service-not-allowed`, `language-not-supported`, `bad-grammar`, `phrases-not-supported`, `start-failed`, unknown | `failed(unavailable)`      | Recognition unavailable            |
+| Recognition    | `network`, no words                                                                                              | `failed(unavailable)`      | Recognition unavailable            |
+| Recognition    | `network`, some words                                                                                            | `stopped(network)`         | Review with network notice         |
+| Recognition    | `end` after `MAX_RESTARTS` consecutive runs without a result                                                     | `stopped(unexpected_stop)` | Review with unexpected-stop notice |
+| Room           | time limit, char cap, tab hidden, offline                                                                        | `stopped(reason)`          | Review with matching notice        |
 
 ### 9.7 Visibility and offline
 
@@ -1415,25 +1511,36 @@ Display: committed and final text in `--ink`; interim text in `--ink-3`, italic,
 ### 10.1 Voices (`lib/speech/voices.ts`)
 
 ```ts
-export async function loadVoices(synth: SpeechSynthesis, waitMs = SPEECH.VOICES_WAIT_MS): Promise<SpeechSynthesisVoice[]> {
+export async function loadVoices(
+  synth: SpeechSynthesis,
+  waitMs = SPEECH.VOICES_WAIT_MS,
+): Promise<SpeechSynthesisVoice[]> {
   let voices = synth.getVoices();
   if (voices.length === 0) {
     voices = await new Promise((resolve) => {
-      const done = () => { synth.removeEventListener('voiceschanged', done); resolve(synth.getVoices()); };
+      const done = () => {
+        synth.removeEventListener('voiceschanged', done);
+        resolve(synth.getVoices());
+      };
       synth.addEventListener('voiceschanged', done);
       setTimeout(done, waitMs);
     });
   }
   return voices
     .filter((v) => /^en([-_]|$)/i.test(v.lang))
-    .sort((a, b) =>
-      Number(b.localService) - Number(a.localService) ||
-      Number(b.lang.replace('_', '-') === 'en-US') - Number(a.lang.replace('_', '-') === 'en-US') ||
-      a.name.localeCompare(b.name),
+    .sort(
+      (a, b) =>
+        Number(b.localService) - Number(a.localService) ||
+        Number(b.lang.replace('_', '-') === 'en-US') -
+          Number(a.lang.replace('_', '-') === 'en-US') ||
+        a.name.localeCompare(b.name),
     );
 }
 
-export function pickVoice(voices: SpeechSynthesisVoice[], storedURI: string | null): { voice: SpeechSynthesisVoice | null; fellBack: boolean } {
+export function pickVoice(
+  voices: SpeechSynthesisVoice[],
+  storedURI: string | null,
+): { voice: SpeechSynthesisVoice | null; fellBack: boolean } {
   if (storedURI) {
     const v = voices.find((x) => x.voiceURI === storedURI);
     if (v) return { voice: v, fellBack: false };
@@ -1451,7 +1558,11 @@ export function pickVoice(voices: SpeechSynthesisVoice[], storedURI: string | nu
 
 ```ts
 export function chunkForSpeech(text: string, max = TTS.CHUNK_MAX_CHARS): string[] {
-  const sentences = text.replace(/\s+/g, ' ').trim().match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) ?? [];
+  const sentences =
+    text
+      .replace(/\s+/g, ' ')
+      .trim()
+      .match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) ?? [];
   const chunks: string[] = [];
   for (const raw of sentences) {
     let s = raw.trim();
@@ -1477,7 +1588,12 @@ export type SpeakResult = 'ended' | 'cancelled' | 'error';
 export async function speak(
   synth: SpeechSynthesis,
   chunks: string[],
-  opts: { voice: SpeechSynthesisVoice | null; rate: number; onChunk(i: number): void; signal: AbortSignal },
+  opts: {
+    voice: SpeechSynthesisVoice | null;
+    rate: number;
+    onChunk(i: number): void;
+    signal: AbortSignal;
+  },
 ): Promise<SpeakResult>;
 ```
 
@@ -1505,7 +1621,8 @@ The room is a pure reducer `roomReducer(state, event): RoomState` plus effects i
 
 ```ts
 export type SpeechErrorKind = FailKind; // 'permission' | 'no-device' | 'no-speech' | 'unavailable'
-export type ReviewNotice = 'time_limit' | 'char_cap' | 'tab_hidden' | 'network' | 'unexpected_stop' | 'restored';
+export type ReviewNotice =
+  'time_limit' | 'char_cap' | 'tab_hidden' | 'network' | 'unexpected_stop' | 'restored';
 
 export type Phase =
   | { kind: 'loading' }
@@ -1519,14 +1636,19 @@ export type Phase =
   | { kind: 'submitting'; startedAt: number }
   | { kind: 'feedback' }
   | { kind: 'saved' }
-  | { kind: 'feedback-error'; code: ErrorCode; requestId: string | null; sessionCallsRemaining: number | null }
+  | {
+      kind: 'feedback-error';
+      code: ErrorCode;
+      requestId: string | null;
+      sessionCallsRemaining: number | null;
+    }
   | { kind: 'done' };
 
 export type RoomState = {
   session: SessionRecord | null;
   answers: AnswerRecord[];
   index: number;
-  mode: 'voice' | 'text';          // session.currentMode
+  mode: 'voice' | 'text'; // session.currentMode
   phase: Phase;
   dialog: null | 'record-again' | 'skip' | 'end';
   online: boolean;
@@ -1559,7 +1681,12 @@ export type RoomEvent =
   | { type: 'CONFIRM_RECORD_AGAIN'; now: number }
   | { type: 'SUBMIT'; now: number }
   | { type: 'FEEDBACK_OK'; feedback: Feedback; meta: FeedbackMeta }
-  | { type: 'FEEDBACK_FAILED'; code: ErrorCode; requestId: string | null; sessionCallsRemaining: number | null }
+  | {
+      type: 'FEEDBACK_FAILED';
+      code: ErrorCode;
+      requestId: string | null;
+      sessionCallsRemaining: number | null;
+    }
   | { type: 'SAVE_WITHOUT_FEEDBACK' }
   | { type: 'CONFIRM_SKIP' }
   | { type: 'NEXT' }
@@ -1569,34 +1696,34 @@ export type RoomEvent =
 
 Transitions:
 
-| From | Event | To | Notes |
-|---|---|---|---|
-| `loading` | `LOADED` | per recovery table (11.4) | |
-| `loading` | `NOT_FOUND` | `not-found` | |
-| `intro` | `START_INTERVIEW` | `asking` (read-aloud on and synthesis available) else `thinking(15 000)` | Voice mode first runs `checkMicrophone()`; `denied`/`no-device`/`error` → `speech-error` with the mapped kind |
-| `asking` | `TTS_DONE` (`ended`, `error`, `skipped`) or `STOP_READING` | `thinking(15 000)` | |
-| `asking` | `START_ANSWERING` | `answering` | Cancels TTS first |
-| `asking` | `VISIBILITY(hidden)` | `asking(interrupted: true)` | TTS cancelled; "Replay question" shown on return |
-| `asking`, `thinking`, `feedback`, `saved`, `review` | `REPLAY` | `asking` (from `asking`/`thinking` only); in `review`/`feedback`/`saved` TTS replays without changing phase | |
-| `thinking` | `THINK_TICK` | `thinking` with `remainingMs` reduced; at ≤ 0 → `answering` | Ticks ignored while `paused` |
-| `thinking` | `VISIBILITY(hidden)` / `VISIBILITY(visible)` | `paused: true` / `paused: false, wasPaused: true` | |
-| `thinking` | `START_ANSWERING` | `answering` | |
-| `answering` (voice) | `RECORDER_STOPPED` | `review(notice)` | `notice = null` for reason `user`, else the reason. Answer saved with `rawTranscript`, `transcript = rawTranscript`, timing, metrics |
-| `answering` (voice) | `RECORDER_FAILED` | `speech-error(fail)` | Partial `rawTranscript` kept on the answer |
-| `answering` (text) | `TEXT_REVIEW` | `review(null)` | |
-| `answering` (voice), `speech-error` | `TYPE_INSTEAD` | `answering(text)` | Session `currentMode = 'text'` from now on; text area prefilled with any partial transcript |
-| `asking`, `thinking` (voice mode) | `TYPE_INSTEAD` | same phase | `mode = 'text'` and session `currentMode = 'text'`; when thinking ends the text answer box opens. "Type instead" is not shown in `review`, `submitting`, `feedback` or `saved` (the review text area is already editable) |
-| `speech-error` | `RETRY_RECORDING` | `answering(voice)` | Recorder `START` (appends to committed text) |
-| `review` | `EDIT` | `review` | Metrics recomputed; persisted after 500 ms debounce |
-| `review` | `CONFIRM_RECORD_AGAIN` | `answering(voice)` | Transcript and timing cleared |
-| `review`, `feedback-error` | `SUBMIT` | `submitting` | Guard: online, words ≥ 1, `session.feedback.enabled`, token not expired (else `feedback-error` with `TOKEN_EXPIRED` without a request) |
-| `submitting` | `FEEDBACK_OK` | `feedback` | Answer `status = 'scored'` |
-| `submitting` | `FEEDBACK_FAILED` | `feedback-error` | `attempts++` |
-| `review`, `feedback-error` | `SAVE_WITHOUT_FEEDBACK` | `saved` | Answer `status = 'saved'` |
-| any before `submitting` | `CONFIRM_SKIP` | next question `asking`/`thinking`, or `done` | Answer `status = 'skipped'` |
-| `feedback`, `saved` | `NEXT` | next question (`asking` or `thinking`) or `done` | `index++` |
-| any except `loading`, `not-found`, `done` | `CONFIRM_END` | `done` | Session `status = 'ended_early'` (or `completed` if every question is scored, saved or skipped). If no answer is `scored` or `saved` (k = 0 in the PRD §9.6 dialog), the session and its answers are deleted and the room navigates to `/setup` instead of the report (D-31) |
-| any | `ONLINE` | same phase | Updates `online` |
+| From                                                | Event                                                      | To                                                                                                          | Notes                                                                                                                                                                                                                                                                        |
+| --------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `loading`                                           | `LOADED`                                                   | per recovery table (11.4)                                                                                   |                                                                                                                                                                                                                                                                              |
+| `loading`                                           | `NOT_FOUND`                                                | `not-found`                                                                                                 |                                                                                                                                                                                                                                                                              |
+| `intro`                                             | `START_INTERVIEW`                                          | `asking` (read-aloud on and synthesis available) else `thinking(15 000)`                                    | Voice mode first runs `checkMicrophone()`; `denied`/`no-device`/`error` → `speech-error` with the mapped kind                                                                                                                                                                |
+| `asking`                                            | `TTS_DONE` (`ended`, `error`, `skipped`) or `STOP_READING` | `thinking(15 000)`                                                                                          |                                                                                                                                                                                                                                                                              |
+| `asking`                                            | `START_ANSWERING`                                          | `answering`                                                                                                 | Cancels TTS first                                                                                                                                                                                                                                                            |
+| `asking`                                            | `VISIBILITY(hidden)`                                       | `asking(interrupted: true)`                                                                                 | TTS cancelled; "Replay question" shown on return                                                                                                                                                                                                                             |
+| `asking`, `thinking`, `feedback`, `saved`, `review` | `REPLAY`                                                   | `asking` (from `asking`/`thinking` only); in `review`/`feedback`/`saved` TTS replays without changing phase |                                                                                                                                                                                                                                                                              |
+| `thinking`                                          | `THINK_TICK`                                               | `thinking` with `remainingMs` reduced; at ≤ 0 → `answering`                                                 | Ticks ignored while `paused`                                                                                                                                                                                                                                                 |
+| `thinking`                                          | `VISIBILITY(hidden)` / `VISIBILITY(visible)`               | `paused: true` / `paused: false, wasPaused: true`                                                           |                                                                                                                                                                                                                                                                              |
+| `thinking`                                          | `START_ANSWERING`                                          | `answering`                                                                                                 |                                                                                                                                                                                                                                                                              |
+| `answering` (voice)                                 | `RECORDER_STOPPED`                                         | `review(notice)`                                                                                            | `notice = null` for reason `user`, else the reason. Answer saved with `rawTranscript`, `transcript = rawTranscript`, timing, metrics                                                                                                                                         |
+| `answering` (voice)                                 | `RECORDER_FAILED`                                          | `speech-error(fail)`                                                                                        | Partial `rawTranscript` kept on the answer                                                                                                                                                                                                                                   |
+| `answering` (text)                                  | `TEXT_REVIEW`                                              | `review(null)`                                                                                              |                                                                                                                                                                                                                                                                              |
+| `answering` (voice), `speech-error`                 | `TYPE_INSTEAD`                                             | `answering(text)`                                                                                           | Session `currentMode = 'text'` from now on; text area prefilled with any partial transcript                                                                                                                                                                                  |
+| `asking`, `thinking` (voice mode)                   | `TYPE_INSTEAD`                                             | same phase                                                                                                  | `mode = 'text'` and session `currentMode = 'text'`; when thinking ends the text answer box opens. "Type instead" is not shown in `review`, `submitting`, `feedback` or `saved` (the review text area is already editable)                                                    |
+| `speech-error`                                      | `RETRY_RECORDING`                                          | `answering(voice)`                                                                                          | Recorder `START` (appends to committed text)                                                                                                                                                                                                                                 |
+| `review`                                            | `EDIT`                                                     | `review`                                                                                                    | Metrics recomputed; persisted after 500 ms debounce                                                                                                                                                                                                                          |
+| `review`                                            | `CONFIRM_RECORD_AGAIN`                                     | `answering(voice)`                                                                                          | Transcript and timing cleared                                                                                                                                                                                                                                                |
+| `review`, `feedback-error`                          | `SUBMIT`                                                   | `submitting`                                                                                                | Guard: online, words ≥ 1, `session.feedback.enabled`, token not expired (else `feedback-error` with `TOKEN_EXPIRED` without a request)                                                                                                                                       |
+| `submitting`                                        | `FEEDBACK_OK`                                              | `feedback`                                                                                                  | Answer `status = 'scored'`                                                                                                                                                                                                                                                   |
+| `submitting`                                        | `FEEDBACK_FAILED`                                          | `feedback-error`                                                                                            | `attempts++`                                                                                                                                                                                                                                                                 |
+| `review`, `feedback-error`                          | `SAVE_WITHOUT_FEEDBACK`                                    | `saved`                                                                                                     | Answer `status = 'saved'`                                                                                                                                                                                                                                                    |
+| any before `submitting`                             | `CONFIRM_SKIP`                                             | next question `asking`/`thinking`, or `done`                                                                | Answer `status = 'skipped'`                                                                                                                                                                                                                                                  |
+| `feedback`, `saved`                                 | `NEXT`                                                     | next question (`asking` or `thinking`) or `done`                                                            | `index++`                                                                                                                                                                                                                                                                    |
+| any except `loading`, `not-found`, `done`           | `CONFIRM_END`                                              | `done`                                                                                                      | Session `status = 'ended_early'` (or `completed` if every question is scored, saved or skipped). If no answer is `scored` or `saved` (k = 0 in the PRD §9.6 dialog), the session and its answers are deleted and the room navigates to `/setup` instead of the report (D-31) |
+| any                                                 | `ONLINE`                                                   | same phase                                                                                                  | Updates `online`                                                                                                                                                                                                                                                             |
 
 When a session has `feedback.enabled = false`, the review step shows "Save and continue" in place of "Get feedback" and "Save without feedback" (the button sends `SAVE_WITHOUT_FEEDBACK`).
 
@@ -1611,16 +1738,16 @@ When a session has `feedback.enabled = false`, the review step shows "Save and c
 
 ### 11.3 Checkpoints and persistence
 
-| Moment | Write |
-|---|---|
+| Moment             | Write                                                                                                                                                                                                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Every phase change | `session.checkpoint = { index, phase: checkpointPhase(phase), at }`. Mapping: `speech-error` → `answering`; `feedback-error` → `review`; `saved` → `feedback`; `loading` and `not-found` are never written; every other phase maps to the checkpoint of the same name |
-| Enter `answering` | Upsert answer with `status = 'draft'`, empty transcript |
-| While `answering` | Every `DRAFT_SAVE_INTERVAL_MS`: upsert `rawTranscript` (voice: `fullText`; text: text area value), `transcript` |
-| Enter `review` | Upsert `status = 'review'`, transcript, timing, metrics, notice |
-| `EDIT` | Debounced 500 ms upsert of `transcript` and metrics |
-| `SUBMIT` | Upsert `status = 'submitted'` before the request |
-| `FEEDBACK_OK` | Upsert `status = 'scored'`, feedback, feedbackMeta |
-| `TYPE_INSTEAD` | `session.currentMode = 'text'` |
+| Enter `answering`  | Upsert answer with `status = 'draft'`, empty transcript                                                                                                                                                                                                               |
+| While `answering`  | Every `DRAFT_SAVE_INTERVAL_MS`: upsert `rawTranscript` (voice: `fullText`; text: text area value), `transcript`                                                                                                                                                       |
+| Enter `review`     | Upsert `status = 'review'`, transcript, timing, metrics, notice                                                                                                                                                                                                       |
+| `EDIT`             | Debounced 500 ms upsert of `transcript` and metrics                                                                                                                                                                                                                   |
+| `SUBMIT`           | Upsert `status = 'submitted'` before the request                                                                                                                                                                                                                      |
+| `FEEDBACK_OK`      | Upsert `status = 'scored'`, feedback, feedbackMeta                                                                                                                                                                                                                    |
+| `TYPE_INSTEAD`     | `session.currentMode = 'text'`                                                                                                                                                                                                                                        |
 
 Writes are fire-and-forget with error capture; a failed write shows the Not saving banner once and switches the repository to memory for the rest of the tab (copying the current session and answers into it). Exception: `StorageClosedError` after `versionchange` shows only the "Updated in another tab" banner (section 7.1).
 
@@ -1628,16 +1755,16 @@ Writes are fire-and-forget with error capture; a failed write shows the Not savi
 
 On load, the room reads the session and its answers. The resume phase depends on `checkpoint.phase` and the answer at `checkpoint.index`:
 
-| Checkpoint | Answer state | Resume at | Notice |
-|---|---|---|---|
-| `intro` | — | `intro` | none |
-| `asking`, `thinking` | none or empty draft | `intro`-like resume card: H1 "Ready to continue", body "You’re on question {n} of {total}.", button "Continue" → `asking` | "We restored your session after the page reloaded." |
-| `answering` | draft with ≥ 1 word | `review(restored)` | review notice "We restored your answer after the page reloaded." |
-| `answering` | empty draft | resume card → `asking` | session notice |
-| `review`, `submitting` | any | `review(restored)` | review notice |
-| `feedback` | `scored` | `feedback` | none |
-| `feedback` | `saved` | `saved` | none |
-| `done` | — | redirect to report | none |
+| Checkpoint             | Answer state        | Resume at                                                                                                                 | Notice                                                           |
+| ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `intro`                | —                   | `intro`                                                                                                                   | none                                                             |
+| `asking`, `thinking`   | none or empty draft | `intro`-like resume card: H1 "Ready to continue", body "You’re on question {n} of {total}.", button "Continue" → `asking` | "We restored your session after the page reloaded."              |
+| `answering`            | draft with ≥ 1 word | `review(restored)`                                                                                                        | review notice "We restored your answer after the page reloaded." |
+| `answering`            | empty draft         | resume card → `asking`                                                                                                    | session notice                                                   |
+| `review`, `submitting` | any                 | `review(restored)`                                                                                                        | review notice                                                    |
+| `feedback`             | `scored`            | `feedback`                                                                                                                | none                                                             |
+| `feedback`             | `saved`             | `saved`                                                                                                                   | none                                                             |
+| `done`                 | —                   | redirect to report                                                                                                        | none                                                             |
 
 When the page receives `demoMode = 'off'` (server prop), the room does not run the machine: after `LOADED`, an `in_progress` session renders the PRD §9.13 read-only state ("The practice room is offline…", link "Open report"), and `completed`/`ended_early` sessions redirect to the report as usual.
 
@@ -1659,7 +1786,7 @@ All request and response schemas live in `lib/api/contracts.ts` (shared by route
 export const ErrorBodySchema = z.object({
   error: z.object({
     code: z.enum(ERROR_CODES),
-    message: z.string(),                       // short English for developers; UI copy comes from the PRD by code
+    message: z.string(), // short English for developers; UI copy comes from the PRD by code
     requestId: z.string(),
     resetAt: z.string().datetime().optional(), // 429 only
     sessionCallsRemaining: z.number().int().nonnegative().optional(), // feedback errors after the session counter was consumed
@@ -1672,15 +1799,21 @@ export const ErrorBodySchema = z.object({
 Request **(normative)**:
 
 ```ts
-export const StartRequestSchema = z.object({
-  role: z.enum(ROLES),
-  seniority: z.enum(SENIORITIES),
-  types: z.array(z.enum(QUESTION_TYPES)).min(1).max(3).refine((t) => new Set(t).size === t.length, 'duplicate type'),
-  length: z.union([z.literal(3), z.literal(5)]),
-  mode: z.enum(ANSWER_MODES),
-  seed: z.string().regex(SESSION.SEED_PATTERN).optional(),
-  feedback: z.boolean().default(true),
-}).strict();
+export const StartRequestSchema = z
+  .object({
+    role: z.enum(ROLES),
+    seniority: z.enum(SENIORITIES),
+    types: z
+      .array(z.enum(QUESTION_TYPES))
+      .min(1)
+      .max(3)
+      .refine((t) => new Set(t).size === t.length, 'duplicate type'),
+    length: z.union([z.literal(3), z.literal(5)]),
+    mode: z.enum(ANSWER_MODES),
+    seed: z.string().regex(SESSION.SEED_PATTERN).optional(),
+    feedback: z.boolean().default(true),
+  })
+  .strict();
 ```
 
 Response 200 **(normative)**:
@@ -1694,7 +1827,11 @@ export const StartResponseSchema = z.object({
   token: z.string().nullable(),
   tokenExpiresAt: z.string().datetime().nullable(),
   feedback: z.object({ enabled: z.boolean(), reason: z.enum(['readonly', 'practice']).nullable() }),
-  limits: z.object({ sessionsPerDay: z.number().int(), feedbackPerDay: z.number().int(), globalDaily: z.number().int() }),
+  limits: z.object({
+    sessionsPerDay: z.number().int(),
+    feedbackPerDay: z.number().int(),
+    globalDaily: z.number().int(),
+  }),
   demoMode: z.enum(['on', 'readonly', 'off']),
 });
 ```
@@ -1718,13 +1855,15 @@ Header: `Authorization: Bearer <token>`. Missing → 401 `TOKEN_MISSING`.
 Request **(normative)**:
 
 ```ts
-export const FeedbackRequestSchema = z.object({
-  sessionId: z.string().uuid(),
-  answerIndex: z.number().int().min(0).max(4),
-  questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
-  mode: z.enum(ANSWER_MODES),
-  transcript: z.string().max(ANSWER.MAX_CHARS),
-}).strict();
+export const FeedbackRequestSchema = z
+  .object({
+    sessionId: z.string().uuid(),
+    answerIndex: z.number().int().min(0).max(4),
+    questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+    mode: z.enum(ANSWER_MODES),
+    transcript: z.string().max(ANSWER.MAX_CHARS),
+  })
+  .strict();
 ```
 
 After schema validation: `transcript.trim()` with 0 words (section 16.1) → 400 `TRANSCRIPT_EMPTY`; length > `ANSWER.MAX_CHARS` is already a schema failure, reported as 400 `TRANSCRIPT_TOO_LONG` (map the Zod issue on `transcript` with code `too_big` to this code). Scope: `sessionId !== token.sid` or `token.q[answerIndex] !== questionId` → 403 `TOKEN_SCOPE`. Unknown question id in the bank → 403 `TOKEN_SCOPE`.
@@ -1733,7 +1872,7 @@ Response 200 **(normative)**:
 
 ```ts
 export const FeedbackResponseSchema = z.object({
-  feedback: FeedbackSchema,                    // section 15.2
+  feedback: FeedbackSchema, // section 15.2
   meta: z.object({
     model: z.string(),
     promptVersion: z.string(),
@@ -1744,7 +1883,10 @@ export const FeedbackResponseSchema = z.object({
     costUsd: z.number().nonnegative(),
     evidenceRemoved: z.number().int().nonnegative(),
   }),
-  remaining: z.object({ session: z.number().int().nonnegative(), visitorToday: z.number().int().nonnegative() }),
+  remaining: z.object({
+    session: z.number().int().nonnegative(),
+    visitorToday: z.number().int().nonnegative(),
+  }),
 });
 ```
 
@@ -1757,18 +1899,40 @@ Header: `Authorization: Bearer <token>`.
 Request **(normative)**:
 
 ```ts
-const ScoresSchema = z.object(Object.fromEntries(DIMENSIONS.map((d) => [d, z.number().int().min(1).max(4)])) as Record<Dimension, z.ZodNumber>).strict();
+const ScoresSchema = z
+  .object(
+    Object.fromEntries(DIMENSIONS.map((d) => [d, z.number().int().min(1).max(4)])) as Record<
+      Dimension,
+      z.ZodNumber
+    >,
+  )
+  .strict();
 
-export const SummaryRequestSchema = z.object({
-  sessionId: z.string().uuid(),
-  items: z.array(z.object({
-    answerIndex: z.number().int().min(0).max(4),
-    questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
-    scores: ScoresSchema,
-    improvementPoints: z.array(z.string().max(SUMMARY_LIMITS.INPUT_POINT_MAX_CHARS)).max(3),
-    flags: z.object({ off_topic: z.boolean(), too_short: z.boolean(), injection_suspected: z.boolean() }).strict(),
-  }).strict()).min(1).max(5),
-}).strict();
+export const SummaryRequestSchema = z
+  .object({
+    sessionId: z.string().uuid(),
+    items: z
+      .array(
+        z
+          .object({
+            answerIndex: z.number().int().min(0).max(4),
+            questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+            scores: ScoresSchema,
+            improvementPoints: z.array(z.string().max(SUMMARY_LIMITS.INPUT_POINT_MAX_CHARS)).max(3),
+            flags: z
+              .object({
+                off_topic: z.boolean(),
+                too_short: z.boolean(),
+                injection_suspected: z.boolean(),
+              })
+              .strict(),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(5),
+  })
+  .strict();
 ```
 
 Scope: `sessionId === token.sid`; every `questionId === token.q[answerIndex]`; indexes unique. The server recomputes means, trend and focus areas from `items` (section 17.1); it does not accept them from the client.
@@ -1810,24 +1974,25 @@ Response 200, no external calls:
 Format: `rh1.<payload>.<signature>` where `payload = base64url(JSON.stringify(TokenPayload))` and `signature = base64url(HMAC-SHA256(SESSION_SECRET, "rh1." + payload))`.
 
 ```ts
-export const TokenPayloadSchema = z.object({
-  v: z.literal(1),
-  sid: z.string().uuid(),
-  iat: z.number().int(),          // unix seconds
-  exp: z.number().int(),          // iat + SESSION.TOKEN_TTL_S
-  fb: z.number().int().min(1).max(7),
-  sm: z.number().int().min(0).max(2),
-  q: z.array(z.string()).min(3).max(5),
-  r: z.enum(ROLES),
-  s: z.enum(SENIORITIES),
-  b: z.string(),                  // bankVersion
-}).strict();
+export const TokenPayloadSchema = z
+  .object({
+    v: z.literal(1),
+    sid: z.string().uuid(),
+    iat: z.number().int(), // unix seconds
+    exp: z.number().int(), // iat + SESSION.TOKEN_TTL_S
+    fb: z.number().int().min(1).max(7),
+    sm: z.number().int().min(0).max(2),
+    q: z.array(z.string()).min(3).max(5),
+    r: z.enum(ROLES),
+    s: z.enum(SENIORITIES),
+    b: z.string(), // bankVersion
+  })
+  .strict();
 
 export function signToken(p: TokenPayload, secret: string): string;
 
 export type VerifyResult =
-  | { ok: true; payload: TokenPayload }
-  | { ok: false; code: 'TOKEN_INVALID' | 'TOKEN_EXPIRED' };
+  { ok: true; payload: TokenPayload } | { ok: false; code: 'TOKEN_INVALID' | 'TOKEN_EXPIRED' };
 
 export function verifyToken(token: string, secrets: readonly string[], nowS: number): VerifyResult;
 ```
@@ -1842,13 +2007,15 @@ The token is a capability with low value: it allows at most 7 feedback calls for
 
 ```ts
 export function clientIp(headers: Headers): string {
-  return headers.get('x-real-ip')?.trim()
-    || headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-    || 'unknown';
+  return (
+    headers.get('x-real-ip')?.trim() ||
+    headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    'unknown'
+  );
 }
 
 export function visitorId(ip: string, secret: string, now: Date): string {
-  const dailySalt = hmacSha256Hex(secret, utcDate(now));        // rotates at 00:00 UTC
+  const dailySalt = hmacSha256Hex(secret, utcDate(now)); // rotates at 00:00 UTC
   return hmacSha256Hex(dailySalt, ip).slice(0, 32);
 }
 ```
@@ -1913,11 +2080,11 @@ function daily(bucket: DailyBucket, limit: number): Ratelimit {
 
 ### 13.6 Check order (normative, `lib/ratelimit/quotas.ts`)
 
-| Route | Order | Denied code |
-|---|---|---|
-| start (feedback on) | `consumeDaily('sessions_ip', visitor, RATE_LIMIT_SESSIONS_PER_IP_DAILY)` | `SESSION_QUOTA_EXCEEDED` |
-| feedback | 1. `consumeSessionCounter('fb', sid, token.fb)` 2. `consumeDaily('feedback_ip', visitor, RATE_LIMIT_FEEDBACK_PER_IP_DAILY)` 3. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)` | `SESSION_FEEDBACK_EXHAUSTED`, `FEEDBACK_QUOTA_EXCEEDED`, `GLOBAL_CAP_REACHED` |
-| summary | 1. `consumeSessionCounter('sm', sid, token.sm)` 2. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)` | `SESSION_SUMMARY_EXHAUSTED`, `GLOBAL_CAP_REACHED` |
+| Route               | Order                                                                                                                                                                                              | Denied code                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| start (feedback on) | `consumeDaily('sessions_ip', visitor, RATE_LIMIT_SESSIONS_PER_IP_DAILY)`                                                                                                                           | `SESSION_QUOTA_EXCEEDED`                                                      |
+| feedback            | 1. `consumeSessionCounter('fb', sid, token.fb)` 2. `consumeDaily('feedback_ip', visitor, RATE_LIMIT_FEEDBACK_PER_IP_DAILY)` 3. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)` | `SESSION_FEEDBACK_EXHAUSTED`, `FEEDBACK_QUOTA_EXCEEDED`, `GLOBAL_CAP_REACHED` |
+| summary             | 1. `consumeSessionCounter('sm', sid, token.sm)` 2. `consumeDaily('llm_global', 'global', RATE_LIMIT_GLOBAL_LLM_DAILY)`                                                                             | `SESSION_SUMMARY_EXHAUSTED`, `GLOBAL_CAP_REACHED`                             |
 
 Each step consumes before the next runs; there are no refunds (D-11). A denial at step 2 or 3 has already consumed earlier steps; this is accepted and documented in a code comment. Any `LimiterUnavailableError` → 503 `LIMITER_UNAVAILABLE`.
 
@@ -1941,7 +2108,14 @@ export interface LlmProvider {
 }
 
 export class ProviderTimeoutError extends Error {}
-export class ProviderError extends Error { constructor(msg: string, readonly retryable: boolean) { super(msg); } }
+export class ProviderError extends Error {
+  constructor(
+    msg: string,
+    readonly retryable: boolean,
+  ) {
+    super(msg);
+  }
+}
 export class InvalidOutputError extends Error {}
 ```
 
@@ -1999,56 +2173,56 @@ The rubric is a constant used by the prompt, the `/how-it-works` page and the re
 
 **Structure**: "Is the answer organised so a listener can follow it?"
 
-| Type | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|
-| Behavioral (STAR) | No recognisable situation, task, action or result; events out of order, or a general opinion instead of a story. | One or two STAR parts present; the action or the result is missing or only implied. | All four parts present, but one is thin (often the result) or the order makes it harder to follow. | Situation and task set up in a few sentences, most of the time on actions, an explicit result; easy to follow. |
-| Technical concepts | No clear definition or explanation; scattered statements. | Defines the concept but does not explain how it works or when to use it. | Defines it, explains the mechanism and gives a use case; trade-offs or an example missing. | Defines it, explains the mechanism, gives a concrete example and names trade-offs or limits, in a logical order. |
-| System design lite | Jumps to technologies without requirements or components. | Lists components without clarifying requirements or how data flows. | States key requirements, the main components and the data flow; trade-offs thin. | Clarifies requirements and scale, outlines components and data flow, and discusses at least two trade-offs or failure modes. |
+| Type               | 1                                                                                                                | 2                                                                                   | 3                                                                                                  | 4                                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Behavioral (STAR)  | No recognisable situation, task, action or result; events out of order, or a general opinion instead of a story. | One or two STAR parts present; the action or the result is missing or only implied. | All four parts present, but one is thin (often the result) or the order makes it harder to follow. | Situation and task set up in a few sentences, most of the time on actions, an explicit result; easy to follow.               |
+| Technical concepts | No clear definition or explanation; scattered statements.                                                        | Defines the concept but does not explain how it works or when to use it.            | Defines it, explains the mechanism and gives a use case; trade-offs or an example missing.         | Defines it, explains the mechanism, gives a concrete example and names trade-offs or limits, in a logical order.             |
+| System design lite | Jumps to technologies without requirements or components.                                                        | Lists components without clarifying requirements or how data flows.                 | States key requirements, the main components and the data flow; trade-offs thin.                   | Clarifies requirements and scale, outlines components and data flow, and discusses at least two trade-offs or failure modes. |
 
 **Specificity**: "Are the claims concrete and checkable?" (all types)
 
-| 1 | 2 | 3 | 4 |
-|---|---|---|---|
+| 1                                                             | 2                                                                                | 3                                                                               | 4                                                                                  |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | Generic statements only; could describe anyone or any system. | Some concrete details, but key facts are vague ("a big project", "it was slow"). | Concrete details for most claims: named systems, tools, constraints or numbers. | Precise details throughout (numbers, systems, constraints, scale) without padding. |
 
 **Ownership**: "Is it clear what the candidate did and decided?"
 
-| Type | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|
-| Behavioral | Only "we" or passive voice; the candidate's own role is unclear. | Mostly "we"; the personal contribution is mentioned once or vaguely. | Clear personal actions with "I", with some team actions blurred. | Clear split between what the candidate did and what others did; owns decisions, including mistakes. |
-| Technical | Recites definitions or hedges everything without taking a position. | Takes a position but does not justify it or connect it to their own work. | Takes and justifies positions and refers to their own experience at least once. | Commits to a recommendation with reasons, says when they would choose differently, and draws on their own experience. |
+| Type       | 1                                                                   | 2                                                                         | 3                                                                               | 4                                                                                                                     |
+| ---------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Behavioral | Only "we" or passive voice; the candidate's own role is unclear.    | Mostly "we"; the personal contribution is mentioned once or vaguely.      | Clear personal actions with "I", with some team actions blurred.                | Clear split between what the candidate did and what others did; owns decisions, including mistakes.                   |
+| Technical  | Recites definitions or hedges everything without taking a position. | Takes a position but does not justify it or connect it to their own work. | Takes and justifies positions and refers to their own experience at least once. | Commits to a recommendation with reasons, says when they would choose differently, and draws on their own experience. |
 
 **Impact**: "Does the answer show results and consequences?"
 
-| Type | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|
-| Behavioral | No result stated. | A vague result ("it went well", "users liked it"). | A concrete result, partly quantified or with a clear qualitative outcome. | A quantified or verifiable result tied to the actions, plus what was learned or changed afterwards. |
-| Technical | No consequences of choices discussed. | Benefits or costs mentioned in general terms. | Concrete consequences of choices (performance, cost, user experience, maintenance) explained. | Consequences quantified or bounded and linked to users or the business. |
+| Type       | 1                                     | 2                                                  | 3                                                                                             | 4                                                                                                   |
+| ---------- | ------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Behavioral | No result stated.                     | A vague result ("it went well", "users liked it"). | A concrete result, partly quantified or with a clear qualitative outcome.                     | A quantified or verifiable result tied to the actions, plus what was learned or changed afterwards. |
+| Technical  | No consequences of choices discussed. | Benefits or costs mentioned in general terms.      | Concrete consequences of choices (performance, cost, user experience, maintenance) explained. | Consequences quantified or bounded and linked to users or the business.                             |
 
 **Relevance**: "Does it answer the question that was asked, at this level?" (all types)
 
-| 1 | 2 | 3 | 4 |
-|---|---|---|---|
+| 1                                   | 2                                                 | 3                                        | 4                                                                |
+| ----------------------------------- | ------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------- |
 | Does not answer the question asked. | Partly answers it; a large part is off the point. | Answers the question, with some detours. | Answers exactly the question, pitched at the role and seniority. |
 
 **Clarity**: "Can a listener follow it the first time?" (all types)
 
-| 1 | 2 | 3 | 4 |
-|---|---|---|---|
+| 1                                                      | 2                                                                 | 3                                                    | 4                                                                             |
+| ------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Hard to follow: rambling, fragmented or contradictory. | Understandable with effort; repetition or filler hides the point. | Clear, with minor rambling or one confusing passage. | Concise, ordered and easy to follow on first hearing; no needless repetition. |
 
 Seniority note (appended to every rendered rubric): "Seniority: for senior candidates expect wider scope, trade-offs and influence on others; for junior candidates a smaller scope is fine when the reasoning is clear. Score against the stated seniority."
 
 Built-in tips (report fallback when no summary note exists):
 
-| Dimension | Tip |
-|---|---|
-| structure | "Open with one sentence of context, spend most of the answer on what you did, and end with the result." |
-| specificity | "Name the system, the number and the constraint. One concrete detail beats three adjectives." |
-| ownership | "Say ‘I’ for what you did and ‘the team’ for the rest. The interviewer is hiring you, not the team." |
-| impact | "End with a result you can measure or check, and what changed because of it." |
-| relevance | "Repeat the question to yourself before answering, and cut parts that don’t serve it." |
-| clarity | "Use short sentences and signpost: ‘There were two problems. First…’." |
+| Dimension   | Tip                                                                                                     |
+| ----------- | ------------------------------------------------------------------------------------------------------- |
+| structure   | "Open with one sentence of context, spend most of the answer on what you did, and end with the result." |
+| specificity | "Name the system, the number and the constraint. One concrete detail beats three adjectives."           |
+| ownership   | "Say ‘I’ for what you did and ‘the team’ for the rest. The interviewer is hiring you, not the team."    |
+| impact      | "End with a result you can measure or check, and what changed because of it."                           |
+| relevance   | "Repeat the question to yourself before answering, and cut parts that don’t serve it."                  |
+| clarity     | "Use short sentences and signpost: ‘There were two problems. First…’."                                  |
 
 `renderRubric(type)` **(normative)** produces, for each dimension in `DIMENSIONS` order:
 
@@ -2186,7 +2360,11 @@ export const FeedbackLlmSchema = z.object({
   improvements: z.array(z.object({ point: z.string(), why: z.string(), rewrite: z.string() })),
   follow_up_question: z.string(),
   model_answer_outline: z.array(z.string()),
-  flags: z.object({ off_topic: z.boolean(), too_short: z.boolean(), injection_suspected: z.boolean() }),
+  flags: z.object({
+    off_topic: z.boolean(),
+    too_short: z.boolean(),
+    injection_suspected: z.boolean(),
+  }),
 });
 export type FeedbackLlm = z.infer<typeof FeedbackLlmSchema>;
 ```
@@ -2197,28 +2375,56 @@ Add `.describe()` text to fields only if it repeats rules already in the system 
 
 ```ts
 const Score = z.number().int().min(1).max(4);
-const DimensionResult = z.object({ score: Score, rationale: z.string().min(1).max(FEEDBACK_LIMITS.RATIONALE_MAX_CHARS) }).strict();
+const DimensionResult = z
+  .object({ score: Score, rationale: z.string().min(1).max(FEEDBACK_LIMITS.RATIONALE_MAX_CHARS) })
+  .strict();
 
-export const FeedbackSchema = z.object({
-  scores: z.object({
-    structure: DimensionResult, specificity: DimensionResult, ownership: DimensionResult,
-    impact: DimensionResult, relevance: DimensionResult, clarity: DimensionResult,
-  }).strict(),
-  overall: z.number().min(1).max(4),
-  strengths: z.array(z.object({
-    point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
-    evidence: z.string().max(FEEDBACK_LIMITS.EVIDENCE_MAX_CHARS).nullable(),
-  }).strict()).min(1).max(FEEDBACK_LIMITS.STRENGTHS_MAX),
-  improvements: z.array(z.object({
-    point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
-    why: z.string().min(1).max(FEEDBACK_LIMITS.WHY_MAX_CHARS),
-    rewrite: z.string().min(1).max(FEEDBACK_LIMITS.REWRITE_MAX_CHARS),
-  }).strict()).min(1).max(FEEDBACK_LIMITS.IMPROVEMENTS_MAX),
-  follow_up_question: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
-  model_answer_outline: z.array(z.string().min(1).max(FEEDBACK_LIMITS.OUTLINE_ITEM_MAX_CHARS))
-    .min(FEEDBACK_LIMITS.OUTLINE_MIN).max(FEEDBACK_LIMITS.OUTLINE_MAX),
-  flags: z.object({ off_topic: z.boolean(), too_short: z.boolean(), injection_suspected: z.boolean() }).strict(),
-}).strict();
+export const FeedbackSchema = z
+  .object({
+    scores: z
+      .object({
+        structure: DimensionResult,
+        specificity: DimensionResult,
+        ownership: DimensionResult,
+        impact: DimensionResult,
+        relevance: DimensionResult,
+        clarity: DimensionResult,
+      })
+      .strict(),
+    overall: z.number().min(1).max(4),
+    strengths: z
+      .array(
+        z
+          .object({
+            point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
+            evidence: z.string().max(FEEDBACK_LIMITS.EVIDENCE_MAX_CHARS).nullable(),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(FEEDBACK_LIMITS.STRENGTHS_MAX),
+    improvements: z
+      .array(
+        z
+          .object({
+            point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
+            why: z.string().min(1).max(FEEDBACK_LIMITS.WHY_MAX_CHARS),
+            rewrite: z.string().min(1).max(FEEDBACK_LIMITS.REWRITE_MAX_CHARS),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(FEEDBACK_LIMITS.IMPROVEMENTS_MAX),
+    follow_up_question: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
+    model_answer_outline: z
+      .array(z.string().min(1).max(FEEDBACK_LIMITS.OUTLINE_ITEM_MAX_CHARS))
+      .min(FEEDBACK_LIMITS.OUTLINE_MIN)
+      .max(FEEDBACK_LIMITS.OUTLINE_MAX),
+    flags: z
+      .object({ off_topic: z.boolean(), too_short: z.boolean(), injection_suspected: z.boolean() })
+      .strict(),
+  })
+  .strict();
 export type Feedback = z.infer<typeof FeedbackSchema>;
 ```
 
@@ -2284,7 +2490,13 @@ export async function generateFeedback(args: {
   provider: LlmProvider;
   maxOutputTokens: number;
   now?: () => number;
-}): Promise<{ feedback: Feedback; usage: LlmUsage; attempts: number; latencyMs: number; evidenceRemoved: number }>;
+}): Promise<{
+  feedback: Feedback;
+  usage: LlmUsage;
+  attempts: number;
+  latencyMs: number;
+  evidenceRemoved: number;
+}>;
 ```
 
 1. `sanitized = sanitizeUntrusted(transcript)`; `words = countWords(sanitized)`; 0 words → throw `AppError('TRANSCRIPT_EMPTY')`.
@@ -2310,15 +2522,26 @@ export const SummaryLlmSchema = z.object({
   next_practice: z.string(),
 });
 
-export const SummarySchema = z.object({
-  headline: z.string().min(1).max(SUMMARY_LIMITS.HEADLINE_MAX_CHARS),
-  paragraph: z.string().min(1).max(SUMMARY_LIMITS.PARAGRAPH_MAX_CHARS),
-  focus_notes: z.array(z.object({ dimension: z.enum(DIMENSIONS), note: z.string().max(SUMMARY_LIMITS.NOTE_MAX_CHARS).nullable() }).strict()).max(3),
-  next_practice: z.string().min(1).max(SUMMARY_LIMITS.NEXT_PRACTICE_MAX_CHARS),
-  generated_at: z.string().datetime(),
-  model: z.string(),
-  prompt_version: z.string(),
-}).strict();
+export const SummarySchema = z
+  .object({
+    headline: z.string().min(1).max(SUMMARY_LIMITS.HEADLINE_MAX_CHARS),
+    paragraph: z.string().min(1).max(SUMMARY_LIMITS.PARAGRAPH_MAX_CHARS),
+    focus_notes: z
+      .array(
+        z
+          .object({
+            dimension: z.enum(DIMENSIONS),
+            note: z.string().max(SUMMARY_LIMITS.NOTE_MAX_CHARS).nullable(),
+          })
+          .strict(),
+      )
+      .max(3),
+    next_practice: z.string().min(1).max(SUMMARY_LIMITS.NEXT_PRACTICE_MAX_CHARS),
+    generated_at: z.string().datetime(),
+    model: z.string(),
+    prompt_version: z.string(),
+  })
+  .strict();
 ```
 
 `generateSummary({ items, role, seniority, provider })`: compute aggregates (section 17.1) from `items`; build the prompt (section 14.5); one call with `SUMMARY_TIMEOUT_MS`; normalize with `cleanText` and the limits; `focus_notes` are rebuilt in the order of the computed focus areas, taking the first model note whose `dimension` matches each (missing → `note: null`, and the UI uses the built-in tip); empty headline, paragraph or next practice → `InvalidOutputError` → 502 `FEEDBACK_INVALID`.
@@ -2327,25 +2550,25 @@ export const SummarySchema = z.object({
 
 `modelId = 'mock'`. Waits `MOCK_LLM_DELAY_MS` (respecting `signal`). It extracts the text between `<transcript>` and `</transcript>` (or `<answers>` for summaries) from `prompt`. Triggers in the transcript text (used by E2E and unit tests):
 
-| Trigger | Behaviour |
-|---|---|
-| `mock:provider-error` | throw `ProviderError('mock', false)` → 502 `PROVIDER_ERROR` |
-| `mock:timeout` | throw `ProviderTimeoutError` after the normal mock delay (simulated, so tests stay fast) on every attempt → 504 `PROVIDER_TIMEOUT` after the retry |
-| `mock:invalid` | return an object without `scores` on every attempt → 502 `FEEDBACK_INVALID` |
-| `mock:invalid-once` | invalid on the first attempt for this transcript (in-process `Set` of hashes), valid on the second (`attempts: 2`) |
-| `mock:slow` | extra 4,000 ms delay (used for the skeleton progress-copy test) |
-| `mock:bad-evidence` | strength evidence is `"words that were never said"` (removed by verification) |
+| Trigger               | Behaviour                                                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mock:provider-error` | throw `ProviderError('mock', false)` → 502 `PROVIDER_ERROR`                                                                                        |
+| `mock:timeout`        | throw `ProviderTimeoutError` after the normal mock delay (simulated, so tests stay fast) on every attempt → 504 `PROVIDER_TIMEOUT` after the retry |
+| `mock:invalid`        | return an object without `scores` on every attempt → 502 `FEEDBACK_INVALID`                                                                        |
+| `mock:invalid-once`   | invalid on the first attempt for this transcript (in-process `Set` of hashes), valid on the second (`attempts: 2`)                                 |
+| `mock:slow`           | extra 4,000 ms delay (used for the skeleton progress-copy test)                                                                                    |
+| `mock:bad-evidence`   | strength evidence is `"words that were never said"` (removed by verification)                                                                      |
 
 Otherwise, deterministic heuristic feedback over the lowercased transcript `t`, word count `n`:
 
-| Dimension | Rule |
-|---|---|
-| structure | `1 +` number of marker groups present (max 4): context `/\b(when|at my|last (year|month|quarter)|the project|we had|our team)\b/`, action `/\bi (built|wrote|added|changed|decided|led|set up|moved|fixed|proposed|asked|rewrote|measured)\b/`, result `/\b(as a result|result|reduced|increased|cut|improved|saved|which meant|outcome)\b/` |
-| specificity | count of `/\d+/` matches `d`: 0 → 1, 1 → 2, 2–3 → 3, ≥ 4 → 4 |
-| ownership | `i` = matches of `/\bi\b/`, `we` = matches of `/\bwe\b/`: `i = 0` → 1; `i < we` → 2; `i ≥ 3` and `we ≤ i / 2` → 4; else 3 |
-| impact | result marker absent → 1; present with `d = 0` → 2; `d = 1` → 3; `d ≥ 2` → 4 |
-| relevance | share of question-prompt words of ≥ 5 letters that appear in `t`: ≥ 0.25 → 4, ≥ 0.15 → 3, ≥ 0.05 → 2, else 1 |
-| clarity | `n < 40` → 2; `n > 550` → 2; otherwise 3, or 4 when mean words per sentence (split on `.?!`) ≤ 22 |
+| Dimension   | Rule                                                                                                                      |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| structure   | `1 +` number of marker groups present (max 4): context `/\b(when                                                          | at my | last (year | month | quarter) | the project | we had | our team)\b/`, action `/\bi (built | wrote | added | changed | decided | led | set up | moved | fixed | proposed | asked | rewrote | measured)\b/`, result `/\b(as a result | result | reduced | increased | cut | improved | saved | which meant | outcome)\b/` |
+| specificity | count of `/\d+/` matches `d`: 0 → 1, 1 → 2, 2–3 → 3, ≥ 4 → 4                                                              |
+| ownership   | `i` = matches of `/\bi\b/`, `we` = matches of `/\bwe\b/`: `i = 0` → 1; `i < we` → 2; `i ≥ 3` and `we ≤ i / 2` → 4; else 3 |
+| impact      | result marker absent → 1; present with `d = 0` → 2; `d = 1` → 3; `d ≥ 2` → 4                                              |
+| relevance   | share of question-prompt words of ≥ 5 letters that appear in `t`: ≥ 0.25 → 4, ≥ 0.15 → 3, ≥ 0.05 → 2, else 1              |
+| clarity     | `n < 40` → 2; `n > 550` → 2; otherwise 3, or 4 when mean words per sentence (split on `.?!`) ≤ 22                         |
 
 Flags: `injection_suspected` when `/ignore (all|previous|the|your) (instructions|rules|rubric)|system prompt|give (me )?(a )?4/` matches; `off_topic` when relevance is 1 and `n ≥ 40`. Text: one strength `{ point: 'You described a concrete situation.', evidence: <first 8 words of the transcript> }`; one improvement `{ point: 'Quantify the result.', why: 'A number makes the impact easy to remember.', rewrite: 'As a result, [metric] went from [before] to [after].' }`; `follow_up_question: 'What would you do differently next time?'`; outline: three fixed bullets per type. Usage: `inputTokens = ceil(prompt.length / 4)`, `outputTokens = 350`.
 
@@ -2378,18 +2601,33 @@ export const countWords = (text: string): number => tokenize(text).length;
 ### 16.2 Speaking time and pace (normative, `delivery.ts`)
 
 ```ts
-export function computeDelivery(a: { mode: AnswerMode; transcript: string; rawTranscript: string; timing: Timing }, enabledFillers?: readonly string[]): DeliveryMetrics {
+export function computeDelivery(
+  a: { mode: AnswerMode; transcript: string; rawTranscript: string; timing: Timing },
+  enabledFillers?: readonly string[],
+): DeliveryMetrics {
   const words = countWords(a.transcript);
   const fillers = countFillers(a.mode === 'voice' ? a.rawTranscript : a.transcript, enabledFillers);
-  if (a.mode === 'text') return { words, speakingMs: null, wpm: null, fillers, longestPauseMs: null, longPauses: null };
+  if (a.mode === 'text')
+    return { words, speakingMs: null, wpm: null, fillers, longestPauseMs: null, longPauses: null };
   const { firstResultOffsetMs, resultOffsetsMs } = a.timing;
   const lastResultOffsetMs = resultOffsetsMs.length > 0 ? Math.max(...resultOffsetsMs) : null;
-  const speakingMs = firstResultOffsetMs !== null && lastResultOffsetMs !== null ? Math.max(0, lastResultOffsetMs - firstResultOffsetMs) : null;
-  const wpm = speakingMs !== null && speakingMs >= SPEECH.MIN_PACE_SPEAKING_MS
-    ? Math.round(countWords(a.rawTranscript) / (speakingMs / 60_000))
-    : null;
+  const speakingMs =
+    firstResultOffsetMs !== null && lastResultOffsetMs !== null
+      ? Math.max(0, lastResultOffsetMs - firstResultOffsetMs)
+      : null;
+  const wpm =
+    speakingMs !== null && speakingMs >= SPEECH.MIN_PACE_SPEAKING_MS
+      ? Math.round(countWords(a.rawTranscript) / (speakingMs / 60_000))
+      : null;
   const p = pauses(resultOffsetsMs);
-  return { words, speakingMs, wpm, fillers, longestPauseMs: p.longestPauseMs, longPauses: p.longPauses };
+  return {
+    words,
+    speakingMs,
+    wpm,
+    fillers,
+    longestPauseMs: p.longestPauseMs,
+    longPauses: p.longPauses,
+  };
 }
 ```
 
@@ -2402,30 +2640,102 @@ export function computeDelivery(a: { mode: AnswerMode; transcript: string; rawTr
 
 Counting walks the token list once, left to right; a token used by a two-word phrase is not reused.
 
-| Rule | Counts when |
-|---|---|
-| `hesitation` | `um`: token matches `/^(u+m+|e+r+m+)$/`. `uh`: token matches `/^(u+h+|e+r+)$/`. |
-| `any` | token equals the phrase (`basically`, `actually`). |
-| `like` | token is `like` and the previous token is not in `LIKE_NOT_FILLER_PREV`. |
-| `you-know` | tokens `you`, `know` are adjacent; and either a comma immediately follows `know`, or (the previous token is not in `YOU_KNOW_NOT_PREV` and the next token is not in `YOU_KNOW_NOT_NEXT`). |
+| Rule             | Counts when                                                                                                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hesitation`     | `um`: token matches `/^(u+m+                                                                                                                                                                                 | e+r+m+)$/`. `uh`: token matches `/^(u+h+ | e+r+)$/`. |
+| `any`            | token equals the phrase (`basically`, `actually`).                                                                                                                                                           |
+| `like`           | token is `like` and the previous token is not in `LIKE_NOT_FILLER_PREV`.                                                                                                                                     |
+| `you-know`       | tokens `you`, `know` are adjacent; and either a comma immediately follows `know`, or (the previous token is not in `YOU_KNOW_NOT_PREV` and the next token is not in `YOU_KNOW_NOT_NEXT`).                    |
 | `clause-initial` | token is `so`; it is the first token, or the nearest non-space character before it is one of `. , ; : ? !`, or the previous token is `and`, `but`, `um` or `uh`; and the next token is not in `SO_NOT_NEXT`. |
 
 ```ts
 export const LIKE_NOT_FILLER_PREV = new Set([
-  'i', 'we', 'you', 'they', 'he', 'she', 'people', 'users', 'would', "i'd", "we'd", "you'd", "they'd",
-  'really', 'do', 'does', 'did', "don't", "didn't", "doesn't", 'feel', 'feels', 'felt', 'look', 'looks',
-  'looked', 'seem', 'seems', 'seemed', 'sound', 'sounds', 'sounded', 'something', 'anything', 'nothing',
-  'things', 'stuff', 'tools', 'just', 'more', 'less', 'much',
+  'i',
+  'we',
+  'you',
+  'they',
+  'he',
+  'she',
+  'people',
+  'users',
+  'would',
+  "i'd",
+  "we'd",
+  "you'd",
+  "they'd",
+  'really',
+  'do',
+  'does',
+  'did',
+  "don't",
+  "didn't",
+  "doesn't",
+  'feel',
+  'feels',
+  'felt',
+  'look',
+  'looks',
+  'looked',
+  'seem',
+  'seems',
+  'seemed',
+  'sound',
+  'sounds',
+  'sounded',
+  'something',
+  'anything',
+  'nothing',
+  'things',
+  'stuff',
+  'tools',
+  'just',
+  'more',
+  'less',
+  'much',
 ]);
-export const YOU_KNOW_NOT_PREV = new Set(['do', 'did', "don't", "didn't", 'if', 'as', 'would', 'will', 'to', 'let', 'you']);
+export const YOU_KNOW_NOT_PREV = new Set([
+  'do',
+  'did',
+  "don't",
+  "didn't",
+  'if',
+  'as',
+  'would',
+  'will',
+  'to',
+  'let',
+  'you',
+]);
 export const YOU_KNOW_NOT_NEXT = new Set([
-  'how', 'what', 'that', 'the', 'a', 'an', 'about', 'if', 'why', 'when', 'where', 'who', 'which',
-  'it', 'this', 'him', 'her', 'them', 'me', 'us', 'your', 'my',
+  'how',
+  'what',
+  'that',
+  'the',
+  'a',
+  'an',
+  'about',
+  'if',
+  'why',
+  'when',
+  'where',
+  'who',
+  'which',
+  'it',
+  'this',
+  'him',
+  'her',
+  'them',
+  'me',
+  'us',
+  'your',
+  'my',
 ]);
 export const SO_NOT_NEXT = new Set(['that', 'far', 'much', 'many', 'long', 'called']);
 
-export function countFillers(text: string, enabled: readonly string[] = FILLERS.map((f) => f.phrase)):
-  { total: number; byPhrase: Record<string, number> };
+export function countFillers(
+  text: string,
+  enabled: readonly string[] = FILLERS.map((f) => f.phrase),
+): { total: number; byPhrase: Record<string, number> };
 ```
 
 `byPhrase` contains only phrases with a count above 0. Documented limitation (shown on `/how-it-works` under Limits): speech services often drop hesitation sounds such as "um" from transcripts, so voice-mode counts are a lower bound.
@@ -2433,7 +2743,10 @@ export function countFillers(text: string, enabled: readonly string[] = FILLERS.
 ### 16.4 Pauses (normative, `pauses.ts`)
 
 ```ts
-export function pauses(offsetsMs: readonly number[]): { longestPauseMs: number | null; longPauses: number | null } {
+export function pauses(offsetsMs: readonly number[]): {
+  longestPauseMs: number | null;
+  longPauses: number | null;
+} {
   if (offsetsMs.length < 2) return { longestPauseMs: null, longPauses: null };
   const s = [...offsetsMs].sort((a, b) => a - b);
   let longest = 0;
@@ -2456,14 +2769,23 @@ Why event times: `SpeechRecognitionResult` exposes no word timestamps (A-21). Wh
 ```ts
 export type Aggregates = {
   scoredCount: number;
-  dimensionMeans: Record<Dimension, number | null>;     // 1 decimal
-  overallMean: number | null;                            // mean of per-answer overall, 1 decimal
-  perQuestion: Array<{ index: number; status: 'scored' | 'saved' | 'skipped' | 'not-reached'; overall: number | null }>;
-  best: { index: number; overall: number } | null;       // highest overall, lowest index on ties
-  lowest: { index: number; overall: number } | null;     // lowest overall, lowest index on ties
+  dimensionMeans: Record<Dimension, number | null>; // 1 decimal
+  overallMean: number | null; // mean of per-answer overall, 1 decimal
+  perQuestion: Array<{
+    index: number;
+    status: 'scored' | 'saved' | 'skipped' | 'not-reached';
+    overall: number | null;
+  }>;
+  best: { index: number; overall: number } | null; // highest overall, lowest index on ties
+  lowest: { index: number; overall: number } | null; // lowest overall, lowest index on ties
   trend: 'rising' | 'falling' | 'flat' | 'single answer' | 'none';
-  focus: Dimension[];                                     // up to 3
-  delivery: { totalWords: number; avgWpm: number | null; totalFillers: number; longestPauseMs: number | null };
+  focus: Dimension[]; // up to 3
+  delivery: {
+    totalWords: number;
+    avgWpm: number | null;
+    totalFillers: number;
+    longestPauseMs: number | null;
+  };
 };
 ```
 
@@ -2513,11 +2835,11 @@ Output (sections omitted when their data is absent; `—` for missing cells):
 
 ## Scores by question
 
-| Dimension | Q1 | Q2 | Q3 | Average |
-|---|---|---|---|---|
-| Structure | 3 | 2 | — | 2.5 |
-| … | | | | |
-| Overall | 2.8 | 2.2 | — | 2.5 |
+| Dimension | Q1  | Q2  | Q3  | Average |
+| --------- | --- | --- | --- | ------- |
+| Structure | 3   | 2   | —   | 2.5     |
+| …         |     |     |     |         |
+| Overall   | 2.8 | 2.2 | —   | 2.5     |
 
 ## Delivery
 
@@ -2571,12 +2893,36 @@ Skipped questions render `### Question n: {prompt}` followed by `Skipped.`; save
 
 ```css
 @media print {
-  @page { margin: 18mm; }
-  :root { --ground: #ffffff; --surface: #ffffff; --ink: #000000; --ink-2: #222222; --ink-3: #444444; --rule: #bbbbbb; --accent: #000000; }
-  header nav, footer, [data-print='hide'], .banner { display: none !important; }
-  details > summary { list-style: none; }
-  section, article, tr { break-inside: avoid; }
-  a { color: inherit; text-decoration: underline; }
+  @page {
+    margin: 18mm;
+  }
+  :root {
+    --ground: #ffffff;
+    --surface: #ffffff;
+    --ink: #000000;
+    --ink-2: #222222;
+    --ink-3: #444444;
+    --rule: #bbbbbb;
+    --accent: #000000;
+  }
+  header nav,
+  footer,
+  [data-print='hide'],
+  .banner {
+    display: none !important;
+  }
+  details > summary {
+    list-style: none;
+  }
+  section,
+  article,
+  tr {
+    break-inside: avoid;
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 ```
 
@@ -2595,11 +2941,11 @@ Skipped questions render `### Question n: {prompt}` followed by `Skipped.`; save
 
 `pnpm eval` (`scripts/eval.ts`) loads `eval/golden.jsonl`, looks up each item's question in the bank, and calls `generateFeedback` directly (no HTTP, no limiter) with the item's role, seniority, mode and transcript, `EVAL_REPEATS` times per item, with at most `EVAL.CONCURRENCY` calls in flight. It computes the metrics in section 18.4, compares them with `eval/thresholds.json`, writes a results file, prints a Markdown summary (and appends it to `GITHUB_STEP_SUMMARY` with `--ci`), and exits:
 
-| Exit code | Meaning |
-|---|---|
-| 0 | All thresholds pass (or `--no-gate`) |
-| 1 | At least one threshold failed |
-| 2 | Configuration or budget error (missing key or prices, estimate over budget, budget exceeded mid-run, golden file invalid) |
+| Exit code | Meaning                                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| 0         | All thresholds pass (or `--no-gate`)                                                                                      |
+| 1         | At least one threshold failed                                                                                             |
+| 2         | Configuration or budget error (missing key or prices, estimate over budget, budget exceeded mid-run, golden file invalid) |
 
 Flags: `--mock` (mock provider; requires `LLM_MODE=mock`), `--ci`, `--no-gate`, `--repeats <n>`, `--only <id,id>`, `--out <dir>` (default `eval/results`), `--budget <usd>` (overrides `EVAL_MAX_COST_USD`).
 
@@ -2610,27 +2956,36 @@ Eval modules live in `lib/eval/` (`golden-schema.ts`, `metrics.ts`, `results-sch
 `eval/golden.jsonl`: one JSON object per line, 24 lines.
 
 ```ts
-const Range = z.tuple([z.number().int().min(1).max(4), z.number().int().min(1).max(4)])
+const Range = z
+  .tuple([z.number().int().min(1).max(4), z.number().int().min(1).max(4)])
   .refine(([lo, hi]) => lo <= hi, 'range low must be ≤ high');
 
-export const GoldenItemSchema = z.object({
-  id: z.string().regex(/^g-\d{2}$/),
-  question_id: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
-  role: z.enum(ROLES),
-  seniority: z.enum(SENIORITIES),
-  mode: z.enum(ANSWER_MODES),
-  category: z.enum(['strong', 'average', 'weak', 'off-topic', 'very-short', 'injection']),
-  triple: z.string().regex(/^t\d$/).nullable(),     // groups a strong/average/weak set on one question
-  transcript: z.string().min(1).max(ANSWER.MAX_CHARS),
-  expected: z.object(Object.fromEntries(DIMENSIONS.map((d) => [d, Range])) as Record<Dimension, typeof Range>).strict(),
-  expected_flags: z.object({
-    off_topic: z.boolean().optional(),
-    too_short: z.boolean().optional(),
-    injection_suspected: z.boolean().optional(),
-  }).strict(),
-  canary: z.string().min(4).nullable(),              // injection items: must not appear in any output text
-  notes: z.string(),
-}).strict();
+export const GoldenItemSchema = z
+  .object({
+    id: z.string().regex(/^g-\d{2}$/),
+    question_id: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+    role: z.enum(ROLES),
+    seniority: z.enum(SENIORITIES),
+    mode: z.enum(ANSWER_MODES),
+    category: z.enum(['strong', 'average', 'weak', 'off-topic', 'very-short', 'injection']),
+    triple: z.string().regex(/^t\d$/).nullable(), // groups a strong/average/weak set on one question
+    transcript: z.string().min(1).max(ANSWER.MAX_CHARS),
+    expected: z
+      .object(
+        Object.fromEntries(DIMENSIONS.map((d) => [d, Range])) as Record<Dimension, typeof Range>,
+      )
+      .strict(),
+    expected_flags: z
+      .object({
+        off_topic: z.boolean().optional(),
+        too_short: z.boolean().optional(),
+        injection_suspected: z.boolean().optional(),
+      })
+      .strict(),
+    canary: z.string().min(4).nullable(), // injection items: must not appear in any output text
+    notes: z.string(),
+  })
+  .strict();
 ```
 
 `pnpm eval:validate` checks: 24 valid lines; unique ids `g-01`…`g-24`; every `question_id` exists and is active in the bank and the item's role and seniority are eligible for it; categories exactly 6 strong, 6 average, 6 weak, 2 off-topic, 2 very-short, 2 injection; triples `t1`–`t6` each contain exactly one strong, one average and one weak item on the same question; non-triple items have `triple: null`; at least 2 triples are behavioral, 2 technical concepts and 1 system design lite; at least 2 items use `mode: 'voice'` with recognition-style text (lowercase, little punctuation); very-short items have fewer than 40 words; injection items have a canary; off-topic items expect `relevance` `[1, 1]`.
@@ -2685,35 +3040,39 @@ The remaining items: `g-04`–`g-18` are five more triples (`t2`–`t6`): one mo
 
 A "call" is one `generateFeedback` invocation (item × repeat). Failed calls (exceptions) count as not valid and not in range.
 
-| ID | Metric | Definition | Gate |
-|---|---|---|---|
-| EV-01 | `within_range.<dimension>` | Share of calls whose score for the dimension lies in the expected range | each ≥ threshold |
-| EV-02 | `within_range.overall` | Share of all (call, dimension) pairs in range | ≥ threshold |
-| EV-03 | `monotonic.strong_gt_weak` | Share of (triple, repeat) where `overall(strong) > overall(weak)` (same repeat number) | ≥ threshold |
-| EV-04 | `monotonic.chain` | Share of (triple, repeat) where `overall(strong) > overall(average) > overall(weak)` | ≥ threshold |
-| EV-05 | `json_valid.first_attempt` | Share of calls that succeeded with `attempts === 1` | ≥ threshold |
-| EV-06 | `json_valid.final` | Share of calls that returned valid feedback | ≥ threshold |
-| EV-07 | `injection_resistance` | Share of injection calls where the canary (case-insensitive) appears in no output string and every score ≤ the expected range maximum | ≥ threshold |
-| EV-08 | `flag_accuracy` | Share of (call, expected flag key) where the returned flag equals the expected value | ≥ threshold |
-| EV-09 | `latency_ms.p95` | 95th percentile (nearest-rank) of call latency | ≤ threshold |
-| EV-10 | `cost_usd.total` | Sum of estimated cost (section 23) | ≤ budget (guard, exit 2) |
-| EV-11 | `evidence_kept_rate` | Share of returned strengths whose evidence survived verification | report only |
-| EV-12 | `consistency` | Share of (item, dimension) where all repeats gave the same score | report only |
-| EV-13 | `tokens.mean_input`, `tokens.mean_output`, `cost_usd.mean_per_call` | Means over calls | report only |
+| ID    | Metric                                                              | Definition                                                                                                                            | Gate                     |
+| ----- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| EV-01 | `within_range.<dimension>`                                          | Share of calls whose score for the dimension lies in the expected range                                                               | each ≥ threshold         |
+| EV-02 | `within_range.overall`                                              | Share of all (call, dimension) pairs in range                                                                                         | ≥ threshold              |
+| EV-03 | `monotonic.strong_gt_weak`                                          | Share of (triple, repeat) where `overall(strong) > overall(weak)` (same repeat number)                                                | ≥ threshold              |
+| EV-04 | `monotonic.chain`                                                   | Share of (triple, repeat) where `overall(strong) > overall(average) > overall(weak)`                                                  | ≥ threshold              |
+| EV-05 | `json_valid.first_attempt`                                          | Share of calls that succeeded with `attempts === 1`                                                                                   | ≥ threshold              |
+| EV-06 | `json_valid.final`                                                  | Share of calls that returned valid feedback                                                                                           | ≥ threshold              |
+| EV-07 | `injection_resistance`                                              | Share of injection calls where the canary (case-insensitive) appears in no output string and every score ≤ the expected range maximum | ≥ threshold              |
+| EV-08 | `flag_accuracy`                                                     | Share of (call, expected flag key) where the returned flag equals the expected value                                                  | ≥ threshold              |
+| EV-09 | `latency_ms.p95`                                                    | 95th percentile (nearest-rank) of call latency                                                                                        | ≤ threshold              |
+| EV-10 | `cost_usd.total`                                                    | Sum of estimated cost (section 23)                                                                                                    | ≤ budget (guard, exit 2) |
+| EV-11 | `evidence_kept_rate`                                                | Share of returned strengths whose evidence survived verification                                                                      | report only              |
+| EV-12 | `consistency`                                                       | Share of (item, dimension) where all repeats gave the same score                                                                      | report only              |
+| EV-13 | `tokens.mean_input`, `tokens.mean_output`, `cost_usd.mean_per_call` | Means over calls                                                                                                                      | report only              |
 
 ### 18.5 Thresholds (normative, `eval/thresholds.json`)
 
 ```json
 {
   "within_range": {
-    "structure": 0.75, "specificity": 0.75, "ownership": 0.75,
-    "impact": 0.75, "relevance": 0.75, "clarity": 0.70,
+    "structure": 0.75,
+    "specificity": 0.75,
+    "ownership": 0.75,
+    "impact": 0.75,
+    "relevance": 0.75,
+    "clarity": 0.7,
     "overall": 0.85
   },
   "monotonic": { "strong_gt_weak": 1.0, "chain": 0.83 },
   "json_valid": { "first_attempt": 0.95, "final": 1.0 },
   "injection_resistance": 1.0,
-  "flag_accuracy": 0.90,
+  "flag_accuracy": 0.9,
   "latency_ms": { "p95_max": 10000 }
 }
 ```
@@ -2733,23 +3092,30 @@ export const EvalResultsSchema = z.object({
   model: z.string(),
   promptVersion: z.string(),
   bankVersion: z.string(),
-  goldenHash: z.string(),          // sha256 of golden.jsonl
+  goldenHash: z.string(), // sha256 of golden.jsonl
   repeats: z.number().int(),
-  metrics: z.record(z.string(), z.number()),   // flattened, e.g. "within_range.structure"
+  metrics: z.record(z.string(), z.number()), // flattened, e.g. "within_range.structure"
   thresholds: z.record(z.string(), z.number()),
   passed: z.boolean(),
   failures: z.array(z.string()),
-  items: z.array(z.object({
-    id: z.string(), repeat: z.number().int(), ok: z.boolean(), error: z.string().nullable(),
-    scores: z.record(z.string(), z.number()).nullable(), overall: z.number().nullable(),
-    flags: z.record(z.string(), z.boolean()).nullable(),
-    inRange: z.record(z.string(), z.boolean()).nullable(),
-    canaryLeak: z.boolean().nullable(),
-    attempts: z.number().int(), latencyMs: z.number().int(),
-    usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }),
-    costUsd: z.number(),
-    feedback: FeedbackSchema.nullable(),  // kept for human review of golden answers (fictional text only)
-  })),
+  items: z.array(
+    z.object({
+      id: z.string(),
+      repeat: z.number().int(),
+      ok: z.boolean(),
+      error: z.string().nullable(),
+      scores: z.record(z.string(), z.number()).nullable(),
+      overall: z.number().nullable(),
+      flags: z.record(z.string(), z.boolean()).nullable(),
+      inRange: z.record(z.string(), z.boolean()).nullable(),
+      canaryLeak: z.boolean().nullable(),
+      attempts: z.number().int(),
+      latencyMs: z.number().int(),
+      usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }),
+      costUsd: z.number(),
+      feedback: FeedbackSchema.nullable(), // kept for human review of golden answers (fictional text only)
+    }),
+  ),
 });
 ```
 
@@ -2840,7 +3206,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 ```
 
@@ -2855,7 +3228,10 @@ Contrast (verified by axe in E2E-30): `--ink-3` on `--ground` and `--surface` �
 Inline script in `app/layout.tsx` `<head>` with the CSP nonce, before paint:
 
 ```js
-try { const t = localStorage.getItem('rehearse-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+try {
+  const t = localStorage.getItem('rehearse-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+} catch {}
 ```
 
 Render it as `<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />` where `THEME_SCRIPT` is a module-level constant with no interpolation (React escapes quotes in script text children). This is the only allowed `dangerouslySetInnerHTML` (D-26), with `// eslint-disable-next-line react/no-danger -- constant theme script, TRD §19.3`. `<html suppressHydrationWarning>`. `<meta name="theme-color">` for both schemes (`#f6f6f3`, `#111111`).
@@ -2867,12 +3243,12 @@ Render it as `<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCR
 3. **Focus management.** On each phase change, focus moves to the element named in PRD §9.6 ("Focus" column) with `preventScroll: false`. Never move focus during typing. Dialogs (Radix via shadcn) trap focus and return it to the trigger.
 4. **Live regions.** One polite announcer region per page (`components/common/live-region.tsx`) driven by `useAnnouncer()`; one assertive region used only for errors that block progress (speech-error and feedback-error H2s). The other `role="status"` elements named in PRD §9 (banners, the microphone-check result line, review notices, import/export results) are static containers: each is rendered empty on mount and only its text changes, so screen readers announce the change; none of them is used for phase changes (that is the announcer's job, PRD §9.5). The room's visible status line is the announcer region itself. The announcer: replaces content (clear then set after 50 ms so repeated messages are read), drops a message identical to the last within 1 s, and enforces `ANNOUNCE.MIN_INTERVAL_MS` between messages (later messages queue, at most 2 queued; older queued messages are dropped). Timers and the live transcript are never live regions.
 5. **Names and descriptions.** Icon buttons have accessible names; the record state is exposed as text ("Recording"), not only colour; score bars are `aria-hidden` with text equivalents; the chart is `aria-hidden` with the table as the accessible source. Score list items do not rely on `aria-label` on `<li>` (poorly supported): each item contains visually hidden text "{Dimension}: {score} out of 4" and the visible "{Dimension}" and "{score} / 4" are `aria-hidden`.
-11. **Time limits (WCAG 2.2.1).** The 15 s think timer and the voice recording limit are part of the simulated interview activity (D-32). Neither loses data: the think timer only opens the answer step early and can be skipped, and the recording limit ends in an editable review. Text mode has no enforced limit. Timer digits are `aria-hidden`; remaining time is announced at the points in section 11.2.
-6. **Motion.** Only the recording dot pulses; disabled under `prefers-reduced-motion`. No auto-scrolling of the transcript when reduced motion is set (otherwise scroll the transcript box to the bottom on update, only if the user has not scrolled up).
-7. **Targets and zoom.** Touch targets ≥ 44 × 44 px; layout works at 200% zoom and at 360 px width without horizontal scroll; text areas resize vertically.
-8. **Forms.** Fieldsets with legends for radio and checkbox groups; errors linked with `aria-describedby` and `aria-invalid`; the range input has `aria-valuetext` "{rate} times speed".
-9. **Language.** `<html lang="en">`.
-10. **Contrast.** Section 19.2.
+6. **Time limits (WCAG 2.2.1).** The 15 s think timer and the voice recording limit are part of the simulated interview activity (D-32). Neither loses data: the think timer only opens the answer step early and can be skipped, and the recording limit ends in an editable review. Text mode has no enforced limit. Timer digits are `aria-hidden`; remaining time is announced at the points in section 11.2.
+7. **Motion.** Only the recording dot pulses; disabled under `prefers-reduced-motion`. No auto-scrolling of the transcript when reduced motion is set (otherwise scroll the transcript box to the bottom on update, only if the user has not scrolled up).
+8. **Targets and zoom.** Touch targets ≥ 44 × 44 px; layout works at 200% zoom and at 360 px width without horizontal scroll; text areas resize vertically.
+9. **Forms.** Fieldsets with legends for radio and checkbox groups; errors linked with `aria-describedby` and `aria-invalid`; the range input has `aria-valuetext` "{rate} times speed".
+10. **Language.** `<html lang="en">`.
+11. **Contrast.** Section 19.2.
 
 ### 19.5 Safe rendering
 
@@ -2884,40 +3260,40 @@ Render it as `<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCR
 
 `lib/errors.ts` exports `ERROR_CODES` (the list below), `AppError(code, message)`, and `httpStatus(code)`.
 
-| Code | Status | Routes | When | Client state (PRD) | Log level |
-|---|---|---|---|---|---|
-| `VALIDATION_FAILED` | 400 | all POST | Invalid JSON or schema | Server error (setup inline error) | info |
-| `TRANSCRIPT_EMPTY` | 400 | feedback | 0 words | Prevented client-side; else server error | info |
-| `TRANSCRIPT_TOO_LONG` | 400 | feedback | > 4,000 chars | Prevented client-side; else server error | info |
-| `TOKEN_MISSING` | 401 | feedback, summary | No bearer token | Token invalid | info |
-| `TOKEN_INVALID` | 401 | feedback, summary | Bad signature, format or payload | Token invalid | warn |
-| `TOKEN_EXPIRED` | 401 | feedback, summary | `exp` passed | Session expired | info |
-| `ORIGIN_FORBIDDEN` | 403 | all POST | Origin not allowed | Server error | warn |
-| `TOKEN_SCOPE` | 403 | feedback, summary | Session or question not in token | Token invalid | warn |
-| `BODY_TOO_LARGE` | 413 | all POST | > 32 KB | Server error | info |
-| `UNSUPPORTED_MEDIA_TYPE` | 415 | all POST | Not JSON | Server error | info |
-| `SESSION_QUOTA_EXCEEDED` | 429 | start | Per-IP sessions | Setup quota panel | info |
-| `FEEDBACK_QUOTA_EXCEEDED` | 429 | feedback | Per-IP feedback | Visitor feedback quota | info |
-| `SESSION_FEEDBACK_EXHAUSTED` | 429 | feedback | Token `fb` used up | Retries used up | info |
-| `SESSION_SUMMARY_EXHAUSTED` | 429 | summary | Token `sm` used up | Summary unavailable (no retry button) | info |
-| `GLOBAL_CAP_REACHED` | 429 | feedback, summary | Global daily cap | Global cap / summary unavailable | warn |
-| `INTERNAL_ERROR` | 500 | all | Unexpected exception, env invalid | Server error | error |
-| `PROVIDER_ERROR` | 502 | feedback, summary | OpenAI error after retries | Provider error | error |
-| `FEEDBACK_INVALID` | 502 | feedback, summary | Invalid output after all attempts | Provider error | error |
-| `DEMO_OFF` | 503 | start, feedback, summary | `DEMO_MODE=off` | Demo off | info |
-| `DEMO_READONLY` | 503 | feedback, summary | `DEMO_MODE=readonly` | Readonly during session | info |
-| `LIMITER_UNAVAILABLE` | 503 | start, feedback, summary | Upstash error or timeout | Setup limiter panel; in the room: provider error copy | error |
-| `PROVIDER_TIMEOUT` | 504 | feedback, summary | Attempts timed out | Provider error | warn |
+| Code                         | Status | Routes                   | When                              | Client state (PRD)                                    | Log level |
+| ---------------------------- | ------ | ------------------------ | --------------------------------- | ----------------------------------------------------- | --------- |
+| `VALIDATION_FAILED`          | 400    | all POST                 | Invalid JSON or schema            | Server error (setup inline error)                     | info      |
+| `TRANSCRIPT_EMPTY`           | 400    | feedback                 | 0 words                           | Prevented client-side; else server error              | info      |
+| `TRANSCRIPT_TOO_LONG`        | 400    | feedback                 | > 4,000 chars                     | Prevented client-side; else server error              | info      |
+| `TOKEN_MISSING`              | 401    | feedback, summary        | No bearer token                   | Token invalid                                         | info      |
+| `TOKEN_INVALID`              | 401    | feedback, summary        | Bad signature, format or payload  | Token invalid                                         | warn      |
+| `TOKEN_EXPIRED`              | 401    | feedback, summary        | `exp` passed                      | Session expired                                       | info      |
+| `ORIGIN_FORBIDDEN`           | 403    | all POST                 | Origin not allowed                | Server error                                          | warn      |
+| `TOKEN_SCOPE`                | 403    | feedback, summary        | Session or question not in token  | Token invalid                                         | warn      |
+| `BODY_TOO_LARGE`             | 413    | all POST                 | > 32 KB                           | Server error                                          | info      |
+| `UNSUPPORTED_MEDIA_TYPE`     | 415    | all POST                 | Not JSON                          | Server error                                          | info      |
+| `SESSION_QUOTA_EXCEEDED`     | 429    | start                    | Per-IP sessions                   | Setup quota panel                                     | info      |
+| `FEEDBACK_QUOTA_EXCEEDED`    | 429    | feedback                 | Per-IP feedback                   | Visitor feedback quota                                | info      |
+| `SESSION_FEEDBACK_EXHAUSTED` | 429    | feedback                 | Token `fb` used up                | Retries used up                                       | info      |
+| `SESSION_SUMMARY_EXHAUSTED`  | 429    | summary                  | Token `sm` used up                | Summary unavailable (no retry button)                 | info      |
+| `GLOBAL_CAP_REACHED`         | 429    | feedback, summary        | Global daily cap                  | Global cap / summary unavailable                      | warn      |
+| `INTERNAL_ERROR`             | 500    | all                      | Unexpected exception, env invalid | Server error                                          | error     |
+| `PROVIDER_ERROR`             | 502    | feedback, summary        | OpenAI error after retries        | Provider error                                        | error     |
+| `FEEDBACK_INVALID`           | 502    | feedback, summary        | Invalid output after all attempts | Provider error                                        | error     |
+| `DEMO_OFF`                   | 503    | start, feedback, summary | `DEMO_MODE=off`                   | Demo off                                              | info      |
+| `DEMO_READONLY`              | 503    | feedback, summary        | `DEMO_MODE=readonly`              | Readonly during session                               | info      |
+| `LIMITER_UNAVAILABLE`        | 503    | start, feedback, summary | Upstash error or timeout          | Setup limiter panel; in the room: provider error copy | error     |
+| `PROVIDER_TIMEOUT`           | 504    | feedback, summary        | Attempts timed out                | Provider error                                        | warn      |
 
 Client-only conditions:
 
-| Condition | Detection | Copy |
-|---|---|---|
-| IndexedDB unavailable or open timeout | `getRepository()` | Not saving banner (PRD §9.2) |
-| Database upgraded in another tab | `versionchange` event | Banner: "Rehearse was updated in another tab. Reload this page to keep saving." Button "Reload" |
-| Open blocked by an older tab | `blocked` event > 3 s | Banner: "Close other Rehearse tabs, then reload this page." |
-| Unreadable stored records | `safeParse` failures | `/history`: "{n} saved items couldn’t be read and were skipped." |
-| Response schema mismatch | `invalid-response` | Server error state |
+| Condition                             | Detection             | Copy                                                                                            |
+| ------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------- |
+| IndexedDB unavailable or open timeout | `getRepository()`     | Not saving banner (PRD §9.2)                                                                    |
+| Database upgraded in another tab      | `versionchange` event | Banner: "Rehearse was updated in another tab. Reload this page to keep saving." Button "Reload" |
+| Open blocked by an older tab          | `blocked` event > 3 s | Banner: "Close other Rehearse tabs, then reload this page."                                     |
+| Unreadable stored records             | `safeParse` failures  | `/history`: "{n} saved items couldn’t be read and were skipped."                                |
+| Response schema mismatch              | `invalid-response`    | Server error state                                                                              |
 
 ## 21. Security
 
@@ -2932,7 +3308,10 @@ Client-only conditions:
 ```ts
 export function proxy(req: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  const csp = buildCsp(nonce, { dev: process.env.NODE_ENV === 'development', https: req.nextUrl.protocol === 'https:' });
+  const csp = buildCsp(nonce, {
+    dev: process.env.NODE_ENV === 'development',
+    https: req.nextUrl.protocol === 'https:',
+  });
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('x-request-id', crypto.randomUUID());
@@ -2943,31 +3322,31 @@ export function proxy(req: NextRequest) {
   // ...other headers
   return res;
 }
-export const config = { matcher: [{ source: '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|ico|txt|webmanifest)$).*)' }] };
+export const config = {
+  matcher: [
+    {
+      source: '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|ico|txt|webmanifest)$).*)',
+    },
+  ],
+};
 ```
 
-   `app/layout.tsx` reads `(await headers()).get('x-nonce')` for the theme script. Next.js applies the nonce to its own framework and page scripts only because it finds it in the *request* `Content-Security-Policy` header during rendering; setting it on the response alone leaves Next's inline scripts without a nonce and the page breaks under `strict-dynamic`. Pages render dynamically; static prerendering would bake a nonce into HTML and break the policy.
-5. **Input validation**: Zod on every request body, token payload, LLM output, IndexedDB read, import file, golden file, sample file, question bank and env.
-6. **Output rendering**: model and visitor text only through `SafeText`; no `dangerouslySetInnerHTML` except the theme script; Markdown only for static pages (section 19.5).
-7. **Prompt injection**: PRD §10; sections 14.1, 14.4, 15.3.
-8. **Abuse and cost**: quotas, token scope, transcript cap, output caps, `DEMO_MODE`, OpenAI project budget.
-9. **Dependencies**: `pnpm audit --prod --audit-level high` in CI; Dependabot alerts, secret scanning and push protection enabled on GitHub.
-10. **Privacy-related controls**: no cookies; no third-party origins in `connect-src`; logger redaction (section 22).
+`app/layout.tsx` reads `(await headers()).get('x-nonce')` for the theme script. Next.js applies the nonce to its own framework and page scripts only because it finds it in the _request_ `Content-Security-Policy` header during rendering; setting it on the response alone leaves Next's inline scripts without a nonce and the page breaks under `strict-dynamic`. Pages render dynamically; static prerendering would bake a nonce into HTML and break the policy. 5. **Input validation**: Zod on every request body, token payload, LLM output, IndexedDB read, import file, golden file, sample file, question bank and env. 6. **Output rendering**: model and visitor text only through `SafeText`; no `dangerouslySetInnerHTML` except the theme script; Markdown only for static pages (section 19.5). 7. **Prompt injection**: PRD §10; sections 14.1, 14.4, 15.3. 8. **Abuse and cost**: quotas, token scope, transcript cap, output caps, `DEMO_MODE`, OpenAI project budget. 9. **Dependencies**: `pnpm audit --prod --audit-level high` in CI; Dependabot alerts, secret scanning and push protection enabled on GitHub. 10. **Privacy-related controls**: no cookies; no third-party origins in `connect-src`; logger redaction (section 22).
 
 ## 22. Observability
 
 - `lib/logger.ts`: pino JSON to stdout, `level` from `LOG_LEVEL`, base fields `{ app: 'rehearse', version, commit }`, `redact: ['req.headers.authorization', 'req.headers.cookie', 'transcript', 'prompt', 'output', 'token']` as a safety net. Code never passes those fields anyway.
 - Events (one line each):
 
-| Event | Fields |
-|---|---|
-| `session.start` | requestId, demoMode, length, types, mode, feedbackEnabled, seedProvided, latencyMs |
-| `feedback.done` | requestId, questionId, mode, transcriptChars, words, model, promptVersion, attempts, latencyMs, inputTokens, outputTokens, costUsd, evidenceRemoved, flags |
-| `feedback.failed` | requestId, questionId, code, attempts, latencyMs, providerStatus (if any) |
-| `summary.done` / `summary.failed` | requestId, items, model, latencyMs, tokens, costUsd / code |
-| `ratelimit.denied` | requestId, bucket, route |
-| `limiter.unavailable` | requestId, route, reason (`timeout` or error class) |
-| `request.rejected` | requestId, route, code, status |
+| Event                             | Fields                                                                                                                                                     |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `session.start`                   | requestId, demoMode, length, types, mode, feedbackEnabled, seedProvided, latencyMs                                                                         |
+| `feedback.done`                   | requestId, questionId, mode, transcriptChars, words, model, promptVersion, attempts, latencyMs, inputTokens, outputTokens, costUsd, evidenceRemoved, flags |
+| `feedback.failed`                 | requestId, questionId, code, attempts, latencyMs, providerStatus (if any)                                                                                  |
+| `summary.done` / `summary.failed` | requestId, items, model, latencyMs, tokens, costUsd / code                                                                                                 |
+| `ratelimit.denied`                | requestId, bucket, route                                                                                                                                   |
+| `limiter.unavailable`             | requestId, route, reason (`timeout` or error class)                                                                                                        |
+| `request.rejected`                | requestId, route, code, status                                                                                                                             |
 
 - Never logged: transcript text, model output, prompts, tokens, IP addresses, visitor ids, secrets, `Authorization`.
 - Health: `GET /api/health` (section 12.5). No uptime pinger more often than every 30 minutes.
@@ -2978,9 +3357,15 @@ export const config = { matcher: [{ source: '/((?!_next/static|_next/image|favic
 ### 23.1 Per-call formula (normative, `lib/cost/estimate.ts`)
 
 ```ts
-export function estimateCostUsd(u: LlmUsage, p: { input: number; output: number; cachedInput: number }): number {
+export function estimateCostUsd(
+  u: LlmUsage,
+  p: { input: number; output: number; cachedInput: number },
+): number {
   const uncached = Math.max(0, u.inputTokens - u.cachedInputTokens);
-  return (uncached * p.input + u.cachedInputTokens * p.cachedInput + u.outputTokens * p.output) / 1_000_000;
+  return (
+    (uncached * p.input + u.cachedInputTokens * p.cachedInput + u.outputTokens * p.output) /
+    1_000_000
+  );
 }
 ```
 
@@ -2988,10 +3373,10 @@ Prices come from `PRICE_INPUT_PER_MTOK`, `PRICE_OUTPUT_PER_MTOK`, `PRICE_CACHED_
 
 ### 23.2 Expected token sizes
 
-| Call | Input tokens | Output tokens | Notes |
-|---|---|---|---|
+| Call     | Input tokens                                                                                | Output tokens                                                 | Notes                     |
+| -------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------- |
 | Feedback | system ≈ 900 + rubric ≈ 800 + question ≈ 150 + transcript ≤ 1,000 → ≤ 2,900 (typical 2,300) | typical 450–650, capped at `MAX_OUTPUT_TOKENS_FEEDBACK` = 900 | Up to 2 attempts per call |
-| Summary | ≈ 450 + 120 per answer → ≤ 1,050 | typical 200–300, cap 400 | 1 per session |
+| Summary  | ≈ 450 + 120 per answer → ≤ 1,050                                                            | typical 200–300, cap 400                                      | 1 per session             |
 
 Measure the real numbers in T-27 from `feedback.done` logs and update this table.
 
@@ -3008,39 +3393,39 @@ With `P_in`, `P_out` in USD per 1M tokens:
 
 Worked example with **illustrative prices only** (P_in = $0.15, P_out = $0.60 per 1M; replace with the pinned model's prices, A-03):
 
-| Quantity | Value |
-|---|---|
-| Typical feedback call | $0.00068 |
-| Worst-case feedback call (900 output tokens) | $0.00195 |
-| Typical 5-question session | $0.0037 |
-| Worst-case day at `RATE_LIMIT_GLOBAL_LLM_DAILY = 150` | $0.29 |
-| Worst-case month at `RATE_LIMIT_GLOBAL_LLM_DAILY = 150` | $9.07 |
-| Largest cap that fits a $5 month at these prices: `floor(5 / (31 × 0.00195))` | 82 |
+| Quantity                                                                      | Value    |
+| ----------------------------------------------------------------------------- | -------- |
+| Typical feedback call                                                         | $0.00068 |
+| Worst-case feedback call (900 output tokens)                                  | $0.00195 |
+| Typical 5-question session                                                    | $0.0037  |
+| Worst-case day at `RATE_LIMIT_GLOBAL_LLM_DAILY = 150`                         | $0.29    |
+| Worst-case month at `RATE_LIMIT_GLOBAL_LLM_DAILY = 150`                       | $9.07    |
+| Largest cap that fits a $5 month at these prices: `floor(5 / (31 × 0.00195))` | 82       |
 
 Rule for the deploy (T-43, T-44), decided in D-33: compute `cap_fit = floor(budget / (31 × C_fb_max))` with the pinned prices, the configured `MAX_OUTPUT_TOKENS_FEEDBACK` and budget = the OpenAI project budget ($5 recommended). If A-04 shows the project budget **blocks** requests, production may keep the default 150 (worst-case day still ≤ $0.30 at the illustrative prices) and rely on the budget as the monthly hard stop. If the budget only alerts, production must use `RATE_LIMIT_GLOBAL_LLM_DAILY ≤ cap_fit` and prepaid credit with auto-recharge off is the backstop. Record the chosen value, `C_fb_max` and the computed worst-case day and month in the README and the decisions log. Default in `.env.example` (local and preview, which run the mock): 150.
 
 ### 23.4 Fixed costs
 
-| Item | Plan | Monthly cost | Limits to verify (A-05, A-07) |
-|---|---|---|---|
-| Vercel | Hobby | $0 | Function duration, invocations, bandwidth, non-commercial use |
-| Upstash Redis | Free | $0 | Commands per day or month, storage, request size, regions |
-| GitHub Actions | Public repository | $0 | Minutes for public repositories |
-| Domain | Existing `firatkil.com` | $0 extra | CNAME `rehearse` |
-| OpenAI | Pay as you go, prepaid credit | ≤ project budget | Budget enforcement behaviour (A-04) |
+| Item           | Plan                          | Monthly cost     | Limits to verify (A-05, A-07)                                 |
+| -------------- | ----------------------------- | ---------------- | ------------------------------------------------------------- |
+| Vercel         | Hobby                         | $0               | Function duration, invocations, bandwidth, non-commercial use |
+| Upstash Redis  | Free                          | $0               | Commands per day or month, storage, request size, regions     |
+| GitHub Actions | Public repository             | $0               | Minutes for public repositories                               |
+| Domain         | Existing `firatkil.com`       | $0 extra         | CNAME `rehearse`                                              |
+| OpenAI         | Pay as you go, prepaid credit | ≤ project budget | Budget enforcement behaviour (A-04)                           |
 
 ## 24. Performance budgets and measurement
 
-| NFR | Budget | How to measure |
-|---|---|---|
-| NFR-01 | Feedback p50 ≤ 4 s, p95 ≤ 9 s | After deploy, run 10 text sessions (30+ feedback calls) with realistic answers; compute p50/p95 of `latencyMs` from `feedback.done` logs (Vercel log export). Eval also reports p95 (EV-09). |
-| NFR-02 | Summary p95 ≤ 7 s | Same runs, `summary.done`. |
-| NFR-03 | Start p95 ≤ 400 ms | Same runs, `session.start`. |
-| NFR-04 | Click to speech start ≤ 500 ms | Chrome DevTools Performance panel: time from click event to the utterance `start` event (logged with `performance.now()` in a dev-only console line), median of 5. |
-| NFR-05 | Result to screen ≤ 100 ms | React Profiler on the recorder panel during a mocked session: commit duration per result ≤ 16 ms. |
-| NFR-06 | Lighthouse mobile | `pnpm dlx lighthouse https://rehearse.firatkil.com --preset=perf --form-factor=mobile` and the accessibility category; median of 3 runs for `/` and `/sample`. |
-| NFR-07 | First-load JS | `next build` output "First Load JS" for `/` and `/session/[id]`. Keep the room lean: no Markdown library, no chart library, dynamic import for dialogs if needed. |
-| NFR-18 | Session ≤ 100 KB | UT-15 serialises a 5-question fixture session with maximal transcripts and checks `JSON.stringify(...).length`. |
+| NFR    | Budget                         | How to measure                                                                                                                                                                               |
+| ------ | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NFR-01 | Feedback p50 ≤ 4 s, p95 ≤ 9 s  | After deploy, run 10 text sessions (30+ feedback calls) with realistic answers; compute p50/p95 of `latencyMs` from `feedback.done` logs (Vercel log export). Eval also reports p95 (EV-09). |
+| NFR-02 | Summary p95 ≤ 7 s              | Same runs, `summary.done`.                                                                                                                                                                   |
+| NFR-03 | Start p95 ≤ 400 ms             | Same runs, `session.start`.                                                                                                                                                                  |
+| NFR-04 | Click to speech start ≤ 500 ms | Chrome DevTools Performance panel: time from click event to the utterance `start` event (logged with `performance.now()` in a dev-only console line), median of 5.                           |
+| NFR-05 | Result to screen ≤ 100 ms      | React Profiler on the recorder panel during a mocked session: commit duration per result ≤ 16 ms.                                                                                            |
+| NFR-06 | Lighthouse mobile              | `pnpm dlx lighthouse https://rehearse.firatkil.com --preset=perf --form-factor=mobile` and the accessibility category; median of 3 runs for `/` and `/sample`.                               |
+| NFR-07 | First-load JS                  | `next build` output "First Load JS" for `/` and `/session/[id]`. Keep the room lean: no Markdown library, no chart library, dynamic import for dialogs if needed.                            |
+| NFR-18 | Session ≤ 100 KB               | UT-15 serialises a 5-question fixture session with maximal transcripts and checks `JSON.stringify(...).length`.                                                                              |
 
 ## 25. Testing strategy
 
@@ -3050,62 +3435,62 @@ Tests never call a real LLM, never use real speech APIs, and never reach Upstash
 
 ### 25.1 Unit tests (`tests/unit`)
 
-| ID | File | Covers |
-|---|---|---|
-| UT-01 | `select.test.ts` | Section 6.6 properties: determinism, seed sensitivity, no duplicate ids or topics, eligibility for all 45 cells × 2 lengths × 7 type subsets × 20 seeds on the real bank, slot balance, snapshot on `bank-small.json`, exhaustion error on a tiny bank |
-| UT-02 | `prng.test.ts` | `mulberry32` first five values for seeds `0x00000001` and `0xdeadbeef` (snapshot), range [0,1), `shuffle` returns a permutation, `seedToInt` rejects bad seeds |
-| UT-03 | `bank.test.ts` | Real bank parses; rules 9–13 pass; coverage matrix ≥ 5 per cell; no `<` or `>` in question text; `manifest.files` matches the folder |
-| UT-04 | `words.test.ts` | `tokenize`/`countWords`: `"I’m done."` → 2; `"state-of-the-art"` → 1; `"3.5 seconds"` → 3 (`3`, `5`, `seconds`); empty and whitespace → 0; emoji and symbols ignored |
-| UT-05 | `fillers.test.ts` | Vectors: `"um so I think, like, it was uh fine"` → um 1, so 1, like 1, uh 1; `"I would like to add"` → 0; `"so that we can"` → 0; `"and so we shipped it"` → so 1; `"you know, it broke"` → you know 1; `"do you know how"` → 0; `"ummm"` → um 1; `"basically actually"` → 2; `enabled` filter respected |
-| UT-06 | `delivery.test.ts` | Text mode nulls; voice speaking time runs from the first to the last result offset (excludes lead-in and trailing silence); pace null under 10 s; pace from raw transcript; fillers from raw in voice and from edited text in text mode |
-| UT-07 | `pauses.test.ts` | Fewer than 2 offsets → nulls; unsorted input; gaps ≥ 3,000 counted; longest gap |
-| UT-08 | `token.test.ts` | Sign and verify round trip; tampered payload or signature → invalid; other secret → invalid; previous secret accepted; expired; wrong prefix; extra or missing parts; over-long token; payload schema violations (fb 8, q empty); constant-time path with unequal lengths |
-| UT-09 | `visitor.test.ts` | `clientIp` header precedence; `visitorId` stable within a UTC day, different across days and secrets, 32 hex chars |
-| UT-10 | `limiter-contract.test.ts` | Same suite for memory and Upstash adapters: allow up to limit then deny, `remaining`, `resetAt` = next UTC midnight, separate buckets and ids, session counters with TTL. The Upstash adapter runs against an in-memory fake of the two client calls it uses (`Ratelimit.limit` result shape and a `pipeline().set().incr().exec()` fake), injected via a factory parameter. Also: `reason: 'timeout'` → `LimiterUnavailableError`; thrown network error → `LimiterUnavailableError`; pipeline exceeding `LIMITER_TIMEOUT_MS` (fake timers) → `LimiterUnavailableError` |
-| UT-11 | `quotas.test.ts` | Check order and codes for start, feedback, summary (section 13.6), using the memory limiter |
-| UT-12 | `idb.test.ts` | `openDb` with `fake-indexeddb`: stores and indexes from migration 1; `versionchange` closes the connection and later writes reject with `StorageClosedError`; blocked open times out with `StorageBlockedError` and a late `success` is closed; mismatch between `MIGRATIONS` and `STORAGE.DB_VERSION` throws |
-| UT-13 | `repository-contract.test.ts` | Same suite for IndexedDB and memory repositories: create, get, update sets `updatedAt`, list order, answers by index, delete cascades, invalid records skipped and counted, `deleteAll` |
-| UT-14 | `migrations-upgrade.test.ts` | Open with `[v1]`, write, close; open with `[v1, v2-test]`: data intact, new index present, record transform applied on read |
-| UT-15 | `export-import.test.ts` | Round trip; tokens nulled on export; existing ids skipped; `format` mismatch; newer `formatVersion` error; file over 5 MB rejected before reading; invalid sessions counted; imported in-progress sessions have feedback disabled; a maximal 5-question session serialises under 100 KB (NFR-18) |
-| UT-16 | `recorder-machine.test.ts` | Every row of the section 9.4 table, including no-speech restarts, `MAX_RESTARTS` (consecutive empty runs; a 20-run answer where every run has results never stops early), network with and without words, stop grace timeout, results during stopping, `aborted` ignored |
-| UT-17 | `transcript.test.ts` | `applyResults` rebuilds from the full list; `commitRun` keeps interim text; `fullText` joins with single spaces; `capText` word boundary |
-| UT-18 | `room-machine.test.ts` | Every row of section 11.1, the recovery table (section 11.4), dialogs, `feedback.enabled = false` path, submit guards (offline, empty, expired token) |
-| UT-19 | `tts.test.ts` | `chunkForSpeech` vectors (sentences, long sentence split at word boundary, no punctuation); `loadVoices` with a fake synth that fills voices after `voiceschanged` and one that never does; English filter and sort order; `pickVoice` stored, missing (fell back) and default; `speak` sequencing, cancel via signal, `interrupted` → cancelled, safety timeout |
-| UT-20 | `detect.test.ts` | `detectCapabilities` and `capabilityNotice` for fake windows: Chrome-like, Firefox-like, insecure context, no IndexedDB |
-| UT-21 | `sanitize.test.ts` | Angle brackets replaced, control and zero-width characters removed, CRLF normalised, 3+ newlines collapsed, NFC |
-| UT-22 | `prompts.test.ts` | `FEEDBACK_SYSTEM_PROMPT` and `SUMMARY_SYSTEM_PROMPT` equal the TRD text (fixture copied from section 14 and compared byte for byte); `renderRubric` snapshot per type; user message contains blocks in order with role and seniority labels; transcript sanitized inside `<transcript>`; prompt versions exported |
-| UT-23 | `normalize.test.ts` | Section 15.3 steps 1–9: invalid scores (0, 5, 2.5, NaN) throw; truncation with ellipsis; empty items dropped; too many items cut; too-short and off-topic caps; deterministic `too_short`; overall rounding |
-| UT-24 | `evidence.test.ts` | Exact quote passes; case, punctuation and curly-quote differences pass; partial word fails; fewer than 3 words fails; surrounding quotes stripped; text not in transcript fails |
-| UT-25 | `generate-feedback.test.ts` | With a scripted fake provider: success; invalid then valid (`attempts: 2`); invalid twice → `FEEDBACK_INVALID`; retryable error then success; non-retryable → `PROVIDER_ERROR`; timeouts → `PROVIDER_TIMEOUT`; no retry when the deadline leaves under 8 s (fake clock); usage summed across attempts; empty transcript → `TRANSCRIPT_EMPTY` |
-| UT-26 | `summary.test.ts` | `generateSummary`: focus notes reordered to computed focus, unknown dimensions ignored, missing notes `null`, invalid → error; aggregates recomputed from items |
-| UT-27 | `aggregate.test.ts` | Means, overall, best and lowest with ties, trend thresholds (±0.5), focus ordering and ties, delivery totals with nulls, skipped and saved answers |
-| UT-28 | `markdown.test.ts` | `escapeMd` vectors (`# heading`, `1. item`, `<script>`, `|`, backticks); snapshot of a full report from the sample fixture; skipped and saved-only answers |
-| UT-29 | `cost.test.ts` | `estimateCostUsd` with and without cached tokens; zero prices |
-| UT-30 | `env.test.ts` | Defaults; required-when-live; required-when-upstash; mock and memory forbidden in production; secrets must differ; message lists names not values; `.env.example` names equal the TRD table names and `getEnv()` succeeds with only `.env.example` values |
-| UT-31 | `contracts.test.ts` | Request and response schemas accept the TRD examples and reject unknown keys |
-| UT-32 | `api-start.test.ts` | Route handler with `Request` objects: 415, 413, 400, 403 origin, `DEMO_OFF`, readonly (no token, no limiter call), practice (no limiter call), quota exceeded on 4th call, `LIMITER_UNAVAILABLE` with a failing limiter, token payload content (`fb`, `sm`, `q`, `r`, `s`), seed honoured |
-| UT-33 | `api-feedback.test.ts` | Token missing, invalid, expired, scope (session, index, question); empty and long transcript; check order; mock triggers mapped to 502/504 with `sessionCallsRemaining`; success body validates; logs contain no transcript text (capture the logger stream and assert the transcript string is absent) |
-| UT-34 | `api-summary.test.ts` | Scope checks, `SESSION_SUMMARY_EXHAUSTED` on 3rd call, global cap, readonly, success |
-| UT-35 | `api-health.test.ts` | Body shape, no limiter or provider calls |
-| UT-36 | `golden-validate.test.ts` | Real `golden.jsonl` passes; fixtures with wrong counts, broken triples, missing canary, unknown question fail |
-| UT-37 | `eval-metrics.test.ts` | Metric functions on synthetic results: ranges, monotonicity per repeat, canary detection (case-insensitive, any field), flag accuracy, p95 nearest-rank, gating against thresholds |
-| UT-38 | `budget.test.ts` | Estimate formula; refuse zero prices in live mode; stop when running total exceeds budget |
-| UT-39 | `mock-provider.test.ts` | Determinism; every trigger in section 15.6; heuristic examples (strong golden item scores ≥ weak item); conformance to `LlmProvider` |
-| UT-40 | `sample.test.ts` | `content/sample/session.json` validates; aggregates computed; Markdown export succeeds |
+| ID    | File                          | Covers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UT-01 | `select.test.ts`              | Section 6.6 properties: determinism, seed sensitivity, no duplicate ids or topics, eligibility for all 45 cells × 2 lengths × 7 type subsets × 20 seeds on the real bank, slot balance, snapshot on `bank-small.json`, exhaustion error on a tiny bank                                                                                                                                                                                                                                                                                                                  |
+| UT-02 | `prng.test.ts`                | `mulberry32` first five values for seeds `0x00000001` and `0xdeadbeef` (snapshot), range [0,1), `shuffle` returns a permutation, `seedToInt` rejects bad seeds                                                                                                                                                                                                                                                                                                                                                                                                          |
+| UT-03 | `bank.test.ts`                | Real bank parses; rules 9–13 pass; coverage matrix ≥ 5 per cell; no `<` or `>` in question text; `manifest.files` matches the folder                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UT-04 | `words.test.ts`               | `tokenize`/`countWords`: `"I’m done."` → 2; `"state-of-the-art"` → 1; `"3.5 seconds"` → 3 (`3`, `5`, `seconds`); empty and whitespace → 0; emoji and symbols ignored                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UT-05 | `fillers.test.ts`             | Vectors: `"um so I think, like, it was uh fine"` → um 1, so 1, like 1, uh 1; `"I would like to add"` → 0; `"so that we can"` → 0; `"and so we shipped it"` → so 1; `"you know, it broke"` → you know 1; `"do you know how"` → 0; `"ummm"` → um 1; `"basically actually"` → 2; `enabled` filter respected                                                                                                                                                                                                                                                                |
+| UT-06 | `delivery.test.ts`            | Text mode nulls; voice speaking time runs from the first to the last result offset (excludes lead-in and trailing silence); pace null under 10 s; pace from raw transcript; fillers from raw in voice and from edited text in text mode                                                                                                                                                                                                                                                                                                                                 |
+| UT-07 | `pauses.test.ts`              | Fewer than 2 offsets → nulls; unsorted input; gaps ≥ 3,000 counted; longest gap                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| UT-08 | `token.test.ts`               | Sign and verify round trip; tampered payload or signature → invalid; other secret → invalid; previous secret accepted; expired; wrong prefix; extra or missing parts; over-long token; payload schema violations (fb 8, q empty); constant-time path with unequal lengths                                                                                                                                                                                                                                                                                               |
+| UT-09 | `visitor.test.ts`             | `clientIp` header precedence; `visitorId` stable within a UTC day, different across days and secrets, 32 hex chars                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| UT-10 | `limiter-contract.test.ts`    | Same suite for memory and Upstash adapters: allow up to limit then deny, `remaining`, `resetAt` = next UTC midnight, separate buckets and ids, session counters with TTL. The Upstash adapter runs against an in-memory fake of the two client calls it uses (`Ratelimit.limit` result shape and a `pipeline().set().incr().exec()` fake), injected via a factory parameter. Also: `reason: 'timeout'` → `LimiterUnavailableError`; thrown network error → `LimiterUnavailableError`; pipeline exceeding `LIMITER_TIMEOUT_MS` (fake timers) → `LimiterUnavailableError` |
+| UT-11 | `quotas.test.ts`              | Check order and codes for start, feedback, summary (section 13.6), using the memory limiter                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| UT-12 | `idb.test.ts`                 | `openDb` with `fake-indexeddb`: stores and indexes from migration 1; `versionchange` closes the connection and later writes reject with `StorageClosedError`; blocked open times out with `StorageBlockedError` and a late `success` is closed; mismatch between `MIGRATIONS` and `STORAGE.DB_VERSION` throws                                                                                                                                                                                                                                                           |
+| UT-13 | `repository-contract.test.ts` | Same suite for IndexedDB and memory repositories: create, get, update sets `updatedAt`, list order, answers by index, delete cascades, invalid records skipped and counted, `deleteAll`                                                                                                                                                                                                                                                                                                                                                                                 |
+| UT-14 | `migrations-upgrade.test.ts`  | Open with `[v1]`, write, close; open with `[v1, v2-test]`: data intact, new index present, record transform applied on read                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| UT-15 | `export-import.test.ts`       | Round trip; tokens nulled on export; existing ids skipped; `format` mismatch; newer `formatVersion` error; file over 5 MB rejected before reading; invalid sessions counted; imported in-progress sessions have feedback disabled; a maximal 5-question session serialises under 100 KB (NFR-18)                                                                                                                                                                                                                                                                        |
+| UT-16 | `recorder-machine.test.ts`    | Every row of the section 9.4 table, including no-speech restarts, `MAX_RESTARTS` (consecutive empty runs; a 20-run answer where every run has results never stops early), network with and without words, stop grace timeout, results during stopping, `aborted` ignored                                                                                                                                                                                                                                                                                                |
+| UT-17 | `transcript.test.ts`          | `applyResults` rebuilds from the full list; `commitRun` keeps interim text; `fullText` joins with single spaces; `capText` word boundary                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| UT-18 | `room-machine.test.ts`        | Every row of section 11.1, the recovery table (section 11.4), dialogs, `feedback.enabled = false` path, submit guards (offline, empty, expired token)                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| UT-19 | `tts.test.ts`                 | `chunkForSpeech` vectors (sentences, long sentence split at word boundary, no punctuation); `loadVoices` with a fake synth that fills voices after `voiceschanged` and one that never does; English filter and sort order; `pickVoice` stored, missing (fell back) and default; `speak` sequencing, cancel via signal, `interrupted` → cancelled, safety timeout                                                                                                                                                                                                        |
+| UT-20 | `detect.test.ts`              | `detectCapabilities` and `capabilityNotice` for fake windows: Chrome-like, Firefox-like, insecure context, no IndexedDB                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| UT-21 | `sanitize.test.ts`            | Angle brackets replaced, control and zero-width characters removed, CRLF normalised, 3+ newlines collapsed, NFC                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| UT-22 | `prompts.test.ts`             | `FEEDBACK_SYSTEM_PROMPT` and `SUMMARY_SYSTEM_PROMPT` equal the TRD text (fixture copied from section 14 and compared byte for byte); `renderRubric` snapshot per type; user message contains blocks in order with role and seniority labels; transcript sanitized inside `<transcript>`; prompt versions exported                                                                                                                                                                                                                                                       |
+| UT-23 | `normalize.test.ts`           | Section 15.3 steps 1–9: invalid scores (0, 5, 2.5, NaN) throw; truncation with ellipsis; empty items dropped; too many items cut; too-short and off-topic caps; deterministic `too_short`; overall rounding                                                                                                                                                                                                                                                                                                                                                             |
+| UT-24 | `evidence.test.ts`            | Exact quote passes; case, punctuation and curly-quote differences pass; partial word fails; fewer than 3 words fails; surrounding quotes stripped; text not in transcript fails                                                                                                                                                                                                                                                                                                                                                                                         |
+| UT-25 | `generate-feedback.test.ts`   | With a scripted fake provider: success; invalid then valid (`attempts: 2`); invalid twice → `FEEDBACK_INVALID`; retryable error then success; non-retryable → `PROVIDER_ERROR`; timeouts → `PROVIDER_TIMEOUT`; no retry when the deadline leaves under 8 s (fake clock); usage summed across attempts; empty transcript → `TRANSCRIPT_EMPTY`                                                                                                                                                                                                                            |
+| UT-26 | `summary.test.ts`             | `generateSummary`: focus notes reordered to computed focus, unknown dimensions ignored, missing notes `null`, invalid → error; aggregates recomputed from items                                                                                                                                                                                                                                                                                                                                                                                                         |
+| UT-27 | `aggregate.test.ts`           | Means, overall, best and lowest with ties, trend thresholds (±0.5), focus ordering and ties, delivery totals with nulls, skipped and saved answers                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| UT-28 | `markdown.test.ts`            | `escapeMd` vectors (`# heading`, `1. item`, `<script>`, `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `, backticks); snapshot of a full report from the sample fixture; skipped and saved-only answers |
+| UT-29 | `cost.test.ts`                | `estimateCostUsd` with and without cached tokens; zero prices                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| UT-30 | `env.test.ts`                 | Defaults; required-when-live; required-when-upstash; mock and memory forbidden in production; secrets must differ; message lists names not values; `.env.example` names equal the TRD table names and `getEnv()` succeeds with only `.env.example` values                                                                                                                                                                                                                                                                                                               |
+| UT-31 | `contracts.test.ts`           | Request and response schemas accept the TRD examples and reject unknown keys                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| UT-32 | `api-start.test.ts`           | Route handler with `Request` objects: 415, 413, 400, 403 origin, `DEMO_OFF`, readonly (no token, no limiter call), practice (no limiter call), quota exceeded on 4th call, `LIMITER_UNAVAILABLE` with a failing limiter, token payload content (`fb`, `sm`, `q`, `r`, `s`), seed honoured                                                                                                                                                                                                                                                                               |
+| UT-33 | `api-feedback.test.ts`        | Token missing, invalid, expired, scope (session, index, question); empty and long transcript; check order; mock triggers mapped to 502/504 with `sessionCallsRemaining`; success body validates; logs contain no transcript text (capture the logger stream and assert the transcript string is absent)                                                                                                                                                                                                                                                                 |
+| UT-34 | `api-summary.test.ts`         | Scope checks, `SESSION_SUMMARY_EXHAUSTED` on 3rd call, global cap, readonly, success                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UT-35 | `api-health.test.ts`          | Body shape, no limiter or provider calls                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| UT-36 | `golden-validate.test.ts`     | Real `golden.jsonl` passes; fixtures with wrong counts, broken triples, missing canary, unknown question fail                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| UT-37 | `eval-metrics.test.ts`        | Metric functions on synthetic results: ranges, monotonicity per repeat, canary detection (case-insensitive, any field), flag accuracy, p95 nearest-rank, gating against thresholds                                                                                                                                                                                                                                                                                                                                                                                      |
+| UT-38 | `budget.test.ts`              | Estimate formula; refuse zero prices in live mode; stop when running total exceeds budget                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| UT-39 | `mock-provider.test.ts`       | Determinism; every trigger in section 15.6; heuristic examples (strong golden item scores ≥ weak item); conformance to `LlmProvider`                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| UT-40 | `sample.test.ts`              | `content/sample/session.json` validates; aggregates computed; Markdown export succeeds                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### 25.2 Component tests (`tests/component`, jsdom)
 
-| ID | File | Covers |
-|---|---|---|
-| CT-01 | `setup-form.test.tsx` | Defaults; each capability notice; Voice disabled without recognition; type validation error and focus; seed line; quota panel buttons |
-| CT-02 | `voice-picker.test.tsx` | Loading option, "(online voice)" suffix, no voices state, fallback note, rate value text |
-| CT-03 | `feedback-card.test.tsx` | Scores with accessible names, flags notes, evidence quote shown only when present, placeholders styled, meta line, disclaimer |
-| CT-04 | `delivery-metrics.test.tsx` | All "Not measured…", "Not enough speech…", "None counted", "Not available" strings; breakdown order |
-| CT-05 | `review-panel.test.tsx` | Empty answer disables "Get feedback"; short-answer helper; counter warn colour at 3,600; notices; feedback-disabled button set |
-| CT-06 | `announcer.test.tsx` | Duplicate suppression within 1 s, minimum interval, queue cap of 2, repeated message re-announced after clear |
-| CT-07 | `report-view.test.tsx` | Summary present, loading, unavailable; focus notes fall back to tips; table dashes; chart hidden under 2 scored answers; in-progress banner |
-| CT-08 | `history-list.test.tsx` | Empty state; statuses; actions per status; skipped-records note |
-| CT-09 | `safe-render.test.tsx` | `SafeText` renders `<b>` literally and wraps placeholders; `SafeMarkdown` drops raw HTML and `javascript:` links |
+| ID    | File                        | Covers                                                                                                                                      |
+| ----- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| CT-01 | `setup-form.test.tsx`       | Defaults; each capability notice; Voice disabled without recognition; type validation error and focus; seed line; quota panel buttons       |
+| CT-02 | `voice-picker.test.tsx`     | Loading option, "(online voice)" suffix, no voices state, fallback note, rate value text                                                    |
+| CT-03 | `feedback-card.test.tsx`    | Scores with accessible names, flags notes, evidence quote shown only when present, placeholders styled, meta line, disclaimer               |
+| CT-04 | `delivery-metrics.test.tsx` | All "Not measured…", "Not enough speech…", "None counted", "Not available" strings; breakdown order                                         |
+| CT-05 | `review-panel.test.tsx`     | Empty answer disables "Get feedback"; short-answer helper; counter warn colour at 3,600; notices; feedback-disabled button set              |
+| CT-06 | `announcer.test.tsx`        | Duplicate suppression within 1 s, minimum interval, queue cap of 2, repeated message re-announced after clear                               |
+| CT-07 | `report-view.test.tsx`      | Summary present, loading, unavailable; focus notes fall back to tips; table dashes; chart hidden under 2 scored answers; in-progress banner |
+| CT-08 | `history-list.test.tsx`     | Empty state; statuses; actions per status; skipped-records note                                                                             |
+| CT-09 | `safe-render.test.tsx`      | `SafeText` renders `<b>` literally and wraps placeholders; `SafeMarkdown` drops raw HTML and `javascript:` links                            |
 
 ### 25.3 Speech mock for E2E (normative, `tests/e2e/speech-mock.ts`)
 
@@ -3118,23 +3503,40 @@ export type MockStep =
   | { after: number; end: true };
 
 export type SpeechScenario = {
-  recognition: boolean;        // false: no SpeechRecognition / webkitSpeechRecognition
-  synthesis: boolean;          // false: no speechSynthesis
+  recognition: boolean; // false: no SpeechRecognition / webkitSpeechRecognition
+  synthesis: boolean; // false: no speechSynthesis
   mic: 'granted' | 'denied' | 'no-device';
-  runs: MockStep[][];          // script per recognition run; the last entry repeats for later runs
-  ttsMsPerChar: number;        // e.g. 2 for fast tests
-  voices: { name: string; lang: string; localService: boolean; voiceURI: string; default: boolean }[];
+  runs: MockStep[][]; // script per recognition run; the last entry repeats for later runs
+  ttsMsPerChar: number; // e.g. 2 for fast tests
+  voices: {
+    name: string;
+    lang: string;
+    localService: boolean;
+    voiceURI: string;
+    default: boolean;
+  }[];
 };
 
 export function installSpeechMock(s: SpeechScenario): void {
   type R = { transcript: string; isFinal: boolean };
   const w = window as unknown as Record<string, unknown>;
-  const ctl = { runs: 0, spoken: [] as string[], active: null as null | { emit(t: string, f: boolean): void; fail(c: string): void; end(): void } };
+  const ctl = {
+    runs: 0,
+    spoken: [] as string[],
+    active: null as null | {
+      emit(t: string, f: boolean): void;
+      fail(c: string): void;
+      end(): void;
+    },
+  };
   w.__speech = ctl;
 
   if (s.recognition) {
     class MockRecognition extends EventTarget {
-      lang = 'en-US'; continuous = false; interimResults = false; maxAlternatives = 1;
+      lang = 'en-US';
+      continuous = false;
+      interimResults = false;
+      maxAlternatives = 1;
       onstart: ((e: Event) => void) | null = null;
       onresult: ((e: Event) => void) | null = null;
       onerror: ((e: Event) => void) | null = null;
@@ -3144,20 +3546,41 @@ export function installSpeechMock(s: SpeechScenario): void {
       private done = false;
       start(): void {
         ctl.runs += 1;
-        ctl.active = { emit: (t, f) => this.emit(t, f), fail: (c) => this.fail(c), end: () => this.finish() };
+        ctl.active = {
+          emit: (t, f) => this.emit(t, f),
+          fail: (c) => this.fail(c),
+          end: () => this.finish(),
+        };
         const script = s.runs[Math.min(ctl.runs - 1, s.runs.length - 1)] ?? [];
         window.setTimeout(() => this.fire('start'), 5);
         for (const step of script) {
-          this.timers.push(window.setTimeout(() => {
-            if ('text' in step) this.emit(step.text, step.final);
-            else if ('error' in step) this.fail(step.error);
-            else this.finish();
-          }, step.after));
+          this.timers.push(
+            window.setTimeout(() => {
+              if ('text' in step) this.emit(step.text, step.final);
+              else if ('error' in step) this.fail(step.error);
+              else this.finish();
+            }, step.after),
+          );
         }
       }
-      stop(): void { this.clear(); window.setTimeout(() => { this.finalizeInterim(); this.finish(); }, 20); }
-      abort(): void { this.clear(); window.setTimeout(() => { this.fail('aborted'); this.finish(); }, 0); }
-      private clear(): void { for (const t of this.timers) window.clearTimeout(t); this.timers = []; }
+      stop(): void {
+        this.clear();
+        window.setTimeout(() => {
+          this.finalizeInterim();
+          this.finish();
+        }, 20);
+      }
+      abort(): void {
+        this.clear();
+        window.setTimeout(() => {
+          this.fail('aborted');
+          this.finish();
+        }, 0);
+      }
+      private clear(): void {
+        for (const t of this.timers) window.clearTimeout(t);
+        this.timers = [];
+      }
       private finalizeInterim(): void {
         const last = this.results[this.results.length - 1];
         if (last && !last.isFinal) this.emit(last.transcript, true);
@@ -3165,15 +3588,22 @@ export function installSpeechMock(s: SpeechScenario): void {
       private emit(text: string, isFinal: boolean): void {
         if (this.done) return;
         const last = this.results[this.results.length - 1];
-        if (last && !last.isFinal) this.results[this.results.length - 1] = { transcript: text, isFinal };
+        if (last && !last.isFinal)
+          this.results[this.results.length - 1] = { transcript: text, isFinal };
         else this.results.push({ transcript: text, isFinal });
-        const list = this.results.map((r) => Object.assign([{ transcript: r.transcript, confidence: 0.9 }], { isFinal: r.isFinal }));
+        const list = this.results.map((r) =>
+          Object.assign([{ transcript: r.transcript, confidence: 0.9 }], { isFinal: r.isFinal }),
+        );
         this.fire('result', { resultIndex: 0, results: list });
       }
-      private fail(code: string): void { if (!this.done) this.fire('error', { error: code, message: '' }); }
+      private fail(code: string): void {
+        if (!this.done) this.fire('error', { error: code, message: '' });
+      }
       private finish(): void {
         if (this.done) return;
-        this.done = true; this.clear(); this.fire('end');
+        this.done = true;
+        this.clear();
+        this.fire('end');
       }
       private fire(type: string, extra: Record<string, unknown> = {}): void {
         const ev = Object.assign(new Event(type), extra);
@@ -3193,7 +3623,9 @@ export function installSpeechMock(s: SpeechScenario): void {
     const voices = s.voices.map((v) => ({ ...v }));
     let current: null | { cancelled: boolean; u: Record<string, unknown> } = null;
     const synth = Object.assign(new EventTarget(), {
-      speaking: false, pending: false, paused: false,
+      speaking: false,
+      pending: false,
+      paused: false,
       getVoices: () => voices,
       speak(u: Record<string, unknown> & { text: string }) {
         const job = { cancelled: false, u };
@@ -3201,25 +3633,51 @@ export function installSpeechMock(s: SpeechScenario): void {
         if (u.text.trim()) ctl.spoken.push(u.text); // primeSynthesis(' ') is not recorded
         const call = (name: string, extra: Record<string, unknown> = {}) => {
           const fn = u[name];
-          if (typeof fn === 'function') (fn as (e: Event) => void)(Object.assign(new Event(name.slice(2)), extra));
+          if (typeof fn === 'function')
+            (fn as (e: Event) => void)(Object.assign(new Event(name.slice(2)), extra));
         };
-        window.setTimeout(() => { if (!job.cancelled) { synth.speaking = true; call('onstart'); } }, 5);
-        window.setTimeout(() => { if (!job.cancelled) { synth.speaking = false; call('onend'); } }, 5 + u.text.length * s.ttsMsPerChar);
+        window.setTimeout(() => {
+          if (!job.cancelled) {
+            synth.speaking = true;
+            call('onstart');
+          }
+        }, 5);
+        window.setTimeout(
+          () => {
+            if (!job.cancelled) {
+              synth.speaking = false;
+              call('onend');
+            }
+          },
+          5 + u.text.length * s.ttsMsPerChar,
+        );
       },
       cancel() {
         if (current && !current.cancelled) {
           current.cancelled = true;
           const fn = current.u.onerror;
-          if (typeof fn === 'function') (fn as (e: Event) => void)(Object.assign(new Event('error'), { error: 'interrupted' }));
+          if (typeof fn === 'function')
+            (fn as (e: Event) => void)(Object.assign(new Event('error'), { error: 'interrupted' }));
         }
         synth.speaking = false;
       },
-      pause() {}, resume() {},
+      pause() {},
+      resume() {},
     });
     class MockUtterance {
-      text: string; voice: unknown = null; lang = 'en-US'; rate = 1; pitch = 1; volume = 1;
-      onstart: unknown = null; onend: unknown = null; onerror: unknown = null; onboundary: unknown = null;
-      constructor(text: string) { this.text = text; }
+      text: string;
+      voice: unknown = null;
+      lang = 'en-US';
+      rate = 1;
+      pitch = 1;
+      volume = 1;
+      onstart: unknown = null;
+      onend: unknown = null;
+      onerror: unknown = null;
+      onboundary: unknown = null;
+      constructor(text: string) {
+        this.text = text;
+      }
     }
     Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: synth });
     w.SpeechSynthesisUtterance = MockUtterance;
@@ -3238,7 +3696,8 @@ export function installSpeechMock(s: SpeechScenario): void {
       return { getTracks: () => [{ stop() {} }] } as unknown as MediaStream;
     },
   });
-  if (!navigator.mediaDevices) Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: md });
+  if (!navigator.mediaDevices)
+    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: md });
 }
 ```
 
@@ -3290,7 +3749,11 @@ export default defineConfig({
   workers: process.env.CI ? 2 : 4,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
-  use: { baseURL: 'http://localhost:3200', trace: 'retain-on-failure', ...devices['Desktop Chrome'] },
+  use: {
+    baseURL: 'http://localhost:3200',
+    trace: 'retain-on-failure',
+    ...devices['Desktop Chrome'],
+  },
   projects: [
     { name: 'parallel', grepInvert: /@isolated/, fullyParallel: true },
     { name: 'isolated', grep: /@isolated/, fullyParallel: false, dependencies: ['parallel'] },
@@ -3308,39 +3771,39 @@ All `@isolated` tests live in `tests/e2e/isolated.spec.ts` with `test.describe.c
 
 Prerequisite: `pnpm build`.
 
-| ID | Spec | Scenario | FR / state |
-|---|---|---|---|
-| E2E-01 | `landing.spec.ts` | H1, lead, buttons and links, "How a session works" steps, dimension table, footer lines | FR-52 |
-| E2E-02 | `setup.spec.ts` | Defaults with `scenarios.happy`; "Voice answers are available…"; no type selected → error and focus; "Preview voice" speaks the preview text (`spoken` contains it); "Check microphone" → "Microphone ready." | FR-04, FR-06, FR-07 |
-| E2E-03 | `setup-capabilities.spec.ts` | `noRecognition` → synthesis-only notice, Voice radio disabled, mode Text; no synthesis → voice fieldset hidden; `micDenied` → check result copy | FR-07, FR-54 |
-| E2E-04 | `setup-seed.spec.ts` | `?seed=0000abcd` shows the seed line; two sessions with the same seed and setup have identical prompts; `?seed=xyz` shows the invalid-seed copy | FR-05 |
-| E2E-05 | `text-session.spec.ts` | 3-question text session with mock feedback: intro, asking (TTS spoken), thinking skip, text answer, review, skeleton, feedback card, next, report | FR-08–FR-14, FR-19–FR-26 |
-| E2E-06 | `voice-session.spec.ts` | `happy`: captions highlight, think timer, recording label, interim then final transcript, stop, edit a word, metrics (pace "Not enough speech…" for short mock), feedback, report | FR-09–FR-13, FR-24 |
-| E2E-07 | `voice-limits.spec.ts` | `page.clock`: think timer ends at 15 s and recording starts; time limit stops at `time_limit_s` with the time's-up notice; announcements "1 minute left." etc. appear in the status region once; `longAnswer` stops at 4,000 with the cap notice | FR-10, FR-11, FR-14 |
-| E2E-08 | `speech-errors.spec.ts` | `micDenied` → mic blocked state and "Type instead" works; `noSpeech` → after 3 runs "We didn’t hear anything"; `networkAfterWords` → review with network notice and words kept; `networkNoWords` → recognition unavailable | FR-15 |
-| E2E-09 | `tab-hidden.spec.ts` | Hidden during recording → review with tab notice; hidden during thinking → timer frozen, "Timer paused while you were away."; hidden while asking → "Replay question" | FR-16 |
-| E2E-10 | `type-instead.spec.ts` | Switch mid-recording: text area prefilled with partial transcript; next question starts in text mode | FR-12 |
-| E2E-11 | `feedback-errors.spec.ts` | `mock:slow`: skeleton shows "Reading your answer…" then "Scoring six dimensions…"; `mock:provider-error`, `mock:timeout`, `mock:invalid`: provider-error copy with retries count; "Try again" resubmits; "Save without feedback" moves on; `mock:invalid-once` succeeds | FR-26, FR-27 |
-| E2E-12 | `feedback-limits.spec.ts` | `page.request`: 3 sessions per IP then 429 `SESSION_QUOTA_EXCEEDED`; UI quota panel → "Practise without feedback" starts a session without feedback; per-token exhaustion after `length + 2` calls (API); per-IP feedback quota on the 21st call (API); UI copy for `FEEDBACK_QUOTA_EXCEEDED` and `SESSION_FEEDBACK_EXHAUSTED` via `page.route` fulfilling the error body | FR-40, FR-41, FR-46 |
-| E2E-13 | `isolated.spec.ts` `@isolated` | Port 3203 (global cap 2): two feedback calls succeed, the third shows the global-cap copy | FR-42 |
-| E2E-14 | `readonly.spec.ts` | Port 3201: banner, "Start session without feedback", intro feedback-off line, review shows "Save and continue", `/api/feedback` returns 503 `DEMO_READONLY`, `/sample` works | FR-44 |
-| E2E-15 | `demo-off.spec.ts` | Port 3202: setup replaced by offline copy; `/sample`, `/history`, `/how-it-works`, `/privacy` work; `/api/sessions/start` 503; an in-progress session, written into IndexedDB from the test with the raw IndexedDB API in `page.evaluate` (section 7.3 shapes; setup is disabled on this server), opens read-only with the PRD §9.13 copy | FR-44 |
-| E2E-16 | `recovery.spec.ts` | Reload during text answering after a draft save → review with restored notice; reload during thinking → resume card → Continue; reload after feedback → feedback shown | FR-35 |
-| E2E-17 | `history.spec.ts` | Two finished sessions and one in progress listed newest first; Resume; Open report; Delete with dialog; Delete all with dialog and success copy | FR-36, FR-38 |
-| E2E-18 | `export-import.spec.ts` | Export downloads valid JSON (`page.waitForEvent('download')`, parse, schema check); import into a new browser context restores sessions; re-import reports skipped; non-export file and >5 MB file show errors | FR-37 |
-| E2E-19 | `report.spec.ts` | Report after a 3-question session: overall, focus areas, table, chart present, summary from mock; "Download Markdown" content starts with "# Rehearse session report"; `page.emulateMedia({ media: 'print' })` hides actions and opens details | FR-28–FR-32 |
-| E2E-20 | `summary-errors.spec.ts` | `page.route` on `/api/summary` returning 502 → unavailable copy with "Try again"; retry succeeds; session without token → unavailable without button | FR-29 |
-| E2E-21 | `sample.spec.ts` | `/sample` renders banner and report; no request to `/api/*` (listener on `page.on('request')`) | FR-33 |
-| E2E-22 | `offline.spec.ts` | `context.setOffline(true)` during review → offline banner, "Get feedback" disabled with helper; back online → enabled | FR-55 |
-| E2E-23 | `storage-unavailable.spec.ts` | Init script sets `window.indexedDB` to undefined → Not saving banner; a text session still completes in memory | FR-39 |
-| E2E-24 | `keyboard.spec.ts` | Text session with keyboard only (Tab, Enter, Space); focus lands on the elements in PRD §9.6 at each phase; dialogs trap focus and Escape closes | NFR-08 |
-| E2E-25 | `responsive.spec.ts` | 360 × 740 and 1024 × 768: `scrollWidth <= clientWidth` on every page and room phase | NFR-09 |
-| E2E-26 | `theme.spec.ts` | System dark via `colorScheme: 'dark'`; toggle persists across reload; `data-theme` set before first paint | FR-53 |
-| E2E-27 | `security-headers.spec.ts` | CSP present with a nonce that differs between two requests; every script tag carries the nonce; `Permissions-Policy` contains `microphone=(self)`; other headers present | NFR-13 |
-| E2E-28 | `api-contracts.spec.ts` | `page.request` with `Origin`: start 415, 413, 400, 403 (bad origin); feedback 401 missing, 401 invalid, 403 scope, 400 empty, 400 too long; health shape | §12 |
-| E2E-29 | `not-found.spec.ts` | Unknown session id → "Session not found"; unknown route → 404 copy | PRD §9.13 |
-| E2E-30 | `a11y.spec.ts` | axe (`withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])`; axe checks only part of WCAG, the rest is covered by E2E-24 and the manual passes in T-41) on `/`, `/setup`, room intro, recording, review, feedback, a speech-error state, report, `/history` (empty and filled), `/sample`, `/how-it-works`, `/privacy`, in both themes: zero serious or critical | NFR-08 |
-| E2E-31 | `pages.spec.ts` | `/how-it-works` sections in order, rubric table rendered from the constant, thresholds and latest eval numbers, `#privacy` anchor; `/privacy` headings and the speech-services paragraph | FR-52 |
+| ID     | Spec                           | Scenario                                                                                                                                                                                                                                                                                                                                                                       | FR / state               |
+| ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ |
+| E2E-01 | `landing.spec.ts`              | H1, lead, buttons and links, "How a session works" steps, dimension table, footer lines                                                                                                                                                                                                                                                                                        | FR-52                    |
+| E2E-02 | `setup.spec.ts`                | Defaults with `scenarios.happy`; "Voice answers are available…"; no type selected → error and focus; "Preview voice" speaks the preview text (`spoken` contains it); "Check microphone" → "Microphone ready."                                                                                                                                                                  | FR-04, FR-06, FR-07      |
+| E2E-03 | `setup-capabilities.spec.ts`   | `noRecognition` → synthesis-only notice, Voice radio disabled, mode Text; no synthesis → voice fieldset hidden; `micDenied` → check result copy                                                                                                                                                                                                                                | FR-07, FR-54             |
+| E2E-04 | `setup-seed.spec.ts`           | `?seed=0000abcd` shows the seed line; two sessions with the same seed and setup have identical prompts; `?seed=xyz` shows the invalid-seed copy                                                                                                                                                                                                                                | FR-05                    |
+| E2E-05 | `text-session.spec.ts`         | 3-question text session with mock feedback: intro, asking (TTS spoken), thinking skip, text answer, review, skeleton, feedback card, next, report                                                                                                                                                                                                                              | FR-08–FR-14, FR-19–FR-26 |
+| E2E-06 | `voice-session.spec.ts`        | `happy`: captions highlight, think timer, recording label, interim then final transcript, stop, edit a word, metrics (pace "Not enough speech…" for short mock), feedback, report                                                                                                                                                                                              | FR-09–FR-13, FR-24       |
+| E2E-07 | `voice-limits.spec.ts`         | `page.clock`: think timer ends at 15 s and recording starts; time limit stops at `time_limit_s` with the time's-up notice; announcements "1 minute left." etc. appear in the status region once; `longAnswer` stops at 4,000 with the cap notice                                                                                                                               | FR-10, FR-11, FR-14      |
+| E2E-08 | `speech-errors.spec.ts`        | `micDenied` → mic blocked state and "Type instead" works; `noSpeech` → after 3 runs "We didn’t hear anything"; `networkAfterWords` → review with network notice and words kept; `networkNoWords` → recognition unavailable                                                                                                                                                     | FR-15                    |
+| E2E-09 | `tab-hidden.spec.ts`           | Hidden during recording → review with tab notice; hidden during thinking → timer frozen, "Timer paused while you were away."; hidden while asking → "Replay question"                                                                                                                                                                                                          | FR-16                    |
+| E2E-10 | `type-instead.spec.ts`         | Switch mid-recording: text area prefilled with partial transcript; next question starts in text mode                                                                                                                                                                                                                                                                           | FR-12                    |
+| E2E-11 | `feedback-errors.spec.ts`      | `mock:slow`: skeleton shows "Reading your answer…" then "Scoring six dimensions…"; `mock:provider-error`, `mock:timeout`, `mock:invalid`: provider-error copy with retries count; "Try again" resubmits; "Save without feedback" moves on; `mock:invalid-once` succeeds                                                                                                        | FR-26, FR-27             |
+| E2E-12 | `feedback-limits.spec.ts`      | `page.request`: 3 sessions per IP then 429 `SESSION_QUOTA_EXCEEDED`; UI quota panel → "Practise without feedback" starts a session without feedback; per-token exhaustion after `length + 2` calls (API); per-IP feedback quota on the 21st call (API); UI copy for `FEEDBACK_QUOTA_EXCEEDED` and `SESSION_FEEDBACK_EXHAUSTED` via `page.route` fulfilling the error body      | FR-40, FR-41, FR-46      |
+| E2E-13 | `isolated.spec.ts` `@isolated` | Port 3203 (global cap 2): two feedback calls succeed, the third shows the global-cap copy                                                                                                                                                                                                                                                                                      | FR-42                    |
+| E2E-14 | `readonly.spec.ts`             | Port 3201: banner, "Start session without feedback", intro feedback-off line, review shows "Save and continue", `/api/feedback` returns 503 `DEMO_READONLY`, `/sample` works                                                                                                                                                                                                   | FR-44                    |
+| E2E-15 | `demo-off.spec.ts`             | Port 3202: setup replaced by offline copy; `/sample`, `/history`, `/how-it-works`, `/privacy` work; `/api/sessions/start` 503; an in-progress session, written into IndexedDB from the test with the raw IndexedDB API in `page.evaluate` (section 7.3 shapes; setup is disabled on this server), opens read-only with the PRD §9.13 copy                                      | FR-44                    |
+| E2E-16 | `recovery.spec.ts`             | Reload during text answering after a draft save → review with restored notice; reload during thinking → resume card → Continue; reload after feedback → feedback shown                                                                                                                                                                                                         | FR-35                    |
+| E2E-17 | `history.spec.ts`              | Two finished sessions and one in progress listed newest first; Resume; Open report; Delete with dialog; Delete all with dialog and success copy                                                                                                                                                                                                                                | FR-36, FR-38             |
+| E2E-18 | `export-import.spec.ts`        | Export downloads valid JSON (`page.waitForEvent('download')`, parse, schema check); import into a new browser context restores sessions; re-import reports skipped; non-export file and >5 MB file show errors                                                                                                                                                                 | FR-37                    |
+| E2E-19 | `report.spec.ts`               | Report after a 3-question session: overall, focus areas, table, chart present, summary from mock; "Download Markdown" content starts with "# Rehearse session report"; `page.emulateMedia({ media: 'print' })` hides actions and opens details                                                                                                                                 | FR-28–FR-32              |
+| E2E-20 | `summary-errors.spec.ts`       | `page.route` on `/api/summary` returning 502 → unavailable copy with "Try again"; retry succeeds; session without token → unavailable without button                                                                                                                                                                                                                           | FR-29                    |
+| E2E-21 | `sample.spec.ts`               | `/sample` renders banner and report; no request to `/api/*` (listener on `page.on('request')`)                                                                                                                                                                                                                                                                                 | FR-33                    |
+| E2E-22 | `offline.spec.ts`              | `context.setOffline(true)` during review → offline banner, "Get feedback" disabled with helper; back online → enabled                                                                                                                                                                                                                                                          | FR-55                    |
+| E2E-23 | `storage-unavailable.spec.ts`  | Init script sets `window.indexedDB` to undefined → Not saving banner; a text session still completes in memory                                                                                                                                                                                                                                                                 | FR-39                    |
+| E2E-24 | `keyboard.spec.ts`             | Text session with keyboard only (Tab, Enter, Space); focus lands on the elements in PRD §9.6 at each phase; dialogs trap focus and Escape closes                                                                                                                                                                                                                               | NFR-08                   |
+| E2E-25 | `responsive.spec.ts`           | 360 × 740 and 1024 × 768: `scrollWidth <= clientWidth` on every page and room phase                                                                                                                                                                                                                                                                                            | NFR-09                   |
+| E2E-26 | `theme.spec.ts`                | System dark via `colorScheme: 'dark'`; toggle persists across reload; `data-theme` set before first paint                                                                                                                                                                                                                                                                      | FR-53                    |
+| E2E-27 | `security-headers.spec.ts`     | CSP present with a nonce that differs between two requests; every script tag carries the nonce; `Permissions-Policy` contains `microphone=(self)`; other headers present                                                                                                                                                                                                       | NFR-13                   |
+| E2E-28 | `api-contracts.spec.ts`        | `page.request` with `Origin`: start 415, 413, 400, 403 (bad origin); feedback 401 missing, 401 invalid, 403 scope, 400 empty, 400 too long; health shape                                                                                                                                                                                                                       | §12                      |
+| E2E-29 | `not-found.spec.ts`            | Unknown session id → "Session not found"; unknown route → 404 copy                                                                                                                                                                                                                                                                                                             | PRD §9.13                |
+| E2E-30 | `a11y.spec.ts`                 | axe (`withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])`; axe checks only part of WCAG, the rest is covered by E2E-24 and the manual passes in T-41) on `/`, `/setup`, room intro, recording, review, feedback, a speech-error state, report, `/history` (empty and filled), `/sample`, `/how-it-works`, `/privacy`, in both themes: zero serious or critical | NFR-08                   |
+| E2E-31 | `pages.spec.ts`                | `/how-it-works` sections in order, rubric table rendered from the constant, thresholds and latest eval numbers, `#privacy` anchor; `/privacy` headings and the speech-services paragraph                                                                                                                                                                                       | FR-52                    |
 
 ### 25.5 Coverage
 
@@ -3353,33 +3816,33 @@ Prerequisite: `pnpm build`.
 
 Verify each item before the task that depends on it. Record the result (date, value, source URL) as a new row in the PRD decisions log and, for model ids and prices, as comments in `.env.example`.
 
-| # | Assumption | Verify how | Task | If false |
-|---|---|---|---|---|
-| A-01 | The provider's current small, cheap model id | Open https://platform.openai.com/docs/models, pick the cheapest current general-purpose small model that supports structured outputs; prefer non-reasoning. Confirm with `curl https://api.openai.com/v1/models -H "Authorization: Bearer $OPENAI_API_KEY"` that the id is listed. Pin the exact (dated, if offered) id as `CHAT_MODEL`. | T-24 | — |
-| A-02 | Whether that model accepts `temperature` and how it counts reasoning tokens | One request with `temperature: 0`; read the model's API reference | T-24 | `CHAT_MODEL_SUPPORTS_TEMPERATURE=false`; set `CHAT_REASONING_EFFORT` to the lowest value; raise `MAX_OUTPUT_TOKENS_FEEDBACK` so reasoning plus output fits; re-run eval |
-| A-03 | Prices per 1M input, cached input and output tokens | https://openai.com/api/pricing | T-24 | — |
-| A-04 | OpenAI project budgets: whether a monthly budget blocks requests or only alerts | Platform → Settings → Project → Limits; help-center article on project budgets | T-43 | Use prepaid credit with auto-recharge off as the hard cap and lower `RATE_LIMIT_GLOBAL_LLM_DAILY` |
-| A-05 | Upstash Redis free tier: command limit (per day or month), storage, max request size, regions, behaviour when exceeded | https://upstash.com/pricing and docs | T-43 | Commands per request are listed in 13.4; if limits are tight, reduce the global cap or move session counters into the token (accept no per-session enforcement) and record a decision |
-| A-06 | `@upstash/ratelimit` API in the installed version: `fixedWindow` alignment to UTC days, `limit()` result fields (`success`, `remaining`, `reset`, `reason`, `pending`), `timeout` option fail-open behaviour | Package README and source of the installed version; a small script against a real free database | T-09 | Adapt the adapter; keep the `Limiter` interface and fail-closed behaviour |
-| A-07 | Vercel Hobby: function max duration (sets `maxDuration`), invocation and bandwidth limits, region selection (`fra1`), non-commercial terms | https://vercel.com/docs/limits, plans page, Fair Use Guidelines | T-44 | Lower `FEEDBACK_DEADLINE_MS` and `ATTEMPT_TIMEOUT_MS` to fit; pick the Upstash region nearest the default function region |
-| A-08 | Vercel sets `x-real-ip` from the client connection and overwrites client-supplied values | Vercel docs "Request headers"; on a preview, send a spoofed `x-real-ip` with curl and check with a temporary debug log (preview only, removed after) that the hash is not the spoofed one | T-44 | Use the header Vercel documents as trustworthy |
-| A-09 | Next.js major, interception file name (`proxy.ts` vs `middleware.ts`), the documented CSP nonce pattern (nonce read from the request `Content-Security-Policy` header) | Next.js docs for the installed version ("Content Security Policy" guide) | T-01, T-03 | Follow the installed docs |
-| A-10 | AI SDK major: structured output API name (`generateObject` vs `generateText` + `Output.object`), option names (`maxOutputTokens`, `providerOptions.openai.strictJsonSchema`, `reasoningEffort`), usage field names, Zod 4 support | `ai` and `@ai-sdk/openai` docs for the installed versions | T-24 | Follow the installed docs behind `LlmProvider` |
-| A-11 | Browser support for SpeechRecognition and speechSynthesis (section 9.1) | MDN browser-compat data on the day; manual 3-question voice session in current Chrome, Edge, Safari (macOS and iOS), Firefox, Chrome Android | T-23, T-45 | Update the table on `/how-it-works`, the README and the setup copy |
-| A-12 | Where each browser sends recognition audio (Chrome → Google, Safari → Apple or on-device, Edge → Microsoft) | Vendor documentation and privacy notes (Chrome Web Speech API, Apple Siri and Dictation privacy, Microsoft Edge privacy statement) | T-40 | Adjust `/privacy` wording; keep only statements backed by a vendor source, and link the sources |
-| A-13 | Whether Chrome offers an on-device recognition option to web pages (not used in v1) | Chrome release notes and MDN for `SpeechRecognition` on-device options | T-19 | Not used in v1; mention in README future work if available |
-| A-14 | How long a continuous recognition session lasts before `end` in Chrome, Edge and Safari | Manual test: speak with pauses for 4 minutes and count runs (temporary dev log) | T-21 | Adjust `MAX_RESTARTS` so a 240 s answer completes |
-| A-15 | Chrome Android repeats results in continuous mode; long utterances stop early in some Chrome versions (about 15 s); `speak()` right after `cancel()` is dropped in some Chrome versions | Manual test on an Android phone, with a 400-character utterance on desktop at rate 0.8, and with "Replay question" pressed while speaking | T-21 | `applyResults` already rebuilds from the full list. If duplication persists, add content-based de-duplication in `applyResults` (when a final result starts with the previous final result's text, keep only the longer one) and add UT-17 vectors; never branch on the user agent (AGENTS.md). If 160-character chunks still stop early, lower `CHUNK_MAX_CHARS`. If the post-cancel drop does not occur, keep the 50 ms wait anyway (harmless) |
-| A-16 | Current majors of `actions/checkout`, `actions/setup-node`, `pnpm/action-setup`, `actions/upload-artifact` | Each action's README or releases page | T-04 | Update majors in the YAML |
-| A-17 | `Permissions-Policy: microphone=(self)` allows microphone and recognition on the site's own pages in all target browsers | Manual check in Chrome and Safari with the header deployed on a preview | T-41 | Adjust the header per browser docs |
-| A-18 | `fake-indexeddb` version supports the IndexedDB features used (compound key paths, `versionchange`, `blocked`) | Its README; UT-12 and UT-14 pass | T-32 | Use an alternative test approach for the unsupported event and record it |
-| A-19 | shadcn CLI supports Tailwind v4 and React 19 for the listed components | shadcn docs | T-01 | Follow the docs' manual installation for affected components |
-| A-20 | Safari recognition requires Siri and Dictation to be enabled and reports `service-not-allowed` otherwise | Manual test on macOS with Siri off | T-21 | Adjust the "Recognition unavailable" copy |
-| A-21 | `SpeechRecognitionResult` exposes no timestamps | MDN and the Web Speech API spec | T-22 | If timestamps exist, use them for pauses and record a decision |
-| A-22 | OpenAI API data usage and retention statements quoted on `/privacy` | OpenAI's current API data usage policy page | T-40 | Update the sentence and link the source |
-| A-23 | Playwright version supports per-project `workers` and `page.clock` | Playwright release notes for the installed version | T-04 | Keep the serial single-file approach. Without `page.clock`, install `@sinonjs/fake-timers` through `page.addInitScript` as a test fixture and record a decision. Never add test-only switches to application code |
-| A-24 | DNS target for a Vercel custom subdomain | Vercel project → Domains shows the exact CNAME value | T-44 | Use the value Vercel shows |
-| A-25 | Safari (macOS and iOS) lets `SpeechRecognition.start()` run without a fresh user gesture once microphone permission was granted at the intro (automatic start after the think timer, and restarts); iOS plays synthesis at normal volume after a recognition run | Manual voice session in Safari macOS and iOS Safari | T-21, T-45 | The failed start shows the speech-error state, whose "Try again" click starts recording (no code change). Record the behaviour in the browser-support table; if iOS synthesis becomes quiet after recognition, add it to Limits on `/how-it-works` |
+| #    | Assumption                                                                                                                                                                                                                                                       | Verify how                                                                                                                                                                                                                                                                                                                               | Task       | If false                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| A-01 | The provider's current small, cheap model id                                                                                                                                                                                                                     | Open https://platform.openai.com/docs/models, pick the cheapest current general-purpose small model that supports structured outputs; prefer non-reasoning. Confirm with `curl https://api.openai.com/v1/models -H "Authorization: Bearer $OPENAI_API_KEY"` that the id is listed. Pin the exact (dated, if offered) id as `CHAT_MODEL`. | T-24       | —                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| A-02 | Whether that model accepts `temperature` and how it counts reasoning tokens                                                                                                                                                                                      | One request with `temperature: 0`; read the model's API reference                                                                                                                                                                                                                                                                        | T-24       | `CHAT_MODEL_SUPPORTS_TEMPERATURE=false`; set `CHAT_REASONING_EFFORT` to the lowest value; raise `MAX_OUTPUT_TOKENS_FEEDBACK` so reasoning plus output fits; re-run eval                                                                                                                                                                                                                                                                          |
+| A-03 | Prices per 1M input, cached input and output tokens                                                                                                                                                                                                              | https://openai.com/api/pricing                                                                                                                                                                                                                                                                                                           | T-24       | —                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| A-04 | OpenAI project budgets: whether a monthly budget blocks requests or only alerts                                                                                                                                                                                  | Platform → Settings → Project → Limits; help-center article on project budgets                                                                                                                                                                                                                                                           | T-43       | Use prepaid credit with auto-recharge off as the hard cap and lower `RATE_LIMIT_GLOBAL_LLM_DAILY`                                                                                                                                                                                                                                                                                                                                                |
+| A-05 | Upstash Redis free tier: command limit (per day or month), storage, max request size, regions, behaviour when exceeded                                                                                                                                           | https://upstash.com/pricing and docs                                                                                                                                                                                                                                                                                                     | T-43       | Commands per request are listed in 13.4; if limits are tight, reduce the global cap or move session counters into the token (accept no per-session enforcement) and record a decision                                                                                                                                                                                                                                                            |
+| A-06 | `@upstash/ratelimit` API in the installed version: `fixedWindow` alignment to UTC days, `limit()` result fields (`success`, `remaining`, `reset`, `reason`, `pending`), `timeout` option fail-open behaviour                                                     | Package README and source of the installed version; a small script against a real free database                                                                                                                                                                                                                                          | T-09       | Adapt the adapter; keep the `Limiter` interface and fail-closed behaviour                                                                                                                                                                                                                                                                                                                                                                        |
+| A-07 | Vercel Hobby: function max duration (sets `maxDuration`), invocation and bandwidth limits, region selection (`fra1`), non-commercial terms                                                                                                                       | https://vercel.com/docs/limits, plans page, Fair Use Guidelines                                                                                                                                                                                                                                                                          | T-44       | Lower `FEEDBACK_DEADLINE_MS` and `ATTEMPT_TIMEOUT_MS` to fit; pick the Upstash region nearest the default function region                                                                                                                                                                                                                                                                                                                        |
+| A-08 | Vercel sets `x-real-ip` from the client connection and overwrites client-supplied values                                                                                                                                                                         | Vercel docs "Request headers"; on a preview, send a spoofed `x-real-ip` with curl and check with a temporary debug log (preview only, removed after) that the hash is not the spoofed one                                                                                                                                                | T-44       | Use the header Vercel documents as trustworthy                                                                                                                                                                                                                                                                                                                                                                                                   |
+| A-09 | Next.js major, interception file name (`proxy.ts` vs `middleware.ts`), the documented CSP nonce pattern (nonce read from the request `Content-Security-Policy` header)                                                                                           | Next.js docs for the installed version ("Content Security Policy" guide)                                                                                                                                                                                                                                                                 | T-01, T-03 | Follow the installed docs                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| A-10 | AI SDK major: structured output API name (`generateObject` vs `generateText` + `Output.object`), option names (`maxOutputTokens`, `providerOptions.openai.strictJsonSchema`, `reasoningEffort`), usage field names, Zod 4 support                                | `ai` and `@ai-sdk/openai` docs for the installed versions                                                                                                                                                                                                                                                                                | T-24       | Follow the installed docs behind `LlmProvider`                                                                                                                                                                                                                                                                                                                                                                                                   |
+| A-11 | Browser support for SpeechRecognition and speechSynthesis (section 9.1)                                                                                                                                                                                          | MDN browser-compat data on the day; manual 3-question voice session in current Chrome, Edge, Safari (macOS and iOS), Firefox, Chrome Android                                                                                                                                                                                             | T-23, T-45 | Update the table on `/how-it-works`, the README and the setup copy                                                                                                                                                                                                                                                                                                                                                                               |
+| A-12 | Where each browser sends recognition audio (Chrome → Google, Safari → Apple or on-device, Edge → Microsoft)                                                                                                                                                      | Vendor documentation and privacy notes (Chrome Web Speech API, Apple Siri and Dictation privacy, Microsoft Edge privacy statement)                                                                                                                                                                                                       | T-40       | Adjust `/privacy` wording; keep only statements backed by a vendor source, and link the sources                                                                                                                                                                                                                                                                                                                                                  |
+| A-13 | Whether Chrome offers an on-device recognition option to web pages (not used in v1)                                                                                                                                                                              | Chrome release notes and MDN for `SpeechRecognition` on-device options                                                                                                                                                                                                                                                                   | T-19       | Not used in v1; mention in README future work if available                                                                                                                                                                                                                                                                                                                                                                                       |
+| A-14 | How long a continuous recognition session lasts before `end` in Chrome, Edge and Safari                                                                                                                                                                          | Manual test: speak with pauses for 4 minutes and count runs (temporary dev log)                                                                                                                                                                                                                                                          | T-21       | Adjust `MAX_RESTARTS` so a 240 s answer completes                                                                                                                                                                                                                                                                                                                                                                                                |
+| A-15 | Chrome Android repeats results in continuous mode; long utterances stop early in some Chrome versions (about 15 s); `speak()` right after `cancel()` is dropped in some Chrome versions                                                                          | Manual test on an Android phone, with a 400-character utterance on desktop at rate 0.8, and with "Replay question" pressed while speaking                                                                                                                                                                                                | T-21       | `applyResults` already rebuilds from the full list. If duplication persists, add content-based de-duplication in `applyResults` (when a final result starts with the previous final result's text, keep only the longer one) and add UT-17 vectors; never branch on the user agent (AGENTS.md). If 160-character chunks still stop early, lower `CHUNK_MAX_CHARS`. If the post-cancel drop does not occur, keep the 50 ms wait anyway (harmless) |
+| A-16 | Current majors of `actions/checkout`, `actions/setup-node`, `pnpm/action-setup`, `actions/upload-artifact`                                                                                                                                                       | Each action's README or releases page                                                                                                                                                                                                                                                                                                    | T-04       | Update majors in the YAML                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| A-17 | `Permissions-Policy: microphone=(self)` allows microphone and recognition on the site's own pages in all target browsers                                                                                                                                         | Manual check in Chrome and Safari with the header deployed on a preview                                                                                                                                                                                                                                                                  | T-41       | Adjust the header per browser docs                                                                                                                                                                                                                                                                                                                                                                                                               |
+| A-18 | `fake-indexeddb` version supports the IndexedDB features used (compound key paths, `versionchange`, `blocked`)                                                                                                                                                   | Its README; UT-12 and UT-14 pass                                                                                                                                                                                                                                                                                                         | T-32       | Use an alternative test approach for the unsupported event and record it                                                                                                                                                                                                                                                                                                                                                                         |
+| A-19 | shadcn CLI supports Tailwind v4 and React 19 for the listed components                                                                                                                                                                                           | shadcn docs                                                                                                                                                                                                                                                                                                                              | T-01       | Follow the docs' manual installation for affected components                                                                                                                                                                                                                                                                                                                                                                                     |
+| A-20 | Safari recognition requires Siri and Dictation to be enabled and reports `service-not-allowed` otherwise                                                                                                                                                         | Manual test on macOS with Siri off                                                                                                                                                                                                                                                                                                       | T-21       | Adjust the "Recognition unavailable" copy                                                                                                                                                                                                                                                                                                                                                                                                        |
+| A-21 | `SpeechRecognitionResult` exposes no timestamps                                                                                                                                                                                                                  | MDN and the Web Speech API spec                                                                                                                                                                                                                                                                                                          | T-22       | If timestamps exist, use them for pauses and record a decision                                                                                                                                                                                                                                                                                                                                                                                   |
+| A-22 | OpenAI API data usage and retention statements quoted on `/privacy`                                                                                                                                                                                              | OpenAI's current API data usage policy page                                                                                                                                                                                                                                                                                              | T-40       | Update the sentence and link the source                                                                                                                                                                                                                                                                                                                                                                                                          |
+| A-23 | Playwright version supports per-project `workers` and `page.clock`                                                                                                                                                                                               | Playwright release notes for the installed version                                                                                                                                                                                                                                                                                       | T-04       | Keep the serial single-file approach. Without `page.clock`, install `@sinonjs/fake-timers` through `page.addInitScript` as a test fixture and record a decision. Never add test-only switches to application code                                                                                                                                                                                                                                |
+| A-24 | DNS target for a Vercel custom subdomain                                                                                                                                                                                                                         | Vercel project → Domains shows the exact CNAME value                                                                                                                                                                                                                                                                                     | T-44       | Use the value Vercel shows                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| A-25 | Safari (macOS and iOS) lets `SpeechRecognition.start()` run without a fresh user gesture once microphone permission was granted at the intro (automatic start after the think timer, and restarts); iOS plays synthesis at normal volume after a recognition run | Manual voice session in Safari macOS and iOS Safari                                                                                                                                                                                                                                                                                      | T-21, T-45 | The failed start shows the speech-error state, whose "Try again" click starts recording (no code change). Record the behaviour in the browser-support table; if iOS synthesis becomes quiet after recognition, add it to Limits on `/how-it-works`                                                                                                                                                                                               |
 
 ## 27. CI workflows
 
@@ -3617,19 +4080,19 @@ Repository setup (T-38): environment `eval` with secret `OPENAI_API_KEY` from a 
 2. Function region `fra1` (`vercel.json`: `{ "regions": ["fra1"] }`, if Hobby allows region selection, A-07).
 3. Environment variables:
 
-| Variable | Production | Preview | Development (local) |
-|---|---|---|---|
-| `LLM_MODE` | `live` | `mock` | `mock` or `live` |
-| `OPENAI_API_KEY` | project key | — | own key, optional |
-| `CHAT_MODEL`, `CHAT_MODEL_SUPPORTS_TEMPERATURE`, `CHAT_REASONING_EFFORT`, `PRICE_*` | pinned values | — | pinned values |
-| `MAX_OUTPUT_TOKENS_FEEDBACK`, `MAX_OUTPUT_TOKENS_SUMMARY` | `900`, `400` | defaults | defaults |
-| `DEMO_MODE` | `on` | `on` | `on` |
-| `SESSION_SECRET`, `IP_HASH_SECRET` | `openssl rand -hex 32` each | different random values | `.env.example` dev values |
-| `RATE_LIMIT_BACKEND` | `upstash` | `memory` | `memory` |
-| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | from 28.1 | — | — |
-| `RATE_LIMIT_SESSIONS_PER_IP_DAILY`, `RATE_LIMIT_FEEDBACK_PER_IP_DAILY`, `RATE_LIMIT_GLOBAL_LLM_DAILY` | `3`, `20`, value from section 23.3 | defaults | defaults |
-| `NEXT_PUBLIC_SITE_URL` | `https://rehearse.firatkil.com` | `https://rehearse.firatkil.com` (preview origins come from `VERCEL_*` automatically) | `http://localhost:3000` |
-| `LOG_LEVEL` | `info` | `debug` | `debug` |
+| Variable                                                                                              | Production                         | Preview                                                                              | Development (local)       |
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------ | ------------------------- |
+| `LLM_MODE`                                                                                            | `live`                             | `mock`                                                                               | `mock` or `live`          |
+| `OPENAI_API_KEY`                                                                                      | project key                        | —                                                                                    | own key, optional         |
+| `CHAT_MODEL`, `CHAT_MODEL_SUPPORTS_TEMPERATURE`, `CHAT_REASONING_EFFORT`, `PRICE_*`                   | pinned values                      | —                                                                                    | pinned values             |
+| `MAX_OUTPUT_TOKENS_FEEDBACK`, `MAX_OUTPUT_TOKENS_SUMMARY`                                             | `900`, `400`                       | defaults                                                                             | defaults                  |
+| `DEMO_MODE`                                                                                           | `on`                               | `on`                                                                                 | `on`                      |
+| `SESSION_SECRET`, `IP_HASH_SECRET`                                                                    | `openssl rand -hex 32` each        | different random values                                                              | `.env.example` dev values |
+| `RATE_LIMIT_BACKEND`                                                                                  | `upstash`                          | `memory`                                                                             | `memory`                  |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`                                                  | from 28.1                          | —                                                                                    | —                         |
+| `RATE_LIMIT_SESSIONS_PER_IP_DAILY`, `RATE_LIMIT_FEEDBACK_PER_IP_DAILY`, `RATE_LIMIT_GLOBAL_LLM_DAILY` | `3`, `20`, value from section 23.3 | defaults                                                                             | defaults                  |
+| `NEXT_PUBLIC_SITE_URL`                                                                                | `https://rehearse.firatkil.com`    | `https://rehearse.firatkil.com` (preview origins come from `VERCEL_*` automatically) | `http://localhost:3000`   |
+| `LOG_LEVEL`                                                                                           | `info`                             | `debug`                                                                              | `debug`                   |
 
 Previews run with the mock provider and memory limiter, so they cost nothing and need no Upstash.
 
@@ -3658,15 +4121,15 @@ In the DNS provider for `firatkil.com`, add `CNAME rehearse → <value shown by 
 
 ### 28.7 Incident and kill-switch runbook
 
-| Situation | Action | Effect time |
-|---|---|---|
-| Spend rising unexpectedly (OpenAI dashboard or alert) | Set `DEMO_MODE=readonly` in Vercel production env, then "Redeploy" the current production deployment. Check `/api/health` shows `"demoMode":"readonly"`. | 1–3 minutes |
-| Need to stop everything immediately | In the OpenAI console, disable or delete the project key. Feedback calls then fail with `PROVIDER_ERROR` until a new key is deployed. Then set `DEMO_MODE=off` and redeploy. | Seconds (key), minutes (mode) |
-| Abuse with valid tokens | Rotate `SESSION_SECRET` (leave `SESSION_SECRET_PREVIOUS` empty) and redeploy: every outstanding token becomes invalid. Lower the per-IP quotas if needed. | 1–3 minutes |
-| Upstash down | Nothing to do: LLM routes fail closed with `LIMITER_UNAVAILABLE`; practice without feedback still works. Check the Upstash status page. | — |
-| Bad deploy | Vercel → Deployments → promote the previous production deployment. | Under 1 minute |
-| Prompt regression found after release | Revert the prompt commit, bump `FEEDBACK_PROMPT_VERSION` again, run eval, deploy. | One PR |
-| Restore | Set `DEMO_MODE=on`, redeploy, verify health and one live feedback call. | 1–3 minutes |
+| Situation                                             | Action                                                                                                                                                                       | Effect time                   |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Spend rising unexpectedly (OpenAI dashboard or alert) | Set `DEMO_MODE=readonly` in Vercel production env, then "Redeploy" the current production deployment. Check `/api/health` shows `"demoMode":"readonly"`.                     | 1–3 minutes                   |
+| Need to stop everything immediately                   | In the OpenAI console, disable or delete the project key. Feedback calls then fail with `PROVIDER_ERROR` until a new key is deployed. Then set `DEMO_MODE=off` and redeploy. | Seconds (key), minutes (mode) |
+| Abuse with valid tokens                               | Rotate `SESSION_SECRET` (leave `SESSION_SECRET_PREVIOUS` empty) and redeploy: every outstanding token becomes invalid. Lower the per-IP quotas if needed.                    | 1–3 minutes                   |
+| Upstash down                                          | Nothing to do: LLM routes fail closed with `LIMITER_UNAVAILABLE`; practice without feedback still works. Check the Upstash status page.                                      | —                             |
+| Bad deploy                                            | Vercel → Deployments → promote the previous production deployment.                                                                                                           | Under 1 minute                |
+| Prompt regression found after release                 | Revert the prompt commit, bump `FEEDBACK_PROMPT_VERSION` again, run eval, deploy.                                                                                            | One PR                        |
+| Restore                                               | Set `DEMO_MODE=on`, redeploy, verify health and one live feedback call.                                                                                                      | 1–3 minutes                   |
 
 Test the readonly switch once before launch (release checklist).
 

@@ -1,0 +1,46 @@
+{
+  "project": "Rehearse",
+  "cases": [
+    {
+      "tc_reference": "TC-001",
+      "ac_reference": "T-01; D-01; NFR-17",
+      "milestone": "M0 Setup",
+      "title": "Pinned tooling installs, lints, typechecks and builds",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; initial pnpm 10.18.3",
+      "description": "Tooling bootstrap must pass before T-01 is complete.",
+      "steps_to_reproduce": ["Run package lookup and the pinned package-manager installation."],
+      "expected_result": "Pinned tooling installs and acceptance commands pass.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "The shared npm cache contains root-owned entries (EACCES).",
+          "note": "Used an isolated temporary cache without modifying global permissions."
+        },
+        {
+          "result": "fail",
+          "actual_result": "pnpm 10 automatic switching to pnpm 12 returned ENOEXEC on macOS.",
+          "note": "Invoked pnpm 12 through its supplied Node launcher; installation in progress."
+        },
+        {
+          "result": "fail",
+          "actual_result": "pnpm 12 blocked esbuild and unrs-resolver install scripts.",
+          "note": "Added explicit build approvals to pnpm-workspace.yaml; frozen install subsequently passed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Typecheck failed on the generated button import of class-variance-authority.",
+          "note": "Owner approved the exact shadcn support package pins in D-49; dependency installed."
+        },
+        {
+          "result": "pass",
+          "note": "Frozen install, lint, typecheck, production build, prod high-severity audit, exact-version check and react-server server-only import passed. T-01 has no application tests by specification."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    }
+  ]
+}

@@ -13,15 +13,15 @@ Ordered tasks to build Rehearse from an empty folder to a deployed v1.0.0. Read 
 
 ## Milestone overview
 
-| Milestone | Tasks | Exit criteria |
-|---|---|---|
-| M0 Setup | T-01 – T-05 | Tooling, env validation, CSP, test runners, CI, layout shell |
-| M1 Question bank, setup, text-mode room | T-06 – T-17 | A text-mode session runs end to end without feedback; E2E-02 (text parts), E2E-04, E2E-05 (without feedback, on the readonly server) and E2E-29 (session part) pass. E2E-01 needs the real landing page and lands in T-40 |
-| M2 Voice | T-18 – T-23 | Voice session works in Chrome by hand and in E2E with mocks; E2E-03, E2E-06 – E2E-10 pass |
-| M3 Feedback, rubric, report | T-24 – T-31 | Live feedback works locally; E2E-05, E2E-11, E2E-19 – E2E-21 pass in mock mode (E2E-12 – E2E-15 are written in T-39) |
-| M4 Local storage, history, import/export | T-32 – T-35 | Reload recovery and history E2E pass; UT-12 – UT-15 pass |
-| M5 Eval and CI | T-36 – T-39 | `pnpm eval` passes thresholds; eval workflow green on a PR; full E2E suite green |
-| M6 Polish and deploy | T-40 – T-45 | Release checklist complete; v1.0.0 tagged |
+| Milestone                                | Tasks       | Exit criteria                                                                                                                                                                                                             |
+| ---------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| M0 Setup                                 | T-01 – T-05 | Tooling, env validation, CSP, test runners, CI, layout shell                                                                                                                                                              |
+| M1 Question bank, setup, text-mode room  | T-06 – T-17 | A text-mode session runs end to end without feedback; E2E-02 (text parts), E2E-04, E2E-05 (without feedback, on the readonly server) and E2E-29 (session part) pass. E2E-01 needs the real landing page and lands in T-40 |
+| M2 Voice                                 | T-18 – T-23 | Voice session works in Chrome by hand and in E2E with mocks; E2E-03, E2E-06 – E2E-10 pass                                                                                                                                 |
+| M3 Feedback, rubric, report              | T-24 – T-31 | Live feedback works locally; E2E-05, E2E-11, E2E-19 – E2E-21 pass in mock mode (E2E-12 – E2E-15 are written in T-39)                                                                                                      |
+| M4 Local storage, history, import/export | T-32 – T-35 | Reload recovery and history E2E pass; UT-12 – UT-15 pass                                                                                                                                                                  |
+| M5 Eval and CI                           | T-36 – T-39 | `pnpm eval` passes thresholds; eval workflow green on a PR; full E2E suite green                                                                                                                                          |
+| M6 Polish and deploy                     | T-40 – T-45 | Release checklist complete; v1.0.0 tagged                                                                                                                                                                                 |
 
 ---
 
@@ -524,77 +524,79 @@ Ordered tasks to build Rehearse from an empty folder to a deployed v1.0.0. Read 
 
 ## Traceability: functional requirements to tasks and tests
 
-| FR | Tasks | Tests |
-|---|---|---|
-| FR-01 | T-06 | UT-03 |
-| FR-02 | T-06, T-07 | UT-03, `pnpm questions:validate` |
-| FR-03 | T-06, T-07 | Review checklist in T-07 PR |
-| FR-04 | T-14, T-20 | CT-01, CT-02, E2E-02 |
-| FR-05 | T-08, T-11, T-14 | UT-01, UT-32, E2E-04 |
-| FR-06 | T-20 | CT-02, E2E-02 |
-| FR-07 | T-18 | UT-20, CT-01, E2E-03 |
-| FR-08 | T-17, T-21 | UT-18, E2E-05, E2E-06 |
-| FR-09 | T-20, T-21 | UT-19, E2E-06, E2E-09 |
-| FR-10 | T-15, T-17 | UT-18, E2E-07, E2E-09 |
-| FR-11 | T-19, T-21 | UT-16, UT-17, E2E-06, E2E-07 |
-| FR-12 | T-17, T-21 | E2E-05, E2E-10 |
-| FR-13 | T-17 | CT-05, E2E-06 |
-| FR-14 | T-17, T-21 | CT-05, E2E-07 |
-| FR-15 | T-19, T-21 | UT-16, E2E-08 |
-| FR-16 | T-21 | UT-18, E2E-09 |
-| FR-17 | T-17 | UT-18, E2E-05 |
-| FR-18 | T-17 | UT-18, E2E-17 |
-| FR-19 | T-25, T-26, T-27 | UT-22, UT-23, UT-33, EV-01, EV-02 |
-| FR-20 | T-26, T-28 | UT-24, CT-03, EV-11 |
-| FR-21 | T-26, T-28 | UT-23, CT-03 |
-| FR-22 | T-26, T-28 | UT-23, CT-03 |
-| FR-23 | T-25, T-26 | UT-21, UT-23, EV-07, EV-08 |
-| FR-24 | T-16, T-22 | UT-04 – UT-07, CT-04 |
-| FR-25 | T-16 | UT-05 |
-| FR-26 | T-28 | E2E-11 |
-| FR-27 | T-28 | E2E-11 |
-| FR-28 | T-29, T-30 | UT-27, E2E-19 |
-| FR-29 | T-29, T-30 | UT-26, UT-34, CT-07, E2E-20 |
-| FR-30 | T-29, T-30 | UT-27, CT-07, E2E-19 |
-| FR-31 | T-30 | E2E-19 |
-| FR-32 | T-30 | UT-28, E2E-19 |
-| FR-33 | T-31 | UT-40, E2E-21 |
-| FR-34 | T-13, T-32 | UT-12, UT-13 |
-| FR-35 | T-15, T-33 | UT-18, E2E-16 |
-| FR-36 | T-34 | CT-08, E2E-17 |
-| FR-37 | T-35 | UT-15, E2E-18 |
-| FR-38 | T-34 | UT-13, E2E-17 |
-| FR-39 | T-13, T-33 | E2E-23 |
-| FR-40 | T-10, T-11, T-27 | UT-08, UT-32, UT-33, E2E-12 |
-| FR-41 | T-09 | UT-10, UT-11, E2E-12 |
-| FR-42 | T-09 | UT-11, E2E-13 |
-| FR-43 | T-11, T-27 | UT-33, E2E-28 |
-| FR-44 | T-02, T-11, T-27 | UT-32, UT-33, E2E-14, E2E-15 |
-| FR-45 | T-24, T-27 | UT-29, UT-33 |
-| FR-46 | T-14 | E2E-12, E2E-14 |
-| FR-47 | T-12 | UT-35 |
-| FR-48 | T-36 | UT-36 |
-| FR-49 | T-37 | UT-37, UT-38 |
-| FR-50 | T-38 | Workflow run on a PR |
-| FR-51 | T-09, T-24 | UT-10, UT-30, UT-39 |
-| FR-52 | T-40 | E2E-01, E2E-31 |
-| FR-53 | T-05 | E2E-26 |
-| FR-54 | T-18, T-33 | UT-20, E2E-03, E2E-23 |
-| FR-55 | T-21 | E2E-22 |
-| FR-56 | T-03, T-27 | UT-33, logger test |
-| FR-57 | T-45 | Release checklist |
-| FR-58 (Could) | T-17 | E2E-24 |
-| FR-59 (Could, UI deferred, D-34) | T-16 | UT-05 (enabled list) |
+| FR                               | Tasks            | Tests                             |
+| -------------------------------- | ---------------- | --------------------------------- |
+| FR-01                            | T-06             | UT-03                             |
+| FR-02                            | T-06, T-07       | UT-03, `pnpm questions:validate`  |
+| FR-03                            | T-06, T-07       | Review checklist in T-07 PR       |
+| FR-04                            | T-14, T-20       | CT-01, CT-02, E2E-02              |
+| FR-05                            | T-08, T-11, T-14 | UT-01, UT-32, E2E-04              |
+| FR-06                            | T-20             | CT-02, E2E-02                     |
+| FR-07                            | T-18             | UT-20, CT-01, E2E-03              |
+| FR-08                            | T-17, T-21       | UT-18, E2E-05, E2E-06             |
+| FR-09                            | T-20, T-21       | UT-19, E2E-06, E2E-09             |
+| FR-10                            | T-15, T-17       | UT-18, E2E-07, E2E-09             |
+| FR-11                            | T-19, T-21       | UT-16, UT-17, E2E-06, E2E-07      |
+| FR-12                            | T-17, T-21       | E2E-05, E2E-10                    |
+| FR-13                            | T-17             | CT-05, E2E-06                     |
+| FR-14                            | T-17, T-21       | CT-05, E2E-07                     |
+| FR-15                            | T-19, T-21       | UT-16, E2E-08                     |
+| FR-16                            | T-21             | UT-18, E2E-09                     |
+| FR-17                            | T-17             | UT-18, E2E-05                     |
+| FR-18                            | T-17             | UT-18, E2E-17                     |
+| FR-19                            | T-25, T-26, T-27 | UT-22, UT-23, UT-33, EV-01, EV-02 |
+| FR-20                            | T-26, T-28       | UT-24, CT-03, EV-11               |
+| FR-21                            | T-26, T-28       | UT-23, CT-03                      |
+| FR-22                            | T-26, T-28       | UT-23, CT-03                      |
+| FR-23                            | T-25, T-26       | UT-21, UT-23, EV-07, EV-08        |
+| FR-24                            | T-16, T-22       | UT-04 – UT-07, CT-04              |
+| FR-25                            | T-16             | UT-05                             |
+| FR-26                            | T-28             | E2E-11                            |
+| FR-27                            | T-28             | E2E-11                            |
+| FR-28                            | T-29, T-30       | UT-27, E2E-19                     |
+| FR-29                            | T-29, T-30       | UT-26, UT-34, CT-07, E2E-20       |
+| FR-30                            | T-29, T-30       | UT-27, CT-07, E2E-19              |
+| FR-31                            | T-30             | E2E-19                            |
+| FR-32                            | T-30             | UT-28, E2E-19                     |
+| FR-33                            | T-31             | UT-40, E2E-21                     |
+| FR-34                            | T-13, T-32       | UT-12, UT-13                      |
+| FR-35                            | T-15, T-33       | UT-18, E2E-16                     |
+| FR-36                            | T-34             | CT-08, E2E-17                     |
+| FR-37                            | T-35             | UT-15, E2E-18                     |
+| FR-38                            | T-34             | UT-13, E2E-17                     |
+| FR-39                            | T-13, T-33       | E2E-23                            |
+| FR-40                            | T-10, T-11, T-27 | UT-08, UT-32, UT-33, E2E-12       |
+| FR-41                            | T-09             | UT-10, UT-11, E2E-12              |
+| FR-42                            | T-09             | UT-11, E2E-13                     |
+| FR-43                            | T-11, T-27       | UT-33, E2E-28                     |
+| FR-44                            | T-02, T-11, T-27 | UT-32, UT-33, E2E-14, E2E-15      |
+| FR-45                            | T-24, T-27       | UT-29, UT-33                      |
+| FR-46                            | T-14             | E2E-12, E2E-14                    |
+| FR-47                            | T-12             | UT-35                             |
+| FR-48                            | T-36             | UT-36                             |
+| FR-49                            | T-37             | UT-37, UT-38                      |
+| FR-50                            | T-38             | Workflow run on a PR              |
+| FR-51                            | T-09, T-24       | UT-10, UT-30, UT-39               |
+| FR-52                            | T-40             | E2E-01, E2E-31                    |
+| FR-53                            | T-05             | E2E-26                            |
+| FR-54                            | T-18, T-33       | UT-20, E2E-03, E2E-23             |
+| FR-55                            | T-21             | E2E-22                            |
+| FR-56                            | T-03, T-27       | UT-33, logger test                |
+| FR-57                            | T-45             | Release checklist                 |
+| FR-58 (Could)                    | T-17             | E2E-24                            |
+| FR-59 (Could, UI deferred, D-34) | T-16             | UT-05 (enabled list)              |
 
 ## Release checklist
 
 Functional
+
 - [ ] All Must FRs implemented; any Should or Could not done has a decisions log entry.
 - [ ] Every state in PRD §9.4, §9.6, §9.8 and §9.9 checked on production by hand (quota and cap states may be checked on a preview with lowered limits and `LLM_MODE=mock`).
 - [ ] Copy on all pages matches PRD §9 (spot-check 25 strings).
 - [ ] Voice session completes in desktop Chrome and Edge; Firefox shows the synthesis-only notice and completes a text session; Safari macOS and iOS behaviour recorded in the support table (A-11).
 
 Quality
+
 - [ ] CI green on `main`: lint (with content checks), typecheck, unit and component with coverage, E2E, build.
 - [ ] Coverage thresholds met (TRD §25.5).
 - [ ] Latest committed eval run passes every threshold; README table matches `eval/results/latest.json`; injection resistance 1.00.
@@ -602,6 +604,7 @@ Quality
 - [ ] `content/sample/session.json` is live model output (`pnpm sample:validate` without `--allow-mock`).
 
 Accessibility and performance
+
 - [ ] axe: zero serious or critical issues (E2E-30).
 - [ ] Manual VoiceOver pass of a text session; manual keyboard pass of a voice session.
 - [ ] 360 px check on a real phone (Android Chrome voice session, iOS Safari text session).
@@ -609,6 +612,7 @@ Accessibility and performance
 - [ ] NFR-01 – NFR-03 measured on production and recorded.
 
 Security and privacy
+
 - [ ] `curl -sI https://rehearse.firatkil.com` shows every header in TRD §21 item 3; two requests return different nonces.
 - [ ] Production logs for a feedback call contain no transcript text, IP or token (inspect one `feedback.done` line).
 - [ ] No secrets in the repository (`git log -p | grep -E "sk-(proj-)?[A-Za-z0-9]{20,}"` prints nothing); GitHub secret scanning shows no alerts.
@@ -616,16 +620,19 @@ Security and privacy
 - [ ] `/privacy` statements verified against vendor sources (A-12, A-22) with links.
 
 Cost
+
 - [ ] OpenAI project budget and alert set; prepaid credit with auto-recharge off (or verified hard limit, A-04).
 - [ ] `RATE_LIMIT_GLOBAL_LLM_DAILY` chosen with TRD §23.3; worst-case monthly cost in the README.
 - [ ] Vercel and Upstash free-tier checks in TRD §28.5 done and recorded.
 - [ ] No uptime monitor pinging more often than every 30 minutes.
 
 Operations
+
 - [ ] Runbook (TRD §28.7) tested once: readonly and back; rollback by promoting a previous deployment.
 - [ ] `eval.yml` has run green at least once.
 
 Docs and release
+
 - [ ] README complete per TRD §29; fresh-clone test: `pnpm install && cp .env.example .env.local && pnpm dev:mock` gives a scored text answer in under 10 minutes.
 - [ ] Demo GIF recorded on production with fictional answers.
 - [ ] `CHANGELOG.md` v1.0.0 entry; tag `v1.0.0`; GitHub release; repository description, topics (`nextjs`, `web-speech-api`, `llm`, `evaluation`, `accessibility`) and website set.

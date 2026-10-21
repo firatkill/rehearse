@@ -13,12 +13,12 @@ Single Next.js App Router app, TypeScript strict, pnpm, Node 22+, Tailwind v4, s
 
 ## 2. Where the specs live
 
-| Document | Use it for |
-|---|---|
-| `docs/PRD.md` | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15) |
-| `docs/TRD.md` | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
-| `docs/OWNER-DECISIONS.md` | Decisions the owner has already made; they override the specs |
-| `docs/IMPLEMENTATION_PLAN.md` | Ordered tasks (T-01 – T-45), files, acceptance commands, traceability, release checklist |
+| Document                      | Use it for                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/PRD.md`                 | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15)                                                                                                                                                                                                                                                          |
+| `docs/TRD.md`                 | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
+| `docs/OWNER-DECISIONS.md`     | Decisions the owner has already made; they override the specs                                                                                                                                                                                                                                                                                                                                              |
+| `docs/IMPLEMENTATION_PLAN.md` | Ordered tasks (T-01 – T-45), files, acceptance commands, traceability, release checklist                                                                                                                                                                                                                                                                                                                   |
 
 Rules for the specs:
 
@@ -29,25 +29,25 @@ Rules for the specs:
 
 ## 3. Commands
 
-| Task | Command |
-|---|---|
-| Install | `pnpm install --frozen-lockfile` |
-| Dev server (live LLM, needs `.env.local` with a key and Upstash or `RATE_LIMIT_BACKEND=memory`) | `pnpm dev` |
-| Dev server without any key (mock LLM, memory limiter) | `pnpm dev:mock` |
-| Lint and format check | `pnpm lint` |
-| Format | `pnpm format` |
-| Typecheck | `pnpm typecheck` |
-| Unit and component tests | `pnpm test` |
-| Coverage | `pnpm test:coverage` |
-| E2E (needs `pnpm build`; starts servers on 3200–3203) | `pnpm test:e2e` |
-| One E2E spec | `pnpm test:e2e tests/e2e/<name>.spec.ts` |
-| Validate question bank and print coverage | `pnpm questions:validate` |
-| Validate golden set | `pnpm eval:validate` |
-| Eval harness smoke test (mock, free) | `pnpm eval:mock` |
-| Run evaluation (live, costs money) | `pnpm eval` |
-| Validate sample session | `pnpm sample:validate` |
-| Regenerate sample session (live, owner only) | `pnpm sample:generate` |
-| Production build | `pnpm build` |
+| Task                                                                                            | Command                                  |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Install                                                                                         | `pnpm install --frozen-lockfile`         |
+| Dev server (live LLM, needs `.env.local` with a key and Upstash or `RATE_LIMIT_BACKEND=memory`) | `pnpm dev`                               |
+| Dev server without any key (mock LLM, memory limiter)                                           | `pnpm dev:mock`                          |
+| Lint and format check                                                                           | `pnpm lint`                              |
+| Format                                                                                          | `pnpm format`                            |
+| Typecheck                                                                                       | `pnpm typecheck`                         |
+| Unit and component tests                                                                        | `pnpm test`                              |
+| Coverage                                                                                        | `pnpm test:coverage`                     |
+| E2E (needs `pnpm build`; starts servers on 3200–3203)                                           | `pnpm test:e2e`                          |
+| One E2E spec                                                                                    | `pnpm test:e2e tests/e2e/<name>.spec.ts` |
+| Validate question bank and print coverage                                                       | `pnpm questions:validate`                |
+| Validate golden set                                                                             | `pnpm eval:validate`                     |
+| Eval harness smoke test (mock, free)                                                            | `pnpm eval:mock`                         |
+| Run evaluation (live, costs money)                                                              | `pnpm eval`                              |
+| Validate sample session                                                                         | `pnpm sample:validate`                   |
+| Regenerate sample session (live, owner only)                                                    | `pnpm sample:generate`                   |
+| Production build                                                                                | `pnpm build`                             |
 
 First-time local setup without an API key or microphone: `pnpm install && cp .env.example .env.local && pnpm dev:mock`, then use text mode.
 
@@ -166,14 +166,14 @@ Tests are written from the specs, never from the code. Every test traces to a re
 
 Use the QA skills throughout the build, not only at the end. They exist as the `vizio-qa-loop` plugin in Claude Code and as skills in `~/.codex/skills/qa-*` for Codex. With any other tool, open the matching `~/.codex/skills/<name>/SKILL.md` and follow it.
 
-| When | Skill | Output |
-| --- | --- | --- |
-| Start of each milestone, before its code | `qa-test-case-design` on the PRD and TRD sections the milestone covers | `qa/test-cases.md`: TC IDs, each with its PRD reference (AC/FR/NFR) and TRD test ID, steps, expected result, priority, automatable yes/no |
-| Writing the tests of a task | `qa-case-to-playwright` (the speech mock in TRD §25.3 replaces the microphone in automated tests) | Tests in the layout and naming the TRD prescribes |
-| After every task, before its commit | `qa-test-run-loop` | Runs the suite, logs every result to `qa/test-results.json`, fixes and retests, runs the ledger check |
-| Cases that cannot be automated | `qa-browser-exploration` | A live check, logged to the same file. Here: a real microphone in Chrome and Safari, speech synthesis, and the text-mode fallback when permission is denied |
-| End of each milestone | `qa-milestone-docs`, then `qa-milestone-review` | Milestone report in `qa/`, quality check |
-| End of the project | `qa-project-report` | One PDF covering the whole project |
+| When                                     | Skill                                                                                             | Output                                                                                                                                                      |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Start of each milestone, before its code | `qa-test-case-design` on the PRD and TRD sections the milestone covers                            | `qa/test-cases.md`: TC IDs, each with its PRD reference (AC/FR/NFR) and TRD test ID, steps, expected result, priority, automatable yes/no                   |
+| Writing the tests of a task              | `qa-case-to-playwright` (the speech mock in TRD §25.3 replaces the microphone in automated tests) | Tests in the layout and naming the TRD prescribes                                                                                                           |
+| After every task, before its commit      | `qa-test-run-loop`                                                                                | Runs the suite, logs every result to `qa/test-results.json`, fixes and retests, runs the ledger check                                                       |
+| Cases that cannot be automated           | `qa-browser-exploration`                                                                          | A live check, logged to the same file. Here: a real microphone in Chrome and Safari, speech synthesis, and the text-mode fallback when permission is denied |
+| End of each milestone                    | `qa-milestone-docs`, then `qa-milestone-review`                                                   | Milestone report in `qa/`, quality check                                                                                                                    |
+| End of the project                       | `qa-project-report`                                                                               | One PDF covering the whole project                                                                                                                          |
 
 `qa-bug-standards` is the shared reference for the log fields; read it first.
 
