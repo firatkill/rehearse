@@ -17,4 +17,6 @@ test('TC-060 E2E-10 switching mid-recording keeps partial words and future answe
   await expect(page.getByLabel('Your answer')).toBeFocused();
   await page.clock.runFor(2000);
   expect(await speech(page).runs()).toBe(1);
+  expect(await speech(page).active()).toBe(false);
+  expect(await speech(page).overlaps()).toBe(0);
 });

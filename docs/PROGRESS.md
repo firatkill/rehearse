@@ -27,8 +27,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-19 | Recognizer adapter, transcript assembly and recorder machine       | done    | 8eb3c8b           |
 | T-20 | Speech synthesis, voices, captions and the voice picker            | done    | 46134d9           |
 | T-21 | Voice room integration                                             | blocked | dcd7293           |
-| T-22 | Voice delivery metrics                                             | done    | this commit       |
-| T-23 | Voice E2E with the speech mock                                     | todo    | —                 |
+| T-22 | Voice delivery metrics                                             | done    | 678d785           |
+| T-23 | Voice E2E with the speech mock                                     | done    | this commit       |
 | T-24 | LLM provider (live and mock), model pinning and cost estimate      | todo    | —                 |
 | T-25 | Rubric, prompts, sanitization and versioning                       | todo    | —                 |
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | todo    | —                 |
@@ -82,3 +82,7 @@ T-19 CI passed: https://github.com/firatkill/rehearse/actions/runs/39594914682. 
 T-21 implementation and automated acceptance are complete; status is blocked only on the explicit physical microphone/browser acceptance checks (TC-063/TC-064). T-22 and T-23 can proceed independently. T-20 CI passed: https://github.com/firatkill/rehearse/actions/runs/39595922972.
 
 T-21 CI passed: https://github.com/firatkill/rehearse/actions/runs/39606885914. T-22 voice metrics pass normative vectors and UI assertions; A-21 is recorded in D-61.
+
+## M2 milestone boundary
+
+T-18–T-23 implementation and automated checks are complete. T-21 remains blocked only on physical acceptance TC-063/TC-064. Stop before M3 for owner review. See [M2 QA report](../qa/M2-REPORT.md). Verification: 273 unit/component tests, 33 E2E tests, two consecutive 14-test voice runs, lint, typecheck, build and coverage gates pass. T-22 CI passed: https://github.com/firatkill/rehearse/actions/runs/39607399315. T-23 CI is checked after pushing this commit.

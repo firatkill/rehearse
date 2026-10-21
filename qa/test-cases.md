@@ -447,7 +447,7 @@ All automated cases use mocked speech/LLM and the memory limiter. Physical micro
 | TC-062 | FR-24; UT-07                         | Pause estimates                              | High     | yes         | Nulls for insufficient offsets; gaps >=3000 ms counted; longest gap correct.                                                                    |
 | TC-063 | FR-09–FR-16; T-21 manual acceptance  | Desktop Chrome voice acceptance              | High     | no          | Full session completes; speech and recognition never overlap; text fallback remains available.                                                  |
 | TC-064 | FR-11, FR-15; A-14, A-15, A-20, A-25 | Physical browser speech assumptions          | High     | no          | Record observed behaviour and versions; propose any required spec change before implementing it.                                                |
-| TC-065 | FR-54; A-11, A-13, A-21              | Current Web Speech support evidence          | High     | yes         | Dated evidence logged; no unsupported inference of manual browser success.                                                                      |
+| TC-065 | FR-54; A-11, A-13, A-21              | Current Web Speech support evidence          | High     | no          | Dated evidence logged; no unsupported inference of manual browser success.                                                                      |
 
 ### TC-046: Feature detection
 
@@ -660,7 +660,7 @@ Expected: Record observed behaviour and versions; propose any required spec chan
 
 ### TC-065: Current Web Speech support evidence
 
-Reference: FR-54; A-11, A-13, A-21. Priority: High. Automatable: yes.
+Reference: FR-54; A-11, A-13, A-21. Priority: High. Automatable: no. This is a source-document review (A-11/A-13/A-21), not a mocked runtime test.
 
 Preconditions: task implemented; isolated fake windows, providers and clocks for automation; named physical browser/device for manual checks.
 

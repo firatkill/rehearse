@@ -37,5 +37,40 @@ test('TC-056 E2E-06 three voice answers retain edited transcripts through practi
   for (let i = 1; i <= 3; i++)
     await expect(page.getByText(`I led project ${i} and improved delivery.`)).toBeVisible();
   expect(await speech(page).runs()).toBe(3);
+  expect(await speech(page).overlaps()).toBe(0);
+  expect(await speech(page).active()).toBe(false);
   expect((await speech(page).spoken()).filter((text) => text.trim())).not.toHaveLength(0);
+});
+
+test('TC-056 FR-13 recording again discards old text and restarts timing', async ({
+  page,
+}, info) => {
+  await prepareVoice(page, info);
+  await startAnswer(page);
+  await page.clock.runFor(650);
+  await page.getByRole('button', { name: 'Stop and review' }).click();
+  await page.clock.runFor(25);
+  await page.getByRole('button', { name: 'Record again', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Keep this answer' })).toBeFocused();
+  await page.getByRole('dialog').getByRole('button', { name: 'Record again', exact: true }).click();
+  await page.clock.runFor(1);
+  await expect(page.getByRole('button', { name: 'Stop and review' })).toBeFocused();
+  await expect(page.getByText('Start speaking. Your words will appear here.')).toBeVisible();
+  await page.clock.runFor(150);
+  await page.getByRole('button', { name: 'Stop and review' }).click();
+  await page.clock.runFor(25);
+  await expect(page.getByLabel('Your answer')).toHaveValue('I led');
+  expect(await speech(page).runs()).toBe(2);
+  expect(await speech(page).overlaps()).toBe(0);
+});
+
+test('TC-056 NFR-14 ending during recording closes recognition', async ({ page }, info) => {
+  await prepareVoice(page, info);
+  await startAnswer(page);
+  await page.clock.runFor(150);
+  await page.getByRole('button', { name: 'End session', exact: true }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'End session', exact: true }).click();
+  await expect(page).toHaveURL(/\/setup$/);
+  expect(await speech(page).active()).toBe(false);
+  expect(await speech(page).overlaps()).toBe(0);
 });
