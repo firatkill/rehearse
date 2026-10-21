@@ -49,6 +49,15 @@ export default defineConfig([
     files: ['lib/{speech,metrics,room,storage,report}/**/*.ts', 'lib/feedback/rubric.ts'],
     rules: { 'no-restricted-imports': ['error', { patterns: ['next', 'next/*'] }] },
   },
+  // TRD §25.3 is normative: retain its browser feature guards and async mock signatures.
+  {
+    files: ['tests/e2e/speech-mock.ts'],
+    rules: {
+      '@typescript-eslint/no-confusing-void-expression': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/require-await': 'off',
+    },
+  },
   globalIgnores([
     '.next/**',
     'out/**',

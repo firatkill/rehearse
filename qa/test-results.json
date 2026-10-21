@@ -200,6 +200,34 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-010",
+      "ac_reference": "T-04; TRD \u00a725; NFR-17",
+      "milestone": "M0 Setup",
+      "title": "Unit and component runners, coverage and four E2E servers",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Playwright 1.64.1 Chromium",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Normative speech mock conflicted with three strict lint rules; scenario import was missing.",
+          "note": "Scoped lint compatibility to the verbatim mock and added the specified scenario helpers."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Scenario voice lacked its required default flag and the smoke injection call had a malformed reference.",
+          "note": "Corrected test wiring against SpeechScenario; no assertions changed."
+        },
+        {
+          "result": "pass",
+          "note": "Both Vitest projects pass: 30 tests. Coverage 100% lines/functions, 96% branches. Four Playwright health tests passed with four workers; production build and eval stub passed."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }

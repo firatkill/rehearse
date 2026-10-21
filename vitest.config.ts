@@ -9,7 +9,19 @@ export default defineConfig({
     },
   },
   test: {
-    passWithNoTests: true, // T-02: component tests arrive in T-04.
+    coverage: {
+      provider: 'v8',
+      include: ['lib/**'],
+      exclude: ['lib/llm/openai.ts', 'lib/ratelimit/upstash.ts', 'lib/logger.ts'],
+      thresholds: {
+        lines: 80,
+        branches: 75,
+        functions: 80,
+        'lib/{questions/{select,prng},session/token,speech/{recorder-machine,transcript},room/machine}.ts':
+          { lines: 90 },
+        'lib/{metrics,ratelimit,storage,feedback}/**': { lines: 90 },
+      },
+    },
     projects: [
       {
         extends: true,
@@ -26,7 +38,7 @@ export default defineConfig({
           name: 'component',
           environment: 'jsdom',
           include: ['tests/component/**/*.test.tsx'],
-          setupFiles: ['tests/setup/unit.ts'],
+          setupFiles: ['tests/setup/unit.ts', 'tests/setup/component.ts'],
         },
       },
     ],
