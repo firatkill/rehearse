@@ -106,7 +106,50 @@ describe('TC-016 TC-017 — FR-01, FR-03; UT-03', () => {
     ).toBeGreaterThan(0);
     expect(validateQuestionFiles({ bad: true }, {}, true).errors.length).toBeGreaterThan(0);
   });
-  it.todo(
-    'TC-018 UT-03 complete bank has 120 active questions and every coverage cell is at least five — T-07',
-  );
+  it('TC-018 UT-03 complete bank meets counts, topic limits and all 45 coverage cells', () => {
+    const active = bank.questions.filter((q) => q.status === 'active');
+    expect(active).toHaveLength(120);
+    expect(checkBankRules(bank.questions)).toEqual([]);
+    for (const [type, count] of [
+      ['behavioral', 50],
+      ['technical-concepts', 40],
+      ['system-design-lite', 30],
+    ] as const) {
+      expect(active.filter((q) => q.type === type)).toHaveLength(count);
+    }
+    const behavioral = active.filter((q) => q.type === 'behavioral');
+    expect(behavioral.filter((q) => q.roles.length === ROLES.length).length).toBeGreaterThanOrEqual(
+      35,
+    );
+    expect(
+      behavioral.filter((q) => q.seniority.length === 1 && q.seniority[0] === 'senior').length,
+    ).toBeGreaterThanOrEqual(6);
+    for (const role of ROLES) {
+      expect(
+        active.filter((q) => q.type === 'technical-concepts' && q.roles.includes(role)).length,
+      ).toBeGreaterThanOrEqual(8);
+      expect(
+        active.filter(
+          (q) =>
+            q.type === 'system-design-lite' &&
+            q.roles.includes(role) &&
+            q.seniority.includes('junior'),
+        ).length,
+      ).toBeGreaterThanOrEqual(5);
+    }
+    for (const [type, count] of [
+      ['behavioral', 6],
+      ['technical-concepts', 8],
+      ['system-design-lite', 6],
+    ] as const) {
+      expect(
+        active.filter(
+          (q) =>
+            q.type === type &&
+            q.roles.includes('ai-product-engineer') &&
+            /^(ai-|llm-)/.test(q.topic),
+        ).length,
+      ).toBeGreaterThanOrEqual(count);
+    }
+  });
 });

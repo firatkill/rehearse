@@ -152,5 +152,847 @@
     "time_limit_s": 150,
     "status": "active",
     "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-008",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "influence-without-mandate",
+    "prompt": "Describe a time you changed a team’s technical direction without having authority over its members. What made your proposal credible?",
+    "follow_up_hints": ["Whose support mattered most?", "What evidence changed the discussion?"],
+    "what_good_looks_like": [
+      "Identifies the decision and the limits of their authority",
+      "Explains how evidence and stakeholder concerns shaped the proposal",
+      "Describes adoption and a concrete effect beyond agreement"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-009",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "mentoring-independence",
+    "prompt": "Tell me about someone you helped become less dependent on your technical guidance. How did your approach change as they progressed?",
+    "follow_up_hints": [
+      "What did you deliberately stop doing for them?",
+      "How did you tell whether they were ready?"
+    ],
+    "what_good_looks_like": [
+      "Identifies a specific capability gap and shared learning goal",
+      "Explains how responsibility increased without removing support abruptly",
+      "Gives evidence of independent decisions or improved delivery"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-010",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "strategy-sequencing",
+    "prompt": "Describe a time you turned a broad technical strategy into work a team could actually start. What did you choose to do first?",
+    "follow_up_hints": [
+      "Which uncertainty did the first step address?",
+      "What did you postpone and why?"
+    ],
+    "what_good_looks_like": [
+      "Connects the strategy to a concrete product or operational need",
+      "Explains sequencing in terms of risk and dependencies",
+      "Shows how early results informed later investment"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-011",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "hiring-evidence",
+    "prompt": "Tell me about a time you improved how your team assessed engineering candidates. What problem were you trying to remove?",
+    "follow_up_hints": [
+      "How did you check that the assessment was relevant to the job?",
+      "What feedback changed the process?"
+    ],
+    "what_good_looks_like": [
+      "Identifies a specific weakness in the previous assessment",
+      "Uses consistent job-related evidence rather than personal similarity",
+      "Describes how the change affected decisions or candidate experience"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-012",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "cross-team-capacity",
+    "prompt": "Describe a time two teams needed the same scarce engineering capacity. How did you help resolve the competing priorities?",
+    "follow_up_hints": [
+      "Who owned the final decision?",
+      "How were the costs of delaying work made visible?"
+    ],
+    "what_good_looks_like": [
+      "Explains each team’s need and the shared constraint",
+      "Describes transparent prioritisation and a clear decision owner",
+      "States what happened to both committed and deferred work"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-013",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "topic": "technical-debt-investment",
+    "prompt": "Tell me about a technical debt investment you chose to fund while product work was waiting. How did you justify its timing?",
+    "follow_up_hints": [
+      "What would have happened if the work waited?",
+      "How did you bound the investment?"
+    ],
+    "what_good_looks_like": [
+      "Links the debt to measurable delivery or reliability costs",
+      "Explains alternatives and a limited scope for the investment",
+      "Describes whether the expected benefit appeared"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-014",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "uncertain-requirements",
+    "prompt": "Describe a task you started when the requested outcome was unclear. How did you avoid building the wrong thing?",
+    "follow_up_hints": [
+      "Which assumption did you test first?",
+      "Who confirmed the intended outcome?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the ambiguity and its potential cost",
+      "Describes a concrete clarification or inexpensive experiment",
+      "Connects the result to the implementation decision"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-015",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "small-mistake-disclosure",
+    "prompt": "Tell me about a mistake you noticed in your own work before anyone reported it. What did you do next?",
+    "follow_up_hints": [
+      "Who needed to know about it?",
+      "What prevented the same mistake returning?"
+    ],
+    "what_good_looks_like": [
+      "States the mistake and its likely impact clearly",
+      "Takes responsibility and communicates at an appropriate time",
+      "Explains correction and a proportionate prevention step"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-016",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "review-learning",
+    "prompt": "Describe a code review that changed your understanding of a problem. What did you take from it into later work?",
+    "follow_up_hints": [
+      "Which part of the feedback surprised you?",
+      "Where did you apply the lesson again?"
+    ],
+    "what_good_looks_like": [
+      "Explains the technical disagreement or missing consideration",
+      "Shows how the reviewer’s reasoning was evaluated",
+      "Provides a later example of changed practice"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-017",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "handover-continuity",
+    "prompt": "Tell me about a piece of work you handed over while it was still unfinished. How did you make the next person effective?",
+    "follow_up_hints": [
+      "What information was hardest to transfer?",
+      "How did you check the handover was usable?"
+    ],
+    "what_good_looks_like": [
+      "Identifies unfinished decisions and operational risks",
+      "Describes clear context, ownership and next actions",
+      "Shows that the recipient could continue without repeated reconstruction"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-018",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "accessible-delivery",
+    "prompt": "Describe a time an accessibility concern changed something you were building. How did you decide what to change?",
+    "follow_up_hints": ["How was the barrier discovered?", "How did you verify the improvement?"],
+    "what_good_looks_like": [
+      "Names a specific user barrier and affected interaction",
+      "Explains the change in terms of usability rather than appearance alone",
+      "Describes relevant verification and any remaining limits"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-019",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "release-confidence",
+    "prompt": "Tell me about a release you felt uncertain about. How did you decide whether it was ready?",
+    "follow_up_hints": ["Which risk mattered most?", "What would have triggered a rollback?"],
+    "what_good_looks_like": [
+      "Identifies the source and consequence of uncertainty",
+      "Describes evidence and safeguards used for the decision",
+      "Explains the release outcome and what was learned"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-020",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "scope-boundary",
+    "prompt": "Describe a time you said no to additional work during a project. How did you preserve the working relationship?",
+    "follow_up_hints": [
+      "What did the requester need underneath the request?",
+      "What alternative did you offer?"
+    ],
+    "what_good_looks_like": [
+      "Explains the delivery constraint and competing value",
+      "Shows a respectful discussion of alternatives or sequencing",
+      "States the agreed boundary and its effect"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-021",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "measurement-surprise",
+    "prompt": "Tell me about a result that looked successful until you examined the data more closely. What changed your view?",
+    "follow_up_hints": [
+      "Which measurement was misleading?",
+      "How did the team respond to the new evidence?"
+    ],
+    "what_good_looks_like": [
+      "Explains the original success claim and measurement weakness",
+      "Describes a concrete investigation rather than hindsight alone",
+      "Connects revised evidence to a changed decision"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-022",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "unblocking-colleague",
+    "prompt": "Describe a time you helped a colleague who was stuck without taking over their task. What did you do?",
+    "follow_up_hints": [
+      "How did you learn where they were blocked?",
+      "What remained their responsibility?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the actual obstacle through discussion or observation",
+      "Explains support that preserved the colleague’s ownership",
+      "States how work progressed and what capability was gained"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-023",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "legacy-understanding",
+    "prompt": "Tell me about a change you made to a poorly understood part of a system. How did you build enough confidence to proceed?",
+    "follow_up_hints": [
+      "Which behaviour did you preserve first?",
+      "What did you discover that changed the plan?"
+    ],
+    "what_good_looks_like": [
+      "Describes how current behaviour and dependencies were investigated",
+      "Explains a bounded change with evidence of compatibility",
+      "States the outcome and remaining uncertainty"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-024",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "customer-context",
+    "prompt": "Describe a conversation with a user that changed your implementation plan. What did you understand differently afterwards?",
+    "follow_up_hints": [
+      "What had your initial assumption missed?",
+      "How did you confirm the issue was not isolated?"
+    ],
+    "what_good_looks_like": [
+      "Connects a specific user situation to the original plan",
+      "Shows how new information affected scope or design",
+      "Explains validation of the resulting change"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-025",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "testing-priority",
+    "prompt": "Tell me about a time you had limited time for testing. How did you decide what deserved attention first?",
+    "follow_up_hints": [
+      "Which failure would have hurt users most?",
+      "What risk did you explicitly leave uncovered?"
+    ],
+    "what_good_looks_like": [
+      "Prioritises tests using impact and likelihood",
+      "Describes meaningful checks of the highest-risk behaviour",
+      "Acknowledges residual risk and any release safeguards"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-026",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ownership-gap",
+    "prompt": "Describe a problem that kept being passed between people until you took action. How did you establish ownership?",
+    "follow_up_hints": ["Why was responsibility unclear?", "How was the longer-term owner agreed?"],
+    "what_good_looks_like": [
+      "Explains the gap without blaming individuals",
+      "Describes practical coordination and a clear next step",
+      "Distinguishes immediate help from sustainable ownership"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-027",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "removing-unused-work",
+    "prompt": "Tell me about something you helped remove from a product or codebase. How did you establish that removing it was safe?",
+    "follow_up_hints": ["Who might still have depended on it?", "What did you monitor afterwards?"],
+    "what_good_looks_like": [
+      "Identifies evidence of low value or unnecessary cost",
+      "Explains dependency checks and a reversible removal plan",
+      "Describes observed impact after removal"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-028",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "operational-documentation",
+    "prompt": "Describe documentation you wrote because an operational task was going wrong. What made it useful in practice?",
+    "follow_up_hints": [
+      "Who tried the instructions first?",
+      "How did you keep the document from becoming stale?"
+    ],
+    "what_good_looks_like": [
+      "Names a recurring task and a concrete failure mode",
+      "Describes actionable instructions tested by another person",
+      "Explains ownership or a trigger for updating the document"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-029",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "dependency-delay",
+    "prompt": "Tell me about a project delayed by work outside your team. How did you respond while preserving progress?",
+    "follow_up_hints": [
+      "What could proceed independently?",
+      "How did you communicate changes to the schedule?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the dependency and its effect on delivery",
+      "Describes coordination and useful work that reduced waiting",
+      "States the revised plan and eventual outcome"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-030",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "tradeoff-explanation",
+    "prompt": "Describe a technical trade-off you had to explain to a non-technical colleague. How did you make the choice understandable?",
+    "follow_up_hints": [
+      "Which consequence mattered to them?",
+      "How did you check that you shared the same understanding?"
+    ],
+    "what_good_looks_like": [
+      "Frames alternatives using the colleague’s goals",
+      "Explains costs and uncertainty without relying on jargon",
+      "Describes an informed decision and its consequences"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-031",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "feedback-followthrough",
+    "prompt": "Tell me about feedback on your working style that was difficult to hear. What did you change afterwards?",
+    "follow_up_hints": [
+      "How did you decide whether the feedback was fair?",
+      "What showed that the change was helping?"
+    ],
+    "what_good_looks_like": [
+      "Gives a specific behavioural example rather than a vague weakness",
+      "Describes a concrete change and how it was practised",
+      "Uses later feedback or outcomes to assess progress"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-032",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "experiment-stopping",
+    "prompt": "Describe an experiment you stopped before completing the original plan. What evidence told you to stop?",
+    "follow_up_hints": ["What was the stopping condition?", "What did you preserve from the work?"],
+    "what_good_looks_like": [
+      "States the hypothesis and the cost of continuing",
+      "Explains evidence supporting an early stop",
+      "Identifies useful learning and the next decision"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-033",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "estimation-revision",
+    "prompt": "Tell me about an estimate you revised substantially after starting work. How did you handle the change?",
+    "follow_up_hints": [
+      "What assumption had become false?",
+      "When did you tell the people depending on the work?"
+    ],
+    "what_good_looks_like": [
+      "Explains the new information and its effect on scope or effort",
+      "Communicates revised expectations early with options",
+      "Reflects on how future estimates could expose that uncertainty"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-034",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "repeated-support-issue",
+    "prompt": "Describe a recurring support issue you helped reduce. How did you find a useful engineering response?",
+    "follow_up_hints": [
+      "How did you distinguish the symptom from the cause?",
+      "What changed for the people handling support?"
+    ],
+    "what_good_looks_like": [
+      "Uses patterns in reports to identify a recurring problem",
+      "Describes a focused change to the product or process",
+      "Provides evidence that the support burden or user impact decreased"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-035",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "pairing-disagreement",
+    "prompt": "Tell me about a time a close collaborator preferred a different implementation approach. How did you reach a workable decision?",
+    "follow_up_hints": [
+      "What did each approach optimise for?",
+      "How did you keep the discussion productive?"
+    ],
+    "what_good_looks_like": [
+      "Explains both options fairly and names shared goals",
+      "Uses evidence or a bounded trial to resolve disagreement",
+      "States the chosen approach and how collaboration continued"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-036",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "progress-visibility",
+    "prompt": "Describe a time people could not tell whether your work was on track. How did you make progress visible?",
+    "follow_up_hints": [
+      "What information had been missing?",
+      "Which signal became useful to the team?"
+    ],
+    "what_good_looks_like": [
+      "Identifies an information gap that affected coordination",
+      "Describes concrete milestones, demonstrations or risk reporting",
+      "Shows how visibility improved decisions rather than adding reporting work"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-037",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "reliability-small-fix",
+    "prompt": "Tell me about a small change that made a system noticeably more reliable. How did you find it?",
+    "follow_up_hints": [
+      "What failure pattern led you to the change?",
+      "How did you separate improvement from normal variation?"
+    ],
+    "what_good_looks_like": [
+      "Names the recurring failure and a plausible cause",
+      "Explains why a limited change addressed that cause",
+      "Provides evidence of reliability improvement"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-038",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "security-concern",
+    "prompt": "Describe a security concern you raised during ordinary product work. How did you get it handled?",
+    "follow_up_hints": [
+      "How did you explain the risk without exposing sensitive details?",
+      "What was the proportionate response?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the threatened boundary and likely impact",
+      "Describes responsible escalation with actionable evidence",
+      "Explains mitigation and verification without sharing secrets"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-039",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "prioritising-learning",
+    "prompt": "Tell me about a task where you had to learn an unfamiliar concept quickly. How did you decide what was enough to proceed?",
+    "follow_up_hints": [
+      "What did you validate with a small example?",
+      "When did you ask for help?"
+    ],
+    "what_good_looks_like": [
+      "Connects learning to the immediate task and risk",
+      "Describes focused practice or consultation rather than passive reading",
+      "Shows how understanding was checked in the completed work"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-040",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "recovering-trust",
+    "prompt": "Describe a delivery commitment you missed and the work you did afterwards to rebuild trust. What changed?",
+    "follow_up_hints": [
+      "How did you explain the miss?",
+      "What evidence made later commitments more credible?"
+    ],
+    "what_good_looks_like": [
+      "Acknowledges the missed commitment and its impact",
+      "Describes honest communication and a realistic recovery plan",
+      "Shows sustained changes that improved predictability"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-041",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "local-improvement",
+    "prompt": "Tell me about a team habit you improved without introducing a new tool. What did you change?",
+    "follow_up_hints": [
+      "Why had the old habit persisted?",
+      "How did you judge whether the change was worth keeping?"
+    ],
+    "what_good_looks_like": [
+      "Identifies a concrete source of friction",
+      "Explains a small collaborative process change",
+      "Describes observed benefits and any cost to the team"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-042",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ambiguous-success",
+    "prompt": "Describe a feature whose success criteria you helped define before implementation. How did that affect the work?",
+    "follow_up_hints": [
+      "Which outcome was most important?",
+      "What tempting measure did you decide not to use?"
+    ],
+    "what_good_looks_like": [
+      "Distinguishes user or business outcomes from activity measures",
+      "Explains how success criteria influenced scope",
+      "Describes how the criteria were assessed after delivery"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-043",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "unexpected-constraint",
+    "prompt": "Tell me about a constraint you discovered late in a task. How did you adapt without hiding the impact?",
+    "follow_up_hints": [
+      "What options were still available?",
+      "Who needed to help choose a response?"
+    ],
+    "what_good_looks_like": [
+      "Explains the constraint and why it surfaced late",
+      "Describes options with their costs and timely communication",
+      "States the result and a prevention lesson"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-044",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-quality-disagreement",
+    "prompt": "Describe a time people disagreed about whether an AI feature’s output was good enough. How did you help turn opinions into a decision?",
+    "follow_up_hints": [
+      "Which examples exposed the disagreement?",
+      "How were acceptance criteria agreed?"
+    ],
+    "what_good_looks_like": [
+      "Names the user task and competing quality expectations",
+      "Describes representative examples and consistent evaluation criteria",
+      "Explains a release or revision decision grounded in evidence"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-045",
+    "type": "behavioral",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-failure-discovery",
+    "prompt": "Tell me about an unexpected AI output you investigated while building a feature. How did you decide what to fix?",
+    "follow_up_hints": [
+      "How did you reproduce the failure?",
+      "What did the user see when it happened?"
+    ],
+    "what_good_looks_like": [
+      "Describes a specific failure and its user consequence",
+      "Separates input, retrieval, generation and presentation causes where relevant",
+      "Explains a tested mitigation and its limits"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-046",
+    "type": "behavioral",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-cost-decision",
+    "prompt": "Describe a time you reduced the cost of an AI feature without losing its essential value. What trade-off did you make?",
+    "follow_up_hints": [
+      "How did you measure quality before and after?",
+      "Which requests drove most of the cost?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the cost driver and intended user outcome",
+      "Compares a bounded change against a meaningful quality baseline",
+      "Reports cost and quality effects including regressions"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-047",
+    "type": "behavioral",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-human-handoff",
+    "prompt": "Tell me about a situation where you decided an AI feature should hand work back to a person. How did you define that boundary?",
+    "follow_up_hints": [
+      "What made automatic completion unreliable?",
+      "How did the person receive enough context to continue?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the uncertainty or consequence requiring human judgement",
+      "Defines an actionable handoff condition and useful context",
+      "Describes how the handoff was evaluated with users"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-048",
+    "type": "behavioral",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-data-limits",
+    "prompt": "Describe a time the available data limited an AI feature you were building. How did you adjust the product plan?",
+    "follow_up_hints": [
+      "What evidence showed the limitation?",
+      "What did you avoid promising users?"
+    ],
+    "what_good_looks_like": [
+      "Explains the data gap and its effect on the user task",
+      "Describes a realistic change to scope, inputs or evaluation",
+      "States what could and could not be verified after the change"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-049",
+    "type": "behavioral",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-safety-feedback",
+    "prompt": "Tell me about user feedback that revealed a misleading or unsafe AI interaction. What did you change in response?",
+    "follow_up_hints": [
+      "How did you assess the potential harm?",
+      "How did you check that the revised interaction helped?"
+    ],
+    "what_good_looks_like": [
+      "Identifies a concrete interaction and consequence",
+      "Describes a proportionate change to behaviour or user control",
+      "Provides evidence of improvement without claiming perfect safety"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-050",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "quiet-warning",
+    "prompt": "Describe a weak signal that led you to investigate a problem before it became urgent. What persuaded you to look further?",
+    "follow_up_hints": [
+      "What would have happened if you had ignored it?",
+      "How did you avoid overreacting to limited evidence?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the initial signal and why it mattered",
+      "Describes proportionate investigation and uncertainty",
+      "Explains the resulting action and observed impact"
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
   }
 ]

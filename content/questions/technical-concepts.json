@@ -108,5 +108,705 @@
     "time_limit_s": 90,
     "status": "active",
     "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-006",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "cache-freshness",
+    "prompt": "A product page changes rarely, but showing an old price would frustrate users. How would you choose what to cache and when to refresh it?",
+    "follow_up_hints": [
+      "Which data needs stronger freshness guarantees?",
+      "What happens when refreshing fails?"
+    ],
+    "what_good_looks_like": [
+      "Separates data by freshness and failure requirements",
+      "Explains invalidation or expiry with a clear source of truth",
+      "Considers user-visible stale states and observability"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-007",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "retry-boundaries",
+    "prompt": "A user retries a failed request without knowing whether the first attempt succeeded. How would you reason about safe retry behaviour?",
+    "follow_up_hints": [
+      "Which actions can be repeated without harm?",
+      "What information should survive the retry?"
+    ],
+    "what_good_looks_like": [
+      "Distinguishes failure to receive a response from failure to perform work",
+      "Explains stable operation identity or deduplication",
+      "Considers retry limits and a clear user outcome"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-008",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "timeout-budget",
+    "prompt": "A page waits on several services before it can respond. How would you decide where to place timeouts?",
+    "follow_up_hints": [
+      "Which response can be useful without every service?",
+      "How would you diagnose the slowest dependency?"
+    ],
+    "what_good_looks_like": [
+      "Connects timeouts to an end-to-end user latency budget",
+      "Explains cancellation and degraded responses",
+      "Considers measurement of dependency latency and failures"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-009",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "validation-layers",
+    "prompt": "A form validates input in the browser and sends it to a server. What should each side be responsible for?",
+    "follow_up_hints": [
+      "What happens when the client is bypassed?",
+      "How should validation errors reach the user?"
+    ],
+    "what_good_looks_like": [
+      "Separates immediate user guidance from trusted boundary validation",
+      "Explains consistent constraints without trusting client checks",
+      "Describes useful errors that avoid exposing internal details"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-010",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "schema-evolution",
+    "prompt": "Two versions of a client may call the same API during a rollout. How would you change a response without breaking older clients?",
+    "follow_up_hints": [
+      "Which changes are safe to add gradually?",
+      "How would you detect incompatible clients?"
+    ],
+    "what_good_looks_like": [
+      "Distinguishes compatible additions from breaking contract changes",
+      "Explains staged rollout or versioning with explicit ownership",
+      "Considers validation and evidence before removing compatibility"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-011",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "error-taxonomy",
+    "prompt": "A feature can fail because of invalid input, temporary service trouble or a programming defect. How would you distinguish these failures in its API?",
+    "follow_up_hints": [
+      "Which failures should a client retry?",
+      "What belongs in logs rather than the response?"
+    ],
+    "what_good_looks_like": [
+      "Defines actionable error categories and stable codes",
+      "Connects retries and user guidance to the failure category",
+      "Keeps sensitive implementation details out of responses"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-012",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "optimistic-updates",
+    "prompt": "A list marks an item complete before the server confirms the change. How would you make that optimistic interaction trustworthy?",
+    "follow_up_hints": [
+      "What if the server rejects the change?",
+      "What happens if the user changes it again while waiting?"
+    ],
+    "what_good_looks_like": [
+      "Explains pending state and reconciliation with the server",
+      "Handles rejection without silently losing user intent",
+      "Considers overlapping operations and accessible status feedback"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-013",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "pagination-changes",
+    "prompt": "People browse a list while new items are being added. How would you choose a pagination approach that avoids confusing jumps?",
+    "follow_up_hints": [
+      "What ordering can remain stable?",
+      "What should happen when an item is removed?"
+    ],
+    "what_good_looks_like": [
+      "Connects pagination choice to ordering and mutation patterns",
+      "Explains continuity across pages and duplicate handling",
+      "Describes understandable refresh and empty states"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-014",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "concurrent-edits",
+    "prompt": "Two people edit the same record from different tabs. How would you prevent one update from silently erasing the other?",
+    "follow_up_hints": [
+      "When would you detect the conflict?",
+      "What choices should the person resolving it have?"
+    ],
+    "what_good_looks_like": [
+      "Identifies stale writes as a separate concern from authentication",
+      "Explains conflict detection using a stable revision or equivalent",
+      "Preserves both intent and useful context for resolution"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-015",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "background-work",
+    "prompt": "A request starts work that may take longer than the user will keep the page open. How would you structure the interaction?",
+    "follow_up_hints": [
+      "How would a returning user find the result?",
+      "What happens if the worker stops halfway through?"
+    ],
+    "what_good_looks_like": [
+      "Separates accepting work from completing it",
+      "Explains durable job identity and progress or result retrieval",
+      "Considers duplicate execution, retries and partial failure"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-016",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "observability-signals",
+    "prompt": "Users report that a feature feels unreliable, but its error rate looks low. What signals would you examine next?",
+    "follow_up_hints": [
+      "Which failures might never reach the server?",
+      "How would you relate signals to a user journey?"
+    ],
+    "what_good_looks_like": [
+      "Looks beyond server errors to latency and incomplete outcomes",
+      "Proposes measurements tied to the affected interaction",
+      "Considers sampling, privacy and limitations of the available data"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-017",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "feature-rollout",
+    "prompt": "You want to release a risky change to a small portion of users first. What makes the rollout safe to expand or stop?",
+    "follow_up_hints": [
+      "Which signals should halt expansion?",
+      "How would you return to the previous behaviour?"
+    ],
+    "what_good_looks_like": [
+      "Defines a stable exposure rule and measurable success criteria",
+      "Explains monitoring and a practical rollback path",
+      "Considers compatibility of data written during the rollout"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-018",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "resource-cleanup",
+    "prompt": "A page opens a connection and registers listeners while it is visible. How would you prevent those resources from outliving the page?",
+    "follow_up_hints": [
+      "What happens when the page is reopened repeatedly?",
+      "How would you test cleanup?"
+    ],
+    "what_good_looks_like": [
+      "Identifies the lifecycle that owns each resource",
+      "Explains cancellation and listener removal on exit",
+      "Uses repeatable tests or measurements to detect retained work"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-019",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "configuration-boundary",
+    "prompt": "The same application runs locally, in preview and in production. How would you manage configuration without making production unsafe?",
+    "follow_up_hints": [
+      "Which combinations should prevent startup?",
+      "Where should secrets be read?"
+    ],
+    "what_good_looks_like": [
+      "Separates public configuration from server-only secrets",
+      "Validates required values and forbidden environment combinations",
+      "Avoids relying on implicit defaults for critical production behaviour"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-020",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "search-input-load",
+    "prompt": "A search box sends a request whenever its text changes. How would you reduce unnecessary work while keeping results responsive?",
+    "follow_up_hints": [
+      "What if responses arrive out of order?",
+      "How should a cleared query behave?"
+    ],
+    "what_good_looks_like": [
+      "Explains request scheduling appropriate to typing behaviour",
+      "Prevents obsolete results from replacing newer ones",
+      "Considers loading, empty and failure states"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-021",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "permission-boundary",
+    "prompt": "A screen hides actions that the current user cannot perform. What must still happen when an action reaches the server?",
+    "follow_up_hints": [
+      "How would you test a direct request?",
+      "What should the response reveal about restricted resources?"
+    ],
+    "what_good_looks_like": [
+      "Treats interface visibility as guidance rather than authorisation",
+      "Checks the user’s permission against the requested resource",
+      "Considers consistent denial behaviour and limited information exposure"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-022",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "clock-assumptions",
+    "prompt": "A feature expires links after a fixed period, but clients and servers may disagree about the time. How would you define expiry reliably?",
+    "follow_up_hints": [
+      "Which clock decides whether a link is valid?",
+      "How would you test the boundary?"
+    ],
+    "what_good_looks_like": [
+      "Uses a trusted time source for enforcement",
+      "Defines exact boundary behaviour and limited clock-skew handling",
+      "Tests expiry deterministically without waiting in real time"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-023",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "render-work",
+    "prompt": "A page becomes sluggish while a user types into one field. How would you find and reduce unnecessary rendering work?",
+    "follow_up_hints": [
+      "How would you measure rather than guess?",
+      "Which state actually needs to update together?"
+    ],
+    "what_good_looks_like": [
+      "Separates render frequency from expensive work per render",
+      "Uses profiling to identify a specific cause",
+      "Explains a focused change and verification of interaction latency"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-024",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "layout-stability",
+    "prompt": "A page shifts while images and asynchronous content appear. How would you make its layout more predictable?",
+    "follow_up_hints": [
+      "Which elements need reserved space?",
+      "How would you test on a slow connection?"
+    ],
+    "what_good_looks_like": [
+      "Identifies late content that changes occupied space",
+      "Explains sizing or placeholders without hiding useful content",
+      "Considers loading behaviour across viewport sizes"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-025",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "keyboard-components",
+    "prompt": "You are building a custom selectable list. How would you decide its keyboard and screen-reader behaviour?",
+    "follow_up_hints": [
+      "When could a native control meet the need?",
+      "Where should focus go after a selection?"
+    ],
+    "what_good_looks_like": [
+      "Starts from the interaction pattern and native alternatives",
+      "Defines focus movement and accessible state information",
+      "Considers keyboard-only and assistive-technology verification"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-026",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "browser-persistence",
+    "prompt": "A browser storage write can fail even after earlier writes succeeded. How should an application handle that possibility?",
+    "follow_up_hints": [
+      "What should the user be told?",
+      "How would in-progress work survive the failure?"
+    ],
+    "what_good_looks_like": [
+      "Treats storage as a fallible boundary",
+      "Explains a usable fallback that preserves current work",
+      "Communicates persistence limits without claiming data was saved"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-027",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "request-races",
+    "prompt": "A user opens one detail panel and then quickly opens another. How would you stop the first request from overwriting the second panel?",
+    "follow_up_hints": [
+      "Is cancellation alone enough to guarantee correctness?",
+      "What should loading state belong to?"
+    ],
+    "what_good_looks_like": [
+      "Associates results with the request and selected resource",
+      "Explains cancellation plus stale-result protection",
+      "Keeps loading and error states scoped to the current interaction"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-028",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "transaction-boundary",
+    "prompt": "An action updates two related records that must stay consistent. How would you decide whether they belong in one transaction?",
+    "follow_up_hints": [
+      "What invariant must hold after a failure?",
+      "What changes if one update is in another service?"
+    ],
+    "what_good_looks_like": [
+      "Defines the consistency requirement before choosing a mechanism",
+      "Explains atomicity and failure recovery within a boundary",
+      "Recognises limits when work crosses independent systems"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-029",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "queue-pressure",
+    "prompt": "A background queue grows faster than workers can process it. How would you protect the service while investigating?",
+    "follow_up_hints": [
+      "Which work is most important to preserve?",
+      "What would tell you that adding workers helps?"
+    ],
+    "what_good_looks_like": [
+      "Distinguishes arrival rate from processing capacity",
+      "Explains backpressure or prioritisation with clear trade-offs",
+      "Uses queue age and processing metrics to assess recovery"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-030",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "query-shape",
+    "prompt": "A page becomes slower as its dataset grows, although individual records are small. How would you investigate the data access pattern?",
+    "follow_up_hints": [
+      "What would you inspect before changing infrastructure?",
+      "How would you check that a change preserved results?"
+    ],
+    "what_good_looks_like": [
+      "Examines query count, filtering and returned data volume",
+      "Connects a measured bottleneck to a focused access change",
+      "Verifies correctness as well as representative performance"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-031",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "partial-service-failure",
+    "prompt": "One dependency becomes unavailable while the rest of a product still works. How would you limit the effect on users?",
+    "follow_up_hints": [
+      "Which operations must fail rather than degrade?",
+      "How would the system recognise recovery?"
+    ],
+    "what_good_looks_like": [
+      "Separates essential from optional dependencies",
+      "Explains bounded retries and meaningful degraded behaviour",
+      "Considers recovery signals and avoiding cascading resource use"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-032",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "large-imports",
+    "prompt": "A product accepts files much larger than an ordinary API request. How would you keep imports bounded and recoverable?",
+    "follow_up_hints": [
+      "At which points can the input be rejected safely?",
+      "How would you report partial progress or failure?"
+    ],
+    "what_good_looks_like": [
+      "Defines size and validation boundaries before processing",
+      "Explains bounded work and recoverable progress",
+      "Considers duplicate submissions and clear result reporting"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-033",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-evaluation-slices",
+    "prompt": "An AI feature scores well on average but struggles with some user requests. How would you design an evaluation that exposes those gaps?",
+    "follow_up_hints": [
+      "Which request groups deserve separate measurements?",
+      "How would you stop the evaluation set becoming too familiar?"
+    ],
+    "what_good_looks_like": [
+      "Connects evaluation examples to actual user tasks",
+      "Reports meaningful slices and failure types rather than only a mean",
+      "Explains held-out data and regression checks"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-034",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-injection-boundary",
+    "prompt": "An AI feature reads text supplied by users and returns structured advice. How would you reduce the risk that the text changes its instructions?",
+    "follow_up_hints": [
+      "What should application code enforce independently of the model?",
+      "How would you test a malicious example?"
+    ],
+    "what_good_looks_like": [
+      "Treats supplied content as untrusted data",
+      "Explains layered boundaries and validation outside the model",
+      "Acknowledges residual risk and uses adversarial test cases"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-035",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-output-contract",
+    "prompt": "A model sometimes returns missing fields or values outside the product’s allowed range. How would you handle its output before showing it?",
+    "follow_up_hints": [
+      "Which defects could be normalised safely?",
+      "When should the product refuse the result?"
+    ],
+    "what_good_looks_like": [
+      "Separates permissive model parsing from strict product validation",
+      "Explains bounded normalisation without inventing unsupported content",
+      "Provides a predictable failure or retry path"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-036",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-streaming-errors",
+    "prompt": "A generated response is shown as it arrives, then the connection breaks halfway through. How should the product represent that result?",
+    "follow_up_hints": [
+      "What must remain distinguishable from a completed answer?",
+      "How would retry affect text already shown?"
+    ],
+    "what_good_looks_like": [
+      "Distinguishes partial output from a validated final result",
+      "Explains cancellation, retry and duplicate-display behaviour",
+      "Preserves useful context while clearly indicating incompleteness"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-037",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-latency-cost",
+    "prompt": "An AI feature needs faster responses on a limited budget. How would you compare candidate improvements?",
+    "follow_up_hints": [
+      "How would you measure quality alongside speed?",
+      "Which requests could use a cheaper path?"
+    ],
+    "what_good_looks_like": [
+      "Identifies latency and cost contributors with measurements",
+      "Compares bounded alternatives against task-level quality",
+      "Explains routing or caching only where correctness permits it"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-038",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-retrieval-relevance",
+    "prompt": "An assistant receives retrieved passages that look relevant but do not answer the question. How would you investigate the retrieval pipeline?",
+    "follow_up_hints": [
+      "How would you separate retrieval failure from generation failure?",
+      "What should happen when evidence is insufficient?"
+    ],
+    "what_good_looks_like": [
+      "Evaluates retrieved evidence against the actual question",
+      "Separates indexing, ranking and generation concerns",
+      "Defines an abstention or clarification path for missing evidence"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-039",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-guardrail-limits",
+    "prompt": "A product uses a classifier to block unsuitable AI requests. How would you evaluate whether that guardrail is helping?",
+    "follow_up_hints": [
+      "What costs come from false positives and false negatives?",
+      "How should uncertain cases be handled?"
+    ],
+    "what_good_looks_like": [
+      "Defines the blocked behaviour and its consequences",
+      "Measures both missed problems and unnecessary refusals",
+      "Explains a proportional response to uncertainty and monitoring"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-040",
+    "type": "technical-concepts",
+    "roles": ["full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "topic": "ai-model-selection",
+    "prompt": "Two models behave differently on the same product task. How would you choose between them without relying on a general benchmark?",
+    "follow_up_hints": [
+      "Which examples represent the product’s hardest cases?",
+      "What would trigger a later re-evaluation?"
+    ],
+    "what_good_looks_like": [
+      "Uses representative task-specific evaluation with consistent criteria",
+      "Compares quality, latency and cost under realistic conditions",
+      "Documents decision limits and a repeatable regression process"
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
   }
 ]
