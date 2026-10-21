@@ -1,4 +1,6 @@
 import { SESSION, STORAGE } from '@/lib/config';
+import { countWords } from '@/lib/metrics/words';
+import { computeDelivery } from '@/lib/metrics/delivery';
 import type { ErrorCode } from '@/lib/errors';
 import type { SessionRecord, AnswerRecord, Timing } from '@/lib/storage/schema';
 import type { Feedback } from '@/lib/feedback/schema';
@@ -82,7 +84,7 @@ export const initialRoomState: RoomState = {
   online: true,
   restoredNotice: false,
 };
-const hasWords = (text: string) => /[\p{L}\p{N}]/u.test(text.normalize('NFKC'));
+const hasWords = (text: string) => countWords(text) > 0;
 const terminal = (answer: AnswerRecord) => ['scored', 'saved', 'skipped'].includes(answer.status);
 const thinking = (): Phase => ({
   kind: 'thinking',
@@ -155,7 +157,8 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
     updatedAt: at,
   };
   const answer = { ...base, ...patch, updatedAt: at };
-  // The effects runner computes delivery metrics before persistence (TRD 11.3/16).
+  // Voice timing is added in T-22; text metrics stay current after every edit.
+  if (answer.mode === 'text') answer.metrics = computeDelivery({ ...answer, mode: 'text' });
   return {
     ...state,
     answers: [...state.answers.filter((a) => a.index !== state.index), answer].sort(
