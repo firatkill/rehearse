@@ -46,8 +46,7 @@ export function ReviewPanel({
     };
   }, [noticeText]);
   const empty = countWords(answer.transcript) === 0;
-  const metrics =
-    answer.mode === 'text' ? computeDelivery({ ...answer, mode: 'text' }) : answer.metrics;
+  const metrics = computeDelivery(answer);
   return (
     <section className="space-y-4">
       <h2>Review your answer</h2>
@@ -65,7 +64,7 @@ export function ReviewPanel({
           else if (!empty && online) onSubmit();
         }}
       />
-      <DeliveryMetrics metrics={metrics} />
+      <DeliveryMetrics metrics={metrics} mode={answer.mode} />
       {empty && feedbackEnabled && <p id="review-help">Say or type an answer first.</p>}
       {!online && feedbackEnabled && !empty && (
         <p id="review-help">You’re offline. Feedback needs a connection.</p>
