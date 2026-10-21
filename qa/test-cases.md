@@ -409,3 +409,11 @@ Preconditions: an in-memory repository with a valid session and answer.
 2. Try oversized, malformed, invalid-shape and newer-version files.
 
 Expected: Export strips tokens; import marks origin and disables feedback for resumable sessions; duplicate ids are skipped; invalid files are rejected.
+
+### TC-045: Safe text prerequisite for setup and room
+
+Reference: NFR-13; TRD §19.5; CT-09 SafeText subset. Milestone: M1 Question bank, setup and text-mode room. Priority: High. Automatable: yes. SafeMarkdown remains T-40.
+
+1. Render visitor text containing literal HTML, Markdown punctuation and a bracketed placeholder.
+
+Expected: Text remains literal, no HTML element or link is created, and the placeholder receives the prescribed span.

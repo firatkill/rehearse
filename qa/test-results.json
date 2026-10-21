@@ -223,6 +223,10 @@
         {
           "result": "pass",
           "note": "T-13 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -275,6 +279,10 @@
         {
           "result": "pass",
           "note": "T-13 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -333,6 +341,10 @@
         {
           "result": "pass",
           "note": "Chromium verified dark system theme, toggle to light, reload persistence, toggle back to dark."
+        },
+        {
+          "result": "pass",
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -376,6 +388,10 @@
         {
           "result": "pass",
           "note": "T-13 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -414,6 +430,10 @@
         {
           "result": "pass",
           "note": "T-13 regression: eight E2E tests passed on 3240–3243."
+        },
+        {
+          "result": "pass",
+          "note": "T-14 final regression: all eleven E2E tests passed on 3240–3243."
         }
       ],
       "regression_of": null,
@@ -868,6 +888,115 @@
         {
           "result": "pass",
           "note": "Five targeted tests passed. Full suite: 135 tests; 100% lines/functions, 95.85% branches. Storage logic has 100% line coverage. Lint, typecheck, build and all eight E2E tests passed. IndexedDB and user-facing import/export remain T-32/T-35."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-033",
+      "ac_reference": "FR-04, FR-05; CT-01, E2E-02, E2E-04",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Setup defaults, preferences, validation and seed",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Chromium with mocked speech",
+      "description": "Setup defaults, preferences, validation and seed",
+      "steps_to_reproduce": [
+        "Run setup-form and safe-render component tests, then setup and setup-seed E2E specs."
+      ],
+      "expected_result": "Normative setup copy, validated preferences and seed, focus handling and no-feedback fallback records.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Shared component fake timers stalled async form assertions; initial lint also rejected render-time Date.now and void callbacks.",
+          "note": "Use real timers for non-timing form cases, capture reset-time clock at mount, and retain all assertions and timeouts while fixing callback typing."
+        },
+        {
+          "result": "pass",
+          "note": "Six targeted component tests passed after the harness and lint corrections."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Initial browser run found two alert regions (Next route announcer plus form error) and response-body access raced navigation.",
+          "note": "Scope the validation assertion to the form; capture the real start response through route.fetch before fulfilling it."
+        },
+        {
+          "result": "pass",
+          "note": "All three affected setup browser tests passed."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Full suite exposed ECONNRESET when the final intercepted start request outlived the seed test.",
+          "note": "Wait for its real response and resulting navigation before the page closes; no application logic or timeout changes."
+        },
+        {
+          "result": "pass",
+          "note": "Affected seed spec passed after waiting for request completion."
+        },
+        {
+          "result": "pass",
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-034",
+      "ac_reference": "FR-44, FR-46; CT-01, E2E-02",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Setup fallback panels and demo modes",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Chromium with mocked speech",
+      "description": "Setup fallback panels and demo modes",
+      "steps_to_reproduce": [
+        "Run setup-form and safe-render component tests, then setup and setup-seed E2E specs."
+      ],
+      "expected_result": "Normative setup copy, validated preferences and seed, focus handling and no-feedback fallback records.",
+      "attempts": [
+        {
+          "result": "fail",
+          "actual_result": "Shared component fake timers stalled async form assertions; initial lint also rejected render-time Date.now and void callbacks.",
+          "note": "Use real timers for non-timing form cases, capture reset-time clock at mount, and retain all assertions and timeouts while fixing callback typing."
+        },
+        {
+          "result": "pass",
+          "note": "Six targeted component tests passed after the harness and lint corrections."
+        },
+        {
+          "result": "pass",
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-045",
+      "ac_reference": "NFR-13; CT-09 SafeText subset",
+      "milestone": "M1 Question bank, setup and text-mode room",
+      "title": "Safe text prerequisite",
+      "status": "resolved",
+      "environment": "macOS; Node 24.10.0; Vitest 5.0.5; Chromium with mocked speech",
+      "description": "Safe text prerequisite",
+      "steps_to_reproduce": [
+        "Run setup-form and safe-render component tests, then setup and setup-seed E2E specs."
+      ],
+      "expected_result": "Normative setup copy, validated preferences and seed, focus handling and no-feedback fallback records.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Literal HTML/Markdown stays text and bracketed placeholders receive the prescribed span."
+        },
+        {
+          "result": "pass",
+          "note": "Final full browser suite: 11 passed on 3240–3243. Full unit/component suite: 141 passed; coverage 100% lines/functions, 95.85% branches. Lint, typecheck and production build passed; affected lint rerun after final harness correction. Speech capability/microphone/preview cases remain T-18/T-20."
         }
       ],
       "regression_of": null,
