@@ -5675,6 +5675,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5717,6 +5721,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5759,6 +5767,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5805,6 +5817,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5848,6 +5864,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5886,6 +5906,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5943,6 +5967,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -5987,6 +6015,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -6017,6 +6049,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,
@@ -6047,6 +6083,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
         }
       ],
       "regression_of": null,

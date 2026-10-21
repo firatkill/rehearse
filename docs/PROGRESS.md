@@ -40,7 +40,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | done    | 1f52ade                      |
 | T-33 | Persistence wiring and recovery after reload                       | blocked | 16c2eb7 (manual TC-101 only) |
 | T-34 | History page and deletion                                          | done    | 91d9804                      |
-| T-35 | Export and import                                                  | done    | this commit                  |
+| T-35 | Export and import                                                  | done    | a7aa818                      |
 | T-36 | Golden set                                                         | todo    | —                            |
 | T-37 | Eval runner, metrics, thresholds and budget guard                  | todo    | —                            |
 | T-38 | Eval workflow                                                      | todo    | —                            |
@@ -132,7 +132,7 @@ Final M3 UI review corrected blocking-error announcements, normative score-bar g
 
 Owner authorised continuation after M3. TC-091–TC-101 designed before implementation. Owner approved per-session import validation (D-68); no pending M4 decisions. Physical voice reload remains a manual check.
 
-T-32: IndexedDB migrations, repository and stable selection facade implemented. UT-12–14 and selection tests pass; 487 unit/component and 44 E2E tests pass, storage line coverage 96.04%; lint, typecheck and production build pass. A-18 recorded as D-67. CI verification follows push.
+T-32: IndexedDB migrations, repository and stable selection facade implemented. UT-12–14 and selection tests pass; 487 unit/component and 44 E2E tests pass, storage line coverage 96.04%; lint, typecheck and production build pass. A-18 recorded as D-67. T-32 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39660925984.
 
 T-32 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/39660925984. T-33 is in progress; TC-101 needs an owner physical Chrome voice-recording reload check. Mocked speech does not satisfy that check.
 
@@ -146,4 +146,4 @@ T-34 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/3966
 
 ## M4 milestone boundary
 
-T-32–T-35 implementation and automated QA are complete. T-33 remains blocked only on physical Chrome voice reload TC-101. Stop before M5/T-36. See [M4 QA report](../qa/M4-REPORT.md). Final local regression: 508 unit/component tests, 53 E2E tests, build/typecheck and coverage gates passed (97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%). Final lint, formatting and ledger integrity passed. CI verification follows push.
+T-32–T-35 implementation and automated QA are complete. T-33 remains blocked only on physical Chrome voice reload TC-101. Stop before M5/T-36. See [M4 QA report](../qa/M4-REPORT.md). Final local regression: 508 unit/component tests, 53 E2E tests, build/typecheck and coverage gates passed (97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%). Final lint, formatting and ledger integrity passed. T-35 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39666763516.

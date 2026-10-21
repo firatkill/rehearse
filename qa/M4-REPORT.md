@@ -11,6 +11,7 @@ Implementation and automated regression checks are complete: ten resolved cases,
 - Production build and typecheck passed. Final lint, formatting and ledger integrity checks passed.
 - A-18 verified and recorded in D-67: compound keys, versionchange, blocked upgrades and late-open cleanup work with the pinned fake-indexeddb.
 - D-68 records owner approval for per-session import validation. Valid bundles import atomically; invalid bundles are counted independently. No new dependencies or external resources were added.
+- T-35 completion commit: `a7aa818`; [CI passed all five jobs](https://github.com/firatkill/rehearse/actions/runs/39666763516). T-32–T-34 CI also passed (links in PROGRESS.md).
 - No live model, Upstash or speech service was used by tests.
 
 ## Case coverage
