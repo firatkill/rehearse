@@ -13,7 +13,7 @@ beforeEach(() => {
 
 describe('UT-30 — TRD §5, FR-44, FR-51, NFR-13', () => {
   it('TC-006: example inventory exactly matches the TRD and works without a key', () => {
-    const names = [...exampleText.matchAll(/^\s*(?:#\s*)?([A-Z][A-Z_]+)=/gm)].map((m) => m[1]);
+    const names = [...exampleText.matchAll(/^\s*(?:#\s*)?([A-Z][A-Z0-9_]+)=/gm)].map((m) => m[1]);
     expect(names.sort()).toEqual([...ENV_NAMES].sort());
     expect(getEnv()).toMatchObject({
       LLM_MODE: 'mock',

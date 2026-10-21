@@ -1,6 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 
 process.env.E2E_RUN_ID ??= String(Date.now() % 250);
+const basePort = Number(process.env.E2E_BASE_PORT ?? 3200);
+if (!Number.isInteger(basePort) || basePort < 1024 || basePort > 65532) {
+  throw new Error('E2E_BASE_PORT must be an integer from 1024 to 65532');
+}
 
 const baseEnv = Object.fromEntries(
   Object.entries(process.env).filter((e): e is [string, string] => typeof e[1] === 'string'),
@@ -27,7 +31,7 @@ const server = (port: number, extra: Record<string, string>) => ({
 
 export default defineConfig({
   testDir: 'tests/e2e',
-  metadata: { runId: process.env.E2E_RUN_ID },
+  metadata: { runId: process.env.E2E_RUN_ID, basePort },
   timeout: 90_000,
   expect: { timeout: 3000 },
   fullyParallel: true,
@@ -35,7 +39,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:3200',
+    baseURL: `http://localhost:${basePort}`,
     trace: 'retain-on-failure',
     ...devices['Desktop Chrome'],
   },
@@ -50,9 +54,9 @@ export default defineConfig({
     },
   ],
   webServer: [
-    server(3200, { DEMO_MODE: 'on' }),
-    server(3201, { DEMO_MODE: 'readonly' }),
-    server(3202, { DEMO_MODE: 'off' }),
-    server(3203, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
+    server(basePort + 0, { DEMO_MODE: 'on' }),
+    server(basePort + 1, { DEMO_MODE: 'readonly' }),
+    server(basePort + 2, { DEMO_MODE: 'off' }),
+    server(basePort + 3, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
   ],
 });

@@ -33,4 +33,5 @@ export const ENV_NAMES = [
   'VERCEL_GIT_COMMIT_SHA',
   'NODE_ENV',
   'GITHUB_STEP_SUMMARY',
+  'E2E_BASE_PORT',
 ] as const;
