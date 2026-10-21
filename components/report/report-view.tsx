@@ -80,7 +80,9 @@ export function ReportView({
       {session.status === 'in_progress' && (
         <div className="banner">
           <p>This session isn’t finished.</p>
-          <Link href={`/session/${session.id}`}>Resume session</Link>
+          <Link className="inline-flex min-w-11 items-center" href={`/session/${session.id}`}>
+            Resume session
+          </Link>
         </div>
       )}
       <section className="space-y-3">
@@ -253,10 +255,13 @@ export function ReportView({
           Download Markdown
         </Button>
         {source === 'sample' ? (
-          <Link href="/setup">Start a practice session</Link>
+          <Link className="inline-flex min-w-11 items-center" href="/setup">
+            Start a practice session
+          </Link>
         ) : (
           <>
             <Link
+              className="inline-flex min-w-11 items-center"
               href={`/setup?seed=${session.seed}`}
               onClick={() => {
                 try {
@@ -268,7 +273,9 @@ export function ReportView({
             >
               Practise again with the same questions
             </Link>
-            <Link href="/setup">Start a new session</Link>
+            <Link className="inline-flex min-w-11 items-center" href="/setup">
+              Start a new session
+            </Link>
           </>
         )}
       </div>

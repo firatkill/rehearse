@@ -116,10 +116,12 @@ button {
   cursor: pointer;
 }
 a,
-button {
+button,
+summary {
   min-height: 44px;
 }
-button {
+button,
+summary {
   min-width: 44px;
 }
 :focus-visible {
@@ -238,4 +240,10 @@ main {
   .container {
     padding-inline: 16px;
   }
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
 }

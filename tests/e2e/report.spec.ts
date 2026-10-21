@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { reportSession } from './report-helpers';
-test('TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and restores print disclosures', async ({
+test('TC-077 TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and restores print disclosures', async ({
   page,
 }, info) => {
   await reportSession(page, info);
@@ -14,6 +14,39 @@ test('TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and restores p
   const disclosure = page.locator('details').first();
   await expect(disclosure).not.toHaveAttribute('open');
   await disclosure.locator(':scope > summary').click();
+  // NFR-08; NFR-09 / TRD §19.2, §19.4: rendered geometry, not utility-class names.
+  const bar = page.locator('[data-score-bar]').first();
+  await expect(bar).toHaveCSS('gap', '2px');
+  const segments = bar.locator('[data-score-segment]');
+  await expect(segments).toHaveCount(4);
+  for (const segment of await segments.all()) {
+    const bounds = await segment.boundingBox();
+    expect(bounds?.width).toBe(12);
+    expect(bounds?.height).toBe(6);
+  }
+  expect(
+    await segments.evaluateAll((nodes) =>
+      nodes.map((node, index) => {
+        const style = getComputedStyle(node);
+        const token = getComputedStyle(document.documentElement);
+        const expected = document.createElement('span');
+        expected.style.color = token.getPropertyValue(index < 2 ? '--accent' : '--rule-strong');
+        document.body.append(expected);
+        const matches = style.backgroundColor === getComputedStyle(expected).color;
+        expected.remove();
+        return matches;
+      }),
+    ),
+  ).toEqual([true, true, true, true]);
+  for (const target of await page.locator('button:visible, a:visible, summary:visible').all()) {
+    const bounds = await target.boundingBox();
+    expect(bounds?.height, (await target.textContent()) ?? 'Touch target').toBeGreaterThanOrEqual(
+      44,
+    );
+    expect(bounds?.width, (await target.textContent()) ?? 'Touch target').toBeGreaterThanOrEqual(
+      44,
+    );
+  }
   const prior = await page
     .locator('details')
     .evaluateAll((nodes) => nodes.map((n) => n.hasAttribute('open')));

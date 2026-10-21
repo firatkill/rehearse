@@ -20,6 +20,7 @@ for (const trigger of ['provider-error', 'timeout', 'invalid'])
     await page.getByRole('button', { name: 'Review answer' }).click();
     await page.getByRole('button', { name: 'Get feedback' }).click();
     await expect(page.getByRole('heading', { name: 'Feedback didn’t arrive' })).toBeVisible();
+    await expect(page.locator('main [aria-live=assertive]')).toHaveText('Feedback didn’t arrive');
     await expect(page.getByText(/You have 1 retries left in this session/)).toBeVisible();
     await expect(page.getByRole('button', { name: 'Try again' })).toBeFocused();
     await page.getByRole('button', { name: 'Try again' }).click();

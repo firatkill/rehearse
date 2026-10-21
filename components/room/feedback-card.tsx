@@ -45,12 +45,12 @@ export function FeedbackCard({
               <span aria-hidden="true">
                 {DIMENSION_LABELS[dimension]} <span className="font-mono">{result.score} / 4</span>
               </span>
-              <span data-score-bar aria-hidden="true" className="flex gap-1 py-1">
+              <span data-score-bar aria-hidden="true" className="flex gap-0.5 py-1">
                 {[1, 2, 3, 4].map((segment) => (
                   <span
                     key={segment}
                     data-score-segment
-                    className={`h-1 w-8 ${segment <= result.score ? 'bg-[var(--accent)]' : 'bg-[var(--rule)]'}`}
+                    className={`h-1.5 w-3 ${segment <= result.score ? 'bg-[var(--accent)]' : 'bg-[var(--rule-strong)]'}`}
                   />
                 ))}
               </span>
