@@ -33,8 +33,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-25 | Rubric, prompts, sanitization and versioning                       | done    | 835478b           |
 | T-26 | Feedback schemas, normalization, evidence and `generateFeedback`   | done    | b50b280           |
 | T-27 | `POST /api/feedback`                                               | blocked | fde48e6           |
-| T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | this commit       |
-| T-29 | Aggregates, summary generation and `POST /api/summary`             | todo    | —                 |
+| T-28 | Feedback UI: skeleton, card, errors and retries                    | done    | f5c8387           |
+| T-29 | Aggregates, summary generation and `POST /api/summary`             | done    | this commit       |
 | T-30 | Report page, chart, Markdown export and print                      | todo    | —                 |
 | T-31 | Sample session and `/sample`                                       | todo    | —                 |
 | T-32 | IndexedDB wrapper, migrations and IndexedDB repository             | todo    | —                 |
@@ -108,3 +108,5 @@ T-26 CI passed: https://github.com/firatkill/rehearse/actions/runs/39623630129. 
 T-27 full E2E: all 33 tests pass on ports 3240–3243.
 
 T-27 CI passed: https://github.com/firatkill/rehearse/actions/runs/39625319993. T-28 connects scoring, persistence, accessible feedback cards, bounded retries and exact error states. 410 unit/component and 38 E2E tests pass, including three-question scored text and mocked voice flows; lint, typecheck, build and coverage gates pass.
+
+T-28 CI passed: https://github.com/firatkill/rehearse/actions/runs/39626602747. T-29 implements shared deterministic report aggregates, one-attempt summary generation and the scoped summary API. 433 unit/component and 38 E2E tests pass; lint, typecheck, build and coverage gates pass. Live summary quality remains deferred under D-64.

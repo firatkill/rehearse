@@ -2616,6 +2616,99 @@
       "root_cause_group": null,
       "clickup_task": null,
       "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-081",
+      "ac_reference": "FR-28–FR-30; UT-27",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Report aggregates",
+      "status": "resolved",
+      "environment": "Vitest; mock providers and in-memory limiter",
+      "description": "Report aggregates",
+      "steps_to_reproduce": ["Run aggregate.test.ts, summary.test.ts and api-summary.test.ts."],
+      "expected_result": "TRD §12.4, §15.5 and §17.1.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Aggregate and summary tests: 14 pass. Summary API initial run: eight pass; one fixture error recorded below."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-082",
+      "ac_reference": "FR-29; UT-26",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Summary generation",
+      "status": "resolved",
+      "environment": "Vitest; mock providers and in-memory limiter",
+      "description": "Summary generation",
+      "steps_to_reproduce": ["Run aggregate.test.ts, summary.test.ts and api-summary.test.ts."],
+      "expected_result": "TRD §12.4, §15.5 and §17.1.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Aggregate and summary tests: 14 pass. Summary API initial run: eight pass; one fixture error recorded below."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-083",
+      "ac_reference": "FR-29; FR-40–FR-45; UT-34",
+      "milestone": "M3 Feedback, rubric and report",
+      "title": "Summary API",
+      "status": "resolved",
+      "environment": "Vitest; mock providers and in-memory limiter",
+      "description": "Summary API",
+      "steps_to_reproduce": ["Run aggregate.test.ts, summary.test.ts and api-summary.test.ts."],
+      "expected_result": "TRD §12.4, §15.5 and §17.1.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "Aggregate and summary tests: 14 pass. Summary API initial run: eight pass; one fixture error recorded below."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Failing-limiter fixture passed options as the clock argument, producing INTERNAL_ERROR instead of LIMITER_UNAVAILABLE; typecheck also rejected the fixture.",
+          "note": "Correct fixture to inject a clock and { failing:true } as the second argument; production limiter behavior unchanged."
+        },
+        {
+          "result": "pass",
+          "note": "Corrected limiter fixture: all nine API tests pass."
+        },
+        {
+          "result": "fail",
+          "actual_result": "Formatting check saw the edited limiter fixture before formatting completed.",
+          "note": "Run formatter after the fixture correction."
+        },
+        {
+          "result": "pass",
+          "note": "All 433 unit/component tests, coverage and final lint pass."
+        },
+        {
+          "result": "pass",
+          "note": "Final T-29: all 433 unit/component and 38 E2E tests pass, with lint, typecheck, build and coverage (98.91% lines, 91.67% branches, 100% functions). Summary calls use mock providers only."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
     }
   ]
 }
