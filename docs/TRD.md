@@ -3005,6 +3005,7 @@ Skipped questions render `### Question n: {prompt}` followed by `Skipped.`; save
 - Content: setup Full-stack, Mid-level, types Behavioral, Technical concepts and System design lite, seed `5a3c0e11`, and the 3 questions that seed selects. The implementer writes three fictional transcripts in `scripts/sample-transcripts.json` (one strong, one average, one weak; 120–300 words each; no real names or employers), then the owner runs `pnpm sample:generate` once with a live key. The script calls `generateFeedback` and `generateSummary` and writes the JSON with realistic timing values (`resultOffsetsMs` synthesised at 300 ms spacing with three 2–4 s gaps).
 - `pnpm sample:validate` fails when any `feedbackMeta.model` is `mock`, so the committed sample is real model output.
 - `/sample` is a server component that imports the JSON, validates it, and renders `ReportView` with `source="sample"`. No IndexedDB, no API calls, no limiter.
+- During the T-31 implementation stage, `LLM_MODE=mock RATE_LIMIT_BACKEND=memory pnpm sample:generate --mock` creates the permitted mock artifact. CI uses `pnpm sample:validate --allow-mock` until the owner generates live output before T-45. The generator rejects a mismatch between `--mock` and `LLM_MODE`; validation lives in `lib/storage/sample-schema.ts`.
 
 ## 18. Evaluation harness
 
