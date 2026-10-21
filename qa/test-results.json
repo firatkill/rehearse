@@ -135,6 +135,15 @@
         {
           "result": "pass",
           "note": "21 unit tests pass; lint, typecheck and production build pass. Tests use mock/memory and an external-fetch guard."
+        },
+        {
+          "result": "fail",
+          "actual_result": "The inventory-test regex excluded digits, so the approved E2E_BASE_PORT name was not recognised.",
+          "note": "Expanded the name parser to include digits as allowed by environment-variable names; expected inventory remains strict."
+        },
+        {
+          "result": "pass",
+          "note": "Inventory parser now accepts digits; strict inventory equality passes for the approved E2E_BASE_PORT variable. Full 98-test suite passed."
         }
       ],
       "regression_of": null,
@@ -222,6 +231,10 @@
         {
           "result": "pass",
           "note": "Both Vitest projects pass: 30 tests. Coverage 100% lines/functions, 96% branches. Four Playwright health tests passed with four workers; production build and eval stub passed."
+        },
+        {
+          "result": "pass",
+          "note": "Owner-approved E2E_BASE_PORT=3240 starts the four servers on 3240\u20133243. All eight Chromium tests pass without touching the other project; default CI ports remain 3200\u20133203 (D-55)."
         }
       ],
       "regression_of": null,
@@ -375,7 +388,7 @@
       "ac_reference": "FR-02, FR-03; UT-03",
       "milestone": "M1 Question bank, setup and text-mode room",
       "title": "Complete bank meets distribution and coverage",
-      "status": "open",
+      "status": "resolved",
       "description": "Complete the fixed question bank and preserve existing application behaviour.",
       "steps_to_reproduce": [
         "Run questions:validate, coverage, build, and the existing E2E suite."
@@ -387,6 +400,10 @@
           "result": "fail",
           "actual_result": "Content validation, 48 tests, coverage and build passed, but Playwright could not bind port 3200 (EADDRINUSE).",
           "note": "Pre-run port check was clear; another process claimed the port before startup. Waiting without terminating unrelated work; no timeout or test change."
+        },
+        {
+          "result": "pass",
+          "note": "All five CI jobs, including the full E2E suite, passed on 1475f7a in an isolated runner: https://github.com/firatkill/rehearse/actions/runs/39570707129. Local port collision remains recorded; no test changed or weakened."
         }
       ],
       "regression_of": null,

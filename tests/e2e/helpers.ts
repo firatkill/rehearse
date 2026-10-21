@@ -109,3 +109,9 @@ export function speech(page: Page) {
       page.evaluate(() => (window as unknown as { __speech: SpeechControl }).__speech.spoken),
   };
 }
+
+export function serverUrl(testInfo: TestInfo, offset = 0): string {
+  const basePort: unknown = testInfo.config.metadata.basePort;
+  if (typeof basePort !== 'number') throw new Error('Missing E2E base port');
+  return `http://localhost:${basePort + offset}`;
+}

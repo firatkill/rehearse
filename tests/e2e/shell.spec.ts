@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { uniqueIp, scenarios } from './helpers';
+import { uniqueIp, scenarios, serverUrl } from './helpers';
 import { installSpeechMock } from './speech-mock';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -45,15 +45,15 @@ test('TC-014 NFR-08 NFR-09 shell keyboard and narrow layout', async ({ page }) =
   ).toBe(true);
 });
 
-test('TC-015 PRD 9.13 unknown page and demo banners', async ({ page }) => {
+test('TC-015 PRD 9.13 unknown page and demo banners', async ({ page }, testInfo) => {
   await page.goto('/does-not-exist');
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
   await expect(page.getByText('There’s nothing at this address.')).toBeVisible();
-  await page.goto('http://localhost:3201');
+  await page.goto(serverUrl(testInfo, 1));
   await expect(
     page.getByRole('status').filter({ hasText: 'Feedback is paused on the live demo.' }),
   ).toBeVisible();
-  await page.goto('http://localhost:3202');
+  await page.goto(serverUrl(testInfo, 2));
   await expect(
     page.getByRole('status').filter({ hasText: 'The practice room is offline for maintenance.' }),
   ).toBeVisible();

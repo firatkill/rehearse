@@ -29,25 +29,25 @@ Rules for the specs:
 
 ## 3. Commands
 
-| Task                                                                                            | Command                                  |
-| ----------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| Install                                                                                         | `pnpm install --frozen-lockfile`         |
-| Dev server (live LLM, needs `.env.local` with a key and Upstash or `RATE_LIMIT_BACKEND=memory`) | `pnpm dev`                               |
-| Dev server without any key (mock LLM, memory limiter)                                           | `pnpm dev:mock`                          |
-| Lint and format check                                                                           | `pnpm lint`                              |
-| Format                                                                                          | `pnpm format`                            |
-| Typecheck                                                                                       | `pnpm typecheck`                         |
-| Unit and component tests                                                                        | `pnpm test`                              |
-| Coverage                                                                                        | `pnpm test:coverage`                     |
-| E2E (needs `pnpm build`; starts servers on 3200–3203)                                           | `pnpm test:e2e`                          |
-| One E2E spec                                                                                    | `pnpm test:e2e tests/e2e/<name>.spec.ts` |
-| Validate question bank and print coverage                                                       | `pnpm questions:validate`                |
-| Validate golden set                                                                             | `pnpm eval:validate`                     |
-| Eval harness smoke test (mock, free)                                                            | `pnpm eval:mock`                         |
-| Run evaluation (live, costs money)                                                              | `pnpm eval`                              |
-| Validate sample session                                                                         | `pnpm sample:validate`                   |
-| Regenerate sample session (live, owner only)                                                    | `pnpm sample:generate`                   |
-| Production build                                                                                | `pnpm build`                             |
+| Task                                                                                               | Command                                  |
+| -------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Install                                                                                            | `pnpm install --frozen-lockfile`         |
+| Dev server (live LLM, needs `.env.local` with a key and Upstash or `RATE_LIMIT_BACKEND=memory`)    | `pnpm dev`                               |
+| Dev server without any key (mock LLM, memory limiter)                                              | `pnpm dev:mock`                          |
+| Lint and format check                                                                              | `pnpm lint`                              |
+| Format                                                                                             | `pnpm format`                            |
+| Typecheck                                                                                          | `pnpm typecheck`                         |
+| Unit and component tests                                                                           | `pnpm test`                              |
+| Coverage                                                                                           | `pnpm test:coverage`                     |
+| E2E (needs `pnpm build`; starts servers on 3200–3203 by default; E2E_BASE_PORT overrides the base) | `pnpm test:e2e`                          |
+| One E2E spec                                                                                       | `pnpm test:e2e tests/e2e/<name>.spec.ts` |
+| Validate question bank and print coverage                                                          | `pnpm questions:validate`                |
+| Validate golden set                                                                                | `pnpm eval:validate`                     |
+| Eval harness smoke test (mock, free)                                                               | `pnpm eval:mock`                         |
+| Run evaluation (live, costs money)                                                                 | `pnpm eval`                              |
+| Validate sample session                                                                            | `pnpm sample:validate`                   |
+| Regenerate sample session (live, owner only)                                                       | `pnpm sample:generate`                   |
+| Production build                                                                                   | `pnpm build`                             |
 
 First-time local setup without an API key or microphone: `pnpm install && cp .env.example .env.local && pnpm dev:mock`, then use text mode.
 
@@ -114,7 +114,7 @@ Formatting
 - Playwright: `expect` timeout 3 s and test timeout 90 s (set in `playwright.config.ts`); keep them. No `waitForTimeout`, no 15–30 s timeouts on ordinary text, attribute or style checks; the only longer waits are those listed in TRD §25.4, each with a comment saying why.
 - Two Playwright groups: `parallel` for tests that touch only their own data, `isolated` (tag `@isolated`, file `tests/e2e/isolated.spec.ts`, runs after `parallel`) for tests that change or depend on shared server state such as the global cap. `test.describe.serial` alone is not enough.
 - Every E2E test sets a unique `x-real-ip` with `uniqueIp(testInfo)` and uses unique data. Tests that change shared state restore it in `finally`.
-- Before a Playwright run, check that no other run is using ports 3200–3203. In a fix-and-retest loop, rerun only the affected specs; run the full suite once at the end. Do not force `--workers=1` on the whole suite.
+- Before a Playwright run, check that no other run is using the four configured ports (3200–3203 by default). In a fix-and-retest loop, rerun only the affected specs; run the full suite once at the end. Do not force `--workers=1` on the whole suite.
 - Coverage thresholds in TRD §25.5 must hold.
 - Changes to `lib/feedback/**`, `lib/prompts/**` or `eval/**` (except `eval/results/**`) need an eval run (CI runs it on the PR through `eval.yml`; locally `pnpm eval`). Any change to prompt text, the rubric, the user templates or the LLM-facing schema bumps the matching prompt version in `lib/prompts/version.ts`.
 

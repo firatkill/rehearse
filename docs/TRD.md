@@ -425,6 +425,7 @@ export const EVAL = { CONCURRENCY: 4, DEFAULT_MAX_COST_USD: 0.5 } as const;
 | `MOCK_LLM_DELAY_MS`                                                                                       | No                      | `300`                                            | Delay of mock feedback and summary responses. E2E sets `50`.                                                                                                                                                                                                                                |
 | `EVAL_MAX_COST_USD`                                                                                       | Eval                    | `0.50`                                           | Budget guard (section 18.7).                                                                                                                                                                                                                                                                |
 | `EVAL_REPEATS`                                                                                            | No                      | `2`                                              | Runs per golden item (D-22).                                                                                                                                                                                                                                                                |
+| `E2E_BASE_PORT`                                                                                           | No; test runner only    | `3200`                                           | Playwright base port; four consecutive ports. Validated only in playwright.config.ts, not getEnv(). Local runs may override to avoid other projects (D-55).                                                                                                                                 |
 | `VERCEL_ENV`, `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` | Set by Vercel           | —                                                | Read only.                                                                                                                                                                                                                                                                                  |
 | `NODE_ENV`                                                                                                | Set by Next.js / Vitest | —                                                | Read only. `development` adds `'unsafe-eval'` to the CSP.                                                                                                                                                                                                                                   |
 | `GITHUB_STEP_SUMMARY`                                                                                     | Set by GitHub Actions   | —                                                | `pnpm eval --ci` appends its Markdown summary here.                                                                                                                                                                                                                                         |
@@ -3722,6 +3723,10 @@ Config **(normative, `playwright.config.ts`)**:
 import { defineConfig, devices } from '@playwright/test';
 
 process.env.E2E_RUN_ID ??= String(Date.now() % 250);
+const basePort = Number(process.env.E2E_BASE_PORT ?? 3200);
+if (!Number.isInteger(basePort) || basePort < 1024 || basePort > 65532) {
+  throw new Error('E2E_BASE_PORT must be an integer from 1024 to 65532');
+}
 
 const baseEnv = Object.fromEntries(
   Object.entries(process.env).filter((e): e is [string, string] => typeof e[1] === 'string'),
@@ -3748,6 +3753,7 @@ const server = (port: number, extra: Record<string, string>) => ({
 
 export default defineConfig({
   testDir: 'tests/e2e',
+  metadata: { runId: process.env.E2E_RUN_ID, basePort },
   timeout: 90_000,
   expect: { timeout: 3000 },
   fullyParallel: true,
@@ -3755,7 +3761,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:3200',
+    baseURL: `http://localhost:${basePort}`,
     trace: 'retain-on-failure',
     ...devices['Desktop Chrome'],
   },
@@ -3764,10 +3770,10 @@ export default defineConfig({
     { name: 'isolated', grep: /@isolated/, fullyParallel: false, dependencies: ['parallel'] },
   ],
   webServer: [
-    server(3200, { DEMO_MODE: 'on' }),
-    server(3201, { DEMO_MODE: 'readonly' }),
-    server(3202, { DEMO_MODE: 'off' }),
-    server(3203, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
+    server(basePort + 0, { DEMO_MODE: 'on' }),
+    server(basePort + 1, { DEMO_MODE: 'readonly' }),
+    server(basePort + 2, { DEMO_MODE: 'off' }),
+    server(basePort + 3, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
   ],
 });
 ```

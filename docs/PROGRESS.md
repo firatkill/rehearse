@@ -12,8 +12,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-04 | Test runners and full CI                                           | done   | 1e662d3           |
 | T-05 | Design tokens, fonts, layout shell, theme and banners              | done   | 42a528c           |
 | T-06 | Question schema, loader, validator and the 15 example questions    | done   | f8383ee           |
-| T-07 | Write the remaining 105 questions                                  | doing  | —                 |
-| T-08 | Seeded PRNG and deterministic selection                            | todo   | —                 |
+| T-07 | Write the remaining 105 questions                                  | done   | 1475f7a           |
+| T-08 | Seeded PRNG and deterministic selection                            | doing  | —                 |
 | T-09 | Rate-limit adapter, visitor id and quotas                          | todo   | —                 |
 | T-10 | Session token                                                      | todo   | —                 |
 | T-11 | API contracts, client and `POST /api/sessions/start`               | todo   | —                 |
@@ -56,7 +56,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 
 - T-01 owner check on GitHub: enable Dependabot alerts. Secret scanning and push protection are already enabled (verified through GitHub API).
 
-- Local E2E ports 3200–3201 are occupied by the sourced benchmark checkouts. They are untouched; T-07 browser verification will use the isolated GitHub CI runner.
+- No action needed on the other project’s ports: owner authorised E2E_BASE_PORT (D-55); local runs use free ports 3240–3243. T-07 E2E also passed in isolated CI (39570707129).
 
 ## Verification limits
 
