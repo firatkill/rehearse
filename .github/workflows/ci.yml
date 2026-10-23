@@ -30,6 +30,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm questions:validate
+      - run: pnpm eval:validate
       - run: pnpm sample:validate --allow-mock
       - run: pnpm audit --prod --audit-level high
   typecheck:
