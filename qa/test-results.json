@@ -203,6 +203,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -261,6 +265,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -319,6 +327,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -386,6 +398,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -449,6 +465,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -507,6 +527,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -597,6 +621,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -701,6 +729,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -781,6 +813,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -851,6 +887,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -946,6 +986,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1036,6 +1080,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1097,6 +1145,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1158,6 +1210,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1226,6 +1282,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1287,6 +1347,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1362,6 +1426,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1423,6 +1491,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1488,6 +1560,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1553,6 +1629,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1618,6 +1698,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1683,6 +1767,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1752,6 +1840,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1821,6 +1913,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1893,6 +1989,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -1960,6 +2060,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2027,6 +2131,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2088,6 +2196,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2149,6 +2261,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2210,6 +2326,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2321,6 +2441,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2419,6 +2543,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2486,6 +2614,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2551,6 +2683,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2616,6 +2752,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2686,6 +2826,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2751,6 +2895,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2825,6 +2973,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -2925,6 +3077,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3012,6 +3168,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3081,6 +3241,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3196,6 +3360,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3268,6 +3436,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3340,6 +3512,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3412,6 +3588,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3489,6 +3669,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3566,6 +3750,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3643,6 +3831,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3717,6 +3909,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3791,6 +3987,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3879,6 +4079,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -3965,6 +4169,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4061,6 +4269,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4160,6 +4372,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4260,6 +4476,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4342,6 +4562,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4458,6 +4682,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4524,6 +4752,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4613,6 +4845,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4687,6 +4923,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4776,6 +5016,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4841,6 +5085,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4906,6 +5154,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -4971,6 +5223,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5036,6 +5292,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5103,6 +5363,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5170,6 +5434,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5251,6 +5519,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5321,6 +5593,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5430,6 +5706,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5495,6 +5775,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5582,6 +5866,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5687,6 +5975,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5752,6 +6044,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5817,6 +6113,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5905,6 +6205,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -5987,6 +6291,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6074,6 +6382,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6156,6 +6468,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6249,6 +6565,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6327,6 +6647,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6381,6 +6705,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6435,6 +6763,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6493,6 +6825,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6548,6 +6884,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6598,6 +6938,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6667,6 +7011,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6723,6 +7071,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6765,6 +7117,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6807,6 +7163,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6834,6 +7194,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6861,6 +7225,10 @@
         {
           "result": "pass",
           "note": "T-37 full regression: 542 unit/component tests and 53 E2E tests passed; lint, typecheck, build and coverage gates pass."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6889,6 +7257,10 @@
         {
           "result": "pass",
           "note": "T-37 targeted metrics, budget and runner tests pass after lint corrections. Full verification: 542 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates (98.23% lines, 92.37% branches). Mock CLI completed 48 calls with exit 0 under --no-gate while truthfully recording failed quality gates; subset/repeats/output/CI summary checks passed. No live model calls."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6912,6 +7284,10 @@
         {
           "result": "pass",
           "note": "T-37 targeted metrics, budget and runner tests pass after lint corrections. Full verification: 542 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates (98.23% lines, 92.37% branches). Mock CLI completed 48 calls with exit 0 under --no-gate while truthfully recording failed quality gates; subset/repeats/output/CI summary checks passed. No live model calls."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6935,6 +7311,10 @@
         {
           "result": "pass",
           "note": "T-37 targeted metrics, budget and runner tests pass after lint corrections. Full verification: 542 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates (98.23% lines, 92.37% branches). Mock CLI completed 48 calls with exit 0 under --no-gate while truthfully recording failed quality gates; subset/repeats/output/CI summary checks passed. No live model calls."
+        },
+        {
+          "result": "pass",
+          "note": "T-38 full regression: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass."
         }
       ],
       "regression_of": null,
@@ -6957,6 +7337,53 @@
         {
           "result": "manual_required",
           "note": "Not performed: T-37 explicitly assigns live eval to the owner. Follow-up recorded in docs/PROGRESS.md; no key requested in chat."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-119",
+      "ac_reference": "FR-50; TRD §27.2; D-46; T-38.",
+      "milestone": "M5 Eval and CI",
+      "title": "Eval workflow specification",
+      "status": "resolved",
+      "environment": "macOS; mock LLM and memory limiter; Node 24",
+      "description": "Eval workflow specification",
+      "steps_to_reproduce": [
+        "Compare workflow with the normative YAML, applying the approved action major versions; inspect path exclusions, fork guard, budget environment and artifact handling."
+      ],
+      "expected_result": "Workflow preserves the specified triggers, fork protection, budget and artifacts. Actual paid workflow acceptance remains TC-108.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "T-38 workflow matches normative TRD 27.2 with D-46 action major versions. Full verification: 543 unit/component tests, 53 E2E tests, lint, typecheck, build and coverage gates pass. Paid PR/fork/path acceptance is separate manual TC-108; no GitHub secrets or environments changed."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-108",
+      "ac_reference": "FR-50; T-38; TRD §27.2",
+      "milestone": "M5 Eval and CI",
+      "title": "Eval workflow controls",
+      "status": "manual_required",
+      "automatable": false,
+      "environment": "GitHub eval environment and PR events",
+      "description": "Paid workflow acceptance needs owner-configured credentials and live eval readiness.",
+      "steps_to_reproduce": [
+        "Follow docs/EVAL-RUNBOOK.md GitHub configuration, then exercise relevant same-repository, README-only and fork PR events."
+      ],
+      "expected_result": "Relevant PR passes paid eval; README-only does not trigger; fork skips the job.",
+      "attempts": [
+        {
+          "result": "manual_required",
+          "note": "Not performed: owner environment setup pending. Static normative workflow comparison passes as TC-119. Follow-up recorded in docs/PROGRESS.md."
         }
       ],
       "regression_of": null,

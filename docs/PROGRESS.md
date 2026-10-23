@@ -42,8 +42,8 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-34 | History page and deletion                                          | done    | 91d9804                      |
 | T-35 | Export and import                                                  | done    | a7aa818                      |
 | T-36 | Golden set                                                         | done    | 86d4bfd                      |
-| T-37 | Eval runner, metrics, thresholds and budget guard                  | blocked | this commit (live TC-107)    |
-| T-38 | Eval workflow                                                      | todo    | —                            |
+| T-37 | Eval runner, metrics, thresholds and budget guard                  | blocked | 906d2e6 (live TC-107)        |
+| T-38 | Eval workflow                                                      | blocked | this commit (live TC-108)    |
 | T-39 | Complete the E2E suite                                             | todo    | —                            |
 | T-40 | Landing, `/how-it-works` and `/privacy`                            | todo    | —                            |
 | T-41 | Accessibility, responsive, motion, theme and security pass         | todo    | —                            |
@@ -53,6 +53,9 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-45 | README, demo GIF, browser verification and release                 | todo    | —                            |
 
 ## Open questions for the owner
+
+- T-38 / TC-108: configure GitHub eval environment per docs/EVAL-RUNBOOK.md; actual paid PR, path-filter and fork acceptance remain pending.
+- T-39: approval pending for a dedicated global-cap server per test attempt, stopped in finally, to isolate and reset counters without an app test endpoint.
 
 - T-37 / TC-107: owner full live eval and passing results are required; see docs/EVAL-RUNBOOK.md. Automated harness checks pass; no mock result is represented as live acceptance.
 - T-39: approval pending to defer disabled-demo assertions for the T-40 pages until they exist.
@@ -158,3 +161,5 @@ Owner authorised continuation on 2026-10-23. TC-102–TC-118 define M5 before co
 T-36: 24 golden items, strict schema and corpus validator implemented; six normative examples preserved. UT-36 and eval:validate pass. Full verification: 528 unit/component and 53 E2E tests, lint, typecheck, build and coverage gates passed (98.02% lines, 91.97% branches). CI pending push.
 
 T-36 CI passed: https://github.com/firatkill/rehearse/actions/runs/39929834320. T-37 implementation and automated checks pass: 542 unit/component tests, 53 E2E, lint, typecheck, build and coverage gates (98.23% lines, 92.37% branches). Mock eval completes 48 calls with truthful failed quality gates under --no-gate. D-69 records approved subset handling. Live acceptance TC-107 remains owner-only; no passing live results or latest.json claimed. Independent workflow/E2E preparation can proceed.
+
+T-37 CI passed: https://github.com/firatkill/rehearse/actions/runs/39931843784. T-38 workflow implementation and static acceptance pass with D-46 action majors; 543 unit/component tests, 53 E2E tests, lint/typecheck/build and coverage gates pass. Actual eval PR acceptance TC-108 is blocked only on owner environment/live readiness; no external configuration changed.

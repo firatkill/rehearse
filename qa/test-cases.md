@@ -1007,25 +1007,26 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 
 ## M5 Eval and CI (T-36–T-39)
 
-| TC ID  | Reference                   | Title                                  | Priority | Automatable | Expected result                                                                                                                                    |
-| ------ | --------------------------- | -------------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TC-102 | FR-48; UT-36                | Golden corpus and question eligibility | High     | yes         | Exact examples preserved; valid distribution and eligible questions pass; malformed sets fail.                                                     |
-| TC-103 | FR-48; UT-36                | Golden triples and adversarial cases   | High     | yes         | Six complete triples and required edge cases pass; invalid fixtures fail.                                                                          |
-| TC-104 | FR-49; UT-37                | Eval quality metrics and gates         | High     | yes         | Normative ranges, monotonicity, canary resistance, flag accuracy, nearest-rank p95 and thresholds calculated correctly.                            |
-| TC-105 | FR-49; UT-38                | Eval budget protection                 | High     | yes         | Live zero prices and over-budget estimate refused before calls; overspend stops scheduling and writes failed partial results; mock bypasses guard. |
-| TC-106 | FR-49; TRD §18.1, §18.6     | Eval runner and result contract        | High     | yes         | Mock run uses real feedback pipeline without external calls; results include metadata and failures; exit codes follow spec.                        |
-| TC-107 | FR-49; T-37                 | Owner live eval                        | High     | no          | All thresholds pass; genuine live result committed as dated file and latest.json.                                                                  |
-| TC-108 | FR-50; T-38; TRD §27.2      | Eval workflow controls                 | High     | no          | Relevant PR invokes budgeted eval; README-only PR does not trigger; fork skips paid job.                                                           |
-| TC-109 | FR-40, FR-41, FR-46; E2E-12 | Feedback quota boundaries              | High     | yes         | Exact boundaries, status codes and practice fallback copy.                                                                                         |
-| TC-110 | FR-42; E2E-13               | Global feedback cap                    | High     | yes         | First two succeed and third shows global cap copy.                                                                                                 |
-| TC-111 | FR-44; E2E-14, E2E-15       | Read-only and disabled demo            | High     | yes         | Readonly/off banners and exact copy; no scoring; available pages remain usable.                                                                    |
-| TC-112 | FR-55; E2E-22               | Offline review recovery                | High     | yes         | Offline banner and helper; scoring disabled offline and enabled online.                                                                            |
-| TC-113 | NFR-08; E2E-24              | Keyboard flow and focus                | High     | yes         | Correct phase focus, operable controls and trapped dialog focus.                                                                                   |
-| TC-114 | NFR-09; E2E-25              | Responsive layouts                     | High     | yes         | No horizontal overflow.                                                                                                                            |
-| TC-115 | FR-53; E2E-26               | Theme persistence before paint         | High     | yes         | System preference applied; explicit preference persists and is set before paint.                                                                   |
-| TC-116 | NFR-13; E2E-27              | Security headers and nonces            | High     | yes         | Fresh nonce each response, script nonce match and required headers.                                                                                |
-| TC-117 | TRD §12; E2E-28             | API boundary errors                    | High     | yes         | Exact specified status/code and health shape.                                                                                                      |
-| TC-118 | NFR-08; E2E-30              | Existing page accessibility            | High     | yes         | Zero serious or critical violations; later marketing pages deferred to T-41.                                                                       |
+| TC ID  | Reference                    | Title                                  | Priority | Automatable | Expected result                                                                                                                                    |
+| ------ | ---------------------------- | -------------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TC-102 | FR-48; UT-36                 | Golden corpus and question eligibility | High     | yes         | Exact examples preserved; valid distribution and eligible questions pass; malformed sets fail.                                                     |
+| TC-103 | FR-48; UT-36                 | Golden triples and adversarial cases   | High     | yes         | Six complete triples and required edge cases pass; invalid fixtures fail.                                                                          |
+| TC-104 | FR-49; UT-37                 | Eval quality metrics and gates         | High     | yes         | Normative ranges, monotonicity, canary resistance, flag accuracy, nearest-rank p95 and thresholds calculated correctly.                            |
+| TC-105 | FR-49; UT-38                 | Eval budget protection                 | High     | yes         | Live zero prices and over-budget estimate refused before calls; overspend stops scheduling and writes failed partial results; mock bypasses guard. |
+| TC-106 | FR-49; TRD §18.1, §18.6      | Eval runner and result contract        | High     | yes         | Mock run uses real feedback pipeline without external calls; results include metadata and failures; exit codes follow spec.                        |
+| TC-107 | FR-49; T-37                  | Owner live eval                        | High     | no          | All thresholds pass; genuine live result committed as dated file and latest.json.                                                                  |
+| TC-108 | FR-50; T-38; TRD §27.2       | Eval workflow controls                 | High     | no          | Relevant PR invokes budgeted eval; README-only PR does not trigger; fork skips paid job.                                                           |
+| TC-109 | FR-40, FR-41, FR-46; E2E-12  | Feedback quota boundaries              | High     | yes         | Exact boundaries, status codes and practice fallback copy.                                                                                         |
+| TC-110 | FR-42; E2E-13                | Global feedback cap                    | High     | yes         | First two succeed and third shows global cap copy.                                                                                                 |
+| TC-111 | FR-44; E2E-14, E2E-15        | Read-only and disabled demo            | High     | yes         | Readonly/off banners and exact copy; no scoring; available pages remain usable.                                                                    |
+| TC-112 | FR-55; E2E-22                | Offline review recovery                | High     | yes         | Offline banner and helper; scoring disabled offline and enabled online.                                                                            |
+| TC-113 | NFR-08; E2E-24               | Keyboard flow and focus                | High     | yes         | Correct phase focus, operable controls and trapped dialog focus.                                                                                   |
+| TC-114 | NFR-09; E2E-25               | Responsive layouts                     | High     | yes         | No horizontal overflow.                                                                                                                            |
+| TC-115 | FR-53; E2E-26                | Theme persistence before paint         | High     | yes         | System preference applied; explicit preference persists and is set before paint.                                                                   |
+| TC-116 | NFR-13; E2E-27               | Security headers and nonces            | High     | yes         | Fresh nonce each response, script nonce match and required headers.                                                                                |
+| TC-117 | TRD §12; E2E-28              | API boundary errors                    | High     | yes         | Exact specified status/code and health shape.                                                                                                      |
+| TC-119 | FR-50; TRD §27.2; D-46; T-38 | Eval workflow specification            | High     | yes         | Normative triggers, fork guard, budget and artifacts, with approved action majors.                                                                 |
+| TC-118 | NFR-08; E2E-30               | Existing page accessibility            | High     | yes         | Zero serious or critical violations; later marketing pages deferred to T-41.                                                                       |
 
 ### TC-102 — Golden corpus and question eligibility
 
@@ -1162,3 +1163,11 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
 - Steps: Run axe on setup, room phases/errors, report, empty/filled history and sample in both themes.
 - Expected: Zero serious or critical violations; later marketing pages deferred to T-41.
+
+### TC-119 — Eval workflow specification
+
+- References: FR-50; TRD §27.2; D-46; T-38.
+- Priority: High. Automatable: yes.
+- Preconditions: Repository workflow source; no network or credentials.
+- Steps: Compare workflow with the normative YAML, applying the approved action major versions; inspect path exclusions, fork guard, budget environment and artifact handling.
+- Expected: Workflow preserves the specified triggers, fork protection, budget and artifacts. Actual paid workflow acceptance remains TC-108.

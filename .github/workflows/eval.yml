@@ -1,0 +1,75 @@
+name: Eval
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_cost_usd:
+        description: Budget guard in USD for this run
+        required: true
+        default: '0.50'
+      repeats:
+        description: Runs per golden item
+        required: true
+        default: '2'
+  pull_request:
+    paths:
+      - 'lib/feedback/**'
+      - 'lib/prompts/**'
+      - 'eval/**'
+      # Committing results must not trigger another paid run.
+      - '!eval/results/**'
+
+concurrency:
+  group: eval-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  eval:
+    name: Feedback quality evaluation
+    # Secrets are unavailable to pull requests from forks; skip instead of failing.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: eval
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      LLM_MODE: live
+      RATE_LIMIT_BACKEND: memory
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      CHAT_MODEL: ${{ vars.CHAT_MODEL }}
+      CHAT_MODEL_SUPPORTS_TEMPERATURE: ${{ vars.CHAT_MODEL_SUPPORTS_TEMPERATURE || 'true' }}
+      CHAT_REASONING_EFFORT: ${{ vars.CHAT_REASONING_EFFORT }}
+      PRICE_INPUT_PER_MTOK: ${{ vars.PRICE_INPUT_PER_MTOK }}
+      PRICE_OUTPUT_PER_MTOK: ${{ vars.PRICE_OUTPUT_PER_MTOK }}
+      PRICE_CACHED_INPUT_PER_MTOK: ${{ vars.PRICE_CACHED_INPUT_PER_MTOK }}
+      EVAL_MAX_COST_USD: ${{ inputs.max_cost_usd || '0.50' }}
+      EVAL_REPEATS: ${{ inputs.repeats || '2' }}
+      SESSION_SECRET: eval-session-secret-00000000000000000000000000
+      IP_HASH_SECRET: eval-ip-hash-secret-0000000000000000000000000
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check configuration
+        run: |
+          if [ -z "$OPENAI_API_KEY" ] || [ -z "$CHAT_MODEL" ] || [ -z "$PRICE_INPUT_PER_MTOK" ] || [ -z "$PRICE_OUTPUT_PER_MTOK" ]; then
+            echo "::error::Set secret OPENAI_API_KEY and variables CHAT_MODEL, PRICE_INPUT_PER_MTOK, PRICE_OUTPUT_PER_MTOK in the 'eval' environment"
+            exit 1
+          fi
+      - run: pnpm questions:validate
+      - run: pnpm eval:validate
+      - run: pnpm eval --ci --out "$RUNNER_TEMP/eval-results"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: eval-results
+          path: ${{ runner.temp }}/eval-results/
+          retention-days: 30
