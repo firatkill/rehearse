@@ -41,7 +41,7 @@ Tasks are executed in order. Stop for owner review at each milestone boundary. A
 | T-33 | Persistence wiring and recovery after reload                       | blocked | 16c2eb7 (manual TC-101 only) |
 | T-34 | History page and deletion                                          | done    | 91d9804                      |
 | T-35 | Export and import                                                  | done    | a7aa818                      |
-| T-36 | Golden set                                                         | todo    | —                            |
+| T-36 | Golden set                                                         | done    | this commit                  |
 | T-37 | Eval runner, metrics, thresholds and budget guard                  | todo    | —                            |
 | T-38 | Eval workflow                                                      | todo    | —                            |
 | T-39 | Complete the E2E suite                                             | todo    | —                            |
@@ -147,3 +147,9 @@ T-34 CI passed all jobs: https://github.com/firatkill/rehearse/actions/runs/3966
 ## M4 milestone boundary
 
 T-32–T-35 implementation and automated QA are complete. T-33 remains blocked only on physical Chrome voice reload TC-101. Stop before M5/T-36. See [M4 QA report](../qa/M4-REPORT.md). Final local regression: 508 unit/component tests, 53 E2E tests, build/typecheck and coverage gates passed (97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%). Final lint, formatting and ledger integrity passed. T-35 CI passed all five jobs: https://github.com/firatkill/rehearse/actions/runs/39666763516.
+
+## M5 in progress
+
+Owner authorised continuation on 2026-10-23. TC-102–TC-118 define M5 before code. T-36 starts with the normative golden examples; live eval and GitHub eval environment remain owner acceptance at T-37/T-38.
+
+T-36: 24 golden items, strict schema and corpus validator implemented; six normative examples preserved. UT-36 and eval:validate pass. Full verification: 528 unit/component and 53 E2E tests, lint, typecheck, build and coverage gates passed (98.02% lines, 91.97% branches). CI pending push.

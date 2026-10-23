@@ -195,6 +195,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -245,6 +249,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -295,6 +303,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -354,6 +366,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -409,6 +425,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -459,6 +479,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -541,6 +565,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -637,6 +665,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -709,6 +741,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -771,6 +807,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -858,6 +898,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -940,6 +984,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -993,6 +1041,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1046,6 +1098,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1106,6 +1162,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1159,6 +1219,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1226,6 +1290,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1279,6 +1347,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1336,6 +1408,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1393,6 +1469,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1450,6 +1530,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1507,6 +1591,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1568,6 +1656,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1629,6 +1721,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1693,6 +1789,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1752,6 +1852,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1811,6 +1915,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1864,6 +1972,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1917,6 +2029,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -1970,6 +2086,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2073,6 +2193,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2163,6 +2287,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2222,6 +2350,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2279,6 +2411,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2336,6 +2472,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2398,6 +2538,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2455,6 +2599,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2521,6 +2669,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2613,6 +2765,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2692,6 +2848,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2753,6 +2913,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2860,6 +3024,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2924,6 +3092,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -2988,6 +3160,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3052,6 +3228,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3121,6 +3301,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3190,6 +3374,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3259,6 +3447,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3325,6 +3517,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3391,6 +3587,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3471,6 +3671,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3549,6 +3753,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3637,6 +3845,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3728,6 +3940,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3820,6 +4036,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -3894,6 +4114,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4002,6 +4226,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4060,6 +4288,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4141,6 +4373,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4207,6 +4443,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4288,6 +4528,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4345,6 +4589,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4402,6 +4650,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4459,6 +4711,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4516,6 +4772,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4575,6 +4835,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4634,6 +4898,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4707,6 +4975,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4769,6 +5041,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4870,6 +5146,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -4927,6 +5207,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5006,6 +5290,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5103,6 +5391,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5160,6 +5452,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5217,6 +5513,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5297,6 +5597,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5371,6 +5675,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5450,6 +5758,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5524,6 +5836,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5609,6 +5925,10 @@
         {
           "result": "pass",
           "note": "Final M4 deletion-fix regression: all 508 unit/component tests and 53 E2E tests pass. Build/typecheck and coverage gates pass: 97.95% lines, 91.68% branches, 98.63% functions; storage lines 96.58%. Physical speech remains unverified."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5679,6 +5999,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5725,6 +6049,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5771,6 +6099,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5821,6 +6153,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5868,6 +6204,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5910,6 +6250,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -5971,6 +6315,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -6019,6 +6367,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -6053,6 +6405,10 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
         }
       ],
       "regression_of": null,
@@ -6087,6 +6443,56 @@
         {
           "result": "pass",
           "note": "M4 source completion a7aa818: all five GitHub CI jobs passed (https://github.com/firatkill/rehearse/actions/runs/39666763516). Manual TC-101 remains outside automated acceptance."
+        },
+        {
+          "result": "pass",
+          "note": "T-36 full regression: 528 unit/component tests, 53 E2E tests and coverage gates passed; lint, typecheck and production build passed."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-102",
+      "ac_reference": "FR-48; UT-36.",
+      "milestone": "M5 Eval and CI",
+      "title": "Golden corpus and question eligibility",
+      "status": "resolved",
+      "environment": "macOS; mock LLM and memory limiter; Node 24",
+      "description": "Golden corpus and question eligibility",
+      "steps_to_reproduce": [
+        "Validate all 24 items and compare the six normative examples; mutate counts, IDs, active status and eligibility."
+      ],
+      "expected_result": "Exact examples preserved; valid distribution and eligible questions pass; malformed sets fail.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "T-36: 20 targeted UT-36 tests and eval:validate pass. Six normative examples preserved exactly; authored remaining 18 fictional answers. Full regression: 528 unit/component tests, 53 E2E, lint, typecheck, build and coverage gates pass (98.02% lines, 91.97% branches). Live eval waits for T-37 harness."
+        }
+      ],
+      "regression_of": null,
+      "root_cause_group": null,
+      "clickup_task": null,
+      "retraction_reason": null
+    },
+    {
+      "tc_reference": "TC-103",
+      "ac_reference": "FR-48; UT-36.",
+      "milestone": "M5 Eval and CI",
+      "title": "Golden triples and adversarial cases",
+      "status": "resolved",
+      "environment": "macOS; mock LLM and memory limiter; Node 24",
+      "description": "Golden triples and adversarial cases",
+      "steps_to_reproduce": [
+        "Break triple membership, question consistency, canaries, off-topic ranges and short-answer length."
+      ],
+      "expected_result": "Six complete triples and required edge cases pass; invalid fixtures fail.",
+      "attempts": [
+        {
+          "result": "pass",
+          "note": "T-36: 20 targeted UT-36 tests and eval:validate pass. Six normative examples preserved exactly; authored remaining 18 fictional answers. Full regression: 528 unit/component tests, 53 E2E, lint, typecheck, build and coverage gates pass (98.02% lines, 91.97% branches). Live eval waits for T-37 harness."
         }
       ],
       "regression_of": null,

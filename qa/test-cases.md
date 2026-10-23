@@ -1004,3 +1004,161 @@ Designed from PRD §7/§9.6–§9.8 and TRD §12, §14–§15, §17, §23, §25 
 - Preconditions: Mock LLM/memory limiter; fake-indexeddb and injectable clocks for unit tests; unique browser data and mocked speech except the explicitly manual case.
 - Steps: On Chrome with a real microphone reload during recording after a draft save.
 - Expected: Review restores spoken draft and the exact restored notice.
+
+## M5 Eval and CI (T-36–T-39)
+
+| TC ID  | Reference                   | Title                                  | Priority | Automatable | Expected result                                                                                                                                    |
+| ------ | --------------------------- | -------------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TC-102 | FR-48; UT-36                | Golden corpus and question eligibility | High     | yes         | Exact examples preserved; valid distribution and eligible questions pass; malformed sets fail.                                                     |
+| TC-103 | FR-48; UT-36                | Golden triples and adversarial cases   | High     | yes         | Six complete triples and required edge cases pass; invalid fixtures fail.                                                                          |
+| TC-104 | FR-49; UT-37                | Eval quality metrics and gates         | High     | yes         | Normative ranges, monotonicity, canary resistance, flag accuracy, nearest-rank p95 and thresholds calculated correctly.                            |
+| TC-105 | FR-49; UT-38                | Eval budget protection                 | High     | yes         | Live zero prices and over-budget estimate refused before calls; overspend stops scheduling and writes failed partial results; mock bypasses guard. |
+| TC-106 | FR-49; TRD §18.1, §18.6     | Eval runner and result contract        | High     | yes         | Mock run uses real feedback pipeline without external calls; results include metadata and failures; exit codes follow spec.                        |
+| TC-107 | FR-49; T-37                 | Owner live eval                        | High     | no          | All thresholds pass; genuine live result committed as dated file and latest.json.                                                                  |
+| TC-108 | FR-50; T-38; TRD §27.2      | Eval workflow controls                 | High     | no          | Relevant PR invokes budgeted eval; README-only PR does not trigger; fork skips paid job.                                                           |
+| TC-109 | FR-40, FR-41, FR-46; E2E-12 | Feedback quota boundaries              | High     | yes         | Exact boundaries, status codes and practice fallback copy.                                                                                         |
+| TC-110 | FR-42; E2E-13               | Global feedback cap                    | High     | yes         | First two succeed and third shows global cap copy.                                                                                                 |
+| TC-111 | FR-44; E2E-14, E2E-15       | Read-only and disabled demo            | High     | yes         | Readonly/off banners and exact copy; no scoring; available pages remain usable.                                                                    |
+| TC-112 | FR-55; E2E-22               | Offline review recovery                | High     | yes         | Offline banner and helper; scoring disabled offline and enabled online.                                                                            |
+| TC-113 | NFR-08; E2E-24              | Keyboard flow and focus                | High     | yes         | Correct phase focus, operable controls and trapped dialog focus.                                                                                   |
+| TC-114 | NFR-09; E2E-25              | Responsive layouts                     | High     | yes         | No horizontal overflow.                                                                                                                            |
+| TC-115 | FR-53; E2E-26               | Theme persistence before paint         | High     | yes         | System preference applied; explicit preference persists and is set before paint.                                                                   |
+| TC-116 | NFR-13; E2E-27              | Security headers and nonces            | High     | yes         | Fresh nonce each response, script nonce match and required headers.                                                                                |
+| TC-117 | TRD §12; E2E-28             | API boundary errors                    | High     | yes         | Exact specified status/code and health shape.                                                                                                      |
+| TC-118 | NFR-08; E2E-30              | Existing page accessibility            | High     | yes         | Zero serious or critical violations; later marketing pages deferred to T-41.                                                                       |
+
+### TC-102 — Golden corpus and question eligibility
+
+- References: FR-48; UT-36.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Validate all 24 items and compare the six normative examples; mutate counts, IDs, active status and eligibility.
+- Expected: Exact examples preserved; valid distribution and eligible questions pass; malformed sets fail.
+
+### TC-103 — Golden triples and adversarial cases
+
+- References: FR-48; UT-36.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Break triple membership, question consistency, canaries, off-topic ranges and short-answer length.
+- Expected: Six complete triples and required edge cases pass; invalid fixtures fail.
+
+### TC-104 — Eval quality metrics and gates
+
+- References: FR-49; UT-37.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Evaluate synthetic successful and failed calls across repeats, flags, strings and latencies.
+- Expected: Normative ranges, monotonicity, canary resistance, flag accuracy, nearest-rank p95 and thresholds calculated correctly.
+
+### TC-105 — Eval budget protection
+
+- References: FR-49; UT-38.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Use fake providers and prices to test preflight estimate, zero prices and running overspend.
+- Expected: Live zero prices and over-budget estimate refused before calls; overspend stops scheduling and writes failed partial results; mock bypasses guard.
+
+### TC-106 — Eval runner and result contract
+
+- References: FR-49; TRD §18.1, §18.6.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Run mock CLI with repeat, subset, output and gate options; inspect validated output.
+- Expected: Mock run uses real feedback pipeline without external calls; results include metadata and failures; exit codes follow spec.
+
+### TC-107 — Owner live eval
+
+- References: FR-49; T-37.
+- Priority: High. Automatable: no.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Owner runs full live eval with configured prices and budget and reviews results.
+- Expected: All thresholds pass; genuine live result committed as dated file and latest.json.
+
+### TC-108 — Eval workflow controls
+
+- References: FR-50; T-38; TRD §27.2.
+- Priority: High. Automatable: no.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Inspect workflow and exercise same-repo prompt PR, README-only PR and fork PR.
+- Expected: Relevant PR invokes budgeted eval; README-only PR does not trigger; fork skips paid job.
+
+### TC-109 — Feedback quota boundaries
+
+- References: FR-40, FR-41, FR-46; E2E-12.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Exercise session/IP/token quotas with unique IPs and UI error routes.
+- Expected: Exact boundaries, status codes and practice fallback copy.
+
+### TC-110 — Global feedback cap
+
+- References: FR-42; E2E-13.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Use isolated server with cap two; submit three feedback requests.
+- Expected: First two succeed and third shows global cap copy.
+
+### TC-111 — Read-only and disabled demo
+
+- References: FR-44; E2E-14, E2E-15.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Open alternate servers, save practice answers, seed active session and inspect API responses.
+- Expected: Readonly/off banners and exact copy; no scoring; available pages remain usable.
+
+### TC-112 — Offline review recovery
+
+- References: FR-55; E2E-22.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Toggle offline during review then reconnect.
+- Expected: Offline banner and helper; scoring disabled offline and enabled online.
+
+### TC-113 — Keyboard flow and focus
+
+- References: NFR-08; E2E-24.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Complete text session using keyboard and test dialog Escape/focus trap.
+- Expected: Correct phase focus, operable controls and trapped dialog focus.
+
+### TC-114 — Responsive layouts
+
+- References: NFR-09; E2E-25.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Inspect existing pages and room phases at 360×740 and 1024×768.
+- Expected: No horizontal overflow.
+
+### TC-115 — Theme persistence before paint
+
+- References: FR-53; E2E-26.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Use system dark, toggle theme and reload.
+- Expected: System preference applied; explicit preference persists and is set before paint.
+
+### TC-116 — Security headers and nonces
+
+- References: NFR-13; E2E-27.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Compare two response nonces and inspect script tags and response headers.
+- Expected: Fresh nonce each response, script nonce match and required headers.
+
+### TC-117 — API boundary errors
+
+- References: TRD §12; E2E-28.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Send invalid origin, MIME, size, token, scope and transcript requests.
+- Expected: Exact specified status/code and health shape.
+
+### TC-118 — Existing page accessibility
+
+- References: NFR-08; E2E-30.
+- Priority: High. Automatable: yes.
+- Preconditions: Mock provider and memory limiter for automated checks; unique browser IP/data and mocked speech. Live eval and workflow acceptance require owner configuration.
+- Steps: Run axe on setup, room phases/errors, report, empty/filled history and sample in both themes.
+- Expected: Zero serious or critical violations; later marketing pages deferred to T-41.
