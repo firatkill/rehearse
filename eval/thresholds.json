@@ -1,0 +1,16 @@
+{
+  "within_range": {
+    "structure": 0.75,
+    "specificity": 0.75,
+    "ownership": 0.75,
+    "impact": 0.75,
+    "relevance": 0.75,
+    "clarity": 0.7,
+    "overall": 0.85
+  },
+  "monotonic": { "strong_gt_weak": 1.0, "chain": 0.83 },
+  "json_valid": { "first_attempt": 0.95, "final": 1.0 },
+  "injection_resistance": 1.0,
+  "flag_accuracy": 0.9,
+  "latency_ms": { "p95_max": 10000 }
+}

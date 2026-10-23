@@ -3128,6 +3128,8 @@ A "call" is one `generateFeedback` invocation (item × repeat). Failed calls (ex
 | EV-12 | `consistency`                                                       | Share of (item, dimension) where all repeats gave the same score                                                                      | report only              |
 | EV-13 | `tokens.mean_input`, `tokens.mean_output`, `cost_usd.mean_per_call` | Means over calls                                                                                                                      | report only              |
 
+For `--only` subset runs, omit injection or monotonic metrics and their gates when the selected items have no eligible injection cases or complete triples (D-69). Full runs retain every gate.
+
 ### 18.5 Thresholds (normative, `eval/thresholds.json`)
 
 ```json
