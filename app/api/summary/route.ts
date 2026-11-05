@@ -7,7 +7,7 @@ import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/error
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { SummaryRequestSchema, SummaryResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
-import { getInterviewBank as getBank } from '@/lib/demo/catalog';
+import { getInterviewQuestion } from '@/lib/demo/catalog';
 import { getLimiter } from '@/lib/ratelimit';
 import { checkSummary } from '@/lib/ratelimit/quotas';
 import { LimiterUnavailableError } from '@/lib/ratelimit/types';
@@ -69,7 +69,7 @@ export async function POST(req: Request): Promise<Response> {
       body.items.some(
         (item) =>
           token.payload.q[item.answerIndex] !== item.questionId ||
-          !getBank().questions.some((q) => q.id === item.questionId),
+          !getInterviewQuestion(item.questionId),
       )
     )
       return fail('TOKEN_SCOPE');

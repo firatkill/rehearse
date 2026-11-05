@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { JobDataSchema, type JobData } from './jobpost-schema';
 import { HTTP, STORAGE } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import { migrateRecord } from './migrations';
@@ -19,6 +20,12 @@ export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unkno
   2: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 3 }),
   3: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 4 }),
   4: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 5 }),
+  5: (file) => ({
+    ...EnvelopeSchema.parse(file),
+    formatVersion: 6,
+    jobPosts: [],
+    generatedQuestions: [],
+  }),
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({
@@ -119,15 +126,22 @@ export async function readImport(file: File) {
       answers: answers.map(withoutProofs),
     });
   }
-  return { bundles, invalid };
+  const jobData = JobDataSchema.parse(envelope.data);
+  jobData.generatedQuestions = jobData.generatedQuestions.map((question) => ({
+    ...question,
+    origin: 'import',
+  }));
+  return { bundles, invalid, jobData };
 }
 export async function buildExport(
   repo: SessionRepository,
   appVersion: string,
   clock: () => Date,
+  jobData: JobData = { jobPosts: [], generatedQuestions: [] },
 ): Promise<ExportFile> {
   const { sessions } = await repo.listSessions();
   return ExportFileSchema.parse({
+    ...jobData,
     format: 'rehearse-export',
     formatVersion: STORAGE.EXPORT_FORMAT_VERSION,
     exportedAt: clock().toISOString(),

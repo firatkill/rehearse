@@ -20,7 +20,7 @@ it('TC-138 V-12 landing uses the committed sample and honest rollout copy', () =
   expect(screen.getByText(sample.answers[0]!.feedback.improvements[0]!.point)).toBeVisible();
   expect(
     screen.getByText(
-      /Available now: role-based practice and retries in English. Your own job-post interviews are coming next; Turkish is coming later./,
+      /Available now: role-based practice, retries and interviews based on your pasted job posts in English. Link fetching and Turkish are coming later./,
     ),
   ).toBeVisible();
 });
@@ -31,7 +31,7 @@ it('TC-168 demo landing distinguishes examples from future own-post interviews',
   render(<Home />);
   expect(
     screen.getByText(
-      'Available now: role-based practice, retries and example job-post interviews in English. Your own job posts are coming next in the self-hosted version; Turkish is coming later.',
+      'Available now: role-based practice, retries and example job-post interviews in English. Practise with your own job posts in the self-hosted version; Turkish is coming later.',
     ),
   ).toBeVisible();
 });

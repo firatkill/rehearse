@@ -1911,3 +1911,50 @@ main:has(> .setup-page) {
     display: none;
   }
 }
+
+.job-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 0 96px;
+}
+.job-source {
+  white-space: pre-wrap;
+  margin-block: 16px;
+  color: var(--ink-2);
+}
+.job-question {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 16px;
+  border-top: 1px solid var(--rule);
+  padding-block: 22px;
+}
+.job-question input {
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  accent-color: var(--accent);
+}
+.job-question label {
+  font-size: 18px;
+  font-weight: 600;
+}
+.job-question p {
+  margin-block: 12px;
+  color: var(--ink-2);
+}
+.job-question .tag {
+  display: block;
+  width: fit-content;
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .job-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding-block: 32px 64px;
+  }
+}

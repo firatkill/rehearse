@@ -11,6 +11,7 @@ const serverModules = [
   '@/lib/request',
   '@/lib/hash',
   '@/lib/llm/**',
+  '@/lib/jobpost/**',
   '@/lib/prompts/**',
   '@/lib/ratelimit/**',
   '@/lib/session/**',

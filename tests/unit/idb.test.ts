@@ -23,7 +23,13 @@ it('TC-091 UT-12 creates normative stores and indexes and caches one connection'
   const name = crypto.randomUUID();
   const db = await openDb(name);
   expect(await openDb(name)).toBe(db);
-  expect([...db.objectStoreNames]).toEqual(['answers', 'meta', 'sessions']);
+  expect([...db.objectStoreNames]).toEqual([
+    'answers',
+    'generatedQuestions',
+    'jobPosts',
+    'meta',
+    'sessions',
+  ]);
   const tx = transaction(db, ['sessions', 'answers'], 'readonly');
   expect(tx.objectStore('sessions').keyPath).toBe('id');
   expect([...tx.objectStore('sessions').indexNames]).toEqual(['by_createdAt', 'by_status']);

@@ -31,6 +31,7 @@ it.each([false, true])('TC-131 optional eval configuration ready=%s', (configure
       env: {
         NODE_ENV: 'test',
         OPENAI_API_KEY: configured ? 'dummy' : '',
+        EVAL_ONLY: configured ? 'explicit-new-case' : '',
         CHAT_MODEL: configured ? 'dummy' : '',
         PRICE_INPUT_PER_MTOK: configured ? '1' : '',
         PRICE_OUTPUT_PER_MTOK: configured ? '1' : '',
@@ -45,4 +46,10 @@ it.each([false, true])('TC-131 optional eval configuration ready=%s', (configure
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+it('TC-177 paid CI requires explicit owner dispatch and selected cases', () => {
+  const workflow = readFileSync('.github/workflows/eval.yml', 'utf8');
+  expect(workflow).toContain("if: github.event_name == 'workflow_dispatch'\n");
+  expect(workflow).toContain('--only \"$EVAL_ONLY\"');
 });

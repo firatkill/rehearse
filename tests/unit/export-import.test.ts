@@ -122,7 +122,7 @@ it('TC-100 UT-15 rejects oversize before reading and maps format/newer errors', 
     file({ ...exportFile, sessions: Array(1001).fill(null) }),
   ])
     await expect(readImport(input)).rejects.toMatchObject({ kind: 'format' });
-  await expect(readImport(file({ ...exportFile, formatVersion: 6 }))).rejects.toMatchObject({
+  await expect(readImport(file({ ...exportFile, formatVersion: 7 }))).rejects.toMatchObject({
     kind: 'newer',
   });
 });

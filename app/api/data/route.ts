@@ -18,6 +18,9 @@ export async function POST(request: Request): Promise<Response> {
     const repo = getSqliteRepository();
     let result: unknown;
     switch (input.operation) {
+      case 'exportAll':
+        result = await repo.exportAll(input.appVersion);
+        break;
       case 'createSession':
         await repo.createSession(input.session);
         result = null;

@@ -37,6 +37,8 @@ test('TC-079 E2E-06 three voice answers retain edits and scores through report',
       .click();
   }
   await expect(page).toHaveURL(/\/report$/);
+  // Navigation may precede the repository read; assert the three report rows before enumerating.
+  await expect(page.locator('details[id^="report-answer-"]')).toHaveCount(3);
   // T-30 report disclosures are collapsed by default (PRD §9.8).
   for (const detail of await page.locator('details').all()) {
     await detail.locator(':scope > summary').click();

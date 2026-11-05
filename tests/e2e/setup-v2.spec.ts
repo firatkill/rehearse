@@ -41,7 +41,7 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(page.getByRole('button', { name: 'Read the job post' })).toBeDisabled();
     await expect(
       page.getByText(
-        'Coming next: interviews based on your own job posts. Use role-based practice below today.',
+        'Paste the job post text. You’ll review what we read before generating questions. Link fetching is coming next.',
         { exact: true },
       ),
     ).toBeVisible();

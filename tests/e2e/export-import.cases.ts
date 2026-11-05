@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import fixture from '../fixtures/export-v1.json';
 import { ExportFileSchema } from '@/lib/storage/schema';
-import { HTTP } from '@/lib/config';
+import { HTTP, STORAGE } from '@/lib/config';
 import { uniqueIp, serverUrl, scenarios } from './helpers';
 import { installSpeechMock } from './speech-mock';
 
@@ -84,7 +84,9 @@ export function registerExportImport() {
     await input.setInputFiles({
       name: 'future.json',
       mimeType: 'application/json',
-      buffer: Buffer.from(JSON.stringify({ ...fixture, formatVersion: 6 })),
+      buffer: Buffer.from(
+        JSON.stringify({ ...fixture, formatVersion: STORAGE.EXPORT_FORMAT_VERSION + 1 }),
+      ),
     });
     await expect(
       page.getByText(

@@ -1,3 +1,4 @@
+import type { JobData } from './jobpost-schema';
 import { clearPreferences, deleteDatabase } from './idb';
 import { storageStatus, setStorageStatus } from './status';
 import { migrateRecord } from './migrations';
@@ -11,6 +12,7 @@ export function createMemoryRepository(
   store: MemoryStore = { sessions: new Map(), answers: new Map() },
   clock: () => Date = () => new Date(),
 ): SessionRepository {
+  let jobData: JobData = { jobPosts: [], generatedQuestions: [] };
   const perform = <T>(work: () => T): Promise<T> => Promise.resolve().then(work);
   const readSession = (id: string): SessionRecord | null => {
     const parsed = SessionRecordSchema.safeParse(migrateRecord(store.sessions.get(id)));
@@ -70,9 +72,24 @@ export function createMemoryRepository(
           })
           .sort((a, b) => a.index - b.index),
       ),
-    exportAll: (appVersion) => buildExport(repository, appVersion, clock),
+    exportAll: (appVersion) => buildExport(repository, appVersion, clock, jobData),
     importAll: async (file) => {
-      const { bundles, invalid } = await readImport(file);
+      const { bundles, invalid, jobData: incoming } = await readImport(file);
+      jobData = {
+        jobPosts: [
+          ...new Map(
+            [...jobData.jobPosts, ...incoming.jobPosts].map((item) => [item.id, item]),
+          ).values(),
+        ],
+        generatedQuestions: [
+          ...new Map(
+            [...jobData.generatedQuestions, ...incoming.generatedQuestions].map((item) => [
+              item.id,
+              item,
+            ]),
+          ).values(),
+        ],
+      };
       let imported = 0;
       let skipped = 0;
       for (const { session, answers } of bundles) {
@@ -91,6 +108,7 @@ export function createMemoryRepository(
       const previous = storageStatus();
       if (typeof indexedDB !== 'undefined') await deleteDatabase();
       else clearPreferences();
+      jobData = { jobPosts: [], generatedQuestions: [] };
       store.sessions.clear();
       store.answers.clear();
       setStorageStatus(previous === 'updated' ? 'updated' : 'not-saving');

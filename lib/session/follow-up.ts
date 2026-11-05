@@ -1,4 +1,5 @@
 import 'server-only';
+import { ScoringQuestionIdSchema } from '@/lib/questions/schema';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
 import { FEEDBACK_LIMITS, FOLLOW_UP } from '@/lib/config';
@@ -8,7 +9,7 @@ const PayloadSchema = z
     v: z.literal(1),
     sid: z.uuid(),
     index: z.number().int().min(0).max(4),
-    questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
+    questionId: ScoringQuestionIdSchema,
     prompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
     exp: z.number().int(),
   })

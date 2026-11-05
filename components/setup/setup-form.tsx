@@ -1,5 +1,6 @@
 'use client';
 import { APP_EDITION } from '@/lib/edition';
+import { JobEntry } from '@/components/jobpost/job-entry';
 import { DemoJobEntry } from './demo-job-entry';
 import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
@@ -205,28 +206,7 @@ export function SetupForm({
               Paste the link or the text of the post. Rehearse will build questions from what the
               role asks for.
             </p>
-            {APP_EDITION === 'demo' ? (
-              <DemoJobEntry />
-            ) : (
-              <>
-                {' '}
-                <label htmlFor="job-post-input">Job post link or text</label>
-                <textarea
-                  id="job-post-input"
-                  rows={3}
-                  disabled
-                  placeholder="https://… or paste the description"
-                  aria-describedby="job-coming"
-                />
-                <p id="job-coming">
-                  Coming next: interviews based on your own job posts. Use role-based practice below
-                  today.
-                </p>
-                <Button type="button" disabled aria-describedby="job-coming">
-                  Read the job post
-                </Button>
-              </>
-            )}
+            {APP_EDITION === 'demo' ? <DemoJobEntry /> : <JobEntry />}
           </section>
           <section className="setup-card setup-role" aria-labelledby="role-heading">
             <Eyebrow>General practice</Eyebrow>

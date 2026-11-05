@@ -17,6 +17,8 @@ export const ERROR_CODES = [
   'INTERNAL_ERROR',
   'PROVIDER_ERROR',
   'FEEDBACK_INVALID',
+  'JOBPOST_INVALID',
+  'JOBPOST_NOT_FOUND',
   'DEMO_ONLY',
   'DEMO_OFF',
   'DEMO_READONLY',
@@ -43,6 +45,8 @@ const statuses: Record<ErrorCode, number> = {
   INTERNAL_ERROR: 500,
   PROVIDER_ERROR: 502,
   FEEDBACK_INVALID: 502,
+  JOBPOST_INVALID: 502,
+  JOBPOST_NOT_FOUND: 404,
   DEMO_ONLY: 403,
   DEMO_OFF: 503,
   DEMO_READONLY: 503,
@@ -56,6 +60,7 @@ export function errorLogLevel(code: ErrorCode): 'info' | 'warn' | 'error' {
   switch (code) {
     case 'INTERNAL_ERROR':
     case 'PROVIDER_ERROR':
+    case 'JOBPOST_INVALID':
     case 'FEEDBACK_INVALID':
     case 'LIMITER_UNAVAILABLE':
       return 'error';
@@ -65,6 +70,7 @@ export function errorLogLevel(code: ErrorCode): 'info' | 'warn' | 'error' {
     case 'GLOBAL_CAP_REACHED':
     case 'PROVIDER_TIMEOUT':
       return 'warn';
+    case 'JOBPOST_NOT_FOUND':
     case 'VALIDATION_FAILED':
     case 'TRANSCRIPT_EMPTY':
     case 'TRANSCRIPT_TOO_LONG':

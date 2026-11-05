@@ -50,6 +50,8 @@ test('TC-079 E2E-05 scored text session retains all three edited answers', async
       .click();
   }
   await expect(page).toHaveURL(/\/report$/);
+  // Wait for the repository-backed report before enumerating its disclosures.
+  await expect(page.locator('details[id^="report-answer-"]')).toHaveCount(3);
   // T-30 report disclosures are collapsed by default (PRD §9.8).
   for (const detail of await page.locator('details').all()) {
     await detail.locator(':scope > summary').click();
@@ -88,6 +90,8 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
   ).toBeVisible();
   await page.getByRole('dialog').getByRole('button', { name: 'End session', exact: true }).click();
   await expect(page).toHaveURL(/\/report$/);
+  // Wait for the repository-backed report before enumerating its disclosures.
+  await expect(page.locator('details[id^="report-answer-"]')).toHaveCount(3);
   // T-30 report disclosures are collapsed by default (PRD §9.8).
   for (const detail of await page.locator('details').all()) {
     await detail.locator(':scope > summary').click();

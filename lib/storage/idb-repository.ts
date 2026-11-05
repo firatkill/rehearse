@@ -1,3 +1,4 @@
+import { JobDataSchema } from './jobpost-schema';
 import { requestPersistence } from './persist';
 import { AppError } from '@/lib/errors';
 import { deleteDb, openDb, requestResult, transaction, transactionDone } from './idb';
@@ -121,9 +122,23 @@ export function createIndexedDbRepository(
         })
         .sort((a, b) => a.index - b.index);
     },
-    exportAll: (version) => buildExport(repo, version, clock),
+    exportAll: async (version) =>
+      buildExport(
+        repo,
+        version,
+        clock,
+        JobDataSchema.parse({
+          jobPosts: await all('jobPosts'),
+          generatedQuestions: await all('generatedQuestions'),
+        }),
+      ),
     importAll: async (file) => {
-      const { bundles, invalid } = await readImport(file);
+      const { bundles, invalid, jobData } = await readImport(file);
+      await write(['jobPosts', 'generatedQuestions'], (tx) => {
+        for (const post of jobData.jobPosts) tx.objectStore('jobPosts').put(post);
+        for (const question of jobData.generatedQuestions)
+          tx.objectStore('generatedQuestions').put(question);
+      });
       let imported = 0;
       let skipped = 0;
       for (const { session, answers } of bundles) {

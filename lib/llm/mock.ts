@@ -1,4 +1,5 @@
 import 'server-only';
+import { mockJobpostOutput } from '@/lib/jobpost/mock';
 import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { ANSWER, DIMENSIONS, FEEDBACK_LIMITS, QUESTION_TYPES, type Dimension } from '@/lib/config';
@@ -181,9 +182,12 @@ export function createMockProvider(): LlmProvider {
       };
       // Deliberately invalid test output exercises the consumer's validation/retry boundary.
       if (invalid) return { object: {} as T, usage };
-      const object = args.prompt.includes('<transcript>')
-        ? feedback(args.prompt, transcript)
-        : summary(args.prompt);
+      const object =
+        args.schemaName === 'jobpost_questions'
+          ? mockJobpostOutput(args.prompt)
+          : args.prompt.includes('<transcript>')
+            ? feedback(args.prompt, transcript)
+            : summary(args.prompt);
       const parsed = args.schema.safeParse(object);
       if (!parsed.success) throw new InvalidOutputError();
       return { object: parsed.data, usage };

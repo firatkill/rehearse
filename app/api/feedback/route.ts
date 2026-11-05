@@ -8,7 +8,7 @@ import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/error
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { FeedbackRequestSchema, FeedbackResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
-import { getInterviewBank as getBank } from '@/lib/demo/catalog';
+import { getInterviewQuestion } from '@/lib/demo/catalog';
 import { getLimiter } from '@/lib/ratelimit';
 import { checkFeedback } from '@/lib/ratelimit/quotas';
 import { clientIp, visitorId } from '@/lib/ratelimit/visitor';
@@ -77,7 +77,7 @@ export async function POST(req: Request): Promise<Response> {
       token.payload.q[body.answerIndex] !== body.questionId
     )
       return fail('TOKEN_SCOPE');
-    const question = getBank().questions.find((q) => q.id === body.questionId);
+    const question = getInterviewQuestion(body.questionId);
     if (!question) return fail('TOKEN_SCOPE');
     let followUpPrompt: string | undefined;
     if (body.followUpToken !== undefined) {

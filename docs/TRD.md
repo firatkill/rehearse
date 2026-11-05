@@ -403,10 +403,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 5,
+  DB_VERSION: 6,
   RECORD_SCHEMA_VERSION: 5, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 5,
+  EXPORT_FORMAT_VERSION: 6,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -435,6 +435,10 @@ export const EVAL = { CONCURRENCY: 4, DEFAULT_MAX_COST_USD: 0.5 } as const;
 | `ATTEMPT_TIMEOUT_MS = 20_000`, `FEEDBACK_DEADLINE_MS = 45_000` | Two attempts fit under a 60 s `maxDuration` with margin; p95 target is 9 s.                                                                                                                                                                                                                                                                                                        |
 | `PACE` 120–160                                                 | Common guidance for comfortable conversational pace; shown as guidance, never scored.                                                                                                                                                                                                                                                                                              |
 | `LIMITER_TIMEOUT_MS = 1_500`                                   | Upstash REST round trips from `fra1` are expected in tens of milliseconds; 1.5 s means the service is unhealthy.                                                                                                                                                                                                                                                                   |
+
+### 4.2 V-40 job-post limits (D-140)
+
+`JOBPOST`: MAX_CHARS 20,000; INITIAL_QUESTIONS 8; MAX_CANDIDATES 16; MAX_STORED_QUESTIONS 200 per post; MAX_POSTS 1,000; MAX_OUTPUT_TOKENS 4,000; GENERATION_TIMEOUT_MS 45,000; REQUEST_MAX_BYTES 100,000; DUPLICATE_THRESHOLD 0.75; MIN_GROUNDING_RATE 0.9; MAX_DUPLICATES 0; MIN_INJECTION_RESISTANCE 1. QUESTION_TYPES: behavioral, technical, system-design, motivation. FOLLOW_UP_HINTS: “What was your own contribution?”, “How would you measure the outcome?”. STORAGE.DB_VERSION and EXPORT_FORMAT_VERSION are 6; RECORD_SCHEMA_VERSION stays 5.
 
 ## 5. Environment variables
 
@@ -1337,6 +1341,12 @@ Only successful feedback or saving completes a snapshot. Drafts/review/provider 
 
 V-20 tests: TC-146 (unit/component/E2E lifecycle and deltas), TC-147 (UT-14 upgrade, UT-15 old/new export portability and ownership validation).
 
+### 7.8 V-40 job data and trust (D-138)
+
+SQLite migration 003 adds `job_posts(id PRIMARY KEY,value JSON)` and `generated_questions(id PRIMARY KEY,job_post_id,value JSON)` with parent index. IndexedDB migration 6 appends jobPosts/generatedQuestions stores keyed by id; old migrations stay unchanged. Export format 6 adds jobPosts/generatedQuestions arrays; 5→6 supplies empty arrays. All repository implementations preserve these arrays. Imported questions are origin=import, never trusted for starting/scoring sessions. Existing trusted rows are not overwritten in SQLite imports. Delete-all clears both stores/tables.
+
+JobPostRecord schemaVersion=1: UUID id, ISO createdAt/updatedAt, text (1–20,000 trimmed chars), nullable sourceUrl, draft|ready status, role/company/location ≤160 chars, requirements ≤8 strings (1–250), about ≤1,000, practiceRole from existing ROLES. GeneratedQuestionRecord schemaVersion=1: `gen-UUID` id, UUID jobPostId, text 20–320, four-type enum, groundingQuote 1–1,000, listenFor exactly three strings 10–160, ISO createdAt, model 1–160, promptVersion, origin generated|import. Session/answer schema remains 5 and snapshots store the normal question shape. Editing ready post creates a new draft id.
+
 ## 8. Module boundaries
 
 | Module                                                                                                                                                                                                                                                                                                                  | May be imported by client code  | Notes                                                                                                                                                                                             |
@@ -2057,6 +2067,12 @@ Response 200, no external calls:
 - `startSession(body)`, `requestFeedback(token, body, signal)`, `requestSummary(token, body, signal)` return a discriminated union `{ ok: true; data } | { ok: false; kind: 'http'; status; error: ErrorBody['error'] } | { ok: false; kind: 'network' } | { ok: false; kind: 'invalid-response' }`.
 - Success bodies are parsed with the response schemas; a parse failure is `invalid-response` (shown as the server error state).
 - The feedback request has a client timeout of 55 s (`HTTP.FEEDBACK_CLIENT_TIMEOUT_MS`, `AbortSignal.timeout`), reported as `network`.
+
+### 12.8 V-40 job API and generation
+
+Full-only `POST /api/job-posts`, Node/dynamic, same-origin and 100,000-byte body bound. Strict discriminated operations: create{text}, get{id}, updateText{id,text}, generate{id}. Returns `{post,questions}` validated against the job record schemas, no-store. Demo rejects before provider construction. Generate accepts only a draft without trusted questions; one structured provider call returns `{role,company,location,requirements,about,questions}`. Questions have text/type/groundingQuote/listenFor. Post and existing questions are sanitised and delimited untrusted data by `lib/prompts/jobpost.ts`, version jobpost-v1. Normalisation is NFKC, case fold and whitespace collapse, undoing delimiter-escape angle glyphs for quote matching. Drop quotes absent from post and Jaccard token overlaps ≥0.75 against bank/existing/accepted text; require eight accepted questions. Transaction revalidates current text and concurrent duplicates before persisting.
+
+Start accepts optional paired jobPostId and questionIds (unique, matching length 3 or 5); verifies every id belongs to that post and has server-generated provenance, ignores client role for scoring, signs server-resolved ids and role. Feedback/summary/follow-up accept gen-UUID ids, resolve server records and map listenFor to rubric guidance. Imported ids cannot be scored. `/api/data` adds exportAll{appVersion}, returning format 6 including job metadata. Successful generation records provider-reported cost; logs only counts, usage, timings, cost and codes.
 
 ## 13. Session token and rate limiting
 
@@ -3469,6 +3485,8 @@ Client-only conditions:
 | Unreadable stored records             | `safeParse` failures  | `/history`: "{n} saved items couldn’t be read and were skipped."                                |
 | Response schema mismatch              | `invalid-response`    | Server error state                                                                              |
 
+V-40 error matrix additions: JOBPOST_INVALID → HTTP 502, error log; JOBPOST_NOT_FOUND → HTTP 404, info log. Exact client copy is PRD §9.18; invalid request and demo use existing VALIDATION_FAILED/DEMO_ONLY. Provider failures use existing PROVIDER_ERROR/PROVIDER_TIMEOUT; no raw output is exposed.
+
 ## 21. Security
 
 1. **Secrets** (`OPENAI_API_KEY`, `SESSION_SECRET`, `IP_HASH_SECRET`, `UPSTASH_*`) are read only in `server-only` modules through `getEnv()`. No `NEXT_PUBLIC_` secret exists. CI greps the `.next/static` output for `sk-` and the secret variable names and fails if found (step in `ci.yml` build job).
@@ -3996,6 +4014,8 @@ E2E-15 stages the `/how-it-works` and `/privacy` availability assertions until T
 - Global: lines 80, branches 75, functions 80.
 - Per file, lines 90: `lib/questions/select.ts`, `lib/questions/prng.ts`, `lib/metrics/**`, `lib/session/token.ts`, `lib/ratelimit/**` (except client construction), `lib/storage/**`, `lib/feedback/**`, `lib/speech/recorder-machine.ts`, `lib/speech/transcript.ts`, `lib/room/machine.ts`.
 
+V-40 tests TC-173–TC-178 extend UT-14/15 and the job-post E2E. `pnpm eval:jobposts:mock` loads at least six JSON fixtures in eval/golden-jobposts/, including two injection cases, explicitly constructs only the mock provider and writes .eval-tmp/jobposts-mock.json. Gates: grounding ≥0.9, zero duplicates, injection resistance 1; real-model quality remains owner-only. D-137 supersedes automatic paid PR evaluation: only workflow_dispatch with explicit selected case ids can enter the optional paid job. No paid configuration is created.
+
 ## 26. Assumptions to verify at build time
 
 Verify each item before the task that depends on it. Record the result (date, value, source URL) as a new row in the PRD decisions log and, for model ids and prices, as comments in `.env.example`.
@@ -4174,6 +4194,9 @@ on:
         description: Budget guard in USD for this run
         required: true
         default: '0.50'
+      only:
+        description: Explicit comma-separated new or failing case ids (D-115)
+        required: true
       repeats:
         description: Runs per golden item
         required: true
@@ -4196,8 +4219,8 @@ permissions:
 jobs:
   eval:
     name: Feedback quality evaluation
-    # Secrets are unavailable to pull requests from forks; skip instead of failing.
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    # D-137: paid evaluation is owner-dispatched only, never triggered by a PR.
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: eval
@@ -4213,6 +4236,7 @@ jobs:
       PRICE_OUTPUT_PER_MTOK: ${{ vars.PRICE_OUTPUT_PER_MTOK }}
       PRICE_CACHED_INPUT_PER_MTOK: ${{ vars.PRICE_CACHED_INPUT_PER_MTOK }}
       EVAL_MAX_COST_USD: ${{ inputs.max_cost_usd || '0.50' }}
+      EVAL_ONLY: ${{ inputs.only }}
       EVAL_REPEATS: ${{ inputs.repeats || '2' }}
       SESSION_SECRET: eval-session-secret-00000000000000000000000000
       IP_HASH_SECRET: eval-ip-hash-secret-0000000000000000000000000
@@ -4221,7 +4245,7 @@ jobs:
       - name: Check optional paid evaluation configuration
         id: config
         run: |
-          if [ -z "$OPENAI_API_KEY" ] || [ -z "$CHAT_MODEL" ] || [ -z "$PRICE_INPUT_PER_MTOK" ] || [ -z "$PRICE_OUTPUT_PER_MTOK" ]; then
+          if [ -z "$EVAL_ONLY" ] || [ -z "$OPENAI_API_KEY" ] || [ -z "$CHAT_MODEL" ] || [ -z "$PRICE_INPUT_PER_MTOK" ] || [ -z "$PRICE_OUTPUT_PER_MTOK" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "Paid evaluation skipped: configuration is absent. Use a committed local pnpm eval result (D-93)." >> "$GITHUB_STEP_SUMMARY"
           else
@@ -4242,7 +4266,7 @@ jobs:
         if: steps.config.outputs.ready == 'true'
       - run: pnpm eval:validate
         if: steps.config.outputs.ready == 'true'
-      - run: pnpm eval --ci --out "$RUNNER_TEMP/eval-results"
+      - run: pnpm eval --ci --only "$EVAL_ONLY" --out "$RUNNER_TEMP/eval-results"
         if: steps.config.outputs.ready == 'true'
       - uses: actions/upload-artifact@v7
         if: always() && steps.config.outputs.ready == 'true'
@@ -4250,6 +4274,28 @@ jobs:
           name: eval-results
           path: ${{ runner.temp }}/eval-results/
           retention-days: 30
+
+  jobpost_mock:
+    name: Job-post quality gates (mock only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      APP_EDITION: full
+      LLM_MODE: mock
+      RATE_LIMIT_BACKEND: memory
+      MOCK_LLM_DELAY_MS: '0'
+      SESSION_SECRET: eval-session-secret-00000000000000000000000000
+      IP_HASH_SECRET: eval-ip-hash-secret-0000000000000000000000000
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm eval:jobposts:mock
 ```
 
 Repository setup (T-38): environment `eval` with secret `OPENAI_API_KEY` from a separate OpenAI project "rehearse-eval" with its own monthly budget ($2 recommended), and variables `CHAT_MODEL`, `CHAT_MODEL_SUPPORTS_TEMPERATURE`, `CHAT_REASONING_EFFORT` (may be empty), `PRICE_*`. Results from CI are artifacts; the owner commits a local run to `eval/results/` and updates `latest.json`.
@@ -4441,3 +4487,5 @@ Docker builds with Node 22 slim and pinned pnpm, `output: standalone`, and exter
 The CI image job builds without publishing and runs a disposable Compose smoke test in production mode with inert provider placeholders and no AI requests. It asserts unauthenticated route denial, authenticated page access, non-root execution, and imported session persistence after restart. Cleanup targets only the smoke project's own resources. Full production mock mode remains forbidden.
 
 V4 owner follow-up D-134: the session server page projects the demo catalogue to question-id → company/role label props. Room resolves its saved question ids to that label, renders through SafeText, and uses it for header/intro on initial load and resume. No new storage fields, exports or request fields are introduced; the server-only corpus remains excluded from client imports. D-135 limits random secret fallback to demo runs with no VERCEL_ENV; existing 32-character and distinctness checks apply to hosted demo.
+
+Docker build clarification (D-141): the build stage invokes `pnpm build --webpack` to avoid the observed Turbopack Google-font virtual-module resolution failure in Linux image CI. The application build script, font choices, standalone output and runtime production guards remain unchanged.
