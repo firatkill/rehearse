@@ -12,7 +12,7 @@ describe('TC-072 UT-22 exact normative prompts', () => {
     expect(FEEDBACK_SYSTEM_PROMPT).toBe(fixture('feedback-system'));
     expect(SUMMARY_SYSTEM_PROMPT).toBe(fixture('summary-system'));
     expect(FEEDBACK_PROMPT_VERSION).toBe('feedback-v1');
-    expect(SUMMARY_PROMPT_VERSION).toBe('summary-v1');
+    expect(SUMMARY_PROMPT_VERSION).toBe('summary-v2');
   });
   it.each(QUESTION_TYPES)('renders all rubric anchors and the seniority note for %s', (type) => {
     expect(renderRubric(type)).toBe(fixture(`rubric-${type}`));
@@ -62,7 +62,7 @@ describe('TC-072 UT-22 exact normative prompts', () => {
         focus: ['structure', 'specificity', 'relevance'],
       }),
     ).toBe(
-      '<session>\nrole: Full-stack\nseniority: Mid-level\nanswers_scored: 1\ndimension_means: structure=1.0, specificity=2.0, ownership=3.0, impact=4.0, relevance=2.0, clarity=3.0\noverall_by_question: 2.5\ntrend: single answer\nfocus_areas: structure, specificity, relevance\n</session>\n\n<answers>\n<answer number="2" question_id="beh-001">\nscores: structure=1, specificity=2, ownership=3, impact=4, relevance=2, clarity=3\nflags: off_topic=false, too_short=true, injection_suspected=true\nimprovement_points:\n- Use ‹numbers›.\n</answer>\n</answers>',
+      '<session>\nrole: Full-stack\nseniority: Mid-level\nanswers_scored: 1\ndimension_means: structure=1.0, specificity=2.0, ownership=3.0, impact=4.0, relevance=2.0, clarity=3.0\noverall_by_question: not enough scored answers\ntrend: not enough scored answers\nfocus_areas: structure, specificity, relevance\n</session>\n\n<answers>\n<answer number="2" question_id="beh-001">\nscores: structure=1, specificity=2, ownership=3, impact=4, relevance=2, clarity=3\nflags: off_topic=false, too_short=true, injection_suspected=true\nimprovement_points:\n- Use ‹numbers›.\n</answer>\n</answers>',
     );
   });
 });

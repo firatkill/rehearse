@@ -62,10 +62,10 @@ it('TC-082 UT-26 recomputes aggregates, orders notes, drops unknowns and retains
   expect(result.summary).toMatchObject({
     generated_at: '2026-10-21T12:00:00.000Z',
     model: 'fake',
-    prompt_version: 'summary-v1',
+    prompt_version: 'summary-v2',
   });
   expect(calls).toHaveLength(1);
-  expect(calls[0]?.prompt).toContain('overall_by_question: 3.0');
+  expect(calls[0]?.prompt).toContain('overall_by_question: not enough scored answers');
   expect(calls[0]?.prompt).toContain('focus_areas: structure, specificity, ownership');
   expect(result.usage.inputTokens).toBe(10);
 });
@@ -83,8 +83,8 @@ it('TC-082 UT-26 clamps text and maps scores in index order using the shared agg
   };
   const result = await run(provider, [other, ...items]);
   expect(result.summary.headline).toBe('A useful headline');
-  expect(calls[0]?.prompt).toContain('overall_by_question: 3.0, 4.0');
-  expect(calls[0]?.prompt).toContain('trend: rising');
+  expect(calls[0]?.prompt).toContain('overall_by_question: not enough scored answers');
+  expect(calls[0]?.prompt).toContain('trend: not enough scored answers');
 });
 it.each(['headline', 'paragraph', 'next_practice'] as const)(
   'TC-082 UT-26 rejects empty %s without retry',
@@ -113,3 +113,26 @@ it('TC-082 UT-26 uses the summary timeout and output-token budget', async () => 
   expect(calls[0]?.maxOutputTokens).toBe(400);
   timeout.mockRestore();
 });
+
+it.each([1, 2, 3])('TC-127 V-04 gates trend on %i scored answers', async (count) => {
+  const { provider, calls } = fake(output());
+  const input = Array.from({ length: count }, (_, answerIndex) => ({ ...items[0]!, answerIndex }));
+  await run(provider, input);
+  expect(calls[0]?.prompt).toContain(`answers_scored: ${count}`);
+  expect(calls[0]?.prompt).toContain(
+    count < 3 ? 'trend: not enough scored answers' : 'trend: flat',
+  );
+  expect(calls[0]?.system).toContain('With fewer than 3 scored answers, do not claim a trend');
+  expect(calls[0]?.system).toContain('Never use the word "failing"');
+});
+it.each(['headline', 'paragraph', 'next_practice', 'focus_notes'] as const)(
+  'TC-127 V-04 rejects forbidden tone in %s after normalization without retry',
+  async (field) => {
+    const value = output();
+    if (field === 'focus_notes') value.focus_notes[0]!.note = 'You are FAILING.';
+    else value[field] = 'You are **FAILING**.';
+    const { provider, calls } = fake(value);
+    await expect(run(provider)).rejects.toMatchObject({ code: 'FEEDBACK_INVALID' });
+    expect(calls).toHaveLength(1);
+  },
+);

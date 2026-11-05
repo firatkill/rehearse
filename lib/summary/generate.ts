@@ -89,7 +89,17 @@ export async function generateSummary(args: {
       prompt_version: SUMMARY_PROMPT_VERSION,
     });
     if (!normalized.success) throw new InvalidOutputError();
-    return { summary: normalized.data, usage: result.usage, latencyMs: now() - start };
+    const summary = normalized.data;
+    if (
+      [
+        summary.headline,
+        summary.paragraph,
+        summary.next_practice,
+        ...summary.focus_notes.map((entry) => entry.note ?? ''),
+      ].some((text) => /\bfailing\b/i.test(text))
+    )
+      throw new InvalidOutputError();
+    return { summary, usage: result.usage, latencyMs: now() - start };
   } catch (error) {
     if (error instanceof InvalidOutputError) throw new AppError('FEEDBACK_INVALID');
     if (error instanceof ProviderTimeoutError) throw new AppError('PROVIDER_TIMEOUT');

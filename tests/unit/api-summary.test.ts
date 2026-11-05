@@ -121,7 +121,7 @@ it('TC-083 UT-34 recomputes summary focus, returns metadata and logs no private 
     'specificity',
     'ownership',
   ]);
-  expect(result.meta).toMatchObject({ model: 'mock', promptVersion: 'summary-v1', costUsd: 0 });
+  expect(result.meta).toMatchObject({ model: 'mock', promptVersion: 'summary-v2', costUsd: 0 });
   expect(logs.join('')).toContain('summary.done');
   expect(JSON.parse(logs[0]!) as { items: number }).toMatchObject({ items: 1 });
   expect(logs.join('')).not.toContain('Private improvement point');

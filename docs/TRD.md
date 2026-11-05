@@ -347,6 +347,7 @@ export const FEEDBACK_LIMITS = {
 } as const;
 
 export const SUMMARY_LIMITS = {
+  MIN_TREND_ANSWERS: 3,
   HEADLINE_MAX_CHARS: 140,
   PARAGRAPH_MAX_CHARS: 700,
   NOTE_MAX_CHARS: 240,
@@ -2017,7 +2018,7 @@ Response 200, no external calls:
   "demoMode": "on",
   "llmMode": "live",
   "rateLimitBackend": "upstash",
-  "promptVersions": { "feedback": "feedback-v1", "summary": "summary-v1" },
+  "promptVersions": { "feedback": "feedback-v1", "summary": "summary-v2" },
   "bankVersion": "1.0.0",
   "time": "2026-11-02T10:00:00.000Z"
 }
@@ -2369,10 +2370,10 @@ You receive:
 Rules:
 1. Use only the information given. You have not seen the answers themselves. Do not invent projects, numbers, events or quotes.
 2. headline: one sentence of at most 20 words naming the most important pattern across the session.
-3. paragraph: 2 to 4 sentences, at most 90 words in total: what went well, what held the scores back, and whether scores rose, fell or stayed flat across the session.
+3. paragraph: 2 to 4 sentences, at most 90 words in total: what went well and what to practise next. Only when answers_scored is at least 3 may you describe whether scores rose, fell or stayed flat. With fewer than 3 scored answers, do not claim a trend, improvement, decline or consistency anywhere in the summary; describe the available evidence without comparing answers over time.
 4. focus_notes: exactly one note for each of the three focus areas, in the order given, each at most 35 words, saying what to do differently next time. Use the dimension ids exactly as given.
 5. next_practice: one concrete suggestion for the next practice session, at most 35 words.
-6. Address the candidate as "you". Plain, direct English. No emoji, no Markdown, no exaggerated praise.
+6. Address the candidate as "you". Plain, direct English. No emoji, no Markdown, no exaggerated praise. Never use the word "failing". Describe a specific gap and a practical next step without labelling the candidate.
 ```
 
 User message (normative):
@@ -2384,7 +2385,7 @@ seniority: {seniority label}
 answers_scored: {n}
 dimension_means: structure={x.x}, specificity={x.x}, ownership={x.x}, impact={x.x}, relevance={x.x}, clarity={x.x}
 overall_by_question: {q1 overall}, {q2 overall}, …
-trend: {"rising" | "falling" | "flat" | "single answer"}
+trend: {"rising" | "falling" | "flat" | "not enough scored answers"}
 focus_areas: {d1}, {d2}, {d3}
 </session>
 
@@ -2399,11 +2400,11 @@ improvement_points:
 </answers>
 ```
 
-Role and seniority come from the token. Trend is computed in section 17.1.
+Role and seniority come from the token. Trend is computed in section 17.1. For fewer than `SUMMARY_LIMITS.MIN_TREND_ANSWERS` (3) scored answers, both `overall_by_question` and `trend` are the literal `not enough scored answers`; chart aggregates are unchanged. After normalization, reject any summary containing the whole word “failing” (case-insensitive) in its headline, paragraph, next practice or focus notes as `FEEDBACK_INVALID`, without retry.
 
 ### 14.6 Prompt versioning
 
-`lib/prompts/version.ts` exports `FEEDBACK_PROMPT_VERSION = 'feedback-v1'` and `SUMMARY_PROMPT_VERSION = 'summary-v1'`. Any change to a system prompt, a user template, `renderRubric` output, the rubric text, or the LLM-facing schemas bumps the matching version (`-v2`, …) and requires an eval run (AGENTS.md). The version is returned in `meta`, stored with each answer and shown in the feedback card meta line.
+`lib/prompts/version.ts` exports `FEEDBACK_PROMPT_VERSION = 'feedback-v1'` and `SUMMARY_PROMPT_VERSION = 'summary-v2'`. Any change to a system prompt, a user template, `renderRubric` output, the rubric text, or the LLM-facing schemas bumps the matching version (`-v2`, …) and requires an eval run (AGENTS.md). The version is returned in `meta`, stored with each answer and shown in the feedback card meta line.
 
 ### 14.7 Judge prompt
 
