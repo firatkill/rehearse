@@ -10,7 +10,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 APP_EDITION=full LLM_MODE=live RATE_LIMIT_BACKEND=
     SESSION_SECRET=build-only-session-secret-000000000000000000 \
     IP_HASH_SECRET=build-only-ip-hash-secret-000000000000000000 \
     NEXT_PUBLIC_SITE_URL=http://localhost:3000
-RUN mkdir -p public && pnpm build
+RUN mkdir -p public && pnpm build --webpack
 
 FROM node:22-slim AS runner
 WORKDIR /app
