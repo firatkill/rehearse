@@ -647,3 +647,235 @@ main {
     font-size: 14px;
   }
 }
+/* V-12 approved landing layout; only its product snippet receives a shadow. */
+main:has(> .landing) {
+  max-width: none;
+  padding: 0;
+}
+.landing h2 {
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 12px 0 28px;
+}
+.landing p {
+  color: var(--ink-2);
+}
+.landing .ui-eyebrow {
+  color: var(--accent);
+}
+.landing-hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  align-items: center;
+  padding-block: 88px 96px;
+}
+.landing-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.landing-intro h1 {
+  font-size: clamp(40px, 5.2vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  margin: 0;
+}
+.landing-intro p {
+  margin: 0;
+}
+.landing-lead {
+  font-size: 20px;
+  line-height: 1.55;
+  max-width: 34ch;
+}
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.landing-meta {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+.landing-availability {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.landing-snippet {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  box-shadow:
+    0 1px 2px rgb(15 26 24 / 0.04),
+    0 24px 48px -24px rgb(15 26 24 / 0.18);
+}
+.landing-snippet figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+.landing-snippet h2 {
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.landing-excerpt {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 15px;
+}
+.landing-excerpt p {
+  margin: 0;
+  color: var(--ink);
+}
+.landing-excerpt .ui-mark-legend {
+  margin: 0 0 12px;
+}
+.landing-snippet .ui-score-strip {
+  margin: 0;
+  gap: 10px;
+}
+.landing-snippet .ui-score-strip li {
+  font-size: 10px;
+}
+.landing-rewrite {
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+}
+.landing-rewrite p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+.landing-rewrite a {
+  display: inline-flex;
+  align-items: center;
+}
+.landing-section {
+  border-top: 1px solid var(--rule);
+  padding-block: 88px;
+}
+.landing-surface {
+  background: var(--surface);
+}
+.landing-steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 48px;
+}
+.landing-steps li {
+  border-top: 2px solid var(--ink);
+  padding-top: 20px;
+}
+.landing-steps h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 16px 0;
+  font-weight: 600;
+}
+.landing-steps p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.landing-inset {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.landing-dimensions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+.landing-dimensions dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 32px;
+}
+.landing-dimensions dt {
+  font-weight: 600;
+}
+.landing-dimensions dd {
+  margin: 6px 0 0;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.landing-comparison {
+  overflow-x: auto;
+  margin: 40px 0;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+}
+.landing-comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 15px;
+}
+.landing-comparison th,
+.landing-comparison td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.landing-comparison caption {
+  text-align: left;
+  padding: 16px 20px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+@media (max-width: 900px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 48px 56px;
+  }
+  .landing-steps {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .landing-dimensions {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .landing-section {
+    padding-block: 56px;
+  }
+}
+@media (max-width: 480px) {
+  .landing h2 {
+    font-size: 30px;
+  }
+  .landing-snippet {
+    padding: 20px;
+  }
+  .landing-snippet h2 {
+    font-size: 21px;
+  }
+  .landing-comparison th,
+  .landing-comparison td {
+    padding: 12px 8px;
+    font-size: 13px;
+    overflow-wrap: normal;
+  }
+  .landing-comparison th:first-child {
+    min-width: 76px;
+  }
+}

@@ -260,32 +260,16 @@ Banners sit under the header, full width, 1 px rule, `role="status"`. Several ma
 
 V2 demo copy (D-73, D-74, D-81; implemented in V-11/V-32): every page shows pill “DEMO”, text “You’re trying the demo. Feedback here is pre-written sample data and no AI is called.” and link “Run the full version yourself” → `/#self-host`. Every feedback card has “Sample feedback”. Job-post submission in demo shows “Job-post interviews run in the self-hosted version. Try one of these example posts:” followed by three examples. Turkish is disabled in demo with tag “Full version” and description “Available in the self-hosted version.” In full, the language option appears only when V7 is complete.
 
-### 9.3 `/` Landing page
+### 9.3 `/` Landing page (V-12, D-99)
 
-Document title: "Rehearse: practise interviews out loud"
+Document title: “Rehearse: practise interviews out loud”. Approved Main.dc.html layout: two-column hero at desktop, stacked at mobile; real committed sample excerpt, question, six scores and rewrite; how-it-works steps; six dimensions; dark self-host comparison.
 
-- H1: "Practise interviews out loud. Get feedback on every answer."
-- Lead: "Pick a role and an interview type. Rehearse reads each question aloud, listens to your answer, and scores it on structure, specificity, ownership, impact, relevance and clarity, with a rewritten example of what to say instead."
-- Primary button: "Start a practice session" (`/setup`). Secondary link-button: "See a sample report" (`/sample`).
-- Under the buttons, small mono text: "Free · no account · sessions stay in your browser"
-- H2: "How a session works"
-  1. "Choose a role, seniority and question types. Sessions have 3 or 5 questions."
-  2. "Listen to the question, take 15 seconds to think, then answer out loud or type."
-  3. "Fix any words the browser misheard, then ask for feedback."
-  4. "Get scores with reasons, quotes from your answer, and a better way to say it."
-- H2: "What the feedback looks at"
-  - Table with two columns "Dimension", "What it means":
-    - Structure: "For stories, situation, task, action and result in order. For technical questions, definition, how it works, an example and trade-offs."
-    - Specificity: "Concrete details: systems, numbers, constraints, names of tools."
-    - Ownership: "What you did, said with ‘I’, separate from what the team did."
-    - Impact: "The result, measured where possible, and what changed because of it."
-    - Relevance: "Whether you answered the question that was asked."
-    - Clarity: "Whether a listener can follow it the first time."
-  - Line under table: "Delivery numbers (pace, filler words, pauses) are counted in your browser, not by the language model."
-- H2: "Private by default"
-  - "There are no accounts. Sessions are saved only in this browser, and you can export or delete them at any time. To score an answer, its text is sent to the server and to OpenAI, and is not stored. Read the privacy page." ("Read the privacy page" links to `/privacy`.)
-- H2: "Works best in Chrome or Edge"
-  - "Voice answers use your browser’s built-in speech recognition. It works well in Chrome and Edge on a computer, partly in Safari, and not in Firefox. You can type your answers in any browser."
+- Eyebrow: “Interview practice, out loud”. H1: “Rehearse the interview before you have it.” Lead: “Rehearse asks the questions, listens to your answer, and shows you what to say better.”
+- Actions: “Start practising” → /setup; “See a sample report” → /sample. Meta: “No account · voice or typing · your sessions stay with you”. Availability: “Available now: role-based practice in English. Job-post interviews, retries and Turkish are coming next.”
+- Sample labels: “From the sample session”, “Sample feedback”, “Change one thing”, “Try saying:”, “Read the full sample report”. Data is validated from content/sample/session.json; never replace it with design example scores.
+- “How a session works”; “Answer, see what to fix, practise again.” Steps: “Bring the job, or pick a role”, “Answer out loud”, “See what to say better”. Think time comes from SESSION.THINK_SECONDS. Current role practice is usable; job-post questions are explicitly coming to self-hosted.
+- “What the feedback looks at”; “Six things interviewers listen for.” Dimension definitions match the approved Main design. “Pace, filler words and pauses are counted in your browser, not by the language model.”
+- #self-host: “Two ways to use it”; “Try the demo. Run the full version on your machine.” Disclosure: “The two editions below are being built. This preview stores sessions in your browser; the self-hosted setup guide will be added when it is ready.” Comparison caption: “Planned demo and self-hosted editions”; rows Feedback, Job posts, Language, History use the design’s edition capabilities. Links: “Read the setup guide” → repository README; “Where your words go” → /privacy.
 
 ### 9.4 `/setup`
 
@@ -713,3 +697,5 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-98 | Darken the light-theme accent from #0A7F66 to #08745D. | V-10 real-browser axe measured 4.48:1 on #F2F4F3 for normal text, below 4.5:1. Guide §3.1 explicitly permits token adjustments when contrast fails. Dark accent unchanged. | Contrast correction under approved guide, 2026-11-05 |
 
 V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “How it works”, “GitHub”; Job post → /setup#job-post (D-83), Progress → /progress. /history redirects to /progress. Footer: “Built by Fırat Kıl”, firatkil.com, “Source on GitHub (MIT)”, “Sample report”, “Privacy”. Room retains minimal wordmark/end-session header. DemoBanner uses D-74 exact copy only for an explicit demo edition; root integration remains V-30 per D-83.
+
+| D-99 | V2 pages retain the approved visual hierarchy but label future edition/job-post/retry/Turkish capabilities as forthcoming until their assigned milestones. Landing preview uses actual committed sample data, not illustrative design content. | Guide §0 interpretation of D-83 staged acceptance; avoids presenting unavailable flows or Docker commands as working features. | Implementation under approved guide, 2026-11-05 |
