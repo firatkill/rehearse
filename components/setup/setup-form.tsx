@@ -218,7 +218,7 @@ export function SetupForm({
               Read the job post
             </Button>
           </section>
-          <section className="setup-card" aria-labelledby="role-heading">
+          <section className="setup-card setup-role" aria-labelledby="role-heading">
             <Eyebrow>General practice</Eyebrow>
             <h2 id="role-heading">Practise by role</h2>
             <fieldset className="setup-fieldset">

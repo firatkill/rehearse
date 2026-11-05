@@ -29,7 +29,9 @@ test('TC-140 V-14 one-click warm-up restores settings and starts three questions
   await expect(page.getByRole('button', { name: 'Start the interview' })).toBeVisible();
 });
 for (const theme of ['light', 'dark'] as const) {
-  test(`TC-140 V-14 setup paths and mobile accessibility in ${theme}`, async ({ page }, info) => {
+  test(`TC-140 TC-144 V-14 setup paths and mobile accessibility in ${theme}`, async ({
+    page,
+  }, info) => {
     await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
     await page.addInitScript(installSpeechMock, scenarios.noRecognition);
     await page.setViewportSize({ width: 390, height: 844 });
@@ -39,6 +41,15 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(page.getByRole('button', { name: 'Read the job post' })).toBeDisabled();
     await expect(page.getByText(/Coming next: three example posts/)).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Practise by role' })).toBeVisible();
+    await expect(page.locator('.setup-role')).toHaveCSS('border-top-width', '2px');
+    await expect(page.locator('.setup-job')).toHaveCSS('border-top-width', '1px');
+    await expect(page.locator('.header-github')).toBeHidden();
+    await expect(page.getByRole('link', { name: 'Source on GitHub (MIT)' })).toBeVisible();
+    const navRows = await page
+      .getByRole('navigation', { name: 'Main navigation' })
+      .locator('a:visible')
+      .evaluateAll((links) => links.map((link) => Math.round(link.getBoundingClientRect().top)));
+    expect(new Set(navRows).size).toBe(1);
     await expect(page.getByRole('group', { name: 'Language', exact: true })).toHaveCount(0);
     await page.getByLabel('Frontend', { exact: true }).check();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(

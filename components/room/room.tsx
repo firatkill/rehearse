@@ -172,7 +172,7 @@ export function Room({
         <div className="flex flex-wrap gap-3">
           {!phase.interrupted && (
             <Button
-              variant="outline"
+              variant="text"
               onClick={() => {
                 send({ type: 'STOP_READING' });
               }}
@@ -193,7 +193,7 @@ export function Room({
       )}
       {capabilities?.synthesis && (phase.kind === 'asking' || phase.kind === 'thinking') && (
         <Button
-          variant="outline"
+          variant="text"
           onClick={() => {
             send({ type: 'REPLAY' });
           }}
@@ -358,7 +358,7 @@ export function Room({
             Type instead
           </Button>
         )}
-        {['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind) && (
+        {['asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind) && (
           <Button
             variant="text"
             className="min-h-11"

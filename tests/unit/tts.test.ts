@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { chunkForSpeech } from '@/lib/speech/chunk';
 import { loadVoices, pickVoice } from '@/lib/speech/voices';
 import { primeSynthesis, speak } from '@/lib/speech/tts';
-import { SPEECH } from '@/lib/config';
+import { SPEECH, TTS } from '@/lib/config';
 class Utterance {
   constructor(public text: string) {}
   voice: SpeechSynthesisVoice | null = null;
@@ -172,6 +172,7 @@ test('TC-054 UT-19 FR-09 handles abort, pre-abort, a queued cancel delay, safety
   expect(spoken).toHaveLength(1);
   await vi.advanceTimersByTimeAsync(50);
   expect(spoken).toHaveLength(2);
+  spoken[1]?.onstart?.();
   await vi.advanceTimersByTimeAsync(4000);
   expect(await safety).toBe('ended');
   Object.assign(synth, { pending: false });
@@ -186,4 +187,41 @@ test('TC-054 UT-19 FR-09 handles abort, pre-abort, a queued cancel delay, safety
       signal: new AbortController().signal,
     }),
   ).toBe('error');
+});
+
+test('TC-145 UT-19 errors and cancels when the engine never starts', async () => {
+  const { synth, spoken } = fakeSynth();
+  const result = speak(synth, ['Question', 'Must not speak'], {
+    voice: null,
+    rate: 1,
+    onChunk: vi.fn(),
+    signal: new AbortController().signal,
+  });
+  const settled = vi.fn();
+  void result.then(settled);
+  await vi.advanceTimersByTimeAsync(TTS.START_TIMEOUT_MS - 1);
+  expect(settled).not.toHaveBeenCalled();
+  await vi.advanceTimersByTimeAsync(1);
+  expect(await result).toBe('error');
+  expect(synth.cancel).toHaveBeenCalledTimes(2);
+  expect(spoken).toHaveLength(1);
+  expect(spoken[0]?.onstart).toBeNull();
+  expect(vi.getTimerCount()).toBe(0);
+});
+test('TC-145 UT-19 starts the long safety timeout only after speech starts', async () => {
+  const { synth, spoken } = fakeSynth();
+  const result = speak(synth, ['Question'], {
+    voice: null,
+    rate: 1,
+    onChunk: vi.fn(),
+    signal: new AbortController().signal,
+  });
+  const settled = vi.fn();
+  void result.then(settled);
+  await vi.advanceTimersByTimeAsync(TTS.START_TIMEOUT_MS - 1);
+  spoken[0]?.onstart?.();
+  await vi.advanceTimersByTimeAsync(3999);
+  expect(settled).not.toHaveBeenCalled();
+  await vi.advanceTimersByTimeAsync(1);
+  expect(await result).toBe('ended');
 });

@@ -22,6 +22,7 @@ export async function prepareVoice(
     .click();
   const session = StartResponseSchema.parse(await (await started).json());
   await expect(page.getByRole('button', { name: 'Start the interview' })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Skip question', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Start the interview' }).click();
   return session;
 }

@@ -55,7 +55,7 @@ test('TC-055 CT-02 FR-06 no English voices disables and unchecks read-aloud', ()
   expect(screen.getByRole('option', { name: 'No English voices found' })).toBeVisible();
   expect(screen.getByRole('button', { name: 'Preview voice' })).toBeDisabled();
 });
-test('TC-055 CT-02 FR-06 preview primes in the click and stops on request/unmount', async () => {
+test('TC-055 CT-02 FR-06 preview speaks synchronously in the click and stops on request/unmount', async () => {
   class Utterance {
     constructor(public text: string) {}
     volume = 1;
@@ -66,10 +66,6 @@ test('TC-055 CT-02 FR-06 preview primes in the click and stops on request/unmoun
   );
   fireEvent.click(screen.getByRole('button', { name: 'Preview voice' }));
   expect(vi.mocked(window.speechSynthesis.speak).mock.calls[0]?.[0]).toMatchObject({
-    text: ' ',
-    volume: 0,
-  });
-  expect(vi.mocked(window.speechSynthesis.speak).mock.calls[1]?.[0]).toMatchObject({
     text: TTS.PREVIEW_TEXT,
   });
   await act(async () => {
@@ -148,3 +144,33 @@ test('TC-128 V-05 renders accessible accent groups and hides novelty choices', (
   expect(screen.queryByRole('option', { name: /Bahh/ })).not.toBeInTheDocument();
   expect(screen.getByLabelText('Voice')).toHaveValue('daniel');
 });
+
+test.each(['stuck', 'normal'] as const)(
+  'TC-145 CT-02 preview %s engine gives an honest result',
+  async (engine) => {
+    class Utterance {
+      constructor(public text: string) {}
+      onstart: (() => void) | null = null;
+      onend: (() => void) | null = null;
+    }
+    vi.stubGlobal('SpeechSynthesisUtterance', Utterance);
+    render(<VoicePicker setup={setup} voices={[local]} loading={false} onChange={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Preview voice' }));
+    const utterance = vi.mocked(window.speechSynthesis.speak).mock.calls[0]?.[0];
+    expect(utterance?.text).toBe(TTS.PREVIEW_TEXT);
+    await act(async () => {
+      if (engine === 'normal') {
+        utterance?.onstart?.(new Event('start') as SpeechSynthesisEvent);
+        utterance?.onend?.(new Event('end') as SpeechSynthesisEvent);
+        await Promise.resolve();
+      } else await vi.advanceTimersByTimeAsync(TTS.START_TIMEOUT_MS);
+    });
+    expect(screen.getByRole('button', { name: 'Preview voice' })).toBeVisible();
+    const message = screen.queryByText(
+      "Your browser didn't start speaking. Try another voice, or restart the browser.",
+    );
+    if (engine === 'stuck') expect(message).toBeVisible();
+    else expect(message).not.toBeInTheDocument();
+    expect(vi.getTimerCount()).toBe(0);
+  },
+);
