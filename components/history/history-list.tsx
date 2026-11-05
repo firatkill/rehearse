@@ -3,14 +3,20 @@ import { LocalSessionTime } from '@/components/common/local-session-time';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { SessionRecord } from '@/lib/storage/schema';
-import { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } from '@/lib/labels';
-import { aggregate } from '@/lib/report/aggregate';
+import {
+  ROLE_LABELS,
+  SENIORITY_LABELS,
+  QUESTION_TYPE_LABELS,
+  DIMENSION_LABELS,
+} from '@/lib/labels';
+import { progressEntry, type ProgressEntry } from '@/lib/report/progress';
+import { ProgressOverview } from './progress-overview';
 import { useRepository } from '@/hooks/use-repository';
 import { setStorageStatus, storageStatus } from '@/lib/storage/status';
 import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/common/confirm-dialog';
 import { DataControls } from './data-controls';
-export type HistoryEntry = { session: SessionRecord; overall: number | null };
+export type HistoryEntry = { session: SessionRecord; overall: number | null; retries?: number };
 const statusLabels = {
   completed: 'Finished',
   in_progress: 'In progress',
@@ -40,17 +46,15 @@ export function HistoryList({
         <table className="history-table w-full text-left" aria-label="Practice sessions">
           <thead>
             <tr>
-              {['Date', 'Role', 'Types', 'Questions', 'Overall', 'Status', 'Actions'].map(
-                (label) => (
-                  <th key={label} scope="col">
-                    {label}
-                  </th>
-                ),
-              )}
+              {['Date', 'Session', 'Practice', 'Overall', 'Status', 'Actions'].map((label) => (
+                <th key={label} scope="col">
+                  {label}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {entries.map(({ session, overall }) => (
+            {entries.map(({ session, overall, retries = 0 }) => (
               <tr key={session.id}>
                 <td>
                   <span className="history-label" aria-hidden="true">
@@ -60,21 +64,22 @@ export function HistoryList({
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">
-                    Role
+                    Session
                   </span>
-                  {ROLE_LABELS[session.setup.role]}, {SENIORITY_LABELS[session.setup.seniority]}
+                  <strong>
+                    {session.setup.dimension
+                      ? `Practise ${DIMENSION_LABELS[session.setup.dimension]}`
+                      : `${ROLE_LABELS[session.setup.role]}, ${SENIORITY_LABELS[session.setup.seniority]}`}
+                  </strong>
+                  <span className="history-types">
+                    {session.setup.types.map((type) => QUESTION_TYPE_LABELS[type]).join(', ')}
+                  </span>
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">
-                    Types
+                    Practice
                   </span>
-                  {session.setup.types.map((type) => QUESTION_TYPE_LABELS[type]).join(', ')}
-                </td>
-                <td>
-                  <span className="history-label" aria-hidden="true">
-                    Questions
-                  </span>
-                  {session.questions.length}
+                  {session.questions.length} questions · {retries} retries
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">
@@ -123,7 +128,7 @@ export function HistoryList({
 }
 export function History() {
   const repository = useRepository();
-  const [entries, setEntries] = useState<HistoryEntry[]>([]);
+  const [entries, setEntries] = useState<ProgressEntry[]>([]);
   const [skipped, setSkipped] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
@@ -132,11 +137,9 @@ export function History() {
   const refresh = useCallback(async () => {
     const result = await repository.listSessions();
     const next = await Promise.all(
-      result.sessions.map(async (session) => ({
-        session,
-        overall: aggregate(await repository.getAnswers(session.id), session.questions.length)
-          .overallMean,
-      })),
+      result.sessions.map(async (session) =>
+        progressEntry(session, await repository.getAnswers(session.id)),
+      ),
     );
     setEntries(next);
     setSkipped(result.skipped);
@@ -163,21 +166,39 @@ export function History() {
     }
   };
   return (
-    <div className="space-y-6">
-      <h1 ref={title} tabIndex={-1}>
-        Your practice history
-      </h1>
+    <div className="progress-page">
+      <div className="progress-heading">
+        <h1 ref={title} tabIndex={-1}>
+          Progress
+        </h1>
+        <Button asChild>
+          <Link href="/setup">Practise now</Link>
+        </Button>
+      </div>
       <p>Sessions are saved only in this browser.</p>
-      {loaded && <HistoryList entries={entries} skipped={skipped} onDelete={setDeleting} />}
-      <DataControls
-        count={entries.length}
-        onChanged={refresh}
-        onDeleted={() => {
-          setEntries([]);
-          setSkipped(0);
-          setLoaded(true);
-        }}
-      />
+      {loaded && (
+        <>
+          <ProgressOverview entries={entries} />
+          <section className="progress-card" aria-labelledby="progress-sessions-heading">
+            <div className="progress-section-heading">
+              <h2 id="progress-sessions-heading">Sessions</h2>
+              <a href="#progress-data">Export / import</a>
+            </div>
+            <HistoryList entries={entries} skipped={skipped} onDelete={setDeleting} />
+          </section>
+        </>
+      )}
+      <section id="progress-data" aria-label="Your data">
+        <DataControls
+          count={entries.length}
+          onChanged={refresh}
+          onDeleted={() => {
+            setEntries([]);
+            setSkipped(0);
+            setLoaded(true);
+          }}
+        />
+      </section>
       <ConfirmDialog
         open={deleting !== null}
         title="Delete this session?"

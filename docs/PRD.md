@@ -436,17 +436,21 @@ Dimension-start errors: "Today’s feedback session allowance is used. Open setu
 
 Setup focus notice for a repeated dimension session: "Practising {Dimension} · 3 questions. Changing the role, level, types or length returns to all dimensions."
 
-### 9.9 `/history`
+### 9.9 `/progress` (`/history` redirects here)
 
 D-94: saved timestamps use en-GB in the visitor’s local timezone, rendered after mount without a UTC label.
 
-Document title: "History · Rehearse"
+Document title: "Progress · Rehearse"
 
-- H1 "Your practice history"
+- H1 "Progress"; action "Practise now".
+- Totals: "{n} sessions · {n} answers · {n} min of recorded practice". Note: "Text practice time isn’t measured."
+- Trend card: "Overall, by session", "Last 10 scored sessions". Empty: "Finish a session with feedback to see your scores here." Chart supplements a disclosure "View score table", caption "Overall score by session", columns "Session date", "Overall"; values "{x.x} / 4".
+- Dimension card: "By dimension", "Last {n} vs previous 3"; table caption "Dimension averages and change", columns "Dimension", "Recent scores" (decorative sparks), "Average", "Change". Missing values are "—". Before six scored sessions: "Complete six scored sessions to compare the last three with the previous three."
+- Sessions card: "Sessions", link "Export / import". No coming-up job-post card before V5. D-119 defines aggregates and sparse histories.
 - Lead: "Sessions are saved only in this browser."
 - When stored records fail validation: "{n} saved items couldn’t be read and were skipped."
 - Empty state: H2 "No sessions yet" and body "Your sessions will appear here after you start one." Button "Start a practice session". Also shows the Import control.
-- List (table on ≥ 720 px, stacked cards below): columns "Date", "Role", "Types", "Questions", "Overall", "Status", "Actions". Status values: "Finished", "In progress", "Ended early". Actions: "Open report" (finished or ended early), "Resume" (in progress), "Delete".
+- List (table on ≥ 720 px, stacked cards below): columns "Date", "Session", "Practice", "Overall", "Status", "Actions"; session shows role/seniority or "Practise {Dimension}", with types below; practice shows "{n} questions · {n} retries". Status values: "Finished", "In progress", "Ended early". Actions: "Open report" (finished or ended early), "Resume" (in progress), "Delete".
 - Delete dialog: H2 "Delete this session?" Body "This removes the session and its answers from this browser. It can’t be undone." Buttons "Delete session", "Cancel".
 - H2 "Your data"
   - Button "Export all sessions" (downloads JSON; disabled when there are none). Success status: "Exported {n} sessions."
@@ -765,3 +769,5 @@ V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “H
 | D-116 | 2026-11-05 | V-22 adds one-level follow-up turns to scored answer attempts. A server-signed, session/question-scoped proof authorises the generated follow-up; clients never supply a trusted question. Follow-up responses use the same rubric, a 60-second voice limit and existing per-call limits. Store them separately under the parent attempt so main-answer best scores/tries stay comparable. Version-4 migrations preserve history; export/import strips all authorisation proofs. | Guide §0/V-22 and D-78; exact contracts delegated to implementation |
 | D-117 | 2026-11-05 | V-23 follows the approved report design with best-attempt question rows, completed-original retry counts and two lowest-mean practice priorities. Preserve the accessible Session report heading and print/export/disclosures. Dimension actions are explicitly disabled until the next ordered task V-24; no action pretends to start an unimplemented flow. | Guide §0/V-23/V-24; D-79 staged implementation |
 | D-118 | 2026-11-05 | V-24 tags existing bank questions by their strongest rubric demands without changing question text or bankVersion. Dimension practice starts three matching active questions for the same role/seniority, across question types, with deterministic seeded selection and no role fallback. Validate at least three matches per role/seniority/dimension. Persist optional dimension in version-5 setup for repeat sessions; migrate existing setup to no focus. | Guide §0/V-24; D-77/D-79 |
+
+| D-119 | 2026-11-05 | V-25 Progress charts the last ten scored completed/ended-early sessions, chronologically by creation date (id breaks ties), using best original attempts. Dimension means use the latest up to three scored sessions, labelled with the actual count; change requires three current and three previous values. Activity totals count completed original, retry and follow-up responses; duration counts known recording time only, with text time explicitly unmeasured. Unfinished/unscored sessions remain listed but do not enter score trends. Preserve export/import/delete and hide the job-post card until V5. | Guide §0/V-25; approved Progress design; FR-32/38 |

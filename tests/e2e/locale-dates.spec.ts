@@ -68,7 +68,11 @@ test('TC-132 D-94 Turkish locale keeps sample, history and report dates stable w
     { session, answers },
   );
   await page.reload();
-  await expect(page.getByText('6 Nov 2026, 02:30', { exact: true })).toBeVisible();
+  await expect(
+    page
+      .getByRole('table', { name: 'Practice sessions' })
+      .getByText('6 Nov 2026, 02:30', { exact: true }),
+  ).toBeVisible();
   await page.getByRole('link', { name: 'Open report' }).click();
   await expect(page).toHaveURL(new RegExp(`/session/${id}/report$`));
   await expect(page.getByRole('heading', { name: 'Session report', exact: true })).toBeVisible();

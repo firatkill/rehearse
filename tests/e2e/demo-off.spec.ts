@@ -35,9 +35,7 @@ test('TC-111 E2E-15 disabled demo keeps existing reports and history available',
     await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
   }
   await page.goto(`${origin}/history`);
-  await expect(
-    page.getByRole('heading', { name: 'Your practice history', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Progress', exact: true })).toBeVisible();
   const id = await seedLocalSession(page, true);
   await page.goto(`${origin}/session/${id}`);
   await expect(

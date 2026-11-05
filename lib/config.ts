@@ -197,3 +197,6 @@ export type Dimension = (typeof DIMENSIONS)[number];
 export const DATE_TIME = { LOCALE: 'en-GB', SESSION_TIME_ZONE: 'UTC' } as const;
 
 export const FOLLOW_UP = { TIME_LIMIT_S: 60, TOKEN_PREFIX: 'rf1', TOKEN_MAX_CHARS: 2000 } as const;
+
+// V-25: comparable completed-session windows, independent of report question trends.
+export const PROGRESS = { TREND_SESSIONS: 10, COMPARE_SESSIONS: 3 } as const;
