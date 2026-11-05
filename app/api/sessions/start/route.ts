@@ -1,3 +1,5 @@
+import { getJobRepository } from '@/lib/jobpost/repository';
+import { generatedToQuestion } from '@/lib/jobpost/question';
 import { demoFeedback, demoJobs } from '@/lib/demo/content';
 import { randomUUID } from 'node:crypto';
 import { getEnv } from '@/lib/env';
@@ -35,19 +37,32 @@ export async function POST(req: Request): Promise<Response> {
       body.demoJob === undefined ? undefined : demoJobs.find((job) => job.slug === body.demoJob);
     if (body.demoJob !== undefined && (env.APP_EDITION !== 'demo' || !demoJob))
       return jsonError('VALIDATION_FAILED', requestId);
-    const questions = selectQuestions(
-      demoJob
-        ? demoJob.questions
-        : env.APP_EDITION === 'demo'
-          ? bank.questions.filter((q) => demoFeedback.some((item) => item.questionId === q.id))
-          : bank.questions,
-      {
-        ...body,
-        seed,
-        ...(env.APP_EDITION === 'demo' ? { dimension: null } : {}),
-        ...(demoJob ? { types: ['behavioral'] as const } : {}),
-      },
-    ).map(toSnapshot);
+    if (body.jobPostId && env.APP_EDITION !== 'full') return jsonError('DEMO_ONLY', requestId);
+    const jobRepo = body.jobPostId ? getJobRepository() : null;
+    const job = body.jobPostId ? jobRepo?.get(body.jobPostId) : null;
+    if (body.jobPostId && !job) return jsonError('JOBPOST_NOT_FOUND', requestId);
+    const selected =
+      job && jobRepo ? (body.questionIds ?? []).map((id) => jobRepo.generatedQuestion(id)) : [];
+    if (job && selected.some((question) => !question || question.jobPostId !== job.id))
+      return jsonError('TOKEN_SCOPE', requestId);
+    const scoringRole = job?.practiceRole ?? body.role;
+    const questions = job
+      ? selected.flatMap((question) =>
+          question ? [toSnapshot(generatedToQuestion(question, job))] : [],
+        )
+      : selectQuestions(
+          demoJob
+            ? demoJob.questions
+            : env.APP_EDITION === 'demo'
+              ? bank.questions.filter((q) => demoFeedback.some((item) => item.questionId === q.id))
+              : bank.questions,
+          {
+            ...body,
+            seed,
+            ...(env.APP_EDITION === 'demo' ? { dimension: null } : {}),
+            ...(demoJob ? { types: ['behavioral'] as const } : {}),
+          },
+        ).map(toSnapshot);
     const sessionId = randomUUID();
     const reason = env.DEMO_MODE === 'readonly' ? 'readonly' : body.feedback ? null : 'practice';
     let token: string | null = null;
@@ -74,7 +89,7 @@ export async function POST(req: Request): Promise<Response> {
           fb: body.length + SESSION.FEEDBACK_RETRY_ALLOWANCE,
           sm: SESSION.SUMMARY_CALLS_PER_SESSION,
           q: questions.map((q) => q.id),
-          r: body.role,
+          r: scoringRole,
           s: body.seniority,
           b: bank.bankVersion,
         },

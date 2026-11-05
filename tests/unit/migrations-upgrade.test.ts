@@ -15,7 +15,7 @@ it('TC-093 UT-14 upgrade preserves data, adds index and migrates on read without
   const upgraded = await openDb(name, [
     ...MIGRATIONS,
     {
-      version: 6,
+      version: 7,
       upgrade(_db, upgradeTx) {
         upgradeTx.objectStore('sessions').createIndex('by_role', 'setup.role');
       },

@@ -1,4 +1,6 @@
 import 'server-only';
+import { jobPostsMigration } from './migrations/003-job-posts';
+import { readJobData, importJobData } from './job-data';
 import { costsMigration } from './migrations/002-costs';
 import Database from 'better-sqlite3';
 import { mkdirSync } from 'node:fs';
@@ -12,7 +14,7 @@ import { buildExport, readImport } from '../export';
 import type { SessionRepository } from '../repository';
 import { initialMigration } from './migrations/001-sessions';
 
-const migrations = [initialMigration, costsMigration];
+const migrations = [initialMigration, costsMigration, jobPostsMigration];
 const rowSchema = z.object({ value: z.string() });
 function value(row: unknown): unknown {
   const parsed = rowSchema.safeParse(row);
@@ -124,10 +126,11 @@ export function createSqliteRepository(
             return parsed.success && parsed.data.sessionId === id ? [parsed.data] : [];
           }),
       ),
-    exportAll: (version) => buildExport(repo, version, clock),
+    exportAll: (version) => buildExport(repo, version, clock, readJobData(db)),
     importAll: async (file) => {
-      const { bundles, invalid } = await readImport(file);
+      const { bundles, invalid, jobData } = await readImport(file);
       return db.transaction(() => {
+        importJobData(db, jobData);
         let imported = 0;
         let skipped = 0;
         for (const { session, answers } of bundles) {
@@ -146,7 +149,9 @@ export function createSqliteRepository(
     deleteAll: () =>
       perform(() => {
         db.transaction(() => {
-          db.exec('DELETE FROM answers; DELETE FROM sessions;');
+          db.exec(
+            'DELETE FROM generated_questions; DELETE FROM job_posts; DELETE FROM answers; DELETE FROM sessions;',
+          );
         })();
       }),
   };

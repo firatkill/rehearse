@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-deprecated -- Preserve normative TRD Zod schema syntax. */
 import { z } from 'zod';
+import { JobDataSchema } from './jobpost-schema';
 import {
   DIMENSIONS,
   ROLES,
@@ -236,6 +237,8 @@ export const AnswerRecordSchema = z
 export type FollowUpRecord = z.infer<typeof FollowUpRecordSchema>;
 export type AttemptRecord = z.infer<typeof AttemptRecordSchema>;
 export const ExportFileSchema = z.object({
+  jobPosts: JobDataSchema.shape.jobPosts.default([]),
+  generatedQuestions: JobDataSchema.shape.generatedQuestions.default([]),
   format: z.literal('rehearse-export'),
   formatVersion: z.number().int().positive(),
   exportedAt: z.string().datetime(),

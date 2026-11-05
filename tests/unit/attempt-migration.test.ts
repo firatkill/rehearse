@@ -74,7 +74,7 @@ test('TC-147 UT-15 old export migrates and new attempts round-trip', async () =>
   await repo.createSession(bundle.session);
   for (const a of bundle.answers) await repo.putAnswer(a);
   const exported = await buildExport(repo, '2', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(5);
+  expect(exported.formatVersion).toBe(6);
   const roundtrip = await readImport(new File([JSON.stringify(exported)], 'new.json'));
   expect(roundtrip.bundles[0]?.answers).toEqual(bundle.answers);
   expect(migrateRecord({ schemaVersion: 1, malformed: true })).toBeNull();

@@ -1,10 +1,22 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+export const metadata: Metadata = { title: 'Job-post interview · Rehearse' };
+import { z } from 'zod';
+import { getJobRepository } from '@/lib/jobpost/repository';
+import { JobPost } from '@/components/jobpost/job-post';
 import { notFound } from 'next/navigation';
 import { getEnv } from '@/lib/env';
 import { demoJobs } from '@/lib/demo/content';
 import { SafeText } from '@/components/common/safe-text';
 export default async function DemoJobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  if (getEnv().APP_EDITION === 'full') {
+    if (!z.uuid().safeParse(id).success) notFound();
+    const repo = getJobRepository();
+    const post = repo.get(id);
+    if (!post) notFound();
+    return <JobPost initial={{ post, questions: repo.questions(id) }} />;
+  }
   const job =
     getEnv().APP_EDITION === 'demo' ? demoJobs.find((item) => item.slug === id) : undefined;
   if (!job) notFound();

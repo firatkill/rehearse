@@ -86,6 +86,13 @@ export const MIGRATIONS: readonly Migration[] = [
       }
     },
   },
+  {
+    version: 6,
+    upgrade(db) {
+      db.createObjectStore('jobPosts', { keyPath: 'id' });
+      db.createObjectStore('generatedQuestions', { keyPath: 'id' });
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {

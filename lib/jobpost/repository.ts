@@ -1,0 +1,146 @@
+import 'server-only';
+import { randomUUID } from 'node:crypto';
+import type Database from 'better-sqlite3';
+import { z } from 'zod';
+import { AppError } from '@/lib/errors';
+import { getSqliteConnection } from '@/lib/storage/sqlite/repository';
+import {
+  JobPostRecordSchema,
+  GeneratedQuestionRecordSchema,
+  JobTextSchema,
+  type JobPostRecord,
+  type GeneratedQuestionRecord,
+} from '@/lib/storage/jobpost-schema';
+import type { JobGeneration } from './schema';
+import { JOBPOST_PROMPT_VERSION } from '@/lib/prompts/version';
+import { validateJobQuestions } from './validate';
+import { JOBPOST, type Role } from '@/lib/config';
+const row = z.object({ value: z.string() });
+export function practiceRole(title: string): Role {
+  const value = title.toLowerCase();
+  if (/\bai\b|machine learning/.test(value)) return 'ai-product-engineer';
+  if (/front.?end/.test(value)) return 'frontend';
+  if (/back.?end/.test(value)) return 'backend';
+  if (/product/.test(value)) return 'product-engineer';
+  return 'full-stack';
+}
+export function createJobRepository(db: Database.Database, clock: () => Date = () => new Date()) {
+  const get = (id: string): JobPostRecord | null => {
+    const found = db.prepare('SELECT value FROM job_posts WHERE id = ?').get(id);
+    if (!found) return null;
+    return JobPostRecordSchema.parse(JSON.parse(row.parse(found).value));
+  };
+  const questions = (id: string) =>
+    db
+      .prepare('SELECT value FROM generated_questions WHERE job_post_id = ? ORDER BY rowid')
+      .all(id)
+      .map((value) => GeneratedQuestionRecordSchema.parse(JSON.parse(row.parse(value).value)));
+  const save = (post: JobPostRecord) => {
+    const parsed = JobPostRecordSchema.parse(post);
+    db.prepare(
+      'INSERT INTO job_posts(id,value) VALUES (?,?) ON CONFLICT(id) DO UPDATE SET value=excluded.value',
+    ).run(parsed.id, JSON.stringify(parsed));
+    return parsed;
+  };
+  const create = (text: string, sourceUrl: string | null = null) => {
+    const total = z
+      .object({ count: z.number() })
+      .parse(db.prepare('SELECT count(*) AS count FROM job_posts').get()).count;
+    if (total >= JOBPOST.MAX_POSTS) throw new AppError('VALIDATION_FAILED');
+    return save({
+      schemaVersion: 1,
+      id: randomUUID(),
+      text: JobTextSchema.parse(text),
+      sourceUrl,
+      createdAt: clock().toISOString(),
+      updatedAt: clock().toISOString(),
+      status: 'draft',
+      role: '',
+      company: '',
+      location: '',
+      requirements: [],
+      about: '',
+      practiceRole: 'full-stack',
+    });
+  };
+  return {
+    get,
+    questions,
+    create,
+    list: () =>
+      db
+        .prepare('SELECT value FROM job_posts ORDER BY rowid DESC')
+        .all()
+        .map((value) => JobPostRecordSchema.parse(JSON.parse(row.parse(value).value))),
+    updateText(id: string, text: string) {
+      const post = get(id);
+      if (!post) throw new AppError('JOBPOST_NOT_FOUND');
+      // Editing a generated post creates a revision, preserving questions referenced by signed sessions.
+      return post.status === 'ready'
+        ? create(text, post.sourceUrl)
+        : save({ ...post, text: JobTextSchema.parse(text), updatedAt: clock().toISOString() });
+    },
+    generatedQuestion(id: string): GeneratedQuestionRecord | null {
+      const found = db.prepare('SELECT value FROM generated_questions WHERE id = ?').get(id);
+      if (!found) return null;
+      const parsed = GeneratedQuestionRecordSchema.parse(JSON.parse(row.parse(found).value));
+      return parsed.origin === 'generated' ? parsed : null;
+    },
+    commitGeneration(
+      id: string,
+      summary: JobGeneration,
+      accepted: JobGeneration['questions'],
+      model: string,
+    ) {
+      return db.transaction(() => {
+        const post = get(id);
+        if (!post) throw new AppError('JOBPOST_NOT_FOUND');
+        if (questions(id).length + accepted.length > JOBPOST.MAX_STORED_QUESTIONS)
+          throw new AppError('VALIDATION_FAILED');
+        if (
+          validateJobQuestions(
+            accepted,
+            post.text,
+            questions(id)
+              .filter((item) => item.origin === 'generated')
+              .map((item) => item.text),
+          ).questions.length !== accepted.length
+        )
+          throw new AppError('JOBPOST_INVALID');
+        const now = clock().toISOString();
+        const updated = save({
+          ...post,
+          status: 'ready',
+          role: summary.role,
+          company: summary.company,
+          location: summary.location,
+          requirements: summary.requirements,
+          about: summary.about,
+          practiceRole: practiceRole(summary.role),
+          updatedAt: now,
+        });
+        for (const item of accepted) {
+          const question = GeneratedQuestionRecordSchema.parse({
+            ...item,
+            schemaVersion: 1,
+            id: `gen-${randomUUID()}`,
+            jobPostId: id,
+            createdAt: now,
+            model,
+            promptVersion: JOBPOST_PROMPT_VERSION,
+            origin: 'generated',
+          });
+          db.prepare('INSERT INTO generated_questions(id,job_post_id,value) VALUES (?,?,?)').run(
+            question.id,
+            id,
+            JSON.stringify(question),
+          );
+        }
+        return { post: updated, questions: questions(id) };
+      })();
+    },
+  };
+}
+export function getJobRepository() {
+  return createJobRepository(getSqliteConnection());
+}

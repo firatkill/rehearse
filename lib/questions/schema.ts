@@ -85,3 +85,7 @@ export function toSnapshot(q: Question): QuestionSnapshot {
     time_limit_s: q.time_limit_s,
   };
 }
+
+export const ScoringQuestionIdSchema = z
+  .string()
+  .regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+|gen-[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})$/);

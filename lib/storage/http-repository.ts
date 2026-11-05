@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { AppError } from '@/lib/errors';
 import { clearPreferences } from './idb';
-import { buildExport, readImport } from './export';
-import { SessionRecordSchema, AnswerRecordSchema } from './schema';
+import { readImport } from './export';
+import { SessionRecordSchema, AnswerRecordSchema, ExportFileSchema } from './schema';
 import {
   DataRequestSchema,
   ListSessionsSchema,
@@ -47,7 +47,7 @@ export function createHttpRepository(): SessionRepository {
       await call({ operation: 'putAnswer', answer }, z.null());
     },
     getAnswers: (id) => call({ operation: 'getAnswers', id }, z.array(AnswerRecordSchema)),
-    exportAll: (version) => buildExport(repo, version, () => new Date()),
+    exportAll: (version) => call({ operation: 'exportAll', appVersion: version }, ExportFileSchema),
     importAll: async (file) => {
       await readImport(file);
       return call({ operation: 'importAll', text: await file.text() }, ImportResultSchema);

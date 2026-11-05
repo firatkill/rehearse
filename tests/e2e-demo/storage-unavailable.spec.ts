@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { expect, test } from '@playwright/test';
 import { startTextSession, storedRoom } from './storage-helpers';
 const notSaving =
@@ -56,9 +57,9 @@ test('TC-096 FR-35 versionchange closes storage and shows only updated-elsewhere
     .poll(async () => (await storedRoom(page)).answers[0]?.transcript)
     .toBe('I keep this after an upgrade.');
   await page.evaluate(
-    () =>
+    (version) =>
       new Promise<void>((resolve, reject) => {
-        const request = indexedDB.open('rehearse', 6);
+        const request = indexedDB.open('rehearse', version);
         request.onsuccess = () => {
           request.result.close();
           resolve();
@@ -67,6 +68,7 @@ test('TC-096 FR-35 versionchange closes storage and shows only updated-elsewhere
           reject(new Error('Upgrade failed'));
         };
       }),
+    STORAGE.DB_VERSION + 1,
   );
   await expect(
     page.getByText('Rehearse was updated in another tab.', { exact: false }),

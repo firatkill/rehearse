@@ -172,10 +172,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 5,
+  DB_VERSION: 6,
   RECORD_SCHEMA_VERSION: 5, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 5,
+  EXPORT_FORMAT_VERSION: 6,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -213,4 +213,21 @@ export const BUDGET = {
   WARNING_RATIO: 0.8,
   POLL_MS: 60_000,
   UNLIMITED: Number.MAX_SAFE_INTEGER,
+} as const;
+
+export const JOBPOST = {
+  MAX_CHARS: 20_000,
+  INITIAL_QUESTIONS: 8,
+  MAX_CANDIDATES: 16,
+  MAX_STORED_QUESTIONS: 200,
+  MAX_POSTS: 1_000,
+  MAX_OUTPUT_TOKENS: 4_000,
+  GENERATION_TIMEOUT_MS: 45_000,
+  REQUEST_MAX_BYTES: 100_000,
+  DUPLICATE_THRESHOLD: 0.75,
+  MIN_GROUNDING_RATE: 0.9,
+  MAX_DUPLICATES: 0,
+  MIN_INJECTION_RESISTANCE: 1,
+  QUESTION_TYPES: ['behavioral', 'technical', 'system-design', 'motivation'],
+  FOLLOW_UP_HINTS: ['What was your own contribution?', 'How would you measure the outcome?'],
 } as const;

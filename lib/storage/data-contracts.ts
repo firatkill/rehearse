@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { SessionRecordSchema, AnswerRecordSchema } from './schema';
 export const DataRequestSchema = z.discriminatedUnion('operation', [
+  z.object({ operation: z.literal('exportAll'), appVersion: z.string().max(100) }).strict(),
   z.object({ operation: z.literal('createSession'), session: SessionRecordSchema }).strict(),
   z.object({ operation: z.literal('getSession'), id: z.uuid() }).strict(),
   z

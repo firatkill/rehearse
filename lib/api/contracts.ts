@@ -13,7 +13,7 @@ import {
   type Dimension,
 } from '@/lib/config';
 import { ERROR_CODES } from '@/lib/errors';
-import { QuestionSnapshotSchema } from '@/lib/questions/schema';
+import { QuestionSnapshotSchema, ScoringQuestionIdSchema } from '@/lib/questions/schema';
 import { FeedbackSchema } from '@/lib/feedback/schema';
 import { SummarySchema } from '@/lib/summary/schema';
 
@@ -34,6 +34,12 @@ export const ErrorBodySchema = z
 export const StartRequestSchema = z
   .object({
     demoJob: z.string().max(100).optional(),
+    jobPostId: z.uuid().optional(),
+    questionIds: z
+      .array(ScoringQuestionIdSchema)
+      .min(SESSION.LENGTHS[0])
+      .max(SESSION.LENGTHS[1])
+      .optional(),
     role: z.enum(ROLES),
     seniority: z.enum(SENIORITIES),
     types: z
@@ -51,6 +57,15 @@ export const StartRequestSchema = z
   .refine(
     (input) => input.dimension === undefined || input.length === SESSION.LENGTHS[0],
     'dimension practice needs three questions',
+  )
+  .refine(
+    (input) =>
+      input.jobPostId === undefined
+        ? input.questionIds === undefined
+        : input.demoJob === undefined &&
+          input.questionIds?.length === input.length &&
+          new Set(input.questionIds).size === input.length,
+    'job questions must match the session length',
   );
 export const StartResponseSchema = z
   .object({
@@ -79,7 +94,7 @@ export const FeedbackRequestSchema = z
     followUpToken: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).optional(),
     sessionId: z.string().uuid(),
     answerIndex: z.number().int().min(0).max(4),
-    questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
+    questionId: ScoringQuestionIdSchema,
     mode: z.enum(ANSWER_MODES),
     transcript: z.string().max(ANSWER.MAX_CHARS),
   })
@@ -126,7 +141,7 @@ export const SummaryRequestSchema = z
         z
           .object({
             answerIndex: z.number().int().min(0).max(4),
-            questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
+            questionId: ScoringQuestionIdSchema,
             scores: ScoresSchema,
             improvementPoints: z.array(z.string().max(SUMMARY_LIMITS.INPUT_POINT_MAX_CHARS)).max(3),
             flags: z
