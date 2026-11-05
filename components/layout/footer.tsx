@@ -8,9 +8,7 @@ export function Footer() {
       </p>
       <div className="footer-links">
         <Link href="/sample">Sample report</Link>
-        <Link href="/privacy" prefetch={false}>
-          Privacy
-        </Link>
+        <Link href="/privacy">Privacy</Link>
       </div>
     </footer>
   );
