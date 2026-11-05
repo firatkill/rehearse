@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { apiStart, apiFeedback, expectError, startBody } from './api-helpers';
-import { scenarios, serverUrl, uniqueIp } from './helpers';
+import { apiStart, apiFeedback, expectError } from './api-helpers';
+import { scenarios, uniqueIp } from './helpers';
 import { installSpeechMock } from './speech-mock';
 import { startTextSession } from './storage-helpers';
 
@@ -8,36 +8,18 @@ test.beforeEach(async ({ page }, info) => {
   await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
   await page.addInitScript(installSpeechMock, scenarios.noRecognition);
 });
-test('TC-109 E2E-12 three session quota and UI practice fallback', async ({ page }, info) => {
-  for (let n = 0; n < 3; n++) await apiStart(page, info);
-  const origin = serverUrl(info);
-  await expectError(
-    await page.request.post(`${origin}/api/sessions/start`, {
-      headers: { Origin: origin, 'x-real-ip': uniqueIp(info) },
-      data: startBody,
-    }),
-    429,
-    'SESSION_QUOTA_EXCEEDED',
-  );
+test('TC-109 TC-164 D-80 full has no session IP quota', async ({ page }, info) => {
+  for (let n = 0; n < 5; n++) await apiStart(page, info);
   await page.goto('/setup');
   await page.getByRole('button', { name: 'Start session', exact: true }).click();
-  await expect(
-    page.getByRole('heading', { name: 'You’ve used today’s feedback sessions' }),
-  ).toBeFocused();
-  await page.getByRole('button', { name: 'Practise without feedback' }).click();
   await expect(page.getByRole('heading', { name: 'Ready when you are' })).toBeVisible();
-  await expect(
-    page.getByText(
-      'Feedback is off for this session. You’ll see your transcript and delivery numbers.',
-    ),
-  ).toBeVisible();
 });
 test('TC-109 E2E-12 token permits length plus two calls then rejects', async ({ page }, info) => {
   const session = await apiStart(page, info);
   for (let n = 0; n < 7; n++) expect((await apiFeedback(page, info, session)).status()).toBe(200);
   await expectError(await apiFeedback(page, info, session), 429, 'SESSION_FEEDBACK_EXHAUSTED');
 });
-test('TC-109 E2E-12 visitor feedback quota rejects the twenty-first call', async ({
+test('TC-109 E2E-12 D-80 full permits the twenty-first visitor feedback call', async ({
   page,
 }, info) => {
   let calls = 0;
@@ -46,8 +28,7 @@ test('TC-109 E2E-12 visitor feedback quota rejects the twenty-first call', async
     for (let attempt = 0; attempt < 7; attempt++) {
       const response = await apiFeedback(page, info, session);
       calls++;
-      if (calls <= 20) expect(response.status()).toBe(200);
-      else await expectError(response, 429, 'FEEDBACK_QUOTA_EXCEEDED');
+      expect(response.status()).toBe(200);
     }
   }
   expect(calls).toBe(21);

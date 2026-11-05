@@ -5,13 +5,13 @@ import { registerProgressV2 } from './progress-v2.cases';
 import { registerA11Y } from './a11y.cases';
 import { expect } from '@playwright/test';
 import { test } from '../setup/cap-server';
-import { HealthResponseSchema, StartResponseSchema, ErrorBodySchema } from '@/lib/api/contracts';
+import { HealthResponseSchema, StartResponseSchema } from '@/lib/api/contracts';
 import { scenarios, uniqueIp, serverUrl } from './helpers';
 import { installSpeechMock } from './speech-mock';
 import { apiFeedback } from './api-helpers';
 
 test.describe.configure({ mode: 'serial' });
-test('TC-110 E2E-13 global cap and TC-010 fourth-server health @isolated', async ({
+test('TC-110 E2E-13 D-80 full has no global daily cap and TC-010 fourth-server health @isolated', async ({
   page,
   capOrigin,
 }, info) => {
@@ -41,24 +41,9 @@ test('TC-110 E2E-13 global cap and TC-010 fourth-server health @isolated', async
   const rejected = page.waitForResponse('**/api/feedback');
   await page.getByRole('button', { name: 'Get feedback' }).click();
   const response = await rejected;
-  expect(response.status()).toBe(429);
-  expect(ErrorBodySchema.parse(await response.json()).error.code).toBe('GLOBAL_CAP_REACHED');
-  await expect(
-    page.getByRole('heading', { name: 'The demo has reached its daily limit' }),
-  ).toBeFocused();
-  await expect(
-    page.getByText('Rehearse scores up to 2 answers a day across all visitors so it stays free.', {
-      exact: false,
-    }),
-  ).toBeVisible();
-  await expect(
-    page.getByText(
-      'Your answer is saved, and you can run Rehearse yourself from the GitHub repository.',
-      { exact: false },
-    ),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'Save without feedback' }).click();
-  await expect(page.getByRole('button', { name: 'Next question' })).toBeFocused();
+  expect(response.status()).toBe(200);
+  await expect(page.getByRole('heading', { name: 'Feedback on question 1' })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Next question' })).toBeVisible();
 });
 
 test.describe('Full shared storage @isolated', () => {

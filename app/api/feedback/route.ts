@@ -1,3 +1,4 @@
+import { recordCost } from '@/lib/cost/budget';
 import { DEMO } from '@/lib/config';
 import { signFollowUp, verifyFollowUp } from '@/lib/session/follow-up';
 import { randomUUID } from 'node:crypto';
@@ -155,6 +156,7 @@ export async function POST(req: Request): Promise<Response> {
       },
       remaining: { session: remaining, visitorToday: quota.visitorRemaining },
     });
+    recordCost(requestId, costUsd);
     logger.info({
       event: 'feedback.done',
       requestId,

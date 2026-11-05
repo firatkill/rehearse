@@ -1,3 +1,4 @@
+import { recordCost } from '@/lib/cost/budget';
 import { DEMO } from '@/lib/config';
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
@@ -133,6 +134,7 @@ export async function POST(req: Request): Promise<Response> {
         costUsd,
       },
     });
+    recordCost(requestId, costUsd);
     logger.info({
       event: 'summary.done',
       items,
