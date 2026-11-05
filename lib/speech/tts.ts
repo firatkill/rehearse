@@ -1,4 +1,4 @@
-import { SPEECH } from '@/lib/config';
+import { SPEECH, TTS } from '@/lib/config';
 import type { SpeakResult } from './types';
 export type { SpeakResult } from './types';
 
@@ -53,13 +53,18 @@ export async function speak(
         finish('cancelled');
         synth.cancel();
       };
-      const timer = setTimeout(
-        () => {
-          finish('ended');
-        },
-        Math.max(4000, (chunk.length * 120) / opts.rate),
-      );
+      let timer = setTimeout(() => {
+        finish('error');
+        synth.cancel();
+      }, TTS.START_TIMEOUT_MS);
       utterance.onstart = () => {
+        clearTimeout(timer);
+        timer = setTimeout(
+          () => {
+            finish('ended');
+          },
+          Math.max(4000, (chunk.length * 120) / opts.rate),
+        );
         opts.onChunk(index);
       };
       utterance.onend = () => {

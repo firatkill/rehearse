@@ -26,11 +26,12 @@ test('TC-014 NFR-08 NFR-09 shell keyboard and narrow layout', async ({ page }) =
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('main')).toBeFocused();
-  for (const name of ['Practise', 'Job post', 'Progress', 'How it works', 'GitHub']) {
+  for (const name of ['Practise', 'Job post', 'Progress', 'How it works']) {
     await expect(
       page.getByRole('navigation').getByRole('link', { name, exact: true }),
     ).toBeVisible();
   }
+  await expect(page.getByRole('link', { name: 'Source on GitHub (MIT)' })).toBeVisible();
   await expect(page.getByText('Built by Fırat Kıl', { exact: false })).toBeVisible();
   expect(
     await page.evaluate(
@@ -38,6 +39,9 @@ test('TC-014 NFR-08 NFR-09 shell keyboard and narrow layout', async ({ page }) =
     ),
   ).toBe(true);
   await page.setViewportSize({ width: 1024, height: 768 });
+  await expect(
+    page.getByRole('navigation').getByRole('link', { name: 'GitHub', exact: true }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,

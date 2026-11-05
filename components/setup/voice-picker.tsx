@@ -2,7 +2,7 @@
 import { TTS } from '@/lib/config';
 import type { Setup } from '@/lib/storage/schema';
 import { groupVoices, pickVoice, voiceAccentLabel } from '@/lib/speech/voices';
-import { primeSynthesis } from '@/lib/speech/tts';
+import { useState } from 'react';
 import { chunkForSpeech } from '@/lib/speech/chunk';
 import { useTTS } from '@/hooks/use-tts';
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,7 @@ export function VoicePicker({
   const groups = groupVoices(voices);
   const empty = !loading && groups.length === 0;
   const tts = useTTS();
+  const [previewError, setPreviewError] = useState(false);
   return (
     <fieldset className="space-y-3">
       <legend>Interviewer voice</legend>
@@ -93,17 +94,21 @@ export function VoicePicker({
             void tts.cancel();
             return;
           }
-          primeSynthesis(window.speechSynthesis);
-          void tts.play(
-            window.speechSynthesis,
-            chunkForSpeech(TTS.PREVIEW_TEXT),
-            voice,
-            setup.rate,
-          );
+          setPreviewError(false);
+          void tts
+            .play(window.speechSynthesis, chunkForSpeech(TTS.PREVIEW_TEXT), voice, setup.rate)
+            .then((result) => {
+              setPreviewError(result === 'error');
+            });
         }}
       >
         {tts.speaking ? 'Stop preview' : 'Preview voice'}
       </Button>
+      {previewError && (
+        <p role="status">
+          Your browser didn&apos;t start speaking. Try another voice, or restart the browser.
+        </p>
+      )}
     </fieldset>
   );
 }

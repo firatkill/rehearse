@@ -99,6 +99,7 @@ export const VOICES = {
 } as const;
 
 export const TTS = {
+  START_TIMEOUT_MS: 2_500,
   RATE_MIN: 0.8,
   RATE_MAX: 1.3,
   RATE_STEP: 0.1,

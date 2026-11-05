@@ -513,6 +513,12 @@ Document title: “Privacy · Rehearse”. Exact staged copy; demo/full storage 
 | App error boundary                    | H1 "Something went wrong". Body "The page hit an error. Your saved sessions are safe in this browser." Buttons "Reload the page", "Go to the start page".                                              |
 | `/session/[id]` while `DEMO_MODE=off` | Existing in-progress sessions open read-only: banner (Off) and "The practice room is offline, so this session can’t continue right now. You can open what you’ve answered so far." Link "Open report". |
 
+### 9.14 V2 owner review refinements (D-103–D-110)
+
+The room desktop question is 40px/1.18. Each actionable phase has one primary action at 60px height, 18px semibold; Stop reading, Replay question, Type instead and Skip question are quiet text buttons. Skip question is hidden on “Ready when you are”. Existing focus, announcements and state transitions are unchanged. At 390px navigation fits on one row; GitHub remains in the footer. Until job posts work, “Practise by role” is the emphasised setup card.
+
+Voice preview failure status: “Your browser didn't start speaking. Try another voice, or restart the browser.” It clears on a new preview. A speech start failure in the room keeps the question captions visible and announces once: “Read-aloud didn’t work, so the question is shown as text.” No start within 2.5 seconds is an error, not successful completion. Preview speaks directly in its click; the room retains its required priming.
+
 ## 10. Content safety and prompt injection
 
 ### 10.1 Threats
@@ -716,3 +722,19 @@ V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “H
 | D-101 | 2026-11-05 | V-14 implements the approved Start design with native radio/checkbox chips and a quick warm-up that preserves the last preferences but requests three questions, including quota fallback. The job-post card is explicitly unavailable until V-32/V-40 under D-83; no language selector before V7. Interviewer settings use a native disclosure, initially expanded to expose the existing preview/microphone controls. Heading: “What are you preparing for?”; lead: “Pick one. You can change the voice, speed and length before you start.” | Guide V-14 and approved staged sequencing |
 
 | D-102 | 2026-11-05 | V-15 uses the dark stage in both page themes, segmented question progress, native accessible controls and a 60–120 second visual recording guide from config. Each question’s existing cutoff and announcements remain authoritative; the maximum is shown separately. The room state machine, recognition/synthesis separation and focus targets are unchanged. No replay-during-recording action is added from the illustrative design. | Guide V-15; FR-09–FR-22 |
+
+| D-103 | 2026-11-05 | Room hierarchy uses approved 40px/1.18 heading, one 60px/18px semibold primary per actionable phase and quiet secondary actions; state and accessibility unchanged. | Owner item 1; explicitly approved V2 review follow-up |
+
+| D-104 | 2026-11-05 | Hide Skip question before the interview starts. | Owner item 2; explicitly approved V2 review follow-up |
+
+| D-105 | 2026-11-05 | Hide header GitHub at narrow widths; retain footer GitHub so 390px navigation stays on one row. | Owner item 3; explicitly approved V2 review follow-up |
+
+| D-106 | 2026-11-05 | Emphasise Practise by role while job posts remain unavailable. | Owner item 4; explicitly approved V2 review follow-up |
+
+| D-107 | 2026-11-05 | Cancel utterances that do not start in 2500ms and resolve error; long end watchdog begins only after start. | Owner item 5; explicitly approved V2 review follow-up |
+
+| D-108 | 2026-11-05 | Show inline preview recovery copy on error; room retains visible captions and announces its text fallback once. | Owner item 6; explicitly approved V2 review follow-up |
+
+| D-109 | 2026-11-05 | Preview goes directly to speak synchronously for an empty queue without priming; retain room priming. | Owner item 7; explicitly approved V2 review follow-up |
+
+| D-110 | 2026-11-05 | Verify a never-starting fake synth and normal start/end with unit/component tests; no real speech calls. | Owner item 8; explicitly approved V2 review follow-up |

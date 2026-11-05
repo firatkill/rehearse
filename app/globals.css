@@ -1084,7 +1084,7 @@ main:has(> .setup-page) {
 .setup-card .ui-eyebrow {
   color: var(--accent);
 }
-.setup-job {
+.setup-role {
   border: 2px solid var(--accent);
 }
 .setup-job label,
@@ -1256,7 +1256,7 @@ main:has(> .setup-page) {
   letter-spacing: 0.04em;
   color: var(--accent);
 }
-.room-question {
+.room-column .room-question {
   font-size: 40px;
   line-height: 1.18;
   letter-spacing: -0.025em;
@@ -1379,7 +1379,7 @@ main:has(> .setup-page) {
   .room-progress > div {
     gap: 12px;
   }
-  .room-question {
+  .room-column .room-question {
     font-size: 24px;
     line-height: 1.25;
   }
@@ -1427,4 +1427,17 @@ main:has(> .setup-page) {
 }
 .room-shell .header-inner > .ui-button {
   margin-left: auto;
+}
+
+/* Room phase actions retain one strong action; speech/escape actions stay quiet. */
+.room-stage
+  .ui-button:is([data-variant='on-dark'], [data-variant='default'], [data-variant='primary']) {
+  min-height: 60px;
+  font-size: 18px;
+  font-weight: 600;
+}
+@media (max-width: 639px) {
+  .header-inner .header-github {
+    display: none;
+  }
 }

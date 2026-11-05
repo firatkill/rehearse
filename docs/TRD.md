@@ -329,6 +329,7 @@ export const VOICES = {
 } as const;
 
 export const TTS = {
+  START_TIMEOUT_MS: 2_500,
   RATE_MIN: 0.8,
   RATE_MAX: 1.3,
   RATE_STEP: 0.1,
@@ -1641,11 +1642,11 @@ export async function speak(
 ): Promise<SpeakResult>;
 ```
 
-Behaviour:
+Behaviour (D-107–D-110): preview does not prime synthesis; when the queue is empty its click reaches `speak()` synchronously. Room first-speak priming remains required.
 
 1. `synth.cancel()` then `synth.resume()` (clears a paused queue left by some browsers). If `synth.speaking` or `synth.pending` was true before the cancel, wait 50 ms before the first `speak()`: some Chrome versions silently drop an utterance queued in the same task as `cancel()` (verify with A-15).
 2. For each chunk in order: create `SpeechSynthesisUtterance(chunk)` with `voice`, `lang = voice?.lang ?? SPEECH.LANG`, `rate`, `pitch = 1`, `volume = 1`; call `onChunk(i)` on `start`; resolve the chunk on `end`; on `error` with `event.error` `interrupted` or `canceled` return `'cancelled'`; other errors return `'error'`. Attach handlers with the `onstart`, `onend` and `onerror` properties (not `addEventListener`; the E2E mock utterance is not an `EventTarget`). Keep a reference to the current utterance in module scope until it ends: Chrome can garbage-collect an unreferenced utterance and never fire `end`.
-3. Safety timeout per chunk: if no `end` arrives within `max(4000, chunk.length * 120 / rate)` ms, treat the chunk as ended (some engines never fire `end`).
+3. Start watchdog (D-107): if no `start` arrives within `TTS.START_TIMEOUT_MS` (2500 ms), cancel synthesis and resolve `error`. Only after `start`, arm the existing safety timeout: if no `end` arrives within `max(4000, chunk.length * 120 / rate)` ms, treat the chunk as ended (some engines never fire `end`).
 4. `signal` abort → `synth.cancel()` → `'cancelled'`.
 
 The room treats `'ended'` and `'error'` the same (move to thinking; on `'error'` the status line adds "Read-aloud didn’t work, so the question is shown as text."). `'cancelled'` from "Stop reading" also moves to thinking; from “I’m ready to answer” moves to answering; from tab hidden stays in `asking` with "Replay question" offered.
@@ -3373,6 +3374,10 @@ Render it as `<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCR
 - `SafeText` (`components/common/safe-text.tsx`) renders model and visitor strings as React text. It splits on `/(\[[^\]\n]{1,40}\])/` and wraps bracketed placeholders in `<span class="placeholder">`. No HTML, no Markdown, no links.
 - `SafeMarkdown` (`components/common/safe-markdown.tsx`) wraps `react-markdown` with `skipHtml`, no `rehype-raw`, `allowedElements` = `p, h2, h3, ul, ol, li, strong, em, code, a`, `unwrapDisallowed`, and a link renderer that only allows `https:` and same-origin paths (others render as text) and adds `rel="noopener noreferrer"` to external links. It is used only for `content/pages/privacy.md` (static, repository-controlled).
 - Imported JSON is parsed and validated, never evaluated or rendered as HTML.
+
+### V2 room and narrow-screen refinement (D-103–D-106)
+
+The desktop room question uses 40px/1.18. Each actionable phase has one primary action at 60px height and 18px/600; Stop reading, Replay question, Type instead and Skip question use the text variant. Intro omits Skip. Existing reducer and accessibility contracts remain unchanged. Below 640px, header GitHub is hidden while the footer source link remains visible; navigation occupies one line at 390px. Until job-post integration, the role card receives the accent border and the job card a neutral border.
 
 ## 20. Error handling matrix
 

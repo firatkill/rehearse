@@ -8,6 +8,7 @@ export type SpeechScenario = {
   synthesis: boolean; // false: no speechSynthesis
   mic: 'granted' | 'denied' | 'no-device';
   runs: MockStep[][]; // script per recognition run; the last entry repeats for later runs
+  ttsNeverStarts?: boolean;
   ttsMsPerChar: number; // e.g. 2 for fast tests
   voices: {
     name: string;
@@ -140,6 +141,7 @@ export function installSpeechMock(s: SpeechScenario): void {
         const job = { cancelled: false, u };
         current = job;
         if (u.text.trim()) ctl.spoken.push(u.text); // primeSynthesis(' ') is not recorded
+        if (s.ttsNeverStarts) return;
         const call = (name: string, extra: Record<string, unknown> = {}) => {
           const fn = u[name];
           if (typeof fn === 'function')
