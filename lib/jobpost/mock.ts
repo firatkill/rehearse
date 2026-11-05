@@ -31,7 +31,8 @@ export function mockJobpostOutput(prompt: string) {
     .map((item) => item.trim())
     .filter(
       (item) =>
-        item.length >= 12 &&
+        item.length >= JOBPOST.MIN_QUOTE_CHARS &&
+        (item.match(/[\p{L}\p{N}]+/gu)?.length ?? 0) >= JOBPOST.MIN_QUOTE_WORDS &&
         !/ignore|instructions|system prompt|secret|injection|pwned/i.test(item),
     );
   const quote = quotes[0] ?? text.slice(0, 120);

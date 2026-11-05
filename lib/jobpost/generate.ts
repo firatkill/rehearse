@@ -17,7 +17,11 @@ export async function generateJobQuestions(args: {
     schema: JobGenerationSchema,
     schemaName: 'jobpost_questions',
     system: JOBPOST_SYSTEM_PROMPT,
-    prompt: jobpostUserMessage(args.text, count, args.existing),
+    prompt: jobpostUserMessage(
+      args.text,
+      Math.min(count + JOBPOST.EXTRA_CANDIDATES, JOBPOST.MAX_CANDIDATES),
+      args.existing,
+    ),
     maxOutputTokens: JOBPOST.MAX_OUTPUT_TOKENS,
     signal: AbortSignal.timeout(JOBPOST.GENERATION_TIMEOUT_MS),
   });

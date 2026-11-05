@@ -27,7 +27,13 @@ export function validateJobQuestions(
     duplicates = 0;
   const source = normaliseJobText(text);
   for (const question of questions) {
-    if (!source.includes(normaliseJobText(question.groundingQuote))) {
+    const quote = normaliseJobText(question.groundingQuote);
+    const words = quote.match(/[\p{L}\p{N}]+/gu) ?? [];
+    if (
+      quote.length < JOBPOST.MIN_QUOTE_CHARS ||
+      words.length < JOBPOST.MIN_QUOTE_WORDS ||
+      !source.includes(quote)
+    ) {
       ungrounded++;
       continue;
     }
@@ -45,6 +51,6 @@ export function validateJobQuestions(
     questions: accepted,
     ungrounded,
     duplicates,
-    groundingRate: (questions.length - ungrounded) / questions.length,
+    groundingRate: questions.length ? (questions.length - ungrounded) / questions.length : 0,
   };
 }
