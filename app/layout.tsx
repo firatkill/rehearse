@@ -23,8 +23,8 @@ const THEME_SCRIPT = `try {
 } catch {}`;
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f6f3' },
-    { media: '(prefers-color-scheme: dark)', color: '#111111' },
+    { media: '(prefers-color-scheme: light)', color: '#f2f4f3' },
+    { media: '(prefers-color-scheme: dark)', color: '#0d1412' },
   ],
 };
 
