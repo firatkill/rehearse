@@ -16,10 +16,11 @@ export function GET(req: Request): Response {
     const env = getEnv();
     const data = HealthResponseSchema.parse({
       status: 'ok',
+      edition: env.APP_EDITION,
       version: APP_VERSION,
       commit: env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev',
       demoMode: env.DEMO_MODE,
-      llmMode: env.LLM_MODE,
+      llmMode: env.APP_EDITION === 'demo' ? 'none' : env.LLM_MODE,
       rateLimitBackend: env.RATE_LIMIT_BACKEND,
       promptVersions: { feedback: FEEDBACK_PROMPT_VERSION, summary: SUMMARY_PROMPT_VERSION },
       bankVersion: getBank().bankVersion,

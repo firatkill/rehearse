@@ -15,6 +15,8 @@ export const test = base.extend<{ capOrigin: string }>({
         {
           env: {
             ...process.env,
+            APP_EDITION: 'full',
+            NODE_ENV: 'test',
             LLM_MODE: 'mock',
             RATE_LIMIT_BACKEND: 'memory',
             DEMO_MODE: 'on',

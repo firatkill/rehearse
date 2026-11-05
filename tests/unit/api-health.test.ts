@@ -26,6 +26,7 @@ it('TC-031 UT-35 returns exact health fields without external calls', async () =
   expect(res.headers.get('cache-control')).toBe('no-store');
   expect(HealthResponseSchema.parse(await res.json())).toEqual({
     status: 'ok',
+    edition: 'full',
     version: APP_VERSION,
     commit: 'a1b2c3d',
     demoMode: 'readonly',

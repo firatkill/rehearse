@@ -10,6 +10,7 @@ const cases: [ErrorCode, string, 'heading' | 'save' | 'retry'][] = [
   ['SESSION_FEEDBACK_EXHAUSTED', 'No feedback attempts left in this session', 'save'],
   ['FEEDBACK_QUOTA_EXCEEDED', 'You’ve reached today’s feedback limit', 'heading'],
   ['GLOBAL_CAP_REACHED', 'The demo has reached its daily limit', 'heading'],
+  ['DEMO_ONLY', 'Live AI is available in the full version', 'heading'],
   ['DEMO_READONLY', 'Feedback is paused on the live demo', 'heading'],
   ['TOKEN_EXPIRED', 'This session’s feedback window has closed', 'heading'],
   ['TOKEN_INVALID', 'Feedback isn’t available for this session', 'heading'],
@@ -52,6 +53,12 @@ it.each(cases)(
     } else expect(retry).toBeNull();
     fireEvent.click(save);
     expect(onSave).toHaveBeenCalledOnce();
+    if (code === 'DEMO_ONLY')
+      expect(
+        screen.getByText(
+          'The demo uses pre-written sample feedback. Run the full version yourself for live coaching.',
+        ),
+      ).toBeVisible();
     if (code.startsWith('TOKEN_'))
       expect(screen.getByRole('link', { name: 'Start a new session' })).toHaveAttribute(
         'href',

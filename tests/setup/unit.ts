@@ -1,6 +1,7 @@
 import { afterEach, vi } from 'vitest';
 
 Object.assign(process.env, {
+  APP_EDITION: 'full',
   LLM_MODE: 'mock',
   RATE_LIMIT_BACKEND: 'memory',
   SESSION_SECRET: 'unit-session-secret-0000000000000000000000',

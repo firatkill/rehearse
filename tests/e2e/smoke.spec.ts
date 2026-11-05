@@ -12,6 +12,7 @@ for (const offset of [0, 1, 2]) {
     const body = HealthResponseSchema.parse(await response.json());
     expect(body.status).toBe('ok');
     expect(body.demoMode).toBe(offset === 1 ? 'readonly' : offset === 2 ? 'off' : 'on');
+    expect(body.edition).toBe('full');
     expect(body.llmMode).toBe('mock');
     expect(body.rateLimitBackend).toBe('memory');
   });

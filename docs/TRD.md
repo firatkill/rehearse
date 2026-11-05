@@ -4384,3 +4384,13 @@ Activity counts include all completed original/retry/follow-up snapshots, fallin
 - `normalizeFeedback` context adds optional `followUp` (default false); `generateFeedback` sets it only from its verified `followUpPrompt`. `too_short = !followUp && words < ANSWER.SHORT_WORDS`. Only this flag triggers the structure/specificity/impact length caps; off-topic caps remain universal. Feedback prompt v8 matches this distinction. Golden g-28/g-29 are now under 40 words, with the same expected ranges and flags.
 - Config §4 adds `TEXT_LENGTH_GUIDE = { MIN_WORDS: 40, MAX_WORDS: 240 }`; text length is Too short below min, On target through max inclusive, Long above max. It does not infer speaking time or alter scores. Voice length retains RECORDING_GUIDE.
 - Report extrema require `scoredCount > 1`. Progress comparison labels require six scored finished sessions; sparse labels use the latest window count. Retry singular/plural and follow-up reading copy are in PRD §9.
+
+### V-30 edition guards (D-126; extends §5/§12/§20)
+
+Health adds `edition: demo | full`; `llmMode` is `none` in demo, otherwise `live | mock`. Demo normalises unused LLM/Upstash config before Zod parsing, needs no key/prices/remote limiter, and uses process-cached ephemeral signing/hash secrets if omitted. NEXT_PUBLIC_SITE_URL defaults to localhost only in demo when absent. The internal provider-mode placeholder is never exposed as a demo provider: getProvider checks edition before either constructor and throws DEMO_ONLY. Full production rejects mock by NODE_ENV; full live permits memory even on Vercel. `instrumentation.register` validates before accepting requests, without constructing a provider.
+
+| Error (§20 addition) | HTTP | Retry | UI                                                                                                                                    |
+| -------------------- | ---- | ----- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| DEMO_ONLY            | 403  | No    | Live AI is available in the full version. The demo uses pre-written sample feedback. Run the full version yourself for live coaching. |
+
+`lib/edition.ts` reads only the build-time NEXT_PUBLIC_APP_EDITION replacement set by next.config.ts from APP_EDITION; it is the sole client env exception. Build the same edition that will run. CI production builds validate with inert live-shaped credentials and never call a provider; mocked production-build E2E servers use NODE_ENV=test, not a bypass flag. Test runtime retains strict CSP and HSTS just like production. APP_PASSWORD enforcement remains V-34; DATA_DIR storage remains V-31 and monthly warnings V-33.

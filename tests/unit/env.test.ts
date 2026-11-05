@@ -70,9 +70,9 @@ describe('UT-30 — TRD §5, FR-44, FR-51, NFR-13', () => {
       PRICE_CACHED_INPUT_PER_MTOK: 0.5,
     });
   });
-  it('TC-004: production rejects both development backends', () => {
-    vi.stubEnv('VERCEL_ENV', 'production');
-    expect(getEnv).toThrow(/LLM_MODE.*RATE_LIMIT_BACKEND/);
+  it('TC-004 TC-159: full production rejects mock regardless of hosting', () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    expect(getEnv).toThrow(/LLM_MODE/);
   });
   it('TC-005: rejects equal secrets and never exposes their values', () => {
     vi.stubEnv('IP_HASH_SECRET', example.SESSION_SECRET);

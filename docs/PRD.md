@@ -415,6 +415,8 @@ V-15 presentation (D-102): the room stays dark in both page themes, uses segment
 
 V3 review copy (D-120/D-124/D-125): while retrying, retain the existing “Change one thing · {Dimension}”, point and “Try saying:” rewrite above the input. Follow-up reading: “The interviewer is reading the follow-up.” Text delivery Length uses “Too short”, “On target”, “Long” from word count, while speaking time remains “Not measured in text mode”.
 
+V-30 DEMO_ONLY copy: heading “Live AI is available in the full version”; body “The demo uses pre-written sample feedback. Run the full version yourself for live coaching.” No retry action (D-126).
+
 ### 9.8 `/session/[id]/report`
 
 D-94: only server-rendered /sample uses the fixed UTC calendar date in en-GB. Saved reports render the visitor’s local date/time after mount, in en-GB without a UTC label.
@@ -780,3 +782,5 @@ V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “H
 | D-123 | 2026-11-05 | Hide the report Best / Lowest comparison unless at least two original answers are scored. | Owner V3 review item d |
 | D-124 | 2026-11-05 | Follow-up asking announces The interviewer is reading the follow-up. Original asking retains the question-number announcement. | Owner V3 review item e |
 | D-125 | 2026-11-05 | Text delivery length uses words: below 40 Too short, 40–240 inclusive On target, above 240 Long. Store bounds in TEXT_LENGTH_GUIDE; 40 matches the existing main-answer minimum and 240 is two minutes at the lower comfortable pace. This is coaching presentation, not an extra scoring cap; voice keeps elapsed-time guidance. | Owner V3 review item f; guide §0 interpretation |
+
+| D-126 | 2026-11-05 | V-30 normalises demo configuration before validation: ignore LLM_MODE and unused provider/Upstash fields, use per-process ephemeral signing/hash secrets when omitted, and report llmMode none on health. Full defaults remain live and rejects mock whenever NODE_ENV=production; memory is permitted. Build-time public edition is derived only from APP_EDITION. Production-build E2E runs under NODE_ENV=test with mock providers; normal startup validation has no bypass switch. | Guide §0/4.1; D-73/80/84 |
