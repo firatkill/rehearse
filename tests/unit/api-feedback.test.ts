@@ -252,14 +252,20 @@ it('TC-076 UT-33 failure logs follow TRD §20 severity without private text', as
 });
 
 it('TC-149 authenticates follow-ups before provider use and scores the signed prompt once', async () => {
-  const initial = FeedbackResponseSchema.parse(await (await POST(request())).json());
+  // A real session retains its original token; never mint a new expiry per request.
+  const headers = { authorization: `Bearer ${token()}` };
+  const initial = FeedbackResponseSchema.parse(await (await POST(request(body(), headers))).json());
   expect(initial.followUpToken).toMatch(/^rf1\./);
   const provider = providerModule.getProvider();
   const spy = vi.spyOn(provider, 'generateStructured');
   vi.spyOn(providerModule, 'getProvider').mockReturnValue(provider);
-  await error(request({ ...body(), followUpToken: 'rf1.forged.invalid' }), 401, 'TOKEN_INVALID');
+  await error(
+    request({ ...body(), followUpToken: 'rf1.forged.invalid' }, headers),
+    401,
+    'TOKEN_INVALID',
+  );
   expect(spy).not.toHaveBeenCalled();
-  const result = await POST(request({ ...body(), followUpToken: initial.followUpToken }));
+  const result = await POST(request({ ...body(), followUpToken: initial.followUpToken }, headers));
   expect(result.status).toBe(200);
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.calls[0]?.[0].prompt).toContain(
