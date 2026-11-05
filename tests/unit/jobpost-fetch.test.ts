@@ -14,6 +14,7 @@ const html = `<!doctype html><html><head><title>Fictional engineer vacancy</titl
   )}<script>globalThis.__jobScriptRan=true</script><img src="https://external.invalid/pixel"></article></body></html>`;
 let server: Server;
 let base: string;
+let localPort: number;
 let requests: {
   url: string;
   agent: string | undefined;
@@ -32,6 +33,11 @@ beforeAll(async () => {
       host: request.headers.host,
     });
     response.setHeader('Content-Type', 'text/html; charset=utf-8');
+    if (path === '/port') {
+      response.writeHead(302, { Location: `http://public.example:${localPort}/article` });
+      response.end();
+      return;
+    }
     if (path === '/private') {
       response.writeHead(302, { Location: 'http://127.0.0.1/private' });
       response.end();
@@ -97,7 +103,8 @@ beforeAll(async () => {
   });
   const address = server.address();
   if (!address || typeof address === 'string') throw new Error('No test port');
-  base = `http://public.example:${address.port}`;
+  base = `http://public.example`;
+  localPort = address.port;
 });
 afterAll(async () => {
   server.closeAllConnections();
@@ -121,7 +128,9 @@ const resolve = async () => {
 };
 const transport: PageTransport = (url, address, signal) => {
   expect(address).toEqual({ address: '8.8.8.8', family: 4 });
-  return requestPage(url, { address: '127.0.0.1', family: 4 }, signal);
+  const localUrl = new URL(url);
+  localUrl.port = String(localPort);
+  return requestPage(localUrl, { address: '127.0.0.1', family: 4 }, signal);
 };
 it.each([
   '0.0.0.0',
@@ -199,7 +208,7 @@ it('TC-181 local HTML extraction retains post text, strips markup and fetches no
     agent: JOBPOST.FETCH_USER_AGENT,
     authorization: undefined,
     cookie: undefined,
-    host: new URL(base).host,
+    host: `${new URL(base).hostname}:${localPort}`,
   });
   expect(dns.lookup).not.toHaveBeenCalled();
 });
@@ -270,4 +279,37 @@ it('TC-180 production deadline rejects at ten seconds without waiting for DNS', 
   await rejected;
   expect(never).not.toHaveBeenCalled();
   vi.useRealTimers();
+});
+
+it('TC-186 non-default local-server port is rejected before resolution or connection', async () => {
+  const resolver = vi.fn(resolve);
+  const socket = vi.fn(transport);
+  await expect(
+    fetchJobPost(`${base}:${localPort}/article`, { resolve: resolver, transport: socket }),
+  ).rejects.toMatchObject({ code: 'JOBPOST_FETCH_FAILED' });
+  expect(resolver).not.toHaveBeenCalled();
+  expect(socket).not.toHaveBeenCalled();
+  expect(requests).toEqual([]);
+  for (const url of [
+    'http://public.example:80/job',
+    'https://public.example:443/job',
+    'http://public.example/job',
+    'https://public.example/job',
+  ])
+    expect(jobUrl(url).port).toBe('');
+  for (const url of [
+    'http://public.example:443/job',
+    'https://public.example:80/job',
+    'http://public.example:8080/job',
+  ])
+    expect(() => jobUrl(url)).toThrow();
+});
+
+it('TC-186 a redirect to a non-default port is rejected before another connection', async () => {
+  const resolver = vi.fn(resolve);
+  await expect(
+    fetchJobPost(`${base}/port`, { resolve: resolver, transport }),
+  ).rejects.toMatchObject({ code: 'JOBPOST_FETCH_FAILED' });
+  expect(resolver).toHaveBeenCalledTimes(1);
+  expect(requests).toHaveLength(1);
 });

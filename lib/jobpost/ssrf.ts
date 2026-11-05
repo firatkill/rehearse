@@ -47,7 +47,13 @@ export function isPublicAddress(address: string): boolean {
 export function jobUrl(source: string): URL {
   const value = z.string().min(1).max(JOBPOST.MAX_CHARS).parse(source);
   const url = new URL(value);
-  if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password)
+  // WHATWG URL removes an explicit scheme-default port (HTTP 80 / HTTPS 443).
+  if (
+    !['http:', 'https:'].includes(url.protocol) ||
+    url.port !== '' ||
+    url.username ||
+    url.password
+  )
     throw new AppError('JOBPOST_FETCH_FAILED');
   url.hash = '';
   return url;
