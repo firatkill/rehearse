@@ -1,4 +1,7 @@
 'use client';
+import { ComingUp } from './coming-up';
+import { requestUpcoming } from '@/lib/api/upcoming-client';
+import type { UpcomingItem } from '@/lib/api/upcoming-contracts';
 import { APP_EDITION } from '@/lib/edition';
 import { LocalSessionTime } from '@/components/common/local-session-time';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -130,6 +133,8 @@ export function HistoryList({
 }
 export function History() {
   const repository = useRepository();
+  const [upcoming, setUpcoming] = useState<UpcomingItem[] | null>([]);
+  const [today, setToday] = useState(() => new Date());
   const [entries, setEntries] = useState<ProgressEntry[]>([]);
   const [skipped, setSkipped] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -143,6 +148,8 @@ export function History() {
         progressEntry(session, await repository.getAnswers(session.id)),
       ),
     );
+    if (APP_EDITION === 'full') setUpcoming(await requestUpcoming());
+    setToday(new Date());
     setEntries(next);
     setSkipped(result.skipped);
     setLoaded(true);
@@ -184,6 +191,12 @@ export function History() {
       </p>
       {loaded && (
         <>
+          {APP_EDITION === 'full' &&
+            (upcoming ? (
+              <ComingUp posts={upcoming} now={today} />
+            ) : (
+              <p role="status">Couldn’t load upcoming interviews. Reload to try again.</p>
+            ))}
           <ProgressOverview entries={entries} />
           <section className="progress-card" aria-labelledby="progress-sessions-heading">
             <div className="progress-section-heading">
@@ -200,6 +213,7 @@ export function History() {
           onChanged={refresh}
           onDeleted={() => {
             setEntries([]);
+            setUpcoming([]);
             setSkipped(0);
             setLoaded(true);
           }}

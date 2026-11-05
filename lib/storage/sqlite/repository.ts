@@ -1,4 +1,5 @@
 import 'server-only';
+import { interviewDateMigration } from './migrations/004-interview-date';
 import { jobPostsMigration } from './migrations/003-job-posts';
 import { readJobData, importJobData } from './job-data';
 import { costsMigration } from './migrations/002-costs';
@@ -14,7 +15,7 @@ import { buildExport, readImport } from '../export';
 import type { SessionRepository } from '../repository';
 import { initialMigration } from './migrations/001-sessions';
 
-const migrations = [initialMigration, costsMigration, jobPostsMigration];
+const migrations = [initialMigration, costsMigration, jobPostsMigration, interviewDateMigration];
 const rowSchema = z.object({ value: z.string() });
 function value(row: unknown): unknown {
   const parsed = rowSchema.safeParse(row);

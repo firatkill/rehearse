@@ -29,6 +29,8 @@ export async function POST(request: Request): Promise<Response> {
       const fetched = await fetchJobPost(input.url);
       post = repo.create(fetched.text, fetched.sourceUrl);
     } else if (input.operation === 'create') post = repo.create(input.text);
+    else if (input.operation === 'setInterviewDate')
+      post = repo.setInterviewDate(input.id, input.interviewDate);
     else if (input.operation === 'updateText') post = repo.updateText(input.id, input.text);
     else post = repo.get(input.id);
     if (!post) throw new AppError('JOBPOST_NOT_FOUND');

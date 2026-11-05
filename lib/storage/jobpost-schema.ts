@@ -4,7 +4,8 @@ export const GeneratedQuestionIdSchema = z
   .string()
   .regex(/^gen-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
 export const JobTextSchema = z.string().trim().min(1).max(JOBPOST.MAX_CHARS);
-export const JobPostRecordSchema = z
+export const InterviewDateSchema = z.iso.date();
+export const LegacyJobPostRecordSchema = z
   .object({
     schemaVersion: z.literal(1),
     id: z.uuid(),
@@ -21,6 +22,18 @@ export const JobPostRecordSchema = z
     practiceRole: z.enum(ROLES),
   })
   .strict();
+export const JobPostRecordSchema = LegacyJobPostRecordSchema.extend({
+  schemaVersion: z.literal(2),
+  interviewDate: InterviewDateSchema.nullable(),
+});
+export function migrateJobRecord(input: unknown) {
+  const current = JobPostRecordSchema.safeParse(input);
+  if (current.success) return current.data;
+  const legacy = LegacyJobPostRecordSchema.safeParse(input);
+  return legacy.success
+    ? JobPostRecordSchema.parse({ ...legacy.data, schemaVersion: 2, interviewDate: null })
+    : null;
+}
 export const GeneratedQuestionRecordSchema = z
   .object({
     schemaVersion: z.literal(1),

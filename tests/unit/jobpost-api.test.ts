@@ -3,6 +3,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { POST } from '@/app/api/job-posts/route';
+import { POST as upcoming } from '@/app/api/job-posts/upcoming/route';
 import { POST as start } from '@/app/api/sessions/start/route';
 import { POST as feedback } from '@/app/api/feedback/route';
 import { getEnv, resetEnvForTests } from '@/lib/env';
@@ -208,5 +209,65 @@ it('TC-181 full fetch saves extracted text for review without a provider; demo b
     (await POST(request({ operation: 'fetch', url: 'https://public.example/job' }))).status,
   ).toBe(403);
   expect(fetch).not.toHaveBeenCalled();
+  expect(provider).not.toHaveBeenCalled();
+});
+
+it('TC-182 date API validates calendar dates, persists and clears; upcoming is same-origin full-only without providers', async () => {
+  vi.stubEnv('APP_EDITION', 'full');
+  vi.stubEnv('DATA_DIR', dir);
+  resetEnvForTests();
+  const provider = vi.spyOn(providers, 'getProvider');
+  provider.mockClear();
+  const created = JobResponseSchema.parse(
+    await (await POST(request({ operation: 'create', text: jobText }))).json(),
+  );
+  expect(
+    (
+      await POST(
+        request({
+          operation: 'setInterviewDate',
+          id: created.post.id,
+          interviewDate: '2026-02-30',
+        }),
+      )
+    ).status,
+  ).toBe(400);
+  const saved = JobResponseSchema.parse(
+    await (
+      await POST(
+        request({
+          operation: 'setInterviewDate',
+          id: created.post.id,
+          interviewDate: '2026-11-11',
+        }),
+      )
+    ).json(),
+  );
+  expect(saved.post.interviewDate).toBe('2026-11-11');
+  const listed = await upcoming(request({}));
+  expect(listed.status).toBe(200);
+  expect(await listed.json()).toMatchObject({
+    posts: [{ id: created.post.id, interviewDate: '2026-11-11', total: 0, answered: 0 }],
+  });
+  expect((await upcoming(request({}, { origin: 'https://foreign.invalid' }))).status).toBe(403);
+  expect((await upcoming(request({ unexpected: true }))).status).toBe(400);
+  expect(
+    (
+      await POST(
+        request({ operation: 'setInterviewDate', id: created.post.id, interviewDate: null }),
+      )
+    ).status,
+  ).toBe(200);
+  expect(await (await upcoming(request({}))).json()).toEqual({ posts: [] });
+  vi.stubEnv('APP_EDITION', 'demo');
+  resetEnvForTests();
+  expect((await upcoming(request({}))).status).toBe(403);
+  expect(
+    (
+      await POST(
+        request({ operation: 'setInterviewDate', id: created.post.id, interviewDate: null }),
+      )
+    ).status,
+  ).toBe(403);
   expect(provider).not.toHaveBeenCalled();
 });

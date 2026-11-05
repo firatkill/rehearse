@@ -1,3 +1,4 @@
+import { migrateJobRecord } from './jobpost-schema';
 import { STORAGE } from '@/lib/config';
 import {
   LegacyAnswerRecordSchema,
@@ -91,6 +92,19 @@ export const MIGRATIONS: readonly Migration[] = [
     upgrade(db) {
       db.createObjectStore('jobPosts', { keyPath: 'id' });
       db.createObjectStore('generatedQuestions', { keyPath: 'id' });
+    },
+  },
+  {
+    version: 7,
+    upgrade(_db, tx) {
+      const request = tx.objectStore('jobPosts').openCursor();
+      request.onsuccess = () => {
+        const cursor = request.result;
+        if (!cursor) return;
+        const migrated = migrateJobRecord(cursor.value);
+        if (migrated) cursor.update(migrated);
+        cursor.continue();
+      };
     },
   },
 ];

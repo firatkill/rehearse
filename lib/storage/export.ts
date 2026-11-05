@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { JobDataSchema, type JobData } from './jobpost-schema';
+import { JobDataSchema, migrateJobRecord, type JobData } from './jobpost-schema';
 import { HTTP, STORAGE } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import { migrateRecord } from './migrations';
@@ -26,6 +26,18 @@ export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unkno
     jobPosts: [],
     generatedQuestions: [],
   }),
+  6: (file) => {
+    const legacy = EnvelopeSchema.extend({ jobPosts: z.array(z.unknown()) }).parse(file);
+    return {
+      ...legacy,
+      formatVersion: 7,
+      jobPosts: legacy.jobPosts.map((post) => {
+        const migrated = migrateJobRecord(post);
+        if (!migrated) throw new ImportFileError('format');
+        return migrated;
+      }),
+    };
+  },
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({

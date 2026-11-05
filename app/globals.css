@@ -1958,3 +1958,25 @@ main:has(> .setup-page) {
     padding-block: 32px 64px;
   }
 }
+
+.coming-up {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  border: 2px solid var(--accent);
+}
+.coming-up > div {
+  flex: 1 1 420px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.coming-up h2 {
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.coming-up .ui-eyebrow {
+  color: var(--accent);
+}
