@@ -1,3 +1,4 @@
+import { voiceAccentLabel } from '@/lib/speech/voices';
 import { expect, it } from 'vitest';
 import { groupVoices, loadVoices, pickVoice } from '@/lib/speech/voices';
 import { macosVoices } from '../fixtures/macos-voices';
@@ -64,4 +65,15 @@ it('TC-128 UT-19 V-05 defaults through enhanced, preferred standard, other local
   voices = voices.filter((voice) => voice.name !== 'Karen');
   expect(pickVoice(voices, null).voice?.name).toBe('Google US English');
   expect(pickVoice([], null)).toEqual({ voice: null, fellBack: false });
+});
+
+it.each([
+  ['en-gb', 'English (UK)'],
+  ['en-us', 'English (US)'],
+  ['en-au', 'English (Australia)'],
+  ['en-in', 'English (India)'],
+  ['en', 'English'],
+  ['en-xx', 'English'],
+])('TC-134 D-96 readable accent %s', (tag, expected) => {
+  expect(voiceAccentLabel(tag)).toBe(expected);
 });

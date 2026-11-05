@@ -313,7 +313,7 @@ Document title: "Set up a session · Rehearse"
 - Fieldset legend "Answer mode": radio "Voice: answer out loud" and "Text: type your answers". When voice is unsupported, the Voice radio is disabled and its description reads "Not available in this browser."
 - Fieldset legend "Interviewer voice" (hidden when synthesis is unavailable):
   - Checkbox "Read questions aloud" (default checked).
-  - Select label "Voice"; native accent groups use normalized language-tag labels (for example `en-gb`, `en-us`); options "{voice.name} ({voice.lang})", with " (online voice)" appended when `localService` is false. While voices load: single disabled option "Loading voices…". If none: "No English voices found" and the checkbox is unchecked and disabled.
+  - Select label "Voice"; native accent groups use readable English labels (for example “English (UK)”, “English (US)”); options "{voice.name} ({voice.lang})", with " (online voice)" appended when `localService` is false. While voices load: single disabled option "Loading voices…". If none: "No English voices found" and the checkbox is unchecked and disabled.
   - When the remembered voice is missing on this device, under the select: "Your saved voice isn’t available here, so the default voice is used."
   - Range label "Speaking rate", value text "1.0×" (mono), min 0.8, max 1.3, step 0.1.
   - Button "Preview voice" (speaks the FR-06 sentence; while speaking the label is "Stop preview").
@@ -427,7 +427,7 @@ Document title: "Question {n} of {total} · Rehearse" (intro: "Interview · Rehe
 
 ### 9.8 `/session/[id]/report`
 
-V-01 / D-85: render saved-session dates in en-GB using UTC (for example “5 Nov 2026”), shared between server and browser.
+D-94: only server-rendered /sample uses the fixed UTC calendar date in en-GB. Saved reports render the visitor’s local date/time after mount, in en-GB without a UTC label.
 
 Document title: "Session report · Rehearse"
 
@@ -448,7 +448,7 @@ Document title: "Session report · Rehearse"
 
 ### 9.9 `/history`
 
-V-01 / D-85: saved timestamps use en-GB with an explicit UTC label (for example “5 Nov 2026, 00:30 UTC”).
+D-94: saved timestamps use en-GB in the visitor’s local timezone, rendered after mount without a UTC label.
 
 Document title: "History · Rehearse"
 
@@ -703,3 +703,7 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-92 | Owner raises cumulative V1 live-eval ceiling from $0.10 to $0.15; existing thresholds and two repeats remain unchanged. | Authorises the full feedback-v3 rerun after $0.04258038 spent. GitHub settings/secrets are not part of this approval. | Explicit owner approval, 2026-11-05 |
 
 | D-93 | A local `pnpm eval` run with its committed result file satisfies the eval requirement. Paid CI skips cleanly when configuration is absent; do not configure the GitHub eval environment or secrets. V1 is approved; merge PRs #2–#7 in order after green CI, then perform the requested follow-up fixes before V2. | Owner replaces the mandatory paid CI requirement in AGENTS §5/§7 and the guide definition of done. V-04/V-06 close against the passing V1 result retained on PR #7. | Owner, 2026-11-05 |
+
+| D-94 | Keep fixed UTC formatting only for server-rendered /sample. History and saved reports render local date/time after mount, in en-GB without a UTC label. | Owner follow-up replaces D-85 for client-only IndexedDB views; export filenames remain stable. | Owner, 2026-11-05 |
+| D-95 | On a summary containing the whole word “failing”, retry once with exactly the same prompt. Reject the retry only when the word describes the candidate’s performance; technical context such as “failing tests” is allowed. | Replaces D-88’s unconditional rejection. Sum token usage across both calls; keep prompt/version unchanged. Use bounded sentence-context checks for candidate/answer/performance subjects and failing-to phrasing, excluding technical nouns, without treating an unknown context as a candidate judgement. | Owner request; bounded contextual interpretation under guide §0, 2026-11-05 |
+| D-96 | Voice-picker accent groups use readable English names, including English (UK) and English (US), rather than raw language tags. | Replaces D-89 group-label presentation; voice eligibility/ranking and stored identifiers are unchanged. | Owner, 2026-11-05 |

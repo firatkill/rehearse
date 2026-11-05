@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { formatSessionDate } from '@/lib/date-time';
+import { LocalSessionTime } from '@/components/common/local-session-time';
 import { DIMENSIONS, STORAGE } from '@/lib/config';
 import {
   DIMENSION_LABELS,
@@ -71,8 +72,12 @@ export function ReportView({
     <div ref={root} className="space-y-8 py-8">
       <h1>Session report</h1>
       <p className="font-mono text-sm">
-        {formatSessionDate(session.createdAt)} · {ROLE_LABELS[session.setup.role]},{' '}
-        {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
+        {source === 'sample' ? (
+          formatSessionDate(session.createdAt)
+        ) : (
+          <LocalSessionTime value={session.createdAt} />
+        )}{' '}
+        · {ROLE_LABELS[session.setup.role]}, {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
         {session.setup.types.map((t) => QUESTION_TYPE_LABELS[t]).join(', ')} · {answered}/
         {session.questions.length} answered · Seed <SafeText text={session.seed} />
       </p>

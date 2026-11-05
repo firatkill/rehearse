@@ -1,7 +1,7 @@
 'use client';
 import { TTS } from '@/lib/config';
 import type { Setup } from '@/lib/storage/schema';
-import { groupVoices, pickVoice } from '@/lib/speech/voices';
+import { groupVoices, pickVoice, voiceAccentLabel } from '@/lib/speech/voices';
 import { primeSynthesis } from '@/lib/speech/tts';
 import { chunkForSpeech } from '@/lib/speech/chunk';
 import { useTTS } from '@/hooks/use-tts';
@@ -56,7 +56,7 @@ export function VoicePicker({
             <option value="">No English voices found</option>
           ) : (
             groups.map((group) => (
-              <optgroup key={group.accent} label={group.accent}>
+              <optgroup key={group.accent} label={voiceAccentLabel(group.accent)}>
                 {group.voices.map((v) => (
                   <option key={v.voiceURI} value={v.voiceURI}>
                     {v.name} ({v.lang}){v.localService ? '' : ' (online voice)'}

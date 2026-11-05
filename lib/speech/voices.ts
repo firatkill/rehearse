@@ -87,3 +87,17 @@ export function groupVoices(
     .sort(([a], [b]) => a.localeCompare(b, 'en-GB'))
     .map(([key, entries]) => ({ accent: key, voices: entries }));
 }
+
+/** English UI names; region codes stay internal grouping keys. */
+export function voiceAccentLabel(tag: string): string {
+  const region = tag.split('-').find((part, index) => index > 0 && /^[a-z]{2}$/i.test(part));
+  if (!region) return 'English';
+  const code = region.toUpperCase();
+  const name =
+    code === 'GB'
+      ? 'UK'
+      : code === 'US'
+        ? 'US'
+        : new Intl.DisplayNames(['en-GB'], { type: 'region', fallback: 'none' }).of(code);
+  return name ? `English (${name})` : 'English';
+}

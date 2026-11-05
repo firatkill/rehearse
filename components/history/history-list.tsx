@@ -1,5 +1,5 @@
 'use client';
-import { formatSessionTimestamp } from '@/lib/date-time';
+import { LocalSessionTime } from '@/components/common/local-session-time';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { SessionRecord } from '@/lib/storage/schema';
@@ -56,9 +56,7 @@ export function HistoryList({
                   <span className="history-label" aria-hidden="true">
                     Date
                   </span>
-                  <time dateTime={session.createdAt}>
-                    {formatSessionTimestamp(session.createdAt)}
-                  </time>
+                  <LocalSessionTime value={session.createdAt} />
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">

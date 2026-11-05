@@ -223,7 +223,7 @@ Prettier (`.prettierrc.json`): `{ "singleQuote": true, "semi": true, "trailingCo
 
 ## 4. Configuration constants
 
-V-01 / D-85 adds `DATE_TIME = { LOCALE: 'en-GB', SESSION_TIME_ZONE: 'UTC' } as const` to `lib/config.ts`. Shared `lib/date-time.ts` exports session date, session timestamp (labelled UTC) and local quota-time formatters; all use the fixed locale.
+V-01 / D-85 adds `DATE_TIME = { LOCALE: 'en-GB', SESSION_TIME_ZONE: 'UTC' } as const` to `lib/config.ts`. Shared `lib/date-time.ts` exports session date, local session timestamp (rendered after mount, without a timezone label; D-94) and local quota-time formatters; all use the fixed locale. Only /sample uses SESSION_TIME_ZONE; client-only saved history/report timestamps use the visitor’s local timezone after mount (D-94).
 
 `lib/config.ts` **(normative)**. Values that change per environment are env vars (section 5); everything else is here.
 
@@ -1588,7 +1588,7 @@ V-05 / D-89: filter to English voices and exclude `VOICES.NOVELTY_NAMES`, includ
 
 Default ranking: local premium, local enhanced, local Samantha/Daniel, other local, then online. Within each quality tier prefer the browser default, then en-US, then name and URI in en-GB lexical order. A saved eligible URI always wins; a missing or now-excluded URI uses the ranked default with the existing fallback message. No eligible voices returns null. Quality is inferred from the name/URI because Web Speech has no quality field.
 
-The picker uses native `optgroup` elements labelled with normalized language tags (e.g. `en-au`, `en-gb`, `en-us`), sorted by tag. Ranking is preserved inside each group. Option names and online suffix stay unchanged.
+The picker uses native `optgroup` elements labelled with readable English region names (e.g. “English (Australia)”, “English (UK)”, “English (US)”; D-96), sorted by tag. Ranking is preserved inside each group. Option names and online suffix stay unchanged.
 
 `loadVoices` waits for `voiceschanged` or `SPEECH.VOICES_WAIT_MS`, whichever comes first, and resolves only once, clearing timer/listener. `useVoices` also refreshes on later events. All filtering/ranking/grouping functions use supplied voice data; no browser APIs at module load.
 
@@ -2392,7 +2392,7 @@ improvement_points:
 </answers>
 ```
 
-Role and seniority come from the token. Trend is computed in section 17.1. For fewer than `SUMMARY_LIMITS.MIN_TREND_ANSWERS` (3) scored answers, both `overall_by_question` and `trend` are the literal `not enough scored answers`; chart aggregates are unchanged. After normalization, reject any summary containing the whole word “failing” (case-insensitive) in its headline, paragraph, next practice or focus notes as `FEEDBACK_INVALID`, without retry.
+Role and seniority come from the token. Trend is computed in section 17.1. For fewer than `SUMMARY_LIMITS.MIN_TREND_ANSWERS` (3) scored answers, both `overall_by_question` and `trend` are the literal `not enough scored answers`; chart aggregates are unchanged. D-95: after normalization, a whole-word “failing” match (case-insensitive) in any summary field triggers exactly one retry with the same system/user prompt and token budget. Reject only a repeated candidate-performance judgement as `FEEDBACK_INVALID`; technical uses such as “failing tests” are allowed on retry. Bounded sentence-context checks identify candidate/answer/performance subjects and failing-to phrasing, excluding technical failure nouns; unknown contexts are not rejected solely for the word. Sum usage across both calls and include both in latency. Other invalid-output/provider failures retain their single-call behaviour. Prompt text/version remain unchanged.
 
 ### 14.6 Prompt versioning
 

@@ -143,8 +143,8 @@ test('TC-128 V-05 renders accessible accent groups and hides novelty choices', (
       onChange={vi.fn()}
     />,
   );
-  expect(screen.getByRole('group', { name: 'en-gb' })).toBeVisible();
-  expect(screen.getByRole('group', { name: 'en-us' })).toBeVisible();
+  expect(screen.getByRole('group', { name: 'English (UK)' })).toBeVisible();
+  expect(screen.getByRole('group', { name: 'English (US)' })).toBeVisible();
   expect(screen.queryByRole('option', { name: /Bahh/ })).not.toBeInTheDocument();
   expect(screen.getByLabelText('Voice')).toHaveValue('daniel');
 });
