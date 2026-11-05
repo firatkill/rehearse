@@ -14,7 +14,9 @@ export class ImportFileError extends AppError {
     super('VALIDATION_FAILED', errorCopy[kind]);
   }
 }
-export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unknown>> = {};
+export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unknown>> = {
+  1: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 2 }),
+};
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({
   sessions: z.array(z.unknown()).max(1_000),

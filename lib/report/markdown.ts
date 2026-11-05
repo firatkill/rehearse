@@ -1,3 +1,4 @@
+import { bestAnswer } from '@/lib/storage/attempts';
 import { DIMENSIONS } from '@/lib/config';
 import {
   DIMENSION_LABELS,
@@ -18,7 +19,8 @@ export function escapeMd(s: string): string {
 export function reportFilename(session: SessionRecord) {
   return `rehearse-${session.createdAt.slice(0, 10)}-${session.setup.role}.md`;
 }
-export function reportMarkdown(session: SessionRecord, answers: AnswerRecord[]): string {
+export function reportMarkdown(session: SessionRecord, allAnswers: AnswerRecord[]): string {
+  const answers = allAnswers.map(bestAnswer);
   const a = aggregate(answers, session.questions.length);
   const e = escapeMd;
   const summary = session.summary;
@@ -72,6 +74,10 @@ export function reportMarkdown(session: SessionRecord, answers: AnswerRecord[]):
     const answer = answers.find((a) => a.index === index);
     if (!answer || !['scored', 'saved', 'skipped'].includes(answer.status)) continue;
     lines.push('', `### Question ${index + 1}: ${e(q.prompt)}`, '');
+    lines.push(
+      `${answer.attemptRecords.length} ${answer.attemptRecords.length === 1 ? 'try' : 'tries'}`,
+      '',
+    );
     if (answer.status === 'skipped') {
       lines.push('Skipped.');
       continue;

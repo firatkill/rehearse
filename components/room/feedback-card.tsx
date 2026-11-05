@@ -1,3 +1,4 @@
+import { DeltaBadge } from '@/components/ui/delta-badge';
 import { DIMENSIONS } from '@/lib/config';
 import { DIMENSION_LABELS } from '@/lib/labels';
 import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
@@ -8,10 +9,12 @@ export function FeedbackCard({
   answer,
   question,
   focus = true,
+  previous,
 }: {
   answer: AnswerRecord;
   question: SessionRecord['questions'][number];
   focus?: boolean;
+  previous?: AnswerRecord['feedback'];
 }) {
   const feedback = answer.feedback;
   if (!feedback) return null;
@@ -34,6 +37,7 @@ export function FeedbackCard({
         <p>This answer is very short, so structure, specificity and impact are capped at 2.</p>
       )}
       <h3>Scores</h3>
+      {previous && <p>Change from previous attempt</p>}
       <ul className="space-y-3">
         {DIMENSIONS.map((dimension) => {
           const result = feedback.scores[dimension];
@@ -54,6 +58,7 @@ export function FeedbackCard({
                   />
                 ))}
               </span>
+              {previous && <DeltaBadge value={result.score - previous.scores[dimension].score} />}
               <p>
                 <SafeText text={result.rationale} />
               </p>

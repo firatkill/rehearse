@@ -34,7 +34,7 @@ it('TC-091 UT-12 creates normative stores and indexes and caches one connection'
 it('TC-091 UT-12 versionchange closes and rejects later writes', async () => {
   const name = crypto.randomUUID();
   const db = await openDb(name);
-  const newer = await requestResult(indexedDB.open(name, 2));
+  const newer = await requestResult(indexedDB.open(name, 3));
   expect(storageStatus()).toBe('updated');
   expect(() => transaction(db, 'sessions', 'readwrite')).toThrow(StorageClosedError);
   newer.close();
@@ -43,7 +43,7 @@ it('TC-091 UT-12 blocked timeout rejects and closes a late success connection', 
   const name = crypto.randomUUID();
   const old = await requestResult(indexedDB.open(name, 1));
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
-  const opening = openDb(name, [...MIGRATIONS, { version: 2, upgrade() {} }]);
+  const opening = openDb(name, [...MIGRATIONS, { version: 3, upgrade() {} }]);
   const rejection = expect(opening).rejects.toBeInstanceOf(StorageBlockedError);
   // Let fake-indexeddb deliver blocked before advancing only the timeout clock.
   await new Promise<void>((resolve) => {
@@ -57,7 +57,7 @@ it('TC-091 UT-12 blocked timeout rejects and closes a late success connection', 
   await vi.advanceTimersByTimeAsync(STORAGE.OPEN_TIMEOUT_MS);
   await rejection;
   old.close();
-  const third = await requestResult(indexedDB.open(name, 3));
+  const third = await requestResult(indexedDB.open(name, 4));
   third.close();
 });
 it('TC-091 UT-12 guards configuration/migration mismatch', () => {
@@ -72,7 +72,7 @@ it('TC-091 UT-12 guards configuration/migration mismatch', () => {
 });
 it('TC-091 UT-12 opening errors reject and requests that never settle time out', async () => {
   const name = crypto.randomUUID();
-  const newer = await requestResult(indexedDB.open(name, 2));
+  const newer = await requestResult(indexedDB.open(name, 3));
   newer.close();
   await expect(openDb(name)).rejects.toMatchObject({ name: 'VersionError' });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });

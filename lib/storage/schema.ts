@@ -36,7 +36,7 @@ export const SetupSchema = z
   })
   .strict();
 
-export const SessionRecordSchema = z
+export const LegacySessionRecordSchema = z
   .object({
     schemaVersion: z.literal(1),
     id: z.string().uuid(),
@@ -88,7 +88,7 @@ export const DeliveryMetricsSchema = z
   })
   .strict();
 
-export const AnswerRecordSchema = z
+export const LegacyAnswerRecordSchema = z
   .object({
     schemaVersion: z.literal(1),
     sessionId: z.string().uuid(),
@@ -117,6 +117,48 @@ export const AnswerRecordSchema = z
     updatedAt: z.string().datetime(),
   })
   .strict();
+export const SessionRecordSchema = LegacySessionRecordSchema.extend({
+  schemaVersion: z.literal(2),
+});
+export const AttemptRecordSchema = LegacyAnswerRecordSchema.omit({
+  schemaVersion: true,
+  attempts: true,
+  notice: true,
+})
+  .extend({
+    id: z.string(),
+    ordinal: z.number().int().positive(),
+    status: z.enum(['scored', 'saved']),
+  })
+  .superRefine((attempt, ctx) => {
+    if ((attempt.status === 'scored') !== (attempt.feedback !== null))
+      ctx.addIssue({ code: 'custom', message: 'Attempt feedback must match its status.' });
+  });
+export const AnswerRecordSchema = LegacyAnswerRecordSchema.extend({
+  schemaVersion: z.literal(2),
+  attemptRecords: z.array(AttemptRecordSchema),
+  bestAttemptId: z.string().nullable(),
+}).superRefine((answer, ctx) => {
+  let best: z.infer<typeof AttemptRecordSchema> | undefined;
+  for (const [index, attempt] of answer.attemptRecords.entries()) {
+    if (
+      attempt.ordinal !== index + 1 ||
+      attempt.id !== `${answer.sessionId}:${answer.index}:${index + 1}` ||
+      attempt.sessionId !== answer.sessionId ||
+      attempt.index !== answer.index ||
+      attempt.questionId !== answer.questionId
+    )
+      ctx.addIssue({ code: 'custom', message: 'Attempt ownership or sequence is invalid.' });
+    if (attempt.feedback && (!best?.feedback || attempt.feedback.overall > best.feedback.overall))
+      best = attempt;
+  }
+  if (answer.bestAttemptId !== (best?.id ?? null))
+    ctx.addIssue({
+      code: 'custom',
+      message: 'Best attempt must reference the highest scored attempt (earliest tie).',
+    });
+});
+export type AttemptRecord = z.infer<typeof AttemptRecordSchema>;
 export const ExportFileSchema = z.object({
   format: z.literal('rehearse-export'),
   formatVersion: z.number().int().positive(),

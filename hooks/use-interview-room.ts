@@ -108,6 +108,7 @@ export function useInterviewRoom(id: string) {
         });
         return;
       }
+      if (event.type === 'RETRY_ANSWER') resetRecorder();
       if (event.type === 'REPLAY') setReplay((value) => value + 1);
       if (event.type === 'RETRY_RECORDING' || event.type === 'CONFIRM_RECORD_AGAIN') {
         if (event.type === 'CONFIRM_RECORD_AGAIN') resetRecorder();
@@ -378,7 +379,9 @@ export function useInterviewRoom(id: string) {
     void (async () => {
       if (
         ended.current &&
-        !state.answers.some((a) => a.status === 'saved' || a.status === 'scored')
+        !state.answers.some(
+          (a) => a.status === 'saved' || a.status === 'scored' || a.attemptRecords.length > 0,
+        )
       ) {
         await persist((repo) => repo.deleteSession(id));
         router.replace('/setup');

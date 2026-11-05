@@ -119,6 +119,8 @@ it('TC-086 UT-28 full scored report follows the normative section order and esca
 
     ### Question 1: Tell me about a time you had to deliver something important with less time than you needed. What did you cut, and how did you decide?
 
+    0 tries
+
     Behavioral · Overall 3.0 / 4
 
     **Your answer**

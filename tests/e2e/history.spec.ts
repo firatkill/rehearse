@@ -1,9 +1,12 @@
+import { migrateRecord } from '@/lib/storage/migrations';
 import { expect, test } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import sample from '../../content/sample/session.json';
 import { SessionRecordSchema, AnswerRecordSchema } from '@/lib/storage/schema';
 import { installSpeechMock } from './speech-mock';
 import { scenarios, uniqueIp } from './helpers';
+const parseSession = (value: unknown) => SessionRecordSchema.parse(migrateRecord(value));
+const parseAnswer = (value: unknown) => AnswerRecordSchema.parse(migrateRecord(value));
 
 test('TC-097 TC-098 E2E-17 history orders sessions, resumes, opens reports and confirms deletion', async ({
   page,
@@ -14,7 +17,7 @@ test('TC-097 TC-098 E2E-17 history orders sessions, resumes, opens reports and c
   const bundles = [0, 1, 2].map((index) => {
     const id = randomUUID();
     return {
-      session: SessionRecordSchema.parse({
+      session: parseSession({
         ...sample.session,
         id,
         origin: 'import',
@@ -26,9 +29,7 @@ test('TC-097 TC-098 E2E-17 history orders sessions, resumes, opens reports and c
         currentMode: 'text',
         checkpoint: { index: 0, phase: 'intro', at: sample.session.createdAt },
       }),
-      answers: sample.answers.map((answer) =>
-        AnswerRecordSchema.parse({ ...answer, sessionId: id }),
-      ),
+      answers: sample.answers.map((answer) => parseAnswer({ ...answer, sessionId: id })),
     };
   });
   await page.evaluate(async (data) => {

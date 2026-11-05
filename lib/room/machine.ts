@@ -1,3 +1,4 @@
+import { completeAttempt } from '@/lib/storage/attempts';
 import { SESSION, STORAGE } from '@/lib/config';
 import { countWords } from '@/lib/metrics/words';
 import { computeDelivery } from '@/lib/metrics/delivery';
@@ -70,6 +71,7 @@ export type RoomEvent =
     }
   | { type: 'SAVE_WITHOUT_FEEDBACK' }
   | { type: 'CONFIRM_SKIP' }
+  | { type: 'RETRY_ANSWER' }
   | { type: 'NEXT' }
   | { type: 'CONFIRM_END' }
   | { type: 'ONLINE'; online: boolean };
@@ -85,7 +87,8 @@ export const initialRoomState: RoomState = {
   restoredNotice: false,
 };
 const hasWords = (text: string) => countWords(text) > 0;
-const terminal = (answer: AnswerRecord) => ['scored', 'saved', 'skipped'].includes(answer.status);
+const terminal = (answer: AnswerRecord) =>
+  ['scored', 'saved', 'skipped'].includes(answer.status) || answer.attemptRecords.length > 0;
 const thinking = (): Phase => ({
   kind: 'thinking',
   remainingMs: SESSION.THINK_SECONDS * 1000,
@@ -152,12 +155,15 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
     feedback: null,
     feedbackMeta: null,
     attempts: 0,
+    attemptRecords: [],
+    bestAttemptId: null,
     notice: null,
     createdAt: at,
     updatedAt: at,
   };
-  const answer = { ...base, ...patch, updatedAt: at };
+  let answer = { ...base, ...patch, updatedAt: at };
   answer.metrics = computeDelivery(answer);
+  if (patch.status === 'scored' || patch.status === 'saved') answer = completeAttempt(answer);
   return {
     ...state,
     answers: [...state.answers.filter((a) => a.index !== state.index), answer].sort(
@@ -438,6 +444,24 @@ export function roomReducer(state: RoomState, event: RoomEvent, now: number): Ro
     case 'CONFIRM_SKIP':
       return ['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind)
         ? next(updateAnswer(state, { status: 'skipped' }, now), now)
+        : state;
+    case 'RETRY_ANSWER':
+      return kind === 'feedback'
+        ? answering(
+            updateAnswer(
+              state,
+              {
+                rawTranscript: '',
+                transcript: '',
+                feedback: null,
+                feedbackMeta: null,
+                notice: null,
+                timing: { recordingMs: null, firstResultOffsetMs: null, resultOffsetsMs: [] },
+              },
+              now,
+            ),
+            now,
+          )
         : state;
     case 'NEXT':
       return kind === 'feedback' || kind === 'saved' ? next(state, now) : state;

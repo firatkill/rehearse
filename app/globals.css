@@ -1441,3 +1441,15 @@ main:has(> .setup-page) {
     display: none;
   }
 }
+
+.attempt-tab {
+  min-height: 44px;
+  padding: 8px 16px;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-2);
+}
+.attempt-tab[aria-selected='true'] {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}

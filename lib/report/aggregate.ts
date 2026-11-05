@@ -24,10 +24,16 @@ export type Aggregates = {
 type AggregateAnswer = Pick<AnswerRecord, 'index' | 'status'> & {
   feedback: Pick<Feedback, 'scores' | 'overall'> | null;
   metrics?: AnswerRecord['metrics'];
+  attemptRecords?: AnswerRecord['attemptRecords'];
+  bestAttemptId?: AnswerRecord['bestAttemptId'];
 };
 const mean = (values: number[]) =>
   values.length ? Math.round((values.reduce((a, b) => a + b, 0) / values.length) * 10) / 10 : null;
-export function aggregate(answers: readonly AggregateAnswer[], questionCount: number): Aggregates {
+export function aggregate(input: readonly AggregateAnswer[], questionCount: number): Aggregates {
+  const answers = input.map(
+    (answer) =>
+      answer.attemptRecords?.find((attempt) => attempt.id === answer.bestAttemptId) ?? answer,
+  );
   const scored = answers
     .filter(
       (a): a is AggregateAnswer & { feedback: NonNullable<AggregateAnswer['feedback']> } =>

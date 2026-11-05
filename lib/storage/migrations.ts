@@ -1,4 +1,6 @@
 import { STORAGE } from '@/lib/config';
+import { LegacyAnswerRecordSchema, LegacySessionRecordSchema } from './schema';
+import { completeAttempt } from './attempts';
 export type Migration = {
   version: number;
   upgrade: (db: IDBDatabase, tx: IDBTransaction) => void;
@@ -15,8 +17,35 @@ export const MIGRATIONS: readonly Migration[] = [
       db.createObjectStore('meta', { keyPath: 'key' });
     },
   },
+  {
+    version: 2,
+    upgrade(_db, tx) {
+      for (const name of ['sessions', 'answers']) {
+        const request = tx.objectStore(name).openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          const migrated = migrateRecord(cursor.value);
+          if (migrated !== null) cursor.update(migrated);
+          cursor.continue();
+        };
+      }
+    },
+  },
 ];
-export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {};
+export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
+  1: (input) => {
+    const session = LegacySessionRecordSchema.safeParse(input);
+    if (session.success) return { ...session.data, schemaVersion: 2 };
+    const answer = LegacyAnswerRecordSchema.parse(input);
+    return completeAttempt({
+      ...answer,
+      schemaVersion: 2,
+      attemptRecords: [],
+      bestAttemptId: null,
+    });
+  },
+};
 export function migrateRecord(
   input: unknown,
   migrations = RECORD_MIGRATIONS,
