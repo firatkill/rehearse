@@ -65,7 +65,7 @@ TypeScript
 Validation and boundaries
 
 - Zod at every boundary: env (`lib/env.ts`), request bodies and responses (`lib/api/contracts.ts`), token payloads, LLM output (loose schema in, strict schema out), IndexedDB reads, import files, question bank, golden set, sample file, eval results.
-- Read env only through `getEnv()`. `process.env` appears only in `lib/env.ts`, `proxy.ts` (for `NODE_ENV`), tool configs (`next.config.ts`, `playwright.config.ts`, `vitest.config.ts`) test setup, and `lib/edition.ts` for the sole build-time public edition flag (D-126).
+- Read env only through `getEnv()`. `process.env` appears only in `lib/env.ts`, `proxy.ts` (for `NODE_ENV`), tool configs (`next.config.ts`, `playwright.config.ts`, `vitest.config.ts`) test setup, and `lib/edition.ts` for the build-time public edition flag (D-126), and `lib/version.ts` for the build-time package version (D-157).
 - Constants live in `lib/config.ts`. Never repeat a number or string that exists there, including on `/how-it-works`.
 
 Server and client

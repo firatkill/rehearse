@@ -24,6 +24,7 @@ test('TC-146 attempt tabs preserve answer text and support keyboard comparison',
   if (!question) throw new Error('Question fixture missing');
   const retry = vi.fn();
   render(<AttemptFeedback answer={second} question={question} onRetry={retry} />);
+  expect(screen.getByRole('heading', { name: 'Feedback on question 1' })).toHaveFocus();
   expect(screen.getByRole('tab', { name: 'Attempt 2' })).toHaveAttribute('aria-selected', 'true');
   expect(screen.getByText('Change from previous attempt')).toBeVisible();
   fireEvent.keyDown(screen.getByRole('tab', { name: 'Attempt 2' }), { key: 'ArrowLeft' });

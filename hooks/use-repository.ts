@@ -1,10 +1,7 @@
 'use client';
 import { APP_EDITION } from '@/lib/edition';
-import { createHttpRepository } from '@/lib/storage/http-repository';
 import { useSyncExternalStore } from 'react';
-import { createMemoryRepository } from '@/lib/storage/memory-repository';
-import { createIndexedDbRepository } from '@/lib/storage/idb-repository';
-import { openDb, StorageBlockedError, StorageClosedError } from '@/lib/storage/idb';
+import { StorageBlockedError, StorageClosedError } from '@/lib/storage/errors';
 import { storageStatus, subscribeStorage, setStorageStatus } from '@/lib/storage/status';
 import type { SessionRepository } from '@/lib/storage/repository';
 import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
@@ -14,18 +11,24 @@ let persistent = false;
 export function getRepository(): Promise<SessionRepository> {
   repository ??= (async () => {
     if (APP_EDITION === 'full') {
+      const { createHttpRepository } = await import('@/lib/storage/http-repository');
       persistent = true;
       setStorageStatus('persistent');
       return createHttpRepository();
     }
     try {
       if (typeof indexedDB === 'undefined') throw new Error('Storage unavailable');
+      const [{ createIndexedDbRepository }, { openDb }] = await Promise.all([
+        import('@/lib/storage/idb-repository'),
+        import('@/lib/storage/idb'),
+      ]);
       const repo = createIndexedDbRepository(await openDb());
       persistent = true;
       setStorageStatus('persistent');
       return repo;
     } catch (error) {
       setStorageStatus(error instanceof StorageBlockedError ? 'blocked' : 'not-saving');
+      const { createMemoryRepository } = await import('@/lib/storage/memory-repository');
       return createMemoryRepository();
     }
   })();
@@ -59,10 +62,12 @@ export async function switchToMemoryRepository(
   answers: AnswerRecord[],
   error?: unknown,
 ) {
+  const { createMemoryRepository } = await import('@/lib/storage/memory-repository');
   const fallback = createMemoryRepository();
   if (APP_EDITION === 'full') {
     const clearMemory = fallback.deleteAll.bind(fallback);
     fallback.deleteAll = async () => {
+      const { createHttpRepository } = await import('@/lib/storage/http-repository');
       await createHttpRepository().deleteAll();
       await clearMemory();
     };

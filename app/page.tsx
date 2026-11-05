@@ -4,7 +4,6 @@ import Link from 'next/link';
 import sample from '@/content/sample/session.json';
 import { SampleFileSchema } from '@/lib/storage/sample-schema';
 import { DIMENSIONS, SESSION, type Dimension } from '@/lib/config';
-import { Button } from '@/components/ui/button';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { ScoreStrip } from '@/components/ui/score-strip';
 import { MarkedTranscript } from '@/components/ui/marked-transcript';
@@ -53,12 +52,12 @@ export default function Home() {
             Rehearse asks the questions, listens to your answer, and shows you what to say better.
           </p>
           <div className="landing-actions">
-            <Button asChild>
-              <Link href="/setup">Start practising</Link>
-            </Button>
-            <Button variant="secondary" asChild>
-              <Link href="/sample">See a sample report</Link>
-            </Button>
+            <Link className="ui-button" data-variant="default" href="/setup">
+              Start practising
+            </Link>
+            <Link className="ui-button" data-variant="secondary" href="/sample">
+              See a sample report
+            </Link>
           </div>
           <p className="landing-meta">No account · voice or typing · your sessions stay with you</p>
           <p className="landing-availability">
@@ -185,9 +184,13 @@ export default function Home() {
             </table>
           </div>
           <div className="landing-actions">
-            <Button variant="on-dark" asChild>
-              <a href="https://github.com/firatkill/rehearse#readme">Read the setup guide</a>
-            </Button>
+            <a
+              className="ui-button"
+              data-variant="on-dark"
+              href="https://github.com/firatkill/rehearse#readme"
+            >
+              Read the setup guide
+            </a>
             <Link href="/privacy">Where your words go</Link>
           </div>
         </div>

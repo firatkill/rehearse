@@ -1,9 +1,9 @@
-import { version as appVersion } from '@/package.json';
+import { APP_VERSION as appVersion } from '@/lib/version';
 import { STORAGE } from '@/lib/config';
 import { MIGRATIONS, type Migration } from './migrations';
 import { setStorageStatus } from './status';
-export class StorageClosedError extends Error {}
-export class StorageBlockedError extends Error {}
+import { StorageClosedError, StorageBlockedError } from './errors';
+export { StorageClosedError, StorageBlockedError } from './errors';
 const connections = new Map<string, Promise<IDBDatabase>>();
 const closed = new WeakSet<IDBDatabase>();
 export function closeDb(db: IDBDatabase) {

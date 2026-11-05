@@ -1,5 +1,6 @@
 'use client';
-import { BudgetBanner } from './budget-banner';
+import dynamic from 'next/dynamic';
+const BudgetBanner = dynamic(() => import('./budget-banner').then((m) => m.BudgetBanner));
 import {
   createContext,
   useContext,
@@ -10,7 +11,6 @@ import {
   type ReactNode,
 } from 'react';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { DemoBanner } from '@/components/ui/demo-banner';
 import { Header } from './header';
 import { Footer } from './footer';
@@ -78,14 +78,15 @@ export function Shell({
           room={room}
           endSession={
             endSession ?? (
-              <Button
-                className="min-h-11"
-                variant="outline"
+              <button
+                type="button"
+                className="ui-button min-h-11"
+                data-variant="outline"
                 disabled={!endHandler}
                 onClick={() => endHandler?.()}
               >
                 End session
-              </Button>
+              </button>
             )
           }
         />

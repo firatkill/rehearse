@@ -1,2 +1,2 @@
-import pkg from '@/package.json';
-export const APP_VERSION = pkg.version;
+/** Replaced by Next at build time; standalone tooling is labelled development. */
+export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? 'development';

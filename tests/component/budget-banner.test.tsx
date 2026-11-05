@@ -25,7 +25,7 @@ it('TC-164 monthly warning refreshes at 80 and 100 and clears next month', async
   );
   await act(async () => {
     render(<BudgetBanner />);
-    await Promise.resolve();
+    await vi.dynamicImportSettled();
   });
   expect(screen.queryByRole('status')).toBeNull();
   level = '80';

@@ -1,6 +1,8 @@
 import { afterEach, vi } from 'vitest';
+import { version } from '../../package.json';
 
 Object.assign(process.env, {
+  NEXT_PUBLIC_APP_VERSION: version,
   APP_EDITION: 'full',
   LLM_MODE: 'mock',
   RATE_LIMIT_BACKEND: 'memory',

@@ -60,9 +60,18 @@ for (const theme of ['light', 'dark'] as const) {
         await expect(change.getByRole('heading')).toHaveText(title);
         await expect(change.locator('blockquote')).toHaveText(rewrite);
         await expect(change.locator('p').first()).toHaveText(tip);
-        const guidanceBox = await change.boundingBox();
-        const answerBox = await page.getByLabel('Your answer', { exact: true }).boundingBox();
-        expect(guidanceBox!.y + guidanceBox!.height).toBeLessThan(answerBox!.y);
+        // Sample both boxes in one frame: phase focus can scroll between separate calls.
+        const positions = await page.evaluate(() => {
+          const guidance = document.querySelector('[aria-label="Change one thing"]');
+          const answer = document.querySelector('textarea');
+          return {
+            bottom: guidance?.getBoundingClientRect().bottom,
+            top: answer?.getBoundingClientRect().top,
+          };
+        });
+        expect(positions.bottom).toBeDefined();
+        expect(positions.top).toBeDefined();
+        expect(positions.bottom!).toBeLessThan(positions.top!);
 
         await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('');
         expect(calls).toBe(1);
