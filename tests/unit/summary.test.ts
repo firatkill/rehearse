@@ -136,3 +136,9 @@ it.each(['headline', 'paragraph', 'next_practice', 'focus_notes'] as const)(
     expect(calls).toHaveLength(1);
   },
 );
+
+it('TC-127 V-04 rejects zero scored answers without constructing a summary request', async () => {
+  const { provider, calls } = fake(output());
+  await expect(run(provider, [])).rejects.toMatchObject({ code: 'VALIDATION_FAILED' });
+  expect(calls).toHaveLength(0);
+});

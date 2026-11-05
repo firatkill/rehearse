@@ -695,3 +695,7 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-88 | V-04 suppresses summary trend inputs below three scored answers and prohibits “failing” in all summary fields; normalized output with that word is rejected without retry. Summary prompt is summary-v2. | Implements the approved summary coaching rule; leaves chart aggregates unchanged. | V-04 under guide §0, 2026-11-05 |
 
 | D-89 | V-05 filters known novelty voices including Turkish aliases and canonical URI suffixes; ranks local premium/enhanced, then Samantha/Daniel, local and online; preserves eligible saved choices and groups options by normalized accent tag. | Implements Review §1.8 without dependencies or user-agent sniffing; quality is inferred from browser-provided name/URI. | V-05 under guide §0, 2026-11-05 |
+
+| D-90 | V-06 adds g-25–g-27 short evasive examples (27 corpus items, five very-short), with expected overall maximum below 1.5. feedback-v2 clarifies clarity, complete relevance, observable impact and untrusted attack handling. | Approved calibration task; preserves all prior golden ranges, normative examples and gate thresholds. New short regressions may be 8–39 words. | V-06 under guide §0, 2026-11-05 |
+
+| D-91 | feedback-v3 makes the clarity maximum explicit when a requested explanation, reaction or reasoning step is missing, even with fluent wording. | feedback-v2 eval improved clarity to 0.8333 but g-24 still scored clarity 4 despite an omitted requested reaction. Preserves all ranges and gates. | V-06 calibration under guide §0, 2026-11-05 |

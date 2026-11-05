@@ -19,7 +19,7 @@ function change(index: number, patch: Partial<GoldenItem>) {
 describe('TC-102 / TC-103 — FR-48, UT-36 golden corpus', () => {
   it('validates the real set and preserves every normative example exactly', () => {
     const items = validateGolden(source, bank);
-    expect(items).toHaveLength(24);
+    expect(items).toHaveLength(27);
     const section = readFileSync('docs/TRD.md', 'utf8')
       .split('### 18.3 Example golden items')[1]
       ?.split('### 18.4')[0];
@@ -34,7 +34,9 @@ describe('TC-102 / TC-103 — FR-48, UT-36 golden corpus', () => {
     for (const item of items.filter(
       (item) => !examples.some((example) => example.id === item.id),
     )) {
-      expect(countWords(item.transcript)).toBeGreaterThanOrEqual(20);
+      expect(countWords(item.transcript)).toBeGreaterThanOrEqual(
+        Number(item.id.slice(2)) >= 25 ? 8 : 20,
+      );
       expect(countWords(item.transcript)).toBeLessThanOrEqual(450);
       for (const [lo, hi] of Object.values(item.expected)) expect(hi - lo).toBeLessThanOrEqual(1);
     }
@@ -46,7 +48,7 @@ describe('TC-102 / TC-103 — FR-48, UT-36 golden corpus', () => {
     ['missing line', () => serialize(lines().slice(1))],
     ['extra line', () => serialize([...lines(), lines()[0]!])],
     ['duplicate id', () => change(1, { id: 'g-01' })],
-    ['out-of-range id', () => change(0, { id: 'g-25' })],
+    ['out-of-range id', () => change(0, { id: 'g-28' })],
     ['unknown question', () => change(0, { question_id: 'beh-999' })],
     ['ineligible role', () => change(6, { role: 'frontend' })],
     ['ineligible seniority', () => change(6, { seniority: 'junior' })],
@@ -95,4 +97,18 @@ describe('TC-102 / TC-103 — FR-48, UT-36 golden corpus', () => {
       }).success,
     ).toBe(false);
   });
+});
+
+it('TC-129 V-06 adds three short evasive cases with expected overall at most 1.5', () => {
+  const items = validateGolden(source, bank).filter((item) =>
+    ['g-25', 'g-26', 'g-27'].includes(item.id),
+  );
+  expect(items).toHaveLength(3);
+  for (const item of items) {
+    expect(item.category).toBe('very-short');
+    expect(countWords(item.transcript)).toBeLessThan(40);
+    const maxima = Object.values(item.expected).map((range) => range[1]);
+    expect(maxima.reduce((sum, score) => sum + score, 0) / maxima.length).toBeLessThanOrEqual(1.5);
+    expect(item.expected_flags.too_short).toBe(true);
+  }
 });
