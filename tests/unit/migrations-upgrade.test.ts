@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { IDBFactory } from 'fake-indexeddb';
 import { expect, it, vi } from 'vitest';
 import { openDb, closeDb, requestResult, transactionDone } from '@/lib/storage/idb';
@@ -15,7 +16,7 @@ it('TC-093 UT-14 upgrade preserves data, adds index and migrates on read without
   const upgraded = await openDb(name, [
     ...MIGRATIONS,
     {
-      version: 7,
+      version: STORAGE.DB_VERSION + 1,
       upgrade(_db, upgradeTx) {
         upgradeTx.objectStore('sessions').createIndex('by_role', 'setup.role');
       },

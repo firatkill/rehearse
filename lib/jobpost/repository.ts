@@ -8,6 +8,7 @@ import {
   JobPostRecordSchema,
   GeneratedQuestionRecordSchema,
   JobTextSchema,
+  InterviewDateSchema,
   type JobPostRecord,
   type GeneratedQuestionRecord,
 } from '@/lib/storage/jobpost-schema';
@@ -48,7 +49,8 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
       .parse(db.prepare('SELECT count(*) AS count FROM job_posts').get()).count;
     if (total >= JOBPOST.MAX_POSTS) throw new AppError('VALIDATION_FAILED');
     return save({
-      schemaVersion: 1,
+      schemaVersion: 2,
+      interviewDate: null,
       id: randomUUID(),
       text: JobTextSchema.parse(text),
       sourceUrl,
@@ -72,13 +74,27 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
         .prepare('SELECT value FROM job_posts ORDER BY rowid DESC')
         .all()
         .map((value) => JobPostRecordSchema.parse(JSON.parse(row.parse(value).value))),
+    setInterviewDate(id: string, interviewDate: string | null) {
+      const post = get(id);
+      if (!post) throw new AppError('JOBPOST_NOT_FOUND');
+      return save({
+        ...post,
+        interviewDate: InterviewDateSchema.nullable().parse(interviewDate),
+        updatedAt: clock().toISOString(),
+      });
+    },
     updateText(id: string, text: string) {
       const post = get(id);
       if (!post) throw new AppError('JOBPOST_NOT_FOUND');
       // Editing a generated post creates a revision, preserving questions referenced by signed sessions.
-      return post.status === 'ready'
-        ? create(text, post.sourceUrl)
-        : save({ ...post, text: JobTextSchema.parse(text), updatedAt: clock().toISOString() });
+      if (post.status !== 'ready')
+        return save({ ...post, text: JobTextSchema.parse(text), updatedAt: clock().toISOString() });
+      return db.transaction(() => {
+        const revised = create(text, post.sourceUrl);
+        // The upcoming interview follows the new revision; historical questions remain intact.
+        save({ ...post, interviewDate: null, updatedAt: clock().toISOString() });
+        return save({ ...revised, interviewDate: post.interviewDate });
+      })();
     },
     generatedQuestion(id: string): GeneratedQuestionRecord | null {
       const found = db.prepare('SELECT value FROM generated_questions WHERE id = ?').get(id);

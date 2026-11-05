@@ -4,6 +4,7 @@ import {
   JobPostRecordSchema,
   GeneratedQuestionRecordSchema,
   JobTextSchema,
+  InterviewDateSchema,
 } from '@/lib/storage/jobpost-schema';
 export const JobRequestSchema = z.discriminatedUnion('operation', [
   z.object({ operation: z.literal('create'), text: JobTextSchema }).strict(),
@@ -12,6 +13,13 @@ export const JobRequestSchema = z.discriminatedUnion('operation', [
     .strict(),
   z.object({ operation: z.literal('get'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('updateText'), id: z.uuid(), text: JobTextSchema }).strict(),
+  z
+    .object({
+      operation: z.literal('setInterviewDate'),
+      id: z.uuid(),
+      interviewDate: InterviewDateSchema.nullable(),
+    })
+    .strict(),
   z.object({ operation: z.literal('generate'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('more'), id: z.uuid() }).strict(),
 ]);

@@ -11,13 +11,15 @@ import { useRepository } from '@/hooks/use-repository';
 import { useCapabilities } from '@/hooks/use-capabilities';
 import { Button } from '@/components/ui/button';
 import { SafeText } from '@/components/common/safe-text';
-import { jobFeedbackType } from '@/lib/storage/jobpost-schema';
+import { InterviewDateSchema, jobFeedbackType } from '@/lib/storage/jobpost-schema';
 export function JobPost({ initial }: { initial: JobResponse }) {
   const router = useRouter();
   const repository = useRepository();
   const capabilities = useCapabilities();
   const [data, setData] = useState(initial);
   const [text, setText] = useState(initial.post.text);
+  const [date, setDate] = useState(initial.post.interviewDate ?? '');
+  const [dateNotice, setDateNotice] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -59,6 +61,27 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             .slice(0, SESSION.LENGTHS[1])
             .map((q) => q.id),
         );
+    } else setError(result.message);
+    setBusy(null);
+  }
+  async function saveDate(value: string | null) {
+    if (busy) return;
+    if (value !== null && !InterviewDateSchema.safeParse(value).success) {
+      setError('Choose a valid interview date.');
+      return;
+    }
+    setBusy('Saving interview date…');
+    setError(null);
+    setDateNotice(null);
+    const result = await requestJob({
+      operation: 'setInterviewDate',
+      id: post.id,
+      interviewDate: value,
+    });
+    if (result.ok) {
+      setData(result.data);
+      setDate(result.data.post.interviewDate ?? '');
+      setDateNotice(value ? 'Interview date saved.' : 'Interview date cleared.');
     } else setError(result.message);
     setBusy(null);
   }
@@ -121,6 +144,45 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             )}
           </p>
         )}
+        <section className="space-y-2" aria-label="Interview schedule">
+          <label htmlFor="interview-date">Interview date</label>
+          <input
+            id="interview-date"
+            type="date"
+            value={date}
+            disabled={!!busy || editing}
+            aria-describedby="interview-date-help"
+            onChange={(event) => {
+              setDate(event.target.value);
+              setDateNotice(null);
+            }}
+          />
+          <p id="interview-date-help">Add a date to see this interview on Progress.</p>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              type="button"
+              disabled={!!busy || editing || !date || date === post.interviewDate}
+              onClick={() => {
+                void saveDate(date);
+              }}
+            >
+              Save date
+            </Button>
+            {post.interviewDate && (
+              <Button
+                type="button"
+                variant="text"
+                disabled={!!busy || editing}
+                onClick={() => {
+                  void saveDate(null);
+                }}
+              >
+                Clear date
+              </Button>
+            )}
+          </div>
+          {dateNotice && <p role="status">{dateNotice}</p>}
+        </section>
         {post.about && (
           <p>
             <SafeText text={post.about} />

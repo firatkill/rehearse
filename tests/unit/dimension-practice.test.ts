@@ -76,7 +76,7 @@ it('TC-151 UT-14/15 v4 history upgrades and dimension setup survives export/impo
   await repo.createSession({ ...record, setup: { ...record.setup, dimension: 'impact' } });
   await repo.putAnswer(answer);
   const exported = await buildExport(repo, 'test', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(6);
+  expect(exported.formatVersion).toBe(7);
   const imported = await readImport(new File([JSON.stringify(exported)], 'focused.json'));
   expect(imported.invalid).toBe(0);
   expect(imported.bundles[0]?.session.setup.dimension).toBe('impact');

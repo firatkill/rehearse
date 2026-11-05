@@ -1,3 +1,4 @@
+import { registerJobDate } from './jobdate.cases';
 import { registerHistory } from './history.cases';
 import { registerLocaleDates } from './locale-dates.cases';
 import { registerExportImport } from './export-import.cases';
@@ -72,6 +73,9 @@ test.describe('Full shared storage @isolated', () => {
         ).ok(),
       ).toBe(true);
     }
+  });
+  test.describe('Job date @isolated', () => {
+    registerJobDate();
   });
   test.describe('history @isolated', () => {
     registerHistory();
