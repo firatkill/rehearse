@@ -8,6 +8,8 @@ import {
   TTS,
   SESSION,
   ANSWER,
+  FOLLOW_UP,
+  FEEDBACK_LIMITS,
 } from '@/lib/config';
 import { QuestionSnapshotSchema } from '@/lib/questions/schema';
 import { FeedbackSchema } from '@/lib/feedback/schema';
@@ -107,6 +109,7 @@ export const LegacyAnswerRecordSchema = z
         promptVersion: z.string(),
         latencyMs: z.number(),
         costUsd: z.number(),
+        followUpToken: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).nullable().optional(),
       })
       .nullable(),
     attempts: z.number().int().nonnegative(),
@@ -117,7 +120,7 @@ export const LegacyAnswerRecordSchema = z
     updatedAt: z.string().datetime(),
   })
   .strict();
-export const SessionRecordSchema = LegacySessionRecordSchema.extend({
+export const V3SessionRecordSchema = LegacySessionRecordSchema.extend({
   schemaVersion: z.literal(3),
 });
 export const AttemptRecordSchema = LegacyAnswerRecordSchema.omit({
@@ -134,11 +137,16 @@ export const AttemptRecordSchema = LegacyAnswerRecordSchema.omit({
     if ((attempt.status === 'scored') !== (attempt.feedback !== null))
       ctx.addIssue({ code: 'custom', message: 'Attempt feedback must match its status.' });
   });
-export const AnswerRecordSchema = LegacyAnswerRecordSchema.extend({
-  schemaVersion: z.literal(3),
-  attemptRecords: z.array(AttemptRecordSchema),
-  bestAttemptId: z.string().nullable(),
-}).superRefine((answer, ctx) => {
+function validateAttempts(
+  answer: {
+    sessionId: string;
+    index: number;
+    questionId: string;
+    attemptRecords: z.infer<typeof AttemptRecordSchema>[];
+    bestAttemptId: string | null;
+  },
+  ctx: z.RefinementCtx,
+) {
   let best: z.infer<typeof AttemptRecordSchema> | undefined;
   for (const [index, attempt] of answer.attemptRecords.entries()) {
     if (
@@ -157,7 +165,56 @@ export const AnswerRecordSchema = LegacyAnswerRecordSchema.extend({
       code: 'custom',
       message: 'Best attempt must reference the highest scored attempt (earliest tie).',
     });
+}
+export const V3AnswerRecordSchema = LegacyAnswerRecordSchema.extend({
+  schemaVersion: z.literal(3),
+  attemptRecords: z.array(AttemptRecordSchema),
+  bestAttemptId: z.string().nullable(),
+}).superRefine(validateAttempts);
+export const FollowUpContextSchema = z
+  .object({
+    parentAttemptId: z.string(),
+    prompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
+    token: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).nullable(),
+  })
+  .strict();
+export const FollowUpRecordSchema = AttemptRecordSchema.safeExtend({
+  parentAttemptId: z.string(),
+  prompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
 });
+export const SessionRecordSchema = V3SessionRecordSchema.extend({ schemaVersion: z.literal(4) });
+export const AnswerRecordSchema = z
+  .object({
+    ...V3AnswerRecordSchema.shape,
+    schemaVersion: z.literal(4),
+    followUp: FollowUpContextSchema.nullable(),
+    followUpRecords: z.array(FollowUpRecordSchema),
+  })
+  .strict()
+  .superRefine(validateAttempts)
+  .superRefine((answer, ctx) => {
+    const validParent = (item: { parentAttemptId: string; prompt: string }) =>
+      answer.attemptRecords.some(
+        (parent) =>
+          parent.id === item.parentAttemptId &&
+          parent.status === 'scored' &&
+          parent.feedback?.follow_up_question === item.prompt,
+      );
+    if (answer.followUp && !validParent(answer.followUp))
+      ctx.addIssue({ code: 'custom', message: 'Follow-up parent is invalid.' });
+    for (const [index, item] of answer.followUpRecords.entries()) {
+      if (
+        item.ordinal !== index + 1 ||
+        item.id !== `${answer.sessionId}:${answer.index}:followup:${index + 1}` ||
+        item.sessionId !== answer.sessionId ||
+        item.index !== answer.index ||
+        item.questionId !== answer.questionId ||
+        !validParent(item)
+      )
+        ctx.addIssue({ code: 'custom', message: 'Follow-up ownership or sequence is invalid.' });
+    }
+  });
+export type FollowUpRecord = z.infer<typeof FollowUpRecordSchema>;
 export type AttemptRecord = z.infer<typeof AttemptRecordSchema>;
 export const ExportFileSchema = z.object({
   format: z.literal('rehearse-export'),

@@ -1573,3 +1573,20 @@ main:has(> .setup-page) {
     padding: 20px;
   }
 }
+
+/* Give the approved feedback hierarchy its own desktop width; recording stays focused. */
+.room-shell .room-column:has(.feedback-layout) {
+  max-width: 1200px;
+}
+.feedback-delivery dl {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
+.feedback-delivery dt {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.feedback-delivery dd {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}

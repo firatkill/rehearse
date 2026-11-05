@@ -170,7 +170,7 @@ it('TC-076 UT-33 succeeds with remaining quotas and never logs transcript or mod
     model: 'mock',
     costUsd: 0,
     attempts: 1,
-    promptVersion: 'feedback-v6',
+    promptVersion: 'feedback-v7',
   });
   const output = logs.join('');
   expect(output).toContain('feedback.done');
@@ -249,4 +249,21 @@ it('TC-076 UT-33 failure logs follow TRD §20 severity without private text', as
     ['INTERNAL_ERROR', 50],
   ]);
   expect(logs.join('')).not.toContain('private provider detail');
+});
+
+it('TC-149 authenticates follow-ups before provider use and scores the signed prompt once', async () => {
+  const initial = FeedbackResponseSchema.parse(await (await POST(request())).json());
+  expect(initial.followUpToken).toMatch(/^rf1\./);
+  const provider = providerModule.getProvider();
+  const spy = vi.spyOn(provider, 'generateStructured');
+  vi.spyOn(providerModule, 'getProvider').mockReturnValue(provider);
+  await error(request({ ...body(), followUpToken: 'rf1.forged.invalid' }), 401, 'TOKEN_INVALID');
+  expect(spy).not.toHaveBeenCalled();
+  const result = await POST(request({ ...body(), followUpToken: initial.followUpToken }));
+  expect(result.status).toBe(200);
+  expect(spy).toHaveBeenCalledOnce();
+  expect(spy.mock.calls[0]?.[0].prompt).toContain(
+    `<follow_up_question>\n${initial.feedback.follow_up_question}\n</follow_up_question>`,
+  );
+  expect(FeedbackResponseSchema.parse(await result.json()).followUpToken).toBeNull();
 });

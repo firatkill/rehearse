@@ -108,7 +108,9 @@ export function useInterviewRoom(id: string) {
         });
         return;
       }
-      if (event.type === 'RETRY_ANSWER') resetRecorder();
+      if (event.type === 'RETRY_ANSWER' || event.type === 'FOLLOW_UP') resetRecorder();
+      if (event.type === 'FOLLOW_UP' && capabilities?.synthesis)
+        primeSynthesis(window.speechSynthesis);
       if (event.type === 'REPLAY') setReplay((value) => value + 1);
       if (event.type === 'RETRY_RECORDING' || event.type === 'CONFIRM_RECORD_AGAIN') {
         if (event.type === 'CONFIRM_RECORD_AGAIN') resetRecorder();
@@ -161,7 +163,7 @@ export function useInterviewRoom(id: string) {
     void (async () => {
       await persist((repo) => repo.putAnswer(answer));
       if (isAborted()) return;
-      if (!session.token) {
+      if (!session.token || (answer.followUp && !answer.followUp.token)) {
         rawSend({
           type: 'FEEDBACK_FAILED',
           code: 'TOKEN_MISSING',
@@ -178,13 +180,20 @@ export function useInterviewRoom(id: string) {
           questionId: answer.questionId,
           mode: answer.mode,
           transcript: answer.transcript,
+          ...(answer.followUp?.token ? { followUpToken: answer.followUp.token } : {}),
         },
         controller.signal,
       );
       if (isAborted()) return;
       if (result.ok) {
         const { model, promptVersion, latencyMs, costUsd } = result.data.meta;
-        const meta = { model, promptVersion, latencyMs, costUsd };
+        const meta = {
+          model,
+          promptVersion,
+          latencyMs,
+          costUsd,
+          followUpToken: result.data.followUpToken,
+        };
         await persist((repo) =>
           repo.putAnswer({
             ...answer,
@@ -215,7 +224,10 @@ export function useInterviewRoom(id: string) {
   }, [kind, state.index, persist, rawSend]);
   const paused = state.phase.kind === 'thinking' && state.phase.paused;
   const interrupted = state.phase.kind === 'asking' && state.phase.interrupted;
-  const prompt = state.session?.questions[state.index]?.prompt ?? '';
+  const prompt =
+    state.answers.find((item) => item.index === state.index)?.followUp?.prompt ??
+    state.session?.questions[state.index]?.prompt ??
+    '';
   const voiceURI = state.session?.setup.voiceURI ?? null;
   const rate = state.session?.setup.rate ?? 1;
   useEffect(() => {

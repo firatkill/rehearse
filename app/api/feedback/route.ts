@@ -1,3 +1,4 @@
+import { signFollowUp, verifyFollowUp } from '@/lib/session/follow-up';
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
 import { getEnv } from '@/lib/env';
@@ -75,6 +76,18 @@ export async function POST(req: Request): Promise<Response> {
       return fail('TOKEN_SCOPE');
     const question = getBank().questions.find((q) => q.id === body.questionId);
     if (!question) return fail('TOKEN_SCOPE');
+    let followUpPrompt: string | undefined;
+    if (body.followUpToken !== undefined) {
+      const proof = verifyFollowUp(
+        body.followUpToken,
+        [env.SESSION_SECRET, ...(env.SESSION_SECRET_PREVIOUS ? [env.SESSION_SECRET_PREVIOUS] : [])],
+        token.payload,
+        body.answerIndex,
+        Math.floor(Date.now() / 1000),
+      );
+      if (!proof.ok) return fail(proof.code);
+      followUpPrompt = proof.prompt;
+    }
     questionId = question.id;
     const quota = await checkFeedback(
       getLimiter(),
@@ -91,6 +104,7 @@ export async function POST(req: Request): Promise<Response> {
     const provider = getProvider();
     const result = await generateFeedback({
       question,
+      ...(followUpPrompt === undefined ? {} : { followUpPrompt }),
       role: token.payload.r,
       seniority: token.payload.s,
       mode: body.mode,
@@ -115,6 +129,15 @@ export async function POST(req: Request): Promise<Response> {
             }) * 1_000_000,
           ) / 1_000_000;
     const response = FeedbackResponseSchema.parse({
+      followUpToken:
+        followUpPrompt === undefined
+          ? signFollowUp(
+              token.payload,
+              body.answerIndex,
+              result.feedback.follow_up_question,
+              env.SESSION_SECRET,
+            )
+          : null,
       feedback: result.feedback,
       meta: {
         model: provider.modelId,

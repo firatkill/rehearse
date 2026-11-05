@@ -7,6 +7,7 @@ import { SafeText } from '@/components/common/safe-text';
 import { TimerDisplay } from '@/components/common/timer-display';
 import { Button } from '@/components/ui/button';
 export function RecorderPanel({
+  followUp = false,
   transcript,
   startedAt,
   limit,
@@ -14,6 +15,7 @@ export function RecorderPanel({
   onStop,
   onLimit,
 }: {
+  followUp?: boolean;
   transcript: TranscriptState;
   startedAt: number;
   limit: number;
@@ -63,8 +65,14 @@ export function RecorderPanel({
             <TimerDisplay ms={elapsed} /> /{' '}
           </span>
           <span>
-            aim for {formatMmSs(RECORDING_GUIDE.MIN_SECONDS * 1000)}–
-            {formatMmSs(RECORDING_GUIDE.MAX_SECONDS * 1000)}
+            {followUp ? (
+              <>Keep this follow-up under {formatMmSs(limit * 1000)}.</>
+            ) : (
+              <>
+                aim for {formatMmSs(RECORDING_GUIDE.MIN_SECONDS * 1000)}–
+                {formatMmSs(RECORDING_GUIDE.MAX_SECONDS * 1000)}
+              </>
+            )}
           </span>
         </p>
       </div>

@@ -1,6 +1,14 @@
 import 'server-only';
 import { z } from 'zod';
-import { ROLES, SENIORITIES, ANSWER_MODES, ANSWER, DIMENSIONS, type Dimension } from '@/lib/config';
+import {
+  ROLES,
+  SENIORITIES,
+  ANSWER_MODES,
+  ANSWER,
+  DIMENSIONS,
+  FEEDBACK_LIMITS,
+  type Dimension,
+} from '@/lib/config';
 import { countWords } from '@/lib/metrics/words';
 import type { Question } from '@/lib/questions/schema';
 
@@ -115,5 +123,36 @@ export function validateGolden(source: string, questions: readonly Question[]): 
     );
   if (items.filter((item) => item.mode === 'voice').length < 2)
     throw new Error('Golden set needs at least two recognition-style voice answers');
+  return items;
+}
+
+export const FollowUpGoldenItemSchema = GoldenItemSchema.extend({
+  followUpPrompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
+});
+export function validateFollowUpGolden(source: string, questions: readonly Question[]) {
+  const items = source
+    .trim()
+    .split(/\r?\n/)
+    .map((line) => FollowUpGoldenItemSchema.parse(JSON.parse(line)));
+  if (
+    items.length !== 2 ||
+    new Set(items.map((item) => item.id)).size !== 2 ||
+    !items.some((item) => item.id === 'g-28') ||
+    !items.some((item) => item.id === 'g-29')
+  )
+    throw new Error('Follow-up suite needs unique g-28 and g-29');
+  for (const item of items) {
+    const question = questions.find((q) => q.id === item.question_id);
+    if (
+      !question ||
+      question.status !== 'active' ||
+      !question.roles.includes(item.role) ||
+      !question.seniority.includes(item.seniority) ||
+      item.triple !== null
+    )
+      throw new Error('Invalid follow-up golden scope');
+    if (item.category === 'injection' && item.canary === null)
+      throw new Error('Follow-up injection needs a canary');
+  }
   return items;
 }

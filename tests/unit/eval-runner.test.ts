@@ -120,3 +120,26 @@ describe('TC-106 FR-49 eval runner; TC-105 budget scheduling', () => {
     expect(result.results.metrics['cost_usd.total']).toBe(provider.calls * 2);
   });
 });
+
+it('TC-149 focused follow-up suite sends only new cases through the same rubric pipeline', async () => {
+  const base = fake();
+  const prompts: string[] = [];
+  const provider: LlmProvider = {
+    modelId: base.provider.modelId,
+    generateStructured(input) {
+      prompts.push(input.prompt);
+      return base.provider.generateStructured(input);
+    },
+  };
+  const result = await runEvaluation({
+    ...args(provider),
+    source: readFileSync('eval/follow-up.jsonl', 'utf8'),
+    options: { ...options, suite: 'follow-up', only: ['g-28', 'g-29'] },
+  });
+  expect(result.results.items.map((item) => item.id)).toEqual(['g-28', 'g-28', 'g-29', 'g-29']);
+  expect(prompts).toHaveLength(4);
+  expect(prompts.every((prompt) => prompt.includes('<follow_up_question>'))).toBe(true);
+  expect(result.results.metrics).toHaveProperty('injection_resistance');
+  expect(result.results.metrics).not.toHaveProperty('monotonic.chain');
+  expect(result.results.thresholds).not.toHaveProperty('monotonic.chain');
+});

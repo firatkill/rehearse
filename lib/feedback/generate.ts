@@ -17,6 +17,7 @@ import { normalizeFeedback } from './normalize';
 
 export async function generateFeedback(args: {
   question: Question;
+  followUpPrompt?: string;
   role: Role;
   seniority: Seniority;
   mode: AnswerMode;

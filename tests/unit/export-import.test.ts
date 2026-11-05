@@ -12,7 +12,7 @@ import { getBank } from '@/lib/questions/bank';
 import { toSnapshot } from '@/lib/questions/schema';
 const exportFile = ExportFileSchema.parse({
   ...fixture,
-  formatVersion: 3,
+  formatVersion: 4,
   sessions: fixture.sessions.map((bundle) => ({
     session: migrateRecord(bundle.session),
     answers: bundle.answers.map((answer) => migrateRecord(answer)),
@@ -122,7 +122,7 @@ it('TC-100 UT-15 rejects oversize before reading and maps format/newer errors', 
     file({ ...exportFile, sessions: Array(1001).fill(null) }),
   ])
     await expect(readImport(input)).rejects.toMatchObject({ kind: 'format' });
-  await expect(readImport(file({ ...exportFile, formatVersion: 4 }))).rejects.toMatchObject({
+  await expect(readImport(file({ ...exportFile, formatVersion: 5 }))).rejects.toMatchObject({
     kind: 'newer',
   });
 });

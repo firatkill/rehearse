@@ -43,7 +43,7 @@ test('TC-147 UT-14 actual v1 database upgrades without losing completed answers 
   const draft = AnswerRecordSchema.parse(
     await requestResult(read.objectStore('answers').get([record.id, 1])),
   );
-  expect(session.schemaVersion).toBe(3);
+  expect(session.schemaVersion).toBe(4);
   expect(completed.attemptRecords[0]?.transcript).toBe(answer.transcript);
   expect(completed.bestAttemptId).toBe(completed.attemptRecords[0]?.id);
   expect(draft.transcript).toBe(answer.transcript);
@@ -74,7 +74,7 @@ test('TC-147 UT-15 old export migrates and new attempts round-trip', async () =>
   await repo.createSession(bundle.session);
   for (const a of bundle.answers) await repo.putAnswer(a);
   const exported = await buildExport(repo, '2', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(3);
+  expect(exported.formatVersion).toBe(4);
   const roundtrip = await readImport(new File([JSON.stringify(exported)], 'new.json'));
   expect(roundtrip.bundles[0]?.answers).toEqual(bundle.answers);
   expect(migrateRecord({ schemaVersion: 1, malformed: true })).toBeNull();
@@ -87,12 +87,15 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
     ...feedback,
     improvements: feedback.improvements.map(({ point, why, rewrite }) => ({ point, why, rewrite })),
   };
-  const historicAnswer = completeAttempt({
+  const withCurrentFields = completeAttempt({
     ...answer,
     schemaVersion: 2,
     status: 'scored',
     feedback: historicFeedback,
   });
+  const { followUp: _working, followUpRecords: _history, ...historicAnswer } = withCurrentFields;
+  expect(_working).toBeNull();
+  expect(_history).toEqual([]);
   const first = await openDb(name, MIGRATIONS.slice(0, 2));
   const write = first.transaction(['sessions', 'answers'], 'readwrite');
   write.objectStore('sessions').put({ ...record, schemaVersion: 2 });
@@ -103,7 +106,12 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
   const stored = AnswerRecordSchema.parse(
     await requestResult(upgraded.transaction('answers').objectStore('answers').get([record.id, 0])),
   );
-  expect(stored).toEqual({ ...historicAnswer, schemaVersion: 3 });
+  expect(stored).toEqual({
+    ...historicAnswer,
+    schemaVersion: 4,
+    followUp: null,
+    followUpRecords: [],
+  });
   expect(stored.attemptRecords[0]?.feedback?.improvements[0]).not.toHaveProperty('dimension');
   closeDb(upgraded);
   const imported = await readImport(

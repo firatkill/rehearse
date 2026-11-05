@@ -10,11 +10,12 @@ import { FEEDBACK_SYSTEM_PROMPT, buildFeedbackUserMessage } from '@/lib/prompts/
 import { FEEDBACK_PROMPT_VERSION } from '@/lib/prompts/version';
 import type { Question } from '@/lib/questions/schema';
 import { createBudgetGuard } from './budget';
-import { validateGolden } from './golden-schema';
+import { validateGolden, validateFollowUpGolden } from './golden-schema';
 import { computeMetrics, containsCanary, gateMetrics, ThresholdsSchema } from './metrics';
 import { EvalResultsSchema, type EvalItemResult } from './results-schema';
 
 export type EvalOptions = {
+  suite?: 'golden' | 'follow-up';
   mock: boolean;
   noGate: boolean;
   repeats: number;
@@ -38,7 +39,10 @@ export async function runEvaluation(args: {
   const { options, env, bank } = args;
   if (options.mock !== (env.LLM_MODE === 'mock'))
     throw new Error('Use --mock only with LLM_MODE=mock');
-  const all = validateGolden(args.source, bank.questions);
+  const all =
+    options.suite === 'follow-up'
+      ? validateFollowUpGolden(args.source, bank.questions)
+      : validateGolden(args.source, bank.questions);
   if (options.only?.some((id) => !all.some((item) => item.id === id)))
     throw new Error('Unknown golden id in --only');
   const items = options.only ? all.filter((item) => options.only?.includes(item.id)) : all;
@@ -157,7 +161,7 @@ export async function runEvaluation(args: {
   const gate = gateMetrics(
     metrics,
     thresholds,
-    options.only !== undefined && items.length < all.length,
+    options.suite === 'follow-up' || (options.only !== undefined && items.length < all.length),
   );
   if (guard.exceeded) gate.failures.push('budget_exceeded');
   const results = EvalResultsSchema.parse({
