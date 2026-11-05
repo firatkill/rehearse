@@ -32,7 +32,7 @@ const schema = z
       z.string().min(32).optional(),
     ),
     IP_HASH_SECRET: z.string().min(32),
-    RATE_LIMIT_BACKEND: z.enum(['upstash', 'memory']).default('upstash'),
+    RATE_LIMIT_BACKEND: z.enum(['upstash', 'memory']).default('memory'),
     UPSTASH_REDIS_REST_URL: z.preprocess((v) => (v === '' ? undefined : v), z.url().optional()),
     UPSTASH_REDIS_REST_TOKEN: optionalText,
     RATE_LIMIT_SESSIONS_PER_IP_DAILY: z.coerce.number().int().positive().default(3),

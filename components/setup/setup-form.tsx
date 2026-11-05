@@ -359,7 +359,11 @@ export function SetupForm({
           </details>
         )}
         {setup.mode === 'voice' && <MicCheck />}
-        <p>This preview allows feedback on {sessionsPerDay} sessions per visitor each day.</p>
+        <p>
+          {APP_EDITION === 'demo'
+            ? 'Feedback is pre-written sample data. No AI is called.'
+            : 'No daily IP quotas. Monthly budget warnings never block practice.'}
+        </p>
         {initialSeed !== null && (
           <p>
             {validSeed ? (

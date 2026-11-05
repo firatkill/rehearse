@@ -1,4 +1,5 @@
 'use client';
+import { BudgetBanner } from './budget-banner';
 import {
   createContext,
   useContext,
@@ -72,6 +73,7 @@ export function Shell({
           Skip to content
         </a>
         <DemoBanner edition={edition} />
+        {edition === 'full' && path !== '/sample' && <BudgetBanner />}
         <Header
           room={room}
           endSession={

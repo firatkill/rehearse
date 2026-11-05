@@ -1,4 +1,5 @@
 import 'server-only';
+import { BUDGET } from '@/lib/config';
 import type { Env } from '@/lib/env';
 import type { ErrorCode } from '@/lib/errors';
 import type { Limiter, LimitResult } from './types';
@@ -17,6 +18,7 @@ export async function checkStart(
   visitor: string,
   env: Env,
 ): Promise<QuotaResult> {
+  if (env.APP_EDITION === 'full') return { ok: true, remaining: BUDGET.UNLIMITED };
   return result(
     await limiter.consumeDaily('sessions_ip', visitor, env.RATE_LIMIT_SESSIONS_PER_IP_DAILY),
     'SESSION_QUOTA_EXCEEDED',
@@ -35,6 +37,8 @@ export async function checkFeedback(
     new Date(token.exp * 1000),
   );
   if (!session.ok) return result(session, 'SESSION_FEEDBACK_EXHAUSTED');
+  if (env.APP_EDITION === 'full')
+    return { ok: true, remaining: session.remaining, visitorRemaining: BUDGET.UNLIMITED };
   // Each earlier step remains consumed if a later check denies; there are no refunds (D-11).
   const visitorLimit = await limiter.consumeDaily(
     'feedback_ip',
@@ -61,6 +65,7 @@ export async function checkSummary(
     new Date(token.exp * 1000),
   );
   if (!session.ok) return result(session, 'SESSION_SUMMARY_EXHAUSTED');
+  if (env.APP_EDITION === 'full') return { ok: true, remaining: session.remaining };
   // A global denial still consumes the session attempt (D-11).
   return result(
     await limiter.consumeDaily('llm_global', 'global', env.RATE_LIMIT_GLOBAL_LLM_DAILY),

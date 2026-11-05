@@ -111,15 +111,10 @@ it('TC-029 UT-32 returns scoped tokens and honours the seed', async () => {
     /^[a-f0-9]{8}$/,
   );
 });
-it('TC-030 UT-32 denies the fourth session and fails closed on limiter errors', async () => {
-  for (let i = 0; i < 3; i++) expect((await POST(request())).status).toBe(200);
-  const denied = await POST(request());
-  expect(denied.status).toBe(429);
-  const error = ErrorBodySchema.parse(await denied.json()).error;
-  expect(error.code).toBe('SESSION_QUOTA_EXCEEDED');
-  expect(typeof error.resetAt).toBe('string');
+it('TC-030 TC-164 D-80 full permits sessions beyond the former IP quota', async () => {
+  for (let i = 0; i < 5; i++) expect((await POST(request())).status).toBe(200);
   vi.spyOn(limiterModule, 'getLimiter').mockReturnValue(
     createMemoryLimiter(() => new Date(), { failing: true }),
   );
-  await expectError(request(), 503, 'LIMITER_UNAVAILABLE');
+  expect((await POST(request())).status).toBe(200); // Start no longer consumes an LLM/IP quota.
 });

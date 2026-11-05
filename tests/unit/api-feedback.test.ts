@@ -165,7 +165,7 @@ it('TC-076 UT-33 succeeds with remaining quotas and never logs transcript or mod
   const res = await POST(request());
   expect(res.status).toBe(200);
   const parsed = FeedbackResponseSchema.parse(await res.json());
-  expect(parsed.remaining).toEqual({ session: 4, visitorToday: 19 });
+  expect(parsed.remaining).toEqual({ session: 4, visitorToday: Number.MAX_SAFE_INTEGER });
   expect(parsed.meta).toMatchObject({
     model: 'mock',
     costUsd: 0,
@@ -208,17 +208,17 @@ it('TC-076 UT-33 session denial happens before visitor/global quotas and generat
   await error(request(body(), { authorization: auth }), 429, 'SESSION_FEEDBACK_EXHAUSTED');
   expect(provider).not.toHaveBeenCalled();
 });
-it.each([
-  ['RATE_LIMIT_FEEDBACK_PER_IP_DAILY', 'FEEDBACK_QUOTA_EXCEEDED'],
-  ['RATE_LIMIT_GLOBAL_LLM_DAILY', 'GLOBAL_CAP_REACHED'],
-] as const)('TC-076 UT-33 %s denial retains the consumed session count', async (name, code) => {
-  vi.stubEnv(name, '1');
-  resetEnvForTests();
-  await POST(request());
-  const result = await error(request(), 429, code);
-  expect(result.sessionCallsRemaining).toBe(3);
-  expect(result.resetAt).toBeTruthy();
-});
+it.each(['RATE_LIMIT_FEEDBACK_PER_IP_DAILY', 'RATE_LIMIT_GLOBAL_LLM_DAILY'] as const)(
+  'TC-076 UT-33 D-80 %s does not impose a full-edition daily block',
+  async (name) => {
+    vi.stubEnv(name, '1');
+    resetEnvForTests();
+    await POST(request());
+    const result = FeedbackResponseSchema.parse(await (await POST(request())).json());
+    expect(result.remaining.session).toBe(3);
+    expect(result.remaining.visitorToday).toBe(Number.MAX_SAFE_INTEGER);
+  },
+);
 it('TC-076 UT-33 fails closed when the limiter is unavailable', async () => {
   vi.spyOn(limiterModule, 'getLimiter').mockReturnValue(
     createMemoryLimiter(() => new Date(), { failing: true }),

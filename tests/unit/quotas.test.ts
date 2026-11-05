@@ -8,6 +8,7 @@ const now = new Date('2026-10-21T12:00:00Z');
 const token = { sid: 'session', fb: 3, sm: 2, exp: now.getTime() / 1000 + 7200 };
 const env = {
   ...getEnv(),
+  APP_EDITION: 'demo' as const,
   RATE_LIMIT_SESSIONS_PER_IP_DAILY: 1,
   RATE_LIMIT_FEEDBACK_PER_IP_DAILY: 10,
   RATE_LIMIT_GLOBAL_LLM_DAILY: 10,
@@ -68,4 +69,23 @@ it('TC-025 UT-11 checks summary session then global, preserving consumed attempt
     code: 'SESSION_SUMMARY_EXHAUSTED',
   });
   expect(daily).toHaveBeenCalledTimes(2);
+});
+
+it('TC-164 D-80 full ignores IP and global quotas while retaining session counters', async () => {
+  const full = { ...env, APP_EDITION: 'full' as const, RATE_LIMIT_GLOBAL_LLM_DAILY: 1 };
+  const limiter = createMemoryLimiter(() => now);
+  const daily = vi.spyOn(limiter, 'consumeDaily');
+  for (let i = 0; i < 5; i++) expect((await checkStart(limiter, 'visitor', full)).ok).toBe(true);
+  for (let i = 0; i < 3; i++)
+    expect((await checkFeedback(limiter, 'visitor', token, full)).ok).toBe(true);
+  expect(await checkFeedback(limiter, 'visitor', token, full)).toMatchObject({
+    ok: false,
+    code: 'SESSION_FEEDBACK_EXHAUSTED',
+  });
+  for (let i = 0; i < 2; i++) expect((await checkSummary(limiter, token, full)).ok).toBe(true);
+  expect(await checkSummary(limiter, token, full)).toMatchObject({
+    ok: false,
+    code: 'SESSION_SUMMARY_EXHAUSTED',
+  });
+  expect(daily).not.toHaveBeenCalled();
 });

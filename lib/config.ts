@@ -208,3 +208,9 @@ export const DEMO = {
   MIN_QUESTIONS: 12,
   PROMPT_VERSION: 'demo-v1',
 } as const;
+
+export const BUDGET = {
+  WARNING_RATIO: 0.8,
+  POLL_MS: 60_000,
+  UNLIMITED: Number.MAX_SAFE_INTEGER,
+} as const;

@@ -1,4 +1,5 @@
 import 'server-only';
+import { costsMigration } from './migrations/002-costs';
 import Database from 'better-sqlite3';
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -11,7 +12,7 @@ import { buildExport, readImport } from '../export';
 import type { SessionRepository } from '../repository';
 import { initialMigration } from './migrations/001-sessions';
 
-const migrations = [initialMigration];
+const migrations = [initialMigration, costsMigration];
 const rowSchema = z.object({ value: z.string() });
 function value(row: unknown): unknown {
   const parsed = rowSchema.safeParse(row);
@@ -152,12 +153,18 @@ export function createSqliteRepository(
   return repo;
 }
 let repository: SessionRepository | undefined;
-export function getSqliteRepository(): SessionRepository {
+let connection: Database.Database | undefined;
+export function getSqliteConnection(): Database.Database {
   if (getEnv().APP_EDITION !== 'full') throw new AppError('DEMO_ONLY');
-  if (!repository) {
+  if (!connection) {
     const directory = getEnv().DATA_DIR;
     mkdirSync(directory, { recursive: true });
-    repository = createSqliteRepository(openSqlite(join(directory, 'rehearse.sqlite')));
+    connection = openSqlite(join(directory, 'rehearse.sqlite'));
   }
+  return connection;
+}
+export function getSqliteRepository(): SessionRepository {
+  if (getEnv().APP_EDITION !== 'full') throw new AppError('DEMO_ONLY');
+  repository ??= createSqliteRepository(getSqliteConnection());
   return repository;
 }
