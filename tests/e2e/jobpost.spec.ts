@@ -74,3 +74,25 @@ test('TC-179 five more questions preserve existing ids and the current selection
     page.getByRole('button', { name: 'Start with 3 questions', exact: true }),
   ).toBeEnabled();
 });
+
+test('TC-181 an unsafe link falls back to focused paste input and review before generation', async ({
+  page,
+}, info) => {
+  await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
+  await page.addInitScript(installSpeechMock, scenarios.noRecognition);
+  await page.goto('/setup');
+  await page.getByLabel('Job post link or text').fill('http://127.0.0.1/private');
+  await page.getByRole('button', { name: 'Read the job post', exact: true }).click();
+  await expect(page.locator('main').getByRole('alert')).toHaveText(
+    'We couldn’t read that link. Paste the job post text below.',
+  );
+  await expect(page.getByLabel('Paste the job post text', { exact: true })).toBeFocused();
+  await page.getByLabel('Paste the job post text', { exact: true }).fill(jobText);
+  await page.getByRole('button', { name: 'Read the job post', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Review the job post', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
+  await expect(page.getByRole('checkbox')).toHaveCount(8);
+});

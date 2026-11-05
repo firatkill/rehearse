@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { JOBPOST } from '@/lib/config';
 import {
   JobPostRecordSchema,
   GeneratedQuestionRecordSchema,
@@ -6,6 +7,9 @@ import {
 } from '@/lib/storage/jobpost-schema';
 export const JobRequestSchema = z.discriminatedUnion('operation', [
   z.object({ operation: z.literal('create'), text: JobTextSchema }).strict(),
+  z
+    .object({ operation: z.literal('fetch'), url: z.string().min(1).max(JOBPOST.MAX_CHARS) })
+    .strict(),
   z.object({ operation: z.literal('get'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('updateText'), id: z.uuid(), text: JobTextSchema }).strict(),
   z.object({ operation: z.literal('generate'), id: z.uuid() }).strict(),
@@ -17,6 +21,7 @@ export const JobResponseSchema = z
 export type JobRequest = z.infer<typeof JobRequestSchema>;
 export type JobResponse = z.infer<typeof JobResponseSchema>;
 export const JOBPOST_ERROR_COPY = {
+  JOBPOST_FETCH_FAILED: 'We couldn’t read that link. Paste the job post text below.',
   JOBPOST_INVALID:
     'We couldn’t produce enough grounded, distinct questions. Edit the post and try again.',
   JOBPOST_NOT_FOUND: 'That job post could not be found.',

@@ -29,7 +29,7 @@ describe('T-02 foundation — TRD §5, §20; PRD §9; NFR-13', () => {
     expect(base64url('hello?')).toBe('aGVsbG8_');
   });
   it('TC-003: error codes have statuses from the error matrix', () => {
-    expect(ERROR_CODES).toHaveLength(25);
+    expect(ERROR_CODES).toHaveLength(26);
     expect(httpStatus('DEMO_ONLY')).toBe(403);
     expect(httpStatus('TOKEN_EXPIRED')).toBe(401);
     expect(httpStatus('DEMO_READONLY')).toBe(503);

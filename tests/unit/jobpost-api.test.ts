@@ -10,6 +10,7 @@ import { getSqliteConnection } from '@/lib/storage/sqlite/repository';
 import { JobResponseSchema } from '@/lib/api/jobpost-contracts';
 import { StartResponseSchema } from '@/lib/api/contracts';
 import * as providers from '@/lib/llm';
+import * as fetching from '@/lib/jobpost/fetch';
 import { verifyToken } from '@/lib/session/token';
 import { jobText } from '../fixtures/jobpost';
 const dir = mkdtempSync(join(tmpdir(), 'rehearse-job-api-'));
@@ -178,5 +179,34 @@ it('TC-179 full adds five unique questions; duplicate provider output never stor
   const provider = vi.spyOn(providers, 'getProvider');
   provider.mockClear();
   expect((await POST(request({ operation: 'more', id: draft.post.id }))).status).toBe(403);
+  expect(provider).not.toHaveBeenCalled();
+});
+
+it('TC-181 full fetch saves extracted text for review without a provider; demo blocks before fetching', async () => {
+  vi.stubEnv('APP_EDITION', 'full');
+  vi.stubEnv('DATA_DIR', dir);
+  resetEnvForTests();
+  const fetch = vi
+    .spyOn(fetching, 'fetchJobPost')
+    .mockResolvedValue({ text: jobText, sourceUrl: 'https://public.example/job' });
+  const provider = vi.spyOn(providers, 'getProvider');
+  provider.mockClear();
+  const response = await POST(request({ operation: 'fetch', url: 'https://public.example/job' }));
+  expect(response.status).toBe(200);
+  const data = JobResponseSchema.parse(await response.json());
+  expect(data.post).toMatchObject({
+    text: jobText,
+    sourceUrl: 'https://public.example/job',
+    status: 'draft',
+  });
+  expect(data.questions).toEqual([]);
+  expect(provider).not.toHaveBeenCalled();
+  fetch.mockClear();
+  vi.stubEnv('APP_EDITION', 'demo');
+  resetEnvForTests();
+  expect(
+    (await POST(request({ operation: 'fetch', url: 'https://public.example/job' }))).status,
+  ).toBe(403);
+  expect(fetch).not.toHaveBeenCalled();
   expect(provider).not.toHaveBeenCalled();
 });
