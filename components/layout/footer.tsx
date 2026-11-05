@@ -6,13 +6,12 @@ export function Footer() {
         Built by Fırat Kıl · <a href="https://firatkil.com">firatkil.com</a> ·{' '}
         <a href="https://github.com/firatkill/rehearse">Source on GitHub (MIT)</a>
       </p>
-      <p>
-        Your sessions stay in this browser. Answers are sent to the server only to get feedback and
-        are not stored.{' '}
+      <div className="footer-links">
+        <Link href="/sample">Sample report</Link>
         <Link href="/privacy" prefetch={false}>
           Privacy
         </Link>
-      </p>
+      </div>
     </footer>
   );
 }

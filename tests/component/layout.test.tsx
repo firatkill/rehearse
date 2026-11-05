@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { Banners } from '@/components/layout/banners';
 import { Header } from '@/components/layout/header';
 import ErrorPage from '@/app/error';
@@ -43,4 +43,22 @@ it('TC-015 PRD 9.13 error boundary renders exact recovery copy', () => {
   ).toBeVisible();
   expect(screen.getByRole('button', { name: 'Reload the page' })).toBeVisible();
   expect(screen.getByRole('link', { name: 'Go to the start page' })).toHaveAttribute('href', '/');
+});
+
+it('TC-137 V-11 public navigation exposes the approved destinations', () => {
+  vi.stubGlobal('matchMedia', () => ({
+    matches: false,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  }));
+  render(<Header />);
+  for (const [name, href] of [
+    ['Practise', '/setup'],
+    ['Job post', '/setup#job-post'],
+    ['Progress', '/progress'],
+    ['How it works', '/how-it-works'],
+    ['GitHub', 'https://github.com/firatkill/rehearse'],
+  ] as const) {
+    expect(screen.getByRole('link', { name })).toHaveAttribute('href', href);
+  }
 });

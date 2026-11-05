@@ -587,3 +587,63 @@ main {
   background: var(--stage);
   color: var(--ink);
 }
+
+/* V-11 navigation: compact wrapping, no hidden hamburger controls. */
+.container {
+  max-width: 1200px;
+}
+.header-inner {
+  gap: 16px 28px;
+}
+.wordmark {
+  gap: 10px;
+  font-family: var(--font-schibsted), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.wordmark-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.header-inner nav {
+  gap: 4px 24px;
+  font-size: 15px;
+}
+.header-inner nav a {
+  text-decoration: none;
+}
+.header-inner nav a:hover {
+  text-decoration: underline;
+}
+.theme-toggle {
+  border-radius: 999px;
+  min-width: 44px;
+}
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+.site-footer p {
+  margin: 0;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 639px) {
+  .header-inner {
+    gap: 8px 16px;
+    padding-block: 12px;
+  }
+  .header-inner nav {
+    gap: 0 16px;
+    font-size: 14px;
+  }
+}

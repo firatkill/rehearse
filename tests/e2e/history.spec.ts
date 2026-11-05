@@ -55,7 +55,7 @@ test('TC-097 TC-098 E2E-17 history orders sessions, resumes, opens reports and c
     localStorage.setItem('other-project', 'keep');
   }, bundles);
   await page.reload();
-  await expect(page).toHaveTitle('History · Rehearse');
+  await expect(page).toHaveTitle('Progress · Rehearse');
   const rows = page.getByRole('table', { name: 'Practice sessions' }).locator('tbody tr');
   await expect(rows).toHaveCount(3);
   await expect(rows.nth(0).getByRole('cell', { name: 'In progress', exact: true })).toBeVisible();
