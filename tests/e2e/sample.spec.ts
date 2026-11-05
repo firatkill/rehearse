@@ -33,9 +33,9 @@ test('TC-087 E2E-21 sample has a fictional banner, complete report and zero API 
   await expect(
     page.getByRole('link', { name: 'Start a practice session', exact: true }),
   ).toBeVisible();
-  await expect(
-    page.getByRole('link', { name: 'Practise again with the same questions' }),
-  ).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Practise the same questions again' })).toHaveCount(
+    0,
+  );
   await page.locator('details').first().locator(':scope > summary').click();
   await expect(page.getByRole('heading', { name: 'Feedback on question 1' })).toBeVisible();
   const download = page.waitForEvent('download');

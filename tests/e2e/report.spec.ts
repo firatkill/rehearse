@@ -10,7 +10,7 @@ test('TC-077 TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and res
   await expect(page.getByRole('table', { name: 'Scores by question and dimension' })).toBeVisible();
   await expect(page.locator('svg[viewBox="0 0 600 200"]')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.getByText(/3\/3 answered/)).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Focus on these next' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Practise this next' })).toBeVisible();
   const disclosure = page.locator('details').first();
   await expect(disclosure).not.toHaveAttribute('open');
   await disclosure.locator(':scope > summary').click();
@@ -79,7 +79,7 @@ test('TC-077 TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and res
   expect(content).toContain('## Summary');
   expect(content).toContain('## Scores by question');
   expect(content).toContain('> I delivered project 1.');
-  await page.getByRole('link', { name: 'Practise again with the same questions' }).click();
+  await page.getByRole('link', { name: 'Practise the same questions again' }).click();
   await expect(page).toHaveURL(/\/setup\?seed=[a-f0-9]{8}$/);
   await expect(page.getByLabel('3 questions')).toBeChecked();
   await expect(page.getByLabel('Text: type your answers')).toBeChecked();

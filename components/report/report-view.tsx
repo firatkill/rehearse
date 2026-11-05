@@ -19,6 +19,7 @@ import { SafeText } from '@/components/common/safe-text';
 import { FeedbackCard } from '@/components/room/feedback-card';
 import { DeliveryMetrics } from '@/components/room/delivery-metrics';
 import { Button } from '@/components/ui/button';
+import { HeatCell } from '@/components/ui/heat-cell';
 import { TrendChart } from './trend-chart';
 export function ReportView({
   session,
@@ -71,8 +72,8 @@ export function ReportView({
     URL.revokeObjectURL(url);
   };
   return (
-    <div ref={root} className="space-y-8 py-8">
-      <h1>Session report</h1>
+    <div ref={root} className="report-view">
+      <h1 className="report-label">Session report</h1>
       <p className="font-mono text-sm">
         {source === 'sample' ? (
           formatSessionDate(session.createdAt)
@@ -91,13 +92,13 @@ export function ReportView({
           </Link>
         </div>
       )}
-      <section className="space-y-3">
-        <h2>Summary</h2>
+      <section className="report-overview">
+        <h2 className="sr-only">Summary</h2>
         {summaryLoading ? (
           <p>Writing your summary…</p>
         ) : summary ? (
           <>
-            <p className="text-xl">
+            <p className="report-headline">
               <SafeText text={summary.headline} />
             </p>
             <p>
@@ -118,25 +119,46 @@ export function ReportView({
             )}
           </>
         )}
-        {values.overallMean === null ? (
-          <p>No answers were scored in this session.</p>
-        ) : (
-          <>
-            <p className="font-mono text-2xl">{values.overallMean.toFixed(1)} / 4 average</p>
-            {values.best && values.lowest && (
-              <p>
-                Best: Question {values.best.index + 1} ({values.best.overall.toFixed(1)}) · Lowest:
-                Question {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})
-              </p>
-            )}
-          </>
+        <dl className="report-stats">
+          <div>
+            <dt>Average</dt>
+            <dd>
+              {values.overallMean?.toFixed(1) ?? '—'}
+              <span> / 4</span>
+            </dd>
+          </div>
+          <div>
+            <dt>Answered</dt>
+            <dd>
+              {answered}
+              <span> / {session.questions.length}</span>
+            </dd>
+          </div>
+          <div>
+            <dt>Retries</dt>
+            <dd>
+              {answers.reduce(
+                (sum, answer) => sum + Math.max(0, answer.attemptRecords.length - 1),
+                0,
+              )}
+            </dd>
+          </div>
+        </dl>
+        {values.overallMean === null && <p>No answers were scored in this session.</p>}
+        {values.best && values.lowest && (
+          <p className="report-meta">
+            Best: Question {values.best.index + 1} ({values.best.overall.toFixed(1)}) · Lowest:
+            Question {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})
+          </p>
         )}
       </section>
       {values.focus.length > 0 && (
-        <section className="space-y-4">
-          <h2>Focus on these next</h2>
-          {values.focus.map((d) => (
-            <div key={d}>
+        <section className="report-practice" aria-label="Next practice priorities">
+          {values.focus.slice(0, 2).map((d, index) => (
+            <article key={d} className={index === 0 ? 'report-focus stage' : 'report-focus'}>
+              <h2 className="report-label">
+                {index === 0 ? 'Practise this next' : 'Also worth a session'}
+              </h2>
               <h3>{DIMENSION_LABELS[d]}</h3>
               <p className="font-mono">Average {values.dimensionMeans[d]?.toFixed(1)} / 4</p>
               <p>
@@ -146,51 +168,73 @@ export function ReportView({
                   }
                 />
               </p>
-            </div>
+              <Button variant={index === 0 ? 'on-dark' : 'text'} disabled data-print="hide">
+                {index === 0
+                  ? `Practise ${DIMENSION_LABELS[d]} · 3 questions`
+                  : `Practise ${DIMENSION_LABELS[d]}`}
+              </Button>
+              <p className="report-meta" data-print="hide">
+                Dimension practice is coming next.
+              </p>
+            </article>
           ))}
         </section>
       )}
-      <section className="space-y-4">
-        <h2>Scores by question</h2>
-        <TrendChart values={values} />
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <caption>Scores by question and dimension</caption>
+      <section className="report-heat" aria-labelledby="report-heat-heading">
+        <div className="report-section-heading">
+          <h2 id="report-heat-heading">Every answer at a glance</h2>
+          <p>Best attempt shown · darker is better</p>
+        </div>
+        <div
+          className="report-table-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="Scores by question and dimension, scroll horizontally"
+        >
+          <table>
+            <caption className="sr-only">Scores by question and dimension</caption>
             <thead>
               <tr>
-                <th scope="col">Dimension</th>
-                {session.questions.map((_, i) => (
-                  <th key={i} scope="col">
-                    Q{i + 1}
+                <th scope="col">Question</th>
+                {DIMENSIONS.map((d) => (
+                  <th key={d} scope="col">
+                    {DIMENSION_LABELS[d]}
                   </th>
                 ))}
-                <th scope="col">Average</th>
+                <th scope="col">Tries</th>
               </tr>
             </thead>
             <tbody>
-              {DIMENSIONS.map((d) => (
-                <tr key={d}>
-                  <th scope="row">{DIMENSION_LABELS[d]}</th>
-                  {session.questions.map((_, i) => (
-                    <td key={i} className="font-mono">
-                      {answers.find((a) => a.index === i)?.feedback?.scores[d].score ?? '—'}
-                    </td>
-                  ))}
-                  <td className="font-mono">{values.dimensionMeans[d]?.toFixed(1) ?? '—'}</td>
-                </tr>
-              ))}
-              <tr>
-                <th scope="row">Overall</th>
-                {values.perQuestion.map((q) => (
-                  <td key={q.index} className="font-mono">
-                    {q.overall?.toFixed(1) ?? '—'}
-                  </td>
-                ))}
-                <td className="font-mono">{values.overallMean?.toFixed(1) ?? '—'}</td>
-              </tr>
+              {session.questions.map((question, index) => {
+                const answer = answers.find((a) => a.index === index);
+                return (
+                  <tr key={question.id}>
+                    <th scope="row">
+                      <a
+                        href={`#report-answer-${index}`}
+                        onClick={() => {
+                          const detail = root.current?.querySelector<HTMLDetailsElement>(
+                            `#report-answer-${index}`,
+                          );
+                          if (detail) detail.open = true;
+                        }}
+                      >
+                        <SafeText text={question.prompt} />
+                      </a>
+                    </th>
+                    {DIMENSIONS.map((d) => (
+                      <td key={d}>
+                        <HeatCell score={answer?.feedback?.scores[d].score ?? null} />
+                      </td>
+                    ))}
+                    <td className="font-mono">{answer?.attemptRecords.length ?? 0}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
+        <TrendChart values={values} />
       </section>
       <section className="space-y-3">
         <h2>Delivery</h2>
@@ -223,7 +267,11 @@ export function ReportView({
               ? 'Skipped'
               : 'Not scored';
           return (
-            <details key={question.id} className="border-border border-b py-3">
+            <details
+              id={`report-answer-${index}`}
+              key={question.id}
+              className="border-border border-b py-3"
+            >
               <summary>
                 Question {index + 1}: <SafeText text={question.prompt.slice(0, 80)} />
                 {question.prompt.length > 80 ? '…' : ''} · {label}
@@ -270,26 +318,28 @@ export function ReportView({
           );
         })}
       </section>
-      <div data-print="hide" className="flex flex-wrap gap-3">
+      <div data-print="hide" className="report-actions">
         <Button
           data-print="hide"
+          variant="text"
           onClick={() => {
             window.print();
           }}
         >
-          Print or save as PDF
+          Save as PDF
         </Button>
-        <Button data-print="hide" variant="outline" onClick={download}>
+        <Button data-print="hide" variant="text" onClick={download}>
           Download Markdown
         </Button>
         {source === 'sample' ? (
-          <Link className="inline-flex min-w-11 items-center" href="/setup">
+          <Link className="ui-button report-main-action" data-variant="primary" href="/setup">
             Start a practice session
           </Link>
         ) : (
           <>
             <Link
-              className="inline-flex min-w-11 items-center"
+              className="ui-button report-main-action"
+              data-variant="primary"
               href={`/setup?seed=${session.seed}`}
               onClick={() => {
                 try {
@@ -299,10 +349,10 @@ export function ReportView({
                 }
               }}
             >
-              Practise again with the same questions
+              Practise the same questions again
             </Link>
-            <Link className="inline-flex min-w-11 items-center" href="/setup">
-              Start a new session
+            <Link className="ui-button report-new-action" data-variant="secondary" href="/setup">
+              New session
             </Link>
           </>
         )}

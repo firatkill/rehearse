@@ -419,19 +419,17 @@ D-94: only server-rendered /sample uses the fixed UTC calendar date in en-GB. Sa
 
 Document title: "Session report · Rehearse"
 
-- H1 "Session report"
-- Meta line (mono): "{date, dateStyle medium} · {role label}, {seniority label} · {types joined with ', '} · {answered}/{total} answered · Seed {seed}"
-- H2 "Summary"
-  - Headline (large text) and paragraph from the summary call; label (small): "Written by the language model from your scores."
-  - Loading: "Writing your summary…" (skeleton).
-  - Unavailable (error, readonly, no token, all answers without feedback): "A written summary isn’t available for this session. The numbers below are calculated from your answers." Button "Try again" only when a token is valid and the error was retryable.
-- Overall block (mono large): "{x.x} / 4 average" and "Best: Question {n} ({x.x}) · Lowest: Question {m} ({y.y})". With no scored answers: "No answers were scored in this session."
-- H2 "Focus on these next": three items, each H3 "{Dimension}" + "Average {x.x} / 4" + note (summary `focus_notes` text for that dimension, else the built-in tip from TRD §14.2).
-- H2 "Scores by question": chart (`aria-hidden="true"`, SVG, overall score per question, y from 1 to 4) then a table with caption "Scores by question and dimension", columns "Dimension", "Q1" … "Qn", "Average"; skipped or unscored cells show "—".
+- H1 "Session report" as a mono eyebrow; retain the focus target and accessible page name.
+- Meta line (mono): "{local date/time} · {role label}, {seniority label} · {types joined with ', '} · {answered}/{total} answered · Seed {seed}". Sample keeps its fixed calendar date.
+- Summary headline: 48 px/1.06 desktop, 32 px mobile; paragraph 18 px/1.6. Label: "Written by the language model from your scores."
+- Loading: "Writing your summary…". Unavailable: "A written summary isn’t available for this session. The numbers below are calculated from your answers." "Try again" only for retryable authorised requests.
+- Stat labels "Average", "Answered", "Retries". Average "{x.x} / 4", answered "{n} / {total}". Retries sum completed original attempts after the first; follow-ups do not count. Preserve "Best: Question {n} ({x.x}) · Lowest: Question {m} ({y.y})". No scores: "No answers were scored in this session."
+- Lowest mean: dark card "Practise this next", dimension name, "Average {x.x} / 4", model focus note or rubric tip, "Practise {Dimension} · 3 questions". Second-lowest card: "Also worth a session", dimension, average, tip, "Practise {Dimension}". Ties follow rubric order. V-23 disables these actions with "Dimension practice is coming next." until V-24 connects them (D-117).
+- H2 "Every answer at a glance"; legend "Best attempt shown · darker is better". Real table caption "Scores by question and dimension"; columns "Question", six rubric labels, "Tries". Each question row uses best original-attempt scores; missing scores show "—" with accessible "Not scored". Question links open the answer disclosure. Inner table scrolls horizontally on mobile; decorative score chart remains available.
 - H2 "Delivery": "Total words {n} · Average pace {n} words per minute · Filler words {n} · Longest pause {s.s} s" (items that are not available are omitted).
 - H2 "Next practice": the summary's `next_practice` text (omitted when no summary).
 - H2 "Answers": one `<details>` per question, summary "Question {n}: {prompt first 80 chars}… · {x.x} / 4" (or "Skipped" / "Not scored"), containing the feedback card content and transcript.
-- Actions (not printed): "Print or save as PDF", "Download Markdown", "Practise again with the same questions" (goes to `/setup?seed={seed}` with the same setup prefilled), "Start a new session".
+- Actions (not printed): "Save as PDF", "Download Markdown", "Practise the same questions again" (goes to `/setup?seed={seed}` with the same setup prefilled), "New session".
 - Report for an in-progress session: banner "This session isn’t finished." with "Resume session".
 
 ### 9.9 `/history`
@@ -456,7 +454,7 @@ Document title: "History · Rehearse"
 Document title: "Sample report · Rehearse"
 
 - Banner above the report: "This is a sample session with answers written for the demo. The candidate is fictional. No language model was called to show this page."
-- The report component (section 9.8) with sample data; actions limited to "Print or save as PDF", "Download Markdown", "Start a practice session".
+- The report component (section 9.8) with sample data; actions limited to "Save as PDF", "Download Markdown", "Start a practice session".
 
 ### 9.11 `/how-it-works`
 
@@ -761,3 +759,4 @@ V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “H
 | D-114 | 2026-11-05 | V-21 ties: any dimension at the minimum final score is a valid lowest dimension. Select the first model improvement matching that minimum; use rubric order only for historic feedback with no match. Do not reject a valid equally-lowest rewrite solely for tie order. Prompt v6 states this, with all numeric score/quality gates unchanged. | Guide §0/V-21; follows the lowest-dimension requirement without inventing a unique minimum |
 | D-115 | 2026-11-05 | Owner retains the $0.15 V3 ceiling and directs paid retests to changed/affected cases only; do not repeatedly rerun unchanged paid cases or the full suite. Use mocked broad regression checks and retain prior live failures honestly. V-21 tie-handling retest covers g-04, g-05 and g-16; it is not a new full-suite quality claim. | Explicit owner correction after the first two V-21 live runs |
 | D-116 | 2026-11-05 | V-22 adds one-level follow-up turns to scored answer attempts. A server-signed, session/question-scoped proof authorises the generated follow-up; clients never supply a trusted question. Follow-up responses use the same rubric, a 60-second voice limit and existing per-call limits. Store them separately under the parent attempt so main-answer best scores/tries stay comparable. Version-4 migrations preserve history; export/import strips all authorisation proofs. | Guide §0/V-22 and D-78; exact contracts delegated to implementation |
+| D-117 | 2026-11-05 | V-23 follows the approved report design with best-attempt question rows, completed-original retry counts and two lowest-mean practice priorities. Preserve the accessible Session report heading and print/export/disclosures. Dimension actions are explicitly disabled until the next ordered task V-24; no action pretends to start an unimplemented flow. | Guide §0/V-23/V-24; D-79 staged implementation |
