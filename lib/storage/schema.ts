@@ -118,7 +118,7 @@ export const LegacyAnswerRecordSchema = z
   })
   .strict();
 export const SessionRecordSchema = LegacySessionRecordSchema.extend({
-  schemaVersion: z.literal(2),
+  schemaVersion: z.literal(3),
 });
 export const AttemptRecordSchema = LegacyAnswerRecordSchema.omit({
   schemaVersion: true,
@@ -135,7 +135,7 @@ export const AttemptRecordSchema = LegacyAnswerRecordSchema.omit({
       ctx.addIssue({ code: 'custom', message: 'Attempt feedback must match its status.' });
   });
 export const AnswerRecordSchema = LegacyAnswerRecordSchema.extend({
-  schemaVersion: z.literal(2),
+  schemaVersion: z.literal(3),
   attemptRecords: z.array(AttemptRecordSchema),
   bestAttemptId: z.string().nullable(),
 }).superRefine((answer, ctx) => {

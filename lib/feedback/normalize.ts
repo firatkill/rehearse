@@ -68,6 +68,16 @@ export function normalizeFeedback(
   const improvements = data.improvements
     .map((item) => ({
       point: cleanText(item.point, FEEDBACK_LIMITS.POINT_MAX_CHARS),
+      dimension: item.dimension,
+      vague_phrases: item.vague_phrases
+        .map((phrase) => phrase.trim())
+        .filter(
+          (phrase) =>
+            phrase.length > 0 &&
+            phrase.length <= FEEDBACK_LIMITS.VAGUE_PHRASE_MAX_CHARS &&
+            ctx.transcript.includes(phrase),
+        )
+        .slice(0, FEEDBACK_LIMITS.VAGUE_PHRASES_MAX),
       why: cleanText(item.why, FEEDBACK_LIMITS.WHY_MAX_CHARS),
       rewrite: cleanText(item.rewrite, FEEDBACK_LIMITS.REWRITE_MAX_CHARS),
     }))
@@ -81,6 +91,13 @@ export function normalizeFeedback(
     for (const d of DIMENSIONS)
       data.scores[d].score =
         d === 'relevance' ? 1 : Math.min(data.scores[d].score, FEEDBACK_LIMITS.CAPPED_MAX_SCORE);
+  const lowest = DIMENSIONS.reduce(
+    (best, dimension) =>
+      data.scores[dimension].score < data.scores[best].score ? dimension : best,
+    DIMENSIONS[0],
+  );
+  if (!improvements.some((item) => data.scores[item.dimension].score === data.scores[lowest].score))
+    throw new InvalidOutputError();
   const result = FeedbackSchema.safeParse({
     scores: data.scores,
     overall:

@@ -129,15 +129,20 @@ export const SO_NOT_NEXT = new Set([
   'clients',
 ]);
 
-export function countFillers(
+function scanFillers(
   text: string,
   enabled: readonly string[] = FILLERS.map((f) => f.phrase),
-): { total: number; byPhrase: Record<string, number> } {
+): {
+  total: number;
+  byPhrase: Record<string, number>;
+  spans: Array<{ start: number; end: number }>;
+} {
   const source = text.normalize('NFKC').replace(/[‘’]/g, "'");
   const tokens = tokenize(source);
   const allowed = new Set(enabled);
   const byPhrase: Record<string, number> = {};
   let total = 0;
+  const spans: Array<{ start: number; end: number }> = [];
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
     if (!token) continue;
@@ -164,8 +169,25 @@ export function countFillers(
     if (phrase !== null && allowed.has(phrase)) {
       byPhrase[phrase] = (byPhrase[phrase] ?? 0) + 1;
       total++;
+      spans.push({
+        start: token.start,
+        end: phrase === 'you know' ? (next?.end ?? token.end) : token.end,
+      });
       if (phrase === 'you know') i++;
     }
   }
+  return { total, byPhrase, spans };
+}
+
+export function countFillers(
+  text: string,
+  enabled?: readonly string[],
+): { total: number; byPhrase: Record<string, number> } {
+  const { total, byPhrase } = scanFillers(text, enabled);
   return { total, byPhrase };
+}
+export function fillerSpans(text: string): Array<{ start: number; end: number }> {
+  // Avoid applying normalised offsets to a differently sized original string.
+  if (text.normalize('NFKC').length !== text.length) return [];
+  return scanFillers(text).spans;
 }

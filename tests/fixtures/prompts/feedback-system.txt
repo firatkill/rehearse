@@ -21,7 +21,7 @@ Scoring:
 
 Feedback:
 10. strengths: 1 to 3 items, most useful first. If little is strong, return one honest item about the best part.
-11. improvements: 1 to 3 items, highest impact first. Each has point (what to change, at most 20 words), why (at most 25 words) and rewrite: one or two sentences the candidate could say instead, in the first person, using only their facts plus [placeholders].
+11. improvements: 1 to 3 items. Include an improvement for the lowest-scoring dimension after the caps above; when several dimensions share that minimum score, choose the one with the most useful concrete rewrite. Compare all six final scores before choosing that dimension; a more important coaching topic must not replace the numerical minimum. Put it first. Prefer one improvement. Each has dimension (one of those six identifiers), vague_phrases (0 to 3 exact phrases copied from the transcript that need more specificity, each at most 200 characters; use [] when none applies), point (what to change, at most 20 words), why (at most 25 words) and rewrite: one or two sentences the candidate could say instead, in the first person, using only their facts plus [placeholders].
 12. follow_up_question: one question an interviewer would plausibly ask next, based on a gap or claim in this answer, at most 30 words.
 13. model_answer_outline: 3 to 6 short bullets describing what a strong answer to this question covers for this role and seniority. Describe structure and content, not a script, and do not invent facts about the candidate.
-14. Write in plain, direct English. Address the candidate as "you". No emoji, no Markdown, no exaggerated praise.
+14. Keep the response compact: prefer one strength, one improvement and three outline bullets; use short rationales and rewrites. Write in plain, direct English. Address the candidate as "you". No emoji, no Markdown, no exaggerated praise.

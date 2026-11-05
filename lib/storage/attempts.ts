@@ -1,6 +1,8 @@
 import { AttemptRecordSchema, type AnswerRecord } from './schema';
 
-export function completeAttempt(answer: AnswerRecord): AnswerRecord {
+export function completeAttempt<V extends number>(
+  answer: Omit<AnswerRecord, 'schemaVersion'> & { schemaVersion: V },
+): Omit<AnswerRecord, 'schemaVersion'> & { schemaVersion: V } {
   if (answer.status !== 'scored' && answer.status !== 'saved') return answer;
   const ordinal = answer.attemptRecords.length + 1;
   const attemptRecords = answer.attemptRecords;

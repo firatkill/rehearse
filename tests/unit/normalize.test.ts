@@ -28,8 +28,10 @@ describe('TC-073 UT-23 feedback normalization', () => {
       })),
     ];
     raw.improvements = [
-      { point: '', why: 'reason', rewrite: 'text' },
+      { dimension: 'clarity', vague_phrases: [], point: '', why: 'reason', rewrite: 'text' },
       ...Array.from({ length: 5 }, () => ({
+        dimension: 'clarity' as const,
+        vague_phrases: [],
         point: 'p'.repeat(200),
         why: 'w'.repeat(300),
         rewrite: 'r'.repeat(500),
@@ -74,6 +76,7 @@ describe('TC-073 UT-23 feedback normalization', () => {
   it('sets off-topic relevance to one and caps all remaining dimensions', () => {
     const raw = feedbackLlm();
     raw.flags.off_topic = true;
+    raw.improvements[0]!.dimension = 'relevance';
     const out = normalizeFeedback(raw, ctx).feedback;
     for (const d of DIMENSIONS)
       expect(out.scores[d].score).toBe(d === 'relevance' ? 1 : FEEDBACK_LIMITS.CAPPED_MAX_SCORE);

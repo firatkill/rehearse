@@ -58,7 +58,7 @@ test('TC-096 FR-35 versionchange closes storage and shows only updated-elsewhere
   await page.evaluate(
     () =>
       new Promise<void>((resolve, reject) => {
-        const request = indexedDB.open('rehearse', 3);
+        const request = indexedDB.open('rehearse', 4);
         request.onsuccess = () => {
           request.result.close();
           resolve();

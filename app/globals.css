@@ -1453,3 +1453,123 @@ main:has(> .setup-page) {
   color: var(--ink);
   font-weight: 600;
 }
+
+.feedback-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 28px;
+}
+.feedback-main,
+.feedback-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+.feedback-verdict {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+.feedback-verdict-text {
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 28ch;
+  margin: 0;
+}
+.feedback-overall {
+  font-family: var(--font-mono);
+  font-size: 22px;
+}
+.feedback-change,
+.feedback-answer,
+.feedback-follow-up,
+.feedback-scores,
+.feedback-delivery {
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 24px;
+  background: var(--surface);
+}
+.feedback-change {
+  background: var(--stage);
+  color: #ecf2f0;
+  border-color: #2f3d39;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.feedback-change h3 {
+  color: #5ee0b4;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.feedback-change blockquote {
+  border-left: 3px solid #5ee0b4;
+  padding-left: 16px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.feedback-change .ui-button {
+  align-self: flex-start;
+}
+.feedback-note {
+  color: var(--ink-3);
+  font-size: 14px;
+}
+.feedback-details details {
+  border-top: 1px solid var(--rule);
+  padding-block: 12px;
+}
+.feedback-details summary {
+  min-height: 44px;
+  display: list-item;
+  align-content: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+.feedback-details li {
+  margin-block: 12px;
+}
+.feedback-score-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-block: 8px;
+}
+.feedback-score-bar span {
+  height: 6px;
+  border-radius: 2px;
+  background: var(--rule-strong);
+}
+.feedback-score-bar [data-filled] {
+  background: var(--accent);
+}
+.feedback-scores li {
+  margin-block: 16px;
+  font-size: 14px;
+}
+.feedback-scores [data-lowest] {
+  color: var(--warn);
+}
+.feedback-scores [data-lowest] [data-filled] {
+  background: var(--warn);
+}
+@media (max-width: 767px) {
+  .feedback-layout {
+    grid-template-columns: 1fr;
+  }
+  .feedback-verdict-text {
+    font-size: 26px;
+  }
+  .feedback-change,
+  .feedback-answer,
+  .feedback-follow-up,
+  .feedback-scores,
+  .feedback-delivery {
+    padding: 20px;
+  }
+}

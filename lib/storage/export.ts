@@ -16,6 +16,7 @@ export class ImportFileError extends AppError {
 }
 export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unknown>> = {
   1: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 2 }),
+  2: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 3 }),
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({

@@ -1,7 +1,7 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
 import { z } from 'zod';
-import { ANSWER, DIMENSIONS, QUESTION_TYPES, type Dimension } from '@/lib/config';
+import { ANSWER, DIMENSIONS, FEEDBACK_LIMITS, QUESTION_TYPES, type Dimension } from '@/lib/config';
 import { getEnv } from '@/lib/env';
 import { DIMENSION_LABELS } from '@/lib/labels';
 import { countWords, tokenize } from '@/lib/metrics/words';
@@ -103,6 +103,15 @@ function feedback(prompt: string, transcript: string) {
     clarity:
       n < ANSWER.SHORT_WORDS || n > 550 ? 2 : n / Math.max(1, sentences.length) <= 22 ? 4 : 3,
   };
+  const effectiveScore = (dimension: Dimension) => {
+    if (relevance === 1 && n >= ANSWER.SHORT_WORDS)
+      return dimension === 'relevance'
+        ? 1
+        : Math.min(scores[dimension], FEEDBACK_LIMITS.CAPPED_MAX_SCORE);
+    return n < ANSWER.SHORT_WORDS && ['structure', 'specificity', 'impact'].includes(dimension)
+      ? Math.min(scores[dimension], FEEDBACK_LIMITS.CAPPED_MAX_SCORE)
+      : scores[dimension];
+  };
   const type = z.enum(QUESTION_TYPES).safeParse(field(question, 'type'));
   return {
     scores: Object.fromEntries(
@@ -121,6 +130,12 @@ function feedback(prompt: string, transcript: string) {
     ],
     improvements: [
       {
+        dimension: DIMENSIONS.reduce(
+          (lowest, dimension) =>
+            effectiveScore(dimension) < effectiveScore(lowest) ? dimension : lowest,
+          DIMENSIONS[0],
+        ),
+        vague_phrases: [],
         point: 'Quantify the result.',
         why: 'A number makes the impact easy to remember.',
         rewrite: 'As a result, [metric] went from [before] to [after].',

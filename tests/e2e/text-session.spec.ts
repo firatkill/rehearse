@@ -44,7 +44,7 @@ test('TC-079 E2E-05 scored text session retains all three edited answers', async
     await expect(
       page.getByRole('heading', { name: `Feedback on question ${index + 1}` }),
     ).toBeFocused();
-    await expect(page.getByRole('heading', { name: 'What interviewers listen for' })).toBeVisible();
+    await expect(page.getByText('What interviewers listen for', { exact: true })).toBeVisible();
     await page
       .getByRole('button', { name: index === 2 ? 'Finish and see report' : 'Next question' })
       .click();
