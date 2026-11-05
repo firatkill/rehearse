@@ -17,7 +17,9 @@ export function Header({ room = false, endSession }: { room?: boolean; endSessio
               <Link href="/setup">Practise</Link>
               <Link href="/sample">Sample report</Link>
               <Link href="/history">History</Link>
-              <Link href="/how-it-works">How it works</Link>
+              <Link href="/how-it-works" prefetch={false}>
+                How it works
+              </Link>
               <a href="https://github.com/firatkill/rehearse">GitHub</a>
             </nav>
             <ThemeToggle />
