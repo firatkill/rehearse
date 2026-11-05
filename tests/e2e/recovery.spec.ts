@@ -5,7 +5,7 @@ test('TC-095 E2E-16 saved text draft and review edits survive reload with restor
 }, info) => {
   await startTextSession(page, info);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I restored a useful answer.');
   await page.clock.runFor(2000);
   await expect
@@ -29,14 +29,16 @@ test('TC-095 E2E-16 thinking resumes only after Continue and scored feedback sur
 }, info) => {
   await startTextSession(page, info);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await expect(page.getByRole('button', { name: 'Start answering now' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+  ).toBeVisible();
   await page.clock.runFor(2000);
   await expect.poll(async () => (await storedRoom(page)).session.checkpoint.phase).toBe('thinking');
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Ready to continue' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeFocused();
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I delivered a useful project.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   await page.getByRole('button', { name: 'Get feedback' }).click();

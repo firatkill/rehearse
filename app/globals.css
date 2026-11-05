@@ -1203,3 +1203,228 @@ main:has(> .setup-page) {
     width: 100%;
   }
 }
+
+/* Interview stage stays dark independently of the visitor's page theme. */
+.room-shell {
+  min-height: 100svh;
+  background: var(--stage);
+  color: var(--ink);
+}
+.room-shell .site-header {
+  background: var(--stage);
+}
+.room-shell .room-column {
+  max-width: 900px;
+  padding-block: 40px 48px;
+}
+.room-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+}
+.room-stage > p,
+.room-stage p {
+  margin-bottom: 0;
+}
+.room-stage > .ui-button {
+  align-self: flex-start;
+}
+.room-stage > [role='status'] {
+  color: var(--ink-3);
+  font-size: 14px;
+  min-height: 20px;
+}
+.room-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.room-progress > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.room-progress .ui-progress {
+  flex: 1;
+  margin: 0;
+}
+.room-context {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.room-question {
+  font-size: 40px;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.room-recorder {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.recording-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+.recording-label {
+  color: var(--warn);
+  font-weight: 600;
+}
+.recording-clock {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.recording-progress,
+.think-progress {
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--rule);
+}
+.recording-progress > span,
+.think-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--warn);
+}
+.think-progress > span {
+  background: var(--accent);
+}
+.transcript-card {
+  border: 1px solid var(--rule);
+  background: var(--stage-surface);
+  border-radius: 16px;
+  padding: 24px 26px;
+  min-height: 160px;
+  font-size: 19px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.recording-help {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.recording-stop {
+  align-self: flex-start;
+  min-height: 56px;
+  padding-inline: 28px;
+  font-size: 17px;
+}
+.recording-stop::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: currentColor;
+}
+.room-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.room-secondary-actions:empty {
+  display: none;
+}
+.room-think {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.think-clock {
+  font-size: 64px;
+  line-height: 1;
+}
+.think-hint {
+  color: var(--ink-3);
+  font-size: 15px;
+}
+.room-think .ui-button {
+  align-self: flex-start;
+}
+.room-text-answer textarea,
+.room-stage textarea {
+  border: 1px solid var(--rule-strong);
+  background: var(--stage-surface);
+  color: var(--ink);
+  border-radius: 16px;
+  padding: 18px;
+}
+.room-intro {
+  padding-block: 16px;
+}
+@media (max-width: 639px) {
+  .room-shell .site-header .header-inner {
+    flex-wrap: nowrap;
+    padding-block: 12px;
+  }
+  .room-shell .room-column {
+    padding: 20px 20px 24px;
+  }
+  .room-stage {
+    gap: 20px;
+    min-height: calc(100svh - 116px);
+  }
+  .room-progress {
+    gap: 14px;
+  }
+  .room-progress > div {
+    gap: 12px;
+  }
+  .room-question {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  .room-recorder {
+    flex: 1;
+    gap: 16px;
+  }
+  .recording-heading {
+    gap: 8px;
+  }
+  .recording-clock {
+    font-size: 12px;
+  }
+  .transcript-card {
+    flex: 1;
+    padding: 18px;
+    min-height: 160px;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .recording-stop {
+    width: 100%;
+    min-height: 60px;
+    font-size: 18px;
+  }
+  .room-secondary-actions {
+    justify-content: space-between;
+    margin-top: -10px;
+  }
+  .room-think .ui-button,
+  .room-text-answer > .ui-button {
+    width: 100%;
+  }
+}
+
+/* Keep the empty live region mounted without adding a blank row. */
+.room-stage > [role='status']:empty {
+  min-height: 0;
+  margin-block: -12px;
+}
+@media (max-width: 639px) {
+  .room-stage > [role='status']:empty {
+    margin-block: -10px;
+  }
+}
+.room-shell .header-inner > .ui-button {
+  margin-left: auto;
+}

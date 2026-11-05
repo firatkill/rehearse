@@ -67,44 +67,46 @@ export function Shell({
   const api = useMemo(() => ({ message, announce, registerEnd }), [message, announce, registerEnd]);
   return (
     <ShellContext.Provider value={api}>
-      <a href="#main-content" className="skip-link">
-        Skip to content
-      </a>
-      <DemoBanner edition={edition} />
-      <Header
-        room={room}
-        endSession={
-          endSession ?? (
-            <Button
-              className="min-h-11"
-              variant="outline"
-              disabled={!endHandler}
-              onClick={() => endHandler?.()}
-            >
-              End session
-            </Button>
-          )
-        }
-      />
-      <Banners
-        {...banners}
-        notSaving={banners.notSaving || storage === 'not-saving'}
-        updatedElsewhere={banners.updatedElsewhere || storage === 'updated'}
-        blocked={banners.blocked || storage === 'blocked'}
-      />
-      <noscript>
-        Rehearse needs JavaScript for the interview room. The sample report and the write-up work
-        without it.
-      </noscript>
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className={room ? 'room-column container' : 'container'}
-      >
-        {children}
-      </main>
-      {!room && <LiveRegion message={message} />}
-      {!room && <Footer />}
+      <div className={room ? 'stage room-shell' : undefined}>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <DemoBanner edition={edition} />
+        <Header
+          room={room}
+          endSession={
+            endSession ?? (
+              <Button
+                className="min-h-11"
+                variant="outline"
+                disabled={!endHandler}
+                onClick={() => endHandler?.()}
+              >
+                End session
+              </Button>
+            )
+          }
+        />
+        <Banners
+          {...banners}
+          notSaving={banners.notSaving || storage === 'not-saving'}
+          updatedElsewhere={banners.updatedElsewhere || storage === 'updated'}
+          blocked={banners.blocked || storage === 'blocked'}
+        />
+        <noscript>
+          Rehearse needs JavaScript for the interview room. The sample report and the write-up work
+          without it.
+        </noscript>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className={room ? 'room-column container' : 'container'}
+        >
+          {children}
+        </main>
+        {!room && <LiveRegion message={message} />}
+        {!room && <Footer />}
+      </div>
     </ShellContext.Provider>
   );
 }

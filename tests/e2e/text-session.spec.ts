@@ -15,18 +15,23 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 test('TC-079 E2E-05 scored text session retains all three edited answers', async ({ page }) => {
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
+  await expect(
+    page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+  ).toBeFocused();
   await page.clock.runFor(2000);
   expect((await speech(page).spoken()).some((text) => text.trim().length > 0)).toBe(true);
   await expect(page.getByText('The answer box opens when the timer ends.')).toBeVisible();
   await setHidden(page, true);
   await page.clock.runFor(16000);
-  await expect(page.getByRole('button', { name: 'Start answering now' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+  ).toBeVisible();
   await setHidden(page, false);
   await expect(page.getByText('Timer paused while you were away.')).toBeVisible();
   await page.clock.runFor(15000);
   for (let index = 0; index < 3; index++) {
-    if (index > 0) await page.getByRole('button', { name: 'Start answering now' }).click();
+    if (index > 0)
+      await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     const input = page.getByLabel('Your answer');
     await expect(input).toBeFocused();
     await input.fill(`I improved delivery for project ${index + 1}.`);
@@ -59,7 +64,7 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
   page,
 }) => {
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('My draft remains here.');
   await page.getByRole('button', { name: 'Skip question', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep answering' })).toBeFocused();
@@ -72,7 +77,7 @@ test('TC-041 E2E-05 skip cancellation preserves text; end after an answer retain
     .getByRole('dialog')
     .getByRole('button', { name: 'Skip question', exact: true })
     .click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I delivered a measurable result.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   await page.getByRole('button', { name: 'Save without feedback' }).click();

@@ -49,6 +49,9 @@ for (const theme of ['light', 'dark'] as const) {
         .violations,
     ).toEqual([]);
     await page.screenshot({ path: `.git/v14-${theme}-390.png`, fullPage: true });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.screenshot({ path: `.git/v14-${theme}-1440.png`, fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole('button', { name: 'Start session', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Start the interview' })).toBeVisible();
   });

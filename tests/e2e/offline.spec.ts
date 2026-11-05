@@ -6,7 +6,7 @@ test('TC-112 E2E-22 offline review disables scoring until reconnection', async (
 }, info) => {
   await startTextSession(page, info);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I delivered the project and checked the outcome.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   try {

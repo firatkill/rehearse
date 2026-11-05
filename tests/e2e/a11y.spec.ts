@@ -76,12 +76,14 @@ for (const theme of ['light', 'dark'] as const) {
     await startTextSession(page, info);
     await audit(page, true);
     await page.getByRole('button', { name: 'Start the interview' }).click();
-    await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
+    await expect(
+      page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+    ).toBeFocused();
     await audit(page, true);
     await page.clock.runFor(10000);
     await expect(page.getByText('The answer box opens when the timer ends.')).toBeVisible();
     await audit(page, true);
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await expect(page.getByLabel('Your answer')).toBeFocused();
     await audit(page, true);
     await page

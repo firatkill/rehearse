@@ -8,7 +8,7 @@ export function QuestionPanel({
   activeChunk?: number | null;
 }) {
   return (
-    <h1 id="question">
+    <h1 id="question" className="room-question">
       <Captions chunks={chunkForSpeech(prompt)} activeChunk={activeChunk} />
     </h1>
   );

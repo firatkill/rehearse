@@ -13,7 +13,7 @@ test('TC-060 E2E-10 switching mid-recording keeps partial words and future answe
   await page.getByRole('button', { name: 'Review answer' }).click();
   await page.getByRole('button', { name: 'Save and continue' }).click();
   await page.getByRole('button', { name: 'Next question' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await expect(page.getByLabel('Your answer')).toBeFocused();
   await page.clock.runFor(2000);
   expect(await speech(page).runs()).toBe(1);

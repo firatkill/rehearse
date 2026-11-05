@@ -26,7 +26,9 @@ test('TC-113 E2E-24 keyboard-only text session, phase focus and dialog trap', as
   await expect(page.getByRole('button', { name: 'Start the interview' })).toBeFocused();
   await page.keyboard.press('Enter');
   for (let index = 0; index < 3; index++) {
-    await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
+    await expect(
+      page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+    ).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.getByLabel('Your answer')).toBeFocused();
     await page.keyboard.type(`I delivered task ${index + 1} and reduced errors from ten to two.`);

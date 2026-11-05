@@ -30,7 +30,7 @@ export function TextAnswer({
     };
   }, [startedAt]);
   return (
-    <div className="space-y-4">
+    <div className="room-text-answer space-y-4">
       <AnswerEditor
         value={text}
         onChange={(value) => {
@@ -45,6 +45,7 @@ export function TextAnswer({
         <TimerDisplay ms={elapsed} /> / suggested <TimerDisplay ms={limit * 1000} />
       </p>
       <Button
+        variant="on-dark"
         className="min-h-11"
         onClick={() => {
           onReview(text);

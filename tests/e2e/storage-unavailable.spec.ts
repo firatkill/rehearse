@@ -12,7 +12,7 @@ test('TC-094 E2E-23 unavailable IndexedDB still completes a text session in memo
   await expect(page.getByText(notSaving)).toBeVisible();
   await page.getByRole('button', { name: 'Start the interview' }).click();
   for (let i = 0; i < 3; i++) {
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await page.getByLabel('Your answer').fill(`I saved answer ${i + 1}.`);
     await page.getByRole('button', { name: 'Review answer' }).click();
     await page.getByRole('button', { name: 'Save and continue' }).click();
@@ -28,7 +28,7 @@ test('TC-096 FR-39 failed write retains the current answer in memory and shows o
 }, info) => {
   await startTextSession(page, info, true);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I retained my answer.');
   await page.evaluate(() => {
     IDBObjectStore.prototype.put = function () {
@@ -49,7 +49,7 @@ test('TC-096 FR-35 versionchange closes storage and shows only updated-elsewhere
 }, info) => {
   await startTextSession(page, info, true);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I keep this after an upgrade.');
   await page.clock.runFor(2000);
   await expect

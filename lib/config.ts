@@ -37,6 +37,9 @@ export const SESSION = {
   SEED_PATTERN: /^[0-9a-f]{8}$/,
 } as const;
 
+// Visual coaching guidance, not a recording cutoff. Question limits remain authoritative.
+export const RECORDING_GUIDE = { MIN_SECONDS: 60, MAX_SECONDS: 120 } as const;
+
 export const QUESTION_BANK = {
   MIN_PER_CELL: 5,
   TARGET_ACTIVE: 120,

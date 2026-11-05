@@ -1,6 +1,7 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
 import { RecorderPanel } from '@/components/room/recorder-panel';
+import { ThinkTimer } from '@/components/room/think-timer';
 import { SpeechError } from '@/components/room/speech-error';
 test('TC-057 FR-11 TRD 11.2 recording announces thresholds once and stops at its limit', async () => {
   const announce = vi.fn<(text: string) => void>();
@@ -67,3 +68,35 @@ test.each(['permission', 'no-device', 'no-speech', 'unavailable'] as const)(
     expect(screen.getByRole('heading', { level: 2 })).toBeVisible();
   },
 );
+
+test('TC-141 V-15 recording guide is coaching copy, not a different cutoff', async () => {
+  const onLimit = vi.fn();
+  render(
+    <RecorderPanel
+      transcript={{ committed: '', runFinal: '', runInterim: '' }}
+      startedAt={Date.now()}
+      limit={90}
+      announce={vi.fn()}
+      onStop={vi.fn()}
+      onLimit={onLimit}
+    />,
+  );
+  expect(screen.getByText('aim for 1:00–2:00')).toBeVisible();
+  expect(screen.getByText(/Maximum 90 seconds/)).toBeVisible();
+  expect(screen.getByRole('region', { name: 'Live transcript' })).toHaveAttribute(
+    'aria-live',
+    'off',
+  );
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(90000);
+  });
+  expect(onLimit).toHaveBeenCalledOnce();
+});
+
+test('TC-141 V-15 thinking uses the approved action and static coaching hint', () => {
+  const onStart = vi.fn();
+  render(<ThinkTimer remainingMs={9000} wasPaused={false} mode="voice" onStart={onStart} />);
+  expect(screen.getByText('Try: what happened, what you did, what changed.')).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Start now' }));
+  expect(onStart).toHaveBeenCalledOnce();
+});
