@@ -1,119 +1,126 @@
 {
   "questionId": "demo-harbour-health-6",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:50:57.477Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d treat the save as an unknown outcome rather than assume it failed. I’d keep the coordinator’s edits on screen, mark the update “Checking status…” and retry the status check using the same request ID so we don’t create duplicates. If the server confirms the save, I’d show when it was saved; if it confirms it wasn’t, I’d offer a clear “Retry save” action without asking them to re-enter anything. If status remains unavailable, I’d say the outcome is still uncertain, preserve the draft locally, and explain what to do next. I’d also log these cases and track duplicate updates, lost edits, and time to resolution. In testing, I’d simulate disconnects before and after server commit and verify that recovery neither loses edits nor creates a second task update.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from the uncertain outcome through recovery states to testing, but provide no real situation or observed result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You specify status checks, request IDs, local draft preservation, and failure scenarios, but give no implementation context or measured result."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a proposed design with repeated “I’d” statements, but do not establish what you personally built or decided in a real example."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name metrics and a testing plan, but report no observed outcome or validation result."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to handle confirmed success, confirmed failure, and continued uncertainty during a coordinator’s save."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The recovery states and corresponding user experience are presented in a concise, easy-to-follow sequence."
           }
         },
-        "overall": 1,
+        "overall": 3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You address the uncertain-save problem with clear, distinct recovery paths.",
+            "evidence": "If the server confirms the save, I’d show when it was saved; if it confirms it wasn’t, I’d offer a clear"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Ground the design proposal in a concrete example and distinguish what you personally implemented from planned behavior.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I’d treat the save as an unknown outcome",
+              "In testing, I’d simulate disconnects"
+            ],
+            "why": "The answer explains a sound approach, but does not show your actual contribution or a decision you owned.",
+            "rewrite": "In [project], I owned [specific part of the recovery experience]. I chose [design decision] because [constraint], and I worked with [team or partner] on [their contribution]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you distinguish a confirmed failed save from a delayed server response without risking a duplicate update?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: an interrupted save leaves the server outcome uncertain, and coordinators must not lose edits or create duplicates.",
+          "Explain the recovery design: preserve edits, show a checking state, and use an idempotent request or status check.",
+          "Describe distinct user actions for confirmed success, confirmed failure, and unresolved status.",
+          "State your personal contribution and the key design trade-off.",
+          "Name how you would validate recovery and the observable outcomes or metrics you would check."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d avoid showing a generic failure message because the update may already have reached the server. I’d preserve the user’s changes, show that we’re checking whether the save completed, and then either confirm success or offer a retry. I’d use an idempotency key to prevent duplicate updates and test interruptions at different points in the save flow.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe actions and testing, but give no project context or observed result."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name concrete recovery states and an idempotency key, but provide no implementation or system details."
           },
           "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly state proposed actions with “I’d,” though no personal decision or contribution in a real example is established."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose testing but report no outcome or defined validation criteria."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address uncertain save results, preserving changes, duplicate prevention, and recovery."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The recovery sequence is understandable, but how you determine whether the save completed is unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize the key risk of treating an uncertain save as a definite failure.",
+            "evidence": "the update may already have reached the server"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain how you would verify save status and what happens when the server remains unreachable.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "show that we’re checking whether the save completed"
+            ],
+            "why": "That decision path makes the recovery mechanism actionable and clarifies how the user reaches a safe outcome.",
+            "rewrite": "I’d preserve the edits and check the update’s status before offering a retry, using an idempotency key to avoid duplicate changes. If the status stayed unknown, I’d show [clear next step] and validate the flow by testing [interruption scenarios] against [success criteria]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you determine whether the server accepted the update when the client loses its connection?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the uncertain-save constraint: the request may have succeeded even though the client did not receive confirmation.",
+          "Describe preserving edits, checking the operation’s status, and offering a safe retry without creating duplicates.",
+          "Explain user-facing states and how you would test interruptions and verify recovery outcomes."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +130,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d show an error and let the coordinator try again when the network comes back. The app should make sure the task gets updated and not confuse the user.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You give a recovery action, but no context or observable result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The error, retry behavior, and update guarantee are described only in generic terms."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what the app should do, but not a specific decision or action you took."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state a desired outcome, but no result or validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address retrying after a network interruption, but leave the uncertain-save recovery experience underspecified."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The basic intent is understandable, but the retry mechanism and how it avoids confusion are unexplained."
           }
         },
-        "overall": 3,
+        "overall": 1.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify that the coordinator needs a clear recovery path.",
+            "evidence": "show an error and let the coordinator try again"
           }
         ],
         "improvements": [
           {
+            "point": "Explain how you distinguish a saved update from an uncertain one and prevent duplicate submissions.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "show an error",
+              "try again when the network comes back",
+              "make sure the task gets updated"
+            ],
+            "why": "Specific interface behavior and safeguards make the recovery proposal concrete and trustworthy.",
+            "rewrite": "I’d show that the save status is uncertain, retain the update locally, and retry safely when connectivity returns; I’d verify the task was saved before confirming success."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you prevent a retry from creating a duplicate task update?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: the save request may have reached the server even though the response was lost.",
+          "Describe the status shown to the coordinator and how their edit is preserved.",
+          "Explain a safe retry or server confirmation approach, including duplicate prevention.",
+          "Name how you would validate the recovery flow and what observable success looks like."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

@@ -1,119 +1,123 @@
 {
   "questionId": "demo-cedar-tools-5",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:47:56.430Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d start by defining what “slow” means: which dashboard view or query, its typical and peak latency, how often it runs, and what freshness the depot team needs. I’d reproduce it with representative parameters, capture `EXPLAIN (ANALYZE, BUFFERS)`, and compare actual versus estimated rows. I’d check for sequential scans over large tables, costly joins or sorts, repeated work, and disk spills. Then I’d inspect table sizes and statistics, existing indexes and their usage, query plans, and PostgreSQL activity and wait events. I’d make one targeted change at a time—such as rewriting a filter, adding an appropriate composite or partial index, or pre-aggregating data if freshness allows—and rerun the same workload. I’d verify both latency and buffer reads, check that writes and other dashboard queries haven’t regressed, and monitor the result in production. For example, if a depot-and-date filter is scanning a large shipment table, I’d test an index aligned with that filter and ordering, rather than adding indexes speculatively.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from defining the problem through diagnosis and changes to validation, but give no concrete situation or observed result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name PostgreSQL tools, plan issues, and possible fixes, but provide no actual query, measurements, or system scale."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe a clear first-person investigation and testing approach, but no completed personal example or team responsibilities."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You explain how you would verify an improvement, but report no observable outcome from an actual change."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address improving a slow dashboard query and identify relevant PostgreSQL diagnostics and validation steps."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and logically ordered, with clear diagnostic, intervention, and verification steps."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
+            "point": "You lay out a practical PostgreSQL investigation and cautious testing process.",
             "evidence": null
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Add a real before-and-after result or a specific validation outcome.",
+            "dimension": "impact",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Your answer proposes measurement but does not show whether a change improved latency or affected other workloads.",
+            "rewrite": "After [change], I measured [before-and-after latency] on the same workload and checked buffer reads and write performance for regressions."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Have you applied this process to a real query, and what measurable result did you observe?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define the slow dashboard query, user need, baseline latency, and freshness or workload constraints.",
+          "Describe your own PostgreSQL diagnosis using execution plans, buffers, statistics, indexes, and relevant activity or waits.",
+          "Explain the targeted change and why it fits the query and constraints.",
+          "Report before-and-after measurements and how you checked for regressions."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d first identify the specific dashboard query and measure its runtime with realistic parameters. In PostgreSQL I’d use `EXPLAIN (ANALYZE, BUFFERS)` to look for large scans, expensive joins, sorts, and inaccurate row estimates. I’d also review indexes, table statistics, and whether the query is doing unnecessary work. I’d test a focused query or index change, compare before-and-after performance, and check for effects on writes and other queries.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline an approach, but provide no specific situation, implemented action, or result."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name PostgreSQL’s EXPLAIN options and concrete query factors, but give no system-specific details or measurements."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but do not give evidence of actions you personally took."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose comparing performance and checking side effects, but report no observable outcome."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address PostgreSQL investigation and validation, but do not give a specific example or result."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The steps are ordered and understandable, though the diagnosis and outcome remain hypothetical."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
+            "point": "You give a practical, ordered diagnostic approach.",
             "evidence": null
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the approach in a real example, then state your change and its measured result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I’d first identify the specific dashboard query",
+              "I’d test a focused query or index change"
+            ],
+            "why": "The question asks how you would approach the problem, and your answer gives steps but no concrete context or outcome.",
+            "rewrite": "For [dashboard query], I used EXPLAIN (ANALYZE, BUFFERS) and found [specific bottleneck]. I changed [query or index], then measured [before-and-after runtime] and checked the effect on writes and other queries."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which PostgreSQL finding would most likely lead you to change an index rather than rewrite the query?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the dashboard context, the performance constraint, and how slowness was observed.",
+          "Describe personal diagnosis using EXPLAIN (ANALYZE, BUFFERS), including the relevant plan evidence.",
+          "Explain the chosen query or index change and trade-offs, then report a measured result and validation."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +127,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d look at the database and see if it needs more indexes or resources. Then I’d optimize the query and check whether the dashboard is faster.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name an investigation and a check, but provide no concrete situation, task, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You mention indexes and resources but identify no query, PostgreSQL evidence, or specific optimization."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use “I,” but do not explain a specific action or decision you made."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose checking speed but report no observable result or defined validation method."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You partly address the approach, but do not say what you would examine in PostgreSQL."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The proposed sequence is understandable, though the investigation and optimization steps remain vague."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a basic sequence from investigation to validation.",
+            "evidence": "Then I’d optimize the query and check whether the dashboard is faster."
           }
         ],
         "improvements": [
           {
+            "point": "Name PostgreSQL diagnostics and explain how their evidence would guide a targeted change.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "look at the database",
+              "more indexes or resources",
+              "optimize the query"
+            ],
+            "why": "Specific checks and a change tied to their findings make your approach concrete and assessable.",
+            "rewrite": "I’d capture the dashboard query and inspect its execution plan with EXPLAIN (ANALYZE, BUFFERS), checking for costly scans, joins, and sorts. I’d use those findings to choose a targeted change, then compare query timings before and after."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which PostgreSQL diagnostic would you start with, and what would you look for in its output?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the dashboard context and explain the latency constraint or user impact.",
+          "Identify the slow SQL and examine its execution plan, row estimates, scans, joins, sorts, and buffer use.",
+          "Describe a targeted query or index change and explain why the evidence supports it.",
+          "Compare before-and-after timings under comparable conditions and report the observable result."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

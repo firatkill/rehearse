@@ -1,119 +1,123 @@
 {
   "questionId": "tec-003",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:57:12.407Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I start with the query plan and production evidence: how often the query runs, its latency, rows scanned versus rows returned, and whether it’s a real bottleneck. I look at the filter, join, and sort columns, then check existing indexes, column selectivity, and whether the index order matches the query. For example, on an orders endpoint, I found a frequent query scanning about 400,000 rows to return roughly 30. I tested a composite index on `(customer_id, created_at)`, confirmed with `EXPLAIN` that it reduced the scan to about 30 rows, and measured a 70% drop in p95 latency in staging before rolling it out. I also checked write latency and index size afterward. An index costs storage and adds work to inserts, updates, and deletes; it can slow writes, increase maintenance and backup time, and sometimes be ignored or cause a worse plan. So I add one only when the measured read benefit justifies those costs, and I monitor it after deployment.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You move logically from production evidence to index choice, measured validation, costs, and the decision rule."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You name EXPLAIN, a composite index, roughly 400,000 scanned rows, 30 returned rows, and a 70% p95 reduction."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe testing and validating the index, but provide limited detail about the decision or your broader experience."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You quantify the staging latency improvement and connect the decision to write latency, storage, and maintenance."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly cover evidence, index selection, costs, and verifying the effect, at an appropriate level."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The explanation is concise and ordered, with a concrete example and clearly stated trade-offs."
           }
         },
-        "overall": 1,
+        "overall": 3.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
+            "point": "You ground the decision in measurable evidence and explain how you verified the index’s effect.",
             "evidence": null
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Clarify your specific role in choosing the index and the criteria behind that choice.",
+            "dimension": "ownership",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Your example shows testing and results, but makes your decision-making ownership less explicit.",
+            "rewrite": "I chose (customer_id, created_at) because it matched the query’s filter and sort pattern, then compared read gains against write latency and index size."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What did you check after deployment to confirm the index stayed useful without harming write performance?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Start with query frequency, latency, query plans, and rows scanned versus returned.",
+          "Explain how an index narrows lookup work, and choose columns and order to match filters, joins, or sorting.",
+          "Use a concrete example, then verify plan and performance changes after adding the index.",
+          "Weigh read benefits against write overhead, storage, maintenance, and the possibility of a poor or unused index."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d look at the query plan, how often the query runs, and whether it scans many more rows than it returns. I’d check the columns used in filters, joins, and ordering, as well as existing indexes and selectivity. Then I’d test a candidate index and compare latency and rows scanned. Indexes can speed up reads, but they use disk and make writes and maintenance more expensive, so I’d avoid adding one without evidence that it helps an important query.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from query-plan evidence and relevant columns to testing an index and then its costs, but give no concrete example."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name plans, row counts, query frequency, selectivity, latency, and existing indexes, but provide no system or measured values."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state how you would assess an index, but do not justify a specific decision through personal experience."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You identify read-speed benefits and disk, write, and maintenance costs, and propose comparing latency and rows scanned."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain what evidence to inspect, where indexes may help, how to test, and what they cost."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer follows a concise, logical sequence from evidence to validation and trade-offs."
           }
         },
-        "overall": 2,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You describe a practical, evidence-based way to assess an index.",
+            "evidence": "I’d look at the query plan, how often the query runs, and whether it scans many more rows than it returns."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "State a recommendation and connect it to a decision or experience you can support.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I’d test a candidate index and compare latency and rows scanned."
+            ],
+            "why": "Your process is clear, but the answer does not show a justified decision or reference to your own work.",
+            "rewrite": "I’d add an index when the plan shows an important query scanning many unnecessary rows and a test improves latency without unacceptable write costs; in my work, [example]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "When testing a candidate index, what would you check to confirm the database uses it and the improvement holds under realistic traffic?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Start with a slow or important query; inspect its plan, frequency, row counts, and existing indexes.",
+          "Explain how the index helps the relevant filters, joins, or ordering; use a concrete query example if available.",
+          "Compare before-and-after latency and rows scanned, and confirm the plan uses the index.",
+          "Balance read benefits against storage, write overhead, and ongoing maintenance."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +127,63 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d add an index to columns the query uses so it runs faster. Indexes make searching quicker, though they take up some space. I’d check whether the query seems slow and add one if it does.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You define an index and suggest adding one for slow queries, but do not explain how it works or give a use case."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You mention slow queries and indexed columns but provide no logs, plans, row counts, tools, or concrete example."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You take a position to add an index when a query seems slow, but give no supporting decision process."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention faster searches and storage cost, but describe no observed or validated consequences."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address when to add an index and one cost, but omit how to investigate and other important trade-offs."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer is easy to follow, but the decision rule and mechanism remain broad."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify a basic benefit and a real cost of indexing.",
+            "evidence": "Indexes make searching quicker, though they take up some space."
           }
         ],
         "improvements": [
           {
+            "point": "Use query evidence and explain how you would verify the index helps.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "whether the query seems slow"
+            ],
+            "why": "A query plan and before-and-after measurements make the decision testable and account for write and storage costs.",
+            "rewrite": "I’d check slow-query logs and the query plan to see whether an expensive lookup could benefit from an index. After adding one, I’d verify it is used and compare performance, while weighing write overhead and storage."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What would you check in a query plan to confirm an index is being used?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Start with slow-query logs, query plans, and row counts to identify a costly access pattern.",
+          "Explain that an index helps locate matching rows without scanning the whole table, then give a relevant query example.",
+          "Weigh expected read gains against write overhead, storage, and maintenance.",
+          "Verify the plan and measure the query after adding the index."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

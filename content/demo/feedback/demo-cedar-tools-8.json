@@ -1,119 +1,126 @@
 {
   "questionId": "demo-cedar-tools-8",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:48:57.776Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first define ingestion delay consistently—for example, the time from an event’s source timestamp to when it becomes queryable—and confirm the timestamps and clock synchronization are reliable. Then I’d instrument that end-to-end interval, segment it by source and pipeline stage, and capture a baseline across representative peak and off-peak periods. I’d report percentiles such as p50, p95, and p99, plus the share of events meeting the freshness target; an average alone can hide tail delays. I’d also record event volume, failures, and late or missing events so a lower delay isn’t mistaken for improvement when data is being dropped. After any change, I’d compare the same metrics over comparable traffic windows, check for regressions by source, and use a sustained trend or controlled rollout rather than a single favorable data point to decide whether we improved.”",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from defining and measuring the baseline to comparing results, but give no specific situation or observed result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name timestamps, pipeline stages, percentiles, freshness targets, and data-quality checks, but no concrete system or measured values."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You explain a proposed approach, but do not identify a past personal contribution or decision."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe how you would validate improvement, but provide no observed outcome or completed measurement."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to establish a baseline and judge whether ingestion delay is improving."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and logically ordered, with a clear measurement and comparison method."
           }
         },
-        "overall": 1,
+        "overall": 3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You define the metric carefully and account for misleading results.",
+            "evidence": "the time from an event’s source timestamp to when it becomes queryable"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the method in a specific example and state what you personally implemented or decided.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I’d first define ingestion delay consistently",
+              "After any change, I’d compare the same metrics"
+            ],
+            "why": "The answer is framed as a plan, so the interviewer cannot assess your contribution or decisions in practice.",
+            "rewrite": "In [project], I defined ingestion delay as [metric] and implemented [instrumentation or dashboard]. I chose [comparison method] because [constraint]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Have you used this approach on a real pipeline, and what did the measurements show?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context, including the pipeline and the measurement challenge.",
+          "Define ingestion delay precisely and verify timestamp reliability.",
+          "Describe personal instrumentation and baseline collection across representative traffic.",
+          "Compare percentiles and data-quality indicators over comparable windows; report the observed result and next decision."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d agree on what counts as ingestion delay, then measure it from the event’s creation time until it is available to users. I’d establish a baseline over a representative period and track p50 and p95 delay, broken down by source. I’d compare those numbers after changes under similar traffic and also watch error rates, to make sure faster ingestion isn’t coming at the cost of lost data.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline a measurement approach, but provide no concrete situation, task, or observed result."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You specify the delay interval, percentiles, source breakdown, comparison conditions, and an error-rate guardrail, but no actual system or values."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but give no example showing your personal contribution in practice."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You propose monitoring outcomes but state no observed result or evidence that ingestion improved."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain how to establish and compare a baseline, but do not report an actual improvement or validation."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposed method is easy to follow, but its application and result are left hypothetical."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You define a useful measurement and comparison method, including a guardrail against data loss.",
+            "evidence": "track p50 and p95 delay, broken down by source"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add an observed before-and-after result and explain how you verified the change.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "I’d compare those numbers after changes under similar traffic"
+            ],
+            "why": "The question asks how you decide whether delay is improving; a proposed method alone does not show a result.",
+            "rewrite": "After [change], p50 moved from [baseline] to [result] and p95 from [baseline] to [result] under comparable traffic; error rates stayed [result], so I concluded [assessment]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Have you used this approach on a real system, and what did the before-and-after measurements show?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the ingestion-delay definition and relevant constraint, such as representative traffic or source variation.",
+          "Describe your own implementation of a baseline using a time window, percentiles, and source-level breakdowns.",
+          "Compare before and after under comparable conditions, while monitoring error rates or data loss.",
+          "State the measured result and how it informed the next decision."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +130,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d check how long ingestion takes now, write down the current number, and see whether it gets lower after we make improvements.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe measuring first and comparing later, but give no context, specific action, or outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You provide no metric definition, measurement method, timeframe, or concrete system details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You say what you would check, but the shared phrase “we make improvements” leaves your contribution unclear."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe a possible comparison, not an observed result or defined validation plan."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address establishing a baseline and checking for improvement, but do not explain how to make the comparison reliable."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The basic approach is easy to understand, but “how long ingestion takes” and the comparison method are underspecified."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the essential baseline-and-compare approach.",
+            "evidence": "write down the current number, and see whether it gets lower"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Define the delay metric, measurement window, and comparison that would verify improvement.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "how long ingestion takes now",
+              "after we make improvements"
+            ],
+            "why": "A lower number is meaningful only if you measure the same delay consistently before and after a change.",
+            "rewrite": "I’d define ingestion delay as [start event to end event], record [baseline] over [time window], then compare the same measure over [post-change window] and check whether it stays lower."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which events would you use to define the start and end of ingestion delay, and over what window would you measure them?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and constraint, including what ingestion process or delay matters.",
+          "Define a consistent delay metric, measurement source, and baseline window.",
+          "Explain your own steps for recording the baseline and evaluating changes against it.",
+          "State an observable result or a clear validation plan, including how you would interpret the comparison."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

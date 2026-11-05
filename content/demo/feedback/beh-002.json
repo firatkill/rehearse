@@ -1,119 +1,127 @@
 {
   "questionId": "beh-002",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T16:49:11.936Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "In a fictional example, our checkout error rate jumped shortly after a release, and support reports suggested some customers were being charged without seeing an order confirmation. I joined the incident channel, helped declare an incident, and first compared payment-provider events with our order records. That showed successful charges were arriving, but a new retry path sometimes timed out before saving the order. I reproduced it with a delayed provider response, then worked with the on-call engineer to disable the retry path behind a feature flag and reconcile affected transactions. We monitored the error rate and payment/order mismatches until they returned to baseline. The investigation took about 25 minutes; afterward, we added a test for delayed responses and an alert for successful charges without corresponding orders.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You set the checkout failure, explain your investigation and fix, then state monitoring and prevention steps."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name provider events, order records, a retry path, a feature flag, and delayed-response testing, but omit scale and exact metrics."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You identify your comparison and reproduction work, while the incident declaration, mitigation, and reconciliation are shared."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe monitoring errors and mismatches back to baseline, but provide no measured magnitude or post-change validation."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain a production incident and a methodical cause investigation, immediate mitigation, and prevention."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The sequence from symptom to diagnosis, mitigation, monitoring, and prevention is concise and easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "Your investigation is specific and methodical, connecting the customer symptom to a reproducible failure mechanism.",
+            "evidence": "I reproduced it with a delayed provider response"
           }
         ],
         "improvements": [
           {
+            "point": "Add the incident’s scale and a concrete measure showing how the fix restored correct checkout behavior.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "returned to baseline",
+              "The investigation took about 25 minutes"
+            ],
+            "why": "The answer names the failure mechanism but gives no affected-customer count or measured change in errors or mismatches.",
+            "rewrite": "I monitored the error rate and payment/order mismatches until they returned to baseline, falling from [starting rate] to [ending rate]; [number] transactions were reconciled."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you verify the new delayed-response test and alert would catch this failure before customers were affected again?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Briefly describe the checkout symptom, customer impact, and urgency.",
+          "Explain the diagnostic sequence and evidence linking the symptom to the retry-path timeout.",
+          "Separate your investigation and decisions from the on-call engineer’s contributions.",
+          "State how the feature-flag mitigation was verified, then describe prevention and a concrete outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "In a fictional incident, a release caused checkout failures, so I checked the logs and compared them with payment-provider events. The provider was completing payments, but our order service was intermittently timing out before recording them. I shared the evidence with the on-call engineer, and we rolled back the relevant change. We verified that errors fell and followed up with a test for the timeout case.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe the failure, investigation, rollback, and verification, though the impact on users and longer-term prevention are thin."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "Checkout, provider events, and an order-service timeout are concrete, but the release change and evidence remain unspecified."
           },
           "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain checking logs and comparing events, while the on-call engineer and team shared the response."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report that errors fell and a timeout test followed, but give no measured result or further prevention."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain how you found the cause and helped fix it, but omit urgency and who was affected."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The investigation and rollback are easy to follow, but the sequence from diagnosis to durable prevention is only briefly explained."
           }
         },
-        "overall": 2,
+        "overall": 2.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a concise, evidence-based path to the likely cause.",
+            "evidence": "I checked the logs and compared them with payment-provider events."
           }
         ],
         "improvements": [
           {
+            "point": "Name the release change, customer impact, and how you validated recovery.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "the relevant change",
+              "errors fell"
+            ],
+            "why": "These details make the diagnosis and outcome more concrete and checkable.",
+            "rewrite": "I compared [specific log signal] with provider events and found payments completed while our order service timed out before recording them. After rolling back [change], I verified recovery by [metric or check]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific evidence showed that the order-service timeout was caused by the release change?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the scene: what checkout failure occurred, who was affected, and why it was urgent.",
+          "Describe the checks in order and explain how each narrowed the cause to a release-related timeout.",
+          "Separate your actions from the on-call team's actions; explain the rollback and how recovery was verified.",
+          "State the follow-up prevention, such as the timeout test, and its observed result."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +131,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "In a fictional example, production had a problem with checkout. I looked around, found something wrong in the code, and helped the team fix it. We worked quickly, and everything was fine afterward.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name a production checkout issue and a fix, but provide almost no situation, action sequence, or explicit result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer gives no concrete symptoms, code details, diagnostic steps, or validation."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You say you looked around and helped, but do not clarify what you personally investigated or decided."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "“Everything was fine afterward” is a vague outcome without evidence that checkout recovered or the fix was verified."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address a production bug and fixing it, but do not explain how you found the cause."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The broad sequence is understandable, but “found something wrong” leaves the cause and diagnostic mechanism unclear."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify a relevant production issue and indicate that you contributed to resolving it.",
+            "evidence": "production had a problem with checkout"
           }
         ],
         "improvements": [
           {
+            "point": "Describe the checkout symptom, your first checks, and the evidence that identified the cause.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "looked around",
+              "found something wrong in the code"
+            ],
+            "why": "Concrete diagnostic steps are central to the question, but the answer does not reveal how you found the cause.",
+            "rewrite": "When [checkout symptom] affected [users or transactions], I first checked [signal or code path] because [reason]. I traced it to [specific cause] and helped [specific fix]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What checkout symptom did users experience, and what evidence led you to identify the cause?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Briefly state the checkout failure, who was affected, and the urgency.",
+          "Walk through the first checks and the evidence that narrowed the cause.",
+          "Separate your actions from the team's, then describe the immediate fix and how you verified recovery.",
+          "Explain any prevention change or lesson learned."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

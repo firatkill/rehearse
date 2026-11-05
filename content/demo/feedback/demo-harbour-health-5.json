@@ -1,119 +1,124 @@
 {
   "questionId": "demo-harbour-health-5",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:50:36.806Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d separate the task from its ownership history. The task would have a current owner for quick queries, while an assignment-history table records each change: task ID, previous and new owner, effective time, who made the change, and an optional reason. I’d update the current owner and append the history entry in one transaction so they can’t disagree. In one system I built, this made ownership changes auditable and cut the time support staff spent reconstructing handoffs from roughly 15 minutes to under 3 minutes per case.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the model, implementation constraint, and result, but provide little context about the system or task."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name the history fields, transactional update, and a measurable support-time reduction, but omit system and scale details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe the design in first person, but do not clarify what you personally built or decided."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You give a measurable before-and-after result for support staff reconstructing handoffs."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain current ownership, preserving each change, and keeping the two records consistent."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The model and transaction are clear, but the context and your specific contribution remain unstated."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You clearly separate current ownership from the historical record and explain how to keep them consistent.",
+            "evidence": "I’d update the current owner and append the history entry in one transaction"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify your personal design and implementation contribution.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "In one system I built"
+            ],
+            "why": "The answer gives a strong model but leaves it unclear which decisions and work were yours.",
+            "rewrite": "I designed and implemented [specific parts] of this ownership model, including [decision or trade-off]. I used one transaction to keep the current owner and appended history entry consistent."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which parts of the ownership model did you personally design and implement?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the task-management context and the constraint that made ownership history important.",
+          "Explain the current-owner field and the history record, including the information each change preserves.",
+          "Describe your own implementation decisions, such as making the owner update and history append atomic.",
+          "Give an observable outcome and explain how you checked the model worked."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d keep the current owner on the task and record each reassignment in a separate history table with the old and new owners and a timestamp. That preserves a simple way to find who owns a task now while still allowing someone to review earlier handoffs. I’d also make sure both updates happen together to avoid inconsistent records.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You explain the proposed approach, but give no concrete situation or observable result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name a history table, owners, and timestamps, but provide no implementation details or constraints."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but do not identify a personal contribution to a real example."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You explain intended benefits but state no observed result or validation."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly address current ownership, reassignment history, and consistency, but give no example of how it worked."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The design is understandable, though the transaction mechanism and how the history is used remain unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You distinguish the current owner from the record of past handoffs.",
+            "evidence": "record each reassignment in a separate history table with the old and new owners and a timestamp"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add how you would verify this design and report an observable outcome.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "That preserves a simple way to find who owns a task now"
+            ],
+            "why": "The answer gives intended benefits but no evidence that the approach worked or a defined check.",
+            "rewrite": "I’d verify that reassignment updates the current owner and adds exactly one history entry, including when either update fails. In the project, this [validation result] showed [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you make the current-owner update and history entry atomic, and what tests would you use to verify that?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and explain the constraint behind preserving current ownership and handoff history.",
+          "Describe your own data-model and update decisions, including how you prevent inconsistent records.",
+          "Give an observable outcome or a clear validation method, such as checks for correct ownership and complete history."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,63 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d put an owner on the task and change it when needed. Maybe keep some notes about the old owner so people can see what happened.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a possible approach, but provide no situation, implemented actions, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer gives no concrete task model or details about what the history records."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state what you might do, but do not identify a decision or contribution from an actual example."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "No outcome or way of checking whether the ownership history was useful is stated."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address ownership and history in broad terms, but do not explain how to preserve useful history."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The basic suggestion is understandable, but phrases such as “some notes” leave the mechanism unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify both current ownership and visibility into previous ownership as relevant.",
+            "evidence": "keep some notes about the old owner so people can see what happened"
           }
         ],
         "improvements": [
           {
+            "point": "Specify the history fields, how changes are recorded, and how you would verify the design.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "some notes about the old owner"
+            ],
+            "why": "The answer does not say what people could learn from the history or whether the approach worked.",
+            "rewrite": "I’d store the current owner separately from an append-only change history recording the previous owner, new owner, timestamp, and reason. I’d check with users that they can trace who owned the task and when it changed."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What information would you record for each ownership change, and how would you ensure the history could not be lost or overwritten?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the task-management context and the constraint that makes ownership history useful.",
+          "Explain the data model: current owner plus a durable record of each ownership change and relevant metadata.",
+          "Describe your own implementation decisions and how you handled edits, permissions, or edge cases.",
+          "Give an observable outcome and explain how you validated that users could understand the ownership timeline."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

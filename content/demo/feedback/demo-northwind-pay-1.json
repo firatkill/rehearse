@@ -1,119 +1,125 @@
 {
   "questionId": "demo-northwind-pay-1",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:51:59.973Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d model the transaction lifecycle as a discriminated union so each state has the data it actually needs—for example, `pending` may include a start time, `success` a transaction ID, and `failure` an error message. In the UI, I’d switch exhaustively on `status` to show a loading indicator, confirmation, or actionable error, with a `never` check so TypeScript catches unhandled states. I’d also disable duplicate submissions while pending and test each transition. In a fictional project, this approach reduced invalid state combinations and made it easier to add a retry flow later.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You explain a design and its benefits, but give no concrete situation or task from your experience."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name a discriminated union, state-specific fields, exhaustive switching, and a never check, but no real system or constraints."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The answer mainly describes an approach you would take and does not identify actions you personally performed."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state a general benefit in a fictional project but provide no observable or verified result."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address modeling the three transaction states in a React and TypeScript interface."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The technical approach is easy to follow, but the fictional example leaves its real context and outcome unclear."
           }
         },
-        "overall": 1,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a sound, concrete TypeScript modeling approach and connect it to UI behavior.",
+            "evidence": "I’d model the transaction lifecycle as a discriminated union so each state has the data it actually needs"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Replace the hypothetical example with a real implementation and state exactly what you owned.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "In a fictional project"
+            ],
+            "why": "The answer describes a sensible approach, but the hypothetical framing provides no evidence of your contribution.",
+            "rewrite": "In [project], I modeled transaction states as a discriminated union, added exhaustive UI handling and duplicate-submission prevention, and tested each transition. I checked the result by [validation method], which [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you test each transition, and what did those tests verify?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: the transaction flow, user need, and relevant constraints.",
+          "Explain the discriminated union, state-specific data, and exhaustive rendering behavior.",
+          "Describe your personal implementation decisions, including pending-state duplicate prevention and failure recovery.",
+          "Close with how you tested transitions and an observable result."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d use a TypeScript type with a status such as `pending`, `success`, or `failure`, plus relevant fields like a transaction ID or error. React components can render different feedback based on that status, and the pending state can disable the submit button. I’d test the main outcomes.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name a modeling approach and a test step, but provide no context or explicit result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The status values, transaction ID, error, and disabled button are concrete, but the type design and test details are unspecified."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would use, but give no example of your own implementation or decisions."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You mention testing the main outcomes but state no observed result or validation criteria."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address React and TypeScript transaction states, but do not explain the state model in much depth."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposal is easy to follow, though the relationship between state-specific data and rendering remains implicit."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the core states and connect them to visible interface behavior.",
+            "evidence": "React components can render different feedback based on that status"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Name how you would verify each state and the observable result.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "I’d test the main outcomes."
+            ],
+            "why": "The answer ends with a test claim but gives no criteria or evidence that the interface behaved correctly.",
+            "rewrite": "I’d test that pending disables submission, success shows confirmation, and failure displays the error; [test result] confirmed each state."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you represent state-specific data in TypeScript so success and failure cannot carry the wrong fields?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and constraints for the transaction flow.",
+          "Describe a TypeScript state model, including state-specific data and valid transitions.",
+          "Explain how React renders pending, success, and failure states and prevents duplicate submission.",
+          "Give an observable test result or outcome showing the model worked."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +129,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d add a status variable and use a few `if` statements to show a spinner, a success message, or an error.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give a proposed implementation but no situation, task, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name a status variable and three UI states, but give no TypeScript model or implementation detail."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but provide no personal contribution in a real example."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable outcome or validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address displaying the three states, but do not explain how you would model them in React and TypeScript."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The proposed UI behavior is understandable, though the state model and how it drives rendering are left implicit."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify distinct UI feedback for pending, successful, and failed transactions.",
+            "evidence": "show a spinner, a success message, or an error"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Give a brief context, your typed state design, how each state renders, and a checked outcome.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "add a status variable",
+              "use a few `if` statements"
+            ],
+            "why": "Your answer has no example or result, and a clearer model would show how you handle all transaction states.",
+            "rewrite": "For a transaction form, I’d model state as a TypeScript union such as pending, success, or error, with relevant data in each state. I’d render the spinner, confirmation, or error from that state and verify each path with [test or observed result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What data would you include in each TypeScript state, and how would you ensure the UI handles transitions correctly?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the transaction context and any relevant constraints.",
+          "Describe a typed state model, such as a discriminated union, and the data each state needs.",
+          "Explain how React renders pending, success, and failure, including transitions and recovery.",
+          "State your personal contribution and an observable check or outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

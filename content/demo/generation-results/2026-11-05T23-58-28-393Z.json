@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-11-05T23:59:10.737Z",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v8",
+  "budgetUsd": 0.02,
+  "reservedOrSpentUsd": 0.0026006799999999993,
+  "results": [
+    {
+      "operation": "answers:demo-harbour-health-4",
+      "costUsd": 0.0001691,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:strong",
+      "costUsd": 0.00039218,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:medium",
+      "costUsd": 0.00035727999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:weak",
+      "costUsd": 0.00031108000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-8",
+      "costUsd": 0.000233,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:strong",
+      "costUsd": 0.00042298,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:medium",
+      "costUsd": 0.00033238,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:weak",
+      "costUsd": 0.00038268,
+      "status": "completed"
+    }
+  ]
+}

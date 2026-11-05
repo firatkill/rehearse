@@ -1,119 +1,130 @@
 {
   "questionId": "tec-005",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:57:56.193Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first make the slowdown reproducible on a representative mid-range phone, using the same network and steps each time. I’d record a baseline—cold and warm load times, time to first interaction, frame drops, and memory—then profile the page rather than guessing. I’d check whether time is going to network requests, JavaScript and rendering, image decoding, or layout work. In one project, a trace showed a large image and repeated list-row renders were the main costs. I resized and compressed the image, virtualized the list, and memoized the expensive rows; on the target device, median time to usable fell from about 4.2 seconds to 2.6 seconds, with fewer dropped frames. I’d verify the change across several runs and keep a regression measure in place.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You move logically from reproducible testing and baseline measurements to profiling, changes, validation, and regression monitoring."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You name concrete metrics, likely bottlenecks, interventions, and a measured improvement on a target device."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe diagnosing and making changes in one project, but do not explain why you chose those fixes over alternatives."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report usable time falling from about 4.2 to 2.6 seconds and fewer dropped frames."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address how to reproduce the slowdown, what to measure, what to inspect first, and how to prevent regressions."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and easy to follow, with a clear diagnostic sequence and a concrete example."
           }
         },
-        "overall": 1,
+        "overall": 3.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a practical, measurement-led investigation plan.",
+            "evidence": "I’d record a baseline—cold and warm load times, time to first interaction, frame drops, and memory"
+          },
+          {
+            "point": "You connect diagnosis to fixes and a measurable outcome.",
+            "evidence": "median time to usable fell from about 4.2 seconds to 2.6 seconds"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain why those fixes addressed the trace and when you would choose a different remedy.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I resized and compressed the image, virtualized the list, and memoized the expensive rows"
+            ],
+            "why": "The actions and results are clear, but your reasoning behind the intervention choices is not.",
+            "rewrite": "I prioritized the image because its decoding cost was prominent in the trace, and virtualized the list because repeated row work was costly; I’d choose different fixes if profiling showed another bottleneck."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which regression measure would you keep in place, and what threshold would trigger investigation?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Reproduce the issue on a representative device or throttled profile with consistent steps.",
+          "Measure loading, interaction, and rendering separately before changing code.",
+          "Use profiling to identify likely costs such as bundles, images, long tasks, or repeated rendering; make targeted changes and compare results.",
+          "Keep a performance budget or automated check to catch regressions."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d reproduce the issue on a mid-range device and compare it with a faster phone, then use profiling tools to see whether the bottleneck is network, CPU, rendering, or memory. I’d start with large assets, expensive startup work, and components that render repeatedly. After making a focused change, I’d measure again under the same conditions to confirm it helped rather than just feeling faster.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from reproduction to profiling, likely causes, and remeasurement, but omit a concrete example or trade-off."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name bottleneck categories and possible causes, but no profiling tools, metrics, or realistic test setup details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state a diagnostic approach, but do not justify your priorities or connect them to your own experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You plan to verify a change, but give no measurable result, target, or regression check."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You answer how to investigate and what to inspect first, but do not distinguish loading, rendering, and interaction slowness."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to follow, though the profiling method and what you would measure remain unspecified."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You propose reproducing and measuring under consistent conditions rather than relying on subjective impressions.",
+            "evidence": "I’d measure again under the same conditions to confirm it helped"
           }
         ],
         "improvements": [
           {
+            "point": "Name the test profile, key metrics, and first checks you would run.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "use profiling tools",
+              "large assets, expensive startup work"
+            ],
+            "why": "Concrete tools and signals make your diagnostic plan checkable and show how you would separate different kinds of slowness.",
+            "rewrite": "I’d use [device or throttled profile] and browser performance tools, checking load timings, long tasks, and interaction responsiveness. I’d first inspect JavaScript bundle size and image weight, then compare before and after under the same conditions."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which performance metrics would you record before and after a change, and how would you set a budget to catch regressions?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Reproduce on a representative mid-range device or a realistic throttled profile, and record a baseline before changing code.",
+          "Separate load, rendering, and interaction delays using relevant browser performance measurements.",
+          "Check likely causes first, including JavaScript bundle size, image weight, and long main-thread tasks.",
+          "Repeat the same test after a focused change and set performance budgets or regression checks."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +134,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d check the code for anything that seems inefficient and try to optimize the page. Maybe there are too many images or too much going on. Then I’d test it again and see if it feels better.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You suggest inspecting, optimizing, and retesting, but do not explain a diagnostic sequence or distinguish types of slowness."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You mention images and inefficient code generally, without naming measurements, tools, constraints, or concrete checks."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You take a basic position to inspect and optimize, but do not justify priorities or connect them to experience."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "Retesting for whether it feels better gives no observable result, metric, or regression check."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address investigation and possible causes, but omit realistic-device measurement and several key performance checks."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The sequence is easy to understand, though the checks and success criteria remain vague."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You propose checking possible causes and retesting after changes.",
+            "evidence": "Then I’d test it again and see if it feels better."
           }
         ],
         "improvements": [
           {
+            "point": "Start with realistic measurements, separate loading from rendering and interaction, then test likely bottlenecks.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "anything that seems inefficient",
+              "too much going on",
+              "see if it feels better"
+            ],
+            "why": "Concrete measurements and checks make your investigation repeatable and help identify the cause before changing code.",
+            "rewrite": "I’d reproduce the issue on a mid-range device or throttled profile and measure loading, rendering, and interaction. I’d check bundle size, image weight, and long tasks, then compare [metrics] before and after."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which performance metrics would you capture before and after a change, and how would you use them to prevent regressions?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Reproduce the slowdown on a representative mid-range device or a throttled profile, and capture a baseline before changes.",
+          "Separate loading, rendering, and interaction delays using appropriate browser performance measurements.",
+          "Prioritize likely causes such as JavaScript bundle size, image weight, and long main-thread tasks.",
+          "Validate changes against the baseline and set a performance budget or automated check to catch regressions."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

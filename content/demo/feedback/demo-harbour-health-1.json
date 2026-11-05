@@ -1,119 +1,63 @@
 {
   "questionId": "demo-harbour-health-1",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:49:17.149Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I shipped a self-service billing portal for a subscription product. I started by reviewing support tickets and interviewing six customers, then scoped the first release around three high-frequency tasks: updating payment details, downloading invoices, and changing plans. I wrote acceptance criteria with design and engineering and kept lower-priority features, like usage forecasting, out of the launch. We delivered in six weeks behind a feature flag, tested the flow with a small customer group, and fixed two confusing steps before a broader rollout. Over the next two months, billing-related support tickets fell 28%, and 41% of eligible customers used the portal. I used those results to prioritize the next release rather than expanding scope based on assumptions.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You establish the product and scope, explain the delivery actions, and finish with rollout results and how they informed the next release."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You name three launch tasks, six customer interviews, a six-week delivery, two fixes, and concrete adoption and support metrics."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe your research, scoping, and prioritization, though the split between your work and collaborators’ contributions is not fully clear."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report a 28% reduction in billing-related support tickets and 41% adoption, then connect results to future prioritization."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address scope decisions, delivery, validation, and outcomes for a frontend product."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with clear links from customer research to scope, rollout, and results."
           }
         },
-        "overall": 1,
+        "overall": 3.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You show a clear, evidence-based approach to scoping and delivery.",
+            "evidence": "scoped the first release around three high-frequency tasks"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify your individual decisions and deliverables within the cross-functional work.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I wrote acceptance criteria with design and engineering"
+            ],
+            "why": "The answer shows initiative, but a clearer division of responsibilities would make your personal contribution easier to assess.",
+            "rewrite": "I translated the research into acceptance criteria for the three launch tasks and aligned them with design and engineering; I personally [specific implementation or decision]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What frontend implementation or technical decisions did you personally own for the portal?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
-        ],
-        "flags": {
-          "off_topic": false,
-          "too_short": true,
-          "injection_suspected": false
-        }
-      }
-    },
-    {
-      "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
-      "feedback": {
-        "scores": {
-          "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          }
-        },
-        "overall": 2,
-        "strengths": [
-          {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
-          }
-        ],
-        "improvements": [
-          {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
-          }
-        ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
-        "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the product context and the delivery constraint or customer need.",
+          "Explain how research and priorities shaped the initial scope, including what you deferred and why.",
+          "Describe your personal frontend and cross-functional actions, testing, and rollout approach.",
+          "Give observable results and explain how they shaped subsequent prioritization."
         ],
         "flags": {
           "off_topic": false,
@@ -123,56 +67,123 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "medium",
+      "answer": "I worked on a web dashboard that helped customers manage their accounts. We gathered feedback from users and support, then focused the first release on the most common tasks instead of trying to include every requested feature. I coordinated with design and engineering, tracked the work in weekly reviews, and launched a small version first so we could gather feedback. After launch, we made improvements based on usage and customer comments.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You give context, scope choices, delivery steps, and post-launch iteration, but the result is thin."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name a dashboard and prioritization approach, but omit the chosen tasks, constraints, and concrete details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe coordination and prioritization mostly as shared work, without clarifying your own decisions or contributions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention later improvements, but give no observable outcome or defined measure of success."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You address the product shipped and explain how the first release was scoped and delivered."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The sequence is easy to follow, but the decision criteria and outcome remain unclear."
           }
         },
-        "overall": 3,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You explain a sensible scope decision and staged delivery approach.",
+            "evidence": "focused the first release on the most common tasks instead of trying to include every requested feature"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify what you personally prioritized, decided, or delivered.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "We gathered feedback from users and support",
+              "I coordinated with design and engineering"
+            ],
+            "why": "The answer does not distinguish your contribution from the team's work.",
+            "rewrite": "I reviewed feedback from users and support and proposed prioritizing [specific tasks] for the first release. I coordinated with design and engineering to deliver that smaller scope."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which specific tasks did you prioritize for the first release, and what evidence showed that choice was right?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the dashboard context and the constraint that shaped the release scope.",
+          "Explain your role and the evidence or criteria used to prioritize features.",
+          "Describe how you coordinated delivery and what trade-offs you made.",
+          "Give an observable launch result and explain how you used feedback or usage data afterward."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "weak",
+      "answer": "I shipped a web product with a team. We discussed what users wanted, decided what was important, and delivered the main features. We tried to stay on schedule and made changes when needed. Overall, it went well and people liked using it.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You mention shipping and a result, but provide no clear context or specific actions."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The product, features, constraints, and delivery decisions are described only in generic terms."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe team discussion and decisions without identifying your own contribution."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say people liked using it, but give no observable evidence or defined validation."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address shipping and scope generally, but do not explain how you made scope or delivery decisions."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The answer is easy to read, but generic claims leave the product and decision-making mechanism unclear."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You identify that the product was shipped and connect delivery to user needs.",
+            "evidence": "We discussed what users wanted, decided what was important"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Name the product, constraint, your scope decision, and evidence of the outcome.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "what users wanted",
+              "what was important",
+              "made changes when needed"
+            ],
+            "why": "These details would make your delivery choices and their results concrete and assessable.",
+            "rewrite": "I shipped [product] under [constraint]. I chose to prioritize [feature] over [deferred scope] because [reason], and checked the result using [observable measure]."
+          }
+        ],
+        "follow_up_question": "What specific scope decision did you personally make, and how did you verify its effect?",
+        "model_answer_outline": [
+          "Set the product context and the delivery constraint.",
+          "Explain your personal scope trade-offs and the reasoning behind them.",
+          "Describe what you shipped and how you checked the outcome."
         ],
         "flags": {
           "off_topic": false,

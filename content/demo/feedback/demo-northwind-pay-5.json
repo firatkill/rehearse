@@ -1,119 +1,125 @@
 {
   "questionId": "demo-northwind-pay-5",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:53:17.779Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I treat payment and refund forms as high-impact flows, so I test them with keyboard and assistive technology—not just automated checks. On a recent project, I mapped the expected tab order, made every field and control reachable with Tab and operable with Enter or Space, and added a clearly visible focus indicator. I associated labels and error messages with their fields, announced validation errors to screen readers, and preserved entered data after a failed submission. I also checked that payment steps and refund status changes were communicated in text, not color alone. In our final test pass, keyboard users could complete the full payment and refund journeys without a mouse, and our accessibility review found no critical issues in those flows.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You identify the high-impact context, describe several actions, and give a result, though the project constraint and situation are thin."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name concrete accessibility practices, but give no project details, tools, constraints, or evidence behind the final test result."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe your actions directly, though the scope of your individual contribution versus the team’s work is not explicit."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report that users completed both journeys without a mouse and the review found no critical issues, but provide no verification detail."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address payment and refund form accessibility, including keyboard operation and assistive technology."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The practices are easy to follow, but the specific test method and how the result was established remain unstated."
           }
         },
-        "overall": 1,
+        "overall": 3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover practical accessibility measures across the full form experience.",
+            "evidence": "I mapped the expected tab order, made every field and control reachable with Tab"
           }
         ],
         "improvements": [
           {
+            "point": "Add the project context and explain who tested the flows and what the review checked.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "On a recent project",
+              "In our final test pass",
+              "our accessibility review found no critical issues"
+            ],
+            "why": "Your detailed practices are useful, but the unnamed project and test process make the outcome difficult to verify.",
+            "rewrite": "On [project/context], I implemented these keyboard and screen-reader checks for the payment and refund forms; I verified completion by [test method] and the review found no critical issues."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific test method or assistive technology did you use to verify that users could complete both journeys?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and accessibility constraint for the payment and refund flows.",
+          "Explain your own keyboard, focus, labeling, error-message, and status-announcement changes.",
+          "Describe how you tested the full journeys and state an observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I check that payment and refund forms work by keyboard, with a logical tab order, visible focus, clear labels, and understandable error messages. I also test with a screen reader and make sure users can tell when a payment succeeds or a refund is pending. I’d include these checks in both manual testing and our accessibility review.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe checks, but give no specific situation, personal task, or observed result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name useful accessibility checks, but provide no concrete system, tool, constraint, or example."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe an approach but do not clarify which checks you personally performed or decided."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no result or evidence that the checks worked."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly cover keyboard navigation and broader accessibility for payment and refund forms."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The checks are understandable, but the answer leaves their application and validation implicit."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You name relevant accessibility checks for both keyboard and assistive-technology users.",
+            "evidence": "logical tab order, visible focus, clear labels, and understandable error messages"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add an observable result and explain how you verified the forms worked.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "I’d include these checks in both manual testing and our accessibility review."
+            ],
+            "why": "The answer lists intended checks but gives no outcome or validation evidence.",
+            "rewrite": "I verified the tab order, focus, labels, errors, and payment or refund status with [testing method]; [observable result] confirmed the flow worked."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific issue did you find during keyboard or screen-reader testing, and how did you verify your fix?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and constraint for the payment or refund form.",
+          "Explain your personal accessibility and keyboard-navigation actions, including how you handled focus, labels, errors, and status.",
+          "Describe how you tested the changes and give an observable result."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +129,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I try to make forms accessible by using good design and following accessibility guidelines. I make sure they look clear and work for users, and I fix issues if someone reports them.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give a general approach, but no specific situation, actions, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Good design” and “accessibility guidelines” are broad claims without concrete checks or examples."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use “I,” but do not identify any specific decision or action you personally took."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result from making or fixing forms accessible."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You discuss form accessibility generally but do not address payment and refund forms or keyboard navigation."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The answer is understandable, but its general claims leave your approach unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You signal that accessibility is part of your approach to form design.",
+            "evidence": "I try to make forms accessible by using good design"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Give a concrete form example, explain your keyboard checks, and state the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "using good design",
+              "following accessibility guidelines",
+              "work for users"
+            ],
+            "why": "A specific example would show how you apply accessibility practices and whether they worked.",
+            "rewrite": "On a payment or refund form, I [specific change] and checked keyboard navigation by [test method]. The outcome was [observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you test keyboard navigation on a payment form, and what issues would you look for?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the payment or refund form and its accessibility constraint.",
+          "Describe your own changes, including keyboard navigation and focus behavior.",
+          "Explain how you tested the form and report an observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

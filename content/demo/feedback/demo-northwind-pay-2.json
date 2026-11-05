@@ -1,119 +1,122 @@
 {
   "questionId": "demo-northwind-pay-2",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:52:19.744Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d treat refund creation as an idempotent operation. The client would generate a stable idempotency key for each refund attempt and reuse it on retries; the server would enforce uniqueness on that key and return the original result for duplicates. I’d also check the refund’s current state before processing, use a database transaction or equivalent atomic step, and make the UI show “processing” rather than invite repeated submissions. In one system I worked on, I added those safeguards and tested concurrent retries; duplicate refunds fell to zero in our test and monitoring period.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the approach and give a result, but the system context and constraint are not stated."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name concrete safeguards and concurrent-retry testing, but provide no system details or measurement period."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You say you added safeguards and tested retries, though the specific changes you personally made are not separated."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report zero duplicate refunds during testing and monitoring, a concrete outcome without its duration or scale."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address slow-network duplicate submissions with client, server, database, and UI safeguards."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The mechanisms are easy to follow, but it is unclear which safeguards you implemented and how the outcome was measured."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a layered prevention strategy suited to slow networks.",
+            "evidence": "The client would generate a stable idempotency key for each refund attempt and reuse it on retries"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Set the system context, identify your specific changes, then state how you verified the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "In one system I worked on"
+            ],
+            "why": "A brief context and clearer sequence would make the example more credible and easier to assess.",
+            "rewrite": "In [system/context], slow networks risked duplicate refunds. I implemented [specific safeguards] and tested concurrent retries; monitoring showed zero duplicate refunds over [period] across [volume]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What part of the idempotency and duplicate-prevention safeguards did you implement yourself?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: explain how slow networks or retries could submit the same refund twice.",
+          "Describe your actions, such as reusing an idempotency key, enforcing server-side uniqueness, and disabling repeated UI submissions.",
+          "Explain how you tested concurrent retries and report an observable outcome with its measurement period or scale."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d disable or clearly mark the submit button while a request is in progress, and use an idempotency key so retries return the same refund instead of creating another one. I’d also check whether the refund had already been submitted before sending it again.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name prevention actions, but provide no situation, personal example, or outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You specify a disabled button and idempotency key, but give no implementation or system details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but give no evidence of actions you personally took."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no result or way to check whether duplicate refunds were prevented."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "Your suggestions address duplicate submissions, but you do not give the requested context or observable outcome."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The techniques are easy to follow, but the check for an already-submitted refund is underspecified."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You propose complementary UI and request-level safeguards.",
+            "evidence": "disable or clearly mark the submit button while a request is in progress"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Add how you would verify the safeguards prevented duplicate refunds.",
+            "dimension": "impact",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "The answer gives no observable result or validation method.",
+            "rewrite": "I’d check refund records or request logs for duplicate refunds after retries, and report [observed result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you make the idempotency key work across retries and prevent it from blocking a later, separate refund?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: slow network conditions and the risk of duplicate refunds.",
+          "Explain your frontend actions, such as preventing repeated clicks and showing request status.",
+          "Describe how an idempotency key or prior-submission check works with the backend.",
+          "Give an observable result or a concrete plan to validate duplicate-refund prevention."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +126,63 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make the network more reliable and tell users not to click the refund button twice.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give two suggestions but no situation, action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer does not name a concrete technique or explain how to make the network more reliable."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state what you would do, but give no personal decision or implementation detail."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You provide no observable outcome or way to verify that duplicate refunds were prevented."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address duplicate clicks, but making the network more reliable does not directly explain how to prevent duplicate submissions."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The suggestions are understandable, but the mechanism for preventing duplicates is unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify duplicate clicks as a risk during a slow network request.",
+            "evidence": "tell users not to click the refund button twice"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Name a specific submission guard, then explain how you would verify it prevents duplicate refunds.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "make the network more reliable"
+            ],
+            "why": "The answer lacks an example, implementation steps, and a result, so the listener cannot assess your approach.",
+            "rewrite": "I’d disable the refund button while a request is pending and use an idempotency key so retries cannot create a second refund. I’d verify this by testing repeated clicks and slow or retried requests, then check the resulting refund records."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you ensure a retry after a timeout does not create a second refund?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: slow or uncertain network responses can cause repeated refund submissions.",
+          "Describe frontend safeguards, such as disabling the button while pending and showing clear request status.",
+          "Explain how to prevent duplicates across retries, for example with server-supported idempotency.",
+          "Give an observable validation plan or result, such as testing repeated clicks and checking refund records."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

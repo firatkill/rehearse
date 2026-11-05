@@ -1,119 +1,120 @@
 {
   "questionId": "demo-northwind-pay-3",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:52:41.035Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d keep the submitted values in server-side form state and re-render them after validation fails, while showing field-specific errors next to the relevant inputs. I’d preserve safe values such as the merchant name, address, and contact details, but never repopulate secrets like passwords or payment credentials. On a checkout form I worked on, I also focused the first invalid field and retained the selected country and delivery option; this reduced repeat entry and support complaints about lost form data by 28% over the following month.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the approach and give a checkout example and result, but the original constraint and your specific task are not explicit."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name retained fields, excluded secrets, and focus behavior, but omit the state mechanism and how the reported reduction was measured."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do and say you focused on behavior, but your personal implementation role is not clear."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report a 28% reduction in repeat-entry complaints over a month, but do not explain how it was verified."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain preserving safe entered values after validation failure and give relevant error and focus behavior."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The preservation approach is easy to follow, but it is unclear how the server-side state and reported outcome were established."
           }
         },
-        "overall": 1,
+        "overall": 3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You distinguish values that should be retained from sensitive credentials and pair preservation with useful validation behavior.",
+            "evidence": "I’d preserve safe values such as the merchant name, address, and contact details, but never repopulate secrets"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Clarify exactly what you implemented and how you validated the reported reduction.",
+            "dimension": "ownership",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Your personal contribution is only partly clear, so the interviewer cannot tell which decisions and work were yours.",
+            "rewrite": "On the checkout form, I implemented [specific state and re-rendering change] and focused the first invalid field. I checked the result by [measurement method], which showed support complaints about lost form data fell 28% over the following month."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What did you personally implement to retain the values, and how did you measure the 28% reduction?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: identify the form, validation failure, and constraint on retaining sensitive data.",
+          "Explain your implementation for retaining safe values, showing field-specific errors, and guiding the user to the first invalid field.",
+          "State your personal contribution and any key decision about which values to preserve.",
+          "Give an observable outcome and explain how you checked it."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d return the form with the merchant’s submitted values and clear validation messages, rather than resetting the fields. I’d be careful not to retain sensitive information, and I’d make sure the errors are accessible and clearly tied to the affected fields.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe an approach, but provide no situation, task context, or observed result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name submitted values, validation messages, sensitive information, and accessible errors, but give no concrete implementation details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state what you would do, but give no example showing your personal contribution."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no outcome or validation showing whether the approach worked."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address preserving entered values after validation failure and note relevant privacy and accessibility concerns."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposed behavior is understandable, but the mechanism and validation remain unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You directly answer how to preserve form input while handling validation errors.",
+            "evidence": "return the form with the merchant’s submitted values and clear validation messages"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Add an observable outcome and explain how you checked the behavior.",
+            "dimension": "impact",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "The answer gives a sound principle but no evidence that merchants retained their entries or could correct errors.",
+            "rewrite": "I checked that invalid submissions returned the entered values and field-level errors, then confirmed merchants could correct errors without re-entering unaffected fields; the result was [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you handle preserving non-sensitive fields while ensuring sensitive values are not returned after a validation failure?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Briefly describe the form, its validation failure, and the constraint on retaining sensitive data.",
+          "Explain your specific frontend action for restoring non-sensitive values and associating accessible errors with fields.",
+          "State how you tested the failure and correction flow, then give an observable outcome."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +124,62 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make the form remember what the merchant typed so they don’t have to start over.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state an intention, but provide no situation, action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer gives no concrete form behavior, implementation detail, or example."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use first person, but describe only a general intention rather than a specific contribution."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "Avoiding re-entry is a hoped-for benefit, not an observed result."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address preserving entered information after validation failure, but do not explain how or what happened."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The intent is understandable, but the mechanism and example are missing."
           }
         },
-        "overall": 3,
+        "overall": 1.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the user need behind the question.",
+            "evidence": "so they don’t have to start over"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Give the context, your specific approach, and the outcome.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "make the form remember"
+            ],
+            "why": "A one-line intention does not show how you handled validation failure or whether the solution worked.",
+            "rewrite": "When [form] failed validation, I [specific change] so merchants’ entered values remained available. I checked it by [test or validation], and [observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific change would you make to keep entered values visible after validation errors?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the form, validation failure, and constraint on preserving merchant-entered data.",
+          "Explain your own frontend change and how it retained values while displaying validation feedback.",
+          "Name how you tested the behavior and the observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

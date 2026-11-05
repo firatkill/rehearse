@@ -1,119 +1,121 @@
 {
   "questionId": "sdl-005",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:56:11.969Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d make the server—not the browser—the authority on availability. Each slot would have a unique key, and the database would enforce that only one active booking can use it. When a visitor picks a slot, the server would try to create the booking in a transaction; if another visitor got there first, the database would reject the duplicate and I’d return “This slot was just taken” with refreshed options. For a flow that needs payment or confirmation, I’d add a short-lived hold with an expiry, and make the booking request idempotent so retries don’t create duplicates. I’d test two simultaneous requests for the same slot and verify that exactly one succeeds.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from the server-side source of truth to conflict handling, user feedback, recovery, and a concurrency test."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You specify a unique slot key, a database transaction, an expiring hold, and an idempotent request, but name no database constraints."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You recommend server-side enforcement and explain it, but do not connect the choice to your own experience or discuss alternatives."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe the user-facing conflict response and define a test that verifies only one simultaneous request succeeds."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to prevent duplicate bookings and address interrupted confirmation through expiring holds and idempotent retries."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with a clear source of truth, conflict path, recovery mechanism, and validation."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You clearly place availability enforcement on the server and explain how conflicting requests are handled.",
+            "evidence": "the database would enforce that only one active booking can use it"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "State why you chose this approach and when you would use a different reservation flow.",
+            "dimension": "ownership",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Your recommendation is clear, but its rationale and any trade-off are not explicit.",
+            "rewrite": "I’d use the database as the source of truth because it can enforce the booking invariant under concurrent requests. If confirmation takes time, I’d use an expiring hold and make retries idempotent."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you ensure an expired hold releases the slot and does not interfere with a completed booking?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the slot and booking model and identify the server/database as the source of truth.",
+          "Explain atomic conflict handling, such as a uniqueness constraint within a transaction, and the response when a slot is already taken.",
+          "Describe an expiring hold and idempotent confirmation or retry flow.",
+          "Validate with simultaneous booking requests and confirm that at most one active booking succeeds."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d check availability on the server and store bookings in a database with a uniqueness constraint on the slot. The booking should be created atomically, so if two people submit at once, only one succeeds and the other gets a message to choose another time. I’d also refresh the available slots after a failed attempt.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You list server-side availability, database enforcement, and the losing visitor’s response, but omit broader requirements and data flow."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name a database uniqueness constraint and atomic creation, though the booking model and confirmation details are unspecified."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You recommend a clear approach, but do not explain why you chose it or connect it to your experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe preventing duplicate bookings and refreshing availability, but do not explain further consequences or validation."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly address preventing double bookings, but leave the recoverable confirmation flow unclear."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The core conflict-handling mechanism and failed-attempt behavior are easy to follow, though success confirmation is unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You put the conflict check at the authoritative server and database, rather than relying on the frontend.",
+            "evidence": "check availability on the server and store bookings in a database with a uniqueness constraint"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Explain why you recommend this approach and how you would handle confirmation recovery.",
+            "dimension": "ownership",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Your answer states the mechanism but not its rationale or what happens if success reaches the server but confirmation is interrupted.",
+            "rewrite": "I’d enforce uniqueness in the database because simultaneous requests must have one authoritative winner. After creation, I’d return the booking status so the visitor can recover it if confirmation is interrupted."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If the booking is created but the visitor loses the confirmation response, how can they safely recover the booking status?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define the slot identity and bookings as the source of truth.",
+          "Describe the picker’s availability request and the server’s booking flow.",
+          "Enforce one booking per slot atomically; return a conflict response to the losing request.",
+          "Explain confirmation and recovery if the response is interrupted, including how availability refreshes."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +125,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d show visitors the open slots and remove one after someone books it. I’d make sure the calendar updates quickly so people don’t pick the same time.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name displaying and updating availability, but do not explain the system components or booking data flow."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer gives no concrete mechanism for booking, preventing conflicts, or updating the calendar."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose showing and removing slots but do not justify that approach or explain a decision."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state a goal of preventing duplicate choices but give no observable result or consequence."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address availability display but leave the central question of preventing simultaneous bookings unanswered."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The proposal is understandable, but it leaves unclear how a quick calendar update prevents concurrent bookings."
           }
         },
-        "overall": 3,
+        "overall": 1.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the need to show current availability to visitors.",
+            "evidence": "I’d show visitors the open slots"
           }
         ],
         "improvements": [
           {
+            "point": "Specify an authoritative booking operation that atomically accepts one request and rejects conflicts.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "remove one after someone books it",
+              "calendar updates quickly"
+            ],
+            "why": "A fast display refresh cannot prevent two requests from booking the same slot at once.",
+            "rewrite": "I’d treat the server as the source of truth and make booking an atomic operation: it reserves the slot only if it is still open, otherwise I show the visitor updated availability."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If a booking succeeds but the confirmation response is interrupted, how would the visitor recover or check the booking?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define the slot and booking records, with the server as the authoritative source of truth.",
+          "Describe the booking request and atomic conflict check so only one visitor can reserve a slot.",
+          "Explain how the interface handles a conflict and refreshes availability.",
+          "Cover recoverable confirmation, such as checking booking status after an interrupted response."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

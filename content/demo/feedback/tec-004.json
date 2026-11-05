@@ -1,119 +1,125 @@
 {
   "questionId": "tec-004",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:57:33.841Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I treat “good enough” as a release decision tied to the feature’s risks and user goals, not a single model-quality score. For a support-answering feature, I’d first define a rubric with product and domain experts: factual correctness, relevance, completeness, appropriate uncertainty, and safe handling of sensitive requests. I’d build a representative test set from real user intents, including edge cases and adversarial prompts, and have reviewers label answers against that rubric. I’d report pass rates by category and severity—not just an average—and set launch thresholds for critical failures, such as unsupported claims or unsafe advice. I’d also compare against the current experience and a baseline model, then run a limited rollout with user feedback, escalation rates, and task completion as live measures. In one hypothetical launch, we might require at least 95% acceptable answers on routine cases and zero unresolved critical safety failures in the release set; if the evaluation misses those bars, we fix the prompt, retrieval, or product flow and test again. After launch, I’d monitor regressions and periodically refresh the test set so the metric stays representative.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You move logically from defining quality and building tests to release thresholds, rollout measures, and ongoing monitoring."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name evaluation categories, data sources, and example thresholds, but provide no concrete test-set size or measurement method."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a considered approach, but frame it hypothetically and do not connect it to your own decisions or experience."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You connect thresholds and live measures to release decisions and user outcomes, but give no observed or bounded results."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You address quality criteria, test cases, release gates, and post-launch monitoring directly."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with clear links between evaluation results and release actions."
           }
         },
-        "overall": 1,
+        "overall": 3.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You define quality across several feature-relevant dimensions instead of relying on one aggregate score.",
+            "evidence": "factual correctness, relevance, completeness, appropriate uncertainty, and safe handling of sensitive requests"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Make clear which evaluation choices you have made or would personally own.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "In one hypothetical launch"
+            ],
+            "why": "The approach is sound, but hypothetical framing leaves your decision-making and experience unsubstantiated.",
+            "rewrite": "I would own the release rubric and category-level gates with product and domain experts; in my experience, [specific evaluation decision] helped us [observed result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you source and refresh the representative test set while protecting user privacy?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define feature-specific success and failure criteria with product and domain partners.",
+          "Build a representative, labeled evaluation set from user intents, including edge cases and adversarial inputs.",
+          "Run automated checks in CI with category-level release thresholds and block on critical failures.",
+          "Use staged rollout monitoring for quality, safety, task completion, escalations, and user feedback; refresh tests as usage changes."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d decide what matters for the feature, create a set of representative questions, and have people review the model’s answers for accuracy, usefulness, and safety. I’d track results by type of question and compare them with the existing experience. I’d also test a small rollout and watch user feedback and whether people complete the task. If answers fail important checks, I’d hold the launch and improve the system before trying again.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move logically from defining quality to reviewing answers, comparing performance, piloting, and holding a launch if checks fail."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name accuracy, usefulness, safety, and task completion, but give no test examples, thresholds, or measurement details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state a reasonable process and launch decision, but do not explain your rationale or connect it to your own experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose tracking task completion and feedback, but provide no concrete result or defined validation threshold."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address evaluation and post-launch measurement, but omit automated CI checks and regression-blocking thresholds."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to follow, though the evaluation method and release criteria remain underspecified."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover the basic evaluation lifecycle, including a launch decision and post-launch observation.",
+            "evidence": "I’d also test a small rollout and watch user feedback and whether people complete the task."
           }
         ],
         "improvements": [
           {
+            "point": "Specify test-case sources, hard cases, measurable thresholds, and how CI blocks regressions.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "a set of representative questions",
+              "If answers fail important checks"
+            ],
+            "why": "Without examples or pass criteria, your proposal is difficult to reproduce or use as a release gate.",
+            "rewrite": "I’d build a test set from [real user queries], expected outcomes, and adversarial cases, then run it in CI after prompt changes. I’d block release if [critical safety or task-success threshold] fails."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you choose the threshold for blocking a release when task success improves but safety scores decline?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define feature-specific success, safety, and failure criteria before testing.",
+          "Create a representative test set with expected outcomes, edge cases, and adversarial inputs; use human review where automated scoring is insufficient.",
+          "Run repeatable automated evaluations in CI with explicit release thresholds, then monitor quality, task completion, and user feedback after launch."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +129,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d try a bunch of prompts and see if the answers look good. If users seem happy and there aren’t many complaints, I’d probably ship it and keep an eye on it.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You suggest testing before launch and monitoring afterward, but do not explain a repeatable evaluation process."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“A bunch of prompts,” “look good,” and “many complaints” provide no concrete tests, criteria, or thresholds."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You take a tentative position on shipping, but give no reasons or connection to your own experience."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention user satisfaction and complaints, but provide no defined measures or observable results."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address pre-launch evaluation and post-launch monitoring, but omit test-set design and release-blocking checks."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer is easy to follow, but leaves unclear how you would judge answer quality."
           }
         },
-        "overall": 3,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize that evaluation should continue after launch.",
+            "evidence": "keep an eye on it"
           }
         ],
         "improvements": [
           {
+            "point": "Define feature-specific quality criteria, a representative test set, and measurable release thresholds.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "a bunch of prompts",
+              "look good",
+              "many complaints"
+            ],
+            "why": "Without concrete cases and pass criteria, neither answer quality nor regression risk can be checked consistently.",
+            "rewrite": "I’d define success for the feature as [quality criteria], then test a set covering expected, edge, and adversarial cases. I’d block release if [threshold] fails and monitor [live measures] after launch."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What automated checks and specific release threshold would you use to catch a regression after changing the prompt?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define what a good answer means for the specific product feature and its risks.",
+          "Build a representative test set with expected outcomes, including edge cases and adversarial inputs.",
+          "Run automated evaluations in CI and set thresholds that block release.",
+          "After launch, monitor quality signals and user feedback, then investigate regressions."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

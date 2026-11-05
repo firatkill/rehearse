@@ -1,119 +1,126 @@
 {
   "questionId": "sdl-003",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:55:24.714Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d split it into a browser client, an API layer, a conversation store, a model-orchestration service, and the language-model provider. The browser submits a message with a conversation ID and an idempotency key. The API authenticates and validates it, persists the user message, then starts a generation. The orchestrator sends the prompt to the model and forwards token chunks to the browser over Server-Sent Events (or WebSockets if we also need frequent client-to-server messages). I’d persist the assistant response as it arrives, or persist chunks/checkpoints, and send explicit `started`, `delta`, `completed`, and `error` events. In one implementation, I added sequence numbers to chunks and a generation ID, which let the client ignore duplicates and detect gaps; this reduced confusing partial-message reports in our test rollout. If the connection drops halfway, I would not assume generation stopped: the server can continue and save the result. The client reconnects with the generation ID and last received sequence number, then the server replays saved chunks or returns the completed answer. If replay is unavailable, the UI marks the answer as interrupted and offers a deliberate retry, using the idempotency key to avoid accidentally creating duplicate turns. I’d also define cancellation explicitly—closing a tab need not cancel generation, but a user pressing Stop should send a cancel request—and set timeouts, limits, and monitoring for disconnects, generation failures, and recovery success.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You introduce the components, trace the request and streaming flow, then explain recovery and cancellation."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name SSE, WebSockets, sequence numbers, generation IDs, and idempotency keys, but give no concrete limits or storage details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You make a clear transport recommendation and describe one implementation where you added sequence numbers."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You link sequence numbers to fewer confusing partial-message reports and explain retry and recovery consequences, but do not quantify them."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You answer the system flow and disconnect behavior well, but leave out explicit cost and abuse controls."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "Your explanation follows an easy-to-track sequence from submission through streaming, disconnect recovery, and cancellation."
           }
         },
-        "overall": 1,
+        "overall": 3.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You explain a concrete recovery mechanism for dropped connections.",
+            "evidence": "The client reconnects with the generation ID and last received sequence number"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Name specific cost and abuse controls, such as rate limits and output-token caps.",
+            "dimension": "relevance",
+            "vague_phrases": [
+              "set timeouts, limits, and monitoring"
+            ],
+            "why": "The question asks how to constrain cost and abuse; generic limits do not show the controls you would apply.",
+            "rewrite": "I’d rate-limit requests per user and cap output tokens per generation to bound abuse and model spend; [additional cost control] would cover [risk]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you decide whether a user pressing Stop cancels generation immediately or allows it to finish in the background?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State requirements and choose SSE for mostly one-way token streaming, noting when WebSockets would be preferable.",
+          "Trace client, API, storage, orchestrator, and provider; specify when the user message and partial or completed assistant response are saved.",
+          "Describe reconnect and replay with generation IDs and sequence numbers, explicit cancellation, rate limits, and output caps."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d use a browser UI, an authenticated backend, storage for conversation messages, a service that calls the model, and a streaming transport such as SSE. The backend sends the user’s prompt to the model and forwards chunks to the browser while saving the answer. If the connection drops, the UI should show that the response was interrupted and try to reconnect. The backend should keep track of the generation so it can resume or return the finished answer; retries should avoid creating a duplicate message. I’d also include cancellation and error handling.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name the main parts and describe the request and streaming flow, but omit requirements and trade-offs."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name SSE and describe reconnection, but leave persistence timing and resume mechanics unspecified."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You recommend SSE and mention cancellation, but do not explain your reasoning or draw on experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You identify duplicate-message prevention and cancellation, but do not explain their consequences or bound costs."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address the architecture and dropped connection, but do not explain when output is saved or how cancellation works."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The main flow is easy to follow, though the recovery and persistence mechanisms remain implicit."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the core system components and describe how streamed output reaches the browser.",
+            "evidence": "an authenticated backend, storage for conversation messages, a service that calls the model"
           }
         ],
         "improvements": [
           {
+            "point": "Specify when partial output is saved and how reconnecting retrieves it.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "while saving the answer",
+              "try to reconnect",
+              "keep track of the generation so it can resume"
+            ],
+            "why": "A concrete persistence and resume mechanism makes recovery behavior checkable and clarifies whether retries create new generations.",
+            "rewrite": "I’d save the assistant message incrementally, keyed by a generation ID, and have the client reconnect with that ID and its last received event ID to fetch missed chunks."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you cancel the model request when the user navigates away, and what would you persist before cancelling?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the user-facing requirements, including streaming, recovery after disconnect, and avoiding duplicate responses.",
+          "Name the client, API route, model provider, conversation storage, and transport; trace a request and streamed response.",
+          "Explain incremental persistence, reconnect or retry behavior, and cancellation when the user leaves.",
+          "Cover practical limits such as rate limits and maximum output tokens, with relevant trade-offs."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +130,62 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "The browser sends the question to the server, and the server streams the model’s answer back. If the connection drops, the user can refresh or try again.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You identify a basic request-and-response flow, but omit the broader components and explain no recovery path."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You name only the browser, server, and model, with no concrete transport, storage, or retry details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not state a design choice or explain why you would make it."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe no consequences for users, cost, or reliability."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address the basic flow and connection loss, but omit persistence, cancellation, and cost controls."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The flow is understandable, but “refresh or try again” does not clarify what happens to partial output or saved state."
           }
         },
-        "overall": 3,
+        "overall": 1.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a simple starting point for the data flow.",
+            "evidence": "The browser sends the question to the server, and the server streams the model’s answer back."
           }
         ],
         "improvements": [
           {
+            "point": "Specify the transport, persistence point, and how a retry handles partial output.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "refresh or try again"
+            ],
+            "why": "These details make the design concrete and answer what the system does after a disconnect.",
+            "rewrite": "I’d stream through [transport] from an API route to the browser, persist the user message before generation, and save assistant output in [chunks or on completion]. On disconnect, I’d [resume from a cursor or restart], avoiding duplicate messages."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If the user closes the chat while the model is generating, how would you cancel the upstream request?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State requirements for streaming, reconnect behavior, and whether partial answers must survive a disconnect.",
+          "Describe the browser, API route, model provider, storage, and chosen streaming transport as one data flow.",
+          "Explain when messages or partial output are saved, how retries resume or restart, and how cancellation, rate limits, and output caps control waste and abuse."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

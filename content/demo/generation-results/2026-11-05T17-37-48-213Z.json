@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-11-05T17:39:05.161Z",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v8",
+  "budgetUsd": 0.19,
+  "reservedOrSpentUsd": 0.0043479999999999994,
+  "results": [
+    {
+      "operation": "answers:demo-cedar-tools-5",
+      "costUsd": 0.0001416,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:strong",
+      "costUsd": 0.00046039999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:medium",
+      "costUsd": 0.00030258000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:weak",
+      "costUsd": 0.00036808000000000007,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-6",
+      "costUsd": 0.00013759999999999998,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:strong",
+      "costUsd": 0.00034248000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:medium",
+      "costUsd": 0.00037628,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:weak",
+      "costUsd": 0.00030338,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-7",
+      "costUsd": 0.00010779999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:strong",
+      "costUsd": 0.00031068000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:medium",
+      "costUsd": 0.00029128,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:weak",
+      "costUsd": 0.00035927999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-8",
+      "costUsd": 0.0001674,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-8:strong",
+      "costUsd": 0.00030548,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-8:medium",
+      "costUsd": 0.00037368,
+      "status": "completed"
+    }
+  ]
+}

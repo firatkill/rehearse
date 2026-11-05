@@ -1,119 +1,63 @@
 {
   "questionId": "sdl-001",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:54:41.496Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "“I’d design this around a single, canonical profile image so every part of the app shows the same photo. I’d start by mapping the upload and display surfaces—profile, navigation, comments, and notifications—and confirming requirements for file types, size, privacy, and accessibility. Then I’d build the flow: select or capture an image, preview and crop it, upload it to object storage, and update the user’s profile record only after the upload succeeds. I’d serve resized, optimized variants through a CDN, while keeping the original private and checking authorization before accepting uploads. For replacement, I’d keep the old photo visible until the new one is ready, then invalidate or version cached image URLs. I’d also provide a default avatar, retry and cancel states, and a way to remove the photo. The trade-offs are quality versus bandwidth, immediate updates versus cache efficiency, and richer editing versus implementation complexity. I’d measure upload completion, failure rates, image-load latency, and adoption, then test across slow networks and assistive technologies.”",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You state requirements, describe upload-to-storage and profile-record flow, and cover delivery, but scale and failure handling are limited."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name object storage, a CDN, cached URLs, and measurable signals, but provide no concrete formats, limits, or scale."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You recommend a coherent design, but do not justify when you would choose alternatives or connect decisions to your experience."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You connect trade-offs to bandwidth, cache efficiency, and complexity and propose measurable validation, but give no bounded outcomes."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address the design, shared display, upload flow, and multiple relevant trade-offs."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer follows a clear sequence from requirements and upload flow to replacement behavior, trade-offs, and validation."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You explain a clear end-to-end design and how changed photos can appear throughout the app.",
+            "evidence": "upload it to object storage, and update the user’s profile record only after the upload succeeds"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Commit to one upload approach, explain why it fits, and state when you would choose another.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "The trade-offs are quality versus bandwidth, immediate updates versus cache efficiency, and richer editing versus implementation complexity."
+            ],
+            "why": "The answer lists trade-offs but does not make or justify a clear choice between approaches such as direct and server-mediated uploads.",
+            "rewrite": "I’d use [direct-to-storage or server-mediated] uploads because [reason]; I’d choose the alternative if [constraint]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Would you let the browser upload directly to object storage, or route image bytes through your server, and why?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
-        ],
-        "flags": {
-          "off_topic": false,
-          "too_short": true,
-          "injection_suspected": false
-        }
-      }
-    },
-    {
-      "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
-      "feedback": {
-        "scores": {
-          "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          }
-        },
-        "overall": 2,
-        "strengths": [
-          {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
-          }
-        ],
-        "improvements": [
-          {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
-          }
-        ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
-        "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Clarify expected file size, formats, privacy, user scale, and required editing.",
+          "Describe client validation and preview, server authorization, image processing, and storage separately from the profile record.",
+          "Explain how optimized variants are served and cache invalidation or versioning makes replacements visible across the app.",
+          "Choose an upload path and discuss its trade-offs, failure handling, and how you would validate performance and accessibility."
         ],
         "flags": {
           "off_topic": false,
@@ -123,56 +67,121 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "medium",
+      "answer": "“I’d add an upload flow where users choose a photo, preview it, and save it to their profile. The backend would store the image and associate its URL with the user, and the app would use that URL wherever it displays the profile. I’d include a default avatar and validate file type and size. A key trade-off is image quality versus load time, so I’d resize images and cache them. I’d also think about what happens when someone changes their photo, since cached versions might keep appearing briefly.”",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You list the upload flow and components, but do not explain requirements or the end-to-end data flow."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention validation, resizing and caching, but give no concrete limits, storage choices or implementation details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose a few design choices but do not justify them or state when you would choose another approach."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You identify load time and temporary stale images as consequences, without explaining their effect or validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address uploading and displaying photos everywhere and mention trade-offs, but leave the storage and serving design underspecified."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer is easy to follow, though the storage, resizing and cache-update steps are not connected into a clear flow."
           }
         },
-        "overall": 3,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover the core user flow and recognize both performance and cache freshness concerns.",
+            "evidence": "A key trade-off is image quality versus load time, so I’d resize images and cache them."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "State requirements, then trace bytes and metadata through storage, processing, and delivery.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "The backend would store the image and associate its URL with the user"
+            ],
+            "why": "That would make the system components and their responsibilities clear rather than leaving storage and serving implicit.",
+            "rewrite": "I’d first set [size and format limits] and expected scale. I’d store image bytes in [object storage], keep the image key in the user record, then resize and serve it through a CDN."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Would you send image bytes through your application server or upload them directly to storage, and why?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Clarify photo size and format limits, expected scale, and whether users need a preview or crop.",
+          "Explain the flow: validate and upload bytes, store them separately from the user’s image reference, then update that reference.",
+          "Describe resizing and CDN or cache delivery, including how a changed photo avoids stale cached versions.",
+          "Compare direct-to-storage uploads with server-mediated uploads and explain the chosen trade-off."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "weak",
+      "answer": "“I’d add a button to upload a picture and then show it throughout the app. Users could pick an image, and we’d save it somewhere. I’d make sure it looks good and loads quickly. There are probably some trade-offs around storage and performance, but I’d work those out during implementation.”",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You jump from the upload button to broad goals without requirements, components, or a data flow."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You provide no formats, limits, storage approach, validation steps, or concrete performance targets."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You propose adding an upload button but leave the decisions and trade-offs for implementation."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You mention looking good and loading quickly, but give no concrete consequences or validation plan."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address the feature at a high level but omit its main parts and a real trade-off."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The answer is understandable, but broad claims leave the proposed system and its operation unclear."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You identify the key user-facing behavior.",
+            "evidence": "show it throughout the app"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Organize the answer around requirements, upload flow, image processing, storage, and delivery.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "we’d save it somewhere",
+              "There are probably some trade-offs around storage and performance"
+            ],
+            "why": "Those elements make the system design and its data flow understandable.",
+            "rewrite": "I’d first set [file-size limit], accepted formats, and expected scale. The client would request an upload, send the image to [object storage], and save its URL or key in the user record."
+          }
+        ],
+        "follow_up_question": "How would you handle a large phone photo while keeping uploads reliable and the displayed image fast to load?",
+        "model_answer_outline": [
+          "State assumptions for file size, formats, user scale, and acceptable upload experience.",
+          "Describe validation and resizing, then explain the upload path and why bytes do or do not pass through the application server.",
+          "Separate image bytes in object storage from the profile record; serve resized images through a CDN and explain how updates invalidate or version cached images."
         ],
         "flags": {
           "off_topic": false,

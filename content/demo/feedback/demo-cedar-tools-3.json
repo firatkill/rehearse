@@ -1,119 +1,125 @@
 {
   "questionId": "demo-cedar-tools-3",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:47:15.593Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d make replay an explicit, bounded operation rather than simply resetting a consumer group. I’d use immutable event IDs and partner/source metadata, then write processed IDs to an idempotency store so replays can’t duplicate downstream effects. I’d define replay by topic, partition, and offset or event-time range, run it first in a shadow consumer, and compare counts and outputs before enabling writes. In one fictional project, that approach cut duplicate records during backfills from 1.8% to under 0.1%, while keeping normal consumer lag below our alert threshold. I’d also preserve original timestamps, track replay jobs separately, and provide pause, rate-limit, and rollback controls.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a coherent design and a result, but give no real situation or task; the example is explicitly fictional."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name Kafka replay boundaries, idempotency, shadow processing, and concrete outcome metrics, though the metrics are fictional."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state what you would build, but do not describe a real personal contribution or decision."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You provide numerical results, but label the project fictional, so they are not an observable outcome from your experience."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly address safe replay design, but the question's behavioral framing calls for a real example and outcome."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The design is easy to follow, but the fictional metrics make the example's evidentiary status unclear."
           }
         },
-        "overall": 1,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a thoughtful set of safeguards for replaying Kafka events.",
+            "evidence": "run it first in a shadow consumer, and compare counts and outputs before enabling writes"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the design in a real situation, then state your role and a verifiable result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "In one fictional project"
+            ],
+            "why": "The fictional example does not establish your experience or demonstrate that your choices worked.",
+            "rewrite": "In [real project], we needed to replay [partner-feed events] without duplicating downstream effects. I chose [design decision], implemented [your contribution], and checked it by [validation]; the result was [verified outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Have you implemented any of these replay safeguards in a real system, and how did you verify they worked?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the real partner-feed context and replay constraint.",
+          "Clarify your own design decisions and implementation.",
+          "Explain safeguards such as idempotency, bounded replay, and controlled rollout.",
+          "Describe how you validated safety and give a real observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d use idempotent processing, keep enough event history to support the replay window, and make replay ranges explicit. I’d also monitor lag and errors, and test a replay in a separate consumer group before applying it to production. That should reduce duplicate side effects and make failures easier to investigate.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You list design choices and an intended outcome, but provide no situation, task, or account of implementation."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name replay ranges, consumer groups, lag, and errors, but give no concrete constraints or implementation details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer describes what you would do, but gives no example of your own decisions or contribution."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You predict reduced duplicate side effects and easier investigation, but provide no observed result or validation."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You propose relevant replay safeguards, but the question asks for a design choices story and the answer gives only general recommendations."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The recommendations are easy to follow, but the implementation and how you would verify success remain unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify several relevant safeguards for replaying Kafka events.",
+            "evidence": "test a replay in a separate consumer group before applying it to production"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Turn the recommendations into a brief example with context, your actions, and a verified result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I’d use idempotent processing",
+              "That should reduce duplicate side effects"
+            ],
+            "why": "The answer has no concrete situation or implemented action, so it does not yet demonstrate a behavioral example.",
+            "rewrite": "In [context], I was responsible for making partner-feed replays safe. I implemented idempotent processing, bounded replay ranges to [window], and validated the approach in a separate consumer group; [observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What would you use to verify that a replay did not create duplicate side effects?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: the partner-feed replay need, constraints, and risk of duplicate side effects.",
+          "Explain your own design and implementation choices, including replay bounds, idempotency, and isolation or monitoring.",
+          "Describe how you tested the replay and state an observable outcome or what changed based on the results."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +129,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make sure Kafka is configured correctly and add some monitoring. Then we could replay the messages if something went wrong.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You offer general suggestions, but provide no context, personal action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Configured correctly” and “some monitoring” do not specify design choices, checks, or constraints."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“I’d make sure” is hypothetical and does not show what you personally did or decided."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe a possible replay, but give no outcome or validation."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention Kafka replay and monitoring, but do not explain how the consumer safely replays partner-feed events."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The suggestions are understandable, but the safety mechanism and intended result remain unexplained."
           }
         },
-        "overall": 3,
+        "overall": 1.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify replay and monitoring as relevant concerns.",
+            "evidence": "add some monitoring. Then we could replay the messages"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Give a concrete context, explain your design choices and actions, then state how you validated the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "configured correctly",
+              "some monitoring",
+              "if something went wrong"
+            ],
+            "why": "The answer currently offers only broad intentions, so the listener cannot assess your approach or its outcome.",
+            "rewrite": "For [partner-feed constraint], I chose [replay-safe design choice] and added [specific monitoring or validation]. I checked [observable outcome] to confirm replay worked without [failure mode]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific design choices would prevent duplicate processing or data loss during a replay?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the partner-feed context and replay constraint, such as duplicate delivery or ordering needs.",
+          "Describe your own choices for safe replay, such as idempotency, offset handling, and failure recovery, where relevant.",
+          "Explain how you monitored or tested replay and name an observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

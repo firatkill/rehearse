@@ -1,119 +1,124 @@
 {
   "questionId": "demo-cedar-tools-6",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:48:16.805Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d use an expand–migrate–contract rollout. First, I’d review query patterns and dependencies, then add the new schema in a backward-compatible way—typically nullable columns or new tables, without removing anything dispatch currently reads or writes. I’d deploy application code that can handle both versions, backfill in small batches with checkpoints and rate limits, and validate counts, constraints, and representative dispatch queries. I’d monitor latency, errors, lock waits, and replication lag throughout. After traffic is using the new schema and the old path has been unused for an agreed period, I’d remove the old schema in a separate release. I’d test the migration and rollback path on production-like data, use lock and statement timeouts, and schedule any risky step around dispatch load. For one migration, this staged approach kept dispatch available while we backfilled roughly 12 million rows; we saw no dispatch errors and kept database latency within our alert thresholds.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the rollout sequence and give a result, but the specific situation and your task are not established."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name concrete safeguards, monitoring signals, and a 12-million-row backfill, but omit the migration and timeline details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a sound approach and use “I’d,” but do not identify your personal contribution to the migration you cite."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report no dispatch errors and latency within alert thresholds during a 12-million-row backfill."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to sequence a PostgreSQL migration to keep dispatch operating without interruption."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The migration steps are clear, but the transition from general plan to the past example leaves your role unclear."
           }
         },
-        "overall": 1,
+        "overall": 3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a practical, ordered migration plan with safeguards for ongoing dispatch traffic.",
+            "evidence": "add the new schema in a backward-compatible way"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify what you personally implemented, decided, and monitored in the cited migration.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "For one migration, this staged approach kept dispatch available"
+            ],
+            "why": "The answer presents a strong plan but does not connect your individual actions to the reported outcome.",
+            "rewrite": "For the migration, I [describe your implementation or decision], then monitored [signals] during the backfill. Dispatch had no errors, and database latency stayed within alert thresholds."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What parts of the 12-million-row migration did you personally implement, and how did you verify dispatch remained healthy?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the dispatch availability constraint and describe the schema change and operational context.",
+          "Explain your expand–migrate–contract steps, compatibility choices, backfill controls, and rollback safeguards.",
+          "State your personal responsibilities and give observable validation and outcome measures."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d avoid a single migration that changes the schema and application behavior at once. I’d add the new structures first, deploy code that supports both old and new forms, backfill gradually, and verify the results before switching dispatch over. I’d watch database load and errors, and only remove the old schema after the new path is stable. I’d also test recovery and rollback beforehand so we can respond if the migration causes trouble.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You give an ordered migration sequence, but no specific situation or observable result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name useful stages and checks, but provide no schema details, tools, constraints, or thresholds."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "This is framed as a plan, and it is unclear what you personally would own or decide."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe monitoring and stability checks but state no concrete outcome or validation result."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "Your expand-and-contract approach directly addresses keeping dispatch running during a schema migration."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The migration sequence is easy to follow, but the checks and decision to switch are not defined."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You outline a sensible staged migration that avoids changing the schema and application behavior simultaneously.",
+            "evidence": "I’d add the new structures first, deploy code that supports both old and new forms"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor this plan in a real migration and state how you verified the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "verify the results before switching dispatch over",
+              "after the new path is stable"
+            ],
+            "why": "A concrete context and observable outcome would make this a complete behavioral example rather than a general plan.",
+            "rewrite": "For [migration], dispatch had to remain available while [constraint]. I added [schema changes], deployed dual-compatible code, and backfilled in batches; I switched traffic after [verification threshold], with [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific checks would you use to decide that the backfill was safe and dispatch could switch to the new schema?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the migration context and explain the dispatch-availability constraint.",
+          "Describe your own expand-and-contract steps, including dual-compatible code, gradual backfill, and rollback preparation.",
+          "Name concrete verification signals and the observable outcome after switching dispatch."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,63 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make a backup, run the migration during a quiet period, and keep an eye on things. If dispatch has a problem, I’d roll it back.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You give a basic plan, but no context or explicit outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "Backup, quiet timing, monitoring, and rollback are relevant but lack technical detail."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but not a specific contribution or decision."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result or validation of uninterrupted dispatch."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address continuity and rollback, but do not explain how the migration avoids interruption."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The plan is easy to understand, but the migration and monitoring steps are underspecified."
           }
         },
-        "overall": 3,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify preparation and recovery as important parts of the plan.",
+            "evidence": "I’d make a backup, run the migration during a quiet period"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Define how you would verify dispatch stays available and what triggers rollback.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "keep an eye on things",
+              "If dispatch has a problem"
+            ],
+            "why": "The answer gives no observable success measure or specific check for interruption.",
+            "rewrite": "I’d monitor [dispatch success measure] during and after the migration, and roll back if [failure threshold] is reached; I’d confirm dispatch remained available by [validation]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific compatibility steps and checks would you use to keep dispatch working during the schema change?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: identify the schema change, dispatch dependency, and zero-interruption constraint.",
+          "Describe a staged, compatibility-conscious migration and your own role in planning and execution.",
+          "Name monitoring, validation, and rollback criteria, then state an observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

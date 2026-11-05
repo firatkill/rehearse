@@ -1,119 +1,124 @@
 {
   "questionId": "demo-cedar-tools-2",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:46:56.461Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d treat each delivery event as an immutable record, not overwrite the parcel’s current status based on arrival time. I’d deduplicate events using a stable event ID, order them by their occurrence time and sequence number where available, and handle late arrivals by rebuilding the parcel’s timeline. I’d also track ingestion time separately from event time, flag conflicting or implausible transitions for review, and make status updates idempotent. In a fictional rollout, I’d test this with replayed out-of-order events and measure timeline accuracy and duplicate handling before release.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You give a coherent proposed approach and test plan, but no concrete situation, personal action taken, or actual result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name event IDs, occurrence and ingestion times, sequence numbers, and replay tests, but provide no system-specific details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but give no evidence of actions or decisions you personally made."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose measuring accuracy and duplicate handling before release, but report no observable outcome."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly explain preserving history with late events, but frame it as a hypothetical plan rather than a past example."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The approach is easy to follow, but how rebuilding resolves conflicting events and determines current status is unstated."
           }
         },
-        "overall": 1,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You outline practical safeguards against out-of-order and duplicate events.",
+            "evidence": "deduplicate events using a stable event ID, order them by their occurrence time"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the approach in a real example, then state your action and a verified result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "In a fictional rollout"
+            ],
+            "why": "A hypothetical rollout cannot demonstrate what you personally delivered or whether the approach worked.",
+            "rewrite": "In [project], out-of-order events could [constraint]. I implemented [specific change] and verified it by [test or metric], resulting in [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you resolve two conflicting events with the same occurrence time, and how would you validate the chosen ordering?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the parcel-history context and explain why arrival order could not determine the current status.",
+          "Describe the event data and ordering rules, including handling late events, duplicates, and conflicts.",
+          "State your specific contribution and how the timeline and current status were derived.",
+          "Give an observable validation result, such as replay-test accuracy or duplicate-handling outcomes."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d keep the original events and sort them by when they happened rather than when the system received them. I’d add duplicate checks and make sure late events update the parcel timeline without losing earlier information. I’d also monitor cases where timestamps or statuses conflict.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe an approach, but give no situation, personal task, or result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "Sorting by event time, checking duplicates, and monitoring conflicts are concrete ideas, but no implementation details are provided."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but provide no evidence of actions you personally took."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not state an outcome or how you validated that parcel histories stayed accurate."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address handling out-of-order events, but do not give the requested context or observable outcome."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposed approach is understandable, but the mechanism for resolving conflicts is left implicit."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the key distinction between event time and receipt time.",
+            "evidence": "sort them by when they happened rather than when the system received them"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add an observable result and explain how you checked that parcel histories remained accurate.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "monitor cases where timestamps or statuses conflict"
+            ],
+            "why": "Without a result or validation, the interviewer cannot tell whether the proposed approach worked.",
+            "rewrite": "I checked accuracy by [validation method] and saw [observable result], while monitoring [specific conflict signal] for cases needing review."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you decide which event to show when two updates for the same parcel have conflicting timestamps or statuses?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the parcel-history problem and the constraint caused by events arriving late or out of order.",
+          "Explain your own approach to ordering events, handling duplicates, and preserving earlier information.",
+          "Describe how you resolved conflicting timestamps or statuses and validated the timeline with an observable result."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make sure the parcel history stays up to date by sorting the events and fixing any mistakes.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give a general intention, without a situation, specific action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Sorting the events” and “fixing any mistakes” do not explain how you would handle out-of-order events."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state what you would do, but the actions remain broad and no decisions or personal contribution are described."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You provide no observable outcome or way to verify the parcel history is accurate."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address the goal generally but do not explain how to preserve accurate history when events arrive out of order."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The sentence is easy to understand, but its vague mechanism leaves the actual approach unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize that events need ordering and errors need correction.",
+            "evidence": "sorting the events and fixing any mistakes"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain the ordering rule, how you preserve event history, and how you verify the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "sorting the events",
+              "fixing any mistakes"
+            ],
+            "why": "Your answer states an intention but gives no concrete method, context, or outcome.",
+            "rewrite": "I would order events using [event timestamp or sequence rule] while retaining the original records, then check that late arrivals update the displayed history correctly. I would verify this with [test or observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What ordering rule would you use when two delivery events have conflicting timestamps?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and constraint, such as late or duplicated delivery events.",
+          "Describe your own approach to ordering events while preserving an accurate history.",
+          "Explain how you handled conflicts or corrections without losing relevant event records.",
+          "State an observable result and how you checked the approach worked."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }
