@@ -119,3 +119,32 @@ test('TC-054 FR-09 captions keep the full question readable while highlighting o
   expect(screen.getByRole('heading')).toHaveTextContent('First sentence. Second sentence.');
   expect(container.querySelectorAll('h1 > span')[1]).toHaveClass('underline');
 });
+
+test('TC-128 V-05 renders accessible accent groups and hides novelty choices', () => {
+  const novelty = {
+    name: 'Bahh',
+    lang: 'en-US',
+    voiceURI: 'bahh',
+    localService: true,
+    default: true,
+  };
+  const british = {
+    name: 'Daniel (Premium)',
+    lang: 'en_GB',
+    voiceURI: 'daniel',
+    localService: true,
+    default: false,
+  };
+  render(
+    <VoicePicker
+      setup={setup}
+      voices={[novelty, local, british]}
+      loading={false}
+      onChange={vi.fn()}
+    />,
+  );
+  expect(screen.getByRole('group', { name: 'en-gb' })).toBeVisible();
+  expect(screen.getByRole('group', { name: 'en-us' })).toBeVisible();
+  expect(screen.queryByRole('option', { name: /Bahh/ })).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Voice')).toHaveValue('daniel');
+});

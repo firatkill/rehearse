@@ -313,7 +313,7 @@ Document title: "Set up a session · Rehearse"
 - Fieldset legend "Answer mode": radio "Voice: answer out loud" and "Text: type your answers". When voice is unsupported, the Voice radio is disabled and its description reads "Not available in this browser."
 - Fieldset legend "Interviewer voice" (hidden when synthesis is unavailable):
   - Checkbox "Read questions aloud" (default checked).
-  - Select label "Voice"; options "{voice.name} ({voice.lang})", with " (online voice)" appended when `localService` is false. While voices load: single disabled option "Loading voices…". If none: "No English voices found" and the checkbox is unchecked and disabled.
+  - Select label "Voice"; native accent groups use normalized language-tag labels (for example `en-gb`, `en-us`); options "{voice.name} ({voice.lang})", with " (online voice)" appended when `localService` is false. While voices load: single disabled option "Loading voices…". If none: "No English voices found" and the checkbox is unchecked and disabled.
   - When the remembered voice is missing on this device, under the select: "Your saved voice isn’t available here, so the default voice is used."
   - Range label "Speaking rate", value text "1.0×" (mono), min 0.8, max 1.3, step 0.1.
   - Button "Preview voice" (speaks the FR-06 sentence; while speaking the label is "Stop preview").
@@ -693,5 +693,7 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-87 | V-03 extends the normative so-context exception set with subject pronouns, noun-phrase determiners and common interview subject nouns; updates old vectors that counted “so I” or “and so we”. | Implements the approved review’s bounded exception-set approach. Metrics remain lexical estimates, not a full grammar parser; hesitation examples still count. | V-03 implementation under approved guide §0, 2026-11-05 |
 
 | D-88 | V-04 suppresses summary trend inputs below three scored answers and prohibits “failing” in all summary fields; normalized output with that word is rejected without retry. Summary prompt is summary-v2. | Implements the approved summary coaching rule; leaves chart aggregates unchanged. | V-04 under guide §0, 2026-11-05 |
+
+| D-89 | V-05 filters known novelty voices including Turkish aliases and canonical URI suffixes; ranks local premium/enhanced, then Samantha/Daniel, local and online; preserves eligible saved choices and groups options by normalized accent tag. | Implements Review §1.8 without dependencies or user-agent sniffing; quality is inferred from browser-provided name/URI. | V-05 under guide §0, 2026-11-05 |
 
 | D-93 | A local `pnpm eval` run with its committed result file satisfies the eval requirement. Paid CI skips cleanly when configuration is absent; do not configure the GitHub eval environment or secrets. V1 is approved; merge PRs #2–#7 in order after green CI, then perform the requested follow-up fixes before V2. | Owner replaces the mandatory paid CI requirement in AGENTS §5/§7 and the guide definition of done. V-04/V-06 close against the passing V1 result retained on PR #7. | Owner, 2026-11-05 |

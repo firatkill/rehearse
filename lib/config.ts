@@ -70,6 +70,31 @@ export const SPEECH = {
   RESULT_OFFSETS_MAX: 4_000,
 } as const;
 
+export const VOICES = {
+  NOVELTY_NAMES: [
+    'Bahh',
+    'Bells',
+    'Boing',
+    'Bubbles',
+    'Cellos',
+    'Deranged',
+    'Good News',
+    'Bad News',
+    'Hysterical',
+    'Jester',
+    'Organ',
+    'Pipe Organ',
+    'Superstar',
+    'Trinoids',
+    'Whisper',
+    'Wobble',
+    'Zarvox',
+    'İyi Haber',
+    'Kötü Haber',
+  ],
+  PREFERRED_NAMES: ['Samantha', 'Daniel'],
+} as const;
+
 export const TTS = {
   RATE_MIN: 0.8,
   RATE_MAX: 1.3,
