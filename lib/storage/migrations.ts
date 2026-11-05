@@ -3,9 +3,11 @@ import {
   LegacyAnswerRecordSchema,
   LegacySessionRecordSchema,
   V3AnswerRecordSchema as AnswerRecordSchema,
-  AnswerRecordSchema as CurrentAnswerRecordSchema,
+  V4AnswerRecordSchema as CurrentAnswerRecordSchema,
+  AnswerRecordSchema as LatestAnswerRecordSchema,
   V3SessionRecordSchema as SessionRecordSchema,
-  SessionRecordSchema as CurrentSessionRecordSchema,
+  V4SessionRecordSchema as CurrentSessionRecordSchema,
+  SessionRecordSchema as LatestSessionRecordSchema,
 } from './schema';
 import { completeAttempt } from './attempts';
 export type Migration = {
@@ -69,6 +71,21 @@ export const MIGRATIONS: readonly Migration[] = [
       }
     },
   },
+  {
+    version: 5,
+    upgrade(_db, tx) {
+      for (const name of ['sessions', 'answers']) {
+        const request = tx.objectStore(name).openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          const migrated = migrateRecord(cursor.value);
+          if (migrated !== null) cursor.update(migrated);
+          cursor.continue();
+        };
+      }
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {
@@ -99,6 +116,19 @@ export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>
       schemaVersion: 4,
       followUp: null,
       followUpRecords: [],
+    });
+  },
+  4: (input) => {
+    const session = CurrentSessionRecordSchema.safeParse(input);
+    if (session.success)
+      return LatestSessionRecordSchema.parse({
+        ...session.data,
+        schemaVersion: 5,
+        setup: { ...session.data.setup, dimension: null },
+      });
+    return LatestAnswerRecordSchema.parse({
+      ...CurrentAnswerRecordSchema.parse(input),
+      schemaVersion: 5,
     });
   },
 };

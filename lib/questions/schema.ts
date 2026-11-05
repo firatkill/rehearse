@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ROLES, SENIORITIES, QUESTION_TYPES, QUESTION_BANK } from '@/lib/config';
+import { ROLES, SENIORITIES, QUESTION_TYPES, QUESTION_BANK, DIMENSIONS } from '@/lib/config';
 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
@@ -9,6 +9,11 @@ export const QuestionSchema = z
     type: z.enum(QUESTION_TYPES),
     roles: z.array(z.enum(ROLES)).min(1),
     seniority: z.array(z.enum(SENIORITIES)).min(1),
+    dimensions: z
+      .array(z.enum(DIMENSIONS))
+      .min(1)
+      .max(DIMENSIONS.length)
+      .refine((tags) => new Set(tags).size === tags.length, 'duplicate dimension'),
     topic: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
     prompt: z
       .string()
@@ -45,6 +50,12 @@ export type Question = z.infer<typeof QuestionSchema>;
 export const ManifestSchema = z
   .object({
     bankVersion: z.string().regex(/^\d+\.\d+\.\d+$/),
+    dimensions: z
+      .array(z.enum(DIMENSIONS))
+      .refine(
+        (tags) => tags.length === DIMENSIONS.length && DIMENSIONS.every((d) => tags.includes(d)),
+        'manifest must list all rubric dimensions',
+      ),
     files: z.array(z.string().regex(/^[a-z-]+\.json$/)).min(1),
   })
   .strict();

@@ -15,7 +15,7 @@ it('TC-093 UT-14 upgrade preserves data, adds index and migrates on read without
   const upgraded = await openDb(name, [
     ...MIGRATIONS,
     {
-      version: 5,
+      version: 6,
       upgrade(_db, upgradeTx) {
         upgradeTx.objectStore('sessions').createIndex('by_role', 'setup.role');
       },
@@ -25,7 +25,7 @@ it('TC-093 UT-14 upgrade preserves data, adds index and migrates on read without
   expect(store.index('by_role').keyPath).toBe('setup.role');
   const raw: unknown = await requestResult(store.get(record.id));
   const migrated = migrateRecord(raw, {
-    0: (value) => ({ ...(value as object), schemaVersion: 4 }),
+    0: (value) => ({ ...(value as object), schemaVersion: 5 }),
   });
   expect(SessionRecordSchema.parse(migrated)).toEqual(record);
   expect(
@@ -42,7 +42,7 @@ it('TC-093 UT-14 upgrade preserves data, adds index and migrates on read without
     }),
   ).toBeNull();
   expect(migrateRecord(raw, { 0: (value) => value })).toBeNull();
-  expect(migrateRecord({ ...record, schemaVersion: 5 })).toBeNull();
+  expect(migrateRecord({ ...record, schemaVersion: 6 })).toBeNull();
   expect(migrateRecord(null)).toBeNull();
   closeDb(upgraded);
   vi.unstubAllGlobals();

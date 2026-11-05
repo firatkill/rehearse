@@ -19,7 +19,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-002",
@@ -41,7 +42,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-003",
@@ -63,7 +65,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-004",
@@ -83,7 +86,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-005",
@@ -103,7 +107,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-006",
@@ -123,7 +128,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-007",
@@ -143,7 +149,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-008",
@@ -163,7 +170,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-009",
@@ -183,7 +191,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-010",
@@ -203,7 +212,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-011",
@@ -223,7 +233,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-012",
@@ -243,7 +254,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-013",
@@ -260,7 +272,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-014",
@@ -280,7 +293,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-015",
@@ -300,7 +314,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-016",
@@ -320,7 +335,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-017",
@@ -340,7 +356,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-018",
@@ -360,7 +377,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-019",
@@ -380,7 +398,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-020",
@@ -400,7 +419,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact", "relevance"]
   },
   {
     "id": "sdl-021",
@@ -420,7 +440,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-022",
@@ -440,7 +461,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-023",
@@ -457,7 +479,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-024",
@@ -477,7 +500,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-025",
@@ -497,7 +521,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-026",
@@ -517,7 +542,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-027",
@@ -537,7 +563,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact", "relevance"]
   },
   {
     "id": "sdl-028",
@@ -557,7 +584,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "sdl-029",
@@ -577,7 +605,8 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact", "relevance"]
   },
   {
     "id": "sdl-030",
@@ -597,6 +626,7 @@
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact", "relevance"]
   }
 ]

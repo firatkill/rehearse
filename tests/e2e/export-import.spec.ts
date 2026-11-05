@@ -82,7 +82,7 @@ test('TC-100 E2E-18 wrong-format, newer-version and oversize files show exact er
   await input.setInputFiles({
     name: 'future.json',
     mimeType: 'application/json',
-    buffer: Buffer.from(JSON.stringify({ ...fixture, formatVersion: 5 })),
+    buffer: Buffer.from(JSON.stringify({ ...fixture, formatVersion: 6 })),
   });
   await expect(
     page.getByText(

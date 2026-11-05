@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-deprecated -- Preserve normative TRD Zod schema syntax. */
 import { z } from 'zod';
 import {
+  DIMENSIONS,
   ROLES,
   SENIORITIES,
   QUESTION_TYPES,
@@ -25,7 +26,7 @@ export const CheckpointPhase = z.enum([
   'done',
 ]);
 
-export const SetupSchema = z
+export const LegacySetupSchema = z
   .object({
     role: z.enum(ROLES),
     seniority: z.enum(SENIORITIES),
@@ -38,6 +39,10 @@ export const SetupSchema = z
   })
   .strict();
 
+export const SetupSchema = LegacySetupSchema.extend({
+  dimension: z.enum(DIMENSIONS).nullable().optional(),
+});
+
 export const LegacySessionRecordSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -47,7 +52,7 @@ export const LegacySessionRecordSchema = z
     updatedAt: z.string().datetime(),
     completedAt: z.string().datetime().nullable(),
     status: z.enum(['in_progress', 'completed', 'ended_early']),
-    setup: SetupSchema,
+    setup: LegacySetupSchema,
     currentMode: z.enum(ANSWER_MODES),
     seed: z.string().regex(SESSION.SEED_PATTERN),
     bankVersion: z.string(),
@@ -182,8 +187,8 @@ export const FollowUpRecordSchema = AttemptRecordSchema.safeExtend({
   parentAttemptId: z.string(),
   prompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
 });
-export const SessionRecordSchema = V3SessionRecordSchema.extend({ schemaVersion: z.literal(4) });
-export const AnswerRecordSchema = z
+export const V4SessionRecordSchema = V3SessionRecordSchema.extend({ schemaVersion: z.literal(4) });
+export const V4AnswerRecordSchema = z
   .object({
     ...V3AnswerRecordSchema.shape,
     schemaVersion: z.literal(4),
@@ -213,6 +218,20 @@ export const AnswerRecordSchema = z
       )
         ctx.addIssue({ code: 'custom', message: 'Follow-up ownership or sequence is invalid.' });
     }
+  });
+export const SessionRecordSchema = V4SessionRecordSchema.extend({
+  schemaVersion: z.literal(5),
+  setup: SetupSchema,
+});
+export const AnswerRecordSchema = z
+  .object({ ...V4AnswerRecordSchema.shape, schemaVersion: z.literal(5) })
+  .strict()
+  .superRefine((answer, ctx) => {
+    // V5 changes session setup only; retain every V4 answer ownership/refinement check.
+    const previous = V4AnswerRecordSchema.safeParse({ ...answer, schemaVersion: 4 });
+    if (!previous.success)
+      for (const issue of previous.error.issues)
+        ctx.addIssue({ code: 'custom', message: issue.message, path: issue.path });
   });
 export type FollowUpRecord = z.infer<typeof FollowUpRecordSchema>;
 export type AttemptRecord = z.infer<typeof AttemptRecordSchema>;

@@ -4,6 +4,7 @@ import { ReportView } from '@/components/report/report-view';
 import { record, answer } from '../fixtures/records';
 import { feedbackLlm } from '../fixtures/feedback';
 import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
+vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
 const scored = { ...answer, status: 'scored' as const, feedback: { ...feedbackLlm(), overall: 4 } };
 it('TC-084 CT-07 local numbers and focus tips remain available without a summary', () => {
   const { container } = render(
@@ -155,7 +156,7 @@ it('TC-150 V-23 heat rows use the best parent attempt and count retries separate
   expect(within(table).getAllByRole('rowheader')).toHaveLength(3);
   expect(screen.getByText('Retries').parentElement).toHaveTextContent('1');
   expect(screen.getByText('Average', { exact: true }).parentElement).toHaveTextContent('4.0 / 4');
-  expect(screen.getByRole('button', { name: 'Practise Structure · 3 questions' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Practise Structure · 3 questions' })).toBeEnabled();
   fireEvent.click(within(table).getAllByRole('link')[0]!);
   expect(document.getElementById('report-answer-0')).toHaveAttribute('open');
 });

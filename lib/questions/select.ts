@@ -1,6 +1,12 @@
 import 'server-only';
 import { randomBytes } from 'node:crypto';
-import { QUESTION_BANK, type Role, type Seniority, type QuestionType } from '@/lib/config';
+import {
+  QUESTION_BANK,
+  type Role,
+  type Seniority,
+  type QuestionType,
+  type Dimension,
+} from '@/lib/config';
 import type { Question } from './schema';
 import { mulberry32, seedToInt, shuffle } from './prng';
 // select.ts
@@ -10,6 +16,7 @@ export type SelectionInput = {
   types: readonly QuestionType[]; // non-empty
   length: 3 | 5;
   seed: string; // 8 lowercase hex chars
+  dimension?: Dimension | null | undefined;
 };
 
 export function selectQuestions(bank: readonly Question[], input: SelectionInput): Question[] {
@@ -18,6 +25,29 @@ export function selectQuestions(bank: readonly Question[], input: SelectionInput
   const active = [...bank]
     .filter((q) => q.status === 'active')
     .sort((a, b) => (a.id < b.id ? -1 : 1));
+
+  const dimension = input.dimension;
+  if (dimension) {
+    const pool = shuffle(
+      active.filter(
+        (q) =>
+          q.dimensions.includes(dimension) &&
+          q.roles.includes(input.role) &&
+          q.seniority.includes(input.seniority),
+      ),
+      rng,
+    );
+    const chosen: Question[] = [];
+    for (const question of pool) {
+      if (!chosen.some((q) => q.topic === question.topic)) chosen.push(question);
+      if (chosen.length === input.length) return chosen;
+    }
+    for (const question of pool) {
+      if (!chosen.includes(question)) chosen.push(question);
+      if (chosen.length === input.length) return chosen;
+    }
+    throw new Error('question bank exhausted for dimension');
+  }
 
   // 1. Slot types: round-robin over the selected types from an rng-chosen offset.
   const offset = Math.floor(rng() * types.length);

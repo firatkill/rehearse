@@ -19,7 +19,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-002",
@@ -41,7 +42,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-003",
@@ -63,7 +65,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-004",
@@ -85,7 +88,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-005",
@@ -107,7 +111,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-006",
@@ -127,7 +132,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-007",
@@ -147,7 +153,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-008",
@@ -167,7 +174,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-009",
@@ -187,7 +195,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-010",
@@ -207,7 +216,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-011",
@@ -227,7 +237,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-012",
@@ -247,7 +258,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-013",
@@ -267,7 +279,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-014",
@@ -287,7 +300,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-015",
@@ -307,7 +321,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-016",
@@ -327,7 +342,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-017",
@@ -347,7 +363,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-018",
@@ -367,7 +384,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-019",
@@ -387,7 +405,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-020",
@@ -407,7 +426,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-021",
@@ -427,7 +447,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-022",
@@ -447,7 +468,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-023",
@@ -467,7 +489,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "clarity"]
   },
   {
     "id": "tec-024",
@@ -487,7 +510,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "clarity"]
   },
   {
     "id": "tec-025",
@@ -507,7 +531,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-026",
@@ -527,7 +552,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-027",
@@ -547,7 +573,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-028",
@@ -567,7 +594,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-029",
@@ -587,7 +615,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "clarity"]
   },
   {
     "id": "tec-030",
@@ -607,7 +636,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "clarity"]
   },
   {
     "id": "tec-031",
@@ -627,7 +657,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-032",
@@ -647,7 +678,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-033",
@@ -667,7 +699,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-034",
@@ -687,7 +720,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-035",
@@ -707,7 +741,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   },
   {
     "id": "tec-036",
@@ -727,7 +762,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-037",
@@ -747,7 +783,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-038",
@@ -767,7 +804,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-039",
@@ -787,7 +825,8 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-040",
@@ -807,6 +846,7 @@
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   }
 ]

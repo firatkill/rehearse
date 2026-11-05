@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { getBank } from '@/lib/questions/bank';
 import { checkBankRules, coverageMatrix, validateQuestionFiles } from '@/lib/questions/coverage';
 import { ManifestSchema, QuestionSchema, toSnapshot } from '@/lib/questions/schema';
-import { ROLES, QUESTION_TYPES, SENIORITIES } from '@/lib/config';
+import { DIMENSIONS, ROLES, QUESTION_TYPES, SENIORITIES } from '@/lib/config';
 
 const bank = getBank();
 const first = bank.questions[0]!;
@@ -71,7 +71,11 @@ describe('TC-016 TC-017 — FR-01, FR-03; UT-03', () => {
         for (const seniority of SENIORITIES) expect(matrix[role][type][seniority]).toBe(0);
   });
   it('rejects unsorted files, missing files, wrong file types and markup', () => {
-    const manifest = { bankVersion: '1.0.0', files: ['behavioral.json'] };
+    const manifest = {
+      dimensions: [...DIMENSIONS],
+      bankVersion: '1.0.0',
+      files: ['behavioral.json'],
+    };
     expect(
       validateQuestionFiles(
         manifest,

@@ -19,6 +19,7 @@ import { SafeText } from '@/components/common/safe-text';
 import { FeedbackCard } from '@/components/room/feedback-card';
 import { DeliveryMetrics } from '@/components/room/delivery-metrics';
 import { Button } from '@/components/ui/button';
+import { useDimensionPractice } from '@/hooks/use-dimension-practice';
 import { HeatCell } from '@/components/ui/heat-cell';
 import { TrendChart } from './trend-chart';
 export function ReportView({
@@ -37,6 +38,7 @@ export function ReportView({
   online?: boolean;
 }) {
   const answers = allAnswers.map(bestAnswer);
+  const practice = useDimensionPractice(session.setup);
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const previous = new Map<HTMLDetailsElement, boolean>();
@@ -168,17 +170,29 @@ export function ReportView({
                   }
                 />
               </p>
-              <Button variant={index === 0 ? 'on-dark' : 'text'} disabled data-print="hide">
+              <Button
+                variant={index === 0 ? 'on-dark' : 'text'}
+                disabled={practice.pending}
+                onClick={() => {
+                  void practice.start(d);
+                }}
+                data-print="hide"
+              >
                 {index === 0
                   ? `Practise ${DIMENSION_LABELS[d]} · 3 questions`
                   : `Practise ${DIMENSION_LABELS[d]}`}
               </Button>
-              <p className="report-meta" data-print="hide">
-                Dimension practice is coming next.
-              </p>
             </article>
           ))}
         </section>
+      )}
+      {practice.error && (
+        <div role="alert">
+          <p>{practice.error}</p>
+          <Link className="inline-flex min-h-11 items-center" href="/setup">
+            Open setup
+          </Link>
+        </div>
       )}
       <section className="report-heat" aria-labelledby="report-heat-heading">
         <div className="report-section-heading">

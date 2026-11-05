@@ -1,4 +1,6 @@
 import {
+  DIMENSIONS,
+  SESSION,
   ROLES,
   SENIORITIES,
   QUESTION_TYPES,
@@ -61,6 +63,19 @@ export function checkBankRules(questions: readonly Question[]): string[] {
           errors.push(
             `coverage: ${role}/${type}/${seniority} has ${matrix[role][type][seniority]}`,
           );
+      }
+  for (const role of ROLES)
+    for (const seniority of SENIORITIES)
+      for (const dimension of DIMENSIONS) {
+        const count = questions.filter(
+          (q) =>
+            q.status === 'active' &&
+            q.roles.includes(role) &&
+            q.seniority.includes(seniority) &&
+            q.dimensions.includes(dimension),
+        ).length;
+        if (count < SESSION.LENGTHS[0])
+          errors.push(`dimension coverage: ${role}/${seniority}/${dimension} has ${count}`);
       }
   return errors;
 }
