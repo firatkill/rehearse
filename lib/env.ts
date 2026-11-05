@@ -106,8 +106,10 @@ export function getEnv(): Env {
       source[name] = undefined;
     source.LLM_MODE = 'mock';
     source.RATE_LIMIT_BACKEND = 'memory';
-    source.SESSION_SECRET ||= randomBytes(32).toString('hex');
-    source.IP_HASH_SECRET ||= randomBytes(32).toString('hex');
+    if (source.VERCEL_ENV === undefined) {
+      source.SESSION_SECRET ||= randomBytes(32).toString('hex');
+      source.IP_HASH_SECRET ||= randomBytes(32).toString('hex');
+    }
     source.NEXT_PUBLIC_SITE_URL ||= 'http://localhost:3000';
   }
   const result = schema.safeParse(source);

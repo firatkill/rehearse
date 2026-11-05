@@ -1,5 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
+import { resetEnvForTests } from '@/lib/env';
+afterEach(() => {
+  resetEnvForTests();
+});
 import Home from '@/app/page';
 import sample from '@/content/sample/session.json';
 it('TC-138 V-12 landing uses the committed sample and honest rollout copy', () => {
@@ -15,6 +19,19 @@ it('TC-138 V-12 landing uses the committed sample and honest rollout copy', () =
   expect(screen.getByText(sample.session.questions[0]!.prompt)).toBeVisible();
   expect(screen.getByText(sample.answers[0]!.feedback.improvements[0]!.point)).toBeVisible();
   expect(
-    screen.getByText(/Job-post interviews, retries and Turkish are coming next/),
+    screen.getByText(
+      /Available now: role-based practice and retries in English. Your own job-post interviews are coming next; Turkish is coming later./,
+    ),
+  ).toBeVisible();
+});
+
+it('TC-168 demo landing distinguishes examples from future own-post interviews', () => {
+  vi.stubEnv('APP_EDITION', 'demo');
+  resetEnvForTests();
+  render(<Home />);
+  expect(
+    screen.getByText(
+      'Available now: role-based practice, retries and example job-post interviews in English. Your own job posts are coming next in the self-hosted version; Turkish is coming later.',
+    ),
   ).toBeVisible();
 });

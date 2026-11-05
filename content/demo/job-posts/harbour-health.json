@@ -2,13 +2,15 @@
   "slug": "harbour-health",
   "company": "Harbour Health",
   "role": "Product engineer",
-  "text": "Harbour Health is a fictional company looking for a product engineer. Build reliable product features, explain technical trade-offs, and measure outcomes with the team.",
+  "text": "Harbour Health is a fictional health product company for interview practice. Its example software helps community clinics coordinate appointment preparation and administrative follow-up, rather than make clinical decisions. This vacancy and company are invented. We are looking for a product engineer who can connect user research with reliable delivery and recognise when a seemingly small interface choice creates extra work for busy clinic teams.\n\nOur product uses TypeScript, React and Node.js, with PostgreSQL storing workflow records. A shared design system supports accessible forms and status messages. Engineers work with a product designer and clinic coordinators, taking prototypes into short research sessions before committing to a larger build. We use synthetic patient records in development and demonstrations; operational logs exclude patient names and free-text clinical notes.\n\nYou will observe how coordinators prepare appointment lists, prototype a follow-up task queue, and deliver changes across the interface and API. Responsibilities include making overdue and completed tasks clearly distinguishable, supporting keyboard-only use during busy reception shifts, and designing role-based access for coordinators and supervisors. You will preserve an audit trail when tasks change owner and provide a clear recovery path when a network interruption leaves a save uncertain.\n\nWe require experience shipping a web product, comfort discussing scope with non-technical colleagues, and an ability to turn observations into testable assumptions. You should understand relational data modelling, write useful automated tests, and explain how you would measure administrative time saved without collecting sensitive content. We value thoughtful disagreement and explicit trade-offs over adding features to satisfy every request.\n\nNice-to-haves include healthcare workflow research, accessibility testing with assistive technology, and experience rolling out software to small operational teams. Your first project would test whether a clearer follow-up queue reduces forgotten administrative tasks. You would agree success and rollback criteria with clinic coordinators, trial the change with one team, and review both completion rates and the reasons people still work around the product.",
   "requirements": [
-    "Build reliable product features",
-    "Explain technical trade-offs",
-    "Measure outcomes with the team"
+    "TypeScript product development across UI and APIs",
+    "User research with operational teams",
+    "Accessible workflows and clear status communication",
+    "Role-based access and audit trails",
+    "Outcome measurement without sensitive logs"
   ],
-  "about": "Fictional example for exploring Rehearse.",
+  "about": "A fictional health product company helping community clinics coordinate appointment preparation and follow-up tasks.",
   "provenance": "pending-owner-generation",
   "questions": [
     {
@@ -17,8 +19,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-0",
-      "prompt": "How would you clarify the first problem to solve?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about research that changed what you built. How would you learn from coordinators preparing appointment lists at Harbour Health?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -28,7 +33,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "observe how coordinators prepare appointment lists"
     },
     {
       "id": "demo-harbour-health-2",
@@ -36,8 +41,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-1",
-      "prompt": "Tell me about a time you made a technical trade-off.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe a prototype you used to test an assumption. What would you test before building this follow-up queue?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -47,7 +55,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "prototype a follow-up task queue"
     },
     {
       "id": "demo-harbour-health-3",
@@ -55,8 +63,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-2",
-      "prompt": "How would you measure the outcome of a change?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about clarifying status in a busy workflow. How would you distinguish overdue and completed tasks for reception staff?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -66,7 +77,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "making overdue and completed tasks clearly distinguishable"
     },
     {
       "id": "demo-harbour-health-4",
@@ -74,8 +85,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-3",
-      "prompt": "How would you test a change before release?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe an accessibility improvement you shipped. How would you support keyboard-only work during a busy reception shift?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -85,7 +99,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "supporting keyboard-only use during busy reception shifts"
     },
     {
       "id": "demo-harbour-health-5",
@@ -93,8 +107,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-4",
-      "prompt": "Tell me about a delivery constraint you handled.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about implementing access rules for different users. How would you separate coordinator and supervisor capabilities?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -104,7 +121,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "designing role-based access for coordinators and supervisors"
     },
     {
       "id": "demo-harbour-health-6",
@@ -112,8 +129,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-5",
-      "prompt": "How would you work with other roles on this team?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you made a workflow change traceable. How would you preserve the history when a follow-up task changes owner?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -123,7 +143,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "preserve an audit trail when tasks change owner"
     },
     {
       "id": "demo-harbour-health-7",
@@ -131,8 +151,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-6",
-      "prompt": "How would you explain a result to stakeholders?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about an uncertain save or interrupted request you handled. How would you help a coordinator recover without duplicating work?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -142,7 +165,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "provide a clear recovery path when a network interruption leaves a save uncertain"
     },
     {
       "id": "demo-harbour-health-8",
@@ -150,8 +173,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-7",
-      "prompt": "What would you investigate before choosing an approach?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you measured whether a product change helped users. How would you assess this queue without collecting sensitive content?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -161,7 +187,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "measure administrative time saved without collecting sensitive content"
     }
   ]
 }

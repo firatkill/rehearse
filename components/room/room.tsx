@@ -31,11 +31,13 @@ export function Room({
   offline,
   feedbackPerDay,
   globalPerDay,
+  jobLabels = {},
 }: {
   id: string;
   offline: boolean;
   feedbackPerDay: number;
   globalPerDay: number;
+  jobLabels?: Record<string, string>;
 }) {
   const {
     state,
@@ -53,6 +55,8 @@ export function Room({
   const isFollowUp = Boolean(state.answers.find((a) => a.index === state.index)?.followUp);
   const root = useRef<HTMLDivElement>(null);
   const { session, phase, index } = state;
+  const jobLabel =
+    session?.questions.map((q) => jobLabels[q.id]).find((label) => label !== undefined) ?? null;
   const kind = phase.kind;
   const feedbackOverall = state.answers.find((a) => a.index === index)?.feedback?.overall;
   const answerMode = phase.kind === 'answering' ? phase.answerMode : null;
@@ -155,7 +159,7 @@ export function Room({
   };
   return (
     <div ref={root} className="room-stage" data-phase={kind}>
-      <ProgressHeader session={session} index={index} />
+      <ProgressHeader session={session} index={index} jobLabel={jobLabel} />
       {answer?.followUp && <p>Follow-up</p>}
       <LiveRegion visible message={message} />
       {kind === 'intro' ? (
@@ -165,8 +169,14 @@ export function Room({
           <section className="room-intro space-y-4">
             <h1>Ready when you are</h1>
             <p>
-              {session.questions.length} questions · {ROLE_LABELS[session.setup.role]},{' '}
-              {SENIORITY_LABELS[session.setup.seniority]} · {ANSWER_MODE_LABELS[state.mode]} answers
+              {session.questions.length} questions ·{' '}
+              <SafeText
+                text={
+                  jobLabel ??
+                  `${ROLE_LABELS[session.setup.role]}, ${SENIORITY_LABELS[session.setup.seniority]}`
+                }
+              />{' '}
+              · {ANSWER_MODE_LABELS[state.mode]} answers
             </p>
             {state.mode === 'voice' && (
               <p>

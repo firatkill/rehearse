@@ -39,7 +39,12 @@ for (const theme of ['light', 'dark'] as const) {
     await page.goto('/setup#job-post');
     await expect(page.getByRole('heading', { name: 'Practise for a job post' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Read the job post' })).toBeDisabled();
-    await expect(page.getByText(/Coming next: three example posts/)).toBeVisible();
+    await expect(
+      page.getByText(
+        'Coming next: interviews based on your own job posts. Use role-based practice below today.',
+        { exact: true },
+      ),
+    ).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Practise by role' })).toBeVisible();
     await expect(page.locator('.setup-role')).toHaveCSS('border-top-width', '2px');
     await expect(page.locator('.setup-job')).toHaveCSS('border-top-width', '1px');

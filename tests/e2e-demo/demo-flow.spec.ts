@@ -51,3 +51,21 @@ test('TC-162 whole demo flow uses only app requests and always labels sample fee
   ).toBeVisible();
   expect(external).toEqual([]);
 });
+
+for (const [slug, label] of [
+  ['northwind-pay', 'Northwind Pay · Frontend engineer'],
+  ['cedar-tools', 'Cedar Tools · Backend engineer'],
+  ['harbour-health', 'Harbour Health · Product engineer'],
+] as const) {
+  test(`TC-169 ${slug} keeps company and role in the room after reload`, async ({ page }, info) => {
+    await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
+    await page.addInitScript(installSpeechMock, scenarios.noRecognition);
+    await page.goto(`/setup?demoJob=${slug}`);
+    await page.getByLabel('Text: type your answers').check();
+    await page.getByLabel('3 questions').check();
+    await page.getByRole('button', { name: 'Start session', exact: true }).click();
+    await expect(page.locator('.room-context')).toHaveText(label);
+    await page.reload();
+    await expect(page.locator('.room-context')).toHaveText(label);
+  });
+}

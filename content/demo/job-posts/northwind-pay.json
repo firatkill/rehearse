@@ -2,13 +2,15 @@
   "slug": "northwind-pay",
   "company": "Northwind Pay",
   "role": "Frontend engineer",
-  "text": "Northwind Pay is a fictional company looking for a frontend engineer. Build reliable product features, explain technical trade-offs, and measure outcomes with the team.",
+  "text": "Northwind Pay is a fictional payments company used only for interview practice. We help small online shops understand settlements, investigate failed payments and reconcile refunds without a finance department. This example vacancy is not a real opportunity. We are looking for a frontend engineer who can make complex financial workflows understandable while keeping the interface predictable when services are slow.\n\nOur merchant dashboard uses React, TypeScript and a shared component library. Backend teams expose versioned REST APIs, and Playwright covers the main checkout and refund journeys. You will work alongside a designer, a payments engineer and a support specialist. We favour small releases with feature flags, written trade-off notes and feedback from merchants before extending a workflow to everyone.\n\nYour responsibilities include building accessible payment and refund forms, modelling pending, successful and failed transaction states, and making recovery paths clear. You will prevent duplicate submissions during slow network responses, preserve useful input when validation fails, and help users distinguish an unavailable balance from a zero balance. You will also investigate dashboard performance on older laptops and measure whether changes reduce time to complete reconciliation.\n\nWe require practical React and TypeScript experience, confidence with semantic HTML and keyboard navigation, and the ability to test loading, empty and error states. You should explain how you coordinate API contract changes with backend engineers and turn ambiguous support reports into reproducible cases. Familiarity with browser profiling and component tests matters more than knowledge of a particular state-management library.\n\nNice-to-haves include experience with payment-provider integrations, international number and currency formatting, and design-system maintenance. During your first three months, you would simplify the refund review flow and agree success measures with support. We value careful handling of sensitive information: examples and logs must exclude card details and personal customer data.",
   "requirements": [
-    "Build reliable product features",
-    "Explain technical trade-offs",
-    "Measure outcomes with the team"
+    "React and TypeScript in production",
+    "Accessible forms and keyboard navigation",
+    "Payment-state modelling and resilient interfaces",
+    "Browser performance measurement",
+    "Component and end-to-end testing"
   ],
-  "about": "Fictional example for exploring Rehearse.",
+  "about": "A fictional payments company building accessible merchant tools for small online businesses.",
   "provenance": "pending-owner-generation",
   "questions": [
     {
@@ -17,8 +19,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-0",
-      "prompt": "How would you clarify the first problem to solve?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about a form you made accessible. How would that experience guide the payment and refund forms at Northwind Pay?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -28,7 +33,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "building accessible payment and refund forms"
     },
     {
       "id": "demo-northwind-pay-2",
@@ -36,8 +41,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-1",
-      "prompt": "Tell me about a time you made a technical trade-off.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe a time you modelled a workflow with uncertain outcomes. How would you represent pending, successful and failed payments?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -47,7 +55,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "modelling pending, successful and failed transaction states"
     },
     {
       "id": "demo-northwind-pay-3",
@@ -55,8 +63,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-2",
-      "prompt": "How would you measure the outcome of a change?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about a slow-network interaction you improved. How would you prevent a merchant from submitting the same refund twice?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -66,7 +77,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "prevent duplicate submissions during slow network responses"
     },
     {
       "id": "demo-northwind-pay-4",
@@ -74,8 +85,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-3",
-      "prompt": "How would you test a change before release?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you have preserved user progress after a validation error. What would you retain in this refund flow?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -85,7 +99,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "preserve useful input when validation fails"
     },
     {
       "id": "demo-northwind-pay-5",
@@ -93,8 +107,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-4",
-      "prompt": "Tell me about a delivery constraint you handled.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about a browser performance investigation. How would you assess this dashboard on an older laptop?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -104,7 +121,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "investigate dashboard performance on older laptops"
     },
     {
       "id": "demo-northwind-pay-6",
@@ -112,8 +129,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-5",
-      "prompt": "How would you work with other roles on this team?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe a release that required frontend and backend coordination. How would you manage a versioned payment API change?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -123,7 +143,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "coordinate API contract changes with backend engineers"
     },
     {
       "id": "demo-northwind-pay-7",
@@ -131,8 +151,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-6",
-      "prompt": "How would you explain a result to stakeholders?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about a support report you turned into a reproducible test. How would you cover this dashboard’s loading and error states?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -142,7 +165,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "turn ambiguous support reports into reproducible cases"
     },
     {
       "id": "demo-northwind-pay-8",
@@ -150,8 +173,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-7",
-      "prompt": "What would you investigate before choosing an approach?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you measured the effect of a workflow change. What would show that refund review had improved for merchants?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -161,7 +187,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "simplify the refund review flow and agree success measures with support"
     }
   ]
 }

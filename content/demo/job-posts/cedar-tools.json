@@ -2,13 +2,15 @@
   "slug": "cedar-tools",
   "company": "Cedar Tools",
   "role": "Backend engineer",
-  "text": "Cedar Tools is a fictional company looking for a backend engineer. Build reliable product features, explain technical trade-offs, and measure outcomes with the team.",
+  "text": "Cedar Tools is a fictional logistics software company created for interview practice. Our example product helps regional delivery operators coordinate parcel handovers between depots, drivers and partner carriers. This is not a real vacancy. We seek a backend engineer who enjoys making event-driven systems dependable when scanners lose connectivity and different partners report the same event in different ways.\n\nOur platform uses Go services, PostgreSQL for operational records and Kafka for parcel events. HTTP APIs support depot applications and carrier integrations. Services run in containers, with OpenTelemetry traces and structured metrics used during incident investigations. A small engineering team works with operations staff to understand how late arrivals, damaged labels and route changes affect the people using the system.\n\nYou will design idempotent ingestion endpoints for repeated scanner uploads, handle out-of-order delivery events without corrupting parcel history, and build replay-safe consumers for partner feeds. Responsibilities also include backfilling missing events, improving slow queries on depot dashboards, and planning PostgreSQL schema migrations that do not interrupt dispatch. We release in small steps and document rollback plans before changing shared message formats.\n\nWe require experience building a production backend in Go or a comparable language, a working understanding of SQL transactions and indexes, and clear reasoning about retries and failure boundaries. You should be comfortable diagnosing queue lag using traces and metrics, explaining consistency trade-offs to operations colleagues, and writing tests that simulate duplicate messages and partial outages. We do not expect a particular cloud certification.\n\nNice-to-haves include logistics domain knowledge, Kafka consumer-group experience and familiarity with geospatial queries. In your first quarter, you would reduce manual investigation of parcels with missing handover scans and establish a measurable baseline for ingestion delay. You would join a supported incident rota after onboarding, pair on unfamiliar incidents, and contribute blameless follow-up notes that turn recurring operational problems into bounded engineering work.",
   "requirements": [
-    "Build reliable product features",
-    "Explain technical trade-offs",
-    "Measure outcomes with the team"
+    "Go services and PostgreSQL",
+    "Asynchronous event processing",
+    "Idempotent APIs and replay-safe consumers",
+    "Operational debugging and observability",
+    "Safe schema migrations"
   ],
-  "about": "Fictional example for exploring Rehearse.",
+  "about": "A fictional logistics software company coordinating parcel events across regional depots and carriers.",
   "provenance": "pending-owner-generation",
   "questions": [
     {
@@ -17,8 +19,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-0",
-      "prompt": "How would you clarify the first problem to solve?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about an API that had to tolerate duplicate requests. How would you make scanner uploads idempotent at Cedar Tools?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -28,7 +33,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "design idempotent ingestion endpoints for repeated scanner uploads"
     },
     {
       "id": "demo-cedar-tools-2",
@@ -36,8 +41,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-1",
-      "prompt": "Tell me about a time you made a technical trade-off.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe a system where events arrived out of order. How would you keep parcel history consistent here?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -47,7 +55,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "handle out-of-order delivery events without corrupting parcel history"
     },
     {
       "id": "demo-cedar-tools-3",
@@ -55,8 +63,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-2",
-      "prompt": "How would you measure the outcome of a change?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about replaying historical messages safely. How would you stop a partner-feed replay from duplicating effects?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -66,7 +77,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "build replay-safe consumers for partner feeds"
     },
     {
       "id": "demo-cedar-tools-4",
@@ -74,8 +85,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-3",
-      "prompt": "How would you test a change before release?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe a database migration you delivered without downtime. How would you protect dispatch during a PostgreSQL change?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -85,7 +99,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "planning PostgreSQL schema migrations that do not interrupt dispatch"
     },
     {
       "id": "demo-cedar-tools-5",
@@ -93,8 +107,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-4",
-      "prompt": "Tell me about a delivery constraint you handled.",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about a slow query you diagnosed. How would you investigate a depot dashboard becoming slow as parcel volume grows?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -104,7 +121,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "improving slow queries on depot dashboards"
     },
     {
       "id": "demo-cedar-tools-6",
@@ -112,8 +129,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-5",
-      "prompt": "How would you work with other roles on this team?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you investigated a processing backlog. Which traces and metrics would help explain queue lag here?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -123,7 +143,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Measure outcomes with the team"
+      "groundingQuote": "diagnosing queue lag using traces and metrics"
     },
     {
       "id": "demo-cedar-tools-7",
@@ -131,8 +151,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-6",
-      "prompt": "How would you explain a result to stakeholders?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Tell me about testing a failure between services. How would you simulate duplicate messages and partial outages in this platform?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -142,7 +165,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Build reliable product features"
+      "groundingQuote": "writing tests that simulate duplicate messages and partial outages"
     },
     {
       "id": "demo-cedar-tools-8",
@@ -150,8 +173,11 @@
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
       "topic": "demo-7",
-      "prompt": "What would you investigate before choosing an approach?",
-      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "prompt": "Describe how you chose and measured an operational improvement. How would you reduce missing-scan investigations in your first quarter?",
+      "follow_up_hints": [
+        "What was your own contribution?",
+        "How did you check whether it worked?"
+      ],
       "what_good_looks_like": [
         "Clear context and constraint",
         "Explains their own action",
@@ -161,7 +187,7 @@
       "status": "active",
       "added_in": "1.0.0",
       "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "Explain technical trade-offs"
+      "groundingQuote": "reduce manual investigation of parcels with missing handover scans"
     }
   ]
 }

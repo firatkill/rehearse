@@ -1,3 +1,4 @@
+import { getEnv } from '@/lib/env';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import sample from '@/content/sample/session.json';
@@ -61,8 +62,9 @@ export default function Home() {
           </div>
           <p className="landing-meta">No account · voice or typing · your sessions stay with you</p>
           <p className="landing-availability">
-            Available now: role-based practice in English. Job-post interviews, retries and Turkish
-            are coming next.
+            {getEnv().APP_EDITION === 'demo'
+              ? 'Available now: role-based practice, retries and example job-post interviews in English. Your own job posts are coming next in the self-hosted version; Turkish is coming later.'
+              : 'Available now: role-based practice and retries in English. Your own job-post interviews are coming next; Turkish is coming later.'}
           </p>
         </div>
         <figure className="ui-card landing-snippet" aria-label="Example of feedback on an answer">
