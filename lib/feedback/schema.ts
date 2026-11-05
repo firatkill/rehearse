@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { FEEDBACK_LIMITS } from '@/lib/config';
+import { FEEDBACK_LIMITS, DIMENSIONS } from '@/lib/config';
 const DimensionLlm = z.object({ score: z.number(), rationale: z.string() });
 
 export const FeedbackLlmSchema = z.object({
@@ -12,7 +12,15 @@ export const FeedbackLlmSchema = z.object({
     clarity: DimensionLlm,
   }),
   strengths: z.array(z.object({ point: z.string(), evidence: z.string() })),
-  improvements: z.array(z.object({ point: z.string(), why: z.string(), rewrite: z.string() })),
+  improvements: z.array(
+    z.object({
+      dimension: z.enum(DIMENSIONS),
+      vague_phrases: z.array(z.string()),
+      point: z.string(),
+      why: z.string(),
+      rewrite: z.string(),
+    }),
+  ),
   follow_up_question: z.string(),
   model_answer_outline: z.array(z.string()),
   flags: z.object({
@@ -56,6 +64,11 @@ export const FeedbackSchema = z
         z
           .object({
             point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
+            dimension: z.enum(DIMENSIONS).optional(),
+            vague_phrases: z
+              .array(z.string().min(1).max(FEEDBACK_LIMITS.VAGUE_PHRASE_MAX_CHARS))
+              .max(FEEDBACK_LIMITS.VAGUE_PHRASES_MAX)
+              .optional(),
             why: z.string().min(1).max(FEEDBACK_LIMITS.WHY_MAX_CHARS),
             rewrite: z.string().min(1).max(FEEDBACK_LIMITS.REWRITE_MAX_CHARS),
           })

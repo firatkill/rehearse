@@ -11,7 +11,7 @@ describe('TC-072 UT-22 exact normative prompts', () => {
   it('matches the independently copied TRD system text byte for byte', () => {
     expect(FEEDBACK_SYSTEM_PROMPT).toBe(fixture('feedback-system'));
     expect(SUMMARY_SYSTEM_PROMPT).toBe(fixture('summary-system'));
-    expect(FEEDBACK_PROMPT_VERSION).toBe('feedback-v3');
+    expect(FEEDBACK_PROMPT_VERSION).toBe('feedback-v6');
     expect(SUMMARY_PROMPT_VERSION).toBe('summary-v2');
   });
   it.each(QUESTION_TYPES)('renders all rubric anchors and the seniority note for %s', (type) => {

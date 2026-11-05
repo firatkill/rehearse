@@ -43,7 +43,9 @@ test('TC-079 E2E-06 three voice answers retain edits and scores through report',
   }
   for (let i = 1; i <= 3; i++)
     await expect(
-      page.locator('details > p').filter({ hasText: `I led project ${i} and improved delivery.` }),
+      page
+        .getByRole('region', { name: 'Your answer, marked up', exact: true })
+        .filter({ hasText: `I led project ${i} and improved delivery.` }),
     ).toBeVisible();
   expect(await speech(page).runs()).toBe(3);
   expect(await speech(page).overlaps()).toBe(0);

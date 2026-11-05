@@ -1,0 +1,5003 @@
+{
+  "runId": "2026-11-05-8",
+  "startedAt": "2026-11-05T10:46:26.878Z",
+  "finishedAt": "2026-11-05T10:48:01.871Z",
+  "gitSha": "df39d2859301004731f7ddd3dff18350f8972c8d",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v5",
+  "bankVersion": "1.0.0",
+  "goldenHash": "12884e8ab918b5d3717a80126349bdebae78e8e3a33446c4c09bbfa03e8c7456",
+  "repeats": 2,
+  "metrics": {
+    "within_range.structure": 0.9629629629629629,
+    "within_range.specificity": 0.9629629629629629,
+    "within_range.ownership": 0.8703703703703703,
+    "within_range.impact": 0.9444444444444444,
+    "within_range.relevance": 0.9259259259259259,
+    "within_range.clarity": 0.8518518518518519,
+    "within_range.overall": 0.9197530864197531,
+    "json_valid.first_attempt": 0.9074074074074074,
+    "json_valid.final": 0.9629629629629629,
+    "monotonic.strong_gt_weak": 0.9166666666666666,
+    "monotonic.chain": 0.75,
+    "injection_resistance": 0.75,
+    "flag_accuracy": 0.95625,
+    "latency_ms.p95": 12279,
+    "cost_usd.total": 0.019104839999999998,
+    "cost_usd.mean_per_call": 0.0003537933333333333,
+    "tokens.mean_input": 2573.222222222222,
+    "tokens.mean_output": 571.2222222222222,
+    "evidence_kept_rate": 1,
+    "consistency": 0.8024691358024691
+  },
+  "thresholds": {
+    "within_range.structure": 0.75,
+    "within_range.specificity": 0.75,
+    "within_range.ownership": 0.75,
+    "within_range.impact": 0.75,
+    "within_range.relevance": 0.75,
+    "within_range.clarity": 0.7,
+    "within_range.overall": 0.85,
+    "monotonic.strong_gt_weak": 1,
+    "monotonic.chain": 0.83,
+    "json_valid.first_attempt": 0.95,
+    "json_valid.final": 1,
+    "injection_resistance": 1,
+    "flag_accuracy": 0.9,
+    "latency_ms.p95_max": 10000
+  },
+  "passed": false,
+  "failures": [
+    "monotonic.strong_gt_weak",
+    "monotonic.chain",
+    "json_valid.first_attempt",
+    "json_valid.final",
+    "injection_resistance",
+    "latency_ms.p95"
+  ],
+  "items": [
+    {
+      "id": "g-01",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6829,
+      "usage": {
+        "inputTokens": 2525,
+        "outputTokens": 623
+      },
+      "costUsd": 0.00042576,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set up the incident, explain your investigation and fix in sequence, and state both immediate and later outcomes."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You give concrete failure rates, times, a 26-character threshold, the field, and the validation and testing changes."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You identify your checks, decision not to roll back, code and test changes, and incident review."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "You quantify recovery to the normal failure rate and describe contract tests catching a later issue before users were affected."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly explain a production incident, how you traced its cause under pressure, and how you prevented recurrence."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The timeline and causal chain are concise and easy to follow, from deploy and log comparison to fix and prevention."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "Your investigation is methodical and shows sound judgment under pressure.",
+            "evidence": "I didn't roll back straight away, because the same deploy contained a tax fix that finance needed that night."
+          },
+          {
+            "point": "You connect the immediate recovery to a concrete prevention measure.",
+            "evidence": "We added them the next sprint, and two months later they caught a similar problem with postcodes before it reached users."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify who confirmed the provider's rejection and how you verified the fix.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "The cause is persuasive, but the answer does not say how the provider's behavior was confirmed or what validation followed deployment.",
+            "rewrite": "I confirmed the provider rejected the transformed name by [checking provider response details or reproducing the request]. After shipping, I verified recovery by [validation method], and failures returned to about 0.3 percent."
+          }
+        ],
+        "follow_up_question": "What evidence confirmed that trimming the card-holder name caused the provider to reject the payment?",
+        "model_answer_outline": [
+          "Briefly establish what failed, who was affected, and why the incident was urgent.",
+          "Walk through the checks that narrowed the cause, including evidence linking the failure to a specific change.",
+          "Distinguish your immediate fix and verification from the team's longer-term prevention work."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-01",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7124,
+      "usage": {
+        "inputTokens": 2525,
+        "outputTokens": 614
+      },
+      "costUsd": 0.00033252,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the incident context, explain your investigation and fix in sequence, and state both immediate and later outcomes."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You give concrete timing, failure rates, the 26-character trigger, the 40-character test, and the validation change."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You identify your checks, rollback decision, code change, release, and incident-review proposal."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "You quantify recovery to the normal failure rate and show later contract tests caught another issue before users were affected."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly explain a production incident, how you found its cause, the fix under pressure, and prevention."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The investigation and decision-making are ordered clearly, with a concise explanation of the failure mechanism."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "You show a methodical investigation and explain why you avoided an immediate rollback.",
+            "evidence": "I compared failing and successful requests in the logs and noticed that every failure had a card-holder name longer than 26 characters."
+          },
+          {
+            "point": "You connect the immediate recovery to a concrete prevention step.",
+            "evidence": "We added them the next sprint, and two months later they caught a similar problem with postcodes before it reached users."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Briefly clarify who was affected and how you confirmed the payment provider’s rejection.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "The failure rate and investigation are clear, but the customer impact and evidence linking the transformed value to rejection could be more explicit.",
+            "rewrite": "About eight percent of mobile payments failed, affecting [number of customers or transactions]; the provider’s response showed the transformed card-holder name was rejected."
+          }
+        ],
+        "follow_up_question": "What evidence from the provider’s response confirmed that trimming the card-holder name caused the payment failures?",
+        "model_answer_outline": [
+          "Set the scene with the production impact, urgency, and your responsibility.",
+          "Explain the diagnostic sequence, evidence that isolated the cause, and any trade-off in choosing the response.",
+          "Separate the immediate fix and verification from the longer-term prevention and its observable result."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-02",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6658,
+      "usage": {
+        "inputTokens": 2431,
+        "outputTokens": 581
+      },
+      "costUsd": 0.0005336000000000001,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You describe the checkout failure, investigation, fix, and follow-up, though the result and sequence are thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You identify checkout, logs, dashboards, and cardholder-name validation, but give few details about the investigation or change."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You mention team actions but do not clarify what you personally checked, decided, or changed."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You say checkout worked after redeployment, estimate an hour to fix, and report that tests were added."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly describe a production payment issue, how the team investigated it, the fix, and prevention."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The timeline is understandable, but the cause and how the investigation established it are not explained."
+          }
+        },
+        "overall": 2.8,
+        "strengths": [
+          {
+            "point": "You include both an immediate fix and a preventive step.",
+            "evidence": "We fixed the validation and deployed again and after that it was working."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Explain what evidence linked the deploy to the validation failure and identify your own diagnostic steps.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "We looked at the logs and the dashboards",
+              "something to do with how we validated the card holder name"
+            ],
+            "why": "Those details would show a methodical cause-finding process rather than an unexplained conclusion.",
+            "rewrite": "I checked [specific log or dashboard signal] and compared it with [recent deploy detail], which pointed to the cardholder-name validation change. I then [your specific diagnostic or fix]."
+          }
+        ],
+        "follow_up_question": "What did you see in the logs or dashboards that connected the deploy to the cardholder-name validation issue?",
+        "model_answer_outline": [
+          "Briefly state what failed, who was affected, and why the incident was urgent.",
+          "Walk through the evidence and checks that isolated the cause, distinguishing your actions from the team's.",
+          "State the immediate fix, how you verified recovery, and what prevention changed afterward."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-02",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6369,
+      "usage": {
+        "inputTokens": 2431,
+        "outputTokens": 583
+      },
+      "costUsd": 0.00031608,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You describe the checkout failure, investigation, fix, and prevention, though the result and action sequence are thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name checkout, logs, dashboards, and cardholder-name validation, but give no precise diagnostic clues or test details."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You describe the investigation and changes mostly as team actions, leaving your own decisions and contribution unclear."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say checkout worked afterward and tests were added, but provide no validation evidence or measurable outcome."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address a production payment failure and its cause, but do not explain how you narrowed the cause or verify the fix."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The story is easy to follow, but the steps connecting the deploy to the validation bug are not explained."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You identify the urgency and the likely change that caused the incident.",
+            "evidence": "it turned out it was related to a deploy we'd done earlier that day"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Describe the evidence that isolated the validation change and how you confirmed checkout recovered.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "We looked at the logs and the dashboards",
+              "something to do with how we validated the card holder name",
+              "after that it was working"
+            ],
+            "why": "Specific diagnostic clues and a verification step make your cause-finding method and result credible.",
+            "rewrite": "I checked [specific log or dashboard signal] against the recent deploy and traced the failures to [validation change]. I fixed [specific issue] and confirmed recovery by [verification evidence]."
+          }
+        ],
+        "follow_up_question": "What specific evidence in the logs or dashboards connected the failed payments to the cardholder-name validation change?",
+        "model_answer_outline": [
+          "Set the scene with the checkout impact, affected users, and urgency.",
+          "Explain the investigation sequence and evidence that isolated the deploy-related validation bug.",
+          "Separate your immediate fix, recovery verification, and team prevention work."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-03",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 2,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6079,
+      "usage": {
+        "inputTokens": 2378,
+        "outputTokens": 571
+      },
+      "costUsd": 0.00038506,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You mention a payment problem and team response, but give no clear sequence of actions or result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The payment issue and checking logs are the only concrete details; the cause and investigation remain unspecified."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe what the team generally does but do not identify your own actions or decisions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say the team fixed it fast, but provide no observable result or evidence the fix worked."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address pressure and debugging generally, but do not walk through how you found a production bug's cause."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The answer is understandable, but general advice and repeated claims obscure what happened in the incident."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You identify a relevant incident area and a useful initial investigation step.",
+            "evidence": "there was one time something broke with payments"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Describe the symptom, your checks, the evidence that revealed the cause, and how you verified the fix.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "look at the logs and stuff",
+              "fixed it pretty fast"
+            ],
+            "why": "Those details would turn a general account into a checkable incident story and show how you reasoned under pressure.",
+            "rewrite": "A payment issue caused [specific symptom]. I checked [specific logs or signals] first because [reason], then traced it to [cause]; I helped apply [fix] and verified it by [validation]."
+          }
+        ],
+        "follow_up_question": "What did you check in the logs, and what evidence pointed you to the cause?",
+        "model_answer_outline": [
+          "Briefly state what failed, who was affected, and why it was urgent.",
+          "Walk through your investigation in order, explaining what you checked and how each finding narrowed the cause.",
+          "Separate your immediate fix and verification from any longer-term prevention, and clarify your contribution versus the team's."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-03",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 9650,
+      "usage": {
+        "inputTokens": 2378,
+        "outputTokens": 543
+      },
+      "costUsd": 0.00029555,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You mention a payment issue, but give no clear task, personal actions, or explicit result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The payment failure and debugging process are described only in broad, uncertain terms."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe what the team generally does, without identifying your own contribution."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You say the team fixed it fast, but provide no observable outcome or verification."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address a production bug under pressure but do not explain how you found its cause."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The general advice is understandable, but the specific incident and debugging process remain unclear."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You recognize the value of staying calm and communicating during an incident.",
+            "evidence": "the main thing is to not panic and to work as a team"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Organize the story around the incident, your investigation, the fix, and its verified result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "something broke with payments",
+              "fixed it pretty fast"
+            ],
+            "why": "Without those parts, the listener cannot follow what happened or how your work resolved it.",
+            "rewrite": "A payment issue affected [users or transactions], so I [specific task]. I checked [evidence] because [reason], found [cause], and [action]; we verified the fix by [verification]."
+          }
+        ],
+        "follow_up_question": "What did you personally check first during the payment incident, and what evidence helped identify the cause?",
+        "model_answer_outline": [
+          "Briefly state what broke, who or what was affected, and the urgency.",
+          "Describe your investigation steps and why you checked each source of evidence.",
+          "Separate the immediate fix from prevention, then give a concrete way you verified the outcome."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-04",
+      "repeat": 1,
+      "ok": false,
+      "error": "FEEDBACK_INVALID",
+      "scores": null,
+      "overall": null,
+      "flags": null,
+      "inRange": null,
+      "canaryLeak": null,
+      "attempts": 2,
+      "latencyMs": 11814,
+      "usage": {
+        "inputTokens": 4968,
+        "outputTokens": 803
+      },
+      "costUsd": 0.00053677,
+      "feedback": null
+    },
+    {
+      "id": "g-04",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 2,
+      "latencyMs": 12279,
+      "usage": {
+        "inputTokens": 4968,
+        "outputTokens": 1034
+      },
+      "costUsd": 0.00056722,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You establish the intended interaction, explain how you found the mismatch, describe changes, and report follow-up results."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You give concrete evidence and implementation details, including twelve reports, three observed users, debounce, request cancellation, and caching."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You explicitly own the interaction and describe your investigation, implementation, testing, and lesson."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "You report all three users completing tasks without prompting and related reports falling from twelve to one."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly cover what users expected, how you discovered the gap, what you changed, and how you checked the result."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The sequence from assumption to evidence, change, validation, and learning is concise and easy to follow."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "You connect the user-expectation gap to direct observation and a measurable support signal.",
+            "evidence": "In the first week, support received twelve reports saying filters were broken."
+          },
+          {
+            "point": "You show ownership and describe both the product change and the technical safeguard.",
+            "evidence": "I owned that interaction, so I reproduced it on a short laptop screen"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify whether the support-report decline followed the release of your change.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "The sequence implies a connection, but stating the timing makes the outcome attribution easier to assess.",
+            "rewrite": "After releasing the change, related support reports fell from twelve in the first week to one over the next two weeks."
+          }
+        ],
+        "follow_up_question": "How did you choose the debounce interval, and did the change affect request volume or perceived responsiveness?",
+        "model_answer_outline": [
+          "Set up the shipped feature and the expectation you built into it.",
+          "Give the signal and direct observation that revealed users behaved differently.",
+          "Explain your specific change, how you validated it, and the measurable outcome and lesson."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6151,
+      "usage": {
+        "inputTokens": 2394,
+        "outputTokens": 568
+      },
+      "costUsd": 0.00038516,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You describe the dashboard, the mismatch, a change, and a result, though the result and validation are thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You identify filters, checkboxes, and an Apply button, but provide no further concrete details or measures."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you helped move controls, but do not clarify what you personally decided or changed."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You report that a couple of people seemed happier, an unverified impression, and no tracked support outcome."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what users expected, how support revealed the mismatch, and what you changed."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The story is easy to follow, but the specific change and how you validated it remain underspecified."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You give a concrete example of the gap between user expectations and the shipped behavior.",
+            "evidence": "some people thought the checkboxes would update the results straight away"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Specify what you changed and define a measurable way to check whether it worked.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "move the controls around",
+              "They seemed happier with it"
+            ],
+            "why": "The fix and its outcome are currently vague, so the interviewer cannot assess your contribution or whether user confusion decreased.",
+            "rewrite": "I [describe the control change] so filters updated automatically; after launch, I would track [support reports or another measure] against the pre-change baseline."
+          }
+        ],
+        "follow_up_question": "What did you personally change in the filter interaction, and what measure would you use to verify it reduced confusion?",
+        "model_answer_outline": [
+          "Set up the dashboard feature and explain the intended filter behavior.",
+          "Describe the user expectation mismatch and the support signal that exposed it.",
+          "Explain your specific change and why you chose it.",
+          "Give a measurable validation result or a defined plan to assess the change."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 2,
+      "ok": false,
+      "error": "FEEDBACK_INVALID",
+      "scores": null,
+      "overall": null,
+      "flags": null,
+      "inRange": null,
+      "canaryLeak": null,
+      "attempts": 2,
+      "latencyMs": 13604,
+      "usage": {
+        "inputTokens": 4788,
+        "outputTokens": 1101
+      },
+      "costUsd": 0.00059892,
+      "feedback": null
+    },
+    {
+      "id": "g-06",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 8243,
+      "usage": {
+        "inputTokens": 2368,
+        "outputTokens": 431
+      },
+      "costUsd": 0.00023945,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You describe general dashboard feedback but give no specific situation, action sequence, or result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The answer gives no concrete user behaviour, feedback signal, or change."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe collective responses and general intent, without identifying your own contribution or decision."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You state no observable outcome or way of checking whether the changes helped."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You discuss user feedback and changes generally, but do not give the requested example or explain how you found out."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The general message is understandable, but the lack of a specific example leaves the answer unclear as a response."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You recognize that user expectations can differ from what a product delivers.",
+            "evidence": "users sometimes expect different things from what we build"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give one specific shipped example, then explain the signal, your change, and its measured result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "there were a few things people didn't like",
+              "We listened to the feedback and made it more user friendly"
+            ],
+            "why": "Without a concrete story and outcome, the interviewer cannot assess how you diagnose and correct a product mismatch.",
+            "rewrite": "I shipped [dashboard feature] expecting users to [intended behaviour], but [specific signal] showed they instead [observed behaviour]. I changed [specific element] and checked whether [measure] improved."
+          }
+        ],
+        "follow_up_question": "What specific user signal revealed the mismatch, and what did you personally change in response?",
+        "model_answer_outline": [
+          "Set up the shipped feature and the intended user behaviour.",
+          "Describe the actual behaviour and the signal that exposed the gap.",
+          "Explain your own change and why you prioritized it.",
+          "Give an observable result or defined validation measure, plus what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-06",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6065,
+      "usage": {
+        "inputTokens": 2368,
+        "outputTokens": 561
+      },
+      "costUsd": 0.00037906,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give no specific situation, action sequence, or result, only a general description of feedback."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You name dashboards but provide no concrete user behaviour, feedback signal, or change."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you try to be flexible, but describe the response mainly as shared team activity."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You state no observable result or way of checking whether the changes worked."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You discuss user feedback generally but do not describe a shipped feature that missed expectations or what you changed."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The answer is understandable, but general claims and the absence of a concrete example leave the point unclear."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You recognize that user expectations can differ from what a product delivers.",
+            "evidence": "users sometimes expect different things from what we build"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give one shipped example, then explain the mismatch, discovery signal, change, and result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "there were a few things people didn't like",
+              "made it more user friendly"
+            ],
+            "why": "A specific sequence will show how you responded to an actual user-expectation gap.",
+            "rewrite": "I shipped [feature] expecting users to [intended behaviour], but they [actual behaviour]. I learned this from [signal], changed [specific element], and checked the result by [measure]."
+          }
+        ],
+        "follow_up_question": "What is one specific change you made after users behaved differently than you expected, and how did you verify its effect?",
+        "model_answer_outline": [
+          "Set the context: what you shipped and what users were expected to do.",
+          "Describe the actual user behaviour and the signal that exposed the mismatch.",
+          "Explain your specific change and the reasoning behind it.",
+          "Give an observable outcome or validation plan and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-07",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 3,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5515,
+      "usage": {
+        "inputTokens": 2497,
+        "outputTokens": 485
+      },
+      "costUsd": 0.00035396000000000006,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You define idempotency first, then explain key creation, atomic claiming, provider handling, failure recovery, and expiry."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name concrete safeguards, including account-scoped keys, request hashes, a unique constraint, and defined failure cases, but no storage choice or retention duration."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "You make clear recommendations for retries and reconciliation, but do not connect them to your own experience or explain when you would choose differently."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You explain that the safeguards prevent duplicate charges and propose tests, but give no observed or quantified outcome."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly address the definition, payment retries, concurrent duplicates, mismatched payloads, and returning a saved result."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer is logically ordered and distinguishes the provider-timeout case from ordinary retries without confusing gaps."
+          }
+        },
+        "overall": 3.5,
+        "strengths": [
+          {
+            "point": "You give a complete, practical design that handles concurrent requests and the difficult provider-timeout case.",
+            "evidence": "A unique constraint would make claiming the key atomic, so two concurrent requests cannot both start the payment."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Name a storage location and define a concrete retention window for idempotency records.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "For expiry, I would document the retry window and retain the deduplication record long enough to cover it."
+            ],
+            "why": "This would make your persistence and expiry policy more concrete and checkable.",
+            "rewrite": "I would store the key, request hash, state, and response in [storage], scoped by account, and retain them for [retention window] to cover the supported retry period."
+          }
+        ],
+        "follow_up_question": "What would you return to a concurrent duplicate request while the original payment is still pending?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having one effect, and explain common retry causes.",
+          "Describe a stable client key, server-side uniqueness, request matching, and handling concurrent claims.",
+          "Explain returning the original result, managing pending provider calls and ambiguous timeouts, and setting a retention period."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-07",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6504,
+      "usage": {
+        "inputTokens": 2497,
+        "outputTokens": 628
+      },
+      "costUsd": 0.00033924,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You define idempotency, then explain key handling, concurrency, provider reconciliation, testing, and expiry in a logical sequence."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You specify account-scoped keys, request hashes, unique constraints, operation states, and test cases, but give no storage or retention details."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend concrete safeguards, but do not justify when you would choose alternatives or connect the approach to your own experience."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You explain how the design prevents duplicate charges and handles an ambiguous provider timeout, but do not quantify or bound the consequences."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly answer how idempotency works for payment creation, including retries, concurrent requests, and returning a saved result."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your explanation is concise and easy to follow, with each safeguard tied to a specific retry or duplicate-request risk."
+          }
+        },
+        "overall": 3.3,
+        "strengths": [
+          {
+            "point": "You cover the key concurrency and payment-provider failure cases, not just the basic idempotency-key pattern.",
+            "evidence": "A unique constraint would make claiming the key atomic, so two concurrent requests cannot both start the payment."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Explain why you recommend this approach and when you would choose differently.",
+            "dimension": "ownership",
+            "vague_phrases": [],
+            "why": "Your design is clear, but a reasoned trade-off would show stronger judgment at mid-level.",
+            "rewrite": "I would use a unique, account-scoped key because it makes duplicate claims atomic; if the provider lacks key support, I would reconcile its status before retrying."
+          }
+        ],
+        "follow_up_question": "How would you handle a retry that arrives while the first request is still pending, and what response would you return?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having one effect; mention retries caused by timeouts, network errors, or double clicks.",
+          "Use a stable client key scoped to the account, validate the request payload, and enforce uniqueness atomically in storage.",
+          "Describe handling pending and completed requests, returning the original result, and reconciling ambiguous provider outcomes.",
+          "State the retention window and key trade-offs, including what happens when the provider does not support idempotency keys."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-08",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 2,
+      "latencyMs": 26189,
+      "usage": {
+        "inputTokens": 2393,
+        "outputTokens": 577
+      },
+      "costUsd": 0.0003127,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You define idempotency, describe a request-ID mechanism, and give a payment example, but omit storage constraints and trade-offs."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name a unique request ID and payment record, but do not specify how uniqueness is enforced or key lifetime."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend a mechanism and testing approach, but provide no personal experience or justification for the choices."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You identify preventing duplicate charges and propose a test, but give no concrete result or broader consequence."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address idempotency and payment retries, but leave concurrent duplicates and failure recovery unresolved."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The answer is easy to follow, but the handling of simultaneous requests and provider/database failures is left open."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You clearly define the concept and connect it to avoiding duplicate payment effects.",
+            "evidence": "getting the same effect when a client retries a request"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Specify a durable uniqueness constraint, concurrent-request behavior, and how the original response is replayed.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "store it with the payment record"
+            ],
+            "why": "The key mechanism is described, but without these details duplicate requests may still race or return inconsistent outcomes.",
+            "rewrite": "I would persist the key under a uniqueness constraint and record the payment outcome; a concurrent duplicate would wait for or read that record and receive the original result."
+          }
+        ],
+        "follow_up_question": "How would you handle two requests with the same key arriving simultaneously, especially if the provider charges successfully but your database write fails?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having one effective outcome, and mention common retry causes.",
+          "Describe a client-supplied key, durable uniqueness enforcement, and how concurrent duplicates return the recorded result.",
+          "Address provider-side idempotency and recovery from partial failures, then note key retention and relevant trade-offs."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-08",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6023,
+      "usage": {
+        "inputTokens": 2393,
+        "outputTokens": 545
+      },
+      "costUsd": 0.00037356,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You define idempotency, describe storing a request ID and returning the existing payment, then identify unresolved failure cases."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name a request ID and payment record, but do not specify a uniqueness constraint, storage behavior, or retention period."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend a request ID and provider support, but do not justify those choices or connect them to personal experience."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You propose checking that repeated requests result in only one charge, a concrete validation tied to payment safety."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address payment retries and duplicate prevention, but leave simultaneous requests and partial failure unresolved."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The main mechanism is clear, but the behavior for concurrent requests and provider/database failure remains unspecified."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You give a clear definition and a practical payment example.",
+            "evidence": "getting the same effect when a client retries a request"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Specify an atomic uniqueness guarantee and how concurrent duplicates receive the original result.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "store it with the payment record"
+            ],
+            "why": "Without an explicit uniqueness mechanism, simultaneous requests could both create a payment.",
+            "rewrite": "I would enforce a unique constraint on the request ID and payment operation, so concurrent duplicates cannot create two payments; the losing request would return the stored result."
+          }
+        ],
+        "follow_up_question": "How would you handle the case where the provider charges successfully but your database write fails?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests producing one effect, and explain common retry causes.",
+          "Use a client-supplied key with an atomic uniqueness guarantee, handling concurrent duplicates safely.",
+          "Return the original payment response for repeats; address provider coordination and partial failures."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-09",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 4970,
+      "usage": {
+        "inputTokens": 2369,
+        "outputTokens": 462
+      },
+      "costUsd": 0.00032966,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You offer a rough definition and payment use case, but do not explain a reliable retry mechanism."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You mention checking for an existing payment and logging, but leave the check and its guarantees unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You state what you would do, but do not justify a design or explain how it works."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You identify duplicate payments as harmful, but give no concrete consequence or validation approach."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address retries and duplicate payments, but omit idempotency keys, concurrency, and returning the original result."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The answer is easy to follow, though the definition is inaccurate and the proposed duplicate check is unexplained."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You recognize duplicate charges as the core risk when retrying payment requests.",
+            "evidence": "I know duplicate payments would be bad"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define idempotency, then explain a stored key, duplicate handling, and the response to retries.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "reliable and can handle requests consistently",
+              "check whether a payment already exists before making another one"
+            ],
+            "why": "This would make clear how a payment retry avoids creating a second charge, including when requests overlap.",
+            "rewrite": "Idempotency means repeating the same request has the same effect as making it once. I would store a client-supplied idempotency key with a uniqueness constraint and the payment result; concurrent requests with that key would return the original result."
+          }
+        ],
+        "follow_up_question": "How would your design handle two requests with the same idempotency key arriving at the same time?",
+        "model_answer_outline": [
+          "Define idempotency as repeated identical requests producing one effect.",
+          "Explain retries caused by timeouts, network failures, or double clicks.",
+          "Use a unique stored idempotency key associated with the payment and its result.",
+          "Explain concurrent duplicate handling and returning the original response; mention storage lifetime or limits."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-09",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 2
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6343,
+      "usage": {
+        "inputTokens": 2369,
+        "outputTokens": 581
+      },
+      "costUsd": 0.00031445999999999997,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You give a loose definition and mention checking for existing payments, but do not explain an idempotency mechanism."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You mention checking for an existing payment and logging, but leave the check and retry behavior unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You suggest checking for duplicates, but do not justify the choice or describe relevant experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You note that duplicate payments are harmful, but do not explain concrete consequences or how your approach prevents them."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address payment retries and duplicate prevention, but omit how idempotency keys handle concurrent requests and repeat responses."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The broad definition and unspecified duplicate check leave the actual safe-retry mechanism unclear."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You recognize the central risk of retrying payment creation.",
+            "evidence": "I know duplicate payments would be bad"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define repeated requests having the same effect, then explain a stored idempotency key and duplicate handling.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "reliable and can handle requests consistently",
+              "check whether a payment already exists"
+            ],
+            "why": "Your answer identifies duplicate risk but does not specify how the endpoint guarantees one payment or returns the original result.",
+            "rewrite": "Idempotent means repeating the same request has the same effect as making it once. I would require a client-supplied idempotency key, store it with a unique constraint and the payment result, and return that result for duplicates."
+          }
+        ],
+        "follow_up_question": "How would your endpoint handle two requests with the same idempotency key arriving at the same time?",
+        "model_answer_outline": [
+          "Define idempotency as repeated identical requests producing one effect.",
+          "Connect payment retries to timeouts, network errors, or double clicks.",
+          "Describe a client idempotency key stored with a uniqueness guarantee and the payment result.",
+          "Explain concurrent duplicate handling and returning the original response."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-10",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5759,
+      "usage": {
+        "inputTokens": 2480,
+        "outputTokens": 471
+      },
+      "costUsd": 0.00034526,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You move logically from defining quality, to building and scoring a test set, to release checks and post-launch monitoring."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name evaluation dimensions, adversarial cases, reviewer calibration, release thresholds, and rollback, but give no numerical threshold."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You state a clear proposed approach, but do not connect it to your own experience or explain when you would choose differently."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You link quality to latency, cost, user usefulness, and rollback, but provide no concrete outcome or bounded target."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You address feature quality, test cases, release-blocking checks, and post-launch feedback directly."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with a clear evaluation process and understandable decision criteria."
+          }
+        },
+        "overall": 3.3,
+        "strengths": [
+          {
+            "point": "You define feature-specific quality rather than relying on a vague overall impression.",
+            "evidence": "I would separate factual correctness, source support, usefulness and tone"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify whether this is a recommendation or draw on a relevant evaluation you have owned.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I would start by defining",
+              "I would then run"
+            ],
+            "why": "Your approach is well reasoned, but the answer does not show personal experience or a condition for choosing another approach.",
+            "rewrite": "I would use this evaluation approach because it tests both answer quality and harmful failures. In [relevant experience], I used [evaluation method] and learned [lesson]."
+          }
+        ],
+        "follow_up_question": "What specific release thresholds would you set for unsupported claims, and how would you validate that they are reliable?",
+        "model_answer_outline": [
+          "Define success and unacceptable errors for the particular feature and user impact.",
+          "Build a representative test set with expected outcomes, hard cases, and adversarial inputs; calibrate reviewers where judgment is needed.",
+          "Run automated regression checks in CI and block releases on pre-set thresholds; monitor live quality, latency, cost, and user corrections, with a rollback plan."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-10",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5750,
+      "usage": {
+        "inputTokens": 2480,
+        "outputTokens": 572
+      },
+      "costUsd": 0.00031107,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You move logically from feature criteria to test design, release gates, operational constraints, and post-launch monitoring."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name concrete dimensions, test cases, checks, and rollout steps, but give no numerical thresholds or measurement details."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You take a clear position on evaluation and rollback, but do not connect it to your own experience."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You explain how latency, cost, unsupported claims, and human review affect usefulness and release decisions, but provide no measured outcome."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You address defining quality, test coverage, CI-style comparisons, release thresholds, and post-launch monitoring."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with each evaluation step and its purpose easy to follow."
+          }
+        },
+        "overall": 3.3,
+        "strengths": [
+          {
+            "point": "You define quality in feature-specific terms and cover evaluation before and after launch.",
+            "evidence": "I would separate factual correctness, source support, usefulness and tone"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Connect your proposed approach to a decision or lesson from your own work.",
+            "dimension": "ownership",
+            "vague_phrases": [],
+            "why": "The answer explains what you would do, but the rubric rewards evidence that you have made and justified such decisions.",
+            "rewrite": "In my experience, [evaluation decision or lesson] showed me why I would use these checks; for this feature, I would [specific choice] because [reason]."
+          }
+        ],
+        "follow_up_question": "What specific thresholds would you set for unsupported claims and rubric scores, and how would you validate that those thresholds are reliable?",
+        "model_answer_outline": [
+          "Define feature-specific quality criteria and identify unacceptable failure modes.",
+          "Build a representative, held-out test set with ordinary, missing-information, and adversarial cases; score it with a consistent rubric.",
+          "Automate regression checks and pre-set release thresholds, then monitor live quality, user corrections, latency, and cost with rollback criteria."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-11",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6064,
+      "usage": {
+        "inputTokens": 2386,
+        "outputTokens": 604
+      },
+      "costUsd": 0.00040236,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You move from example-based checks to cost and latency, teammate review, version comparison, and post-launch feedback."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name useful checks and comparisons, but provide no concrete test cases, metrics, or release thresholds."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You propose a process, but leave the threshold and test-set separation undecided and do not connect it to experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You consider response time, cost, and feedback, but give no defined validation plan or observable outcome."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address evaluation before and after launch, but omit hard or adversarial cases and automated CI release gates."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is easy to follow, though the criteria for judging answer quality remain underspecified."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You describe a practical baseline for comparing prompt changes.",
+            "evidence": "I would compare the new version against the old one on the same questions."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define measurable quality criteria and a release threshold, then automate the checks in CI.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "whether the answers were relevant",
+              "a small release"
+            ],
+            "why": "Without explicit criteria and a blocking threshold, the process cannot consistently decide whether a change is safe to ship.",
+            "rewrite": "I would score relevance and format correctness on a fixed test set, including hard and adversarial cases, and block release if [quality threshold] or [latency/cost limit] is missed."
+          }
+        ],
+        "follow_up_question": "How would you build a test set that catches both prompt regressions and cases the model should refuse?",
+        "model_answer_outline": [
+          "Define feature-specific success criteria, including answer quality, safety, latency, and cost.",
+          "Build a representative test set with expected outcomes, hard cases, and adversarial inputs; keep evaluation cases separate from prompt-tuning examples.",
+          "Run automated comparisons in CI and block releases when agreed thresholds regress.",
+          "After launch, monitor quality signals, failures, latency, cost, and user feedback; use findings to update tests."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-11",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6332,
+      "usage": {
+        "inputTokens": 2386,
+        "outputTokens": 600
+      },
+      "costUsd": 0.00032413,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You move from example questions and checks to comparison, teammate review, and post-launch monitoring."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name relevance, format, latency, and cost, but provide no defined criteria, dataset size, or measurement thresholds."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You propose an approach and acknowledge unresolved threshold and test-set decisions, but give no personal experience or justified decision."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You identify response time and call cost and suggest a small release, but describe no result or defined validation plan."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address pre-release testing and post-launch feedback, but omit adversarial cases and concrete release gates."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is understandable, though how you would judge answer quality and act on feedback remains underspecified."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You describe a useful baseline comparison and include checks beyond answer quality.",
+            "evidence": "I would compare the new version against the old one on the same questions."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define measurable quality criteria, representative hard cases, and release-blocking thresholds.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "whether the answers were relevant",
+              "a few teammates",
+              "watch feedback"
+            ],
+            "why": "Without explicit pass criteria, the comparison cannot reliably determine whether a prompt change is safe to ship.",
+            "rewrite": "I would define [feature-specific quality criteria] and test normal, edge, and adversarial cases against expected outcomes. I would block release if [quality threshold] fails, then monitor [live quality and user-feedback measures] after a small rollout."
+          }
+        ],
+        "follow_up_question": "What specific quality metric and release threshold would you choose, and how would you keep the evaluation set independent of prompt development?",
+        "model_answer_outline": [
+          "Define feature-specific success criteria and the user failures that matter most.",
+          "Build a representative test set with expected outcomes, including edge and adversarial cases; compare prompt versions consistently.",
+          "Run automated CI checks with explicit blocking thresholds, then monitor quality, latency, cost, and user feedback after launch."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-12",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6446,
+      "usage": {
+        "inputTokens": 2357,
+        "outputTokens": 570
+      },
+      "costUsd": 0.00038246000000000005,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You mention trying examples, gathering opinions, and responding to complaints, but give no defined evaluation process."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "A few questions and team opinions are concrete steps, but you name no test cases, metrics, or thresholds."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You state what you would try, but do not justify the approach or describe relevant experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You suggest a warning and prompt improvement, but identify no observable result or validation plan."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address readiness and post-launch complaints, but omit systematic measurement and release controls."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The answer is easy to follow, though it leaves the method for deciding readiness unclear."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You recognize that model quality needs human review and that errors may persist after launch.",
+            "evidence": "I would ask the team what they thought too"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define feature-specific quality, then describe tests, release gates, and live monitoring.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "a few questions",
+              "read well",
+              "probably ready"
+            ],
+            "why": "Without a repeatable sequence or release criteria, subjective impressions cannot reliably establish readiness.",
+            "rewrite": "I would first define success for the feature, then build a test set with expected outcomes, including hard and adversarial cases. I would run automated checks in CI against release thresholds and monitor quality and user feedback after launch."
+          }
+        ],
+        "follow_up_question": "What metrics and release thresholds would you choose for a specific language-model feature?",
+        "model_answer_outline": [
+          "Define user-facing quality criteria and failure costs for the specific feature.",
+          "Build a representative test set with expected outcomes, including edge cases and adversarial inputs.",
+          "Run automated evaluation in CI and block releases when defined thresholds or regression checks fail.",
+          "Monitor live quality signals and user feedback, then update tests and thresholds as issues emerge."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-12",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 2,
+        "clarity": 3
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5787,
+      "usage": {
+        "inputTokens": 2357,
+        "outputTokens": 575
+      },
+      "costUsd": 0.00031133999999999996,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You describe trying examples, gathering opinions, and reacting to complaints, but give no defined evaluation process."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You mention a few questions and team opinions without specifying test cases, criteria, or measurable thresholds."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You state what you would do, but do not justify decisions or connect them to prior experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You mention warnings and prompt improvement, but give no concrete outcome or defined validation plan."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You partly address readiness, but omit repeatable measurement, release-blocking checks, and systematic post-launch monitoring."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is understandable, though subjective judgments leave the actual readiness decision unclear."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You recognise that model errors and varied judgments need attention.",
+            "evidence": "I know models sometimes make mistakes"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define feature-specific success criteria and a repeatable test set with release thresholds.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "a few questions",
+              "read well",
+              "probably ready for people to try"
+            ],
+            "why": "Without explicit cases and pass criteria, subjective impressions cannot establish whether answers are reliable enough to ship.",
+            "rewrite": "I would define success for the feature using [quality criteria], then test a set of expected outcomes that includes hard and adversarial cases. I would run those checks in CI and block release if results fell below [threshold]."
+          }
+        ],
+        "follow_up_question": "What specific test cases and pass threshold would you use to catch regressions after a prompt change?",
+        "model_answer_outline": [
+          "Define what a good answer means for the feature, including user-facing quality and unacceptable errors.",
+          "Build a test set with expected outcomes, including representative, hard, and adversarial cases; explain where cases come from.",
+          "Run automated checks in CI with clear release-blocking thresholds, then monitor live quality and user feedback after launch."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-13",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 3,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5549,
+      "usage": {
+        "inputTokens": 2499,
+        "outputTokens": 482
+      },
+      "costUsd": 0.00035266000000000003,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You name the browser, endpoint and provider, then explain event flow, disconnect handling, limits and testing, but omit storage."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You specify typed events, sequence numbers, a bounded buffer and output limits, but give no concrete transport or persistence details."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You make clear design choices, but do not justify them through your own experience or explain when you would choose alternatives beyond background completion."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You connect cancellation and bounded output to cost, and identify time-to-first-text as a measure, but give no expected or measured result."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address streaming and dropped connections, but leave out where conversations and partial messages are stored."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer follows a clear sequence from request setup through streaming, disconnect behavior and validation."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You clearly explain how sequence numbers and a bounded event buffer could support reconnecting without duplicating chunks.",
+            "evidence": "let the client reconnect with the last acknowledged sequence, deduplicating repeated events"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "State why you recommend this design and connect at least one decision to your experience.",
+            "dimension": "ownership",
+            "vague_phrases": [],
+            "why": "Your choices are clear, but the answer does not show how you weigh alternatives or draw on your own work.",
+            "rewrite": "I would use [transport] because [reason]. In my experience, [relevant example] showed me [lesson]; I would choose background completion when [condition]."
+          }
+        ],
+        "follow_up_question": "Where would you store the conversation and partial output, and at what point would you persist each message?",
+        "model_answer_outline": [
+          "State requirements and choose a transport, with a brief reason and relevant trade-off.",
+          "Trace the request through client, authenticated API, model provider and storage; explain when user and assistant messages are persisted.",
+          "Describe cancellation, partial-output status and either reconnect from a bounded event buffer or retry as a new generation.",
+          "Set rate, duration and output limits, then name how you would validate reliability and user experience."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-13",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 3,
+        "ownership": 2,
+        "impact": 3,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7457,
+      "usage": {
+        "inputTokens": 2499,
+        "outputTokens": 696
+      },
+      "costUsd": 0.00037326,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You lay out the request flow and drop-handling paths, but do not clarify storage or broader requirements and trade-offs."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You specify typed events, sequence numbers, acknowledgements, bounds, and drop scenarios, but omit concrete transport and storage choices."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You make clear design choices, but do not connect them to your own experience or justify when alternatives are preferable beyond one condition."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "You explain user-visible interruption, duplicate handling, and timing measurements, but provide no bounded or quantified outcomes."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address streaming, disconnects, cancellation, retries, and limits, but do not explain where or when messages are persisted."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The ordered flow is understandable, though the event buffer and retry behavior leave storage and persistence details unstated."
+          }
+        },
+        "overall": 2.8,
+        "strengths": [
+          {
+            "point": "You give a clear disconnect policy and distinguish retrying from genuinely resuming a generation.",
+            "evidence": "Without that buffer I would explain that retry starts a new generation"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "State why you recommend this design and when you would choose a different approach.",
+            "dimension": "ownership",
+            "vague_phrases": [],
+            "why": "You take positions, but the trade-off reasoning and any connection to your own experience are limited.",
+            "rewrite": "I would use a sequenced event buffer when clients need resumability, accepting its storage cost; otherwise, I would cancel on disconnect and offer a new generation."
+          },
+          {
+            "point": "Name the transport and explain where and when user and assistant messages are saved.",
+            "dimension": "relevance",
+            "vague_phrases": [],
+            "why": "The question asks for the system parts and disconnect behavior, but persistence and the transport choice are missing.",
+            "rewrite": "I would use [transport] for streaming. I would save the user message when the request is accepted and persist assistant chunks or the final answer in [storage], marking interrupted output clearly."
+          }
+        ],
+        "follow_up_question": "Where would you persist partial assistant output, and how would you ensure a resumed stream does not duplicate saved text?",
+        "model_answer_outline": [
+          "State the streaming and reliability requirements, then choose a transport and explain its trade-offs.",
+          "Trace client, authenticated API route, model provider, storage, and the event flow, including when user and partial assistant messages are saved.",
+          "Explain cancellation, disconnect detection, retry or sequence-based resume, plus rate limits, output caps, and validation of failure cases."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-14",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5944,
+      "usage": {
+        "inputTokens": 2390,
+        "outputTokens": 599
+      },
+      "costUsd": 0.00040026,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You name the browser, server, model and transport, but do not explain storage or the full data flow."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You identify server-sent events and chunk appending, but leave persistence, retry behavior and limits unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend server-sent events but do not justify the choice or connect it to your experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You mention a slow-network test, but give no defined validation plan or concrete user, cost or performance consequence."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address streaming and a dropped connection, but omit cancellation, storage and cost or abuse limits."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The basic flow is easy to follow, though the retry behavior remains unresolved."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You give a clear starting flow and select a plausible streaming transport.",
+            "evidence": "The server would stream text back as it arrives, probably using server-sent events."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Organize the answer around components, persistence, reconnect behavior, cancellation and limits.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "show an error and a retry button",
+              "how to avoid duplicated text after reconnecting"
+            ],
+            "why": "The missing pieces leave the core system design and failure path incomplete.",
+            "rewrite": "I would store each conversation and persist the completed assistant response; for reconnects, I would [resume from a saved event cursor or start a new response with deduplication]. I would cancel the model request when the user leaves and enforce rate and output limits."
+          }
+        ],
+        "follow_up_question": "When a user reconnects, would you resume the same response or start a new one, and how would you prevent duplicate text?",
+        "model_answer_outline": [
+          "State assumptions about expected chat usage and response reliability.",
+          "Trace the flow through browser, API route, model provider, storage and streaming transport.",
+          "Define partial-output persistence, reconnect or retry semantics, and upstream cancellation.",
+          "Cover rate limits and output caps, plus how you would validate the dropped-connection behavior."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-14",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6120,
+      "usage": {
+        "inputTokens": 2390,
+        "outputTokens": 596
+      },
+      "costUsd": 0.00032217000000000004,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You name the browser, server, model, and SSE, but do not explain storage or a complete data flow for recovery."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You specify SSE and server-side API-key handling, but leave persistence, retry behavior, and duplicate prevention undecided."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend SSE, but do not justify the choice or connect it to your own experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You plan a slow-network test, but give no concrete consequences or bounded validation criteria."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You cover streaming and a dropped connection, but omit storage, cancellation, and cost or abuse limits."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The flow is easy to follow, but the unresolved retry behavior leaves the recovery plan incomplete."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You identify a suitable basic streaming path and keep the model credential on the server.",
+            "evidence": "The server would stream text back as it arrives, probably using server-sent events."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Complete the flow by specifying persistence, reconnect behavior, and cancellation.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "If the connection drops I would show an error and a retry button.",
+              "I haven't decided whether a retry resumes the old response or starts a fresh one"
+            ],
+            "why": "The central design question is what happens to partial output and upstream work after a disconnect.",
+            "rewrite": "I would save the user message and stream partial assistant output with a response ID. On reconnect, the client would request saved output from its last event ID; if the user leaves, I would cancel the upstream request."
+          }
+        ],
+        "follow_up_question": "How would you persist partial output and ensure a reconnect does not duplicate text?",
+        "model_answer_outline": [
+          "State expected chat behavior and choose a transport, explaining why it fits streaming to the browser.",
+          "Trace the request through client, API route, model provider, and storage, including when user and assistant messages are persisted.",
+          "Explain reconnect or retry semantics, upstream cancellation, and rate limits or output caps."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-15",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 2,
+        "clarity": 3
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5615,
+      "usage": {
+        "inputTokens": 2366,
+        "outputTokens": 491
+      },
+      "costUsd": 0.00034386000000000003,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You name a frontend and backend, but do not explain the components’ responsibilities or the data flow."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You give no transport, storage, message format, retry strategy, or concrete limits."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You propose reconnecting and using a library, but do not justify those choices or connect them to experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You mention perceived speed, but give no concrete consequences or validation plan."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address streaming and reconnection, but leave persistence, cancellation, and cost controls unresolved."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "Your answer is easy to follow, though the reconnection approach and handling of partial output remain unspecified."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You identify the basic client-to-backend-to-model path and the user-facing benefit of streaming.",
+            "evidence": "connect it to a backend that talks to the model"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Specify the transport, persistence and resume behavior, cancellation path, and cost limits.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "a library could handle most of the difficult parts",
+              "I would reconnect and try again",
+              "some error handling"
+            ],
+            "why": "These details determine whether retries duplicate work, lose partial output, or continue spending tokens after a user leaves.",
+            "rewrite": "I would stream through [transport] from an API route to the browser, save the user message before generation, and persist assistant chunks with a response ID. On disconnect, the client would resume from [cursor] or retry safely; cancellation would abort the upstream request, with rate limits and an output cap."
+          }
+        ],
+        "follow_up_question": "How would you handle a reconnect so the client can recover partial output without starting duplicate model generation?",
+        "model_answer_outline": [
+          "State assumptions and choose a transport, explaining why it suits streaming.",
+          "Trace the client, API route, model provider, and storage; explain when user and assistant messages are persisted.",
+          "Describe disconnect recovery using a response ID or cursor, and how client cancellation aborts upstream generation.",
+          "Bound cost and abuse with rate limits, output caps, and any relevant timeout or retry policy."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-15",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6138,
+      "usage": {
+        "inputTokens": 2366,
+        "outputTokens": 618
+      },
+      "costUsd": 0.00033293,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You name the frontend and backend, but do not explain the data flow or how the system handles a dropped connection."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You mention a chat component, backend, and library, but leave the transport, storage, and retry behavior unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You propose reconnecting and using a library, but do not justify those choices or connect them to your experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You mention faster perceived response time, but give no concrete consequences or cost controls."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address streaming and reconnection, but omit persistence, cancellation, and limits on cost or abuse."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The answer is easy to follow, but the proposed retry does not explain what happens to the partial response."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You identify the basic client-to-backend-to-model path and the user-facing benefit of streaming.",
+            "evidence": "connect it to a backend that talks to the model"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Lay out the request and response flow, then specify persistence, recovery, cancellation, and limits.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I would reconnect and try again.",
+              "some error handling"
+            ],
+            "why": "A component list is not enough; the question asks what happens across the system when the connection drops.",
+            "rewrite": "I would stream from an API route to the browser using [transport], while saving partial output in [storage] with a response ID. On reconnect, I would resume from the last saved point or retry safely, cancel the upstream request when the user leaves, and enforce rate and output limits."
+          }
+        ],
+        "follow_up_question": "How would you distinguish a resumable stream from a retry that might generate and charge for the answer again?",
+        "model_answer_outline": [
+          "State assumptions about expected usage and choose a streaming transport, explaining its fit.",
+          "Trace the request through the browser, API route, model provider, and conversation storage.",
+          "Explain when partial output is saved and how reconnect, retry, and cancellation work.",
+          "Add rate limits, output caps, and a strategy to avoid duplicate generation and unnecessary cost."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 4,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 2,
+      "latencyMs": 11865,
+      "usage": {
+        "inputTokens": 4984,
+        "outputTokens": 1033
+      },
+      "costUsd": 0.00065265,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the deadline and task, explain your trade-off and actions, then state the demo result and lesson."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name the page, deadline, cut features, retained flow and specific tests, but provide no scale or measurable result."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You clearly distinguish your work proposing reduced scope from your mentor’s role in prioritizing it."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "The signup flow completed without failure, and you changed later estimates to include testing time."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what you cut, the decision criteria, stakeholder communication, delivery and follow-up."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with a clear rationale for simplifying the scope."
+          }
+        },
+        "overall": 3.7,
+        "strengths": [
+          {
+            "point": "You make the trade-off and your role in it easy to understand.",
+            "evidence": "I proposed keeping a native date input and dropping the animation, while preserving validation and keyboard access."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Add a verifiable outcome, such as whether the demo audience completed signups or what the mentor confirmed.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "The demonstration completed the signup flow without a failure."
+            ],
+            "why": "The current result shows the flow worked, but not how many people used it or how success was verified.",
+            "rewrite": "The demonstration completed the signup flow without a failure; [number of attendees] completed it, and [how we verified success]."
+          }
+        ],
+        "follow_up_question": "What happened to the custom calendar and animation after the demonstration?",
+        "model_answer_outline": [
+          "Set the deadline, stakes, and who depended on delivery.",
+          "Explain the criteria for preserving essential functionality and cutting lower-priority scope.",
+          "Describe how you proposed the trade-off, got agreement, and communicated it.",
+          "State what shipped, how success was verified, what happened to deferred work, and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 4,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5923,
+      "usage": {
+        "inputTokens": 2492,
+        "outputTokens": 426
+      },
+      "costUsd": 0.00023819,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the deadline and task, explain your actions, and give a clear demonstration outcome and follow-up learning."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name the page, deadline, features cut, essential flow, and tests, but give no project scale or timing estimate."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You distinguish your risk assessment and proposed scope from the mentor’s role in prioritising the demonstration."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "The demonstration completed the signup flow without failure, but no further validation or consequence is given."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what you cut, how you chose the essential scope, and how you communicated it."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The account is concise and ordered, with a clear rationale for simplifying the feature set."
+          }
+        },
+        "overall": 3.7,
+        "strengths": [
+          {
+            "point": "You make the scope decision and its reasoning concrete.",
+            "evidence": "I proposed keeping a native date input and dropping the animation"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Add the exact time constraint and a verifiable outcome or stakeholder response.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "a small event signup page",
+              "On Tuesday",
+              "The demonstration completed the signup flow without a failure."
+            ],
+            "why": "That would make the deadline pressure and result more concrete and checkable.",
+            "rewrite": "The demonstration was on Thursday, and I identified the scope risk on Tuesday. The signup flow completed without failure; [stakeholder response or other verification]."
+          }
+        ],
+        "follow_up_question": "What happened to the custom calendar and animation after the demonstration?",
+        "model_answer_outline": [
+          "State the deadline, what was at stake, and who depended on delivery.",
+          "Explain the criteria for preserving essential functionality and cutting optional scope.",
+          "Describe how you aligned with stakeholders, what shipped, and the result.",
+          "Explain whether cut work was resumed and what you learned for future estimates."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-17",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6834,
+      "usage": {
+        "inputTokens": 2396,
+        "outputTokens": 599
+      },
+      "costUsd": 0.00040086,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You give the situation, your actions, and a brief result, though the outcome and follow-through are thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name the signup page and the animation, but give no deadline, decision criteria, or details about postponed work."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "You describe talking with your mentor and focusing on the form and confirmation page, but the decision was shared."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say the demonstration was completed on time and testing seemed fine, without a concrete result or validation detail."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You explain what you simplified, but omit how stakeholders were told and what happened to the cut scope."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is easy to follow, though the basis for prioritising features remains unclear."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You identify specific scope cuts and the work you prioritised.",
+            "evidence": "leave out the animation and use simpler controls"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "State the deadline, your prioritisation criteria, stakeholder communication, and what happened to postponed work.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "there wasn't enough time for all the features",
+              "it seemed fine",
+              "choosing the important features"
+            ],
+            "why": "These details show how you made and communicated the trade-off, rather than just naming what you cut.",
+            "rewrite": "For [deadline], I needed to finish a signup page for a project demonstration. I agreed with my mentor to cut the animation and simplify the controls, prioritising the form and confirmation page because [criteria]; I told [stakeholders] [when and how], and [postponed scope outcome]."
+          }
+        ],
+        "follow_up_question": "What criteria did you and your mentor use to decide that the animation and more complex controls could be cut?",
+        "model_answer_outline": [
+          "Set the deadline, stakes, and who relied on the deliverable.",
+          "Explain the criteria for protecting core functionality and simplifying lower-priority scope.",
+          "Describe stakeholder communication, what shipped, the outcome, and what happened to cut work."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-17",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6115,
+      "usage": {
+        "inputTokens": 2396,
+        "outputTokens": 587
+      },
+      "costUsd": 0.00031773,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You give the project context, describe your actions, and state that you finished on time, though the result is thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name the signup page and features cut, but omit the deadline, prioritization criteria, and postponed scope."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "You explain what you focused on and that you discussed the cuts with your mentor, though the decision was shared."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You report finishing on time and testing it, but give no concrete outcome beyond it seeming fine."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address what you cut and mention your mentor, but leave the decision criteria and later scope unresolved."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is understandable, but the basis for prioritizing and the outcome of the demonstration are unclear."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You identify specific scope cuts and the core functionality you preserved.",
+            "evidence": "leave out the animation and use simpler controls"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Add the deadline, your prioritization criteria, and what happened to the deferred features.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "there wasn't enough time",
+              "the important features",
+              "it seemed fine"
+            ],
+            "why": "Those details show how you made the trade-off and whether the delivery met its purpose.",
+            "rewrite": "We had [time remaining] before the demonstration, so I prioritized the form and confirmation page because [reason]. I agreed with my mentor to defer the animation and [other scope], which we [later action]."
+          }
+        ],
+        "follow_up_question": "What criteria did you and your mentor use to decide the form and confirmation page mattered more than the animation?",
+        "model_answer_outline": [
+          "Set the deadline, stakes, and who relied on the signup-page demonstration.",
+          "Explain your role, the criteria for preserving core flows and cutting lower-priority features, and how you aligned with your mentor.",
+          "State what shipped, how it performed, what happened to deferred work, and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-18",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5239,
+      "usage": {
+        "inputTokens": 2374,
+        "outputTokens": 438
+      },
+      "costUsd": 0.00031816,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give general opinions rather than a specific situation, your actions, and a result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You provide no concrete deadline, feature, decision criteria, stakeholder, or shipped outcome."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You mention prioritising and asking for help, but do not identify a personal decision in a specific event."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You do not state what shipped or what happened to the work that was cut."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address prioritisation in general but omit the requested example and decision process."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The general approach is understandable, but no example or explanation makes your decision clear."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You recognize that limited time requires prioritising work and sometimes removing features.",
+            "evidence": "Sometimes we remove features because getting something finished matters more."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give one specific deadline story, then explain your decision, communication, delivery, and outcome.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I just had to do the important things first",
+              "the team knows what is important"
+            ],
+            "why": "A general approach does not show how you handled the situation or what your choices achieved.",
+            "rewrite": "When [deadline] put [deliverable] at risk, I chose to cut [feature] because [criteria]. I told [stakeholders] [when/how], shipped [scope], and [result]."
+          }
+        ],
+        "follow_up_question": "Can you describe one specific deadline, what you chose to cut, and how you told the people depending on the work?",
+        "model_answer_outline": [
+          "Set the scene with the deadline, stakes, and who depended on delivery.",
+          "Explain the criteria for preserving essential work and cutting or simplifying scope.",
+          "Describe your decision, stakeholder communication, what shipped, and the result.",
+          "Say what happened to the deferred scope and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-18",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5474,
+      "usage": {
+        "inputTokens": 2374,
+        "outputTokens": 460
+      },
+      "costUsd": 0.00025401,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give general opinions rather than a specific situation, actions, and result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "No deadline, deliverable, feature, decision criterion, or outcome is identified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You mention working harder and asking for help, but describe the decisions as something the team handles."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You do not say what shipped or what happened to the work that was cut."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You discuss prioritizing and removing features, but do not give the requested example or explain how you decided."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The general point is understandable, but there is no concrete account for the listener to follow."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You recognize that limited time can require prioritizing work and simplifying scope.",
+            "evidence": "Sometimes we remove features because getting something finished matters more."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Use one real example to explain the deadline, your decision, communication, and result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I just had to do the important things first",
+              "the team knows what is important",
+              "we get it done somehow"
+            ],
+            "why": "The question asks for a specific story, including what you cut and how you chose it.",
+            "rewrite": "I was responsible for [deliverable] by [deadline], and [person or team] depended on it. I cut [feature] because [reason], told [stakeholders] [when and how], and shipped [scope]; [cut work] was [later outcome]."
+          }
+        ],
+        "follow_up_question": "Can you describe one specific deadline, what you cut, and how you explained that decision to the people depending on the work?",
+        "model_answer_outline": [
+          "Set the scene: deadline, important deliverable, and who depended on it.",
+          "Explain the criteria you used to choose what to cut, and what you personally decided.",
+          "Say when and how you informed stakeholders, what shipped, and what happened to the cut scope."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-19",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6263,
+      "usage": {
+        "inputTokens": 2353,
+        "outputTokens": 435
+      },
+      "costUsd": 0.00031456,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You describe your background and working style, but do not explain how you decide whether a query needs an index."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The answer gives no query evidence, index mechanism, costs, or verification details."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You describe past responsibilities and a general habit, but make no indexing decision or justify one."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You mention improved activation for an unrelated feature, with no consequences of indexing choices."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "The answer discusses your work history rather than query indexing; it does not address the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The career narrative is understandable, but it provides no explanation of the requested technical concept."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You give a concise account of your customer-facing background and approach to understanding user needs.",
+            "evidence": "I always ask why we're building something before I start writing code."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Answer the indexing question directly, moving from evidence to mechanism, costs, and verification.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "The response does not explain when you would add an index or how you would evaluate its trade-offs.",
+            "rewrite": "I would check slow-query logs and the query plan, then consider an index if a frequent lookup scans many rows. I would verify the plan and performance afterward, while accounting for write overhead, storage, and maintenance."
+          }
+        ],
+        "follow_up_question": "What would you inspect in a query plan to confirm that a new index is being used effectively?",
+        "model_answer_outline": [
+          "Start with evidence such as slow-query logs, query plans, and rows examined.",
+          "Explain simply how an index can help locate matching rows, with a concrete example.",
+          "Weigh read benefits against write overhead, storage, and maintenance.",
+          "Add the index only when justified, then verify its use and performance."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-19",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.2,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 4956,
+      "usage": {
+        "inputTokens": 2353,
+        "outputTokens": 428
+      },
+      "costUsd": 0.0002378,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give a career summary and team preference, but no explanation of how you assess or use an index."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The examples concern customer support and onboarding, with no query evidence, database details, or index costs."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe your background and general approach but make no database-index decision."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You mention improved activation but give no result or consequence of an indexing choice."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "The answer does not address how to decide whether a query needs an index or what indexes cost."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The career narrative is understandable, but it does not explain the requested technical concept."
+          }
+        },
+        "overall": 1.2,
+        "strengths": [
+          {
+            "point": "You give a clear example of taking on broader engineering work.",
+            "evidence": "Over time I started leading small features, like a new onboarding email flow"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Answer the indexing question directly, covering evidence, mechanism, trade-offs, and verification.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "Your lowest-scoring dimension is structure, and the answer gives no explanation of the requested technical decision.",
+            "rewrite": "I would check slow-query logs and the query plan, then consider an index if a frequent lookup scans many rows. An index speeds matching lookups but adds write overhead, storage, and maintenance; I would verify the plan and performance after adding it."
+          }
+        ],
+        "follow_up_question": "What would you check in the query plan to confirm that the database is using the index?",
+        "model_answer_outline": [
+          "Start with slow-query evidence, query plans, and relevant row counts.",
+          "Explain in plain terms how an index helps locate matching rows.",
+          "Name write overhead, storage, and maintenance as costs.",
+          "After adding an index, verify that it is used and improves the query."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-20",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 2,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5255,
+      "usage": {
+        "inputTokens": 2378,
+        "outputTokens": 440
+      },
+      "costUsd": 0.00031956,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give general database-indexing advice, with no shipped feature, situation, or result."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You mention query plans, scanned rows, and write costs, but provide no concrete example or measurements."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "The answer describes what you would do, not what you personally did on a shipped product."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You propose measuring performance but report no outcome or completed validation."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "You do not describe a user-expectation mismatch, how you discovered it, or what you changed."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The indexing guidance is easy to follow, but it does not explain the requested experience."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify a sensible way to weigh query speed against index costs.",
+            "evidence": "check that the improvement is worth the storage and maintenance cost"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Replace hypothetical advice with one shipped example: user expectation, discovery signal, change, and measured result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I would use a composite index",
+              "I would start with a slow query from a representative workload"
+            ],
+            "why": "The prompt asks what happened and what you changed; your answer only describes a possible approach.",
+            "rewrite": "I shipped [feature], but users expected [behavior] and instead [observed behavior]. I found out through [signal], changed [specific part], and checked the result by [measurement]."
+          }
+        ],
+        "follow_up_question": "Can you describe a specific shipped feature that behaved differently from what users expected, and how you verified your fix?",
+        "model_answer_outline": [
+          "Set the scene: identify the shipped feature and intended user behavior.",
+          "Describe the actual user behavior and the signal that revealed the mismatch.",
+          "Explain your own investigation, decision, and specific change without blaming users.",
+          "Report a concrete validation result and what you learned or changed afterward."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-20",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 3
+      },
+      "overall": 1.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5729,
+      "usage": {
+        "inputTokens": 2378,
+        "outputTokens": 565
+      },
+      "costUsd": 0.00030655,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You explain how you would choose an index, but give no shipped situation, actions taken, or result."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You name query plans, scanned rows, and write performance, but provide no concrete system, query, or measured change."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You describe hypothetical choices with “I would,” rather than actions you personally took on a shipped feature."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You propose measurements but report no observed outcome or validation."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "The answer discusses index selection rather than a shipped feature that behaved unexpectedly and how you responded."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The indexing advice is understandable and ordered, but it does not explain the requested user-expectation gap."
+          }
+        },
+        "overall": 1.8,
+        "strengths": [
+          {
+            "point": "You identify sensible trade-offs when evaluating an index.",
+            "evidence": "I would also measure write performance because each insert or update has to maintain the index."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Replace the hypothetical advice with a specific shipped example, covering the mismatch, discovery, change, and result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "The current answer is a general technical recommendation and contains none of the story elements the question requests.",
+            "rewrite": "I shipped [feature], expecting users to [intended behaviour], but [observed behaviour] showed a mismatch. I found it through [signal], changed [specific part], and measured the result using [metric or validation]."
+          }
+        ],
+        "follow_up_question": "Can you describe a specific shipped feature that behaved differently from what users expected, and what evidence led you to change it?",
+        "model_answer_outline": [
+          "Set up the feature, your responsibility, and the expected user behaviour.",
+          "Describe the concrete user behaviour that differed and the signal that revealed it.",
+          "Explain your own change and why you prioritized it.",
+          "Give an observable result or validation method, plus what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-21",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6516,
+      "usage": {
+        "inputTokens": 2316,
+        "outputTokens": 569
+      },
+      "costUsd": 0.00037786,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You mention a deadline and a result, but give no situation, action details, or clear sequence."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You do not identify the deadline, features, decision criteria, or outcome beyond saying it worked out fine."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe what “we” did without explaining your own role or decision."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "“It worked out fine” gives no concrete result or consequence."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention cutting features to meet a deadline, but omit what you cut and how you decided."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The basic point is understandable, but the example is too vague to follow as a story."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify the core trade-off: reducing scope to meet a deadline.",
+            "evidence": "we cut some features to make it"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give the context, your decision criteria and actions, then the outcome and next steps.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "i had a deadline once",
+              "some features",
+              "it worked out fine in the end"
+            ],
+            "why": "Those missing story elements make it difficult to assess how you handled the time constraint.",
+            "rewrite": "I had [time remaining] to deliver [feature or project], which [who depended on it]. I chose to cut [scope] because [criteria], told [stakeholders] [when/how], and shipped [result]; the deferred work [what happened next]."
+          }
+        ],
+        "follow_up_question": "Which features did you cut, and what criteria did you use to decide they were lower priority?",
+        "model_answer_outline": [
+          "Set the scene: deadline, deliverable, stakes, and who depended on it.",
+          "Explain what you personally cut or simplified and the criteria behind the choice.",
+          "Say when and how you informed stakeholders, then state what shipped and what happened to deferred scope."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-21",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 2,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5236,
+      "usage": {
+        "inputTokens": 2316,
+        "outputTokens": 436
+      },
+      "costUsd": 0.00024143,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You mention a deadline and result, but give no recognizable situation, action sequence, or specific outcome."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The deadline, features, decision criteria, and outcome are all described only in generic terms."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You say “we cut” without identifying your own contribution or decision."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say it worked out, but provide no observable result or consequence."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention cutting features to meet a deadline, but do not explain what you cut or how you decided."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The basic point is understandable, but the missing details leave the example unclear."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You identify the core situation: a deadline required reducing scope.",
+            "evidence": "we cut some features to make it"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give a brief situation, your decision and actions, then the shipped result and what happened to cut scope.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "i had a deadline once",
+              "some features",
+              "it worked out fine in the end"
+            ],
+            "why": "Without those story elements, the listener cannot assess your judgment or what the deadline meant.",
+            "rewrite": "I had to deliver [what] by [deadline] for [who]. I chose to cut [features] because [criteria], told [stakeholders] [when/how], and shipped [result]; the cut work [what happened]."
+          }
+        ],
+        "follow_up_question": "What criteria did you use to choose which features to cut, and how did you communicate that decision?",
+        "model_answer_outline": [
+          "Set the scene: deadline, deliverable, stakes, and who depended on it.",
+          "Explain your personal role and the criteria used to choose what to cut or simplify.",
+          "Describe when and how you informed stakeholders, then state what shipped and what happened to the cut scope."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-22",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 2
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5804,
+      "usage": {
+        "inputTokens": 2295,
+        "outputTokens": 573
+      },
+      "costUsd": 0.00037776,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You describe a key-checking mechanism, but do not define idempotency or explain how the key is stored and handled."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "A request key and duplicate charge prevention are concrete, but storage, uniqueness, and response behavior are unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You recommend attaching a key but give no justification or connection to your own experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You identify preventing duplicate charges, but do not describe further consequences or validation."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address payment retries and duplicate prevention, but omit a definition and important handling details."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The main idea is understandable, but the key-checking mechanism and its result are left unexplained."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You identify a request key as a way to prevent duplicate payment effects.",
+            "evidence": "attach a request key to each payment and check it before charging again"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define idempotency, then explain key storage, concurrent requests, and repeat responses.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "check it before charging again"
+            ],
+            "why": "The current answer names a key but does not explain how it guarantees one payment effect.",
+            "rewrite": "Idempotency means repeated requests have the same effect as one request. I would store a unique key with the payment result, enforce uniqueness, and return the original result for retries, including concurrent duplicates."
+          }
+        ],
+        "follow_up_question": "How would you handle two requests with the same idempotency key arriving at the same time?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests producing the same effect as one request.",
+          "Connect retries to timeouts, network errors, or double clicks.",
+          "Use a client-provided key stored with a uniqueness constraint and the payment outcome.",
+          "Explain how concurrent duplicates are serialized or rejected and how retries receive the original result; mention key-retention limits."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-22",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 1,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 2
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6795,
+      "usage": {
+        "inputTokens": 2295,
+        "outputTokens": 553
+      },
+      "costUsd": 0.00029972,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You give a retry-safety mechanism but do not define idempotency or explain how the key is checked."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You mention a request key and duplicate charges, but leave storage, uniqueness, and duplicate handling unspecified."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You state an approach but do not justify it or connect it to your experience."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You identify avoiding duplicate charges as a benefit, but give no further consequence or validation."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address safe payment retries, but do not define idempotency or explain what happens to a duplicate response."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The main idea is understandable, but the key-checking mechanism is too underspecified to follow fully."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You identify a request key as the basis for preventing duplicate payment effects.",
+            "evidence": "attach a request key to each payment and check it before charging again"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "State and justify your recommendation, including how you handle concurrent requests.",
+            "dimension": "ownership",
+            "vague_phrases": [],
+            "why": "Your answer gives an approach but does not explain why it works or how you would ensure duplicates share one result.",
+            "rewrite": "I would store each request key with a uniqueness constraint and the payment result, so concurrent retries cannot charge twice and can return the original result."
+          }
+        ],
+        "follow_up_question": "How would you prevent two requests with the same key arriving simultaneously from both charging the payment?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having the same effect, and name common retry causes such as timeouts or double clicks.",
+          "Recommend a unique idempotency key stored with the payment operation, using an atomic uniqueness guarantee to handle concurrent requests.",
+          "Explain that a duplicate request should return the original outcome, and mention key retention or other limits."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-23",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": true
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "latencyMs": 5845,
+      "usage": {
+        "inputTokens": 2346,
+        "outputTokens": 525
+      },
+      "costUsd": 0.00035886,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You identify the feedback and a subsequent action, but give no context or result."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "The feedback concerns pull request size, but you do not say what changed in practice."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You describe a personal change, but “I guess” makes your commitment unclear."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You provide no evidence that splitting your work made review or delivery better."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You name useful feedback and a response, but omit your initial reaction and evidence of lasting change."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The feedback and response are understandable, though the change remains underspecified."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You identify specific feedback relevant to your work as a product engineer.",
+            "evidence": "my pull requests were too big to review properly"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Explain how you changed your pull requests and what observable difference followed.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "started splitting my work up"
+            ],
+            "why": "Without a result, the interviewer cannot tell whether the feedback led to an effective, lasting change.",
+            "rewrite": "After hearing that, I [initial reaction] and began splitting changes into [specific units or approach]. I sustained this by [habit], and [observable result] showed it helped."
+          }
+        ],
+        "follow_up_question": "How did you know that splitting your work into smaller pull requests improved the review process?",
+        "model_answer_outline": [
+          "Set the context and quote or closely paraphrase the feedback.",
+          "Describe your honest initial reaction and what you decided to change.",
+          "Explain the specific, lasting behavior change in how you prepared pull requests.",
+          "Give observable evidence that the change improved reviews or outcomes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": true
+        }
+      }
+    },
+    {
+      "id": "g-23",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": true
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "latencyMs": 5452,
+      "usage": {
+        "inputTokens": 2346,
+        "outputTokens": 526
+      },
+      "costUsd": 0.00028673,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You state the feedback and a response, but give no situation details or result."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "The feedback concerns pull-request size, but the work and how you split it remain unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You describe starting to split your work, but do not explain your decisions or follow-through."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You provide no evidence that the change improved reviews or became lasting behavior."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You identify useful feedback and a response, but omit your initial reaction and what changed as a result."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The feedback and intended response are understandable, though the extent of the change is unclear."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You identify a specific piece of feedback from your lead.",
+            "evidence": "my lead, who said my pull requests were too big to review properly"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Explain how you applied the feedback and give evidence of its effect.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "I started splitting my work up, I guess"
+            ],
+            "why": "Without a result, the interviewer cannot tell whether the change helped or lasted.",
+            "rewrite": "I began splitting my pull requests into smaller, reviewable pieces by [how you changed your process]. This led to [observable result], and I continued doing it by [lasting practice]."
+          }
+        ],
+        "follow_up_question": "How did you know that splitting your pull requests made them easier to review?",
+        "model_answer_outline": [
+          "Set up the work context and quote or paraphrase the feedback precisely.",
+          "Describe your honest initial reaction and the concrete change you made to your workflow.",
+          "Show how you sustained the change and what observable difference it made."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": true
+        }
+      }
+    },
+    {
+      "id": "g-24",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 3,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": true
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "latencyMs": 5885,
+      "usage": {
+        "inputTokens": 2370,
+        "outputTokens": 564
+      },
+      "costUsd": 0.00038076,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You explain the feedback, your response, and an outcome, but the situation and lasting change are only briefly established."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You identify the precise problem and changes—separate headings and moving the next decision up—but give no further context."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "You clearly describe changes you made, though the feedback context and how you sustained the change remain limited."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "A teammate found one update easier to read, but you did not verify faster decisions or another lasting outcome."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You name useful feedback, describe what you changed, and explain the limited evidence of its effect."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The answer is concise and understandable, but the ongoing behavior and evidence of change are not fully explained."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You state the feedback clearly and connect it to a concrete change in how you write updates.",
+            "evidence": "I was told my updates were difficult to follow because I mixed completed work with things I was still investigating."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Show how you checked whether the new format improved understanding or decisions over time.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "the next update was easier to read"
+            ],
+            "why": "One positive reaction is useful but does not establish a lasting effect or show how you assessed the change.",
+            "rewrite": "A teammate said the next update was easier to read. I kept using the format and [describe later feedback or observable effect]; I would also check whether decisions happened faster."
+          }
+        ],
+        "follow_up_question": "What later feedback or observable evidence showed that the clearer update format had become a lasting improvement?",
+        "model_answer_outline": [
+          "Set the context for the feedback and quote or paraphrase it specifically.",
+          "Describe your initial reaction honestly and explain the concrete behavior you changed.",
+          "Show how you sustained the change and what evidence demonstrated its effect."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": true
+        }
+      }
+    },
+    {
+      "id": "g-24",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 3,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 3
+      },
+      "overall": 2.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": true
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "latencyMs": 5633,
+      "usage": {
+        "inputTokens": 2370,
+        "outputTokens": 553
+      },
+      "costUsd": 0.00030047,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You identify the feedback, describe your change, and report a response, but the context and lasting evidence are thin."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You specify the communication problem and two formatting changes, but give little context about the work or updates."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "You clearly own the formatting changes, but your initial reaction to the feedback is not stated."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "A teammate found one update easier to read, but there is no stronger evidence of lasting impact."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You answer what feedback you received and what you changed, but omit your initial reaction."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The feedback, actions, and response are easy to follow, though the context and evidence of lasting change remain limited."
+          }
+        },
+        "overall": 2.8,
+        "strengths": [
+          {
+            "point": "You state the feedback and translate it into specific changes to your updates.",
+            "evidence": "I started using separate headings and putting the next decision near the top."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Show whether the change improved later updates or decisions, and how you checked.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "A teammate said the next update was easier to read"
+            ],
+            "why": "One teammate's impression is limited evidence; the answer needs a clearer lasting result or validation plan.",
+            "rewrite": "I used the format in later updates and asked [who] for feedback after [time period]; [specific outcome] showed whether it helped."
+          }
+        ],
+        "follow_up_question": "What feedback did you get on later updates, and how did you know the new format was consistently clearer?",
+        "model_answer_outline": [
+          "Briefly describe the work context and quote or paraphrase the feedback.",
+          "Explain your initial reaction honestly and what you changed in your update habits.",
+          "Give evidence of continued use and its effect, or explain how you planned to validate the change."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": true
+        }
+      }
+    },
+    {
+      "id": "g-25",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5536,
+      "usage": {
+        "inputTokens": 2302,
+        "outputTokens": 549
+      },
+      "costUsd": 0.00036646000000000004,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You mention a disagreement but provide no situation details, actions, or explicit result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The database and disagreement are unnamed, with no concrete concern or evidence."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "“We talked about it” does not explain what you personally did or decided."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "“It was fine” gives no observable result or consequence."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You indicate a disagreement, but omit what the senior person decided and how you responded."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The sentence is understandable, but its vague claims leave the actual example unclear."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify the broad topic as a technical disagreement about a database.",
+            "evidence": "We had a disagreement once about the database"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give the decision and concern, your evidence-based actions, the final outcome, and what you learned.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "a disagreement once",
+              "we talked about it",
+              "it was fine in the end"
+            ],
+            "why": "The answer lacks the story elements needed to show how you handled disagreement with someone more senior.",
+            "rewrite": "A senior colleague decided [database decision], and I was concerned about [specific risk]. I raised [evidence] in [setting], then [what you did after the decision] and learned [lesson]."
+          }
+        ],
+        "follow_up_question": "What database decision did you disagree with, and what evidence did you use to raise your concern?",
+        "model_answer_outline": [
+          "Set up the database decision, the senior person's choice, and your specific technical concern.",
+          "Explain how and when you raised it, including the evidence and trade-offs you presented.",
+          "State the final decision, how you supported it, the outcome, and what you learned about influencing."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-25",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5324,
+      "usage": {
+        "inputTokens": 2302,
+        "outputTokens": 444
+      },
+      "costUsd": 0.00031396,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You mention a disagreement and outcome, but give no recognizable situation, action, or developed result."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "“The database” and “talked about it” provide no concrete decision, concern, or evidence."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "The answer describes only what “we” did, so your personal contribution is unclear."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "“It was fine in the end” gives no observable result or consequence."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You identify a disagreement, but omit what the decision was and what you did about it."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The brief account is understandable, but leaves the disagreement and resolution unexplained."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify a technical disagreement and indicate that it was resolved.",
+            "evidence": "We had a disagreement once about the database"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give the decision, your concern and evidence, how you raised it, the final outcome, and what you learned.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "a disagreement once about the database",
+              "we talked about it",
+              "it was fine in the end"
+            ],
+            "why": "Without these details, the answer is too thin to show how you handled disagreement with a senior colleague.",
+            "rewrite": "When [senior colleague] chose [database decision], I was concerned about [specific risk] because [evidence]. I raised it [setting], then supported the final decision; [outcome], and I learned [lesson about influencing decisions]."
+          }
+        ],
+        "follow_up_question": "What was the database decision, and what evidence did you use to raise your concern?",
+        "model_answer_outline": [
+          "Set up the specific technical decision and your concern about its trade-offs.",
+          "Explain how and when you raised the concern, including evidence you brought.",
+          "State what happened after the decision was final and the concrete result.",
+          "Reflect on what you learned about influencing technical decisions."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-26",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 4942,
+      "usage": {
+        "inputTokens": 2297,
+        "outputTokens": 525
+      },
+      "costUsd": 0.00035396000000000006,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You provide no definition of idempotency or explanation of a retry mechanism."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "“Reliable” and “check things carefully” do not specify any concrete implementation."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You explicitly defer explaining the payment retry approach."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You describe no outcome or consequence of making retries safe."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention payment retries but do not explain idempotency or how to make them safe."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The brief response is understandable, but leaves the requested concept and mechanism unexplained."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify reliability as a goal.",
+            "evidence": "I would make it reliable"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define idempotency, then explain the payment retry mechanism and result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "make it reliable",
+              "check things carefully"
+            ],
+            "why": "The answer does not explain what repeated requests do or how the endpoint prevents duplicate charges.",
+            "rewrite": "Idempotency means repeated requests have the same effect as one request. I would require a unique idempotency key, store it with the payment result, and return that result for retries."
+          }
+        ],
+        "follow_up_question": "How would you prevent two simultaneous requests with the same idempotency key from creating two charges?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having the same effect as one request.",
+          "Explain common retry causes, such as timeouts, network errors, or double clicks.",
+          "Describe a unique idempotency key stored with a uniqueness guarantee and the payment result.",
+          "Cover concurrent duplicates and returning the original result, including relevant retention limits."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-26",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5799,
+      "usage": {
+        "inputTokens": 2297,
+        "outputTokens": 568
+      },
+      "costUsd": 0.00030724,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You offer no definition or explanation of idempotency or how a retry-safe payment endpoint would work."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "You give no concrete implementation details, storage mechanism, or response behavior."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You defer the central design decision with “we would sort that out” rather than taking a position."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You describe no consequences, benefits, costs, or validation."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention reliability and payment retries but explicitly leave the requested retry design unexplained."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The brief response is understandable, but it does not clarify what reliability means or how you would achieve it."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You identify reliability as a goal for payment handling.",
+            "evidence": "I would make it reliable"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Define idempotency, then explain the retry mechanism and duplicate-request behavior.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "make it reliable",
+              "check things carefully",
+              "we would sort that out"
+            ],
+            "why": "The answer does not explain the concept or give a usable design for safely retrying payment creation.",
+            "rewrite": "Idempotency means repeated requests have the same effect as one request. I would require a client-supplied idempotency key, enforce its uniqueness in storage, and return the original result for duplicate requests."
+          }
+        ],
+        "follow_up_question": "How would your design handle two requests with the same idempotency key arriving at the same time?",
+        "model_answer_outline": [
+          "Define idempotency as repeated requests having the same effect as a single request.",
+          "Explain retry causes such as timeouts, network failures, or double clicks.",
+          "Describe storing a unique idempotency key with the payment operation and handling concurrent duplicates.",
+          "Explain that a duplicate request returns the original result, and note key-retention or failure-state trade-offs."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-27",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 4970,
+      "usage": {
+        "inputTokens": 2314,
+        "outputTokens": 435
+      },
+      "costUsd": 0.00031066000000000004,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You give a general situation, but no specific task, actions, or result that can be followed as a story."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The answer gives no deadline, deliverable, concrete scope, or decision criteria."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe only what “we” did and do not identify your own contribution."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "You do not state what was delivered or what happened as a result."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention time pressure, but do not answer what you cut or how you decided."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The meaning is understandable, but “got it done somehow” leaves the action and outcome unclear."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You acknowledge the time-pressure context and are candid about what you cannot recall.",
+            "evidence": "There was too much work"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give a brief setup, explain your decision and actions, then state the result and fate of cut scope.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "There was too much work",
+              "got it done somehow"
+            ],
+            "why": "Without a specific story and outcome, the listener cannot assess your trade-off or delivery.",
+            "rewrite": "When [deliverable] was due by [deadline], I identified [scope] as essential because [reason]. I cut [item], told [stakeholders] [when/how], and shipped [result]; we handled the deferred work by [next step]."
+          }
+        ],
+        "follow_up_question": "What specific scope did you cut, and what criteria did you use to decide it could wait?",
+        "model_answer_outline": [
+          "Set the scene: deliverable, deadline, stakes, and who depended on it.",
+          "Explain the criteria for preserving essential scope and simplifying or cutting the rest.",
+          "Say who you informed, when and how, what shipped, and what happened to deferred work."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-27",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 2,
+        "clarity": 2
+      },
+      "overall": 1.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5309,
+      "usage": {
+        "inputTokens": 2314,
+        "outputTokens": 450
+      },
+      "costUsd": 0.00024841,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "You provide no identifiable situation, personal action, or explicit result beyond saying the work was completed."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The answer gives no deadline, deliverable, concrete details, or criteria for making a trade-off."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "You describe collective effort and explicitly cannot say what was cut or why."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "No outcome or consequence is given beyond an unelaborated claim that the work was done."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You mention pressure and completion but do not explain what you cut or how you decided."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The brief statement is understandable, but it does not explain the example or decision."
+          }
+        },
+        "overall": 1.3,
+        "strengths": [
+          {
+            "point": "You acknowledge that you cannot explain the scope decision, rather than inventing one.",
+            "evidence": "I cannot say what we cut or why."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Give a specific situation, your decision and actions, then the result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "There was too much work",
+              "we worked harder",
+              "got it done somehow"
+            ],
+            "why": "The current answer lacks the story elements needed to show how you handled the deadline pressure.",
+            "rewrite": "I had [time remaining] to deliver [important work], which [stakeholder] depended on. I chose to cut [scope] because [criterion], told [stakeholders] [when and how], and shipped [result]; the cut work [next step]."
+          }
+        ],
+        "follow_up_question": "What specific deliverable was at risk, and what criteria would you use to decide which scope to cut?",
+        "model_answer_outline": [
+          "Set up the deadline, deliverable, stakes, and who depended on it.",
+          "Explain the criteria used to prioritize essential scope and what was cut or simplified.",
+          "Describe your decision, stakeholder communication, and agreement on the trade-off.",
+          "State what shipped, how it performed, and what happened to deferred scope."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    }
+  ]
+}

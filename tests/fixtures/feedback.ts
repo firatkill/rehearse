@@ -12,6 +12,8 @@ export function feedbackLlm(): FeedbackLlm {
     strengths: [{ point: 'You explain your contribution.', evidence: 'I delivered the project' }],
     improvements: [
       {
+        dimension: 'structure',
+        vague_phrases: [],
         point: 'Name the constraint.',
         why: 'It explains your choice.',
         rewrite: 'I chose this because [constraint].',

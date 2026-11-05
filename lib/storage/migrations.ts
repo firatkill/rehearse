@@ -1,5 +1,10 @@
 import { STORAGE } from '@/lib/config';
-import { LegacyAnswerRecordSchema, LegacySessionRecordSchema } from './schema';
+import {
+  LegacyAnswerRecordSchema,
+  LegacySessionRecordSchema,
+  AnswerRecordSchema,
+  SessionRecordSchema,
+} from './schema';
 import { completeAttempt } from './attempts';
 export type Migration = {
   version: number;
@@ -32,6 +37,21 @@ export const MIGRATIONS: readonly Migration[] = [
       }
     },
   },
+  {
+    version: 3,
+    upgrade(_db, tx) {
+      for (const name of ['sessions', 'answers']) {
+        const request = tx.objectStore(name).openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          const migrated = migrateRecord(cursor.value);
+          if (migrated !== null) cursor.update(migrated);
+          cursor.continue();
+        };
+      }
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {
@@ -44,6 +64,13 @@ export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>
       attemptRecords: [],
       bestAttemptId: null,
     });
+  },
+  2: (input) => {
+    if (typeof input !== 'object' || input === null) return null;
+    const value = { ...input, schemaVersion: 3 };
+    const session = SessionRecordSchema.safeParse(value);
+    if (session.success) return session.data;
+    return AnswerRecordSchema.parse(value);
   },
 };
 export function migrateRecord(

@@ -362,6 +362,8 @@ export const LLM = {
 export const FEEDBACK_LIMITS = {
   STRENGTHS_MAX: 3,
   IMPROVEMENTS_MAX: 3,
+  VAGUE_PHRASES_MAX: 3,
+  VAGUE_PHRASE_MAX_CHARS: 200,
   OUTLINE_MIN: 3,
   OUTLINE_MAX: 6,
   RATIONALE_MAX_CHARS: 240,
@@ -400,10 +402,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 2,
-  RECORD_SCHEMA_VERSION: 2, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 3,
+  RECORD_SCHEMA_VERSION: 3, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 2,
+  EXPORT_FORMAT_VERSION: 3,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -2024,7 +2026,7 @@ Response 200, no external calls:
   "demoMode": "on",
   "llmMode": "live",
   "rateLimitBackend": "upstash",
-  "promptVersions": { "feedback": "feedback-v3", "summary": "summary-v2" },
+  "promptVersions": { "feedback": "feedback-v6", "summary": "summary-v2" },
   "bankVersion": "1.0.0",
   "time": "2026-11-02T10:00:00.000Z"
 }
@@ -2239,10 +2241,10 @@ Scoring:
 
 Feedback:
 10. strengths: 1 to 3 items, most useful first. If little is strong, return one honest item about the best part.
-11. improvements: 1 to 3 items, highest impact first. Each has point (what to change, at most 20 words), why (at most 25 words) and rewrite: one or two sentences the candidate could say instead, in the first person, using only their facts plus [placeholders].
+11. improvements: 1 to 3 items. Include an improvement for the lowest-scoring dimension after the caps above; when several dimensions share that minimum score, choose the one with the most useful concrete rewrite. Compare all six final scores before choosing that dimension; a more important coaching topic must not replace the numerical minimum. Put it first. Prefer one improvement. Each has dimension (one of those six identifiers), vague_phrases (0 to 3 exact phrases copied from the transcript that need more specificity, each at most 200 characters; use [] when none applies), point (what to change, at most 20 words), why (at most 25 words) and rewrite: one or two sentences the candidate could say instead, in the first person, using only their facts plus [placeholders].
 12. follow_up_question: one question an interviewer would plausibly ask next, based on a gap or claim in this answer, at most 30 words.
 13. model_answer_outline: 3 to 6 short bullets describing what a strong answer to this question covers for this role and seniority. Describe structure and content, not a script, and do not invent facts about the candidate.
-14. Write in plain, direct English. Address the candidate as "you". No emoji, no Markdown, no exaggerated praise.
+14. Keep the response compact: prefer one strength, one improvement and three outline bullets; use short rationales and rewrites. Write in plain, direct English. Address the candidate as "you". No emoji, no Markdown, no exaggerated praise.
 ```
 
 ### 14.2 Rubric (normative, `lib/feedback/rubric.ts`)
@@ -2410,7 +2412,7 @@ Role and seniority come from the token. Trend is computed in section 17.1. For f
 
 ### 14.6 Prompt versioning
 
-`lib/prompts/version.ts` exports `FEEDBACK_PROMPT_VERSION = 'feedback-v3'` and `SUMMARY_PROMPT_VERSION = 'summary-v2'`. Any change to a system prompt, a user template, `renderRubric` output, the rubric text, or the LLM-facing schemas bumps the matching version (`-v2`, …) and requires an eval run (AGENTS.md). The version is returned in `meta`, stored with each answer and shown in the feedback card meta line.
+`lib/prompts/version.ts` exports `FEEDBACK_PROMPT_VERSION = 'feedback-v6'` and `SUMMARY_PROMPT_VERSION = 'summary-v2'`. Any change to a system prompt, a user template, `renderRubric` output, the rubric text, or the LLM-facing schemas bumps the matching version (`-v2`, …) and requires an eval run (AGENTS.md). The version is returned in `meta`, stored with each answer and shown in the feedback card meta line.
 
 ### 14.7 Judge prompt
 
@@ -2435,7 +2437,15 @@ export const FeedbackLlmSchema = z.object({
     clarity: DimensionLlm,
   }),
   strengths: z.array(z.object({ point: z.string(), evidence: z.string() })),
-  improvements: z.array(z.object({ point: z.string(), why: z.string(), rewrite: z.string() })),
+  improvements: z.array(
+    z.object({
+      dimension: z.enum(DIMENSIONS),
+      vague_phrases: z.array(z.string()),
+      point: z.string(),
+      why: z.string(),
+      rewrite: z.string(),
+    }),
+  ),
   follow_up_question: z.string(),
   model_answer_outline: z.array(z.string()),
   flags: z.object({
@@ -2486,6 +2496,11 @@ export const FeedbackSchema = z
         z
           .object({
             point: z.string().min(1).max(FEEDBACK_LIMITS.POINT_MAX_CHARS),
+            dimension: z.enum(DIMENSIONS).optional(),
+            vague_phrases: z
+              .array(z.string().min(1).max(FEEDBACK_LIMITS.VAGUE_PHRASE_MAX_CHARS))
+              .max(FEEDBACK_LIMITS.VAGUE_PHRASES_MAX)
+              .optional(),
             why: z.string().min(1).max(FEEDBACK_LIMITS.WHY_MAX_CHARS),
             rewrite: z.string().min(1).max(FEEDBACK_LIMITS.REWRITE_MAX_CHARS),
           })
@@ -2694,6 +2709,12 @@ export const MOCK_FOCUS_TIPS: Record<Dimension, string> = {
   clarity: 'Use short sentences and signpost: ‘There were two problems. First…’.',
 };
 ```
+
+### V-21 feedback presentation metadata (D-112)
+
+FeedbackLlmSchema improvements additionally require `dimension: z.enum(DIMENSIONS)` and `vague_phrases: z.array(z.string())`. Prompt v6 asks for an improvement for the lowest dimension after caps, with ties selected by the most useful matching improvement, and at most 3 exact quoted vague phrases per improvement (each at most 200 characters). Normalisation retains the dimension and drops empty/unmatched/oversize phrases; metadata never weakens evidence checks or score caps. Missing lowest-dimension improvement rejects the output and uses the existing single retry. Filler mark spans reuse the existing context-sensitive scanner; when NFKC changes string length, omit filler marks rather than misplace original-text offsets (counts remain unchanged). FeedbackSchema stores these two fields as optional solely for historical feedback, with strict bounds for present fields. All new model output must supply them. The displayed rewrite is selected by exact dimension, never a heuristic guess; older records without a match show the PRD fallback.
+
+Database/record/export versions become 3 because nested feedback shape changes. Append migration 3 and record/export migration 2; preserve historical missing metadata. Existing legacy sample remains immutable and migrates on read. Vague spans use exact matches only; strong spans come from verified evidence; filler spans reuse the same context-sensitive algorithm as delivery metrics. Marks are text nodes with no HTML injection. Length thresholds reuse RECORDING_GUIDE, measured from recordingMs; text mode has no invented timing verdict. TC-148 covers hierarchy, safe marks, thresholds and legacy fallback; TC-147 covers upgrades.
 
 ## 16. Delivery metrics
 

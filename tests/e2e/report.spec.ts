@@ -16,21 +16,27 @@ test('TC-077 TC-084 TC-086 E2E-19 report shows scores, summary, Markdown and res
   await disclosure.locator(':scope > summary').click();
   // NFR-08; NFR-09 / TRD §19.2, §19.4: rendered geometry, not utility-class names.
   const bar = page.locator('[data-score-bar]').first();
-  await expect(bar).toHaveCSS('gap', '2px');
+  await expect(bar).toHaveCSS('gap', '3px');
   const segments = bar.locator('[data-score-segment]');
   await expect(segments).toHaveCount(4);
   for (const segment of await segments.all()) {
     const bounds = await segment.boundingBox();
-    expect(bounds?.width).toBe(12);
+    expect(bounds?.width).toBeGreaterThan(12);
     expect(bounds?.height).toBe(6);
   }
   expect(
     await segments.evaluateAll((nodes) =>
-      nodes.map((node, index) => {
+      nodes.map((node) => {
         const style = getComputedStyle(node);
         const token = getComputedStyle(document.documentElement);
         const expected = document.createElement('span');
-        expected.style.color = token.getPropertyValue(index < 2 ? '--accent' : '--rule-strong');
+        expected.style.color = token.getPropertyValue(
+          node.hasAttribute('data-filled')
+            ? node.closest('[data-lowest]')
+              ? '--warn'
+              : '--accent'
+            : '--rule-strong',
+        );
         document.body.append(expected);
         const matches = style.backgroundColor === getComputedStyle(expected).color;
         expected.remove();

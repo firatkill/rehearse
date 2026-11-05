@@ -25,6 +25,8 @@ export const feedback: Feedback = {
   strengths: [{ point: 'Clear personal ownership', evidence: 'I rebuilt the queue' }],
   improvements: [
     {
+      dimension: 'structure',
+      vague_phrases: [],
       point: 'Quantify the result',
       why: 'It makes the impact concrete.',
       rewrite: 'I reduced retries by [percentage].',

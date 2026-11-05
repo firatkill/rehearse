@@ -1,0 +1,604 @@
+{
+  "runId": "2026-11-05-9",
+  "startedAt": "2026-11-05T10:57:05.734Z",
+  "finishedAt": "2026-11-05T10:57:18.651Z",
+  "gitSha": "df39d2859301004731f7ddd3dff18350f8972c8d",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v6",
+  "bankVersion": "1.0.0",
+  "goldenHash": "12884e8ab918b5d3717a80126349bdebae78e8e3a33446c4c09bbfa03e8c7456",
+  "repeats": 2,
+  "metrics": {
+    "within_range.structure": 1,
+    "within_range.specificity": 1,
+    "within_range.ownership": 1,
+    "within_range.impact": 1,
+    "within_range.relevance": 1,
+    "within_range.clarity": 1,
+    "within_range.overall": 1,
+    "json_valid.first_attempt": 1,
+    "json_valid.final": 1,
+    "flag_accuracy": 1,
+    "latency_ms.p95": 7654,
+    "cost_usd.total": 0.00217982,
+    "cost_usd.mean_per_call": 0.0003633033333333333,
+    "tokens.mean_input": 2456.6666666666665,
+    "tokens.mean_output": 473.8333333333333,
+    "evidence_kept_rate": 1,
+    "consistency": 0.9444444444444444
+  },
+  "thresholds": {
+    "within_range.structure": 0.75,
+    "within_range.specificity": 0.75,
+    "within_range.ownership": 0.75,
+    "within_range.impact": 0.75,
+    "within_range.relevance": 0.75,
+    "within_range.clarity": 0.7,
+    "within_range.overall": 0.85,
+    "json_valid.first_attempt": 0.95,
+    "json_valid.final": 1,
+    "flag_accuracy": 0.9,
+    "latency_ms.p95_max": 10000
+  },
+  "passed": true,
+  "failures": [],
+  "items": [
+    {
+      "id": "g-04",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6859,
+      "usage": {
+        "inputTokens": 2484,
+        "outputTokens": 429
+      },
+      "costUsd": 0.0004629,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set up the intended interaction, reveal the user problem, describe your changes, and give explicit validation results."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You provide concrete evidence: twelve reports, three observed users, a below-the-fold control, and a two-week follow-up."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You explicitly own the interaction and describe reproducing it, changing the design, and adding a test."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "The repeat tasks succeeded without prompting, and related support reports fell from twelve to one."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what users expected, how you discovered the mismatch, and what you changed and measured."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The sequence from assumption to observation, corrective action, and results is concise and easy to follow."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "You connect a specific user-expectation mismatch to direct observation and a deliberate product change.",
+            "evidence": "they changed a checkbox and immediately read the unchanged table"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify whether the three retested users were the same people observed initially and how support reports were counted.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "These details would make the validation and reported reduction more comparable and checkable.",
+            "rewrite": "I asked the same three users I had observed to repeat their tasks; all three finished without prompting. In the next two weeks, related support reports fell from twelve to one."
+          }
+        ],
+        "follow_up_question": "How did you decide that automatic application with a debounce was preferable to moving or emphasizing the Apply button?",
+        "model_answer_outline": [
+          "State what the shipped feature was supposed to do and how users behaved differently.",
+          "Describe the signal that exposed the mismatch and what it showed about users' expectations.",
+          "Explain the change, the trade-off considered, and how you validated its effect."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-04",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7004,
+      "usage": {
+        "inputTokens": 2484,
+        "outputTokens": 545
+      },
+      "costUsd": 0.0005209,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You explain the intended interaction, the discovery, your changes, and the follow-up results in a clear sequence."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You name the filter behavior, screen constraint, request-handling changes, test, user retest, and support-report counts."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You explicitly own the interaction and describe the usability review, implementation changes, and validation you carried out."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "Support reports fell from twelve to one, and all three retested users completed their tasks without prompting."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly explain what users expected, how you found the mismatch, and what you changed."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The example is concise and easy to follow, with the cause, technical response, and validation clearly linked."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "You clearly connect the user-expectation mismatch to observable evidence and a measured change.",
+            "evidence": "support received twelve reports saying filters were broken"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify whether the support-report decline held beyond the two-week follow-up.",
+            "dimension": "impact",
+            "vague_phrases": [],
+            "why": "The immediate result is strong; a longer-term check would show whether the fix sustained its effect.",
+            "rewrite": "In the next two weeks the related reports fell from twelve to one; I also tracked them for [follow-up period] to confirm the decline held."
+          }
+        ],
+        "follow_up_question": "Did you consider testing the below-the-fold interaction before release, and what would you change in your test plan?",
+        "model_answer_outline": [
+          "Set up the shipped feature and explain the intended behavior versus what users actually did.",
+          "Describe the evidence that exposed the mismatch and your role in investigating it.",
+          "Explain the deliberate product and technical changes, then give a measurable validation result and lesson."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7654,
+      "usage": {
+        "inputTokens": 2394,
+        "outputTokens": 546
+      },
+      "costUsd": 0.00029720999999999995,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You explain the dashboard, the mismatch, the change, and a result, though the outcome is thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "The filters and Apply button are concrete, but you give no user counts, design details, or measured results."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you helped move the controls, but your specific contribution and decisions are unclear."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "A couple of people seemed happier, but this is an unverified impression and you did not track support reports."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly describe what users expected, how support revealed the mismatch, and what you changed."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The story is easy to follow, but your role and how the change affected users remain implicit."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You clearly identify the expectation gap and how you learned about it.",
+            "evidence": "some people thought the checkboxes would update the results straight away. Support told us about it after launch."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Report an observable post-change result or state a defined validation plan.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "They seemed happier with it.",
+              "I don't remember whether we measured the number of support reports after the change."
+            ],
+            "why": "A subjective impression does not show whether the change resolved the user confusion.",
+            "rewrite": "After we made filters update automatically, I [describe the follow-up measure or validation plan] to check whether users understood the behavior."
+          }
+        ],
+        "follow_up_question": "What specific validation would you use now to determine whether automatic filtering reduced confusion?",
+        "model_answer_outline": [
+          "Set up the dashboard and explain the intended and actual filter behavior.",
+          "Describe the support signal and the specific change you owned.",
+          "Give a measurable follow-up check and what you learned for future releases."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 2,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7238,
+      "usage": {
+        "inputTokens": 2394,
+        "outputTokens": 456
+      },
+      "costUsd": 0.00032916,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "You give the situation, user-expectation gap, response, and outcome, though the result is thin."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "You identify the dashboard filters and support feedback, but give no concrete details about the change or scale."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you helped move the controls, but the decision and your specific contribution remain unclear."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "A couple of users seemed happier, but you report no measured or otherwise verifiable result."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what users expected, how you found out, and what you changed."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The story is easy to follow, but the control change and its effect are not fully explained."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You describe a clear gap between the interface behavior and user expectations, and identify how it surfaced.",
+            "evidence": "some people thought the checkboxes would update the results straight away. Support told us about it after launch."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Specify your change, the evidence you checked, and a measurable success criterion.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "I helped move the controls around",
+              "They seemed happier with it."
+            ],
+            "why": "That would make your contribution and whether the change solved the expectation mismatch more concrete.",
+            "rewrite": "I [describe the specific control change] so users could see that filters updated automatically. I would track [support reports or another usage measure] before and after, and validate the behavior with [number] users."
+          }
+        ],
+        "follow_up_question": "What specific change did you make to the filter controls, and what would you measure to confirm it worked?",
+        "model_answer_outline": [
+          "Set up the dashboard and intended filter behavior, then explain the mismatch in user expectations.",
+          "Describe the signal that revealed the problem and your specific role in changing the experience.",
+          "State a concrete validation method or result, and what you learned about testing expectations earlier."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 4,
+        "impact": 3,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 6041,
+      "usage": {
+        "inputTokens": 2492,
+        "outputTokens": 441
+      },
+      "costUsd": 0.00024569,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the deadline and scope, explain your actions, and state the demonstration result and later lesson in a clear sequence."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name the page, deadline, features cut, essential flow, and tests, but give no estimate or duration for the work."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You distinguish your contribution from your mentor’s input and describe identifying the risk, proposing the scope, and testing."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "The demonstration completed the signup flow without failure, and you changed how you estimated future work."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You explain what you cut and how you sought agreement, but do not say what happened to the cut features afterward."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The example is concise and ordered, with a clear explanation of the reduced scope and its rationale."
+          }
+        },
+        "overall": 3.5,
+        "strengths": [
+          {
+            "point": "You make the trade-off and your role in it easy to understand.",
+            "evidence": "I proposed keeping a native date input and dropping the animation, while preserving validation and keyboard access."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "State whether the custom calendar and animation were later completed, deferred, or dropped.",
+            "dimension": "relevance",
+            "vague_phrases": [
+              "Afterwards I compared my estimate with the time spent"
+            ],
+            "why": "The question asks what happened to cut scope, and the answer leaves that outcome unstated.",
+            "rewrite": "After the demonstration, I [completed, deferred, or dropped] the custom calendar and animation because [reason]."
+          }
+        ],
+        "follow_up_question": "What happened to the custom calendar and animated preview after the demonstration?",
+        "model_answer_outline": [
+          "Set the deadline, what was at stake, and who depended on delivery.",
+          "Explain the criteria for preserving essential functionality and cutting or simplifying scope; describe how stakeholders agreed and were informed.",
+          "State what shipped, how it performed, what happened to deferred scope, and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 3,
+        "ownership": 4,
+        "impact": 3,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 5469,
+      "usage": {
+        "inputTokens": 2492,
+        "outputTokens": 426
+      },
+      "costUsd": 0.00032396000000000004,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the deadline and task, explain the scope decision and actions, then give the demonstration outcome and learning."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "You name the page, deadline, features cut, signup flow, and tests, but provide no duration or measurable outcome."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You distinguish your role in spotting the risk and proposing reduced scope from your mentor’s input on priorities."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "The signup demonstration completed without failure, and you changed how you estimate later tasks, though the result is not quantified."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You explain what you cut, the criterion for preserving core functionality, how expectations were communicated, and what you learned."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The example is ordered and concise, with clear criteria, actions, and outcome."
+          }
+        },
+        "overall": 3.7,
+        "strengths": [
+          {
+            "point": "You give a clear, reasoned trade-off that protects the essential user flow.",
+            "evidence": "The essential flow was selecting an event, entering contact details and receiving confirmation."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Add the time constraint and a verifiable outcome, if you know them.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "a demonstration on Thursday",
+              "without a failure"
+            ],
+            "why": "Those details would make the urgency and result easier to assess.",
+            "rewrite": "The demonstration was on Thursday, leaving [available time] to finish. The reduced version completed [number] signup attempts during the demo without [specific issue]."
+          }
+        ],
+        "follow_up_question": "What happened to the animation and custom calendar after the demonstration?",
+        "model_answer_outline": [
+          "Set the scene with the deadline, stakes, and who depended on delivery.",
+          "Explain the criteria for preserving core functionality and the specific scope you cut.",
+          "Say how and when you aligned stakeholders, what shipped, and what happened to deferred work."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    }
+  ]
+}

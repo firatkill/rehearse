@@ -132,6 +132,8 @@ export const LLM = {
 export const FEEDBACK_LIMITS = {
   STRENGTHS_MAX: 3,
   IMPROVEMENTS_MAX: 3,
+  VAGUE_PHRASES_MAX: 3,
+  VAGUE_PHRASE_MAX_CHARS: 200,
   OUTLINE_MIN: 3,
   OUTLINE_MAX: 6,
   RATIONALE_MAX_CHARS: 240,
@@ -170,10 +172,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 2,
-  RECORD_SCHEMA_VERSION: 2, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 3,
+  RECORD_SCHEMA_VERSION: 3, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 2,
+  EXPORT_FORMAT_VERSION: 3,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 

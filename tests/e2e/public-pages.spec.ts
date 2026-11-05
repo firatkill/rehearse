@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { QUESTION_TYPE_LABELS } from '@/lib/labels';
 import { uniqueIp } from './helpers';
+import { readdir, readFile } from 'node:fs/promises';
+import { z } from 'zod';
 for (const theme of ['light', 'dark'] as const) {
   test(`TC-139 V-13 public pages work without JavaScript in ${theme}`, async ({
     browser,
@@ -38,7 +40,18 @@ for (const theme of ['light', 'dark'] as const) {
               .locator('details[open]')
               .getByText('Is the answer organised so a listener can follow it?'),
           ).toBeVisible();
-          await expect(page.getByText(/All gates passed/)).toBeVisible();
+          // D-93/V-13: the page must honestly report the latest committed eval, including failures.
+          const latest = (await readdir('eval/results'))
+            .filter((file) => /^\d{4}-\d{2}-\d{2}(?:-\d+)?\.json$/.test(file))
+            .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }))
+            .at(-1);
+          expect(latest).toBeDefined();
+          const result = z
+            .object({ passed: z.boolean() })
+            .parse(JSON.parse(await readFile(`eval/results/${latest}`, 'utf8')));
+          await expect(
+            page.getByText(result.passed ? /All gates passed/ : /Some gates failed/),
+          ).toBeVisible();
         }
         if (route === '/privacy')
           await expect(

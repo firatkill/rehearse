@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
-import { Button } from '@/components/ui/button';
 import { FeedbackCard } from './feedback-card';
 
 export function AttemptFeedback({
@@ -60,11 +59,13 @@ export function AttemptFeedback({
         id={panelId}
         aria-labelledby={attempt ? `attempt-tab-${answer.index}-${selected}` : undefined}
       >
-        <FeedbackCard answer={shown} question={question} previous={previous ?? null} />
+        <FeedbackCard
+          answer={shown}
+          question={question}
+          previous={previous ?? null}
+          onRetry={onRetry}
+        />
       </div>
-      <Button variant="on-dark" onClick={onRetry}>
-        Try again with this
-      </Button>
     </>
   );
 }
