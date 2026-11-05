@@ -1,0 +1,167 @@
+{
+  "slug": "northwind-pay",
+  "company": "Northwind Pay",
+  "role": "Frontend engineer",
+  "text": "Northwind Pay is a fictional company looking for a frontend engineer. Build reliable product features, explain technical trade-offs, and measure outcomes with the team.",
+  "requirements": [
+    "Build reliable product features",
+    "Explain technical trade-offs",
+    "Measure outcomes with the team"
+  ],
+  "about": "Fictional example for exploring Rehearse.",
+  "provenance": "pending-owner-generation",
+  "questions": [
+    {
+      "id": "demo-northwind-pay-1",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-0",
+      "prompt": "How would you clarify the first problem to solve?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Build reliable product features"
+    },
+    {
+      "id": "demo-northwind-pay-2",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-1",
+      "prompt": "Tell me about a time you made a technical trade-off.",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Explain technical trade-offs"
+    },
+    {
+      "id": "demo-northwind-pay-3",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-2",
+      "prompt": "How would you measure the outcome of a change?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Measure outcomes with the team"
+    },
+    {
+      "id": "demo-northwind-pay-4",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-3",
+      "prompt": "How would you test a change before release?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Build reliable product features"
+    },
+    {
+      "id": "demo-northwind-pay-5",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-4",
+      "prompt": "Tell me about a delivery constraint you handled.",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Explain technical trade-offs"
+    },
+    {
+      "id": "demo-northwind-pay-6",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-5",
+      "prompt": "How would you work with other roles on this team?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Measure outcomes with the team"
+    },
+    {
+      "id": "demo-northwind-pay-7",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-6",
+      "prompt": "How would you explain a result to stakeholders?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Build reliable product features"
+    },
+    {
+      "id": "demo-northwind-pay-8",
+      "type": "behavioral",
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "topic": "demo-7",
+      "prompt": "What would you investigate before choosing an approach?",
+      "follow_up_hints": ["What would you do differently?", "How would you check the outcome?"],
+      "what_good_looks_like": [
+        "Clear context and constraint",
+        "Explains their own action",
+        "Names an observable outcome"
+      ],
+      "time_limit_s": 120,
+      "status": "active",
+      "added_in": "1.0.0",
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+      "groundingQuote": "Explain technical trade-offs"
+    }
+  ]
+}

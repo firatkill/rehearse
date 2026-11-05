@@ -8,7 +8,7 @@ const PayloadSchema = z
     v: z.literal(1),
     sid: z.uuid(),
     index: z.number().int().min(0).max(4),
-    questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+    questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
     prompt: z.string().min(1).max(FEEDBACK_LIMITS.FOLLOW_UP_MAX_CHARS),
     exp: z.number().int(),
   })

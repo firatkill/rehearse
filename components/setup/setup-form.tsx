@@ -1,4 +1,6 @@
 'use client';
+import { APP_EDITION } from '@/lib/edition';
+import { DemoJobEntry } from './demo-job-entry';
 import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
 import {
@@ -52,10 +54,12 @@ export function SetupForm({
   demoMode,
   sessionsPerDay,
   initialSeed,
+  demoJob,
 }: {
   demoMode: 'on' | 'readonly';
   sessionsPerDay: number;
   initialSeed: string | null;
+  demoJob?: string;
 }) {
   const router = useRouter();
   const repository = useRepository();
@@ -118,6 +122,7 @@ export function SetupForm({
     setError(null);
     setPending(true);
     const result = await startSession({
+      ...(demoJob ? { demoJob } : {}),
       role: sessionSetup.role,
       seniority: sessionSetup.seniority,
       types: sessionSetup.types,
@@ -187,6 +192,11 @@ export function SetupForm({
           void submit();
         }}
       >
+        {demoJob && (
+          <p>
+            Selected example job: <SafeText text={demoJob} />
+          </p>
+        )}
         <div className="setup-paths">
           <section className="setup-card setup-job" id="job-post" aria-labelledby="job-heading">
             <Eyebrow>Got an interview?</Eyebrow>
@@ -195,21 +205,28 @@ export function SetupForm({
               Paste the link or the text of the post. Rehearse will build questions from what the
               role asks for.
             </p>
-            <label htmlFor="job-post-input">Job post link or text</label>
-            <textarea
-              id="job-post-input"
-              rows={3}
-              disabled
-              placeholder="https://… or paste the description"
-              aria-describedby="job-coming"
-            />
-            <p id="job-coming">
-              Coming next: three example posts in the demo, and your own job posts in the
-              self-hosted version. Use role-based practice below today.
-            </p>
-            <Button type="button" disabled aria-describedby="job-coming">
-              Read the job post
-            </Button>
+            {APP_EDITION === 'demo' ? (
+              <DemoJobEntry />
+            ) : (
+              <>
+                {' '}
+                <label htmlFor="job-post-input">Job post link or text</label>
+                <textarea
+                  id="job-post-input"
+                  rows={3}
+                  disabled
+                  placeholder="https://… or paste the description"
+                  aria-describedby="job-coming"
+                />
+                <p id="job-coming">
+                  Coming next: three example posts in the demo, and your own job posts in the
+                  self-hosted version. Use role-based practice below today.
+                </p>
+                <Button type="button" disabled aria-describedby="job-coming">
+                  Read the job post
+                </Button>
+              </>
+            )}
           </section>
           <section className="setup-card setup-role" aria-labelledby="role-heading">
             <Eyebrow>General practice</Eyebrow>

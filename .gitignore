@@ -49,3 +49,5 @@ test-results/
 .data/
 
 .next-demo/
+
+content/demo/generation-cache.json

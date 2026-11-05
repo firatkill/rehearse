@@ -1,3 +1,4 @@
+import { APP_EDITION } from '@/lib/edition';
 import { DIMENSIONS } from '@/lib/config';
 import { DIMENSION_LABELS } from '@/lib/labels';
 import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
@@ -36,6 +37,7 @@ export function FeedbackCard({
         <header className="feedback-verdict">
           <h2 id={titleId} tabIndex={-1} data-phase-focus={focus || undefined} className="sr-only">
             Feedback on question {answer.index + 1}
+            {APP_EDITION === 'demo' && <span className="block text-sm">Sample feedback</span>}
           </h2>
           <p className="feedback-verdict-text">
             <SafeText text={feedback.scores[lowest].rationale} />

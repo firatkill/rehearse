@@ -1,3 +1,4 @@
+import { demoJobs } from '@/lib/demo/content';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getEnv } from '@/lib/env';
@@ -7,7 +8,7 @@ export const metadata: Metadata = { title: 'Set up a session · Rehearse' };
 export default async function SetupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ seed?: string | string[] }>;
+  searchParams: Promise<{ seed?: string | string[]; demoJob?: string }>;
 }) {
   const env = getEnv();
   const query = await searchParams;
@@ -26,6 +27,9 @@ export default async function SetupPage({
         </section>
       ) : (
         <SetupForm
+          {...(env.APP_EDITION === 'demo' && demoJobs.some((job) => job.slug === query.demoJob)
+            ? { demoJob: query.demoJob }
+            : {})}
           demoMode={env.DEMO_MODE}
           sessionsPerDay={env.RATE_LIMIT_SESSIONS_PER_IP_DAILY}
           initialSeed={

@@ -1,10 +1,11 @@
+import { demoFeedback, demoJobs } from '@/lib/demo/content';
 import { randomUUID } from 'node:crypto';
 import { getEnv } from '@/lib/env';
 import { AppError } from '@/lib/errors';
 import { SESSION } from '@/lib/config';
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { StartRequestSchema, StartResponseSchema } from '@/lib/api/contracts';
-import { getBank } from '@/lib/questions/bank';
+import { getInterviewBank as getBank } from '@/lib/demo/catalog';
 import { selectQuestions, newSeed } from '@/lib/questions/select';
 import { toSnapshot } from '@/lib/questions/schema';
 import { getLimiter } from '@/lib/ratelimit';
@@ -30,17 +31,36 @@ export async function POST(req: Request): Promise<Response> {
     const body = parsed.data;
     const bank = getBank();
     const seed = body.seed ?? newSeed();
-    const questions = selectQuestions(bank.questions, { ...body, seed }).map(toSnapshot);
+    const demoJob =
+      body.demoJob === undefined ? undefined : demoJobs.find((job) => job.slug === body.demoJob);
+    if (body.demoJob !== undefined && (env.APP_EDITION !== 'demo' || !demoJob))
+      return jsonError('VALIDATION_FAILED', requestId);
+    const questions = selectQuestions(
+      demoJob
+        ? demoJob.questions
+        : env.APP_EDITION === 'demo'
+          ? bank.questions.filter((q) => demoFeedback.some((item) => item.questionId === q.id))
+          : bank.questions,
+      {
+        ...body,
+        seed,
+        ...(env.APP_EDITION === 'demo' ? { dimension: null } : {}),
+        ...(demoJob ? { types: ['behavioral'] as const } : {}),
+      },
+    ).map(toSnapshot);
     const sessionId = randomUUID();
     const reason = env.DEMO_MODE === 'readonly' ? 'readonly' : body.feedback ? null : 'practice';
     let token: string | null = null;
     let tokenExpiresAt: string | null = null;
     if (reason === null) {
-      const quota = await checkStart(
-        getLimiter(),
-        visitorId(clientIp(req.headers), env.IP_HASH_SECRET, new Date()),
-        env,
-      );
+      const quota =
+        env.APP_EDITION === 'demo'
+          ? { ok: true as const }
+          : await checkStart(
+              getLimiter(),
+              visitorId(clientIp(req.headers), env.IP_HASH_SECRET, new Date()),
+              env,
+            );
       if (!quota.ok)
         return jsonError(quota.code, requestId, { resetAt: quota.resetAt.toISOString() });
       const iat = Math.floor(Date.now() / 1000);

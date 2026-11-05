@@ -1,3 +1,4 @@
+import { DEMO } from '@/lib/config';
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
 import { getEnv } from '@/lib/env';
@@ -5,7 +6,7 @@ import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/error
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { SummaryRequestSchema, SummaryResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
-import { getBank } from '@/lib/questions/bank';
+import { getInterviewBank as getBank } from '@/lib/demo/catalog';
 import { getLimiter } from '@/lib/ratelimit';
 import { checkSummary } from '@/lib/ratelimit/quotas';
 import { LimiterUnavailableError } from '@/lib/ratelimit/types';
@@ -69,6 +70,32 @@ export async function POST(req: Request): Promise<Response> {
       )
     )
       return fail('TOKEN_SCOPE');
+    if (env.APP_EDITION === 'demo') {
+      const summary = {
+        headline: 'Sample session summary',
+        paragraph:
+          'This is pre-written sample content. Your answer counts and delivery metrics are calculated from your own session.',
+        focus_notes: [],
+        next_practice:
+          'Try another question, or run the full version for feedback on your own answers.',
+        generated_at: new Date().toISOString(),
+        model: 'sample',
+        prompt_version: DEMO.PROMPT_VERSION,
+      };
+      return Response.json(
+        SummaryResponseSchema.parse({
+          summary,
+          meta: {
+            model: 'sample',
+            promptVersion: DEMO.PROMPT_VERSION,
+            latencyMs: 0,
+            usage: { inputTokens: 0, outputTokens: 0 },
+            costUsd: 0,
+          },
+        }),
+        { headers: { 'Cache-Control': 'no-store' } },
+      );
+    }
     const quota = await checkSummary(getLimiter(), token.payload, env);
     if (!quota.ok) return fail(quota.code, quota.resetAt);
     const provider = getProvider();
