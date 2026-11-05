@@ -400,10 +400,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 1,
-  RECORD_SCHEMA_VERSION: 1, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 2,
+  RECORD_SCHEMA_VERSION: 2, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 1,
+  EXPORT_FORMAT_VERSION: 2,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -1308,6 +1308,16 @@ Migration and portability requirements (D-75, D-77):
 - SQLite: ordered migrations in `lib/storage/sqlite/migrations/`, a persistent Docker volume, and Zod validation on reads and writes. Server storage is allowed only in full; never log transcript/model text.
 - Export/import: one file format in both editions, including attempts; bump the export format version and provide `EXPORT_MIGRATIONS` for old exports alongside record migrations. Preserve D-68's envelope/per-bundle validation and atomic valid-bundle writes. Tokens remain non-portable. The v1 `.max(5)` answer-slot cap is not an attempt-count limit.
 - One contract suite runs against memory, IndexedDB (`fake-indexeddb`) and SQLite (temporary file). Include UT-14-style upgrades, attempt export/import round-trips and full E2E with a temporary `DATA_DIR`.
+
+### 7.9 Attempt contract (V-20, D-111)
+
+`STORAGE.DB_VERSION`, `RECORD_SCHEMA_VERSION` and `EXPORT_FORMAT_VERSION` become 2. Shipped migration 1 remains unchanged. Migration 2 rewrites valid v1 session/answer records through the record migration; malformed records remain subject to the existing skipped-record handling. Export migration 1 advances the envelope; each bundle still migrates/validates independently (D-68).
+
+SessionRecord retains its fields with schemaVersion 2. AnswerRecord retains the working response and numeric `attempts` transport-failure counter, adds `attemptRecords: AttemptRecord[]` and `bestAttemptId: string | null`, and uses schemaVersion 2. AttemptRecord is an immutable completed response snapshot: `id`, `ordinal` (positive integer), `sessionId`, `index`, `questionId`, `mode`, `status` (scored or saved), `rawTranscript`, `transcript`, `timing`, `metrics`, `feedback`, `feedbackMeta`, `createdAt`, `updatedAt`. Existing field schemas and text bounds apply. Its deterministic id is `sessionId:index:ordinal`; ordinal is consecutive from 1 within its slot. Validate ownership, uniqueness, order and best reference on every read/write/import. Scored attempts require feedback; saved attempts have none.
+
+Only successful feedback or saving completes a snapshot. Drafts/review/provider failures are the working response, not extra completed attempts. Retry after feedback clears the working text/timing/feedback, preserves snapshots, resets the recorder and enters answering; it does not call the provider. Submission calls the existing feedback endpoint once. Attempts are appended, never edited by later drafts. Best means highest scored overall, earliest on ties; no scored attempt means null. Report/summary/Markdown projections use that best snapshot, with the full history retained for tabs and tries. Older completed answers migrate to ordinal 1; older drafts retain their working text with empty history. Existing tokens remain subject to their current expiry/call allowance until V-33 changes edition limits.
+
+V-20 tests: TC-146 (unit/component/E2E lifecycle and deltas), TC-147 (UT-14 upgrade, UT-15 old/new export portability and ownership validation).
 
 ## 8. Module boundaries
 

@@ -12,6 +12,7 @@ import {
 } from '@/lib/labels';
 import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
 import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
+import { bestAnswer } from '@/lib/storage/attempts';
 import { aggregate } from '@/lib/report/aggregate';
 import { reportMarkdown, reportFilename } from '@/lib/report/markdown';
 import { SafeText } from '@/components/common/safe-text';
@@ -21,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import { TrendChart } from './trend-chart';
 export function ReportView({
   session,
-  answers,
+  answers: allAnswers,
   source = 'live',
   summaryLoading = false,
   onRetry,
@@ -34,6 +35,7 @@ export function ReportView({
   onRetry?: () => void;
   online?: boolean;
 }) {
+  const answers = allAnswers.map(bestAnswer);
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const previous = new Map<HTMLDetailsElement, boolean>();
@@ -225,6 +227,8 @@ export function ReportView({
               <summary>
                 Question {index + 1}: <SafeText text={question.prompt.slice(0, 80)} />
                 {question.prompt.length > 80 ? '…' : ''} · {label}
+                {answer &&
+                  ` · ${answer.attemptRecords.length} ${answer.attemptRecords.length === 1 ? 'try' : 'tries'}`}
               </summary>
               <div className="space-y-4 py-4">
                 {answer?.feedback ? (

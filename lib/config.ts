@@ -170,10 +170,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 1,
-  RECORD_SCHEMA_VERSION: 1, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 2,
+  RECORD_SCHEMA_VERSION: 2, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 1,
+  EXPORT_FORMAT_VERSION: 2,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 

@@ -1,7 +1,11 @@
+import { migrateRecord } from './migrations';
 import { z } from 'zod';
 import { SessionRecordSchema, AnswerRecordSchema } from './schema';
 export const SampleFileSchema = z
-  .object({ session: SessionRecordSchema, answers: z.array(AnswerRecordSchema).length(3) })
+  .object({
+    session: z.preprocess((value) => migrateRecord(value), SessionRecordSchema),
+    answers: z.array(z.preprocess((value) => migrateRecord(value), AnswerRecordSchema)).length(3),
+  })
   .strict()
   .superRefine((value, ctx) => {
     const { session, answers } = value;

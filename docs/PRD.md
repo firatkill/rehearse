@@ -519,6 +519,10 @@ The room desktop question is 40px/1.18. Each actionable phase has one primary ac
 
 Voice preview failure status: “Your browser didn't start speaking. Try another voice, or restart the browser.” It clears on a new preview. A speech start failure in the room keeps the question captions visible and announces once: “Read-aloud didn’t work, so the question is shown as text.” No start within 2.5 seconds is an error, not successful completion. Preview speaks directly in its click; the room retains its required priming.
 
+### 9.15 Attempts (V-20)
+
+After feedback, “Try again with this” starts a fresh response to the same question. Completed attempts remain available through “Attempt 1”, “Attempt 2”, … tabs. Scores show “Change from previous attempt” per dimension; the first attempt has no comparison. Continue with “Next question” or “Finish and see report”. Reports use the highest-scoring attempt, earliest on ties, and show “1 try” or “N tries”. Retrying does not itself make a feedback call; submitting the new response does. Existing token expiry and call allowance still apply until V-33.
+
 ## 10. Content safety and prompt injection
 
 ### 10.1 Threats
@@ -738,3 +742,5 @@ V-11 public shell copy: nav “Practise”, “Job post”, “Progress”, “H
 | D-109 | 2026-11-05 | Preview goes directly to speak synchronously for an empty queue without priming; retain room priming. | Owner item 7; explicitly approved V2 review follow-up |
 
 | D-110 | 2026-11-05 | Verify a never-starting fake synth and normal start/end with unit/component tests; no real speech calls. | Owner item 8; explicitly approved V2 review follow-up |
+
+| D-111 | 2026-11-05 | V-20 stores immutable completed attempt snapshots beside the working response, uses deterministic slot/ordinal IDs, chooses highest overall with earliest tie, migrates v1 completed answers to attempt 1, and preserves drafts and export portability. Existing transport failure counters and token limits are distinct from completed attempts. | Guide §0/§4.2/V-20 and TRD §7.8 delegate exact schema/tie details; D-77 |

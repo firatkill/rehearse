@@ -1,9 +1,12 @@
+import { migrateRecord } from '@/lib/storage/migrations';
 import { expect, test } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import sample from '../../content/sample/session.json';
 import { SessionRecordSchema, AnswerRecordSchema } from '@/lib/storage/schema';
 import { installSpeechMock } from './speech-mock';
 import { scenarios, uniqueIp } from './helpers';
+const parseSession = (value: unknown) => SessionRecordSchema.parse(migrateRecord(value));
+const parseAnswer = (value: unknown) => AnswerRecordSchema.parse(migrateRecord(value));
 
 test.use({ locale: 'tr-TR', timezoneId: 'Europe/Istanbul' });
 
@@ -30,7 +33,7 @@ test('TC-132 D-94 Turkish locale keeps sample, history and report dates stable w
   await page.goto('/history');
   await expect(page.getByRole('heading', { name: 'No sessions yet' })).toBeVisible();
   const id = randomUUID();
-  const session = SessionRecordSchema.parse({
+  const session = parseSession({
     ...sample.session,
     id,
     origin: 'import',
@@ -38,9 +41,7 @@ test('TC-132 D-94 Turkish locale keeps sample, history and report dates stable w
     token: null,
     tokenExpiresAt: null,
   });
-  const answers = sample.answers.map((answer) =>
-    AnswerRecordSchema.parse({ ...answer, sessionId: id }),
-  );
+  const answers = sample.answers.map((answer) => parseAnswer({ ...answer, sessionId: id }));
   await page.evaluate(
     async (bundle) => {
       await new Promise<void>((resolve, reject) => {

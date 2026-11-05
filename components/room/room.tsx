@@ -18,7 +18,7 @@ import { ThinkTimer } from './think-timer';
 import { TextAnswer } from './text-answer';
 import { ReviewPanel } from './review-panel';
 import { ResumeCard } from './resume-card';
-import { FeedbackCard } from './feedback-card';
+import { AttemptFeedback } from './attempt-feedback';
 import { FeedbackSkeleton } from './feedback-skeleton';
 import { FeedbackError } from './feedback-error';
 import { DeliveryMetrics } from './delivery-metrics';
@@ -128,7 +128,7 @@ export function Room({
   const question = session.questions[index];
   const answer = state.answers.find((a) => a.index === index);
   const answered = state.answers.filter(
-    (a) => a.status === 'saved' || a.status === 'scored',
+    (a) => a.status === 'saved' || a.status === 'scored' || a.attemptRecords.length > 0,
   ).length;
   const dialog = state.dialog;
   const start = () => {
@@ -283,8 +283,16 @@ export function Room({
       )}
       {kind === 'feedback' && answer && question && (
         <>
-          <FeedbackCard answer={answer} question={question} />
+          <AttemptFeedback
+            key={answer.attemptRecords.length}
+            answer={answer}
+            question={question}
+            onRetry={() => {
+              send({ type: 'RETRY_ANSWER' });
+            }}
+          />
           <Button
+            variant="text"
             onClick={() => {
               send({ type: 'NEXT' });
             }}

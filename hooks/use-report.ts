@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { bestAnswer } from '@/lib/storage/attempts';
 import { DIMENSIONS, type Dimension } from '@/lib/config';
 import { requestSummary } from '@/lib/api/client';
 import type { SummaryRequest } from '@/lib/api/contracts';
@@ -63,6 +64,7 @@ export function useReport(id: string) {
     const token = data.session.token;
     if (!token) return;
     const items: SummaryRequest['items'] = data.answers
+      .map(bestAnswer)
       .filter((a) => a.feedback !== null)
       .flatMap((a) => {
         if (!a.feedback) return [];

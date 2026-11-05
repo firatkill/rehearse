@@ -1,3 +1,4 @@
+import { migrateRecord } from '@/lib/storage/migrations';
 import { IDBFactory, IDBKeyRange, IDBObjectStore as FakeObjectStore } from 'fake-indexeddb';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fixture from '../fixtures/export-v1.json';
@@ -9,7 +10,14 @@ import { migrateExport, readImport, ImportFileError } from '@/lib/storage/export
 import { HTTP, ANSWER } from '@/lib/config';
 import { getBank } from '@/lib/questions/bank';
 import { toSnapshot } from '@/lib/questions/schema';
-const exportFile = ExportFileSchema.parse(fixture);
+const exportFile = ExportFileSchema.parse({
+  ...fixture,
+  formatVersion: 2,
+  sessions: fixture.sessions.map((bundle) => ({
+    session: migrateRecord(bundle.session),
+    answers: bundle.answers.map((answer) => migrateRecord(answer)),
+  })),
+});
 const bundle = exportFile.sessions[0];
 if (!bundle) throw new Error('Fixture missing');
 const first = bundle;
@@ -114,25 +122,25 @@ it('TC-100 UT-15 rejects oversize before reading and maps format/newer errors', 
     file({ ...exportFile, sessions: Array(1001).fill(null) }),
   ])
     await expect(readImport(input)).rejects.toMatchObject({ kind: 'format' });
-  await expect(readImport(file({ ...exportFile, formatVersion: 2 }))).rejects.toMatchObject({
+  await expect(readImport(file({ ...exportFile, formatVersion: 3 }))).rejects.toMatchObject({
     kind: 'newer',
   });
 });
 it('TC-100 UT-15 ordered export migrations reject missing or non-advancing transforms', () => {
   expect(
-    migrateExport(exportFile, 3, {
+    migrateExport(fixture, 3, {
       1: (value) => ({ ...(value as object), formatVersion: 2 }),
       2: (value) => ({ ...(value as object), formatVersion: 3 }),
     }),
   ).toMatchObject({ formatVersion: 3 });
-  expect(() => migrateExport(exportFile, 2)).toThrow(ImportFileError);
+  expect(() => migrateExport(fixture, 2, {})).toThrow(ImportFileError);
   expect(() =>
-    migrateExport(exportFile, 3, { 1: (value) => ({ ...(value as object), formatVersion: 3 }) }),
+    migrateExport(fixture, 3, { 1: (value) => ({ ...(value as object), formatVersion: 3 }) }),
   ).toThrow(ImportFileError);
-  expect(() => migrateExport(exportFile, 2, { 1: (value) => value })).toThrow(ImportFileError);
-  expect(() => migrateExport(exportFile, 2, { 1: () => null })).toThrow(ImportFileError);
+  expect(() => migrateExport(fixture, 2, { 1: (value) => value })).toThrow(ImportFileError);
+  expect(() => migrateExport(fixture, 2, { 1: () => null })).toThrow(ImportFileError);
   expect(() =>
-    migrateExport(exportFile, 2, {
+    migrateExport(fixture, 2, {
       1: () => {
         throw new Error();
       },
@@ -153,6 +161,8 @@ it('TC-100 NFR-18 UT-15 five answers with maximal transcripts serialise below 10
       AnswerRecordSchema.parse({
         ...first.answers[0],
         sessionId: session.id,
+        attemptRecords: [],
+        bestAttemptId: null,
         index,
         questionId: question.id,
         rawTranscript: 'x'.repeat(ANSWER.MAX_CHARS),

@@ -1,9 +1,17 @@
+import { migrateRecord } from '@/lib/storage/migrations';
 import { expect, it, vi } from 'vitest';
 import fixture from '../fixtures/export-v1.json';
 import { ExportFileSchema } from '@/lib/storage/schema';
 import { downloadExport } from '@/lib/storage/export';
 it('TC-099 FR-37 download uses a dated JSON Blob and revokes its URL after clicking', () => {
-  const file = ExportFileSchema.parse(fixture);
+  const file = ExportFileSchema.parse({
+    ...fixture,
+    formatVersion: 2,
+    sessions: fixture.sessions.map((bundle) => ({
+      session: migrateRecord(bundle.session),
+      answers: bundle.answers.map((answer) => migrateRecord(answer)),
+    })),
+  });
   const create = vi.fn<(blob: Blob) => string>().mockReturnValue('blob:export');
   const revoke = vi.fn();
   vi.stubGlobal('URL', { createObjectURL: create, revokeObjectURL: revoke });

@@ -1,3 +1,4 @@
+import { completeAttempt } from '../lib/storage/attempts';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { loadEnvFile } from 'node:process';
@@ -102,29 +103,33 @@ async function main() {
             cachedInput: env.PRICE_CACHED_INPUT_PER_MTOK,
           }) * 1e6,
         ) / 1e6;
-    answers.push({
-      schemaVersion: STORAGE.RECORD_SCHEMA_VERSION,
-      sessionId: id,
-      index,
-      questionId: question.id,
-      mode: 'voice',
-      status: 'scored',
-      rawTranscript: item.transcript,
-      transcript: item.transcript,
-      timing,
-      metrics,
-      feedback: result.feedback,
-      feedbackMeta: {
-        model: provider.modelId,
-        promptVersion: FEEDBACK_PROMPT_VERSION,
-        latencyMs: result.latencyMs,
-        costUsd,
-      },
-      attempts: 1,
-      notice: null,
-      createdAt,
-      updatedAt: new Date().toISOString(),
-    });
+    answers.push(
+      completeAttempt({
+        schemaVersion: STORAGE.RECORD_SCHEMA_VERSION,
+        sessionId: id,
+        index,
+        questionId: question.id,
+        mode: 'voice',
+        status: 'scored',
+        rawTranscript: item.transcript,
+        transcript: item.transcript,
+        timing,
+        metrics,
+        feedback: result.feedback,
+        feedbackMeta: {
+          model: provider.modelId,
+          promptVersion: FEEDBACK_PROMPT_VERSION,
+          latencyMs: result.latencyMs,
+          costUsd,
+        },
+        attempts: 1,
+        attemptRecords: [],
+        bestAttemptId: null,
+        notice: null,
+        createdAt,
+        updatedAt: new Date().toISOString(),
+      }),
+    );
   }
   const items = answers.flatMap((answer) => {
     const f = answer.feedback;
