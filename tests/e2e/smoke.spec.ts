@@ -3,7 +3,7 @@ import { uniqueIp, scenarios, serverUrl } from './helpers';
 import { installSpeechMock } from './speech-mock';
 import { HealthResponseSchema } from '../../lib/api/contracts';
 
-for (const offset of [0, 1, 2, 3]) {
+for (const offset of [0, 1, 2]) {
   test(`TC-010 T-04 health on server ${offset}`, async ({ page }, testInfo) => {
     await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(testInfo) });
     await page.addInitScript(installSpeechMock, scenarios.happy);

@@ -3843,12 +3843,13 @@ export default defineConfig({
     server(basePort + 0, { DEMO_MODE: 'on' }),
     server(basePort + 1, { DEMO_MODE: 'readonly' }),
     server(basePort + 2, { DEMO_MODE: 'off' }),
-    server(basePort + 3, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
   ],
 });
 ```
 
 All `@isolated` tests live in `tests/e2e/isolated.spec.ts` with `test.describe.configure({ mode: 'serial' })`. If the installed Playwright supports a per-project `workers` option (A-23), also set `workers: 1` on `isolated`. Every test sets a unique `x-real-ip`. Memory limiter state lives in each server process; with `reuseExistingServer` locally, `E2E_RUN_ID` keeps IPs unique across runs on the same day. No `waitForTimeout`; checks use the 3 s default. The only longer waits: the `mock:slow` skeleton test (`toBeVisible({ timeout: 6000 })`, with a comment that the mock deliberately delays 4 s) and `webServer` start-up.
+
+D-71: The fourth server (base port + 3, global cap 2) is owned by a test-scoped fixture in `tests/setup/cap-server.ts`. Start it fresh on every attempt, including retries, and stop it in `finally`. Its startup may use the existing 120 s server-start allowance; ordinary assertions remain 3 s and tests 90 s. The isolated test retains health assertions for this server.
 
 Prerequisite: `pnpm build`.
 
@@ -3885,6 +3886,8 @@ Prerequisite: `pnpm build`.
 | E2E-29 | `not-found.spec.ts`            | Unknown session id → "Session not found"; unknown route → 404 copy                                                                                                                                                                                                                                                                                                             | PRD §9.13                |
 | E2E-30 | `a11y.spec.ts`                 | axe (`withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])`; axe checks only part of WCAG, the rest is covered by E2E-24 and the manual passes in T-41) on `/`, `/setup`, room intro, recording, review, feedback, a speech-error state, report, `/history` (empty and filled), `/sample`, `/how-it-works`, `/privacy`, in both themes: zero serious or critical | NFR-08                   |
 | E2E-31 | `pages.spec.ts`                | `/how-it-works` sections in order, rubric table rendered from the constant, thresholds and latest eval numbers, `#privacy` anchor; `/privacy` headings and the speech-services paragraph                                                                                                                                                                                       | FR-52                    |
+
+E2E-15 stages the `/how-it-works` and `/privacy` availability assertions until T-40 builds them; M5 verifies all existing routes (D-70).
 
 ### 25.5 Coverage
 

@@ -57,6 +57,5 @@ export default defineConfig({
     server(basePort + 0, { DEMO_MODE: 'on' }),
     server(basePort + 1, { DEMO_MODE: 'readonly' }),
     server(basePort + 2, { DEMO_MODE: 'off' }),
-    server(basePort + 3, { DEMO_MODE: 'on', RATE_LIMIT_GLOBAL_LLM_DAILY: '2' }),
   ],
 });
