@@ -12,16 +12,16 @@ export default async function SetupPage({
   const env = getEnv();
   const query = await searchParams;
   return (
-    <div className="space-y-4 py-8">
-      <h1>Set up a practice session</h1>
-      <p>Choose what you want to practise. You can change the voice and speed at any time.</p>
+    <div className="setup-page">
+      <h1>What are you preparing for?</h1>
+      <p>Pick one. You can change the voice, speed and length before you start.</p>
       {env.DEMO_MODE === 'off' ? (
         <section className="space-y-4">
           <h2>The practice room is offline for maintenance</h2>
           <p>You can still read the sample report and your saved sessions.</p>
           <div className="flex gap-4">
             <Link href="/sample">See the sample report</Link>
-            <Link href="/history">Open history</Link>
+            <Link href="/progress">Open progress</Link>
           </div>
         </section>
       ) : (

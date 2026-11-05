@@ -14,6 +14,7 @@ import { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } from '@/lib/label
 import { startSession } from '@/lib/api/client';
 import { SetupSchema, SessionRecordSchema, type Setup } from '@/lib/storage/schema';
 import { useRepository } from '@/hooks/use-repository';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/button';
 import { SafeText } from '@/components/common/safe-text';
 import { CapabilityNotice } from './capability-notice';
@@ -86,6 +87,7 @@ export function SetupForm({
     kind: 'quota' | 'limiter_unavailable';
     resetAt?: string;
   } | null>(null);
+  const attemptedSetup = useRef<Setup | null>(null);
   const firstType = useRef<HTMLInputElement>(null);
   const validSeed = initialSeed !== null && SESSION.SEED_PATTERN.test(initialSeed);
   const change = (patch: Partial<Setup>) => {
@@ -97,22 +99,23 @@ export function SetupForm({
       /* Session remains available without preferences. */
     }
   };
-  async function submit(reason?: 'quota' | 'limiter_unavailable') {
+  async function submit(reason?: 'quota' | 'limiter_unavailable', sessionSetup: Setup = setup) {
     if (pending) return;
-    if (setup.types.length === 0) {
+    if (sessionSetup.types.length === 0) {
       setValidation(true);
       firstType.current?.focus();
       return;
     }
+    attemptedSetup.current = sessionSetup;
     setValidation(false);
     setError(null);
     setPending(true);
     const result = await startSession({
-      role: setup.role,
-      seniority: setup.seniority,
-      types: setup.types,
-      length: setup.length,
-      mode: setup.mode,
+      role: sessionSetup.role,
+      seniority: sessionSetup.seniority,
+      types: sessionSetup.types,
+      length: sessionSetup.length,
+      mode: sessionSetup.mode,
       feedback: reason === undefined,
       ...(validSeed ? { seed: initialSeed } : {}),
     });
@@ -143,8 +146,8 @@ export function SetupForm({
           updatedAt: now,
           completedAt: null,
           status: 'in_progress',
-          setup,
-          currentMode: setup.mode,
+          setup: sessionSetup,
+          currentMode: sessionSetup.mode,
           seed: data.seed,
           bankVersion: data.bankVersion,
           questions: data.questions,
@@ -164,131 +167,189 @@ export function SetupForm({
   }
   return (
     <>
+      <section className="setup-warmup" aria-labelledby="warmup-heading">
+        <div>
+          <h2 id="warmup-heading">Quick warm-up</h2>
+          <p>
+            {SESSION.LENGTHS[0]} questions with your last settings: {ROLE_LABELS[setup.role]} ·{' '}
+            {SENIORITY_LABELS[setup.seniority]} · {setup.mode === 'voice' ? 'Voice' : 'Typing'} ·
+            English
+          </p>
+        </div>
+        <Button
+          type="button"
+          disabled={pending}
+          onClick={() => {
+            void submit(undefined, { ...setup, length: SESSION.LENGTHS[0] });
+          }}
+        >
+          Start in one click
+        </Button>
+      </section>
       <CapabilityNotice capabilities={capabilities} />
       <form
-        className="space-y-6 py-6"
+        className="setup-form"
         onSubmit={(event) => {
           event.preventDefault();
           void submit();
         }}
       >
-        <fieldset className="space-y-2">
-          <legend>Role</legend>
-          <div className="flex flex-wrap gap-4">
-            {ROLES.map((role) => (
-              <label key={role} className="flex min-h-11 items-center gap-2">
-                <input
-                  type="radio"
-                  name="role"
-                  value={role}
-                  checked={setup.role === role}
-                  onChange={() => {
-                    change({ role });
-                  }}
-                />
-                {ROLE_LABELS[role]}
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        <fieldset className="space-y-2">
-          <legend>Seniority</legend>
-          <div className="flex flex-wrap gap-4">
-            {SENIORITIES.map((seniority) => (
-              <label key={seniority} className="flex min-h-11 items-center gap-2">
-                <input
-                  type="radio"
-                  name="seniority"
-                  value={seniority}
-                  checked={setup.seniority === seniority}
-                  onChange={() => {
-                    change({ seniority });
-                  }}
-                />
-                {SENIORITY_LABELS[seniority]}
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        <fieldset className="space-y-3">
-          <legend>Question types</legend>
-          {QUESTION_TYPES.map((type, index) => (
-            <div key={type}>
-              <label className="flex min-h-11 items-center gap-2">
-                <input
-                  ref={index === 0 ? firstType : undefined}
-                  type="checkbox"
-                  checked={setup.types.includes(type)}
-                  aria-invalid={validation || undefined}
-                  aria-describedby={`description-${type}${validation ? ' question-types-error' : ''}`}
-                  onChange={() => {
-                    change({
-                      types: setup.types.includes(type)
-                        ? setup.types.filter((t) => t !== type)
-                        : [...setup.types, type],
-                    });
-                  }}
-                />
-                {QUESTION_TYPE_LABELS[type]}
-              </label>
-              <p id={`description-${type}`}>{descriptions[type]}</p>
-            </div>
-          ))}
-          {validation && (
-            <p id="question-types-error" role="alert">
-              Choose at least one question type.
+        <div className="setup-paths">
+          <section className="setup-card setup-job" id="job-post" aria-labelledby="job-heading">
+            <Eyebrow>Got an interview?</Eyebrow>
+            <h2 id="job-heading">Practise for a job post</h2>
+            <p>
+              Paste the link or the text of the post. Rehearse will build questions from what the
+              role asks for.
             </p>
-          )}
-        </fieldset>
-        <fieldset className="space-y-2">
-          <legend>Length</legend>
-          {SESSION.LENGTHS.map((length) => (
-            <label key={length} className="mr-4 inline-flex min-h-11 items-center gap-2">
-              <input
-                type="radio"
-                name="length"
-                checked={setup.length === length}
-                onChange={() => {
-                  change({ length });
-                }}
-              />
-              {length === 3 ? '3 questions (about 10 minutes)' : '5 questions (about 20 minutes)'}
-            </label>
-          ))}
-        </fieldset>
-        <fieldset className="space-y-2">
-          <legend>Answer mode</legend>
-          {(['voice', 'text'] as const).map((mode) => (
-            <label key={mode} className="mr-4 inline-flex min-h-11 items-center gap-2">
-              <input
-                type="radio"
-                name="mode"
-                disabled={mode === 'voice' && capabilities !== null && !capabilities.recognition}
-                aria-describedby={
-                  mode === 'voice' && capabilities !== null && !capabilities.recognition
-                    ? 'voice-unavailable'
-                    : undefined
-                }
-                checked={setup.mode === mode}
-                onChange={() => {
-                  change({ mode });
-                }}
-              />
-              {mode === 'voice' ? 'Voice: answer out loud' : 'Text: type your answers'}
-            </label>
-          ))}
-        </fieldset>
+            <label htmlFor="job-post-input">Job post link or text</label>
+            <textarea
+              id="job-post-input"
+              rows={3}
+              disabled
+              placeholder="https://… or paste the description"
+              aria-describedby="job-coming"
+            />
+            <p id="job-coming">
+              Coming next: three example posts in the demo, and your own job posts in the
+              self-hosted version. Use role-based practice below today.
+            </p>
+            <Button type="button" disabled aria-describedby="job-coming">
+              Read the job post
+            </Button>
+          </section>
+          <section className="setup-card" aria-labelledby="role-heading">
+            <Eyebrow>General practice</Eyebrow>
+            <h2 id="role-heading">Practise by role</h2>
+            <fieldset className="setup-fieldset">
+              <legend>Role</legend>
+              <div className="setup-choices">
+                {ROLES.map((role) => (
+                  <label key={role} className="setup-choice">
+                    <input
+                      type="radio"
+                      name="role"
+                      value={role}
+                      checked={setup.role === role}
+                      onChange={() => {
+                        change({ role });
+                      }}
+                    />
+                    {ROLE_LABELS[role]}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset className="setup-fieldset">
+              <legend>Seniority</legend>
+              <div className="setup-choices">
+                {SENIORITIES.map((seniority) => (
+                  <label key={seniority} className="setup-choice">
+                    <input
+                      type="radio"
+                      name="seniority"
+                      value={seniority}
+                      checked={setup.seniority === seniority}
+                      onChange={() => {
+                        change({ seniority });
+                      }}
+                    />
+                    {SENIORITY_LABELS[seniority]}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset className="setup-fieldset setup-types">
+              <legend>Question types</legend>
+              {QUESTION_TYPES.map((type, index) => (
+                <div key={type}>
+                  <label className="setup-choice">
+                    <input
+                      ref={index === 0 ? firstType : undefined}
+                      type="checkbox"
+                      checked={setup.types.includes(type)}
+                      aria-invalid={validation || undefined}
+                      aria-describedby={`description-${type}${validation ? ' question-types-error' : ''}`}
+                      onChange={() => {
+                        change({
+                          types: setup.types.includes(type)
+                            ? setup.types.filter((t) => t !== type)
+                            : [...setup.types, type],
+                        });
+                      }}
+                    />
+                    {QUESTION_TYPE_LABELS[type]}
+                  </label>
+                  <p className="sr-only" id={`description-${type}`}>
+                    {descriptions[type]}
+                  </p>
+                </div>
+              ))}
+              {validation && (
+                <p id="question-types-error" role="alert">
+                  Choose at least one question type.
+                </p>
+              )}
+            </fieldset>
+          </section>
+        </div>
+        <section className="setup-options" aria-label="Session options">
+          <fieldset className="setup-fieldset">
+            <legend>Length</legend>
+            {SESSION.LENGTHS.map((length) => (
+              <label key={length} className="setup-choice">
+                <input
+                  type="radio"
+                  name="length"
+                  checked={setup.length === length}
+                  onChange={() => {
+                    change({ length });
+                  }}
+                />
+                {length === 3 ? '3 questions (about 10 minutes)' : '5 questions (about 20 minutes)'}
+              </label>
+            ))}
+          </fieldset>
+          <fieldset className="setup-fieldset">
+            <legend>Answer by</legend>
+            {(['voice', 'text'] as const).map((mode) => (
+              <label key={mode} className="setup-choice">
+                <input
+                  type="radio"
+                  name="mode"
+                  aria-label={
+                    mode === 'voice' ? 'Voice: answer out loud' : 'Text: type your answers'
+                  }
+                  disabled={mode === 'voice' && capabilities !== null && !capabilities.recognition}
+                  aria-describedby={
+                    mode === 'voice' && capabilities !== null && !capabilities.recognition
+                      ? 'voice-unavailable'
+                      : undefined
+                  }
+                  checked={setup.mode === mode}
+                  onChange={() => {
+                    change({ mode });
+                  }}
+                />
+                <span aria-hidden="true">{mode === 'voice' ? 'Voice' : 'Typing'}</span>
+                <span className="sr-only">
+                  {mode === 'voice' ? 'Voice: answer out loud' : 'Text: type your answers'}
+                </span>
+              </label>
+            ))}
+          </fieldset>
+        </section>
         {capabilities !== null && !capabilities.recognition && (
           <p id="voice-unavailable">Not available in this browser.</p>
         )}
         {capabilities?.synthesis && (
-          <VoicePicker setup={selected} {...voiceState} onChange={change} />
+          <details className="setup-interviewer" open>
+            <summary>Interviewer voice and speed</summary>
+            <VoicePicker setup={selected} {...voiceState} onChange={change} />
+          </details>
         )}
         {setup.mode === 'voice' && <MicCheck />}
-        <p>
-          Each visitor can get feedback on {sessionsPerDay} sessions a day so the demo stays free to
-          run.
-        </p>
+        <p>This preview allows feedback on {sessionsPerDay} sessions per visitor each day.</p>
         {initialSeed !== null && (
           <p>
             {validSeed ? (
@@ -311,11 +372,11 @@ export function SetupForm({
             sessionsPerDay={sessionsPerDay}
             pending={pending}
             onPractise={() => {
-              void submit(panel.kind);
+              void submit(panel.kind, attemptedSetup.current ?? setup);
             }}
             onRetry={() => {
               setPanel(null);
-              void submit();
+              void submit(undefined, attemptedSetup.current ?? setup);
             }}
           />
         ) : (
