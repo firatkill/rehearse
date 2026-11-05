@@ -27,6 +27,13 @@ test('TC-111 E2E-15 disabled demo keeps existing reports and history available',
   );
   await page.goto(`${origin}/sample`);
   await expect(page.getByRole('heading', { name: 'Session report', exact: true })).toBeVisible();
+  for (const [route, title] of [
+    ['/how-it-works', 'How it works'],
+    ['/privacy', 'Privacy'],
+  ] as const) {
+    await page.goto(`${origin}${route}`);
+    await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+  }
   await page.goto(`${origin}/history`);
   await expect(
     page.getByRole('heading', { name: 'Your practice history', exact: true }),
