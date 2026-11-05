@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FOLLOW_UP } from '@/lib/config';
 import type {
   AnswerRecord,
@@ -23,6 +23,10 @@ export function AttemptFeedback({
   onRetry: (feedback: NonNullable<AnswerRecord['feedback']>) => void;
   onFollowUp?: (parentAttemptId: string) => void;
 }) {
+  const panel = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    panel.current?.querySelector<HTMLElement>('[data-phase-focus]')?.focus();
+  }, []);
   const items = [...answer.attemptRecords, ...answer.followUpRecords];
   const [selected, setSelected] = useState(
     answer.followUp ? items.length - 1 : answer.attemptRecords.length - 1,
@@ -69,6 +73,7 @@ export function AttemptFeedback({
         ))}
       </div>
       <div
+        ref={panel}
         role="tabpanel"
         id={panelId}
         aria-labelledby={attempt ? `attempt-tab-${answer.index}-${selected}` : undefined}

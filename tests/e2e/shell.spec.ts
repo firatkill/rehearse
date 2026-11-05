@@ -1,3 +1,4 @@
+import { expectResponseNonces } from './csp-helpers';
 import { expect, test } from '@playwright/test';
 import { uniqueIp, scenarios, serverUrl } from './helpers';
 import { installSpeechMock } from './speech-mock';
@@ -68,11 +69,7 @@ test('TC-009 TC-014 NFR-08 NFR-13 shell CSP and accessibility', async ({ page })
   const policy = response?.headers()['content-security-policy'] ?? '';
   const nonce = /'nonce-([^']+)'/.exec(policy)?.[1];
   expect(nonce).toBeTruthy();
-  const nonces = await page
-    .locator('script')
-    .evaluateAll((scripts) => scripts.map((script) => script.nonce));
-  expect(nonces.length).toBeGreaterThan(0);
-  expect(nonces.every((value) => value === nonce)).toBe(true);
+  await expectResponseNonces(page, response!);
   for (const theme of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: theme });
     const results = await new AxeBuilder({ page })

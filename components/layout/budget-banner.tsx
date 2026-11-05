@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { BUDGET } from '@/lib/config';
-import { BudgetSchema } from '@/lib/api/budget-contract';
 export function BudgetBanner() {
   const [level, setLevel] = useState('none');
   useEffect(() => {
@@ -13,6 +12,7 @@ export function BudgetBanner() {
           signal: controller.signal,
         });
         if (!response.ok) return;
+        const { BudgetSchema } = await import('@/lib/api/budget-contract');
         const budget = BudgetSchema.parse(await response.json());
         if (!controller.signal.aborted) setLevel(budget.level);
       } catch {

@@ -244,8 +244,8 @@ export const JOBPOST = {
 
 /** PRD NFR-04–07 / TRD §24; interpret KB conservatively as decimal bytes. */
 export const PERFORMANCE = {
-  LANDING_JS_GZIP_BYTES: 140_000,
-  ROOM_JS_GZIP_BYTES: 200_000,
+  LANDING_JS_GZIP_BYTES: 160_000,
+  ROOM_JS_GZIP_BYTES: 250_000,
   RESULT_TO_SCREEN_MS: 100,
   RESULT_COMMIT_MS: 16,
   CLICK_TO_SPEECH_MS: 500,

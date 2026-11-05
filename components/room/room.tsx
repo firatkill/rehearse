@@ -7,7 +7,10 @@ import Link from 'next/link';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
 import { useShell } from '@/components/layout/shell';
 import { LiveRegion } from '@/components/common/live-region';
-import { ConfirmDialog } from '@/components/common/confirm-dialog';
+import dynamic from 'next/dynamic';
+const ConfirmDialog = dynamic(() =>
+  import('@/components/common/confirm-dialog').then((m) => m.ConfirmDialog),
+);
 import { SafeText } from '@/components/common/safe-text';
 import { Button } from '@/components/ui/button';
 import { ROLE_LABELS, SENIORITY_LABELS, ANSWER_MODE_LABELS } from '@/lib/labels';
@@ -21,7 +24,7 @@ import { ThinkTimer } from './think-timer';
 import { TextAnswer } from './text-answer';
 import { ReviewPanel } from './review-panel';
 import { ResumeCard } from './resume-card';
-import { AttemptFeedback } from './attempt-feedback';
+const AttemptFeedback = dynamic(() => import('./attempt-feedback').then((m) => m.AttemptFeedback));
 import { FeedbackSkeleton } from './feedback-skeleton';
 import { FeedbackError } from './feedback-error';
 import { DeliveryMetrics } from './delivery-metrics';
@@ -418,47 +421,49 @@ export function Room({
           </Button>
         )}
       </div>
-      <ConfirmDialog
-        open={dialog !== null}
-        title={
-          dialog === 'end'
-            ? 'End the session now?'
-            : dialog === 'skip'
-              ? 'Skip this question?'
-              : 'Record this answer again?'
-        }
-        description={
-          dialog === 'end'
-            ? answered
-              ? `Your report will include the ${answered} questions you’ve answered.`
-              : 'You haven’t answered any questions yet, so there will be no report.'
-            : dialog === 'skip'
-              ? 'It will be marked as skipped in your report.'
-              : 'Your current transcript will be discarded.'
-        }
-        confirm={
-          dialog === 'end' ? 'End session' : dialog === 'skip' ? 'Skip question' : 'Record again'
-        }
-        cancel={
-          dialog === 'end'
-            ? 'Keep going'
-            : dialog === 'skip'
-              ? 'Keep answering'
-              : 'Keep this answer'
-        }
-        onCancel={() => {
-          send({ type: 'CLOSE_DIALOG' });
-        }}
-        onConfirm={() => {
-          send(
+      {dialog !== null && (
+        <ConfirmDialog
+          open
+          title={
             dialog === 'end'
-              ? { type: 'CONFIRM_END' }
+              ? 'End the session now?'
               : dialog === 'skip'
-                ? { type: 'CONFIRM_SKIP' }
-                : { type: 'CONFIRM_RECORD_AGAIN', now: Date.now() },
-          );
-        }}
-      />
+                ? 'Skip this question?'
+                : 'Record this answer again?'
+          }
+          description={
+            dialog === 'end'
+              ? answered
+                ? `Your report will include the ${answered} questions you’ve answered.`
+                : 'You haven’t answered any questions yet, so there will be no report.'
+              : dialog === 'skip'
+                ? 'It will be marked as skipped in your report.'
+                : 'Your current transcript will be discarded.'
+          }
+          confirm={
+            dialog === 'end' ? 'End session' : dialog === 'skip' ? 'Skip question' : 'Record again'
+          }
+          cancel={
+            dialog === 'end'
+              ? 'Keep going'
+              : dialog === 'skip'
+                ? 'Keep answering'
+                : 'Keep this answer'
+          }
+          onCancel={() => {
+            send({ type: 'CLOSE_DIALOG' });
+          }}
+          onConfirm={() => {
+            send(
+              dialog === 'end'
+                ? { type: 'CONFIRM_END' }
+                : dialog === 'skip'
+                  ? { type: 'CONFIRM_SKIP' }
+                  : { type: 'CONFIRM_RECORD_AGAIN', now: Date.now() },
+            );
+          }}
+        />
+      )}
     </div>
   );
 }

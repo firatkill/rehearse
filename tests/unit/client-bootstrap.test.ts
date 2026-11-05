@@ -23,3 +23,9 @@ it('TC-193 client bootstrap disables Zod eval without changing schema validation
   expect(schema.safeParse({ count: 0 }).success).toBe(false);
   expect(schema.safeParse({ count: 1, unexpected: true }).success).toBe(false);
 });
+
+it('TC-196 app version is the scalar build-time value', async () => {
+  vi.stubEnv('NEXT_PUBLIC_APP_VERSION', '2.3.4-test');
+  const { APP_VERSION } = await import('@/lib/version');
+  expect(APP_VERSION).toBe('2.3.4-test');
+});

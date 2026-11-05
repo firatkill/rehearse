@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useRepository, useStorageStatus } from '@/hooks/use-repository';
 import { setStorageStatus, storageStatus } from '@/lib/storage/status';
 import { Button } from '@/components/ui/button';
-import { version } from '@/package.json';
+import { APP_VERSION as version } from '@/lib/version';
 import { downloadExport, ImportFileError } from '@/lib/storage/export';
 import { ConfirmDialog } from '@/components/common/confirm-dialog';
 export function DataControls({
