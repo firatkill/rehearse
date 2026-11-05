@@ -1,15 +1,19 @@
-import { createHash } from 'node:crypto';
 import { loadEnvFile } from 'node:process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { z } from 'zod';
 import { getEnv } from '@/lib/env';
 import { getProvider } from '@/lib/llm';
-import type { LlmProvider } from '@/lib/llm/provider';
+import { InvalidOutputError } from '@/lib/llm/provider';
 import { estimateCostUsd } from '@/lib/cost/estimate';
 import { getBank } from '@/lib/questions/bank';
 import { demoFeedback, demoJobs } from '@/lib/demo/content';
 import { DemoFeedbackSchema, DemoJobSchema } from '@/lib/demo/schema';
 import { generateFeedback } from '@/lib/feedback/generate';
+import { withValidatedGenerationCache } from './demo-generation-cache';
+import { normalizeFeedback } from '@/lib/feedback/normalize';
+import { FeedbackLlmSchema } from '@/lib/feedback/schema';
+import { sanitizeUntrusted } from '@/lib/prompts/sanitize';
+import { countWords } from '@/lib/metrics/words';
 import { FEEDBACK_PROMPT_VERSION } from '@/lib/prompts/version';
 async function main() {
   try {
@@ -31,7 +35,7 @@ async function main() {
     output: env.PRICE_OUTPUT_PER_MTOK,
     cachedInput: env.PRICE_CACHED_INPUT_PER_MTOK,
   };
-  const results: { operation: string; costUsd: number; status: string }[] = [];
+  const results: { operation: string; costUsd: number; status: string; reasonCode?: string }[] = [];
   let charged = 0;
   let operation = '';
   await mkdir('content/demo/generation-results', { recursive: true });
@@ -58,48 +62,59 @@ async function main() {
   )
     .then((text) => z.record(z.string(), z.unknown()).parse(JSON.parse(text)))
     .catch(() => ({}));
-  const capped: LlmProvider = {
-    modelId: provider.modelId,
-    async generateStructured(args) {
-      const key = createHash('sha256')
-        .update(operation + args.system + args.prompt + provider.modelId)
-        .digest('hex');
-      if (cache[key] !== undefined)
-        return {
-          object: args.schema.parse(cache[key]),
-          usage: { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 },
-        };
-      // UTF-8 bytes bound text tokens; reserve overhead and maximum output before every call.
-      const reservation = estimateCostUsd(
-        {
-          inputTokens: new TextEncoder().encode(args.system + args.prompt).length + 4096,
-          outputTokens: args.maxOutputTokens,
-          cachedInputTokens: 0,
-        },
-        prices,
-      );
-      if (charged + reservation > budget)
-        throw new Error('Hard budget reached; rerun later to resume missing files.');
-      charged += reservation;
-      try {
-        const result = await provider.generateStructured(args);
-        cache[key] = result.object;
-        await writeFile(
-          'content/demo/generation-cache.json',
-          JSON.stringify(cache, null, 2) + '\n',
-        );
-        const cost = estimateCostUsd(result.usage, prices);
-        charged += cost - reservation;
-        results.push({ operation, costUsd: cost, status: 'completed' });
-        await save();
-        return result;
-      } catch (error) {
-        results.push({ operation, costUsd: reservation, status: 'failed-reservation-retained' });
-        await save();
-        throw error;
-      }
+  let validateOutput: (value: unknown) => void = () => {};
+  const capped = withValidatedGenerationCache({
+    cache,
+    operation: () => operation,
+    validate: (value) => {
+      validateOutput(value);
     },
-  };
+    persist: () =>
+      writeFile('content/demo/generation-cache.json', JSON.stringify(cache, null, 2) + '\n'),
+    onInvalid: async () => {
+      results.push({
+        operation,
+        costUsd: 0,
+        status: 'invalid-output',
+        reasonCode: operation.startsWith('feedback:') ? 'FEEDBACK_INVALID' : 'INVALID_OUTPUT',
+      });
+      await save();
+    },
+    provider: {
+      modelId: provider.modelId,
+      async generateStructured(args) {
+        // UTF-8 bytes bound text tokens; reserve overhead and maximum output before every call.
+        const reservation = estimateCostUsd(
+          {
+            inputTokens: new TextEncoder().encode(args.system + args.prompt).length + 4096,
+            outputTokens: args.maxOutputTokens,
+            cachedInputTokens: 0,
+          },
+          prices,
+        );
+        if (charged + reservation > budget)
+          throw new Error('Hard budget reached; rerun later to resume missing files.');
+        charged += reservation;
+        try {
+          const result = await provider.generateStructured(args);
+          const cost = estimateCostUsd(result.usage, prices);
+          charged += cost - reservation;
+          results.push({ operation, costUsd: cost, status: 'completed' });
+          await save();
+          return result;
+        } catch (error) {
+          results.push({
+            operation,
+            costUsd: reservation,
+            status: 'failed-reservation-retained',
+            ...(error instanceof InvalidOutputError ? { reasonCode: 'INVALID_OUTPUT' } : {}),
+          });
+          await save();
+          throw error;
+        }
+      },
+    },
+  });
   const jobs = [];
   for (const original of demoJobs) {
     let job = DemoJobSchema.parse(
@@ -112,6 +127,11 @@ async function main() {
         requirements: z.array(z.string()).max(8),
         questions: z.array(z.object({ prompt: z.string(), groundingQuote: z.string() })).length(8),
       });
+      const jobText = job.text;
+      validateOutput = (value) => {
+        if (schema.parse(value).questions.some((q) => !jobText.includes(q.groundingQuote)))
+          throw new InvalidOutputError();
+      };
       const result = await capped.generateStructured({
         schema,
         schemaName: 'demo_job',
@@ -145,6 +165,7 @@ async function main() {
     if (stored.provenance === 'live') continue; // Never repeat unchanged paid cases.
     const question = questions.find((q) => q.id === stored.questionId);
     if (!question) throw new Error('Unknown demo question');
+    validateOutput = () => {};
     operation = `answers:${question.id}`;
     const schema = z.object({
       strong: z.string().max(4000),
@@ -164,6 +185,13 @@ async function main() {
     const variants = [];
     for (const level of ['strong', 'medium', 'weak'] as const) {
       operation = `feedback:${question.id}:${level}`;
+      const transcript = sanitizeUntrusted(answers[level]);
+      validateOutput = (value) => {
+        normalizeFeedback(FeedbackLlmSchema.parse(value), {
+          transcript,
+          words: countWords(transcript),
+        });
+      };
       const result = await generateFeedback({
         question,
         role: question.roles[0] ?? 'full-stack',
