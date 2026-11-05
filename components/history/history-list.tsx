@@ -79,7 +79,8 @@ export function HistoryList({
                   <span className="history-label" aria-hidden="true">
                     Practice
                   </span>
-                  {session.questions.length} questions · {retries} retries
+                  {session.questions.length} questions · {retries}{' '}
+                  {retries === 1 ? 'retry' : 'retries'}
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">

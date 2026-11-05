@@ -77,6 +77,7 @@ function summary(prompt: string) {
 function feedback(prompt: string, transcript: string) {
   const t = transcript.toLowerCase();
   const n = countWords(t);
+  const shortMain = !block(prompt, 'follow_up_question') && n < ANSWER.SHORT_WORDS;
   const context = /\b(when|at my|last (year|month|quarter)|the project|we had|our team)\b/.test(t);
   const action =
     /\bi (built|wrote|added|changed|decided|led|set up|moved|fixed|proposed|asked|rewrote|measured)\b/.test(
@@ -108,7 +109,7 @@ function feedback(prompt: string, transcript: string) {
       return dimension === 'relevance'
         ? 1
         : Math.min(scores[dimension], FEEDBACK_LIMITS.CAPPED_MAX_SCORE);
-    return n < ANSWER.SHORT_WORDS && ['structure', 'specificity', 'impact'].includes(dimension)
+    return shortMain && ['structure', 'specificity', 'impact'].includes(dimension)
       ? Math.min(scores[dimension], FEEDBACK_LIMITS.CAPPED_MAX_SCORE)
       : scores[dimension];
   };
@@ -144,7 +145,7 @@ function feedback(prompt: string, transcript: string) {
     follow_up_question: 'What would you do differently next time?',
     model_answer_outline: MOCK_OUTLINES[type.success ? type.data : 'behavioral'],
     flags: {
-      too_short: n < ANSWER.SHORT_WORDS,
+      too_short: shortMain,
       off_topic: relevance === 1 && n >= ANSWER.SHORT_WORDS,
       injection_suspected:
         /ignore (all|previous|the|your) (instructions|rules|rubric)|system prompt|give (me )?(a )?4/.test(

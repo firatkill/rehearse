@@ -87,7 +87,9 @@ export function ProgressOverview({ entries }: { entries: ProgressEntry[] }) {
           <div className="progress-section-heading">
             <h2 id="progress-dimensions-heading">By dimension</h2>
             <span>
-              Last {stats.latestCount} vs previous {PROGRESS.COMPARE_SESSIONS}
+              {stats.scoredCount < PROGRESS.COMPARE_SESSIONS * 2
+                ? `Latest ${stats.latestCount} scored sessions`
+                : `Last ${PROGRESS.COMPARE_SESSIONS} vs previous ${PROGRESS.COMPARE_SESSIONS}`}
             </span>
           </div>
           <table className="progress-dimensions">

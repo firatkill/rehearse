@@ -4,7 +4,7 @@ import { scenarios, uniqueIp } from './helpers';
 import { installSpeechMock } from './speech-mock';
 
 for (const theme of ['light', 'dark'] as const) {
-  test(`TC-146 TC-148 retry preserves attempts and feedback hierarchy in ${theme} theme`, async ({
+  test(`TC-146 TC-148 TC-153 retry preserves attempts and feedback hierarchy in ${theme} theme`, async ({
     page,
   }, info) => {
     await page.emulateMedia({ colorScheme: theme });
@@ -52,7 +52,18 @@ for (const theme of ['light', 'dark'] as const) {
           .violations,
       ).toEqual([]);
       if (attempt === 1) {
+        const change = page.getByRole('region', { name: 'Change one thing', exact: true });
+        const title = (await change.getByRole('heading').textContent()) ?? '';
+        const rewrite = await change.locator('blockquote').innerText();
+        const tip = await change.locator('p').first().innerText();
         await page.getByRole('button', { name: 'Try again with this' }).click();
+        await expect(change.getByRole('heading')).toHaveText(title);
+        await expect(change.locator('blockquote')).toHaveText(rewrite);
+        await expect(change.locator('p').first()).toHaveText(tip);
+        const guidanceBox = await change.boundingBox();
+        const answerBox = await page.getByLabel('Your answer', { exact: true }).boundingBox();
+        expect(guidanceBox!.y + guidanceBox!.height).toBeLessThan(answerBox!.y);
+
         await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('');
         expect(calls).toBe(1);
       }

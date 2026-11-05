@@ -55,7 +55,11 @@ export async function generateFeedback(args: {
       usage.inputTokens += response.usage.inputTokens;
       usage.outputTokens += response.usage.outputTokens;
       usage.cachedInputTokens += response.usage.cachedInputTokens;
-      const normalized = normalizeFeedback(response.object, { transcript, words });
+      const normalized = normalizeFeedback(response.object, {
+        transcript,
+        words,
+        followUp: args.followUpPrompt !== undefined,
+      });
       return { ...normalized, usage, attempts, latencyMs: now() - start };
     } catch (error) {
       if (error instanceof InvalidOutputError) continue;

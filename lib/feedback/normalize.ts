@@ -20,7 +20,7 @@ export function cleanText(s: string, max: number): string {
 
 export function normalizeFeedback(
   raw: FeedbackLlm,
-  ctx: { transcript: string; words: number },
+  ctx: { transcript: string; words: number; followUp?: boolean },
 ): { feedback: Feedback; evidenceRemoved: number } {
   const parsed = FeedbackLlmSchema.safeParse(raw);
   if (!parsed.success) throw new InvalidOutputError();
@@ -83,7 +83,7 @@ export function normalizeFeedback(
     }))
     .filter((item) => item.point && item.why && item.rewrite)
     .slice(0, FEEDBACK_LIMITS.IMPROVEMENTS_MAX);
-  const flags = { ...data.flags, too_short: ctx.words < ANSWER.SHORT_WORDS };
+  const flags = { ...data.flags, too_short: !ctx.followUp && ctx.words < ANSWER.SHORT_WORDS };
   if (flags.too_short)
     for (const d of ['structure', 'specificity', 'impact'] as const)
       data.scores[d].score = Math.min(data.scores[d].score, FEEDBACK_LIMITS.CAPPED_MAX_SCORE);

@@ -1,3 +1,4 @@
+import { prepareVoice } from './voice-helpers';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { scenarios, uniqueIp } from './helpers';
@@ -52,4 +53,31 @@ test('TC-149 follow-up is scored once, retained after reload and listed under it
       .violations,
   ).toEqual([]);
   expect(calls).toBe(2);
+});
+
+test('TC-157 follow-up reading uses its exact announcement without a question number', async ({
+  page,
+}, info) => {
+  await prepareVoice(page, info, { ...scenarios.happy, ttsMsPerChar: 100 }, true);
+  await expect(page.locator('.room-stage')).toHaveAttribute('data-phase', 'asking');
+  await page.clock.runFor(1100); // Drain the announcer's minimum-interval queue while mocked TTS stays active.
+  const status = page.locator('.room-stage > [role="status"]');
+  await expect(status).toHaveText('The interviewer is reading question 1.');
+  await page.getByRole('button', { name: 'Stop reading', exact: true }).click();
+  await page.getByRole('button', { name: 'Type instead', exact: true }).click();
+  await page.getByRole('button', { name: 'Start now', exact: true }).click();
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible();
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('I fixed the delivery queue and checked the result with support.');
+  await page.getByRole('button', { name: 'Review answer', exact: true }).click();
+  await page.getByRole('button', { name: 'Get feedback', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Answer follow-up', exact: true })).toBeVisible();
+  await page.clock.runFor(2100); // Drain queued review/submission/feedback announcements before the next phase.
+  await page.getByRole('button', { name: 'Answer follow-up', exact: true }).click();
+  await expect(page.locator('.room-stage')).toHaveAttribute('data-phase', 'asking');
+  await page.clock.runFor(1100); // Drain earlier phase announcements; speech remains mocked and active.
+  await expect(status).toHaveText('The interviewer is reading the follow-up.');
+  await page.clock.runFor(100);
+  await expect(status).toHaveText('The interviewer is reading the follow-up.');
 });

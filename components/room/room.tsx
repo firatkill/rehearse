@@ -1,6 +1,8 @@
 'use client';
+import type { Feedback } from '@/lib/feedback/schema';
+import { ChangeOneThing } from './change-one-thing';
 import { FOLLOW_UP } from '@/lib/config';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
 import { useShell } from '@/components/layout/shell';
@@ -47,6 +49,8 @@ export function Room({
     feedbackTransport,
   } = useInterviewRoom(id);
   const { announce, message, registerEnd } = useShell();
+  const [retryFeedback, setRetryFeedback] = useState<Feedback | null>(null);
+  const isFollowUp = Boolean(state.answers.find((a) => a.index === state.index)?.followUp);
   const root = useRef<HTMLDivElement>(null);
   const { session, phase, index } = state;
   const kind = phase.kind;
@@ -75,7 +79,9 @@ export function Room({
       target.setSelectionRange(target.value.length, target.value.length);
     const status =
       kind === 'asking'
-        ? `The interviewer is reading question ${index + 1}.`
+        ? isFollowUp
+          ? 'The interviewer is reading the follow-up.'
+          : `The interviewer is reading question ${index + 1}.`
         : kind === 'thinking'
           ? `${SESSION.THINK_SECONDS} seconds to think.${readAloudError ? ' Read-aloud didn’t work, so the question is shown as text.' : ''}`
           : kind === 'answering'
@@ -102,6 +108,7 @@ export function Room({
     limit,
     readAloudError,
     feedbackOverall,
+    isFollowUp,
   ]);
   if (kind === 'loading') return <p>Loading your session…</p>;
   if (!session)
@@ -130,6 +137,7 @@ export function Room({
     );
   const originalQuestion = session.questions[index];
   const answer = state.answers.find((a) => a.index === index);
+  const retryGuidance = retryFeedback ?? answer?.attemptRecords.at(-1)?.feedback;
   const question =
     originalQuestion && answer?.followUp
       ? {
@@ -213,6 +221,11 @@ export function Room({
           Replay question
         </Button>
       )}
+      {answer &&
+        answer.attemptRecords.length > 0 &&
+        !answer.followUp &&
+        retryGuidance &&
+        ['answering', 'review'].includes(kind) && <ChangeOneThing feedback={retryGuidance} />}
       {phase.kind === 'answering' && phase.answerMode === 'voice' && question && (
         <RecorderPanel
           followUp={answer?.followUp !== null && answer?.followUp !== undefined}
@@ -303,7 +316,8 @@ export function Room({
             onFollowUp={(parentAttemptId) => {
               send({ type: 'FOLLOW_UP', parentAttemptId });
             }}
-            onRetry={() => {
+            onRetry={(feedback) => {
+              setRetryFeedback(feedback);
               send({ type: 'RETRY_ANSWER' });
             }}
           />

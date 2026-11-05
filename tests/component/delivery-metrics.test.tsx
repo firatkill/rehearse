@@ -1,3 +1,4 @@
+import { answer } from '../fixtures/records';
 import { expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { DeliveryMetrics } from '@/components/room/delivery-metrics';
@@ -43,4 +44,18 @@ it('TC-038 CT-04 zero fillers and ties follow the documented list order', () => 
     computeDelivery({ mode: 'text', transcript: 'um uh', rawTranscript: '', timing }, ['uh'])
       .fillers,
   ).toEqual({ total: 1, byPhrase: { uh: 1 } });
+});
+
+it.each([
+  [0, 'Too short'],
+  [39, 'Too short'],
+  [40, 'On target'],
+  [240, 'On target'],
+  [241, 'Long'],
+] as const)('TC-158 text length at %i words is %s', (words, verdict) => {
+  render(<DeliveryMetrics mode="text" metrics={{ ...answer.metrics, words }} />);
+  expect(screen.getByText('Length').nextElementSibling).toHaveTextContent(verdict);
+  expect(screen.getByText('Speaking time').nextElementSibling).toHaveTextContent(
+    'Not measured in text mode',
+  );
 });
