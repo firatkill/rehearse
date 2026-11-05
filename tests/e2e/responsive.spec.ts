@@ -10,7 +10,7 @@ async function fits(page: Page) {
       const bounds = node.getBoundingClientRect();
       return bounds.right > document.documentElement.clientWidth &&
         !node.closest('.report-table-scroll')
-        ? [`${node.tagName}.${node.className}: ${Math.round(bounds.right)}`]
+        ? [`${node.tagName}.${node.getAttribute('class') ?? ''}: ${Math.round(bounds.right)}`]
         : [];
     }),
   );
