@@ -273,3 +273,17 @@ it('TC-149 authenticates follow-ups before provider use and scores the signed pr
   );
   expect(FeedbackResponseSchema.parse(await result.json()).followUpToken).toBeNull();
 });
+it('TC-165 D-82 session proof coexists with Basic authentication', async () => {
+  const response = await POST(
+    request(body(), { authorization: 'Basic cmVoZWFyc2U6dGVzdA==', 'x-rehearse-session': token() }),
+  );
+  expect(response.status).toBe(200);
+  await error(
+    request(body(), {
+      authorization: 'Basic cmVoZWFyc2U6dGVzdA==',
+      'x-rehearse-session': 'invalid',
+    }),
+    401,
+    'TOKEN_INVALID',
+  );
+});

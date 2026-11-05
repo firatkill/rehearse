@@ -51,3 +51,4 @@ test-results/
 .next-demo/
 
 content/demo/generation-cache.json
+!.env.full.example

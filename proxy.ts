@@ -1,3 +1,5 @@
+import { getEnv } from '@/lib/env';
+import { validBasicAuth } from '@/lib/auth';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export function buildCsp(nonce: string, options: { dev: boolean; https: boolean }): string {
@@ -17,6 +19,21 @@ export function buildCsp(nonce: string, options: { dev: boolean; https: boolean 
   ].join('; ');
 }
 export function proxy(req: NextRequest) {
+  const env = getEnv();
+  if (
+    env.APP_EDITION === 'full' &&
+    env.APP_PASSWORD &&
+    !validBasicAuth(req.headers.get('authorization'), env.APP_PASSWORD)
+  ) {
+    return new NextResponse('Authentication required.', {
+      status: 401,
+      headers: {
+        'WWW-Authenticate': 'Basic realm="Rehearse", charset="UTF-8"',
+        'Cache-Control': 'no-store',
+        'Content-Type': 'text/plain; charset=utf-8',
+      },
+    });
+  }
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const csp = buildCsp(nonce, {
     dev: process.env.NODE_ENV === 'development',
@@ -42,10 +59,4 @@ export function proxy(req: NextRequest) {
     res.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
   return res;
 }
-export const config = {
-  matcher: [
-    {
-      source: '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|ico|txt|webmanifest)$).*)',
-    },
-  ],
-};
+export const config = { matcher: ['/:path*'] };

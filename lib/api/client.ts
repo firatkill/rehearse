@@ -30,7 +30,7 @@ async function post<T>(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...(token === undefined ? {} : { Authorization: `Bearer ${token}` }),
+        ...(token === undefined ? {} : { 'X-Rehearse-Session': token }),
       },
       body: JSON.stringify(body),
       ...(signal === undefined ? {} : { signal }),

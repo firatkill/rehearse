@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 
 const serverModules = [
   '@/lib/storage/sqlite/**',
+  '@/lib/auth',
   '@/lib/env',
   '@/lib/logger',
   '@/lib/request',

@@ -181,3 +181,17 @@ it('TC-083 UT-34 summary failures use the normative log levels', async () => {
   ]);
   expect(logs.join('')).not.toContain('private summary detail');
 });
+it('TC-165 D-82 summary proof coexists with Basic authentication', async () => {
+  const response = await POST(
+    request(body(), { authorization: 'Basic cmVoZWFyc2U6dGVzdA==', 'x-rehearse-session': token() }),
+  );
+  expect(response.status).toBe(200);
+  await error(
+    request(body(), {
+      authorization: 'Basic cmVoZWFyc2U6dGVzdA==',
+      'x-rehearse-session': 'invalid',
+    }),
+    401,
+    'TOKEN_INVALID',
+  );
+});
