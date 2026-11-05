@@ -2752,6 +2752,8 @@ export function computeDelivery(
 
 ### 16.3 Filler words (normative, `fillers.ts`)
 
+V-03 / D-87: `SO_NOT_NEXT` includes subject pronouns, determiners starting noun phrases and common interview subject nouns. This is a bounded lexical heuristic, like the existing “like” exceptions, not a grammar parser. Causal examples “so I”, “so we” and “so people” are not fillers, even at a clause boundary; standalone or hesitation “so” still counts.
+
 Counting walks the token list once, left to right; a token used by a two-word phrase is not reused.
 
 | Rule             | Counts when                                                                                                                                                                                                  |
@@ -2844,7 +2846,53 @@ export const YOU_KNOW_NOT_NEXT = new Set([
   'your',
   'my',
 ]);
-export const SO_NOT_NEXT = new Set(['that', 'far', 'much', 'many', 'long', 'called']);
+export const SO_NOT_NEXT = new Set([
+  'that',
+  'far',
+  'much',
+  'many',
+  'long',
+  'called',
+  'i',
+  'we',
+  'you',
+  'he',
+  'she',
+  'it',
+  'they',
+  'there',
+  'this',
+  'these',
+  'those',
+  'the',
+  'a',
+  'an',
+  'my',
+  'our',
+  'your',
+  'his',
+  'her',
+  'its',
+  'their',
+  'each',
+  'every',
+  'some',
+  'all',
+  'most',
+  'people',
+  'users',
+  'customers',
+  'engineers',
+  'developers',
+  'reviewers',
+  'teams',
+  'tests',
+  'requests',
+  'builds',
+  'deployments',
+  'services',
+  'clients',
+]);
 
 export function countFillers(
   text: string,
@@ -3511,7 +3559,7 @@ Tests never call a real LLM, never use real speech APIs, and never reach Upstash
 | UT-02 | `prng.test.ts`                | `mulberry32` first five values for seeds `0x00000001` and `0xdeadbeef` (snapshot), range [0,1), `shuffle` returns a permutation, `seedToInt` rejects bad seeds                                                                                                                                                                                                                                                                                                                                                                                                          |
 | UT-03 | `bank.test.ts`                | Real bank parses; rules 9–13 pass; coverage matrix ≥ 5 per cell; no `<` or `>` in question text; `manifest.files` matches the folder                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | UT-04 | `words.test.ts`               | `tokenize`/`countWords`: `"I’m done."` → 2; `"state-of-the-art"` → 1; `"3.5 seconds"` → 3 (`3`, `5`, `seconds`); empty and whitespace → 0; emoji and symbols ignored                                                                                                                                                                                                                                                                                                                                                                                                    |
-| UT-05 | `fillers.test.ts`             | Vectors: `"um so I think, like, it was uh fine"` → um 1, so 1, like 1, uh 1; `"I would like to add"` → 0; `"so that we can"` → 0; `"and so we shipped it"` → so 1; `"you know, it broke"` → you know 1; `"do you know how"` → 0; `"ummm"` → um 1; `"basically actually"` → 2; `enabled` filter respected                                                                                                                                                                                                                                                                |
+| UT-05 | `fillers.test.ts`             | Vectors: `"um so I think, like, it was uh fine"` → um 1, like 1, uh 1; `"I would like to add"` → 0; `"so that we can"` → 0; `"and so we shipped it"` → 0; `"you know, it broke"` → you know 1; `"do you know how"` → 0; `"ummm"` → um 1; `"basically actually"` → 2; `enabled` filter respected                                                                                                                                                                                                                                                                         |
 | UT-06 | `delivery.test.ts`            | Text mode nulls; voice speaking time runs from the first to the last result offset (excludes lead-in and trailing silence); pace null under 10 s; pace from raw transcript; fillers from raw in voice and from edited text in text mode                                                                                                                                                                                                                                                                                                                                 |
 | UT-07 | `pauses.test.ts`              | Fewer than 2 offsets → nulls; unsorted input; gaps ≥ 3,000 counted; longest gap                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | UT-08 | `token.test.ts`               | Sign and verify round trip; tampered payload or signature → invalid; other secret → invalid; previous secret accepted; expired; wrong prefix; extra or missing parts; over-long token; payload schema violations (fb 8, q empty); constant-time path with unequal lengths                                                                                                                                                                                                                                                                                               |
