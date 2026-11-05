@@ -181,3 +181,47 @@ it('TC-048 CT-01 neutral placeholder before browser detection', () => {
   show();
   expect(screen.getByText('Checking what this browser supports…')).toBeVisible();
 });
+
+it('TC-140 V-14 warm-up uses saved settings but always requests three questions', async () => {
+  localStorage.setItem(
+    'rehearse-setup',
+    JSON.stringify({
+      ...record.setup,
+      role: 'backend',
+      seniority: 'senior',
+      mode: 'text',
+      length: 5,
+    }),
+  );
+  vi.mocked(startSession).mockResolvedValue({ ok: true, data: response });
+  show();
+  fireEvent.click(screen.getByRole('button', { name: 'Start in one click' }));
+  await waitFor(() => {
+    expect(mocks.push).toHaveBeenCalled();
+  });
+  expect(startSession).toHaveBeenCalledWith(
+    expect.objectContaining({ role: 'backend', seniority: 'senior', mode: 'text', length: 3 }),
+  );
+  expect(mocks.createSession.mock.calls[0]?.[0]).toMatchObject({
+    setup: { role: 'backend', length: 3 },
+  });
+  expect(JSON.parse(localStorage.getItem('rehearse-setup') ?? '{}')).toMatchObject({ length: 5 });
+});
+it('TC-140 V-14 warm-up quota fallback preserves its three-question request', async () => {
+  localStorage.setItem('rehearse-setup', JSON.stringify({ ...record.setup, length: 5 }));
+  vi.mocked(startSession)
+    .mockResolvedValueOnce({
+      ok: false,
+      kind: 'http',
+      status: 429,
+      error: { code: 'SESSION_QUOTA_EXCEEDED', message: 'quota', requestId: 'request-140' },
+    })
+    .mockResolvedValueOnce({ ok: true, data: response });
+  show();
+  fireEvent.click(screen.getByRole('button', { name: 'Start in one click' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Practise without feedback' }));
+  await waitFor(() => {
+    expect(mocks.push).toHaveBeenCalled();
+  });
+  expect(vi.mocked(startSession).mock.calls[1]?.[0]).toMatchObject({ length: 3, feedback: false });
+});

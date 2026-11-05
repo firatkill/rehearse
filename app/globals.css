@@ -1015,3 +1015,191 @@ main:has(> .landing) {
     padding: 20px;
   }
 }
+
+main:has(> .setup-page) {
+  padding-block: 0;
+}
+.setup-page {
+  max-width: 1200px;
+  margin: 48px auto 72px;
+}
+.setup-page > h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+.setup-page > p {
+  font-size: 18px;
+  color: var(--ink-2);
+  margin-bottom: 32px;
+}
+.setup-warmup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+}
+.setup-warmup h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.setup-warmup p {
+  color: var(--ink-2);
+  font-size: 15px;
+}
+.setup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: 24px;
+}
+.setup-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.setup-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 32px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.setup-card h2 {
+  font-size: 28px;
+  letter-spacing: -0.025em;
+}
+.setup-card p {
+  color: var(--ink-2);
+}
+.setup-card .ui-eyebrow {
+  color: var(--accent);
+}
+.setup-job {
+  border: 2px solid var(--accent);
+}
+.setup-job label,
+.setup-fieldset legend {
+  font-weight: 600;
+  font-size: 15px;
+}
+.setup-job textarea {
+  width: 100%;
+  border: 1px solid var(--rule-strong);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  resize: vertical;
+}
+.setup-job .ui-button {
+  align-self: flex-start;
+}
+.setup-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.setup-fieldset legend {
+  margin-bottom: 10px;
+}
+.setup-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.setup-choice {
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  padding: 10px 15px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+  margin: 0 6px 8px 0;
+  font-size: 14px;
+}
+.setup-choice input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.setup-choice:has(input:checked) {
+  background: var(--accent-tint);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.setup-choice:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.setup-choice:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.setup-types > div {
+  display: inline;
+}
+.setup-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+}
+.setup-interviewer {
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 12px 20px;
+  background: var(--surface);
+}
+.setup-interviewer > summary {
+  min-height: 44px;
+  padding-block: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.setup-interviewer > fieldset {
+  margin-top: 16px;
+}
+.setup-form > .ui-button {
+  align-self: flex-end;
+  min-width: 200px;
+}
+@media (max-width: 900px) {
+  .setup-paths {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 639px) {
+  .setup-page {
+    margin-block: 32px 48px;
+  }
+  .setup-card {
+    padding: 24px;
+  }
+  .setup-warmup {
+    padding: 20px;
+  }
+  .setup-warmup .ui-button,
+  .setup-form > .ui-button {
+    width: 100%;
+  }
+}
