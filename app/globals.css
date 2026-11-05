@@ -1920,6 +1920,25 @@ main:has(> .setup-page) {
   margin: 0 auto;
   padding: 48px 0 96px;
 }
+.job-layout label[for='interview-date'],
+.job-layout label[for='read-job-text'] {
+  display: block;
+}
+.job-layout input[type='date'],
+.job-layout textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 17px;
+}
+.job-layout textarea {
+  resize: vertical;
+}
 .job-source {
   white-space: pre-wrap;
   margin-block: 16px;
