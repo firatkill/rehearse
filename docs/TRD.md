@@ -267,6 +267,9 @@ export const SESSION = {
   SEED_PATTERN: /^[0-9a-f]{8}$/,
 } as const;
 
+// Visual guidance only; each question still enforces its own time_limit_s.
+export const RECORDING_GUIDE = { MIN_SECONDS: 60, MAX_SECONDS: 120 } as const;
+
 export const QUESTION_BANK = {
   MIN_PER_CELL: 5,
   TARGET_ACTIVE: 120,
@@ -1645,7 +1648,7 @@ Behaviour:
 3. Safety timeout per chunk: if no `end` arrives within `max(4000, chunk.length * 120 / rate)` ms, treat the chunk as ended (some engines never fire `end`).
 4. `signal` abort → `synth.cancel()` → `'cancelled'`.
 
-The room treats `'ended'` and `'error'` the same (move to thinking; on `'error'` the status line adds "Read-aloud didn’t work, so the question is shown as text."). `'cancelled'` from "Stop reading" also moves to thinking; from "Start answering now" moves to answering; from tab hidden stays in `asking` with "Replay question" offered.
+The room treats `'ended'` and `'error'` the same (move to thinking; on `'error'` the status line adds "Read-aloud didn’t work, so the question is shown as text."). `'cancelled'` from "Stop reading" also moves to thinking; from “I’m ready to answer” moves to answering; from tab hidden stays in `asking` with "Replay question" offered.
 
 Rules:
 

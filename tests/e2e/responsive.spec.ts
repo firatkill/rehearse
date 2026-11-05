@@ -34,7 +34,9 @@ for (const viewport of [
     await startTextSession(page, info);
     await fits(page);
     await page.getByRole('button', { name: 'Start the interview' }).click();
-    await expect(page.getByRole('button', { name: 'Start answering now' })).toBeFocused();
+    await expect(
+      page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }),
+    ).toBeFocused();
     await fits(page);
     await page.clock.runFor(10000);
     await expect(page.getByText('The answer box opens when the timer ends.')).toBeVisible();
@@ -46,7 +48,7 @@ for (const viewport of [
     await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeFocused();
     await fits(page);
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await expect(page.getByLabel('Your answer')).toBeFocused();
     await fits(page);
     await page
@@ -90,7 +92,7 @@ for (const viewport of [
     await fits(page);
     await page.unroute('**/api/feedback');
     await page.getByRole('button', { name: 'Next question' }).click();
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await page.getByLabel('Your answer').fill('I saved this practice answer without feedback.');
     await page.getByRole('button', { name: 'Review answer' }).click();
     await page.getByRole('button', { name: 'Save without feedback' }).click();

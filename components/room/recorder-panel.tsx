@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ANNOUNCE, SESSION } from '@/lib/config';
+import { formatMmSs, formatDurationWords } from '@/lib/time';
+import { ANNOUNCE, SESSION, RECORDING_GUIDE } from '@/lib/config';
 import type { TranscriptState } from '@/lib/speech/transcript';
 import { SafeText } from '@/components/common/safe-text';
 import { TimerDisplay } from '@/components/common/timer-display';
@@ -52,15 +53,28 @@ export function RecorderPanel({
   }, [startedAt, limit]);
   const final = [transcript.committed, transcript.runFinal].filter(Boolean).join(' ');
   return (
-    <section className="space-y-4">
-      <p className="text-warn">
-        <span aria-hidden="true">● </span>Recording
-      </p>
-      <p aria-hidden="true">
-        <TimerDisplay ms={elapsed} /> / <TimerDisplay ms={limit * 1000} />
-      </p>
-      <section aria-labelledby="live-transcript" aria-live="off">
-        <h2 id="live-transcript">Live transcript</h2>
+    <section className="room-recorder">
+      <div className="recording-heading">
+        <p className="recording-label">
+          <span aria-hidden="true">● </span>Recording
+        </p>
+        <p className="recording-clock">
+          <span aria-hidden="true">
+            <TimerDisplay ms={elapsed} /> /{' '}
+          </span>
+          <span>
+            aim for {formatMmSs(RECORDING_GUIDE.MIN_SECONDS * 1000)}–
+            {formatMmSs(RECORDING_GUIDE.MAX_SECONDS * 1000)}
+          </span>
+        </p>
+      </div>
+      <div className="recording-progress" aria-hidden="true">
+        <span style={{ width: `${Math.min(100, (elapsed / (limit * 1000)) * 100)}%` }} />
+      </div>
+      <section className="transcript-card" aria-labelledby="live-transcript" aria-live="off">
+        <h2 id="live-transcript" className="sr-only">
+          Live transcript
+        </h2>
         {!final && !transcript.runInterim ? (
           <p>Start speaking. Your words will appear here.</p>
         ) : (
@@ -73,8 +87,11 @@ export function RecorderPanel({
           </p>
         )}
       </section>
-      <p>Speak naturally. You can fix any misheard words before you submit.</p>
-      <Button data-phase-focus onClick={onStop}>
+      <p className="recording-help">
+        Speak naturally. You can fix any misheard words before you submit. Maximum{' '}
+        {formatDurationWords(limit)}.
+      </p>
+      <Button className="recording-stop" variant="on-dark" data-phase-focus onClick={onStop}>
         Stop and review
       </Button>
     </section>

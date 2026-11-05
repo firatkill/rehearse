@@ -17,7 +17,7 @@ export async function reportSession(page: Page, info: TestInfo, scored = true, r
     .click();
   await page.getByRole('button', { name: 'Start the interview' }).click();
   for (let index = 0; index < 3; index++) {
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await page
       .getByLabel('Your answer')
       .fill(

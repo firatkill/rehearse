@@ -135,14 +135,14 @@ export function Room({
     send({ type: 'START_INTERVIEW' });
   };
   return (
-    <div ref={root} className="space-y-6 py-8">
+    <div ref={root} className="room-stage" data-phase={kind}>
       <ProgressHeader session={session} index={index} />
       <LiveRegion visible message={message} />
       {kind === 'intro' ? (
         state.restoredNotice ? (
           <ResumeCard index={index} total={session.questions.length} onContinue={start} />
         ) : (
-          <section className="space-y-4">
+          <section className="room-intro space-y-4">
             <h1>Ready when you are</h1>
             <p>
               {session.questions.length} questions · {ROLE_LABELS[session.setup.role]},{' '}
@@ -160,7 +160,7 @@ export function Room({
                 Feedback is off for this session. You’ll see your transcript and delivery numbers.
               </p>
             )}
-            <Button data-phase-focus className="min-h-11" onClick={start}>
+            <Button variant="on-dark" data-phase-focus className="min-h-11" onClick={start}>
               Start the interview
             </Button>
           </section>
@@ -181,12 +181,13 @@ export function Room({
             </Button>
           )}
           <Button
+            variant="on-dark"
             data-phase-focus
             onClick={() => {
               send({ type: 'START_ANSWERING', now: Date.now() });
             }}
           >
-            Start answering now
+            I’m ready to answer
           </Button>
         </div>
       )}
@@ -345,27 +346,30 @@ export function Room({
           </Button>
         </section>
       )}
-      {state.mode === 'voice' && ['asking', 'thinking', 'answering'].includes(kind) && (
-        <Button
-          className="min-h-11"
-          onClick={() => {
-            send({ type: 'TYPE_INSTEAD' });
-          }}
-        >
-          Type instead
-        </Button>
-      )}
-      {['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind) && (
-        <Button
-          variant="outline"
-          className="min-h-11"
-          onClick={() => {
-            send({ type: 'OPEN_DIALOG', dialog: 'skip' });
-          }}
-        >
-          Skip question
-        </Button>
-      )}
+      <div className="room-secondary-actions">
+        {state.mode === 'voice' && ['asking', 'thinking', 'answering'].includes(kind) && (
+          <Button
+            className="min-h-11"
+            variant="text"
+            onClick={() => {
+              send({ type: 'TYPE_INSTEAD' });
+            }}
+          >
+            Type instead
+          </Button>
+        )}
+        {['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind) && (
+          <Button
+            variant="text"
+            className="min-h-11"
+            onClick={() => {
+              send({ type: 'OPEN_DIALOG', dialog: 'skip' });
+            }}
+          >
+            Skip question
+          </Button>
+        )}
+      </div>
       <ConfirmDialog
         open={dialog !== null}
         title={

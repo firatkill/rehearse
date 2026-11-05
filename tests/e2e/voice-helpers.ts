@@ -26,6 +26,6 @@ export async function prepareVoice(
   return session;
 }
 export async function startAnswer(page: Page) {
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await expect(page.getByRole('button', { name: 'Stop and review' })).toBeFocused();
 }

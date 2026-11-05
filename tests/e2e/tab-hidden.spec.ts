@@ -53,7 +53,7 @@ test('TC-059 FR-55 starting offline uses text for one answer without changing th
 }, info) => {
   await prepareVoice(page, info);
   await page.context().setOffline(true);
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await expect(page.getByLabel('Your answer')).toBeFocused();
   expect(await speech(page).runs()).toBe(0);
   await page.getByLabel('Your answer').fill('I typed this answer offline.');

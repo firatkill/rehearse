@@ -59,7 +59,7 @@ for (const [code, title] of [
   test(`TC-109 E2E-12 exact UI for ${code}`, async ({ page }, info) => {
     await startTextSession(page, info);
     await page.getByRole('button', { name: 'Start the interview' }).click();
-    await page.getByRole('button', { name: 'Start answering now' }).click();
+    await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
     await page.getByLabel('Your answer').fill('I led the delivery and checked the result.');
     await page.getByRole('button', { name: 'Review answer' }).click();
     await page.route('**/api/feedback', (route) =>

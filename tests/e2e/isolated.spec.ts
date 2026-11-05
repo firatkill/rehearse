@@ -30,7 +30,7 @@ test('TC-110 E2E-13 global cap and TC-010 fourth-server health @isolated', async
   for (let call = 0; call < 2; call++)
     expect((await apiFeedback(page, info, session, 3)).status()).toBe(200);
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I led the delivery and checked the result.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   const rejected = page.waitForResponse('**/api/feedback');

@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }, info) => {
   await page.getByLabel('3 questions').check();
   await page.getByRole('button', { name: 'Start session', exact: true }).click();
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
 });
 for (const trigger of ['provider-error', 'timeout', 'invalid'])
   test(`TC-080 E2E-11 mock:${trigger} retries then saves without feedback`, async ({ page }) => {
@@ -43,7 +43,7 @@ test('TC-080 E2E-11 slow progress preserves readonly answer; invalid-once succee
     timeout: 6000,
   });
   await page.getByRole('button', { name: 'Next question' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('mock:invalid-once I improved the project.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   await page.getByRole('button', { name: 'Get feedback' }).click();

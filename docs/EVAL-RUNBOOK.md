@@ -1,26 +1,21 @@
 # Owner eval checks
 
-T-37 requires a genuine passing live evaluation. T-38 requires the paid workflow to pass on a relevant same-repository pull request. Mock smoke tests do not satisfy either acceptance criterion.
+D-93: a passing local live `pnpm eval` run with its committed result file satisfies the evaluation requirement. Paid GitHub CI is optional and skips cleanly without configuration. **Do not configure the GitHub `eval` environment or secrets.** Mock smoke tests do not establish model quality.
 
-## Local live evaluation (T-37)
+## Local live evaluation
 
-1. Use the separate OpenAI project `rehearse-eval`, with its decided $2 monthly budget and auto-recharge off. Keep its API key in `.env.local`; never paste it into chat or commit it.
-2. In `.env.local`, set `LLM_MODE=live`, `RATE_LIMIT_BACKEND=memory`, `OPENAI_API_KEY`, the pinned `CHAT_MODEL`, its temperature/reasoning settings, and all three `PRICE_*` values from `.env.example` after verifying the prices. Retain the local session/IP secrets and site URL. `EVAL_MAX_COST_USD=0.50` is the per-run guard; `EVAL_REPEATS=2` is the full-run default.
-3. Run `pnpm eval:validate`, then `pnpm eval`. The live call is owner-only. Do not use `--mock`, `--only` or `--no-gate` for this acceptance run.
-4. Inspect the dated JSON written under `eval/results/`. It must have the real model ID, 48 items, no failures and `passed: true`. Review the fictional answers and feedback. A failing run remains evidence, not a release pass; do not lower thresholds to make it pass.
-5. Tell the coding agent the result file path. After validation, the passing full run can be copied to `eval/results/latest.json` and committed. Do not replace `latest.json` with mock or subset results.
+1. Use the separate OpenAI project `rehearse-eval`, with its decided monthly budget and auto-recharge off. Keep the key in `.env.local`; never paste it into chat or commit it.
+2. Set `LLM_MODE=live`, `RATE_LIMIT_BACKEND=memory`, `OPENAI_API_KEY`, the approved `CHAT_MODEL`, its temperature/reasoning settings, and verified `PRICE_*` values. Preserve the local session/IP secrets and site URL. The full run uses `EVAL_REPEATS=2`.
+3. Obtain explicit owner approval and a spend ceiling before making live calls. Run `pnpm eval:validate`, then `pnpm eval --budget <approved-remaining-ceiling>`. Do not use `--mock`, `--only` or `--no-gate` for full acceptance.
+4. Inspect the dated JSON under `eval/results/`. It must cover every current golden item for both repeats, use the real model, have no failures and have `passed: true`. Review the fictional answers and feedback. Keep failed runs as evidence; never lower thresholds to make a run pass.
+5. Commit the dated result file with the task. `/how-it-works` selects the newest dated result; no duplicate `latest.json` is needed. Record the command, actual cost, prompt version and any limitations in the progress file.
 
 The runner refuses a live run with zero prices or an estimate above budget before provider calls. If reported usage exceeds the budget, it stops scheduling more calls and writes a failed partial result. Already-running calls may finish. Exit codes: 0 for passing gates (or explicit `--no-gate`), 1 for quality-gate failures, 2 for configuration/budget errors.
 
-## GitHub configuration (T-38, owner only)
+## GitHub workflow
 
-Create environment `eval` in repository Settings → Environments. Add:
+The optional workflow checks configuration before installing dependencies or making calls. Missing model, price or key configuration produces a successful skip and a job summary. When configured in a future owner-approved change, genuine eval failures still fail that job. Fork PRs skip paid execution. D-93 replaces the former mandatory paid-CI acceptance; local committed evidence is authoritative.
 
-- Environment secret `OPENAI_API_KEY`: the separate eval project's key.
-- Environment variables `CHAT_MODEL`, `CHAT_MODEL_SUPPORTS_TEMPERATURE`, `CHAT_REASONING_EFFORT` (may be empty), `PRICE_INPUT_PER_MTOK`, `PRICE_OUTPUT_PER_MTOK`, `PRICE_CACHED_INPUT_PER_MTOK`.
+## Current committed acceptance (2026-11-05)
 
-Keep credentials out of repository files and chat. Once the workflow is committed and this configuration is ready, the coding agent can open a relevant same-repository PR to verify the budgeted job. A README-only PR must not trigger paid eval, and fork pull requests must skip it. CI results stay as artifacts; they do not update `latest.json` automatically.
-
-## Current model verification (2026-11-05)
-
-D-72 selects `gpt-6-luna`, reasoning `none`, temperature omitted, and standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. The owner authorised delegated live checks. A one-answer smoke passed; the full 48-call run cost $0.01967541 and failed clarity and injection-resistance gates. See `eval/results/2026-11-05-2.json`. Do not publish it as a passing latest result. No automatic paid rerun is scheduled.
+`eval/results/2026-11-05-6.json` passes every gate with `gpt-6-luna`, `feedback-v3`, 27 golden items and two repeats (54 calls). Clarity is 0.944444, injection resistance 1.0 and p95 latency 8405 ms. V1 cumulative recorded spend is $0.08355056 of the approved $0.15 ceiling. Earlier failed runs remain committed. No further paid run is scheduled. The harness evaluates feedback, not session summaries.

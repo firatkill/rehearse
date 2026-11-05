@@ -15,7 +15,7 @@ test('TC-111 E2E-14 readonly demo offers practice and refuses feedback', async (
     ),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Start the interview' }).click();
-  await page.getByRole('button', { name: 'Start answering now' }).click();
+  await page.getByRole('button', { name: /^(I’m ready to answer|Start now)$/ }).click();
   await page.getByLabel('Your answer').fill('I completed a practice answer.');
   await page.getByRole('button', { name: 'Review answer' }).click();
   await expect(page.getByRole('button', { name: 'Get feedback' })).toHaveCount(0);
