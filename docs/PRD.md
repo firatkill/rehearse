@@ -699,3 +699,5 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-90 | V-06 adds g-25–g-27 short evasive examples (27 corpus items, five very-short), with expected overall maximum below 1.5. feedback-v2 clarifies clarity, complete relevance, observable impact and untrusted attack handling. | Approved calibration task; preserves all prior golden ranges, normative examples and gate thresholds. New short regressions may be 8–39 words. | V-06 under guide §0, 2026-11-05 |
 
 | D-91 | feedback-v3 makes the clarity maximum explicit when a requested explanation, reaction or reasoning step is missing, even with fluent wording. | feedback-v2 eval improved clarity to 0.8333 but g-24 still scored clarity 4 despite an omitted requested reaction. Preserves all ranges and gates. | V-06 calibration under guide §0, 2026-11-05 |
+
+| D-92 | Owner raises cumulative V1 live-eval ceiling from $0.10 to $0.15; existing thresholds and two repeats remain unchanged. | Authorises the full feedback-v3 rerun after $0.04258038 spent. GitHub settings/secrets are not part of this approval. | Explicit owner approval, 2026-11-05 |
