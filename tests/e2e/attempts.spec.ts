@@ -35,6 +35,11 @@ for (const theme of ['light', 'dark'] as const) {
         'true',
       );
       expect(calls).toBe(attempt);
+      if (theme === 'light') {
+        await expect(page.locator('.room-column')).toHaveCSS('max-width', '1200px');
+        const delivery = await page.locator('.feedback-delivery dd').first().boundingBox();
+        expect(delivery?.width).toBeGreaterThan(180);
+      }
       await expect(
         page.getByRole('region', { name: 'Change one thing', exact: true }),
       ).toBeVisible();
