@@ -1,3 +1,6 @@
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { spawn } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { test as base, expect } from '@playwright/test';
@@ -9,6 +12,7 @@ export const test = base.extend<{ capOrigin: string }>({
   capOrigin: [
     async ({ playwright }, runTest, info) => {
       const origin = serverUrl(info, 3);
+      const dataDirectory = mkdtempSync(join(tmpdir(), 'rehearse-cap-'));
       const child = spawn(
         process.execPath,
         [require.resolve('next/dist/bin/next'), 'start', '-p', new URL(origin).port],
@@ -16,6 +20,7 @@ export const test = base.extend<{ capOrigin: string }>({
           env: {
             ...process.env,
             APP_EDITION: 'full',
+            DATA_DIR: dataDirectory,
             NODE_ENV: 'test',
             LLM_MODE: 'mock',
             RATE_LIMIT_BACKEND: 'memory',
@@ -66,6 +71,7 @@ export const test = base.extend<{ capOrigin: string }>({
         }, 5000);
         await exited;
         clearTimeout(timer);
+        rmSync(dataDirectory, { recursive: true });
       }
     },
     { timeout: 130_000 },

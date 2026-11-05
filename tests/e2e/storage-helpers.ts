@@ -1,3 +1,5 @@
+import { z } from 'zod';
+import { SessionRecordSchema, AnswerRecordSchema } from '@/lib/storage/schema';
 import { expect, type Page, type TestInfo } from '@playwright/test';
 import { installSpeechMock } from './speech-mock';
 import { scenarios, serverUrl, uniqueIp } from './helpers';
@@ -19,30 +21,31 @@ export async function startTextSession(page: Page, info: TestInfo, readonly = fa
   await expect(page.getByRole('button', { name: 'Start the interview' })).toBeFocused();
 }
 export async function storedRoom(page: Page) {
-  return page.evaluate(async () => {
-    const id = location.pathname.split('/')[2] ?? '';
-    return new Promise<{ session: SessionRecord; answers: AnswerRecord[] }>((resolve, reject) => {
-      const request = indexedDB.open('rehearse');
-      request.onerror = () => {
-        reject(new Error('Storage read failed'));
-      };
-      request.onsuccess = () => {
-        const db = request.result;
-        const tx = db.transaction(['sessions', 'answers'], 'readonly');
-        const session = tx.objectStore('sessions').get(id);
-        const answers = tx.objectStore('answers').index('by_sessionId').getAll(id);
-        tx.oncomplete = () => {
-          db.close();
-          resolve({
-            session: session.result as SessionRecord,
-            answers: answers.result as AnswerRecord[],
-          });
-        };
-        tx.onabort = () => {
-          db.close();
-          reject(new Error('Storage transaction failed'));
-        };
-      };
+  const id = new URL(page.url()).pathname.split('/')[2] ?? '';
+  const origin = new URL(page.url()).origin;
+  const read = async (operation: string) => {
+    const response = await page.request.post(`${origin}/api/data`, {
+      headers: { origin },
+      data: { operation, id },
     });
-  });
+    expect(response.ok()).toBe(true);
+    return response.json() as Promise<unknown>;
+  };
+  return {
+    session: SessionRecordSchema.parse(await read('getSession')),
+    answers: z.array(AnswerRecordSchema).parse(await read('getAnswers')),
+  };
+}
+export async function seedBundle(
+  page: Page,
+  bundle: { session: SessionRecord; answers: AnswerRecord[] },
+) {
+  const origin = new URL(page.url()).origin;
+  for (const data of [
+    { operation: 'createSession', session: bundle.session },
+    ...bundle.answers.map((answer) => ({ operation: 'putAnswer', answer })),
+  ]) {
+    const response = await page.request.post(`${origin}/api/data`, { headers: { origin }, data });
+    expect(response.ok()).toBe(true);
+  }
 }

@@ -115,6 +115,10 @@ jobs:
           PRICE_OUTPUT_PER_MTOK: '0'
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
+      - run: pnpm build
+        env:
+          APP_EDITION: demo
+      - run: pnpm exec playwright test -c playwright.demo.config.ts
       - uses: actions/upload-artifact@v7
         if: failure()
         with:

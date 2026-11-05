@@ -1,3 +1,4 @@
+vi.mock('@/lib/edition', () => ({ APP_EDITION: 'demo' }));
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { record, answer } from '../fixtures/records';

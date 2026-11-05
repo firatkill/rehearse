@@ -36,7 +36,7 @@ for (const viewport of [
     }
     const id = await seedLocalSession(page);
     await page.reload();
-    await expect(page.getByRole('link', { name: 'Open report', exact: true })).toBeVisible();
+    await expect(page.locator(`a[href="/session/${id}/report"]`)).toBeVisible();
     await fits(page);
     await page.goto(`/session/${id}/report`);
     await expect(page.getByRole('heading', { name: 'Session report', exact: true })).toBeVisible();

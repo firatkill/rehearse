@@ -1,7 +1,12 @@
+import { registerHistory } from './history.cases';
+import { registerLocaleDates } from './locale-dates.cases';
+import { registerExportImport } from './export-import.cases';
+import { registerProgressV2 } from './progress-v2.cases';
+import { registerA11Y } from './a11y.cases';
 import { expect } from '@playwright/test';
 import { test } from '../setup/cap-server';
 import { HealthResponseSchema, StartResponseSchema, ErrorBodySchema } from '@/lib/api/contracts';
-import { scenarios, uniqueIp } from './helpers';
+import { scenarios, uniqueIp, serverUrl } from './helpers';
 import { installSpeechMock } from './speech-mock';
 import { apiFeedback } from './api-helpers';
 
@@ -54,4 +59,48 @@ test('TC-110 E2E-13 global cap and TC-010 fourth-server health @isolated', async
   ).toBeVisible();
   await page.getByRole('button', { name: 'Save without feedback' }).click();
   await expect(page.getByRole('button', { name: 'Next question' })).toBeFocused();
+});
+
+test.describe('Full shared storage @isolated', () => {
+  test.beforeEach(async ({ request }, info) => {
+    for (const offset of [0, 1]) {
+      const origin = serverUrl(info, offset);
+      expect(
+        (
+          await request.post(`${origin}/api/data`, {
+            headers: { origin, 'x-real-ip': uniqueIp(info) },
+            data: { operation: 'deleteAll' },
+          })
+        ).ok(),
+      ).toBe(true);
+    }
+  });
+  test.afterEach(async ({ request }, info) => {
+    for (const offset of [0, 1]) {
+      const origin = serverUrl(info, offset);
+      expect(
+        (
+          await request.post(`${origin}/api/data`, {
+            headers: { origin, 'x-real-ip': uniqueIp(info) },
+            data: { operation: 'deleteAll' },
+          })
+        ).ok(),
+      ).toBe(true);
+    }
+  });
+  test.describe('history @isolated', () => {
+    registerHistory();
+  });
+  test.describe('locale-dates @isolated', () => {
+    registerLocaleDates();
+  });
+  test.describe('export-import @isolated', () => {
+    registerExportImport();
+  });
+  test.describe('progress-v2 @isolated', () => {
+    registerProgressV2();
+  });
+  test.describe('a11y @isolated', () => {
+    registerA11Y();
+  });
 });

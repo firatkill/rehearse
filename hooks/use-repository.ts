@@ -1,4 +1,6 @@
 'use client';
+import { APP_EDITION } from '@/lib/edition';
+import { createHttpRepository } from '@/lib/storage/http-repository';
 import { useSyncExternalStore } from 'react';
 import { createMemoryRepository } from '@/lib/storage/memory-repository';
 import { createIndexedDbRepository } from '@/lib/storage/idb-repository';
@@ -11,6 +13,11 @@ let repository: Promise<SessionRepository> | undefined;
 let persistent = false;
 export function getRepository(): Promise<SessionRepository> {
   repository ??= (async () => {
+    if (APP_EDITION === 'full') {
+      persistent = true;
+      setStorageStatus('persistent');
+      return createHttpRepository();
+    }
     try {
       if (typeof indexedDB === 'undefined') throw new Error('Storage unavailable');
       const repo = createIndexedDbRepository(await openDb());
@@ -53,6 +60,13 @@ export async function switchToMemoryRepository(
   error?: unknown,
 ) {
   const fallback = createMemoryRepository();
+  if (APP_EDITION === 'full') {
+    const clearMemory = fallback.deleteAll.bind(fallback);
+    fallback.deleteAll = async () => {
+      await createHttpRepository().deleteAll();
+      await clearMemory();
+    };
+  }
   await fallback.createSession(session);
   await Promise.all(answers.map((answer) => fallback.putAnswer(answer)));
   repository = Promise.resolve(fallback);

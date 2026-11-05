@@ -4,6 +4,7 @@ import nextTs from 'eslint-config-next/typescript';
 import tseslint from 'typescript-eslint';
 
 const serverModules = [
+  '@/lib/storage/sqlite/**',
   '@/lib/env',
   '@/lib/logger',
   '@/lib/request',
@@ -60,6 +61,7 @@ export default defineConfig([
   },
   globalIgnores([
     '.next/**',
+    '.next-demo/**',
     'out/**',
     'build/**',
     'next-env.d.ts',

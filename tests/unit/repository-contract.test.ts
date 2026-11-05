@@ -1,3 +1,7 @@
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { openSqlite, createSqliteRepository } from '@/lib/storage/sqlite/repository';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 import { openDb, transactionDone } from '@/lib/storage/idb';
 import { createIndexedDbRepository } from '@/lib/storage/idb-repository';
@@ -5,8 +9,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMemoryRepository } from '@/lib/storage/memory-repository';
 import { record, answer } from '../fixtures/records';
 
-afterEach(() => vi.unstubAllGlobals());
-describe.each(['memory', 'indexeddb'] as const)('%s repository', (kind) => {
+const cleanups: (() => void)[] = [];
+afterEach(() => {
+  for (const cleanup of cleanups.splice(0)) cleanup();
+  vi.unstubAllGlobals();
+});
+describe.each(['memory', 'indexeddb', 'sqlite'] as const)('%s repository', (kind) => {
   beforeEach(() => {
     vi.stubGlobal('indexedDB', new IDBFactory());
     vi.stubGlobal('IDBKeyRange', IDBKeyRange);
@@ -16,6 +24,25 @@ describe.each(['memory', 'indexeddb'] as const)('%s repository', (kind) => {
     clock?: () => Date,
   ) => {
     if (kind === 'memory') return createMemoryRepository(store, clock);
+    if (kind === 'sqlite') {
+      const dir = mkdtempSync(join(tmpdir(), 'rehearse-contract-'));
+      const db = openSqlite(join(dir, 'test.sqlite'));
+      cleanups.push(() => {
+        db.close();
+        rmSync(dir, { recursive: true });
+      });
+      if (store) {
+        for (const [id, value] of store.sessions)
+          db.prepare('INSERT INTO sessions VALUES (?, ?)').run(id, JSON.stringify(value));
+        for (const [id, value] of store.answers)
+          db.prepare('INSERT INTO answers VALUES (?, ?, ?)').run(
+            id === 'invalid' ? record.id : id.split(':')[0],
+            id === 'invalid' ? 1 : 0,
+            JSON.stringify(value),
+          );
+      }
+      return createSqliteRepository(db, clock);
+    }
     const db = await openDb(crypto.randomUUID());
     if (store) {
       const tx = db.transaction(['sessions', 'answers'], 'readwrite');
@@ -27,7 +54,7 @@ describe.each(['memory', 'indexeddb'] as const)('%s repository', (kind) => {
   };
   it('TC-032 TC-092 UT-13 creates, reads, updates timestamps and lists newest first', async () => {
     const repo = await create(undefined, () => new Date('2026-10-21T13:00:00Z'));
-    expect(repo.persistent).toBe(kind === 'indexeddb');
+    expect(repo.persistent).toBe(kind !== 'memory');
     expect(await repo.getSession(record.id)).toBeNull();
     await repo.createSession(record);
     expect(await repo.getSession(record.id)).toEqual(record);
@@ -96,7 +123,15 @@ describe.each(['memory', 'indexeddb'] as const)('%s repository', (kind) => {
     await repo.deleteAll();
     expect(await repo.listSessions()).toEqual({ sessions: [], skipped: 0 });
     expect(await repo.getAnswers(record.id)).toEqual([]);
-    expect([...preferences]).toEqual([['other-project', 'keep']]);
+    expect([...preferences]).toEqual(
+      kind === 'sqlite'
+        ? [
+            ['rehearse-theme', 'dark'],
+            ['rehearse-setup', '{}'],
+            ['other-project', 'keep'],
+          ]
+        : [['other-project', 'keep']],
+    );
   });
   it('TC-044 FR-37 TRD 7.5 repository exchange strips tokens and skips existing sessions', async () => {
     const repo = await create();

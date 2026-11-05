@@ -1,3 +1,6 @@
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { defineConfig, devices } from '@playwright/test';
 
 process.env.E2E_RUN_ID ??= String(Date.now() % 250);
@@ -17,6 +20,7 @@ const server = (port: number, extra: Record<string, string>) => ({
   env: {
     ...baseEnv,
     APP_EDITION: 'full',
+    DATA_DIR: mkdtempSync(join(tmpdir(), 'rehearse-e2e-')),
     NODE_ENV: 'test',
     LLM_MODE: 'mock',
     RATE_LIMIT_BACKEND: 'memory',
