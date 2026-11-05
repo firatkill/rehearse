@@ -51,24 +51,34 @@ jobs:
       IP_HASH_SECRET: eval-ip-hash-secret-0000000000000000000000000
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:
+      - name: Check optional paid evaluation configuration
+        id: config
+        run: |
+          if [ -z "$OPENAI_API_KEY" ] || [ -z "$CHAT_MODEL" ] || [ -z "$PRICE_INPUT_PER_MTOK" ] || [ -z "$PRICE_OUTPUT_PER_MTOK" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Paid evaluation skipped: configuration is absent. Use a committed local pnpm eval result (D-93)." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v7
+        if: steps.config.outputs.ready == 'true'
       - uses: pnpm/action-setup@v6
+        if: steps.config.outputs.ready == 'true'
       - uses: actions/setup-node@v7
+        if: steps.config.outputs.ready == 'true'
         with:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Check configuration
-        run: |
-          if [ -z "$OPENAI_API_KEY" ] || [ -z "$CHAT_MODEL" ] || [ -z "$PRICE_INPUT_PER_MTOK" ] || [ -z "$PRICE_OUTPUT_PER_MTOK" ]; then
-            echo "::error::Set secret OPENAI_API_KEY and variables CHAT_MODEL, PRICE_INPUT_PER_MTOK, PRICE_OUTPUT_PER_MTOK in the 'eval' environment"
-            exit 1
-          fi
+        if: steps.config.outputs.ready == 'true'
       - run: pnpm questions:validate
+        if: steps.config.outputs.ready == 'true'
       - run: pnpm eval:validate
+        if: steps.config.outputs.ready == 'true'
       - run: pnpm eval --ci --out "$RUNNER_TEMP/eval-results"
+        if: steps.config.outputs.ready == 'true'
       - uses: actions/upload-artifact@v7
-        if: always()
+        if: always() && steps.config.outputs.ready == 'true'
         with:
           name: eval-results
           path: ${{ runner.temp }}/eval-results/

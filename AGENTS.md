@@ -117,7 +117,7 @@ Formatting
 - Every E2E test sets a unique `x-real-ip` with `uniqueIp(testInfo)` and uses unique data. Tests that change shared state restore it in `finally`.
 - Before a Playwright run, check that no other run is using the four configured ports (3200–3203 by default). In a fix-and-retest loop, rerun only the affected specs; run the full suite once at the end. Do not force `--workers=1` on the whole suite.
 - Coverage thresholds in TRD §25.5 must hold.
-- Changes to `lib/feedback/**`, `lib/prompts/**` or `eval/**` (except `eval/results/**`) need an eval run (CI runs it on the PR through `eval.yml`; locally `pnpm eval`). Any change to prompt text, the rubric, the user templates or the LLM-facing schema bumps the matching prompt version in `lib/prompts/version.ts`.
+- Changes to `lib/feedback/**`, `lib/prompts/**` or `eval/**` (except `eval/results/**`) need an eval run (D-93: a local `pnpm eval` run with its committed result file satisfies this requirement; paid CI is optional and skips cleanly without configuration). Any change to prompt text, the rubric, the user templates or the LLM-facing schema bumps the matching prompt version in `lib/prompts/version.ts`.
 
 ## 6. Commits and pull requests
 
@@ -197,7 +197,7 @@ A task is done when all of the following hold:
 5. No new env var, error code, constant, store or record field exists without being added to the TRD tables (env §5, config §4, storage §7, errors §20) in the same change.
 6. Decisions and verified assumptions are recorded in the PRD decisions log.
 7. Accessibility: new UI is keyboard operable, announced per TRD §19.4, and passes axe in E2E-30 when covered.
-8. CI is green on the branch.
+8. Routine CI is green on the branch. D-93: paid eval CI is optional; a local `pnpm eval` run with its committed result file satisfies the eval requirement. Do not configure the GitHub `eval` environment or secrets.
 
 ## 8. Never do these
 
