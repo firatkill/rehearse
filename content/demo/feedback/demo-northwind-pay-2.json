@@ -1,0 +1,185 @@
+{
+  "questionId": "demo-northwind-pay-2",
+  "provenance": "pending-owner-generation",
+  "model": null,
+  "generatedAt": null,
+  "variants": [
+    {
+      "level": "weak",
+      "answer": "We worked on the project and it went well.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "clarity": {
+            "score": 1,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          }
+        },
+        "overall": 1,
+        "strengths": [
+          {
+            "point": "Use a concrete example to explain your approach.",
+            "evidence": null
+          }
+        ],
+        "improvements": [
+          {
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "point": "Add a concrete detail.",
+            "why": "A specific action makes your contribution easier to understand.",
+            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+          }
+        ],
+        "follow_up_question": "What would you change if you faced the same situation again?",
+        "model_answer_outline": [
+          "Describe the context and constraint.",
+          "Explain your own action and the trade-off.",
+          "State the outcome and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "medium",
+      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "Use a concrete example to explain your approach.",
+            "evidence": null
+          }
+        ],
+        "improvements": [
+          {
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "point": "Add a concrete detail.",
+            "why": "A specific action makes your contribution easier to understand.",
+            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+          }
+        ],
+        "follow_up_question": "What would you change if you faced the same situation again?",
+        "model_answer_outline": [
+          "Describe the context and constraint.",
+          "Explain your own action and the trade-off.",
+          "State the outcome and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "strong",
+      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "specificity": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "impact": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "Provisional sample: owner-generated feedback is pending."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "Use a concrete example to explain your approach.",
+            "evidence": null
+          }
+        ],
+        "improvements": [
+          {
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "point": "Add a concrete detail.",
+            "why": "A specific action makes your contribution easier to understand.",
+            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+          }
+        ],
+        "follow_up_question": "What would you change if you faced the same situation again?",
+        "model_answer_outline": [
+          "Describe the context and constraint.",
+          "Explain your own action and the trade-off.",
+          "State the outcome and what you learned."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    }
+  ]
+}

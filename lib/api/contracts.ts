@@ -33,6 +33,7 @@ export const ErrorBodySchema = z
 
 export const StartRequestSchema = z
   .object({
+    demoJob: z.string().max(100).optional(),
     role: z.enum(ROLES),
     seniority: z.enum(SENIORITIES),
     types: z
@@ -78,7 +79,7 @@ export const FeedbackRequestSchema = z
     followUpToken: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).optional(),
     sessionId: z.string().uuid(),
     answerIndex: z.number().int().min(0).max(4),
-    questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+    questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
     mode: z.enum(ANSWER_MODES),
     transcript: z.string().max(ANSWER.MAX_CHARS),
   })
@@ -93,7 +94,7 @@ export const FeedbackResponseSchema = z
         promptVersion: z.string(),
         bankVersion: z.string(),
         latencyMs: z.number().int(),
-        attempts: z.number().int().min(1).max(2),
+        attempts: z.number().int().min(0).max(2),
         usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }).strict(),
         costUsd: z.number().nonnegative(),
         evidenceRemoved: z.number().int().nonnegative(),
@@ -125,7 +126,7 @@ export const SummaryRequestSchema = z
         z
           .object({
             answerIndex: z.number().int().min(0).max(4),
-            questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
+            questionId: z.string().regex(/^((beh|tec|sdl)-\d{3}|demo-[a-z0-9-]+)$/),
             scores: ScoresSchema,
             improvementPoints: z.array(z.string().max(SUMMARY_LIMITS.INPUT_POINT_MAX_CHARS)).max(3),
             flags: z

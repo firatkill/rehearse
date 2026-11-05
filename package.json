@@ -24,7 +24,9 @@
     "sample:generate": "tsx --conditions=react-server scripts/sample-generate.ts",
     "eval:validate": "tsx --conditions=react-server scripts/validate-golden.ts",
     "eval": "tsx --conditions=react-server scripts/eval.ts",
-    "eval:mock": "cross-env LLM_MODE=mock tsx --conditions=react-server scripts/eval.ts --mock --no-gate --out .eval-tmp"
+    "eval:mock": "cross-env LLM_MODE=mock tsx --conditions=react-server scripts/eval.ts --mock --no-gate --out .eval-tmp",
+    "demo:validate": "tsx --conditions=react-server scripts/validate-demo.ts",
+    "demo:generate": "tsx --conditions=react-server scripts/demo-generate.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "4.0.99",

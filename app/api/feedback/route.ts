@@ -1,3 +1,4 @@
+import { DEMO } from '@/lib/config';
 import { signFollowUp, verifyFollowUp } from '@/lib/session/follow-up';
 import { randomUUID } from 'node:crypto';
 import type { Logger } from 'pino';
@@ -6,13 +7,12 @@ import { AppError, httpStatus, errorLogLevel, type ErrorCode } from '@/lib/error
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { FeedbackRequestSchema, FeedbackResponseSchema } from '@/lib/api/contracts';
 import { verifyToken } from '@/lib/session/token';
-import { getBank } from '@/lib/questions/bank';
+import { getInterviewBank as getBank } from '@/lib/demo/catalog';
 import { getLimiter } from '@/lib/ratelimit';
 import { checkFeedback } from '@/lib/ratelimit/quotas';
 import { clientIp, visitorId } from '@/lib/ratelimit/visitor';
 import { LimiterUnavailableError } from '@/lib/ratelimit/types';
-import { getProvider } from '@/lib/llm';
-import { generateFeedback } from '@/lib/feedback/generate';
+import { getFeedbackSource } from '@/lib/demo/source';
 import { FEEDBACK_PROMPT_VERSION } from '@/lib/prompts/version';
 import { countWords } from '@/lib/metrics/words';
 import { estimateCostUsd } from '@/lib/cost/estimate';
@@ -89,20 +89,29 @@ export async function POST(req: Request): Promise<Response> {
       followUpPrompt = proof.prompt;
     }
     questionId = question.id;
-    const quota = await checkFeedback(
-      getLimiter(),
-      visitorId(clientIp(req.headers), env.IP_HASH_SECRET, new Date()),
-      token.payload,
-      env,
-    );
+    const quota =
+      env.APP_EDITION === 'demo'
+        ? {
+            ok: true as const,
+            remaining: token.payload.fb,
+            visitorRemaining: env.RATE_LIMIT_FEEDBACK_PER_IP_DAILY,
+          }
+        : await checkFeedback(
+            getLimiter(),
+            visitorId(clientIp(req.headers), env.IP_HASH_SECRET, new Date()),
+            token.payload,
+            env,
+          );
     if (!quota.ok) {
       if (quota.code !== 'SESSION_FEEDBACK_EXHAUSTED') remaining = quota.remaining;
       return fail(quota.code, quota.resetAt);
     }
     remaining = quota.remaining;
     if (quota.visitorRemaining === undefined) throw new AppError('INTERNAL_ERROR');
-    const provider = getProvider();
-    const result = await generateFeedback({
+    const provider = getFeedbackSource(() => {
+      attempts++;
+    });
+    const result = await provider.generate({
       question,
       ...(followUpPrompt === undefined ? {} : { followUpPrompt }),
       role: token.payload.r,
@@ -110,16 +119,10 @@ export async function POST(req: Request): Promise<Response> {
       mode: body.mode,
       transcript: body.transcript,
       maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
-      provider: {
-        modelId: provider.modelId,
-        generateStructured(args) {
-          attempts++;
-          return provider.generateStructured(args);
-        },
-      },
     });
+    attempts = result.attempts;
     const costUsd =
-      provider.modelId === 'mock'
+      provider.modelId === 'mock' || provider.modelId === 'sample'
         ? 0
         : Math.round(
             estimateCostUsd(result.usage, {
@@ -141,7 +144,8 @@ export async function POST(req: Request): Promise<Response> {
       feedback: result.feedback,
       meta: {
         model: provider.modelId,
-        promptVersion: FEEDBACK_PROMPT_VERSION,
+        promptVersion:
+          provider.modelId === 'sample' ? DEMO.PROMPT_VERSION : FEEDBACK_PROMPT_VERSION,
         bankVersion: token.payload.b,
         latencyMs: result.latencyMs,
         attempts: result.attempts,
@@ -159,7 +163,7 @@ export async function POST(req: Request): Promise<Response> {
       transcriptChars: body.transcript.length,
       words: countWords(body.transcript),
       model: provider.modelId,
-      promptVersion: FEEDBACK_PROMPT_VERSION,
+      promptVersion: provider.modelId === 'sample' ? DEMO.PROMPT_VERSION : FEEDBACK_PROMPT_VERSION,
       attempts: result.attempts,
       latencyMs: result.latencyMs,
       inputTokens: result.usage.inputTokens,
