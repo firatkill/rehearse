@@ -56,9 +56,9 @@ describe('TC-106 FR-49 eval runner; TC-105 budget scheduling', () => {
   it('uses the feedback pipeline for all repeats within concurrency and records real gate failure despite no-gate', async () => {
     const provider = fake();
     const result = await runEvaluation(args(provider.provider));
-    expect(provider.calls).toBe(48);
+    expect(provider.calls).toBe(54);
     expect(provider.peak).toBeLessThanOrEqual(EVAL.CONCURRENCY);
-    expect(result.results.items).toHaveLength(48);
+    expect(result.results.items).toHaveLength(54);
     expect(result.exitCode).toBe(0);
     expect(result.results.passed).toBe(false);
     expect(result.results.failures.length).toBeGreaterThan(0);
@@ -115,7 +115,7 @@ describe('TC-106 FR-49 eval runner; TC-105 budget scheduling', () => {
     expect(result.exitCode).toBe(2);
     expect(result.results.passed).toBe(false);
     expect(result.results.failures).toContain('budget_exceeded');
-    expect(provider.calls).toBeLessThan(48);
+    expect(provider.calls).toBeLessThan(54);
     expect(provider.calls).toBeLessThanOrEqual(EVAL.CONCURRENCY);
     expect(result.results.metrics['cost_usd.total']).toBe(provider.calls * 2);
   });

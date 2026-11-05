@@ -170,7 +170,7 @@ it('TC-076 UT-33 succeeds with remaining quotas and never logs transcript or mod
     model: 'mock',
     costUsd: 0,
     attempts: 1,
-    promptVersion: 'feedback-v1',
+    promptVersion: 'feedback-v3',
   });
   const output = logs.join('');
   expect(output).toContain('feedback.done');

@@ -40,7 +40,7 @@ export type GoldenItem = z.infer<typeof GoldenItemSchema>;
 /** Validate the corpus-level requirements in TRD §18.2 after the strict boundary schema. */
 export function validateGolden(source: string, questions: readonly Question[]): GoldenItem[] {
   const lines = source.trim().split(/\r?\n/);
-  if (lines.length !== 24) throw new Error('Golden set must contain 24 lines');
+  if (lines.length !== 27) throw new Error('Golden set must contain 27 lines');
   const items = lines.map((line, index) => {
     try {
       const value: unknown = JSON.parse(line);
@@ -51,10 +51,10 @@ export function validateGolden(source: string, questions: readonly Question[]): 
   });
   const ids = new Set(items.map((item) => item.id));
   if (
-    ids.size !== 24 ||
-    items.some((item) => Number(item.id.slice(2)) < 1 || Number(item.id.slice(2)) > 24)
+    ids.size !== 27 ||
+    items.some((item) => Number(item.id.slice(2)) < 1 || Number(item.id.slice(2)) > 27)
   )
-    throw new Error('Golden ids must be unique g-01 through g-24');
+    throw new Error('Golden ids must be unique g-01 through g-27');
   const bank = new Map(questions.map((question) => [question.id, question]));
   for (const item of items) {
     const question = bank.get(item.question_id);
@@ -84,7 +84,7 @@ export function validateGolden(source: string, questions: readonly Question[]): 
     average: 6,
     weak: 6,
     'off-topic': 2,
-    'very-short': 2,
+    'very-short': 5,
     injection: 2,
   })) {
     if (items.filter((item) => item.category === category).length !== expected)

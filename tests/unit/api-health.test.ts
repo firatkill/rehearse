@@ -31,7 +31,7 @@ it('TC-031 UT-35 returns exact health fields without external calls', async () =
     demoMode: 'readonly',
     llmMode: 'mock',
     rateLimitBackend: 'memory',
-    promptVersions: { feedback: 'feedback-v1', summary: 'summary-v2' },
+    promptVersions: { feedback: 'feedback-v3', summary: 'summary-v2' },
     bankVersion: '1.0.0',
     time: '2026-10-21T12:00:00.000Z',
   });

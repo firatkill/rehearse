@@ -696,4 +696,10 @@ Document title: "Privacy · Rehearse". Exact content:
 
 | D-89 | V-05 filters known novelty voices including Turkish aliases and canonical URI suffixes; ranks local premium/enhanced, then Samantha/Daniel, local and online; preserves eligible saved choices and groups options by normalized accent tag. | Implements Review §1.8 without dependencies or user-agent sniffing; quality is inferred from browser-provided name/URI. | V-05 under guide §0, 2026-11-05 |
 
+| D-90 | V-06 adds g-25–g-27 short evasive examples (27 corpus items, five very-short), with expected overall maximum below 1.5. feedback-v2 clarifies clarity, complete relevance, observable impact and untrusted attack handling. | Approved calibration task; preserves all prior golden ranges, normative examples and gate thresholds. New short regressions may be 8–39 words. | V-06 under guide §0, 2026-11-05 |
+
+| D-91 | feedback-v3 makes the clarity maximum explicit when a requested explanation, reaction or reasoning step is missing, even with fluent wording. | feedback-v2 eval improved clarity to 0.8333 but g-24 still scored clarity 4 despite an omitted requested reaction. Preserves all ranges and gates. | V-06 calibration under guide §0, 2026-11-05 |
+
+| D-92 | Owner raises cumulative V1 live-eval ceiling from $0.10 to $0.15; existing thresholds and two repeats remain unchanged. | Authorises the full feedback-v3 rerun after $0.04258038 spent. GitHub settings/secrets are not part of this approval. | Explicit owner approval, 2026-11-05 |
+
 | D-93 | A local `pnpm eval` run with its committed result file satisfies the eval requirement. Paid CI skips cleanly when configuration is absent; do not configure the GitHub eval environment or secrets. V1 is approved; merge PRs #2–#7 in order after green CI, then perform the requested follow-up fixes before V2. | Owner replaces the mandatory paid CI requirement in AGENTS §5/§7 and the guide definition of done. V-04/V-06 close against the passing V1 result retained on PR #7. | Owner, 2026-11-05 |
