@@ -125,6 +125,8 @@ async function main() {
         attempts: 1,
         attemptRecords: [],
         bestAttemptId: null,
+        followUp: null,
+        followUpRecords: [],
         notice: null,
         createdAt,
         updatedAt: new Date().toISOString(),

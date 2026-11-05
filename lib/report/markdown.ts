@@ -127,6 +127,22 @@ export function reportMarkdown(session: SessionRecord, allAnswers: AnswerRecord[
       '',
       ...f.model_answer_outline.map((t) => `- ${e(t)}`),
     );
+    for (const followUp of answer.followUpRecords) {
+      lines.push(
+        '',
+        `#### Follow-up ${followUp.ordinal}: ${e(followUp.prompt)}`,
+        '',
+        ...followUp.transcript.split('\n').map((line) => `> ${e(line)}`),
+      );
+      if (followUp.feedback)
+        lines.push(
+          '',
+          `Overall ${followUp.feedback.overall.toFixed(1)} / 4`,
+          ...DIMENSIONS.map(
+            (d) => `- ${DIMENSION_LABELS[d]}: ${followUp.feedback?.scores[d].score} / 4`,
+          ),
+        );
+    }
   }
   lines.push(
     '',

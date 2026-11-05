@@ -14,16 +14,20 @@ export function FeedbackCard({
   focus = true,
   previous,
   onRetry,
+  onFollowUp,
+  idSuffix = '',
 }: {
   answer: AnswerRecord;
   question: SessionRecord['questions'][number];
   focus?: boolean;
   previous?: AnswerRecord['feedback'];
   onRetry?: () => void;
+  onFollowUp?: () => void;
+  idSuffix?: string;
 }) {
   const feedback = answer.feedback;
   if (!feedback) return null;
-  const titleId = `feedback-title-${answer.index}`;
+  const titleId = `feedback-title-${answer.index}${idSuffix}`;
   const lowest = lowestDimension(feedback);
   const change = feedback.improvements.find((item) => item.dimension === lowest);
   return (
@@ -91,6 +95,11 @@ export function FeedbackCard({
           <p>
             <SafeText text={feedback.follow_up_question} />
           </p>
+          {onFollowUp && (
+            <Button variant="text" onClick={onFollowUp}>
+              Answer follow-up
+            </Button>
+          )}
         </section>
         <div className="feedback-details">
           <details>

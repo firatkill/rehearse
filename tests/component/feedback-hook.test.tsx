@@ -43,6 +43,7 @@ it('TC-079 FR-19 persists submission before requesting and persists scored resul
     return {
       ok: true,
       data: {
+        followUpToken: null,
         feedback: { ...feedbackLlm(), overall: 4 },
         meta: {
           model: 'mock',

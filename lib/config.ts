@@ -172,10 +172,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 3,
-  RECORD_SCHEMA_VERSION: 3, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 4,
+  RECORD_SCHEMA_VERSION: 4, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 3,
+  EXPORT_FORMAT_VERSION: 4,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -195,3 +195,5 @@ export type AnswerMode = (typeof ANSWER_MODES)[number];
 export type Dimension = (typeof DIMENSIONS)[number];
 
 export const DATE_TIME = { LOCALE: 'en-GB', SESSION_TIME_ZONE: 'UTC' } as const;
+
+export const FOLLOW_UP = { TIME_LIMIT_S: 60, TOKEN_PREFIX: 'rf1', TOKEN_MAX_CHARS: 2000 } as const;

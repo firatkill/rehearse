@@ -72,6 +72,7 @@ export type RoomEvent =
   | { type: 'SAVE_WITHOUT_FEEDBACK' }
   | { type: 'CONFIRM_SKIP' }
   | { type: 'RETRY_ANSWER' }
+  | { type: 'FOLLOW_UP'; parentAttemptId: string }
   | { type: 'NEXT' }
   | { type: 'CONFIRM_END' }
   | { type: 'ONLINE'; online: boolean };
@@ -157,6 +158,8 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
     attempts: 0,
     attemptRecords: [],
     bestAttemptId: null,
+    followUp: null,
+    followUpRecords: [],
     notice: null,
     createdAt: at,
     updatedAt: at,
@@ -445,12 +448,39 @@ export function roomReducer(state: RoomState, event: RoomEvent, now: number): Ro
       return ['intro', 'asking', 'thinking', 'answering', 'speech-error', 'review'].includes(kind)
         ? next(updateAnswer(state, { status: 'skipped' }, now), now)
         : state;
+    case 'FOLLOW_UP': {
+      if (kind !== 'feedback' || !current || !state.session) return state;
+      const parent = current.attemptRecords.find((item) => item.id === event.parentAttemptId);
+      if (!parent?.feedback || !parent.feedbackMeta?.followUpToken) return state;
+      return {
+        ...updateAnswer(
+          state,
+          {
+            status: 'draft',
+            rawTranscript: '',
+            transcript: '',
+            feedback: null,
+            feedbackMeta: null,
+            notice: null,
+            timing: { recordingMs: null, firstResultOffsetMs: null, resultOffsetsMs: [] },
+            followUp: {
+              parentAttemptId: parent.id,
+              prompt: parent.feedback.follow_up_question,
+              token: parent.feedbackMeta.followUpToken,
+            },
+          },
+          now,
+        ),
+        phase: questionPhase(state.session),
+      };
+    }
     case 'RETRY_ANSWER':
       return kind === 'feedback'
         ? answering(
             updateAnswer(
               state,
               {
+                followUp: null,
                 rawTranscript: '',
                 transcript: '',
                 feedback: null,

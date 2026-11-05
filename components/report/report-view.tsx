@@ -245,6 +245,26 @@ export function ReportView({
                     </>
                   )
                 )}
+                {answer?.followUpRecords.map((item) => (
+                  <section key={item.id} aria-label={`Follow-up ${item.ordinal}`}>
+                    <h3>Follow-up {item.ordinal}</h3>
+                    <p>
+                      <SafeText text={item.prompt} />
+                    </p>
+                    {item.feedback ? (
+                      <FeedbackCard
+                        idSuffix={item.id}
+                        answer={{ ...answer, ...item }}
+                        question={{ ...question, prompt: item.prompt }}
+                        focus={false}
+                      />
+                    ) : (
+                      <p>
+                        <SafeText text={item.transcript} />
+                      </p>
+                    )}
+                  </section>
+                ))}
               </div>
             </details>
           );

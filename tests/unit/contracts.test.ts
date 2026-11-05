@@ -47,6 +47,7 @@ const meta = {
   costUsd: 0,
 };
 const feedbackResponse = {
+  followUpToken: null,
   feedback,
   meta: { ...meta, bankVersion: '1.0.0', attempts: 1, evidenceRemoved: 0 },
   remaining: { session: 4, visitorToday: 19 },

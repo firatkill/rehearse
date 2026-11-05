@@ -17,6 +17,7 @@ async function main() {
   }
   const { values } = parseArgs({
     options: {
+      suite: { type: 'string', default: 'golden' },
       mock: { type: 'boolean', default: false },
       ci: { type: 'boolean', default: false },
       'no-gate': { type: 'boolean', default: false },
@@ -27,7 +28,12 @@ async function main() {
     },
   });
   const env = getEnv();
-  const source = await readFile('eval/golden.jsonl', 'utf8');
+  if (values.suite !== 'golden' && values.suite !== 'follow-up')
+    throw new Error('Unknown eval suite');
+  const source = await readFile(
+    values.suite === 'follow-up' ? 'eval/follow-up.jsonl' : 'eval/golden.jsonl',
+    'utf8',
+  );
   const thresholds: unknown = JSON.parse(await readFile('eval/thresholds.json', 'utf8'));
   const dir = values.out;
   await mkdir(dir, { recursive: true });
@@ -41,6 +47,7 @@ async function main() {
     provider: getProvider(),
     env,
     options: {
+      suite: values.suite,
       mock: values.mock,
       noGate: values['no-gate'],
       repeats: values.repeats === undefined ? env.EVAL_REPEATS : Number(values.repeats),

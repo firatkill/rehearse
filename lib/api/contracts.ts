@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-deprecated -- Preserve normative TRD Zod schema syntax. */
+import { FOLLOW_UP } from '@/lib/config';
 import { z } from 'zod';
 import {
   ROLES,
@@ -69,6 +70,7 @@ export const StartResponseSchema = z
 
 export const FeedbackRequestSchema = z
   .object({
+    followUpToken: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).optional(),
     sessionId: z.string().uuid(),
     answerIndex: z.number().int().min(0).max(4),
     questionId: z.string().regex(/^(beh|tec|sdl)-\d{3}$/),
@@ -78,6 +80,7 @@ export const FeedbackRequestSchema = z
   .strict();
 export const FeedbackResponseSchema = z
   .object({
+    followUpToken: z.string().max(FOLLOW_UP.TOKEN_MAX_CHARS).nullable(),
     feedback: FeedbackSchema, // section 15.2
     meta: z
       .object({

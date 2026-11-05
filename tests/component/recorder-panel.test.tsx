@@ -37,18 +37,20 @@ test('TC-057 FR-11 TRD 11.2 recording announces thresholds once and stops at its
   view.unmount();
   expect(vi.getTimerCount()).toBe(0);
 });
-test('TC-057 FR-11 TRD 11.2 a 60-second limit omits the one-minute threshold', async () => {
+test('TC-057 TC-149 FR-11 TRD 11.2 a 60-second limit omits the one-minute threshold', async () => {
   const announce = vi.fn<(text: string) => void>();
   render(
     <RecorderPanel
       transcript={{ committed: '', runFinal: '', runInterim: '' }}
       startedAt={Date.now()}
       limit={60}
+      followUp
       announce={announce}
       onStop={vi.fn()}
       onLimit={vi.fn()}
     />,
   );
+  expect(screen.getByText('Keep this follow-up under 1:00.')).toBeVisible();
   expect(screen.getByText('Start speaking. Your words will appear here.')).toBeVisible();
   await act(async () => {
     await vi.advanceTimersByTimeAsync(60000);

@@ -1,26 +1,41 @@
 'use client';
 import { useState } from 'react';
-import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
+import { FOLLOW_UP } from '@/lib/config';
+import type {
+  AnswerRecord,
+  SessionRecord,
+  AttemptRecord,
+  FollowUpRecord,
+} from '@/lib/storage/schema';
 import { FeedbackCard } from './feedback-card';
 
+function isFollowUpRecord(attempt: AttemptRecord): attempt is FollowUpRecord {
+  return 'parentAttemptId' in attempt && 'prompt' in attempt;
+}
 export function AttemptFeedback({
   answer,
   question,
   onRetry,
+  onFollowUp,
 }: {
   answer: AnswerRecord;
   question: SessionRecord['questions'][number];
   onRetry: () => void;
+  onFollowUp?: (parentAttemptId: string) => void;
 }) {
-  const [selected, setSelected] = useState(answer.attemptRecords.length - 1);
-  const attempt = answer.attemptRecords[selected];
+  const items = [...answer.attemptRecords, ...answer.followUpRecords];
+  const [selected, setSelected] = useState(
+    answer.followUp ? items.length - 1 : answer.attemptRecords.length - 1,
+  );
+  const attempt = items[selected];
+  const isFollowUp = attempt !== undefined && isFollowUpRecord(attempt);
   const shown = attempt ? { ...answer, ...attempt } : answer;
-  const previous = answer.attemptRecords[selected - 1]?.feedback;
+  const previous = isFollowUp ? null : answer.attemptRecords[selected - 1]?.feedback;
   const panelId = `attempt-panel-${answer.index}`;
   return (
     <>
       <div role="tablist" aria-label="Answer attempts">
-        {answer.attemptRecords.map((item, index) => (
+        {items.map((item, index) => (
           <button
             type="button"
             role="tab"
@@ -39,10 +54,9 @@ export function AttemptFeedback({
                 event.key === 'Home'
                   ? 0
                   : event.key === 'End'
-                    ? answer.attemptRecords.length - 1
+                    ? items.length - 1
                     : direction
-                      ? (index + direction + answer.attemptRecords.length) %
-                        answer.attemptRecords.length
+                      ? (index + direction + items.length) % items.length
                       : null;
               if (next === null) return;
               event.preventDefault();
@@ -50,7 +64,7 @@ export function AttemptFeedback({
               document.getElementById(`attempt-tab-${answer.index}-${next}`)?.focus();
             }}
           >
-            Attempt {item.ordinal}
+            {'parentAttemptId' in item ? 'Follow-up' : 'Attempt'} {item.ordinal}
           </button>
         ))}
       </div>
@@ -61,9 +75,20 @@ export function AttemptFeedback({
       >
         <FeedbackCard
           answer={shown}
-          question={question}
+          question={
+            isFollowUp
+              ? { ...question, prompt: attempt.prompt, time_limit_s: FOLLOW_UP.TIME_LIMIT_S }
+              : question
+          }
           previous={previous ?? null}
-          onRetry={onRetry}
+          {...(isFollowUp ? {} : { onRetry })}
+          {...(!isFollowUp && attempt?.feedbackMeta?.followUpToken && onFollowUp
+            ? {
+                onFollowUp: () => {
+                  onFollowUp(attempt.id);
+                },
+              }
+            : {})}
         />
       </div>
     </>

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { HTTP, STORAGE } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import { migrateRecord } from './migrations';
-import { ExportFileSchema, type ExportFile } from './schema';
+import { ExportFileSchema, type ExportFile, type AnswerRecord } from './schema';
 import type { SessionRepository } from './repository';
 const errorCopy = {
   size: 'That file is larger than 5 MB.',
@@ -17,6 +17,7 @@ export class ImportFileError extends AppError {
 export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unknown>> = {
   1: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 2 }),
   2: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 3 }),
+  3: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 4 }),
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({
@@ -47,6 +48,23 @@ export function migrateExport(
   }
   if (parsed.data.formatVersion > target) throw new ImportFileError('newer');
   return value;
+}
+function withoutProofs(answer: AnswerRecord): AnswerRecord {
+  const cleanMeta = (meta: AnswerRecord['feedbackMeta']) =>
+    meta ? { ...meta, ...(meta.followUpToken === undefined ? {} : { followUpToken: null }) } : null;
+  return {
+    ...answer,
+    followUp: answer.followUp ? { ...answer.followUp, token: null } : null,
+    feedbackMeta: cleanMeta(answer.feedbackMeta),
+    attemptRecords: answer.attemptRecords.map((item) => ({
+      ...item,
+      feedbackMeta: cleanMeta(item.feedbackMeta),
+    })),
+    followUpRecords: answer.followUpRecords.map((item) => ({
+      ...item,
+      feedbackMeta: cleanMeta(item.feedbackMeta),
+    })),
+  };
 }
 export async function readImport(file: File) {
   if (file.size > HTTP.IMPORT_MAX_BYTES) throw new ImportFileError('size');
@@ -97,7 +115,7 @@ export async function readImport(file: File) {
           ? { feedback: { enabled: false, reason: 'practice' as const } }
           : {}),
       },
-      answers,
+      answers: answers.map(withoutProofs),
     });
   }
   return { bundles, invalid };
@@ -116,7 +134,7 @@ export async function buildExport(
     sessions: await Promise.all(
       sessions.map(async (session) => ({
         session: { ...session, token: null, tokenExpiresAt: null },
-        answers: await repo.getAnswers(session.id),
+        answers: (await repo.getAnswers(session.id)).map(withoutProofs),
       })),
     ),
   });

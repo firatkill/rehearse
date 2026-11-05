@@ -1,4 +1,5 @@
 'use client';
+import { FOLLOW_UP } from '@/lib/config';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
@@ -51,7 +52,9 @@ export function Room({
   const kind = phase.kind;
   const feedbackOverall = state.answers.find((a) => a.index === index)?.feedback?.overall;
   const answerMode = phase.kind === 'answering' ? phase.answerMode : null;
-  const limit = session?.questions[index]?.time_limit_s ?? 0;
+  const limit = state.answers.find((a) => a.index === index)?.followUp
+    ? FOLLOW_UP.TIME_LIMIT_S
+    : (session?.questions[index]?.time_limit_s ?? 0);
   useEffect(
     () =>
       registerEnd(() => {
@@ -125,8 +128,16 @@ export function Room({
         <Link href={`/session/${id}/report`}>Open report</Link>
       </div>
     );
-  const question = session.questions[index];
+  const originalQuestion = session.questions[index];
   const answer = state.answers.find((a) => a.index === index);
+  const question =
+    originalQuestion && answer?.followUp
+      ? {
+          ...originalQuestion,
+          prompt: answer.followUp.prompt,
+          time_limit_s: FOLLOW_UP.TIME_LIMIT_S,
+        }
+      : originalQuestion;
   const answered = state.answers.filter(
     (a) => a.status === 'saved' || a.status === 'scored' || a.attemptRecords.length > 0,
   ).length;
@@ -137,6 +148,7 @@ export function Room({
   return (
     <div ref={root} className="room-stage" data-phase={kind}>
       <ProgressHeader session={session} index={index} />
+      {answer?.followUp && <p>Follow-up</p>}
       <LiveRegion visible message={message} />
       {kind === 'intro' ? (
         state.restoredNotice ? (
@@ -203,6 +215,7 @@ export function Room({
       )}
       {phase.kind === 'answering' && phase.answerMode === 'voice' && question && (
         <RecorderPanel
+          followUp={answer?.followUp !== null && answer?.followUp !== undefined}
           transcript={recorder.ctx.transcript}
           startedAt={phase.startedAt}
           limit={question.time_limit_s}
@@ -284,9 +297,12 @@ export function Room({
       {kind === 'feedback' && answer && question && (
         <>
           <AttemptFeedback
-            key={answer.attemptRecords.length}
+            key={`${answer.attemptRecords.length}:${answer.followUpRecords.length}`}
             answer={answer}
-            question={question}
+            question={originalQuestion ?? question}
+            onFollowUp={(parentAttemptId) => {
+              send({ type: 'FOLLOW_UP', parentAttemptId });
+            }}
             onRetry={() => {
               send({ type: 'RETRY_ANSWER' });
             }}

@@ -2,8 +2,10 @@ import { STORAGE } from '@/lib/config';
 import {
   LegacyAnswerRecordSchema,
   LegacySessionRecordSchema,
-  AnswerRecordSchema,
-  SessionRecordSchema,
+  V3AnswerRecordSchema as AnswerRecordSchema,
+  AnswerRecordSchema as CurrentAnswerRecordSchema,
+  V3SessionRecordSchema as SessionRecordSchema,
+  SessionRecordSchema as CurrentSessionRecordSchema,
 } from './schema';
 import { completeAttempt } from './attempts';
 export type Migration = {
@@ -52,6 +54,21 @@ export const MIGRATIONS: readonly Migration[] = [
       }
     },
   },
+  {
+    version: 4,
+    upgrade(_db, tx) {
+      for (const name of ['sessions', 'answers']) {
+        const request = tx.objectStore(name).openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          const migrated = migrateRecord(cursor.value);
+          if (migrated !== null) cursor.update(migrated);
+          cursor.continue();
+        };
+      }
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {
@@ -71,6 +88,18 @@ export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>
     const session = SessionRecordSchema.safeParse(value);
     if (session.success) return session.data;
     return AnswerRecordSchema.parse(value);
+  },
+  3: (input) => {
+    const session = SessionRecordSchema.safeParse(input);
+    if (session.success)
+      return CurrentSessionRecordSchema.parse({ ...session.data, schemaVersion: 4 });
+    const answer = AnswerRecordSchema.parse(input);
+    return CurrentAnswerRecordSchema.parse({
+      ...answer,
+      schemaVersion: 4,
+      followUp: null,
+      followUpRecords: [],
+    });
   },
 };
 export function migrateRecord(
