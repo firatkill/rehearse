@@ -27,7 +27,9 @@
     "eval:mock": "cross-env LLM_MODE=mock tsx --conditions=react-server scripts/eval.ts --mock --no-gate --out .eval-tmp",
     "demo:validate": "tsx --conditions=react-server scripts/validate-demo.ts",
     "demo:generate": "tsx --conditions=react-server scripts/demo-generate.ts",
-    "eval:jobposts:mock": "cross-env LLM_MODE=mock tsx --conditions=react-server scripts/eval-jobposts.ts"
+    "eval:jobposts:mock": "cross-env LLM_MODE=mock tsx --conditions=react-server scripts/eval-jobposts.ts",
+    "performance:bundle": "tsx scripts/performance-bundle.ts",
+    "test:performance": "playwright test -c playwright.performance.config.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "4.0.99",

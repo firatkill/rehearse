@@ -76,3 +76,11 @@ node scripts/docker-smoke.mjs rehearse-v4-test
 ```
 
 Implementation and owner review checkpoints: [V2 progress](docs/PROGRESS-V2.md). MIT, copyright Fırat Kıl.
+
+Local performance checks: after a build, run `pnpm performance:bundle http://localhost:3325`
+against your local app, and `pnpm test:performance` against the full mock test build.
+The bundle command blocks provider routes, writes `.eval-tmp/performance-bundle.json` and
+exits nonzero above the unchanged 140/200 kB (decimal) limits. V6 currently has an open bundle-size
+gap; see `docs/PROGRESS-V2.md`. Lighthouse and mock UI timings do not prove live/native
+speech latency. Next startup compiles the existing `cn` merger for repository classes;
+restart `next dev` after introducing new Tailwind class groups so its tables refresh.

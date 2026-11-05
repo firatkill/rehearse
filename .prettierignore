@@ -6,3 +6,5 @@ eval/results
 pnpm-lock.yaml
 .eval-tmp
 docs/design
+
+.generated/
