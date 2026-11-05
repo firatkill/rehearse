@@ -3312,7 +3312,7 @@ D-79 replaces the v1 cobalt tokens and geometry with `docs/design/v2/`. V-10 imp
 | `--ink-3`         | `#5F6B68` | `#93A19C` | labels, meta                                               |
 | `--rule`          | `#E1E6E4` | `#24312D` | borders                                                    |
 | `--rule-strong`   | `#C9D2CF` | `#2F3D39` | control borders, empty bar segments                        |
-| `--accent`        | `#0A7F66` | `#5EE0B4` | primary buttons, selected, eyebrow labels, positive change |
+| `--accent`        | `#08745D` | `#5EE0B4` | primary buttons, selected, eyebrow labels, positive change |
 | `--accent-hover`  | `#086B56` | `#7FE9C5` |                                                            |
 | `--accent-ink`    | `#FFFFFF` | `#0D1412` | text on accent                                             |
 | `--accent-tint`   | `#DDF3EA` | `#123A30` | demo banner, selected chip                                 |
@@ -3329,6 +3329,8 @@ Rules (D-79):
 - Pill buttons, at least 44 px tall; primary buttons at least 48 px. Cards have 16–20 px radii. Design examples smaller than these minimums do not override the rule.
 - Only the landing product card has this shadow: `0 1px 2px rgb(15 26 24 / .04), 0 24px 48px -24px rgb(15 26 24 / .18)`. No other shadows, gradients, emoji, illustrations or new colours outside the tokens. Map incidental design colours to these tokens; do not copy inline styles or design-tool scripts into the app.
 - The room is always dark using stage surfaces and dark-theme foreground tokens, including in light mode. Its header has only wordmark, progress segments and End session.
+  V-10 component contracts: Button preserves legacy variant aliases while primary/secondary/on-dark/text use 48px/44px minimum heights and visible focus. Chip is a native controlled toggle; Segmented uses a labelled fieldset and native radio inputs (arrow keys, disabled states). ScoreStrip supplies the §19.4 text equivalents for decorative ScoreBar; null means Not scored. DeltaBadge shows signed numeric text or an em dash. ProgressSegments receives zero-based current/total with a readable counter. HeatCell shows a score or an unscored dash. MarkedTranscript accepts integer character ranges, ignores invalid/overlapping ranges, and renders every substring through SafeText; no model HTML. Card/Eyebrow are static wrappers. DemoBanner accepts an explicit edition prop (integrated edition selection remains V-30). Gallery exists only in tests. Legacy --ok/--highlight alias accent/mark; --radius is 18px.
+
 - Shared `components/ui` primitives: Button (primary, secondary, on-dark, text), Chip (`aria-pressed`), Segmented (radio semantics), Eyebrow, ScoreBar, ScoreStrip, DeltaBadge, DemoBanner, ProgressSegments, MarkedTranscript, HeatCell and Card. Document states in short comments.
 - Score bars have four visual segments, `aria-hidden`, with the text equivalent required in §19.4. Colour alone never carries meaning; heat cells include scores and charts have table alternatives. MarkedTranscript marks verified quotes, vague phrases and fillers as text; never render model HTML.
 - Retain visible focus, accessible names, keyboard operation, announcer/focus rules and reduced motion in §19.4. Timers/live transcripts are not live regions. Skeletons have no shimmer. Only animate the recording dot when reduced motion is off.
@@ -4042,6 +4044,7 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:coverage
       - name: Eval harness smoke test (mock provider, no gate)
         run: pnpm eval:mock
@@ -4286,3 +4289,5 @@ Test the readonly switch once before launch (release checklist).
 12. "Question bank": how to add a question, content rules, `pnpm questions:validate`.
 13. "Future work": BYO-key high-quality voice mode (browser-side OpenAI transcription and speech with a key kept in memory only); more languages; interviewer follow-up questions.
 14. "Versions": pinned on {date}. License (MIT) and author.
+
+V-10 contrast verification (D-98): light accent is #08745D rather than design source #0A7F66; browser axe found the original at 4.48:1 on ground. Both themes are retested with the adjusted token.
