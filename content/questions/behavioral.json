@@ -19,7 +19,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact"]
   },
   {
     "id": "beh-002",
@@ -41,7 +42,8 @@
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-003",
@@ -63,7 +65,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-004",
@@ -85,7 +88,8 @@
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-005",
@@ -107,7 +111,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-006",
@@ -129,7 +134,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-007",
@@ -151,7 +157,8 @@
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity"]
   },
   {
     "id": "beh-008",
@@ -168,7 +175,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-009",
@@ -188,7 +196,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "impact"]
   },
   {
     "id": "beh-010",
@@ -208,7 +217,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure"]
   },
   {
     "id": "beh-011",
@@ -228,7 +238,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-012",
@@ -248,7 +259,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-013",
@@ -268,7 +280,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-014",
@@ -288,7 +301,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance"]
   },
   {
     "id": "beh-015",
@@ -308,7 +322,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership"]
   },
   {
     "id": "beh-016",
@@ -328,7 +343,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-017",
@@ -348,7 +364,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "clarity"]
   },
   {
     "id": "beh-018",
@@ -365,7 +382,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance"]
   },
   {
     "id": "beh-019",
@@ -382,7 +400,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-020",
@@ -402,7 +421,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "relevance", "clarity"]
   },
   {
     "id": "beh-021",
@@ -422,7 +442,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact"]
   },
   {
     "id": "beh-022",
@@ -442,7 +463,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership"]
   },
   {
     "id": "beh-023",
@@ -462,7 +484,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-024",
@@ -482,7 +505,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance"]
   },
   {
     "id": "beh-025",
@@ -502,7 +526,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-026",
@@ -519,7 +544,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership"]
   },
   {
     "id": "beh-027",
@@ -536,7 +562,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance"]
   },
   {
     "id": "beh-028",
@@ -556,7 +583,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "clarity"]
   },
   {
     "id": "beh-029",
@@ -576,7 +604,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure"]
   },
   {
     "id": "beh-030",
@@ -596,7 +625,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["clarity"]
   },
   {
     "id": "beh-031",
@@ -616,7 +646,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "impact"]
   },
   {
     "id": "beh-032",
@@ -633,7 +664,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "relevance"]
   },
   {
     "id": "beh-033",
@@ -653,7 +685,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "clarity"]
   },
   {
     "id": "beh-034",
@@ -673,7 +706,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact"]
   },
   {
     "id": "beh-035",
@@ -693,7 +727,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-036",
@@ -713,7 +748,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "clarity"]
   },
   {
     "id": "beh-037",
@@ -733,7 +769,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact"]
   },
   {
     "id": "beh-038",
@@ -753,7 +790,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership"]
   },
   {
     "id": "beh-039",
@@ -773,7 +811,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "beh-040",
@@ -793,7 +832,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "impact", "clarity"]
   },
   {
     "id": "beh-041",
@@ -813,7 +853,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "impact"]
   },
   {
     "id": "beh-042",
@@ -833,7 +874,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "relevance"]
   },
   {
     "id": "beh-043",
@@ -853,7 +895,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   },
   {
     "id": "beh-044",
@@ -873,7 +916,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact", "relevance"]
   },
   {
     "id": "beh-045",
@@ -893,7 +937,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity"]
   },
   {
     "id": "beh-046",
@@ -913,7 +958,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "impact"]
   },
   {
     "id": "beh-047",
@@ -933,7 +979,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "relevance"]
   },
   {
     "id": "beh-048",
@@ -953,7 +1000,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance"]
   },
   {
     "id": "beh-049",
@@ -973,7 +1021,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance"]
   },
   {
     "id": "beh-050",
@@ -993,6 +1042,7 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   }
 ]

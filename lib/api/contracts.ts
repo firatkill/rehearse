@@ -44,8 +44,13 @@ export const StartRequestSchema = z
     mode: z.enum(ANSWER_MODES),
     seed: z.string().regex(SESSION.SEED_PATTERN).optional(),
     feedback: z.boolean().default(true),
+    dimension: z.enum(DIMENSIONS).optional(),
   })
-  .strict();
+  .strict()
+  .refine(
+    (input) => input.dimension === undefined || input.length === SESSION.LENGTHS[0],
+    'dimension practice needs three questions',
+  );
 export const StartResponseSchema = z
   .object({
     sessionId: z.string().uuid(),

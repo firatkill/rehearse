@@ -19,7 +19,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact"]
   },
   {
     "id": "beh-002",
@@ -41,7 +42,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-003",
@@ -63,7 +65,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-004",
@@ -85,7 +88,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "tec-001",
@@ -107,7 +111,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-002",
@@ -129,7 +134,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-003",
@@ -151,7 +157,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-004",
@@ -173,7 +180,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "sdl-001",
@@ -195,7 +203,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-002",
@@ -217,7 +226,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-003",
@@ -239,7 +249,8 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-004",
@@ -261,6 +272,7 @@
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "relevance"]
   }
 ]

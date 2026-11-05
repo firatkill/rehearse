@@ -43,7 +43,7 @@ test('TC-147 UT-14 actual v1 database upgrades without losing completed answers 
   const draft = AnswerRecordSchema.parse(
     await requestResult(read.objectStore('answers').get([record.id, 1])),
   );
-  expect(session.schemaVersion).toBe(4);
+  expect(session.schemaVersion).toBe(5);
   expect(completed.attemptRecords[0]?.transcript).toBe(answer.transcript);
   expect(completed.bestAttemptId).toBe(completed.attemptRecords[0]?.id);
   expect(draft.transcript).toBe(answer.transcript);
@@ -74,7 +74,7 @@ test('TC-147 UT-15 old export migrates and new attempts round-trip', async () =>
   await repo.createSession(bundle.session);
   for (const a of bundle.answers) await repo.putAnswer(a);
   const exported = await buildExport(repo, '2', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(4);
+  expect(exported.formatVersion).toBe(5);
   const roundtrip = await readImport(new File([JSON.stringify(exported)], 'new.json'));
   expect(roundtrip.bundles[0]?.answers).toEqual(bundle.answers);
   expect(migrateRecord({ schemaVersion: 1, malformed: true })).toBeNull();
@@ -108,7 +108,7 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
   );
   expect(stored).toEqual({
     ...historicAnswer,
-    schemaVersion: 4,
+    schemaVersion: 5,
     followUp: null,
     followUpRecords: [],
   });

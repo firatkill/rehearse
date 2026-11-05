@@ -403,10 +403,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 4,
-  RECORD_SCHEMA_VERSION: 4, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 5,
+  RECORD_SCHEMA_VERSION: 5, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 4,
+  EXPORT_FORMAT_VERSION: 5,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -645,7 +645,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "impact"]
   },
   {
     "id": "beh-002",
@@ -667,7 +668,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "beh-003",
@@ -689,7 +691,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-004",
@@ -711,7 +714,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["ownership", "clarity"]
   },
   {
     "id": "beh-005",
@@ -733,7 +737,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-006",
@@ -755,7 +760,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact"]
   },
   {
     "id": "beh-007",
@@ -777,7 +783,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 150,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity"]
   }
 ]
 ```
@@ -806,7 +813,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["relevance", "clarity"]
   },
   {
     "id": "tec-002",
@@ -828,7 +836,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-003",
@@ -850,7 +859,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["specificity", "clarity"]
   },
   {
     "id": "tec-004",
@@ -872,7 +882,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 120,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["impact", "relevance", "clarity"]
   },
   {
     "id": "tec-005",
@@ -894,7 +905,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 90,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity", "clarity"]
   }
 ]
 ```
@@ -923,7 +935,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-002",
@@ -945,7 +958,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   },
   {
     "id": "sdl-003",
@@ -967,7 +981,8 @@ These 15 questions are committed as written. The implementer writes the remainin
     ],
     "time_limit_s": 180,
     "status": "active",
-    "added_in": "1.0.0"
+    "added_in": "1.0.0",
+    "dimensions": ["structure", "specificity"]
   }
 ]
 ```
@@ -4349,3 +4364,10 @@ V-22 eval extension: `pnpm eval --suite follow-up --only g-28,g-29` reads `eval/
 ### V-23 report presentation (D-117)
 
 The report heat table has one row per question and columns for the six rubric dimensions and completed original-attempt count. Select the same best original attempt as `aggregate`; follow-ups remain nested under that question and do not alter its mean or retries. Retry total is the sum of `max(0, attemptRecords.length - 1)`. The two lowest non-null dimension means, tied in rubric order, supply the next-practice cards. Print expands all answer disclosures and restores their state afterwards. The table scrolls independently at narrow widths and retains text scores for assistive technology. No scoring, prompt or provider contract changes.
+
+### V-24 dimension practice contracts (D-118; supersedes matching §6/§7/§12 fields)
+
+- Question bank `dimensions`: nonempty unique array of the six rubric dimension ids, at most six. Manifest `dimensions` lists every dimension exactly once. `questions:validate` requires at least `SESSION.LENGTHS[0]` active questions per role/seniority/dimension; existing role/type/topic coverage remains. Bank version stays `1.0.0`; question text, ids, hints and listen-for content are unchanged.
+- Start request optional `dimension`: one rubric dimension. When present, length must equal `SESSION.LENGTHS[0]` (3). Select only active questions tagged for that dimension and matching both role and seniority, across types; seeded shuffle, prefer distinct topics, no duplicate ids and no eligibility fallback. Existing unfiltered selection is unchanged. Invalid dimension/length is `VALIDATION_FAILED`.
+- Setup optional nullable `dimension`: selected focus, or absent/null for normal practice. DB/record/export versions become 5. Append migration 5, record migration 4 and export migration 4; old sessions gain `dimension: null`, answers retain every v4 validation rule. Earlier migration bindings remain frozen. Export/import and same-question repeat retain dimension.
+- A report button starts immediately with the prior role, seniority and speech preferences, three questions and all question types. Prevent duplicate submissions and persist the validated response before navigation. Quota failure retains the report and links to setup for existing no-feedback fallback; other start/storage failures permit retry. No LLM call occurs during selection.

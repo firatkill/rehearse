@@ -7,12 +7,13 @@ import {
   QUESTION_TYPES,
   SESSION,
   SETUP_DEFAULTS,
-  STORAGE,
   type QuestionType,
 } from '@/lib/config';
 import { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } from '@/lib/labels';
 import { startSession } from '@/lib/api/client';
-import { SetupSchema, SessionRecordSchema, type Setup } from '@/lib/storage/schema';
+import { SetupSchema, type Setup } from '@/lib/storage/schema';
+import { newSessionRecord } from '@/lib/storage/new-session';
+import { DIMENSION_LABELS } from '@/lib/labels';
 import { useRepository } from '@/hooks/use-repository';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/button';
@@ -91,7 +92,13 @@ export function SetupForm({
   const firstType = useRef<HTMLInputElement>(null);
   const validSeed = initialSeed !== null && SESSION.SEED_PATTERN.test(initialSeed);
   const change = (patch: Partial<Setup>) => {
-    const next = { ...setup, ...patch };
+    const next = {
+      ...setup,
+      ...patch,
+      ...('role' in patch || 'seniority' in patch || 'types' in patch || 'length' in patch
+        ? { dimension: null }
+        : {}),
+    };
     setChanged(next);
     try {
       localStorage.setItem('rehearse-setup', JSON.stringify(next));
@@ -117,6 +124,7 @@ export function SetupForm({
       length: sessionSetup.length,
       mode: sessionSetup.mode,
       feedback: reason === undefined,
+      ...(sessionSetup.dimension ? { dimension: sessionSetup.dimension } : {}),
       ...(validSeed ? { seed: initialSeed } : {}),
     });
     if (!result.ok) {
@@ -137,28 +145,7 @@ export function SetupForm({
     const data = result.data;
     const now = new Date().toISOString();
     try {
-      await repository.createSession(
-        SessionRecordSchema.parse({
-          schemaVersion: STORAGE.RECORD_SCHEMA_VERSION,
-          id: data.sessionId,
-          origin: 'live',
-          createdAt: now,
-          updatedAt: now,
-          completedAt: null,
-          status: 'in_progress',
-          setup: sessionSetup,
-          currentMode: sessionSetup.mode,
-          seed: data.seed,
-          bankVersion: data.bankVersion,
-          questions: data.questions,
-          feedback: { ...data.feedback, reason: reason ?? data.feedback.reason },
-          token: data.token,
-          tokenExpiresAt: data.tokenExpiresAt,
-          checkpoint: { index: 0, phase: 'intro', at: now },
-          summary: null,
-          summaryStatus: 'none',
-        }),
-      );
+      await repository.createSession(newSessionRecord(data, sessionSetup, now, reason));
       router.push(`/session/${data.sessionId}`);
     } catch {
       setError('Couldn’t start the session. Check your connection and try again.');
@@ -167,6 +154,12 @@ export function SetupForm({
   }
   return (
     <>
+      {setup.dimension && (
+        <p className="banner">
+          Practising {DIMENSION_LABELS[setup.dimension]} · 3 questions. Changing the role, level,
+          types or length returns to all dimensions.
+        </p>
+      )}
       <section className="setup-warmup" aria-labelledby="warmup-heading">
         <div>
           <h2 id="warmup-heading">Quick warm-up</h2>
