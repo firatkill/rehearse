@@ -8,7 +8,10 @@ export function Footer() {
       </p>
       <p>
         Your sessions stay in this browser. Answers are sent to the server only to get feedback and
-        are not stored. <Link href="/privacy">Privacy</Link>
+        are not stored.{' '}
+        <Link href="/privacy" prefetch={false}>
+          Privacy
+        </Link>
       </p>
     </footer>
   );

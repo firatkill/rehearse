@@ -3293,6 +3293,8 @@ Rules (D-79):
 
 ### 19.3 Theme
 
+V-02 verification: retain this parser-executed server head script. After V-01 removes locale-driven hydration recovery, the React script-in-client-render warning does not reproduce on Turkish-locale loads, navigation or reloads. E2E-26 covers saved light/dark themes before the first frame and rejects console/page errors; the same checks also run against the development server. Do not move the script into a client effect or delay it until after paint. D-86 disables prefetch for the unfinished `/how-it-works` and `/privacy` links; V-13 may restore prefetch after those routes exist.
+
 Inline script in `app/layout.tsx` `<head>` with the CSP nonce, before paint:
 
 ```js
