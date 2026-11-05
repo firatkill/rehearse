@@ -19,6 +19,8 @@ beforeAll(() => {
   resetEnvForTests();
 });
 afterAll(() => {
+  vi.stubEnv('APP_EDITION', 'full');
+  resetEnvForTests();
   getSqliteConnection().close();
   rmSync(dir, { recursive: true, force: true });
   resetEnvForTests();
@@ -123,4 +125,58 @@ it('TC-176 full persists reviewed text and generated ids; server question scope 
   );
   expect(revision.post.id).not.toBe(generated.post.id);
   expect(revision.questions).toEqual([]);
+});
+
+it('TC-179 full adds five unique questions; duplicate provider output never stores repeats; demo blocks more', async () => {
+  vi.stubEnv('DATA_DIR', dir);
+  vi.stubEnv('MOCK_LLM_DELAY_MS', '0');
+  resetEnvForTests();
+  const draft = JobResponseSchema.parse(
+    await (await POST(request({ operation: 'create', text: jobText }))).json(),
+  );
+  expect((await POST(request({ operation: 'more', id: draft.post.id }))).status).toBe(400);
+  const first = JobResponseSchema.parse(
+    await (await POST(request({ operation: 'generate', id: draft.post.id }))).json(),
+  );
+  const response = await POST(request({ operation: 'more', id: draft.post.id }));
+  expect(response.status).toBe(200);
+  const more = JobResponseSchema.parse(await response.json());
+  expect(more.questions).toHaveLength(13);
+  expect(more.questions.slice(0, 8)).toEqual(first.questions);
+  expect(new Set(more.questions.map((q) => q.text)).size).toBe(13);
+  const repeated = vi.spyOn(providers, 'getProvider').mockReturnValue({
+    modelId: 'fake',
+    async generateStructured(args) {
+      await Promise.resolve();
+      const { role, company, location, requirements, about } = first.post;
+      return {
+        object: args.schema.parse({
+          role,
+          company,
+          location,
+          requirements,
+          about,
+          questions: first.questions.map(({ text, type, groundingQuote, listenFor }) => ({
+            text,
+            type,
+            groundingQuote,
+            listenFor,
+          })),
+        }),
+        usage: { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 },
+      };
+    },
+  });
+  expect((await POST(request({ operation: 'more', id: draft.post.id }))).status).toBe(502);
+  repeated.mockRestore();
+  const unchanged = JobResponseSchema.parse(
+    await (await POST(request({ operation: 'get', id: draft.post.id }))).json(),
+  );
+  expect(unchanged.questions).toEqual(more.questions);
+  vi.stubEnv('APP_EDITION', 'demo');
+  resetEnvForTests();
+  const provider = vi.spyOn(providers, 'getProvider');
+  provider.mockClear();
+  expect((await POST(request({ operation: 'more', id: draft.post.id }))).status).toBe(403);
+  expect(provider).not.toHaveBeenCalled();
 });

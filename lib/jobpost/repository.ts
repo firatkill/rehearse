@@ -95,15 +95,15 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
       return db.transaction(() => {
         const post = get(id);
         if (!post) throw new AppError('JOBPOST_NOT_FOUND');
-        if (questions(id).length + accepted.length > JOBPOST.MAX_STORED_QUESTIONS)
+        const stored = questions(id);
+        const existing = stored.filter((item) => item.origin === 'generated');
+        if (stored.length + accepted.length > JOBPOST.MAX_STORED_QUESTIONS)
           throw new AppError('VALIDATION_FAILED');
         if (
           validateJobQuestions(
             accepted,
             post.text,
-            questions(id)
-              .filter((item) => item.origin === 'generated')
-              .map((item) => item.text),
+            existing.map((item) => item.text),
           ).questions.length !== accepted.length
         )
           throw new AppError('JOBPOST_INVALID');
@@ -111,12 +111,12 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
         const updated = save({
           ...post,
           status: 'ready',
-          role: summary.role,
-          company: summary.company,
-          location: summary.location,
-          requirements: summary.requirements,
-          about: summary.about,
-          practiceRole: practiceRole(summary.role),
+          role: existing.length ? post.role : summary.role,
+          company: existing.length ? post.company : summary.company,
+          location: existing.length ? post.location : summary.location,
+          requirements: existing.length ? post.requirements : summary.requirements,
+          about: existing.length ? post.about : summary.about,
+          practiceRole: existing.length ? post.practiceRole : practiceRole(summary.role),
           updatedAt: now,
         });
         for (const item of accepted) {
