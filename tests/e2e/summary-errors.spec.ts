@@ -51,7 +51,7 @@ test('TC-085 E2E-20 exhausted summary quota hides retry and preserves determinis
     ),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Try again' })).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: 'Focus on these next' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Practise this next' })).toBeVisible();
 });
 test('TC-085 E2E-20 session without a token never offers summary retry', async ({ page }, info) => {
   let requests = 0;

@@ -5,10 +5,20 @@ import { startTextSession, storedRoom } from './storage-helpers';
 import { prepareVoice, startAnswer } from './voice-helpers';
 import { seedLocalSession } from './local-session-helpers';
 async function fits(page: Page) {
+  const overflow = await page.locator('body *').evaluateAll((nodes) =>
+    nodes.flatMap((node) => {
+      const bounds = node.getBoundingClientRect();
+      return bounds.right > document.documentElement.clientWidth &&
+        !node.closest('.report-table-scroll')
+        ? [`${node.tagName}.${node.className}: ${Math.round(bounds.right)}`]
+        : [];
+    }),
+  );
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
     ),
+    overflow.join('\n'),
   ).toBe(true);
 }
 for (const viewport of [
