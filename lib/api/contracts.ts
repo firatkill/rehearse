@@ -160,10 +160,11 @@ export const SummaryResponseSchema = z
 export const HealthResponseSchema = z
   .object({
     status: z.literal('ok'),
+    edition: z.enum(['demo', 'full']),
     version: z.string(),
     commit: z.string(),
     demoMode: z.enum(['on', 'readonly', 'off']),
-    llmMode: z.enum(['live', 'mock']),
+    llmMode: z.enum(['live', 'mock', 'none']),
     rateLimitBackend: z.enum(['upstash', 'memory']),
     promptVersions: z.object({ feedback: z.string(), summary: z.string() }).strict(),
     bankVersion: z.string(),

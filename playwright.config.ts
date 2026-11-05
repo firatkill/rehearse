@@ -16,6 +16,8 @@ const server = (port: number, extra: Record<string, string>) => ({
   timeout: 120_000,
   env: {
     ...baseEnv,
+    APP_EDITION: 'full',
+    NODE_ENV: 'test',
     LLM_MODE: 'mock',
     RATE_LIMIT_BACKEND: 'memory',
     NEXT_PUBLIC_SITE_URL: `http://localhost:${port}`,

@@ -37,7 +37,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>
-        <Shell demoMode={getEnv().DEMO_MODE}>{children}</Shell>
+        <Shell demoMode={getEnv().DEMO_MODE} edition={getEnv().APP_EDITION}>
+          {children}
+        </Shell>
       </body>
     </html>
   );

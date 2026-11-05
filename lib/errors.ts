@@ -17,6 +17,7 @@ export const ERROR_CODES = [
   'INTERNAL_ERROR',
   'PROVIDER_ERROR',
   'FEEDBACK_INVALID',
+  'DEMO_ONLY',
   'DEMO_OFF',
   'DEMO_READONLY',
   'LIMITER_UNAVAILABLE',
@@ -42,6 +43,7 @@ const statuses: Record<ErrorCode, number> = {
   INTERNAL_ERROR: 500,
   PROVIDER_ERROR: 502,
   FEEDBACK_INVALID: 502,
+  DEMO_ONLY: 403,
   DEMO_OFF: 503,
   DEMO_READONLY: 503,
   LIMITER_UNAVAILABLE: 503,
@@ -74,6 +76,7 @@ export function errorLogLevel(code: ErrorCode): 'info' | 'warn' | 'error' {
     case 'FEEDBACK_QUOTA_EXCEEDED':
     case 'SESSION_FEEDBACK_EXHAUSTED':
     case 'SESSION_SUMMARY_EXHAUSTED':
+    case 'DEMO_ONLY':
     case 'DEMO_OFF':
     case 'DEMO_READONLY':
       return 'info';

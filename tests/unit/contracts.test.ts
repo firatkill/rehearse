@@ -74,6 +74,7 @@ const examples: [string, z.ZodType, Record<string, unknown>][] = [
     contracts.HealthResponseSchema,
     {
       status: 'ok',
+      edition: 'full',
       version: '1.0.0',
       commit: 'a1b2c3d',
       demoMode: 'on',

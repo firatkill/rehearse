@@ -57,6 +57,13 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        # Build validates production config; dynamic routes make no provider calls here.
+        env:
+          LLM_MODE: live
+          OPENAI_API_KEY: ci-placeholder-not-a-key
+          CHAT_MODEL: ci-placeholder
+          PRICE_INPUT_PER_MTOK: '0'
+          PRICE_OUTPUT_PER_MTOK: '0'
       - name: Check client bundle for secrets
         run: |
           if grep -rEl "(^|[^A-Za-z0-9_-])sk-(proj-)?[A-Za-z0-9_-]{20,}|OPENAI_API_KEY|SESSION_SECRET|IP_HASH_SECRET|UPSTASH_REDIS_REST_TOKEN" .next/static; then
@@ -99,6 +106,13 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        # Build validates production config; dynamic routes make no provider calls here.
+        env:
+          LLM_MODE: live
+          OPENAI_API_KEY: ci-placeholder-not-a-key
+          CHAT_MODEL: ci-placeholder
+          PRICE_INPUT_PER_MTOK: '0'
+          PRICE_OUTPUT_PER_MTOK: '0'
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v7

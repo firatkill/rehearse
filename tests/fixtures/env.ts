@@ -1,5 +1,9 @@
 // Independent inventory copied from TRD §5 for UT-30.
 export const ENV_NAMES = [
+  'APP_EDITION',
+  'DATA_DIR',
+  'MONTHLY_BUDGET_USD',
+  'APP_PASSWORD',
   'LLM_MODE',
   'OPENAI_API_KEY',
   'CHAT_MODEL',

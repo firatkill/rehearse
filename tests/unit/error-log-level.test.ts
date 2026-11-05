@@ -19,6 +19,7 @@ const cases: [ErrorCode, 'info' | 'warn' | 'error'][] = [
   ['INTERNAL_ERROR', 'error'],
   ['PROVIDER_ERROR', 'error'],
   ['FEEDBACK_INVALID', 'error'],
+  ['DEMO_ONLY', 'info'],
   ['DEMO_OFF', 'info'],
   ['DEMO_READONLY', 'info'],
   ['LIMITER_UNAVAILABLE', 'error'],

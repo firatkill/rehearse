@@ -82,6 +82,13 @@ export function FeedbackError({
         retry = false;
         focus = 'heading';
         break;
+      case 'DEMO_ONLY':
+        title = 'Live AI is available in the full version';
+        body =
+          'The demo uses pre-written sample feedback. Run the full version yourself for live coaching.';
+        retry = false;
+        focus = 'heading';
+        break;
       case 'DEMO_READONLY':
         title = 'Feedback is paused on the live demo';
         body = 'Your answer is saved. You can continue without feedback.';
