@@ -1,0 +1,14 @@
+services:
+  rehearse:
+    build: .
+    ports:
+      - '127.0.0.1:3000:3000'
+    env_file: .env
+    environment:
+      APP_EDITION: full
+      DATA_DIR: /data
+    volumes:
+      - rehearse-data:/data
+    restart: unless-stopped
+volumes:
+  rehearse-data:

@@ -4,6 +4,11 @@ import { buildCsp, proxy } from '@/proxy';
 
 it('TC-009: NFR-13 / D-23 nonces differ and reach request and response headers', () => {
   vi.stubEnv('NODE_ENV', 'production');
+  vi.stubEnv('LLM_MODE', 'live');
+  vi.stubEnv('OPENAI_API_KEY', 'test-placeholder');
+  vi.stubEnv('CHAT_MODEL', 'test-placeholder');
+  vi.stubEnv('PRICE_INPUT_PER_MTOK', '0');
+  vi.stubEnv('PRICE_OUTPUT_PER_MTOK', '0');
   const a = proxy(new NextRequest('http://localhost:3000'));
   const b = proxy(new NextRequest('http://localhost:3000'));
   const csp = a.headers.get('content-security-policy');

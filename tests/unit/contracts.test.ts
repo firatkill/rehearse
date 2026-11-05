@@ -166,7 +166,8 @@ it('TC-028 TRD 12.6 client parses success, HTTP errors, invalid JSON/shapes and 
   expect((await requestFeedback('signed', feedbackBody)).ok).toBe(true);
   expect(timeout).toHaveBeenCalledWith(55000);
   expect(fetch.mock.lastCall?.[0]).toBe('/api/feedback');
-  expect(new Headers(fetch.mock.lastCall?.[1]?.headers).get('authorization')).toBe('Bearer signed');
+  expect(new Headers(fetch.mock.lastCall?.[1]?.headers).get('x-rehearse-session')).toBe('signed');
+  expect(new Headers(fetch.mock.lastCall?.[1]?.headers).has('authorization')).toBe(false);
   const abort = new AbortController();
   abort.abort();
   fetch.mockImplementationOnce((_url, init) => {

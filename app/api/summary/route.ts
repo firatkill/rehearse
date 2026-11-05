@@ -49,7 +49,9 @@ export async function POST(req: Request): Promise<Response> {
     checkOrigin(req, env);
     if (env.DEMO_MODE === 'off') return fail('DEMO_OFF');
     if (env.DEMO_MODE === 'readonly') return fail('DEMO_READONLY');
-    const bearer = /^Bearer (.+)$/.exec(req.headers.get('authorization') ?? '')?.[1];
+    const bearer =
+      req.headers.get('x-rehearse-session') ??
+      /^Bearer (.+)$/.exec(req.headers.get('authorization') ?? '')?.[1];
     if (!bearer) return fail('TOKEN_MISSING');
     const token = verifyToken(
       bearer,
