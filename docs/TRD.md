@@ -300,6 +300,31 @@ export const SPEECH = {
   RESULT_OFFSETS_MAX: 4_000,
 } as const;
 
+export const VOICES = {
+  NOVELTY_NAMES: [
+    'Bahh',
+    'Bells',
+    'Boing',
+    'Bubbles',
+    'Cellos',
+    'Deranged',
+    'Good News',
+    'Bad News',
+    'Hysterical',
+    'Jester',
+    'Organ',
+    'Pipe Organ',
+    'Superstar',
+    'Trinoids',
+    'Whisper',
+    'Wobble',
+    'Zarvox',
+    'İyi Haber',
+    'Kötü Haber',
+  ],
+  PREFERRED_NAMES: ['Samantha', 'Daniel'],
+} as const;
+
 export const TTS = {
   RATE_MIN: 0.8,
   RATE_MAX: 1.3,
@@ -1559,49 +1584,16 @@ Display: committed and final text in `--ink`; interim text in `--ink-3`, italic,
 
 ### 10.1 Voices (`lib/speech/voices.ts`)
 
-```ts
-export async function loadVoices(
-  synth: SpeechSynthesis,
-  waitMs = SPEECH.VOICES_WAIT_MS,
-): Promise<SpeechSynthesisVoice[]> {
-  let voices = synth.getVoices();
-  if (voices.length === 0) {
-    voices = await new Promise((resolve) => {
-      const done = () => {
-        synth.removeEventListener('voiceschanged', done);
-        resolve(synth.getVoices());
-      };
-      synth.addEventListener('voiceschanged', done);
-      setTimeout(done, waitMs);
-    });
-  }
-  return voices
-    .filter((v) => /^en([-_]|$)/i.test(v.lang))
-    .sort(
-      (a, b) =>
-        Number(b.localService) - Number(a.localService) ||
-        Number(b.lang.replace('_', '-') === 'en-US') -
-          Number(a.lang.replace('_', '-') === 'en-US') ||
-        a.name.localeCompare(b.name),
-    );
-}
+V-05 / D-89: filter to English voices and exclude `VOICES.NOVELTY_NAMES`, including their Turkish names, by normalized name or the canonical voice URI suffix. Normalization strips combining accents, punctuation and case. Never sniff the user agent.
 
-export function pickVoice(
-  voices: SpeechSynthesisVoice[],
-  storedURI: string | null,
-): { voice: SpeechSynthesisVoice | null; fellBack: boolean } {
-  if (storedURI) {
-    const v = voices.find((x) => x.voiceURI === storedURI);
-    if (v) return { voice: v, fellBack: false };
-  }
-  const d = voices.find((x) => x.default) ?? voices[0] ?? null;
-  return { voice: d, fellBack: storedURI !== null };
-}
-```
+Default ranking: local premium, local enhanced, local Samantha/Daniel, other local, then online. Within each quality tier prefer the browser default, then en-US, then name and URI in en-GB lexical order. A saved eligible URI always wins; a missing or now-excluded URI uses the ranked default with the existing fallback message. No eligible voices returns null. Quality is inferred from the name/URI because Web Speech has no quality field.
 
-- Local voices sort first because online voices send the question text to the vendor (stated on `/privacy`).
-- If the stored voice is missing (another device), use the default and show under the voice select: "Your saved voice isn’t available here, so the default voice is used."
-- `useVoices()` also listens for later `voiceschanged` events and refreshes the list. `getVoices()` returns an empty list until the engine has loaded its voices (Chrome loads them asynchronously and fires `voiceschanged`; Safari may fill the list without firing it), which is why `loadVoices` waits for the event or `VOICES_WAIT_MS`, whichever comes first, and resolves only once (ignore the second trigger).
+The picker uses native `optgroup` elements labelled with normalized language tags (e.g. `en-au`, `en-gb`, `en-us`), sorted by tag. Ranking is preserved inside each group. Option names and online suffix stay unchanged.
+
+`loadVoices` waits for `voiceschanged` or `SPEECH.VOICES_WAIT_MS`, whichever comes first, and resolves only once, clearing timer/listener. `useVoices` also refreshes on later events. All filtering/ranking/grouping functions use supplied voice data; no browser APIs at module load.
+
+- Online voices still carry “(online voice)” because question text may go to their vendor.
+- Missing/excluded saved voice message: “Your saved voice isn’t available here, so the default voice is used.”
 
 ### 10.2 Chunking (normative, `lib/speech/chunk.ts`)
 

@@ -75,7 +75,7 @@ test('TC-053 UT-19 FR-06 waits for voices, filters and sorts English, selects re
   ]);
   events.dispatchEvent(new Event('voiceschanged'));
   const voices = await promise;
-  expect(voices.map((v) => v.name)).toEqual(['A', 'B', 'A', 'Remote']);
+  expect(voices.map((v) => v.name)).toEqual(['A', 'A', 'B', 'Remote']);
   expect(pickVoice(voices, 'B')).toEqual({ voice: us, fellBack: false });
   expect(pickVoice(voices, 'missing')).toEqual({ voice: gb, fellBack: true });
   expect(pickVoice(voices, null)).toEqual({ voice: gb, fellBack: false });
