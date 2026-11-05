@@ -62,6 +62,7 @@ export default defineConfig([
     },
   },
   globalIgnores([
+    '.generated/**',
     '.next/**',
     '.next-demo/**',
     'out/**',

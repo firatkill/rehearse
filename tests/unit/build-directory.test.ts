@@ -9,5 +9,5 @@ it.each([
   vi.stubEnv('APP_EDITION', edition);
   vi.stubEnv('VERCEL_ENV', vercel);
   const { default: config } = await import('../../next.config');
-  expect(config.distDir).toBe(expected);
+  expect((await config()).distDir).toBe(expected);
 });

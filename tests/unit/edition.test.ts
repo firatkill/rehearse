@@ -89,6 +89,6 @@ it('TC-159 build flag is derived from APP_EDITION, not an independent public ove
   vi.stubEnv('APP_EDITION', 'demo');
   vi.stubEnv('NEXT_PUBLIC_APP_EDITION', 'full');
   vi.resetModules();
-  const config = (await import('@/next.config')).default;
+  const config = await (await import('@/next.config')).default();
   expect(config.env?.NEXT_PUBLIC_APP_EDITION).toBe('demo');
 });
