@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Start a session</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F4F3}
+a{color:#0F1A18}a:hover{color:#0A7F66}
+.r{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#0F1A18}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:#5F6B68}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:16px;text-decoration:none;border:1px solid #0F1A18;box-sizing:border-box;cursor:pointer}
+.btn-p{background:#0A7F66;color:#FFFFFF;border-color:#0A7F66}
+.btn-p:hover{background:#086B56;border-color:#086B56;color:#FFFFFF}
+.btn-s{background:transparent;color:#0F1A18}
+.nav a{text-decoration:none;font-size:15px;color:#3C4A47}
+.chip{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #C9D2CF;background:#FFFFFF;font-family:'Schibsted Grotesk',sans-serif;font-size:15px;color:#0F1A18;cursor:pointer}
+.chip[aria-pressed="true"]{background:#DDF3EA;color:#0F1A18;border-color:#0A7F66}
+.seg{display:inline-flex;border:1px solid #C9D2CF;border-radius:999px;padding:3px;background:#FFFFFF;gap:2px}
+.seg button{min-height:40px;padding:0 16px;border:0;border-radius:999px;background:transparent;font-family:'Schibsted Grotesk',sans-serif;font-size:15px;color:#3C4A47;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#0A7F66;color:#FFFFFF}
+.field{width:100%;box-sizing:border-box;min-height:52px;border:1px solid #C9D2CF;border-radius:12px;padding:0 16px;font-family:'Schibsted Grotesk',sans-serif;font-size:16px;background:#FFFFFF;color:#0F1A18}
+</style>
+</helmet>
+<div class="r" style="min-height: 100vh; background: #F2F4F3">
+
+<div role="status" style="background: #DDF3EA; color: #0F1A18; padding: 10px 40px; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; font-size: 14px"><span class="mono" style="font-size: 11px; letter-spacing: .08em; background: #0A7F66; color: #FFFFFF; border-radius: 999px; padding: 2px 8px">DEMO</span><span>Sample feedback only. <a href="Main.dc.html#self-host" style="color: #0A7F66">Run the full version</a></span></div>
+
+<header style="border-bottom: 1px solid #E1E6E4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 20px; letter-spacing: -.02em"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #0A7F66"></span>Rehearse</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="Start.dc.html" aria-current="page" style="color: #0F1A18; font-weight: 600">Practise</a><a href="JobPost.dc.html">Job post</a><a href="Progress.dc.html">Progress</a><a href="Main.dc.html#how">How it works</a><a href="https://github.com/firatkill/rehearse">GitHub</a></nav>
+</div>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 56px 40px 96px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-size: 48px; line-height: 1.05; letter-spacing: -.03em">What are you preparing for?</h1>
+<p style="margin: 0; font-size: 18px; color: #3C4A47">Pick one. You can change the voice, speed and length before you start.</p>
+</div>
+
+<a href="Room.dc.html" style="text-decoration: none; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; justify-content: space-between; border: 1px solid #E1E6E4; background: #FFFFFF; border-radius: 16px; padding: 20px 24px">
+<span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600; font-size: 18px">Quick warm-up</span><span style="color: #3C4A47; font-size: 15px">3 questions with your last settings: Full-stack · Mid-level · Voice · English</span></span>
+<span class="btn btn-p" style="min-height: 44px">Start in one click</span>
+</a>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 24px">
+
+<section aria-labelledby="jp" style="border: 2px solid #0A7F66; background: #FFFFFF; border-radius: 18px; padding: 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; gap: 12px; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p class="lbl" style="margin: 0; color: #0A7F66">Got an interview?</p>
+<h2 id="jp" style="margin: 0; font-size: 28px; letter-spacing: -.02em">Practise for a job post</h2>
+</div>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A47">Paste the link or the text of the post. Rehearse reads the role and the company and builds questions from what they ask for.</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="url" style="font-weight: 600; font-size: 15px">Job post link or text</label>
+<input id="url" class="field" type="text" placeholder="https://… or paste the description">
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="lbl">Or try an example post</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<a class="chip" href="JobPost.dc.html" style="text-decoration: none">Senior frontend engineer, fintech</a>
+<a class="chip" href="JobPost.dc.html" style="text-decoration: none">Backend engineer, logistics</a>
+<a class="chip" href="JobPost.dc.html" style="text-decoration: none">AI product engineer</a>
+</div>
+</div>
+<div><a class="btn btn-p" href="JobPost.dc.html">Read the job post</a></div>
+</section>
+
+<section aria-labelledby="qb" style="border: 1px solid #E1E6E4; background: #FFFFFF; border-radius: 18px; padding: 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p class="lbl" style="margin: 0; color: #0A7F66">General practice</p>
+<h2 id="qb" style="margin: 0; font-size: 28px; letter-spacing: -.02em">Practise by role</h2>
+</div>
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px"><legend style="font-weight: 600; font-size: 15px; padding: 0; margin-bottom: 10px">Role</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><button type="button" class="chip" aria-pressed="false">Frontend</button><button type="button" class="chip" aria-pressed="false">Backend</button><button type="button" class="chip" aria-pressed="true">Full-stack</button><button type="button" class="chip" aria-pressed="false">Product engineer</button><button type="button" class="chip" aria-pressed="false">AI product engineer</button></div>
+</fieldset>
+<fieldset style="border: 0; margin: 0; padding: 0"><legend style="font-weight: 600; font-size: 15px; padding: 0; margin-bottom: 10px">Seniority</legend>
+<div class="seg"><button type="button" aria-pressed="false">Junior</button><button type="button" aria-pressed="true">Mid-level</button><button type="button" aria-pressed="false">Senior</button></div>
+</fieldset>
+<fieldset style="border: 0; margin: 0; padding: 0"><legend style="font-weight: 600; font-size: 15px; padding: 0; margin-bottom: 10px">Question types</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><button type="button" class="chip" aria-pressed="true">Behavioral</button><button type="button" class="chip" aria-pressed="true">Technical concepts</button><button type="button" class="chip" aria-pressed="false">System design lite</button></div>
+</fieldset>
+</section>
+</div>
+
+<section aria-label="Session options" style="border-top: 1px solid #E1E6E4; padding-top: 32px; display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-wrap: wrap; gap: 28px 36px">
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-weight: 600; font-size: 15px">Length</span><div class="seg"><button type="button" aria-pressed="true">3 questions · 10 min</button><button type="button" aria-pressed="false">5 · 20 min</button></div></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-weight: 600; font-size: 15px">Answer by</span><div class="seg"><button type="button" aria-pressed="true">Voice</button><button type="button" aria-pressed="false">Typing</button></div></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-weight: 600; font-size: 15px">Language</span><div class="seg"><button type="button" aria-pressed="true">English</button><button type="button" aria-pressed="false">Türkçe <span class="mono" style="font-size: 10px; color: #5F6B68">FULL</span></button></div></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-weight: 600; font-size: 15px">Interviewer</span><button type="button" class="chip" aria-expanded="false" style="gap: 10px">Samantha · 1.0× <span aria-hidden="true">▾</span></button></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end">
+<a class="btn btn-p" href="Room.dc.html" style="min-width: 200px">Start session</a>
+<span class="mono" style="font-size: 12px; color: #5F6B68">Microphone checked · works in this browser</span>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

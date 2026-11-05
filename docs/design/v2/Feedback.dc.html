@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Feedback and try again</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F4F3}
+a{color:#0F1A18}a:hover{color:#0A7F66}
+.r{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#0F1A18}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:#5F6B68}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:16px;text-decoration:none;border:1px solid #0F1A18;box-sizing:border-box;cursor:pointer;background:transparent;color:#0F1A18}
+.btn-p{background:#0A7F66;color:#FFFFFF;border-color:#0A7F66}
+.btn-p:hover{background:#086B56;border-color:#086B56;color:#FFFFFF}
+.tab{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #C9D2CF;background:#FFFFFF;font-family:'Schibsted Grotesk',sans-serif;font-size:15px;color:#3C4A47;cursor:pointer}
+.tab[aria-pressed="true"]{background:#DDF3EA;border-color:#0A7F66;color:#0F1A18}
+mark{background:#CFF1E2;color:inherit;padding:1px 3px;border-radius:3px}
+.filler{text-decoration:underline wavy #C93C34;text-underline-offset:4px}
+.vague{text-decoration:underline dashed #3C4A47;text-underline-offset:5px}
+.seg{display:block;height:6px;border-radius:2px;background:#E1E6E4}
+.on{background:#0A7F66}
+.row{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:12px;align-items:center;font-size:15px}
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+details{border-top:1px solid #E1E6E4;padding:18px 0}
+summary{cursor:pointer;font-weight:600;font-size:17px;min-height:28px}
+</style>
+</helmet>
+<div class="r" style="min-height: 100vh; background: #F2F4F3">
+
+<header style="border-bottom: 1px solid #E1E6E4; background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 18px 40px; display: flex; gap: 24px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 18px"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: #0A7F66"></span>Rehearse</a>
+<div style="flex: 0 1 360px; display: flex; flex-direction: column; gap: 8px">
+<span class="mono" style="font-size: 12px; color: #5F6B68; text-align: center">Question 2 of 5</span>
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px"><span class="seg on" style="height: 4px"></span><span class="seg" style="height: 4px; background: #C93C34"></span><span class="seg" style="height: 4px"></span><span class="seg" style="height: 4px"></span><span class="seg" style="height: 4px"></span></div>
+</div>
+<button type="button" class="btn" style="min-height: 40px; font-size: 14px; font-weight: 500; border-color: #C9D2CF">End session</button>
+</div>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 44px 40px 96px; display: flex; flex-direction: column; gap: 32px">
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="lbl" style="margin: 0; color: #0A7F66">Behavioral · From the job post</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.4; color: #3C4A47; max-width: 60ch">Tell me about a time a design-system change broke something in production. What did you do?</p>
+<div role="group" aria-label="Attempts" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><button type="button" class="tab" aria-pressed="false">Attempt 1 · <span class="mono">2.0</span></button><button type="button" class="tab" aria-pressed="true">Attempt 2 · <span class="mono">2.8</span></button><span class="mono" style="font-size: 12px; color: #5F6B68; margin-left: 6px; border: 1px solid #C9D2CF; border-radius: 999px; padding: 3px 9px">SAMPLE FEEDBACK</span></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+
+<section aria-labelledby="verdict" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between">
+<h1 id="verdict" style="margin: 0; font-size: 38px; line-height: 1.12; letter-spacing: -.028em; max-width: 20ch">A clear story that stops before the result.</h1>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><span class="mono" style="font-size: 44px; line-height: 1; font-weight: 500">2.8<span style="font-size: 20px; color: #5F6B68"> / 4</span></span><span class="mono" style="font-size: 13px; color: #0A7F66">+0.8 since attempt 1</span></div>
+</section>
+
+<section aria-labelledby="fix" style="background: #0F1A18; color: #F2F4F3; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<p id="fix" class="lbl" style="margin: 0; color: #5EE0B4">Change one thing · Impact</p>
+<p style="margin: 0; font-size: 22px; line-height: 1.4; font-weight: 600">You end at the rollback. Say what changed because of what you did.</p>
+<div style="border-left: 3px solid #5EE0B4; padding: 4px 0 4px 16px; font-size: 18px; line-height: 1.6; color: #ECF2F0">Try saying: “After that, token renames went through a visual diff in CI, and we had <span class="mono" style="color: #0A7F66">[number]</span> breaking changes the next quarter instead of <span class="mono" style="color: #0A7F66">[number]</span>.”</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px">
+<a class="btn" href="Room.dc.html" style="background: #F2F4F3; color: #0F1A18; border-color: #F2F4F3">Try again with this</a>
+<a class="btn" href="Room.dc.html" style="color: #F2F4F3; border-color: #3C4A47">Next question</a>
+</div>
+</section>
+
+<section aria-labelledby="ans" style="background: #FFFFFF; border: 1px solid #E1E6E4; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline">
+<h2 id="ans" style="margin: 0; font-size: 20px">Your answer, marked up</h2>
+<ul aria-label="Legend" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #3C4A47">
+<li><mark>Strong detail</mark></li>
+<li><span class="vague">Vague</span></li>
+<li><span class="filler">Filler</span></li>
+</ul>
+</div>
+<p style="margin: 0; font-size: 18px; line-height: 1.85">Last spring <mark>I renamed the spacing tokens in our design system</mark>, and the checkout team’s build pulled the new version on a Friday. The pay button lost its padding on Safari, so, <span class="filler">um</span>, <mark>I rolled the package back within twenty minutes</mark> and <mark>wrote a migration guide with a codemod</mark>. Then we, <span class="filler">like</span>, <span class="vague">made the process better</span> and <span class="vague">it was fine after that</span>.</p>
+<p style="margin: 0; font-size: 14px; color: #5F6B68">The dashed parts are where the score dropped. Replace them with what you actually changed and what happened next.</p>
+</section>
+
+<section aria-labelledby="fu" style="border: 1px solid #E1E6E4; border-radius: 18px; padding: 24px 28px; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; justify-content: space-between; background: #FFFFFF">
+<div style="display: flex; flex-direction: column; gap: 6px; flex: 1 1 360px"><p id="fu" class="lbl" style="margin: 0; color: #0A7F66">They’ll probably ask next</p><p style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.4">How would you stop the same kind of break from reaching production again?</p></div>
+<button type="button" class="btn">Answer the follow-up</button>
+</section>
+
+<div>
+<details><summary>Why these scores</summary><p style="margin: 12px 0 0; color: #3C4A47; line-height: 1.6">Structure 3: situation, task and action are in order, but the result is missing. Specificity 3: Safari, the pay button and twenty minutes are concrete. Ownership 4: you say what you did with “I”. Impact 1: “it was fine” gives the listener nothing to check.</p></details>
+<details><summary>Outline of a strong answer</summary><p style="margin: 12px 0 0; color: #3C4A47; line-height: 1.6">What broke and who noticed · what you did in the first hour · the fix you put in place · what changed afterwards, with a number · what you’d do differently.</p></details>
+<details><summary>How this was scored</summary><p style="margin: 12px 0 0; color: #3C4A47; line-height: 1.6">One language-model call with a fixed six-part rubric, checked against your transcript. Delivery numbers are counted in your browser. A coaching aid, not a prediction of an interviewer’s decision.</p></details>
+</div>
+</div>
+
+<aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<section aria-labelledby="sc" style="background: #FFFFFF; border: 1px solid #E1E6E4; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="sc" style="margin: 0; font-size: 17px">Scores</h2><span class="mono" style="font-size: 12px; color: #5F6B68">vs attempt 1</span></div>
+<div class="row"><span>Structure</span><span class="bars" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span><span class="mono" style="color: #0A7F66; text-align: right">+1</span></div>
+<div class="row"><span>Specificity</span><span class="bars" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span><span class="mono" style="color: #0A7F66; text-align: right">+2</span></div>
+<div class="row"><span>Ownership</span><span class="bars" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></span><span class="mono" style="color: #5F6B68; text-align: right">0</span></div>
+<div class="row"><span style="color: #C93C34; font-weight: 600">Impact</span><span class="bars" aria-hidden="true"><span class="seg" style="background: #C93C34"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></span><span class="mono" style="color: #5F6B68; text-align: right">0</span></div>
+<div class="row"><span>Relevance</span><span class="bars" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span><span class="mono" style="color: #0A7F66; text-align: right">+1</span></div>
+<div class="row"><span>Clarity</span><span class="bars" aria-hidden="true"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span><span class="mono" style="color: #5F6B68; text-align: right">0</span></div>
+</section>
+
+<section aria-labelledby="dl" style="border: 1px solid #E1E6E4; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="dl" style="margin: 0; font-size: 17px">Delivery</h2>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div><dt class="lbl">Length</dt><dd class="mono" style="margin: 4px 0 0; font-size: 20px">1:24</dd><dd style="margin: 2px 0 0; font-size: 13px; color: #0A7F66">On target</dd></div>
+<div><dt class="lbl">Pace</dt><dd class="mono" style="margin: 4px 0 0; font-size: 20px">148 wpm</dd><dd style="margin: 2px 0 0; font-size: 13px; color: #0A7F66">Comfortable</dd></div>
+<div><dt class="lbl">Fillers</dt><dd class="mono" style="margin: 4px 0 0; font-size: 20px">2</dd><dd style="margin: 2px 0 0; font-size: 13px; color: #3C4A47">um, like</dd></div>
+<div><dt class="lbl">Longest pause</dt><dd class="mono" style="margin: 4px 0 0; font-size: 20px">2.4 s</dd><dd style="margin: 2px 0 0; font-size: 13px; color: #3C4A47">Fine</dd></div>
+</dl>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
