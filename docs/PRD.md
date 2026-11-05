@@ -427,6 +427,8 @@ Document title: "Question {n} of {total} · Rehearse" (intro: "Interview · Rehe
 
 ### 9.8 `/session/[id]/report`
 
+V-01 / D-85: render saved-session dates in en-GB using UTC (for example “5 Nov 2026”), shared between server and browser.
+
 Document title: "Session report · Rehearse"
 
 - H1 "Session report"
@@ -445,6 +447,8 @@ Document title: "Session report · Rehearse"
 - Report for an in-progress session: banner "This session isn’t finished." with "Resume session".
 
 ### 9.9 `/history`
+
+V-01 / D-85: saved timestamps use en-GB with an explicit UTC label (for example “5 Nov 2026, 00:30 UTC”).
 
 Document title: "History · Rehearse"
 
@@ -680,3 +684,6 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-81 | **Turkish (`full`, last milestone).** Turkish UI and Turkish interviews: prompts, rubric text, filler words and a separately written Turkish question bank (not a translation). | PRD §4 "Languages other than English" | Owner, 2026-11-05 |
 | D-82 | **`full` binds to localhost by default.** Docker Compose publishes `127.0.0.1:3000`. If someone exposes it, they set `APP_PASSWORD`, which enables HTTP basic auth on every route. | New | Owner, 2026-11-05 |
 | D-83 | V0 implementation clarifications under V2-GUIDE §0: Job post navigation opens `/setup#job-post` because `/job/[id]` needs an existing record; guide §4.4's shared demo copy and §3.1's tokens/control minima take precedence over illustrative screen variants. Use the existing owner $5 app budget as the default warning amount, never a full-edition hard cap. | Keeps the approved designs and edition decisions coherent without adding a feature. Exact new record schemas belong to their owning V-tasks; V0 documents responsibilities and migration constraints. Later-dependent acceptance remains visibly pending, not waived. | Documented interpretation under approved guide §0, 2026-11-05 |
+
+| D-84 | In V-30, APP_EDITION=demo ignores LLM_MODE entirely, including validation; demo never constructs a provider and its run command requires no LLM_MODE value. Mark TRD §28 as v1 pending replacement by V-52. Owner also authorises merging approved PR #1 and up to $0.10 total live GPT-6 Luna evaluation spend for V1. | Clarifies D-73 and V1 execution; all routine tests remain mocked. | Owner, 2026-11-05 |
+| D-85 | V-01 uses shared en-GB date/time helpers. Saved-session calendar dates and history timestamps use UTC for identical server/client rendering across timezone boundaries; history explicitly labels UTC. Quota reset clocks retain local time as required by PRD §9.4/§9.6. | Guide §0 interpretation of locale-stable dates: avoid fixing Turkish month names while leaving midnight hydration mismatches. | Documented interpretation under approved guide §0, 2026-11-05 |

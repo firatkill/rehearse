@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { formatSessionDate } from '@/lib/date-time';
 import { DIMENSIONS, STORAGE } from '@/lib/config';
 import {
   DIMENSION_LABELS,
@@ -70,10 +71,8 @@ export function ReportView({
     <div ref={root} className="space-y-8 py-8">
       <h1>Session report</h1>
       <p className="font-mono text-sm">
-        {new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(
-          new Date(session.createdAt),
-        )}{' '}
-        · {ROLE_LABELS[session.setup.role]}, {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
+        {formatSessionDate(session.createdAt)} · {ROLE_LABELS[session.setup.role]},{' '}
+        {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
         {session.setup.types.map((t) => QUESTION_TYPE_LABELS[t]).join(', ')} · {answered}/
         {session.questions.length} answered · Seed <SafeText text={session.seed} />
       </p>

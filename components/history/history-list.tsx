@@ -1,4 +1,5 @@
 'use client';
+import { formatSessionTimestamp } from '@/lib/date-time';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { SessionRecord } from '@/lib/storage/schema';
@@ -56,10 +57,7 @@ export function HistoryList({
                     Date
                   </span>
                   <time dateTime={session.createdAt}>
-                    {new Intl.DateTimeFormat(undefined, {
-                      dateStyle: 'medium',
-                      timeStyle: 'short',
-                    }).format(new Date(session.createdAt))}
+                    {formatSessionTimestamp(session.createdAt)}
                   </time>
                 </td>
                 <td>

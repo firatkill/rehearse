@@ -161,3 +161,5 @@ export type Seniority = (typeof SENIORITIES)[number];
 export type QuestionType = (typeof QUESTION_TYPES)[number];
 export type AnswerMode = (typeof ANSWER_MODES)[number];
 export type Dimension = (typeof DIMENSIONS)[number];
+
+export const DATE_TIME = { LOCALE: 'en-GB', SESSION_TIME_ZONE: 'UTC' } as const;
