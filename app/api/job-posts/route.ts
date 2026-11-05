@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { fetchJobPost } from '@/lib/jobpost/fetch';
 import { z } from 'zod';
 import { getEnv } from '@/lib/env';
 import { JOBPOST } from '@/lib/config';
@@ -24,7 +25,10 @@ export async function POST(request: Request): Promise<Response> {
     const input = JobRequestSchema.parse(await readJsonBody(request, JOBPOST.REQUEST_MAX_BYTES));
     const repo = getJobRepository();
     let post;
-    if (input.operation === 'create') post = repo.create(input.text);
+    if (input.operation === 'fetch') {
+      const fetched = await fetchJobPost(input.url);
+      post = repo.create(fetched.text, fetched.sourceUrl);
+    } else if (input.operation === 'create') post = repo.create(input.text);
     else if (input.operation === 'updateText') post = repo.updateText(input.id, input.text);
     else post = repo.get(input.id);
     if (!post) throw new AppError('JOBPOST_NOT_FOUND');

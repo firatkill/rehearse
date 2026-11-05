@@ -4491,3 +4491,15 @@ V4 owner follow-up D-134: the session server page projects the demo catalogue to
 Docker build clarification (D-141): the build stage invokes `pnpm build --webpack` to avoid the observed Turbopack Google-font virtual-module resolution failure in Linux image CI. The application build script, font choices, standalone output and runtime production guards remain unchanged.
 
 V-41 / D-142: `more{id}` requires existing trusted questions, checks the 200-question storage cap before calling the provider, and requests JOBPOST.MORE_QUESTIONS (5), with existing texts as context. The existing pipeline checks against bank/prior/new questions; commit rechecks current stored questions atomically. Append keeps prior summary/scoring role and existing question ids. The UI retains selection. Mock development has 13 distinct questions and rejects exhausted repeats; no paid calls are part of tests.
+
+### V-42 public job links (D-143)
+
+Runtime dependencies (§2): pre-approved `@mozilla/readability` 0.6.0 and `linkedom` 0.18.15. `parseHTML` never runs scripts or loads resources; Readability output is plain text validated at the existing 20,000-character boundary. Never render fetched HTML.
+
+Config (§4): `JOBPOST.FETCH_TIMEOUT_MS = 10000`, `FETCH_MAX_BYTES = 2097152`, `MAX_REDIRECTS = 3`, `EXTRACT_MAX_ELEMENTS = 10000`, `FETCH_USER_AGENT = "Rehearse/2 (+https://github.com/firatkill/rehearse)"`.
+
+API (§12): same-origin full-only `POST /api/job-posts` accepts `{operation:"fetch", url:string}` (1–20,000 characters). Success returns the existing JobResponse with a draft, extracted text, final source URL and no questions. No provider is constructed. Demo rejects with DEMO_ONLY before URL resolution. Node HTTP(S) checks every DNS answer and pins the socket to a validated global address while retaining the original Host/TLS hostname; redirects are manual and revalidated. Private, loopback, link-local, multicast, reserved, documentation, IPv4-mapped and IPv6 transition ranges are rejected conservatively. User credentials, cookies and authentication are never forwarded. One deadline bounds DNS, redirects and streaming; size is checked both by Content-Length and actual received bytes. HTML/XHTML only, identity encoding, successful status, nonempty readable text, no detected login/password wall. Errors never expose fetched bodies or internal networking details.
+
+Error matrix (§20): `JOBPOST_FETCH_FAILED` → HTTP 502 / info log / “We couldn’t read that link. Paste the job post text below.” (§9.18 PRD). Client focuses an empty paste field and allows retrying another link.
+
+Testing (§25): TC-180/181 use a local HTTP server, injected DNS and pinned local sockets; accidental system DNS fails the test. Covers IPv4/IPv6/obfuscated URLs, mixed DNS, rebinding and private redirects, redirect count, streaming/declared oversize, deadlines, login/type/encoding failures, plain text extraction without embedded requests, provider-free draft persistence, demo rejection and browser paste fallback. No external networking or LLM spend.

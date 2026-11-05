@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { JOBPOST } from '@/lib/config';
 import { requestJob } from '@/lib/api/jobpost-client';
@@ -9,22 +9,40 @@ export function JobEntry() {
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [paste, setPaste] = useState(false);
+  const input = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    if (paste) input.current?.focus();
+  }, [paste]);
   async function read() {
     if (busy || !text.trim()) return;
     setBusy(true);
     setError(null);
-    const result = await requestJob({ operation: 'create', text });
+    const link =
+      !paste &&
+      !/[\r\n]/.test(text.trim()) &&
+      /^(?:[a-z][a-z\d+.-]*:\/\/|(?:https?|file|ftp|data|javascript):)/i.test(text.trim());
+    const result = await requestJob(
+      link ? { operation: 'fetch', url: text.trim() } : { operation: 'create', text },
+    );
     if (result.ok) router.push(`/job/${result.data.post.id}`);
     else {
       setError(result.message);
       setBusy(false);
+      if (link) {
+        setPaste(true);
+        setText('');
+      }
     }
   }
   return (
     <div className="space-y-3">
-      <label htmlFor="job-post-input">Job post link or text</label>
+      <label htmlFor="job-post-input">
+        {paste ? 'Paste the job post text' : 'Job post link or text'}
+      </label>
       <textarea
         id="job-post-input"
+        ref={input}
         rows={5}
         maxLength={JOBPOST.MAX_CHARS}
         value={text}
@@ -34,8 +52,8 @@ export function JobEntry() {
         aria-describedby="job-input-help"
       />
       <p id="job-input-help">
-        Paste the job post text. You’ll review what we read before generating questions. Link
-        fetching is coming next.
+        Paste a public job post link or the text. You’ll review what we read before generating
+        questions.
       </p>
       <Button
         type="button"
@@ -46,6 +64,21 @@ export function JobEntry() {
       >
         {busy ? 'Reading the job post…' : 'Read the job post'}
       </Button>
+      {paste && (
+        <Button
+          type="button"
+          variant="text"
+          disabled={busy}
+          onClick={() => {
+            setPaste(false);
+            setText('');
+            setError(null);
+            input.current?.focus();
+          }}
+        >
+          Try another link
+        </Button>
+      )}
       {error && <p role="alert">{error}</p>}
     </div>
   );

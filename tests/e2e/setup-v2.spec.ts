@@ -41,7 +41,7 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(page.getByRole('button', { name: 'Read the job post' })).toBeDisabled();
     await expect(
       page.getByText(
-        'Paste the job post text. You’ll review what we read before generating questions. Link fetching is coming next.',
+        'Paste a public job post link or the text. You’ll review what we read before generating questions.',
         { exact: true },
       ),
     ).toBeVisible();
