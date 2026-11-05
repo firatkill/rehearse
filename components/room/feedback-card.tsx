@@ -2,6 +2,7 @@ import { DIMENSIONS } from '@/lib/config';
 import { DIMENSION_LABELS } from '@/lib/labels';
 import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
 import { SafeText } from '@/components/common/safe-text';
+import { ChangeOneThing } from './change-one-thing';
 import { Button } from '@/components/ui/button';
 import { DeltaBadge } from '@/components/ui/delta-badge';
 import { MarkedTranscript } from '@/components/ui/marked-transcript';
@@ -29,7 +30,6 @@ export function FeedbackCard({
   if (!feedback) return null;
   const titleId = `feedback-title-${answer.index}${idSuffix}`;
   const lowest = lowestDimension(feedback);
-  const change = feedback.improvements.find((item) => item.dimension === lowest);
   return (
     <section aria-labelledby={titleId} className="feedback-layout">
       <div className="feedback-main">
@@ -56,29 +56,7 @@ export function FeedbackCard({
         {feedback.flags.too_short && (
           <p>This answer is very short, so structure, specificity and impact are capped at 2.</p>
         )}
-        <section className="feedback-change" aria-label="Change one thing">
-          <h3>Change one thing · {DIMENSION_LABELS[lowest]}</h3>
-          <p>
-            <SafeText text={change?.point ?? feedback.scores[lowest].rationale} />
-          </p>
-          {change ? (
-            <>
-              <p>Try saying:</p>
-              <blockquote>
-                <SafeText text={change.rewrite} />
-              </blockquote>
-            </>
-          ) : (
-            <p>
-              This older feedback has no targeted rewrite. Use the guidance above and try again.
-            </p>
-          )}
-          {onRetry && (
-            <Button variant="on-dark" onClick={onRetry}>
-              Try again with this
-            </Button>
-          )}
-        </section>
+        <ChangeOneThing feedback={feedback} {...(onRetry ? { onRetry } : {})} />
         <section className="feedback-answer" aria-label="Your answer, marked up">
           <h3>Your answer, marked up</h3>
           <MarkedTranscript

@@ -20,7 +20,7 @@ export function AttemptFeedback({
 }: {
   answer: AnswerRecord;
   question: SessionRecord['questions'][number];
-  onRetry: () => void;
+  onRetry: (feedback: NonNullable<AnswerRecord['feedback']>) => void;
   onFollowUp?: (parentAttemptId: string) => void;
 }) {
   const items = [...answer.attemptRecords, ...answer.followUpRecords];
@@ -81,7 +81,13 @@ export function AttemptFeedback({
               : question
           }
           previous={previous ?? null}
-          {...(isFollowUp ? {} : { onRetry })}
+          {...(isFollowUp || !shown.feedback
+            ? {}
+            : {
+                onRetry: () => {
+                  if (shown.feedback) onRetry(shown.feedback);
+                },
+              })}
           {...(!isFollowUp && attempt?.feedbackMeta?.followUpToken && onFollowUp
             ? {
                 onFollowUp: () => {

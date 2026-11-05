@@ -147,7 +147,7 @@ export function ReportView({
           </div>
         </dl>
         {values.overallMean === null && <p>No answers were scored in this session.</p>}
-        {values.best && values.lowest && (
+        {values.scoredCount > 1 && values.best && values.lowest && (
           <p className="report-meta">
             Best: Question {values.best.index + 1} ({values.best.overall.toFixed(1)}) · Lowest:
             Question {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})

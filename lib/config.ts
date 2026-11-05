@@ -200,3 +200,5 @@ export const FOLLOW_UP = { TIME_LIMIT_S: 60, TOKEN_PREFIX: 'rf1', TOKEN_MAX_CHAR
 
 // V-25: comparable completed-session windows, independent of report question trends.
 export const PROGRESS = { TREND_SESSIONS: 10, COMPARE_SESSIONS: 3 } as const;
+
+export const TEXT_LENGTH_GUIDE = { MIN_WORDS: 40, MAX_WORDS: 240 } as const;

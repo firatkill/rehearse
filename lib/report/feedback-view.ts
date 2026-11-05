@@ -1,4 +1,4 @@
-import { DIMENSIONS, RECORDING_GUIDE, type Dimension } from '@/lib/config';
+import { DIMENSIONS, RECORDING_GUIDE, TEXT_LENGTH_GUIDE, type Dimension } from '@/lib/config';
 import type { Feedback } from '@/lib/feedback/schema';
 import { fillerSpans } from '@/lib/metrics/fillers';
 export type AnswerMark = { start: number; end: number; kind: 'strong' | 'vague' | 'filler' };
@@ -38,6 +38,14 @@ export function lengthVerdict(recordingMs: number | null): string {
   return recordingMs < RECORDING_GUIDE.MIN_SECONDS * 1000
     ? 'Too short'
     : recordingMs <= RECORDING_GUIDE.MAX_SECONDS * 1000
+      ? 'On target'
+      : 'Long';
+}
+
+export function textLengthVerdict(words: number): string {
+  return words < TEXT_LENGTH_GUIDE.MIN_WORDS
+    ? 'Too short'
+    : words <= TEXT_LENGTH_GUIDE.MAX_WORDS
       ? 'On target'
       : 'Long';
 }

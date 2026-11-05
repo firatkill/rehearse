@@ -1,4 +1,4 @@
-import { lengthVerdict } from '@/lib/report/feedback-view';
+import { lengthVerdict, textLengthVerdict } from '@/lib/report/feedback-view';
 import { formatMmSs } from '@/lib/time';
 import { PACE, SPEECH, type AnswerMode } from '@/lib/config';
 import type { DeliveryMetrics as Metrics } from '@/lib/storage/schema';
@@ -17,13 +17,13 @@ export function DeliveryMetrics({
     <section className="space-y-3">
       <h3>Delivery</h3>
       <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 [&_dd]:font-mono">
-        {recordingMs !== undefined && (
+        {(recordingMs !== undefined || mode === 'text') && (
           <>
             <dt>Length</dt>
             <dd>
               {mode === 'text' ? (
-                'Not measured in text mode'
-              ) : recordingMs === null ? (
+                textLengthVerdict(metrics.words)
+              ) : recordingMs === null || recordingMs === undefined ? (
                 'Not available'
               ) : (
                 <>

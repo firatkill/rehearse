@@ -71,3 +71,16 @@ test('TC-148 equally lowest dimensions accept their matching rewrite without cha
   expect(result.feedback.scores.structure.score).toBe(2);
   expect(result.feedback.scores.impact.score).toBe(2);
 });
+
+test('TC-154 short follow-up evidence is not capped; the same main answer remains capped', () => {
+  for (const followUp of [false, true]) {
+    const result = normalizeFeedback(feedbackLlm(), {
+      transcript: 'I reduced failures from 120 to 18.',
+      words: 8,
+      followUp,
+    });
+    expect(result.feedback.flags.too_short).toBe(!followUp);
+    for (const dimension of ['structure', 'specificity', 'impact'] as const)
+      expect(result.feedback.scores[dimension].score).toBe(followUp ? 4 : 2);
+  }
+});

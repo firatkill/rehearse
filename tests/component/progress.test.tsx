@@ -45,3 +45,23 @@ test.each([0, 1, 2, 12])(
     expect(screen.queryByText(/Coming up/)).not.toBeInTheDocument();
   },
 );
+
+test.each([0, 1, 2, 5, 6])('TC-155 comparison label with %i sessions is honest', (count) => {
+  render(<ProgressOverview entries={entries(count)} />);
+  if (count < 6) {
+    expect(screen.getByText(`Latest ${Math.min(count, 3)} scored sessions`)).toBeVisible();
+    expect(screen.queryByText(/Last .* vs previous/)).toBeNull();
+  } else expect(screen.getByText('Last 3 vs previous 3')).toBeVisible();
+});
+test.each([0, 1, 2])('TC-155 %i retries has correct grammar', (retries) => {
+  render(
+    <HistoryList
+      entries={entries(1).map((e) => ({ ...e, retries }))}
+      skipped={0}
+      onDelete={() => {}}
+    />,
+  );
+  expect(
+    screen.getByText(`3 questions · ${retries} ${retries === 1 ? 'retry' : 'retries'}`),
+  ).toBeVisible();
+});

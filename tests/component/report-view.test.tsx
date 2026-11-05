@@ -6,12 +6,12 @@ import { feedbackLlm } from '../fixtures/feedback';
 import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
 const scored = { ...answer, status: 'scored' as const, feedback: { ...feedbackLlm(), overall: 4 } };
-it('TC-084 CT-07 local numbers and focus tips remain available without a summary', () => {
+it('TC-156 TC-084 CT-07 local numbers and focus tips remain available without a summary', () => {
   const { container } = render(
     <ReportView session={record} answers={[scored, { ...answer, index: 1, status: 'skipped' }]} />,
   );
   expect(screen.getByText('Average', { exact: true }).parentElement).toHaveTextContent('4.0 / 4');
-  expect(screen.getByText('Best: Question 1 (4.0) · Lowest: Question 1 (4.0)')).toBeVisible();
+  expect(screen.queryByText(/Best: Question/)).toBeNull();
   expect(screen.getByText(DIMENSION_TIPS.structure)).toBeVisible();
   expect(screen.getByRole('table', { name: 'Scores by question and dimension' })).toBeVisible();
   expect(container.querySelector('svg')).toBeNull();
@@ -24,13 +24,14 @@ it('TC-084 CT-07 local numbers and focus tips remain available without a summary
       .map((c) => c.textContent),
   ).toEqual(['4', '4', '4', '4', '4', '4', '0']);
 });
-it('TC-084 CT-07 multiple scores show an inaccessible decorative chart; no scores show the exact fallback', () => {
+it('TC-156 TC-084 CT-07 multiple scores show an inaccessible decorative chart; no scores show the exact fallback', () => {
   const { container, rerender } = render(
     <ReportView
       session={{ ...record, status: 'completed' }}
       answers={[scored, { ...scored, index: 2 }]}
     />,
   );
+  expect(screen.getByText(/Best: Question 1/)).toBeVisible();
   expect(container.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
   expect(container.querySelector('svg')).toHaveAttribute('focusable', 'false');
   expect(container.querySelector('svg')).not.toHaveAttribute('role');
