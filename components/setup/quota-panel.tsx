@@ -1,4 +1,6 @@
 'use client';
+import { formatLocalTime } from '@/lib/date-time';
+import { DATE_TIME } from '@/lib/config';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -25,11 +27,11 @@ export function QuotaPanel({
   if (resetAt) {
     const date = new Date(resetAt);
     const minutes = (date.getTime() - now) / 60000;
-    const relative = new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(
+    const relative = new Intl.RelativeTimeFormat(DATE_TIME.LOCALE, { numeric: 'auto' }).format(
       Math.ceil(minutes < 60 ? minutes : minutes / 60),
       minutes < 60 ? 'minute' : 'hour',
     );
-    reset = `${new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(date)} (${relative})`;
+    reset = `${formatLocalTime(date)} (${relative})`;
   }
   return (
     <section className="space-y-4">
