@@ -7,6 +7,7 @@ export function Header({ room = false, endSession }: { room?: boolean; endSessio
     <header className="site-header">
       <div className="header-inner container">
         <Link className="wordmark" href="/">
+          <span className="wordmark-dot" aria-hidden="true" />
           Rehearse
         </Link>
         {room ? (
@@ -15,8 +16,8 @@ export function Header({ room = false, endSession }: { room?: boolean; endSessio
           <>
             <nav aria-label="Main navigation">
               <Link href="/setup">Practise</Link>
-              <Link href="/sample">Sample report</Link>
-              <Link href="/history">History</Link>
+              <Link href="/setup#job-post">Job post</Link>
+              <Link href="/progress">Progress</Link>
               <Link href="/how-it-works" prefetch={false}>
                 How it works
               </Link>

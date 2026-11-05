@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { DemoBanner } from '@/components/ui/demo-banner';
 import { Header } from './header';
 import { Footer } from './footer';
 import { Banners, type BannerProps } from './banners';
@@ -35,12 +36,23 @@ export function Shell({
   children,
   room: roomOverride,
   endSession,
+  edition = 'full',
   ...banners
-}: BannerProps & { children: ReactNode; room?: boolean; endSession?: ReactNode }) {
+}: BannerProps & {
+  children: ReactNode;
+  room?: boolean;
+  endSession?: ReactNode;
+  edition?: 'demo' | 'full';
+}) {
   const path = usePathname();
   const storage = useStorageStatus();
   useEffect(() => {
-    if (path === '/setup' || path === '/history' || path.startsWith('/session/'))
+    if (
+      path === '/setup' ||
+      path === '/history' ||
+      path === '/progress' ||
+      path.startsWith('/session/')
+    )
       void getRepository();
   }, [path]);
   const room = roomOverride ?? /^\/session\/[^/]+$/.test(path);
@@ -58,6 +70,7 @@ export function Shell({
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
+      <DemoBanner edition={edition} />
       <Header
         room={room}
         endSession={
