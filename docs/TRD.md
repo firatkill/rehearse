@@ -4256,7 +4256,20 @@ Repository setup (T-38): environment `eval` with secret `OPENAI_API_KEY` from a 
 
 ## 28. Deployment
 
-This section describes v1; V-52 will replace it with v2 demo deployment instructions (D-73, D-84).
+### Current Vercel demo variables (D-135, D-136)
+
+The owner configures the following in the Vercel environment that serves the demo. The app does not create or change these settings:
+
+| Variable               | Value / requirement                                                                                 |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| `APP_EDITION`          | `demo`                                                                                              |
+| `SESSION_SECRET`       | Stable secret, at least 32 characters; generate separately with `openssl rand -hex 32`.             |
+| `IP_HASH_SECRET`       | A different stable secret, at least 32 characters; generate separately with `openssl rand -hex 32`. |
+| `NEXT_PUBLIC_SITE_URL` | `https://rehearse.firatkil.com` for production.                                                     |
+
+With `VERCEL_ENV` set (production, preview or development), missing/invalid secrets fail configuration validation; serverless instances must share the signing key. Only local demo without `VERCEL_ENV` may generate random fallback secrets. The demo requires no OpenAI or Upstash credentials. Provider calls remain disabled. For previews, the owner supplies equivalent stable secrets and the appropriate site URL; no settings are changed by this task.
+
+The subsections below describe the historical v1 deployment and are superseded for the v2 demo by the variables above. V-52 remains future deployment/release work (D-73, D-84).
 
 ### 28.1 Upstash (T-43)
 
@@ -4426,3 +4439,5 @@ Feedback and summary browser requests send the signed session token in `X-Rehear
 Docker builds with Node 22 slim and pinned pnpm, `output: standalone`, and externally traced `better-sqlite3`. Runtime is the non-root `node` user; Compose publishes `127.0.0.1:3000`, loads `.env` and mounts a named volume at `/data`. Build placeholders are non-secret and do not call providers; runtime keys come solely from the user's env file. `.dockerignore` excludes private environment files. Health checks authenticate when needed. Docker shell bootstrap reads runtime password environment only to form the local health request; application env reads remain through `getEnv()`.
 
 The CI image job builds without publishing and runs a disposable Compose smoke test in production mode with inert provider placeholders and no AI requests. It asserts unauthenticated route denial, authenticated page access, non-root execution, and imported session persistence after restart. Cleanup targets only the smoke project's own resources. Full production mock mode remains forbidden.
+
+V4 owner follow-up D-134: the session server page projects the demo catalogue to question-id → company/role label props. Room resolves its saved question ids to that label, renders through SafeText, and uses it for header/intro on initial load and resume. No new storage fields, exports or request fields are introduced; the server-only corpus remains excluded from client imports. D-135 limits random secret fallback to demo runs with no VERCEL_ENV; existing 32-character and distinctness checks apply to hosted demo.

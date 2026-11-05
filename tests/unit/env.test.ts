@@ -123,3 +123,36 @@ describe('UT-30 — TRD §5, FR-44, FR-51, NFR-13', () => {
     );
   });
 });
+
+it.each(['production', 'preview', 'development'])(
+  'TC-170 hosted demo requires stable secrets in %s',
+  (vercelEnv) => {
+    vi.stubEnv('APP_EDITION', 'demo');
+    vi.stubEnv('VERCEL_ENV', vercelEnv);
+    vi.stubEnv('SESSION_SECRET', undefined);
+    vi.stubEnv('IP_HASH_SECRET', undefined);
+    resetEnvForTests();
+    expect(getEnv).toThrow(/SESSION_SECRET.*IP_HASH_SECRET/);
+    vi.stubEnv('SESSION_SECRET', 'hosted-session-secret-0000000000000000');
+    expect(getEnv).toThrow(/IP_HASH_SECRET/);
+    vi.stubEnv('IP_HASH_SECRET', 'hosted-ip-hash-secret-0000000000000000');
+    const first = getEnv();
+    resetEnvForTests();
+    expect(getEnv().SESSION_SECRET).toBe(first.SESSION_SECRET);
+    expect(getEnv().IP_HASH_SECRET).toBe(first.IP_HASH_SECRET);
+    resetEnvForTests();
+  },
+);
+it('TC-170 local demo retains random fallback secrets', () => {
+  vi.stubEnv('APP_EDITION', 'demo');
+  vi.stubEnv('VERCEL_ENV', undefined);
+  vi.stubEnv('SESSION_SECRET', undefined);
+  vi.stubEnv('IP_HASH_SECRET', undefined);
+  resetEnvForTests();
+  const first = getEnv();
+  expect(first.SESSION_SECRET.length).toBeGreaterThanOrEqual(32);
+  expect(first.IP_HASH_SECRET).not.toBe(first.SESSION_SECRET);
+  resetEnvForTests();
+  expect(getEnv().SESSION_SECRET).not.toBe(first.SESSION_SECRET);
+  resetEnvForTests();
+});

@@ -219,8 +219,8 @@ export function SetupForm({
                   aria-describedby="job-coming"
                 />
                 <p id="job-coming">
-                  Coming next: three example posts in the demo, and your own job posts in the
-                  self-hosted version. Use role-based practice below today.
+                  Coming next: interviews based on your own job posts. Use role-based practice below
+                  today.
                 </p>
                 <Button type="button" disabled aria-describedby="job-coming">
                   Read the job post

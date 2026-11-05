@@ -43,6 +43,19 @@ APP_EDITION=demo pnpm dev --hostname 127.0.0.1
 
 Demo sessions stay in IndexedDB. Feedback is labelled “Sample feedback”; example jobs and answers are fictional. Owner live generation is still in progress for V4; pending files are explicitly marked. `pnpm demo:validate` checks the corpus. Only the owner runs `pnpm demo:generate --budget <approved-USD-cap>` in full/live mode, then `pnpm demo:validate --require-live` and reviews the output. The local generation cache is ignored by git; validated results are reused on resume.
 
+## Vercel demo configuration
+
+The owner sets these variables in the applicable Vercel environment:
+
+| Variable               | Production value / requirement            |
+| ---------------------- | ----------------------------------------- |
+| `APP_EDITION`          | `demo`                                    |
+| `SESSION_SECRET`       | Stable secret, 32+ characters.            |
+| `IP_HASH_SECRET`       | A distinct stable secret, 32+ characters. |
+| `NEXT_PUBLIC_SITE_URL` | `https://rehearse.firatkil.com`           |
+
+Generate each secret separately with `openssl rand -hex 32`. Do not publish the values. Hosted demo instances must share the signing key: when `VERCEL_ENV` is set, missing secrets fail validation. Random fallback is available only for local demo runs without `VERCEL_ENV`. No OpenAI key or Upstash is needed for the demo. The owner manages settings; this follow-up changes no Vercel configuration.
+
 ## Checks
 
 ```sh
