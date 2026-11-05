@@ -15,7 +15,7 @@ export const JobGenerationSchema = z
     company: z.string().max(160),
     location: z.string().max(160),
     requirements: z.array(z.string().trim().min(1).max(250)).max(8),
-    about: z.string().trim().min(1).max(1000),
+    about: z.string().trim().max(1000),
     questions: z.array(JobQuestionSchema).min(1).max(JOBPOST.MAX_CANDIDATES),
   })
   .strict();

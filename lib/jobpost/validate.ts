@@ -26,13 +26,19 @@ export function validateJobQuestions(
   let ungrounded = 0,
     duplicates = 0;
   const source = normaliseJobText(text);
+  // Split after terminal punctuation followed by whitespace, preserving decimal points.
+  // Work on normalised text so case/spacing cannot change sentence membership.
+  const sentences = new Set(
+    source.split(/(?<=[.!?])\s+/u).filter((sentence) => /[.!?]$/u.test(sentence)),
+  );
   for (const question of questions) {
     const quote = normaliseJobText(question.groundingQuote);
     const words = quote.match(/[\p{L}\p{N}]+/gu) ?? [];
     if (
-      quote.length < JOBPOST.MIN_QUOTE_CHARS ||
-      words.length < JOBPOST.MIN_QUOTE_WORDS ||
-      !source.includes(quote)
+      !source.includes(quote) ||
+      words.length === 0 ||
+      (!sentences.has(quote) &&
+        (quote.length < JOBPOST.MIN_QUOTE_CHARS || words.length < JOBPOST.MIN_QUOTE_WORDS))
     ) {
       ungrounded++;
       continue;

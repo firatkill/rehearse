@@ -1,8 +1,9 @@
+import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { JOBPOST } from '@/lib/config';
 import { generateJobQuestions } from '@/lib/jobpost/generate';
 import { validateJobQuestions } from '@/lib/jobpost/validate';
-import { evaluateJobPosts } from '@/lib/jobpost/evaluation';
+import { evaluateJobPosts, JobGoldenSchema } from '@/lib/jobpost/evaluation';
 import { JobGenerationSchema } from '@/lib/jobpost/schema';
 import { mockJobpostOutput } from '@/lib/jobpost/mock';
 import { jobpostUserMessage } from '@/lib/prompts/jobpost';
@@ -165,4 +166,66 @@ it.each([
   expect(result.results[0]?.errorCode).toBe(code);
   expect(result.results[1]?.errorCode).toBeNull();
   expect(result.passed).toBe(false);
+});
+
+it('TC-197 empty about is valid when the source has no company description', async () => {
+  const raw = { ...output(), about: '' };
+  expect(JobGenerationSchema.parse(raw).about).toBe('');
+  const result = await generateJobQuestions({
+    text: jobText,
+    bankQuestions: [],
+    provider: provider(() => raw),
+  });
+  expect(result.summary.about).toBe('');
+  expect(result.questions).toHaveLength(8);
+  expect(JobGenerationSchema.safeParse({ ...raw, about: 'x'.repeat(1001) }).success).toBe(false);
+  expect(JobGenerationSchema.safeParse({ ...raw, about: null }).success).toBe(false);
+  expect(JOBPOST_PROMPT_VERSION).toBe('jobpost-v2');
+});
+
+it.each(['Document operational runbooks.', 'Run tests.', 'Deploy safely!', 'Handle incidents?'])(
+  'TC-198 complete sentence %s bypasses fragment minima',
+  (quote) => {
+    const first = output().questions[0]!;
+    const text = `Use version 3.4. ${quote} Mentor colleagues.`;
+    const result = validateJobQuestions(
+      [{ ...first, groundingQuote: quote.toUpperCase().replaceAll(' ', '  ') }],
+      text,
+      [],
+    );
+    expect(result.questions).toHaveLength(1);
+    expect(result.groundingRate).toBe(1);
+  },
+);
+
+it('TC-198 short complete runbook sentence is grounded in all six actual golden posts', () => {
+  const first = output().questions[0]!;
+  for (let index = 1; index <= 6; index++) {
+    const raw: unknown = JSON.parse(
+      readFileSync(`eval/golden-jobposts/jp-${String(index).padStart(3, '0')}.json`, 'utf8'),
+    );
+    const fixture = JobGoldenSchema.parse(raw);
+    const result = validateJobQuestions(
+      [{ ...first, groundingQuote: 'Document operational runbooks.' }],
+      fixture.text,
+      [],
+    );
+    expect(result.questions, fixture.id).toHaveLength(1);
+    expect(result.groundingRate).toBe(1);
+  }
+});
+
+it.each([
+  ['operational runbooks.', 'Document operational runbooks.'],
+  ['Document operational runbooks', 'Document operational runbooks.'],
+  ['Document operational runbooks.', 'Help document operational runbooks.'],
+  ['Document operational runbooks.', 'Document operational guides.'],
+  ['Document operational runbooks', 'Document operational runbooks'],
+  ['4.', 'Use version 3.4.'],
+  ['...', '...'],
+])('TC-198 short fragment or absent sentence %s is still rejected', (quote, text) => {
+  const first = output().questions[0]!;
+  const result = validateJobQuestions([{ ...first, groundingQuote: quote }], text, []);
+  expect(result.questions).toEqual([]);
+  expect(result.groundingRate).toBe(0);
 });
