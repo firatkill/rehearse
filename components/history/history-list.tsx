@@ -1,4 +1,5 @@
 'use client';
+import { APP_EDITION } from '@/lib/edition';
 import { LocalSessionTime } from '@/components/common/local-session-time';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -176,7 +177,11 @@ export function History() {
           <Link href="/setup">Practise now</Link>
         </Button>
       </div>
-      <p>Sessions are saved only in this browser.</p>
+      <p>
+        {APP_EDITION === 'full'
+          ? 'Sessions are saved on your server.'
+          : 'Sessions are saved only in this browser.'}
+      </p>
       {loaded && (
         <>
           <ProgressOverview entries={entries} />
@@ -203,7 +208,11 @@ export function History() {
       <ConfirmDialog
         open={deleting !== null}
         title="Delete this session?"
-        description="This removes the session and its answers from this browser. It can’t be undone."
+        description={
+          APP_EDITION === 'full'
+            ? 'This removes the session and its answers from this server. It can’t be undone.'
+            : 'This removes the session and its answers from this browser. It can’t be undone.'
+        }
         confirm="Delete session"
         cancel="Cancel"
         onConfirm={() => {

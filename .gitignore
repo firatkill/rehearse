@@ -45,3 +45,7 @@ coverage/
 playwright-report/
 test-results/
 .eval-tmp/
+
+.data/
+
+.next-demo/

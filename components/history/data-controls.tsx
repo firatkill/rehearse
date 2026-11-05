@@ -1,4 +1,5 @@
 'use client';
+import { APP_EDITION } from '@/lib/edition';
 import { useRef, useState } from 'react';
 import { useRepository, useStorageStatus } from '@/hooks/use-repository';
 import { setStorageStatus, storageStatus } from '@/lib/storage/status';
@@ -31,7 +32,11 @@ export function DataControls({
     try {
       await repository.deleteAll();
       onDeleted();
-      setMessage('All Rehearse data was deleted from this browser.');
+      setMessage(
+        APP_EDITION === 'full'
+          ? 'All Rehearse data was deleted from this server.'
+          : 'All Rehearse data was deleted from this browser.',
+      );
       title.current?.focus();
     } catch {
       if (storageStatus() !== 'updated') setStorageStatus('not-saving');
@@ -124,7 +129,11 @@ export function DataControls({
       <ConfirmDialog
         open={open}
         title="Delete all your data?"
-        description="This removes every session, answer and setting stored by Rehearse in this browser. It can’t be undone. Consider exporting first."
+        description={
+          APP_EDITION === 'full'
+            ? 'This removes every session and answer from this server, and Rehearse settings from this browser. It can’t be undone. Consider exporting first.'
+            : 'This removes every session, answer and setting stored by Rehearse in this browser. It can’t be undone. Consider exporting first.'
+        }
         confirm="Delete everything"
         cancel="Cancel"
         onConfirm={() => {

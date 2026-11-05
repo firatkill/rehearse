@@ -1,3 +1,4 @@
+vi.mock('@/lib/edition', () => ({ APP_EDITION: 'demo' }));
 import { act, renderHook } from '@testing-library/react';
 import { beforeEach, expect, it, vi } from 'vitest';
 import { useInterviewRoom } from '@/hooks/use-interview-room';
