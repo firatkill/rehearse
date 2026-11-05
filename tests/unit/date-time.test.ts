@@ -9,8 +9,8 @@ describe('TC-123 V-01 shared British date/time formatting', () => {
       expect(formatSessionDate(new Date(timestamp))).toBe('5 Nov 2026');
     },
   );
-  it('labels the saved timestamp timezone and uses the British 24-hour clock', () => {
-    expect(formatSessionTimestamp('2026-11-05T23:30:00.000Z')).toBe('5 Nov 2026, 23:30 UTC');
+  it('TC-132 uses the saved timestamp local calendar and 24-hour clock without UTC', () => {
+    expect(formatSessionTimestamp(new Date(2026, 10, 5, 23, 30))).toBe('5 Nov 2026, 23:30');
   });
   it('keeps quota reset times local while using a 24-hour clock', () => {
     const localDate = new Date(2026, 10, 5, 16, 9);

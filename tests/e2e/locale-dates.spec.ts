@@ -7,7 +7,7 @@ import { scenarios, uniqueIp } from './helpers';
 
 test.use({ locale: 'tr-TR', timezoneId: 'Europe/Istanbul' });
 
-test('TC-124 V-01 Turkish locale keeps sample, history and report dates stable without hydration errors', async ({
+test('TC-132 D-94 Turkish locale keeps sample, history and report dates stable without hydration errors', async ({
   page,
 }, info) => {
   await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
@@ -67,13 +67,13 @@ test('TC-124 V-01 Turkish locale keeps sample, history and report dates stable w
     { session, answers },
   );
   await page.reload();
-  await expect(page.getByText('5 Nov 2026, 23:30 UTC', { exact: true })).toBeVisible();
+  await expect(page.getByText('6 Nov 2026, 02:30', { exact: true })).toBeVisible();
   await page.getByRole('link', { name: 'Open report' }).click();
   await expect(page).toHaveURL(new RegExp(`/session/${id}/report$`));
   await expect(page.getByRole('heading', { name: 'Session report', exact: true })).toBeVisible();
-  await expect(page.getByText(/5 Nov 2026/)).toBeVisible();
+  await expect(page.getByText(/6 Nov 2026, 02:30/)).toBeVisible();
   await page.reload();
-  await expect(page.getByText(/5 Nov 2026/)).toBeVisible();
+  await expect(page.getByText(/6 Nov 2026, 02:30/)).toBeVisible();
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Download Markdown' }).click();
   expect((await download).suggestedFilename()).toContain('2026-11-05');

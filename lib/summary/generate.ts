@@ -52,58 +52,89 @@ export async function generateSummary(args: {
   const means = Object.fromEntries(
     DIMENSIONS.map((d) => [d, values.dimensionMeans[d] ?? 0]),
   ) as Record<Dimension, number>;
+  const usage = { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 };
   try {
-    const result = await args.provider.generateStructured({
-      schema: SummaryLlmSchema,
-      schemaName: 'interview_summary',
-      system: SUMMARY_SYSTEM_PROMPT,
-      prompt: buildSummaryUserMessage({
-        ...args,
-        items,
-        dimensionMeans: means,
-        overallByQuestion: values.perQuestion.flatMap((q) =>
-          q.overall === null ? [] : [q.overall],
-        ),
-        trend: values.trend,
-        focus: values.focus,
-      }),
-      maxOutputTokens: args.maxOutputTokens,
-      signal: AbortSignal.timeout(LLM.SUMMARY_TIMEOUT_MS),
-    });
-    const raw = SummaryLlmSchema.safeParse(result.object);
-    if (!raw.success) throw new InvalidOutputError();
-    const data = raw.data;
-    const normalized = SummarySchema.safeParse({
-      headline: cleanText(data.headline, SUMMARY_LIMITS.HEADLINE_MAX_CHARS),
-      paragraph: cleanText(data.paragraph, SUMMARY_LIMITS.PARAGRAPH_MAX_CHARS),
-      next_practice: cleanText(data.next_practice, SUMMARY_LIMITS.NEXT_PRACTICE_MAX_CHARS),
-      focus_notes: values.focus.map((d) => {
-        const note = data.focus_notes.find((n) => n.dimension === d);
-        return {
-          dimension: d,
-          note: note ? cleanText(note.note, SUMMARY_LIMITS.NOTE_MAX_CHARS) : null,
-        };
-      }),
-      generated_at: new Date(now()).toISOString(),
-      model: args.provider.modelId,
-      prompt_version: SUMMARY_PROMPT_VERSION,
-    });
-    if (!normalized.success) throw new InvalidOutputError();
-    const summary = normalized.data;
-    if (
-      [
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const result = await args.provider.generateStructured({
+        schema: SummaryLlmSchema,
+        schemaName: 'interview_summary',
+        system: SUMMARY_SYSTEM_PROMPT,
+        prompt: buildSummaryUserMessage({
+          ...args,
+          items,
+          dimensionMeans: means,
+          overallByQuestion: values.perQuestion.flatMap((q) =>
+            q.overall === null ? [] : [q.overall],
+          ),
+          trend: values.trend,
+          focus: values.focus,
+        }),
+        maxOutputTokens: args.maxOutputTokens,
+        signal: AbortSignal.timeout(LLM.SUMMARY_TIMEOUT_MS),
+      });
+      usage.inputTokens += result.usage.inputTokens;
+      usage.outputTokens += result.usage.outputTokens;
+      usage.cachedInputTokens += result.usage.cachedInputTokens;
+      const raw = SummaryLlmSchema.safeParse(result.object);
+      if (!raw.success) throw new InvalidOutputError();
+      const data = raw.data;
+      const normalized = SummarySchema.safeParse({
+        headline: cleanText(data.headline, SUMMARY_LIMITS.HEADLINE_MAX_CHARS),
+        paragraph: cleanText(data.paragraph, SUMMARY_LIMITS.PARAGRAPH_MAX_CHARS),
+        next_practice: cleanText(data.next_practice, SUMMARY_LIMITS.NEXT_PRACTICE_MAX_CHARS),
+        focus_notes: values.focus.map((d) => {
+          const note = data.focus_notes.find((n) => n.dimension === d);
+          return {
+            dimension: d,
+            note: note ? cleanText(note.note, SUMMARY_LIMITS.NOTE_MAX_CHARS) : null,
+          };
+        }),
+        generated_at: new Date(now()).toISOString(),
+        model: args.provider.modelId,
+        prompt_version: SUMMARY_PROMPT_VERSION,
+      });
+      if (!normalized.success) throw new InvalidOutputError();
+      const summary = normalized.data;
+      const texts = [
         summary.headline,
         summary.paragraph,
         summary.next_practice,
         ...summary.focus_notes.map((entry) => entry.note ?? ''),
-      ].some((text) => /\bfailing\b/i.test(text))
-    )
-      throw new InvalidOutputError();
-    return { summary, usage: result.usage, latencyMs: now() - start };
+      ];
+      if (texts.some((text) => /\bfailing\b/i.test(text))) {
+        if (attempt === 0) continue;
+        if (texts.some(describesCandidateAsFailing)) throw new InvalidOutputError();
+      }
+      return { summary, usage, latencyMs: now() - start };
+    }
+    throw new InvalidOutputError();
   } catch (error) {
     if (error instanceof InvalidOutputError) throw new AppError('FEEDBACK_INVALID');
     if (error instanceof ProviderTimeoutError) throw new AppError('PROVIDER_TIMEOUT');
     if (error instanceof ProviderError) throw new AppError('PROVIDER_ERROR');
     throw error;
   }
+}
+
+// D-95: technical failures are not a judgement of the candidate. Unknown contexts
+// are not rejected merely because they contain this word; this is a bounded heuristic.
+function describesCandidateAsFailing(text: string): boolean {
+  return text.split(/[.!?;\n]/).some((sentence) => {
+    const context = sentence
+      .replace(
+        /\bfailing\s+(?:tests?|builds?|requests?|services?|systems?|deployments?|payments?|checks?|pipelines?|servers?)\b/gi,
+        '',
+      )
+      .replace(
+        /\b(?:tests?|builds?|requests?|services?|systems?|deployments?|payments?|checks?|pipelines?|servers?)\s+(?:(?:is|are|was|were|kept|started)\s+)?failing\b/gi,
+        '',
+      );
+    return (
+      /\bfailing\s+to\b/i.test(context) ||
+      /\b(?:you|candidate|answer|response|performance|explanation|communication|clarity|structure|specificity|ownership|impact|relevance)\b[^.!?;]*\bfailing\b/i.test(
+        context,
+      ) ||
+      /\bfailing\s+(?:candidate|answer|response|performance|interview)\b/i.test(context)
+    );
+  });
 }

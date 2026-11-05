@@ -126,14 +126,16 @@ it.each([1, 2, 3])('TC-127 V-04 gates trend on %i scored answers', async (count)
   expect(calls[0]?.system).toContain('Never use the word "failing"');
 });
 it.each(['headline', 'paragraph', 'next_practice', 'focus_notes'] as const)(
-  'TC-127 V-04 rejects forbidden tone in %s after normalization without retry',
+  'TC-127 V-04 rejects forbidden tone in %s after normalization with one same-prompt retry',
   async (field) => {
     const value = output();
     if (field === 'focus_notes') value.focus_notes[0]!.note = 'You are FAILING.';
     else value[field] = 'You are **FAILING**.';
     const { provider, calls } = fake(value);
     await expect(run(provider)).rejects.toMatchObject({ code: 'FEEDBACK_INVALID' });
-    expect(calls).toHaveLength(1);
+    expect(calls).toHaveLength(2);
+    expect(calls[1]?.prompt).toBe(calls[0]?.prompt);
+    expect(calls[1]?.system).toBe(calls[0]?.system);
   },
 );
 
@@ -141,4 +143,45 @@ it('TC-127 V-04 rejects zero scored answers without constructing a summary reque
   const { provider, calls } = fake(output());
   await expect(run(provider, [])).rejects.toMatchObject({ code: 'VALIDATION_FAILED' });
   expect(calls).toHaveLength(0);
+});
+
+it.each([
+  'You explained how you fixed failing tests.',
+  'The tests were failing before your fix.',
+  'Failing requests recovered after the rollback.',
+  'The deployment is failing.',
+])('TC-133 D-95 retries once then accepts technical context: %s', async (paragraph) => {
+  const { provider, calls } = fake({ ...output(), paragraph });
+  const result = await run(provider);
+  expect(result.summary.paragraph).toBe(paragraph);
+  expect(calls).toHaveLength(2);
+  expect(calls[1]?.prompt).toBe(calls[0]?.prompt);
+  expect(calls[1]?.system).toBe(calls[0]?.system);
+  expect(result.usage).toEqual({ inputTokens: 20, outputTokens: 40, cachedInputTokens: 4 });
+});
+it('TC-133 D-95 accepts a clean retry after candidate judgement', async () => {
+  const { provider, calls } = fake(output());
+  const original = provider.generateStructured.bind(provider);
+  let count = 0;
+  provider.generateStructured = async (args) => {
+    const result = await original(args);
+    if (count++ === 0)
+      return {
+        ...result,
+        object: { ...output(), paragraph: 'You are failing.' } as typeof result.object,
+      };
+    return result;
+  };
+  expect((await run(provider)).summary.paragraph).toBe(output().paragraph);
+  expect(calls).toHaveLength(2);
+});
+
+it.each([
+  'Your answer is failing to explain the outcome.',
+  'A failing performance.',
+  'You described failing tests, but your explanation is failing.',
+])('TC-133 D-95 rejects repeated performance judgement: %s', async (paragraph) => {
+  const { provider, calls } = fake({ ...output(), paragraph });
+  await expect(run(provider)).rejects.toMatchObject({ code: 'FEEDBACK_INVALID' });
+  expect(calls).toHaveLength(2);
 });
