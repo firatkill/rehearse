@@ -55,17 +55,20 @@ describe('TC-070 TRD §14.0 OpenAI adapter', () => {
     const call: unknown = sdk.generate.mock.calls[0]?.[0];
     expect(call).toHaveProperty('output.name', 'object');
   });
-  it('omits unsupported temperature and uses configured reasoning effort; missing usage is zero', async () => {
-    vi.stubEnv('CHAT_MODEL_SUPPORTS_TEMPERATURE', 'false');
-    vi.stubEnv('CHAT_REASONING_EFFORT', 'low');
-    resetEnvForTests();
-    sdk.generate.mockResolvedValue({ output: { ok: true }, usage: { inputTokenDetails: {} } });
-    const result = await createOpenAiProvider().generateStructured(args());
-    expect(result.usage).toEqual({ inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 });
-    const call: unknown = sdk.generate.mock.calls[0]?.[0];
-    expect(call).not.toHaveProperty('temperature');
-    expect(call).toHaveProperty('providerOptions.openai.reasoningEffort', 'low');
-  });
+  it.each(['low', 'none'])(
+    'omits temperature and forwards reasoning %s; missing usage is zero',
+    async (effort) => {
+      vi.stubEnv('CHAT_MODEL_SUPPORTS_TEMPERATURE', 'false');
+      vi.stubEnv('CHAT_REASONING_EFFORT', effort);
+      resetEnvForTests();
+      sdk.generate.mockResolvedValue({ output: { ok: true }, usage: { inputTokenDetails: {} } });
+      const result = await createOpenAiProvider().generateStructured(args());
+      expect(result.usage).toEqual({ inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 });
+      const call: unknown = sdk.generate.mock.calls[0]?.[0];
+      expect(call).not.toHaveProperty('temperature');
+      expect(call).toHaveProperty('providerOptions.openai.reasoningEffort', effort);
+    },
+  );
   it('rejects malformed output at the boundary', async () => {
     sdk.generate.mockResolvedValue({ output: { ok: 'wrong' }, usage: { inputTokenDetails: {} } });
     await expect(createOpenAiProvider().generateStructured(args())).rejects.toBeInstanceOf(

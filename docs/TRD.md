@@ -440,6 +440,8 @@ The client never reads env. `DEMO_MODE` and the three quota values reach the cli
 
 `.env.example` contains every row above (platform variables as comments) and works unchanged for the no-key path (`cp .env.example .env.local && pnpm dev:mock`): `LLM_MODE=mock`, `RATE_LIMIT_BACKEND=memory`, `NEXT_PUBLIC_SITE_URL=http://localhost:3000`, development-only secrets of at least 32 characters (`dev-only-session-secret-change-me-00000000000` and `dev-only-ip-hash-secret-change-me-00000000000`) with a comment that production values come from `openssl rand -hex 32`. `CHAT_MODEL` holds the id pinned in T-24 with a comment `# Pinned on <date> from <url>`.
 
+D-72 model selection (2026-11-05): `gpt-6-luna`, `CHAT_MODEL_SUPPORTS_TEMPERATURE=false`, `CHAT_REASONING_EFFORT=none`; standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. Existing feedback/summary output limits remain 900/400. Mock mode remains the automated-test default.
+
 ## 6. Question bank
 
 ### 6.1 Files and manifest

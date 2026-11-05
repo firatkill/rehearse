@@ -1,0 +1,146 @@
+{
+  "runId": "2026-11-05-1",
+  "startedAt": "2026-11-05T04:53:57.489Z",
+  "finishedAt": "2026-11-05T04:54:05.016Z",
+  "gitSha": "1b089063b68a23b0fea061873d753448cd4cecef",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v1",
+  "bankVersion": "1.0.0",
+  "goldenHash": "93ee11eb5fd2efd07df43e3bb7c8289cfd3ed23cca6f066be4f141e7bc24de88",
+  "repeats": 1,
+  "metrics": {
+    "within_range.structure": 1,
+    "within_range.specificity": 1,
+    "within_range.ownership": 1,
+    "within_range.impact": 1,
+    "within_range.relevance": 1,
+    "within_range.clarity": 1,
+    "within_range.overall": 1,
+    "json_valid.first_attempt": 1,
+    "json_valid.final": 1,
+    "flag_accuracy": 1,
+    "latency_ms.p95": 7523,
+    "cost_usd.total": 0.00048120000000000004,
+    "cost_usd.mean_per_call": 0.00048120000000000004,
+    "tokens.mean_input": 2042,
+    "tokens.mean_output": 554,
+    "evidence_kept_rate": 1,
+    "consistency": 1
+  },
+  "thresholds": {
+    "within_range.structure": 0.75,
+    "within_range.specificity": 0.75,
+    "within_range.ownership": 0.75,
+    "within_range.impact": 0.75,
+    "within_range.relevance": 0.75,
+    "within_range.clarity": 0.7,
+    "within_range.overall": 0.85,
+    "json_valid.first_attempt": 0.95,
+    "json_valid.final": 1,
+    "flag_accuracy": 0.9,
+    "latency_ms.p95_max": 10000
+  },
+  "passed": true,
+  "failures": [],
+  "items": [
+    {
+      "id": "g-01",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 4,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 4,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "latencyMs": 7523,
+      "usage": {
+        "inputTokens": 2042,
+        "outputTokens": 554
+      },
+      "costUsd": 0.00048120000000000004,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "You set the incident and urgency, explain your diagnostic actions and decision, then give the immediate fix and prevention."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "You identify the payment service deploy, error timing, 26-character threshold, two-line fix, test case, and failure rates."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "You clearly state your checks, rollback decision, fix, test, and incident-review proposal, while noting the team's later adoption."
+          },
+          "impact": {
+            "score": 4,
+            "rationale": "Failures returned to the 0.3 percent baseline in ten minutes, and later contract tests caught a similar issue before users were affected."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "You directly describe a production payment incident, your method for finding its cause, the urgent fix, and follow-up prevention."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "The answer is chronological and concise, with clear links between the evidence, diagnosis, fix, and results."
+          }
+        },
+        "overall": 4,
+        "strengths": [
+          {
+            "point": "You present a clear, methodical investigation under pressure.",
+            "evidence": "I compared failing and successful requests in the logs and noticed that every failure had a card-holder name longer than 26 characters."
+          },
+          {
+            "point": "You explain a thoughtful trade-off rather than treating rollback as automatic.",
+            "evidence": "I didn't roll back straight away, because the same deploy contained a tax fix that finance needed that night."
+          },
+          {
+            "point": "You cover both immediate recovery and prevention, with concrete outcomes.",
+            "evidence": "Failures dropped back to the normal rate of about 0.3 percent within ten minutes."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Clarify why trimming caused the provider to reject the name.",
+            "why": "You identify the transformation and rejection, but a brief explanation of the mismatch would make the causal chain easier to verify.",
+            "rewrite": "The library trimmed names longer than 26 characters, changing the value sent to the provider; the provider then rejected it because it no longer matched the card. I confirmed this by [specific check]."
+          }
+        ],
+        "follow_up_question": "How did you verify that the trimmed name was the reason the provider rejected those payment requests?",
+        "model_answer_outline": [
+          "Set the scene with the failure, affected users or transactions, and urgency.",
+          "Explain the first signal you checked and why it narrowed the search.",
+          "Show how you compared evidence to isolate the root cause and distinguish it from other possibilities.",
+          "Describe your own immediate fix, how you verified recovery, and any trade-off.",
+          "Close with the prevention change, its adoption, and what it later caught."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    }
+  ]
+}

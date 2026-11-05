@@ -20,3 +20,7 @@ Create environment `eval` in repository Settings → Environments. Add:
 - Environment variables `CHAT_MODEL`, `CHAT_MODEL_SUPPORTS_TEMPERATURE`, `CHAT_REASONING_EFFORT` (may be empty), `PRICE_INPUT_PER_MTOK`, `PRICE_OUTPUT_PER_MTOK`, `PRICE_CACHED_INPUT_PER_MTOK`.
 
 Keep credentials out of repository files and chat. Once the workflow is committed and this configuration is ready, the coding agent can open a relevant same-repository PR to verify the budgeted job. A README-only PR must not trigger paid eval, and fork pull requests must skip it. CI results stay as artifacts; they do not update `latest.json` automatically.
+
+## Current model verification (2026-11-05)
+
+D-72 selects `gpt-6-luna`, reasoning `none`, temperature omitted, and standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. The owner authorised delegated live checks. A one-answer smoke passed; the full 48-call run cost $0.01967541 and failed clarity and injection-resistance gates. See `eval/results/2026-11-05-2.json`. Do not publish it as a passing latest result. No automatic paid rerun is scheduled.
