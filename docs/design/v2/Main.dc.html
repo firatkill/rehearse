@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rehearse landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F4F3}
+a{color:#0F1A18}a:hover{color:#0A7F66}
+.r{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#0F1A18}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:#5F6B68}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:16px;text-decoration:none;border:1px solid #0F1A18;box-sizing:border-box;cursor:pointer}
+.btn-p{background:#0A7F66;color:#FFFFFF;border-color:#0A7F66}
+.btn-p:hover{background:#086B56;border-color:#086B56;color:#FFFFFF}
+.btn-s{background:transparent;color:#0F1A18}
+.nav a{text-decoration:none;font-size:15px;color:#3C4A47}
+.nav a:hover{color:#0F1A18}
+mark{background:#CFF1E2;color:inherit;padding:1px 3px;border-radius:3px}
+.filler{text-decoration:underline wavy #C93C34;text-underline-offset:4px;color:#3C4A47}
+.vague{text-decoration:underline dashed #5F6B68;text-underline-offset:4px}
+.seg{display:block;height:6px;border-radius:2px;background:#E1E6E4}
+.on{background:#0A7F66}
+</style>
+</helmet>
+<div class="r" style="min-height: 100vh; background: #F2F4F3; display: flex; flex-direction: column">
+
+<sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+<div role="status" style="background: #DDF3EA; color: #0F1A18; padding: 12px 40px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: center; font-size: 15px">
+<span class="mono" style="font-size: 12px; letter-spacing: .08em; background: #0A7F66; color: #FFFFFF; border-radius: 999px; padding: 3px 10px">DEMO</span>
+<span>You’re trying the demo. Feedback here is pre-written sample data and no AI is called.</span>
+<a href="#self-host" style="color: #0A7F66; font-weight: 600">Run the full version yourself</a>
+</div>
+</sc-if>
+
+<header style="border-bottom: 1px solid #E1E6E4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 20px; letter-spacing: -.02em">
+<span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #0A7F66"></span>Rehearse</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center">
+<a href="Start.dc.html">Practise</a>
+<a href="JobPost.dc.html">Job post</a>
+<a href="Progress.dc.html">Progress</a>
+<a href="#how">How it works</a>
+<a href="https://github.com/firatkill/rehearse">GitHub</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 96px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<p class="lbl" style="margin: 0; color: #0A7F66">Interview practice, out loud</p>
+<h1 style="margin: 0; font-size: clamp(40px, 5.2vw, 68px); line-height: 1.02; letter-spacing: -.035em; font-weight: 700">Rehearse the interview before you have it.</h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #3C4A47; max-width: 34ch">Paste the job post you were invited for. Rehearse asks the questions you’re likely to get, listens to your answer, and shows you the one thing to say better.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn btn-p" href="Start.dc.html">Start practising</a>
+<a class="btn btn-s" href="Report.dc.html">See a sample report</a>
+</div>
+<p class="mono" style="margin: 0; font-size: 13px; color: #5F6B68">No account · English and Turkish · your sessions stay with you</p>
+</div>
+
+<figure aria-label="Example of feedback on a spoken answer" style="margin: 0; background: #FFFFFF; border: 1px solid #E1E6E4; border-radius: 20px; box-shadow: 0 1px 2px rgba(15,26,24,.04), 0 24px 48px -24px rgba(15,26,24,.18); padding: 28px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<span class="lbl">Question 2 of 5 · From the job post</span>
+<span class="mono" style="font-size: 12px; color: #C93C34; display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #C93C34"></span>Recorded 0:48</span>
+</div>
+<p style="margin: 0; font-size: 22px; line-height: 1.3; font-weight: 600; letter-spacing: -.015em">Tell me about a time you shipped under a hard deadline.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.75; color: #0F1A18; border-left: 0; background: #F7F9F8; border-radius: 10px; padding: 16px 18px">“We had two weeks before the <mark>Black Friday code freeze</mark>, so <mark>I cut the checkout rewrite down to the payment step</mark> and, <span class="filler">um</span>, we shipped it. <span class="vague">It went well.</span>”</p>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em">Structure</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em">Specific</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em">Ownership</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em; color: #C93C34">Impact</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg" style="background: #C93C34"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em">Relevance</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px; letter-spacing: .04em">Clarity</span><span style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></span></div>
+</div>
+<div style="border-top: 1px solid #E1E6E4; padding-top: 20px; display: flex; flex-direction: column; gap: 10px">
+<span class="lbl" style="color: #0A7F66">Change one thing: say what changed</span>
+<p style="margin: 0; font-size: 17px; line-height: 1.55">Try saying: “Checkout errors dropped from <span class="mono" style="color: #C93C34">[X]%</span> to <span class="mono" style="color: #C93C34">[Y]%</span> in the first week, and we hit the freeze with a day to spare.”</p>
+<div><a class="btn btn-p" href="Feedback.dc.html" style="min-height: 44px; font-size: 15px">Try this answer again</a></div>
+</div>
+</figure>
+</section>
+
+<section id="how" style="border-top: 1px solid #E1E6E4; background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px">
+<p class="lbl" style="margin: 0; color: #0A7F66">How a session works</p>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; letter-spacing: -.025em">Answer, see what to fix, answer again.</h2>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px">
+<li style="display: flex; flex-direction: column; gap: 16px; border-top: 2px solid #0F1A18; padding-top: 20px">
+<span class="mono" style="font-size: 13px; color: #5F6B68">01</span>
+<h3 style="margin: 0; font-size: 22px; letter-spacing: -.01em">Bring the job, or pick a role</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A47">Paste a job post link and get questions built from its requirements. Or practise from a bank of hand-written questions by role and seniority.</p>
+<div class="mono" style="font-size: 13px; border: 1px solid #E1E6E4; border-radius: 10px; padding: 12px 14px; color: #3C4A47; background: #F7F9F8">jobs.example.com/senior-frontend-engineer</div>
+</li>
+<li style="display: flex; flex-direction: column; gap: 16px; border-top: 2px solid #0F1A18; padding-top: 20px">
+<span class="mono" style="font-size: 13px; color: #5F6B68">02</span>
+<h3 style="margin: 0; font-size: 22px; letter-spacing: -.01em">Answer out loud</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A47">The interviewer reads the question. You get 15 seconds to think, then you speak and watch the transcript. Fix misheard words before it’s scored.</p>
+<div style="font-size: 15px; border: 1px solid #E1E6E4; border-radius: 10px; padding: 12px 14px; color: #0F1A18; background: #F7F9F8; display: flex; gap: 10px; align-items: center"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #C93C34; flex: none"></span><span>so I split the migration into three…</span></div>
+</li>
+<li style="display: flex; flex-direction: column; gap: 16px; border-top: 2px solid #0F1A18; padding-top: 20px">
+<span class="mono" style="font-size: 13px; color: #5F6B68">03</span>
+<h3 style="margin: 0; font-size: 22px; letter-spacing: -.01em">Try again until it lands</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A47">Every answer gets six scores, quotes from what you said and one rewrite to try. Answer again and see exactly what moved.</p>
+<div class="mono" style="font-size: 13px; border: 1px solid #E1E6E4; border-radius: 10px; padding: 12px 14px; background: #F7F9F8; display: flex; justify-content: space-between"><span>Impact</span><span>1 → <strong style="color: #0A7F66">3</strong></span></div>
+</li>
+</ol>
+</div>
+</section>
+
+<section style="border-top: 1px solid #E1E6E4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p class="lbl" style="margin: 0; color: #0A7F66">What the feedback looks at</p>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; letter-spacing: -.025em">Six things interviewers listen for.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3C4A47; max-width: 40ch">Pace, filler words and pauses are counted in your browser, not by the language model.</p>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px">
+<div><dt style="font-weight: 600; font-size: 17px">Structure</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">Situation, action, result in order. Or definition, example, trade-offs.</dd></div>
+<div><dt style="font-weight: 600; font-size: 17px">Specificity</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">Systems, numbers, constraints, tool names.</dd></div>
+<div><dt style="font-weight: 600; font-size: 17px">Ownership</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">What you did, said with “I”, apart from the team.</dd></div>
+<div><dt style="font-weight: 600; font-size: 17px">Impact</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">The result, measured where possible.</dd></div>
+<div><dt style="font-weight: 600; font-size: 17px">Relevance</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">Whether you answered the question asked.</dd></div>
+<div><dt style="font-weight: 600; font-size: 17px">Clarity</dt><dd style="margin: 6px 0 0; color: #3C4A47; line-height: 1.55">Whether a listener follows it the first time.</dd></div>
+</dl>
+</div>
+</section>
+
+<section id="self-host" style="border-top: 1px solid #E1E6E4; background: #0F1A18; color: #F2F4F3">
+<div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 680px">
+<p class="lbl" style="margin: 0; color: #93A19C">Two ways to use it</p>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; letter-spacing: -.025em">This site is the demo. The real thing runs on your machine.</h2>
+</div>
+<div style="overflow-x: auto; border: 1px solid #24312D; border-radius: 14px">
+<table style="width: 100%; border-collapse: collapse; font-size: 16px; min-width: 620px">
+<thead>
+<tr style="text-align: left">
+<th scope="col" style="padding: 16px 20px; border-bottom: 1px solid #24312D; font-weight: 500; color: #93A19C">&#160;</th>
+<th scope="col" style="padding: 16px 20px; border-bottom: 1px solid #24312D; font-weight: 600">Demo, on this site</th>
+<th scope="col" style="padding: 16px 20px; border-bottom: 1px solid #24312D; font-weight: 600">Full version, self-hosted</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row" style="text-align: left; padding: 14px 20px; border-bottom: 1px solid #24312D; font-weight: 500; color: #93A19C">Feedback</th><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">Pre-written sample feedback</td><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">Scored live on your own answer</td></tr>
+<tr><th scope="row" style="text-align: left; padding: 14px 20px; border-bottom: 1px solid #24312D; font-weight: 500; color: #93A19C">Job posts</th><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">Three example posts</td><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">Any link or pasted text, with more questions on demand</td></tr>
+<tr><th scope="row" style="text-align: left; padding: 14px 20px; border-bottom: 1px solid #24312D; font-weight: 500; color: #93A19C">Language</th><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">English</td><td style="padding: 14px 20px; border-bottom: 1px solid #24312D">English and Turkish</td></tr>
+<tr><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #93A19C">History</th><td style="padding: 14px 20px">This browser only</td><td style="padding: 14px 20px">Saved on your machine, across browsers</td></tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<code class="mono" style="font-size: 14px; background: #15201D; border: 1px solid #24312D; border-radius: 10px; padding: 14px 18px; color: #F2F4F3">git clone github.com/firatkill/rehearse &amp;&amp; docker compose up</code>
+<a class="btn" href="https://github.com/firatkill/rehearse#run-it-yourself" style="background: #F2F4F3; color: #0F1A18; border-color: #F2F4F3">Setup guide</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer style="border-top: 1px solid #E1E6E4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #5F6B68">
+<span>Built by Fırat Kıl · <a href="https://firatkil.com">firatkil.com</a> · <a href="https://github.com/firatkill/rehearse">Source on GitHub (MIT)</a></span>
+<a href="#privacy">Privacy</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"showDemo":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { showDemo: this.props.showDemo ?? true };
+  }
+}
+</script>
+</body>
+</html>

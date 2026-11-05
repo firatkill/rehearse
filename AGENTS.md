@@ -4,9 +4,9 @@ Instructions for AI coding agents (Claude Code, Cursor, Codex, Aider, Copilot an
 
 ## 1. Project summary
 
-Rehearse is an open-source voice mock-interview coach. A visitor picks a role, seniority and question types; the browser reads each question aloud (Web Speech `speechSynthesis`), transcribes the spoken answer (`SpeechRecognition`), lets the visitor fix the transcript, and asks the server for feedback. The server checks a signed session token and Upstash rate limits, makes one structured-output LLM call per answer with a fixed rubric (structure, specificity, ownership, impact, relevance, clarity, each 1–4), validates and caps the result with Zod, verifies quoted evidence against the transcript, and returns it. Delivery metrics (pace, filler words, pauses) are computed in the browser. Sessions live only in IndexedDB. A golden-answer eval harness gates prompt changes in CI.
+Rehearse is an open-source voice mock-interview coach with two editions from one Next.js App Router codebase (D-73–D-82; `docs/V2-GUIDE.md`). `APP_EDITION=demo` is the public Vercel site: pre-written content, no LLM calls, API keys or Upstash, and unmistakable demo labels (D-73, D-74). `APP_EDITION=full` (default) is the single-user, self-hosted app with the user's OpenAI key, live rubric feedback, job-post-grounded question generation, retry and follow-up attempts, and later Turkish interviews (D-76–D-78, D-81). Web Speech runs in the browser; text mode always remains available. Delivery metrics are browser-computed; evidence is validated against the answer.
 
-Single Next.js App Router app, TypeScript strict, pnpm, Node 22+, Tailwind v4, shadcn/ui, Zod, Vercel AI SDK with OpenAI, `@upstash/ratelimit`. Hosting: Vercel Hobby + Upstash free. No database. Hosting cost must stay at about $0; LLM spend is capped.
+Stack: TypeScript strict, pnpm, Node 22+, Tailwind v4, shadcn/ui, Zod and Vercel AI SDK with OpenAI. Demo keeps IndexedDB; full uses SQLite in a Docker volume through the shared repository interface (D-75). Full permits the memory limiter in production, has no IP quotas, and warns about monthly spend without blocking (D-80). Full binds to localhost by default; set `APP_PASSWORD` before exposing it (D-82). The public demo's hosting cost stays about $0; automated tests never incur LLM spend.
 
 - Live demo: https://rehearse.firatkil.com
 - Repository: github.com/firatkill/rehearse (MIT)
@@ -18,6 +18,8 @@ Single Next.js App Router app, TypeScript strict, pnpm, Node 22+, Tailwind v4, s
 | `docs/PRD.md`                 | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15)                                                                                                                                                                                                                                                          |
 | `docs/TRD.md`                 | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
 | `docs/IMPLEMENTATION_PLAN.md` | Ordered tasks (T-01 – T-45), files, acceptance commands, traceability, release checklist                                                                                                                                                                                                                                                                                                                   |
+
+V2 authority (D-73–D-82): read `docs/V2-GUIDE.md` in full and track V-tasks in `docs/PROGRESS-V2.md`. The approved guide overrides matching v1 rules, including older project-specific owner decisions. Do tasks in order, one branch/PR per task, and stop at each milestone for the guide §7 hand-back. V-00 is documentation only; its tests are recorded document checks, not application code. Page tasks update PRD copy alongside implementation (D-79). Live eval/sample/demo generation requires explicit owner approval under guide §6, even if a key is configured. Only `better-sqlite3`, `@mozilla/readability` and `linkedom` are pre-approved additional runtime dependencies (D-75, D-76).
 
 Rules for the specs:
 
@@ -92,7 +94,7 @@ Storage
 
 UI
 
-- Copy is exact from PRD §9. British English. No emoji, no gradients, no shadows, no new fonts or colours outside TRD §19.2 tokens.
+- Copy is exact from PRD §9, updated by each V2 page task from the approved designs (D-79). British English. No emoji, gradients, illustrations, or fonts/colours outside TRD §19.2. D-79 permits pill buttons, 16–20 px card radii and only the specified landing product-card shadow; the room stays dark.
 - Render model and visitor text only through `SafeText`. `SafeMarkdown` is for repository-controlled static content only. No `dangerouslySetInnerHTML`, with one exception: the constant theme script in `app/layout.tsx` (TRD §19.3, D-26).
 - Every interactive element is keyboard operable with a visible focus ring and an accessible name. Follow the focus targets in PRD §9.6 and the announcer rules in TRD §19.4. Timers and live transcripts are never live regions.
 
@@ -201,16 +203,16 @@ A task is done when all of the following hold:
 
 - Commit secrets, `.env.local`, API keys, Upstash tokens or real secrets.
 - Call a real LLM, real speech service or Upstash from any test, or from CI outside `eval.yml`.
-- Store, log or send a raw IP address, a visitor id, transcript text or model output on the server. Never add server-side storage of sessions or answers.
-- Add a database, a paid service, a new runtime service, a paid speech API, third-party scripts, cookies, analytics or tracking.
+- Store or log raw IPs or visitor ids, or log transcript text or model output. Demo never stores sessions or answers server-side; full may store sessions, attempts, job posts, generated questions and later story notes in its local SQLite database, with validated data APIs (D-75). Existing permitted live provider requests remain allowed in full (D-73).
+- Add a database other than full-edition SQLite (D-75), a paid service, a new runtime service, a paid speech API, third-party scripts, cookies, analytics or tracking. SQLite is local, not a hosted service.
 - Record, store or upload the visitor's audio.
 - Ship the question bank to the client, or accept question text, role or seniority for scoring from the client.
-- Generate questions with an LLM, or copy questions from published interview-question lists.
+- Generate or modify the hand-written bank with an LLM, or copy questions from published interview-question lists. D-76 permits separately stored, labelled, job-post-grounded generated questions in full; demo uses owner-generated pre-written examples.
 - Render model or visitor text as HTML or Markdown, or weaken the CSP (`unsafe-inline` scripts, `unsafe-eval` outside development), or drop `microphone=(self)` from `Permissions-Policy`.
 - Hard-code model ids or token prices in code; they come from env.
 - Lower an eval threshold, raise a latency ceiling, loosen a golden range without a reason in `notes`, or disable a test to make CI pass.
-- Enable `LLM_MODE=mock` or `RATE_LIMIT_BACKEND=memory` in production.
-- Make the limiter fail open: when Upstash is unreachable, LLM routes return `LIMITER_UNAVAILABLE`.
+- Enable `LLM_MODE=mock` with `APP_EDITION=full` and `NODE_ENV=production` (D-73). Demo production uses pre-written content and must never construct an LLM provider. The memory limiter is allowed in full production; demo needs no Upstash or LLM limits (D-73, D-80).
+- Make an enabled Upstash limiter fail open: when it is unreachable, guarded LLM routes return `LIMITER_UNAVAILABLE`. V2 demo does not use it; full uses memory with no IP quotas and warning-only monthly budget notices (D-80).
 - Edit a shipped IndexedDB migration, or reuse or delete a question id.
 - Change prompt text or the rubric without bumping the prompt version and running eval.
 - Add test-only switches or query parameters to application code.

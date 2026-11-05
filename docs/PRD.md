@@ -9,6 +9,8 @@
 | Status         | Approved for implementation                                                                               |
 | Companion docs | `docs/TRD.md` (how), `docs/IMPLEMENTATION_PLAN.md` (in what order), `AGENTS.md` (rules for coding agents) |
 
+V2 authority (D-73–D-82): `docs/V2-GUIDE.md` is the approved implementation order, tracked in `docs/PROGRESS-V2.md`. Its decisions override the v1 requirements below where explicitly scoped. V0 updates documentation only; runtime changes arrive in the named V-tasks. Page copy is updated from the approved designs in each page task (D-79).
+
 This document defines what Rehearse does and why. Requirement IDs (US-xx, FR-xx, NFR-xx, R-xx, D-xx) are stable. The TRD and the implementation plan reference them. Do not renumber; append new IDs at the end of each list.
 
 ---
@@ -23,17 +25,18 @@ The owner builds AI products at work (streaming chat, text-to-speech, LLM evalua
 
 ## 2. Product summary
 
-Rehearse is a single Next.js app that runs a mock interview in the browser.
+Rehearse is one Next.js codebase with two editions, selected by `APP_EDITION=demo|full` (default `full`, D-73).
 
-1. The visitor picks a role (frontend, backend, full-stack, product engineer, AI product engineer), a seniority (junior, mid, senior), the question types (behavioral, technical concepts, system design lite), a length (3 or 5 questions) and an answer mode (voice or text).
-2. Rehearse picks questions from a curated, versioned question bank in the repository. Selection is deterministic for a given seed, so a session can be reproduced.
-3. For each question, the interviewer voice reads the question aloud with captions on screen. The visitor gets 15 seconds to think, then answers out loud while a live transcript appears, or types the answer.
-4. The visitor reviews the transcript, fixes recognition errors, and submits. The server makes one LLM call and returns structured feedback: six scores from 1 to 4 with reasons, up to three strengths with quotes from the answer, up to three improvements each with a rewritten example sentence, a likely follow-up question, and an outline of a strong answer. The browser computes delivery metrics without the LLM: word count, speaking time, words per minute, filler words and the longest pause.
-5. After the last question, a session report shows score trends, the three areas to focus on next, a short written summary, a printable view and a Markdown export.
-6. Sessions are stored only in the visitor's browser (IndexedDB). There are no accounts and no server database. The visitor can export, import and delete everything.
-7. An evaluation harness scores 24 golden answers with expected score ranges and fails CI when the feedback quality regresses.
+1. Choose a role, seniority and question types from the hand-written bank, or in `full` paste a job post URL or text to generate grounded interview questions (D-76). Generated questions remain separate from the bank and are marked as generated.
+2. Hear the question, take think time, then speak with a live transcript or type. Review and correct the transcript before submitting. Browser Web Speech and the always-available text fallback are unchanged.
+3. In `full`, one structured LLM call scores each answer attempt with the same six 1–4 rubric dimensions; evidence is checked against the transcript. Delivery metrics remain browser-computed. In `demo`, pre-written sample feedback is selected without constructing an LLM provider; every page carries a demo banner and every feedback card a “Sample feedback” tag (D-73, D-74).
+4. Retry the question after feedback and compare each dimension with the preceding attempt. Answer the likely follow-up as a short extra turn using the same rubric. Reports use the best attempt per question and show the number of tries (D-77, D-78).
+5. Reports offer focused practice; `/progress` replaces `/history` with trends, dimension changes and sessions. The old URL redirects. New page designs and tokens govern presentation (D-79).
+6. In `demo`, sessions stay in IndexedDB. In single-user `full`, sessions, attempts, job posts, generated questions and later story notes are stored in SQLite on the user's server, persisted in a Docker volume. Both editions share the repository contract and portable export/import format (D-75). No accounts or tracking.
+7. `demo` runs publicly on Vercel without API keys, LLM calls or Upstash. `full` runs with the user's own API key, binds to localhost by default, and uses HTTP basic auth on every route when `APP_PASSWORD` is set; set it before exposing the server (D-73, D-82). Memory limiting is allowed in full production, with no IP quotas and warning-only monthly spend thresholds at 80% and 100% (D-80).
+8. The feedback eval harness and all gates remain. Job-question generation adds a second golden set in V5. Turkish UI and interviews are added to `full` in V7, after release; `demo` remains English and labels Turkish as full-only (D-76, D-81).
 
-Voice uses the browser's built-in Web Speech API and costs nothing to run. Text mode is always available and is the automatic fallback.
+Edition scope for existing requirements (D-73–D-82): G-3/G-6 now mean no-cost demo and private full server storage with a warning-only budget; FR-19/FR-29 describe live calls in `full`; `demo` uses pre-written content. FR-34/FR-38/FR-39 and NFR-11's browser-only storage restriction apply to `demo`; `full` uses §7 of the TRD and retains the ban on logging answer/model text. FR-40–FR-43's hosted LLM quotas are superseded by D-80, including retry calls under D-77. FR-36's history route becomes `/progress` under D-79. English-only requirements expand only at V7 under D-81. Other v1 behaviour remains until its corresponding V-task updates the detailed contract.
 
 ## 3. Goals
 
@@ -48,13 +51,13 @@ Voice uses the browser's built-in Web Speech API and costs nothing to run. Text 
 
 ## 4. Non-goals
 
-- Accounts, sign-in, cloud sync, sharing links to sessions.
+- Accounts, multi-user sign-in, cloud sync and session sharing. Optional deployment-level HTTP basic auth protects an exposed `full` server (D-82).
 - Paid or high-quality speech APIs (OpenAI, ElevenLabs, Deepgram and similar). A bring-your-own-key voice mode is future work (section 13).
-- Generating or adapting questions with an LLM. The bank is curated by hand.
+- LLM generation of the curated bank. Separately stored, job-post-grounded generated questions are in scope for `full`; `demo` offers three pre-written example posts (D-73, D-76).
 - Video, body language or eye-contact analysis.
 - Scoring tone of voice, accent or pronunciation. Rehearse scores content and simple delivery numbers only.
 - Coding interviews with an editor or code execution.
-- Languages other than English.
+- Languages other than English and Turkish. Turkish is full-only and scheduled after release in V7 (D-81).
 - Being a hiring tool. Scores are coaching aids, not predictions of interview outcomes; the UI says so (section 9.10).
 
 ## 5. Audience
@@ -234,12 +237,12 @@ All copy below is exact. Values in braces are filled at runtime. Use the typogra
 ### 9.1 Global layout
 
 - Skip link (first focusable element): "Skip to content".
-- Header (all pages): wordmark "Rehearse" (JetBrains Mono, links to `/`). Navigation: "Practise" (`/setup`), "Sample report" (`/sample`), "History" (`/history`), "How it works" (`/how-it-works`), "GitHub" (external, `https://github.com/firatkill/rehearse`). Theme toggle with accessible name "Switch to dark theme" or "Switch to light theme". Below 640 px the navigation wraps onto a second line; there is no hamburger menu.
-- In the room (`/session/[id]` before the report), the header shows only the wordmark and "End session" to reduce distraction.
+- Header (D-79; all pages except the room): wordmark "Rehearse" (Schibsted Grotesk, links to `/`). Navigation: "Practise" (`/setup`), "Job post" (`/setup#job-post`, the entry to `/job/[id]`), "Progress" (`/progress`; redirect `/history`), "How it works" (`/how-it-works`), "GitHub" (external, `https://github.com/firatkill/rehearse`). Theme toggle with accessible name "Switch to dark theme" or "Switch to light theme". Below 640 px the navigation wraps onto a second line; there is no hamburger menu.
+- In the room (`/session/[id]` before the report), the header shows only the wordmark, progress segments and "End session" (D-79) to reduce distraction.
 - Footer (all pages except the room), two lines:
   1. "Built by Fırat Kıl · firatkil.com · Source on GitHub (MIT)" ("firatkil.com" links to `https://firatkil.com`; "Source on GitHub (MIT)" links to the repository).
-  2. "Your sessions stay in this browser. Answers are sent to the server only to get feedback and are not stored. Privacy" ("Privacy" links to `/privacy`).
-- Visual direction: plain and editorial, like firatkil.com. Near-white ground, one cobalt accent, Schibsted Grotesk for text, JetBrains Mono for labels, timers, scores, counters and seeds. No gradients, no shadows (1 px rules only), no emoji, no illustrations. Tokens in TRD §19.2.
+  2. Edition-aware privacy copy is specified in V-13 (D-73, D-75): demo sessions stay in this browser; full sessions are saved in SQLite on the user’s server. “Privacy” links to `/privacy`; never claim that full answers are not stored.
+- Visual direction (D-79): approved `docs/design/v2/*.dc.html` screens; cool green-grey ground, teal accent, Schibsted Grotesk for text and JetBrains Mono for labels, timers, scores, counters and seeds. Pill buttons (44 px minimum, primary 48 px), cards with 16–20 px radii. Only the landing product card has the specified soft shadow. No gradients, emoji, illustrations or new fonts. The room is always dark. TRD §19.2 defines both themes; accessible semantics and TRD §19.4 override illustrative design markup. Guide §4.4 governs demo copy where design variants differ (D-74).
 - `<noscript>` on every page: "Rehearse needs JavaScript for the interview room. The sample report and the write-up work without it." (Server-rendered pages `/sample`, `/how-it-works`, `/privacy` render their content without JavaScript.)
 
 ### 9.2 Global banners
@@ -254,6 +257,8 @@ Banners sit under the header, full width, 1 px rule, `role="status"`. Several ma
 | Not saving         | IndexedDB unavailable (FR-39)                              | "This browser isn’t saving sessions, so they will be lost when you close the tab. Private windows in some browsers block storage."                                    |
 | Updated elsewhere  | The database was upgraded by another tab                   | "Rehearse was updated in another tab. Reload this page to keep saving." Button: "Reload"                                                                              |
 | Blocked by old tab | An older tab blocks the database upgrade for more than 3 s | "Close other Rehearse tabs, then reload this page."                                                                                                                   |
+
+V2 demo copy (D-73, D-74, D-81; implemented in V-11/V-32): every page shows pill “DEMO”, text “You’re trying the demo. Feedback here is pre-written sample data and no AI is called.” and link “Run the full version yourself” → `/#self-host`. Every feedback card has “Sample feedback”. Job-post submission in demo shows “Job-post interviews run in the self-hosted version. Try one of these example posts:” followed by three examples. Turkish is disabled in demo with tag “Full version” and description “Available in the self-hosted version.” In full, the language option appears only when V7 is complete.
 
 ### 9.3 `/` Landing page
 
@@ -664,3 +669,14 @@ Document title: "Privacy · Rehearse". Exact content:
 | D-70 | Stage E2E-15 disabled-demo assertions for /how-it-works and /privacy until T-40 creates those pages; M5 tests all existing routes. | Align acceptance sequencing with the already-staged accessibility coverage. | Owner approval, 2026-10-23 |
 | D-71 | Start the fourth E2E server (global cap 2) fresh for each isolated test attempt and stop it in finally; retain its health assertions in the isolated test. | Reset shared counters safely without application test endpoints, including retries. | Owner approval, 2026-11-05 |
 | D-72 | Replace the retired GPT-4.1 nano candidate with owner-selected gpt-6-luna. Use reasoning none, omit temperature, and standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. | Owner authorises this app model and supplies a private API key. Official model documentation lists this exact ID, structured outputs and reasoning none; start with a one-answer live check under a $0.01 guard. Full live quality gates remain required. | Owner approval and documentation verification, 2026-11-05; https://developers.openai.com/api/docs/models/gpt-6-luna |
+| D-73 | **Two editions from one codebase**, selected by a new env var `APP_EDITION` (`demo` or `full`, default `full`). `demo` is the public site on Vercel: no LLM calls, no API keys, no Upstash; every flow is clickable using pre-written content. `full` is the self-hosted app: clone, add your own API key, run one command; every feature is on. No feature is cut from `full` because of Vercel. | PRD §2, §4; `AGENTS.md` §1, §8 ("Enable `LLM_MODE=mock` … in production") | Owner, 2026-11-05 |
+| D-74 | **`demo` must say it is a demo.** A banner on every page and a "Sample feedback" tag on every feedback card. Exact copy in §4.4. A visitor must never think they are seeing live AI output. | New | Owner, 2026-11-05 |
+| D-75 | **`full` stores data on the server in SQLite**, in a Docker volume: sessions, attempts, job posts, generated questions, story notes. `demo` keeps IndexedDB. Both implement the same repository interface. In `full`, server-side storage of answers is allowed because the server is the user's own machine. The logging rules still apply: never log transcript text or model output. | PRD §4 "no server database"; `AGENTS.md` §1 "No database", §8 "Never add server-side storage" | Owner, 2026-11-05 |
+| D-76 | **Job-post interviews (`full` only).** The user pastes a job post link or text. The server extracts the post, summarises the role and company, and generates likely questions with an LLM, each grounded in a quoted line of the post. "Generate more" adds questions. The hand-written bank stays as it is; generated questions are stored separately and marked as generated. | PRD §4 non-goal "Generating … questions with an LLM"; `AGENTS.md` §8 "Generate questions with an LLM" | Owner, 2026-11-05 |
+| D-77 | **Retry loop.** A question can be answered again after feedback. Each answer is an attempt. Feedback shows the change per dimension against the previous attempt. Reports use the best attempt and show the number of tries. | PRD §7.2, §7.3 | Owner, 2026-11-05 |
+| D-78 | **Follow-up answering.** The "likely follow-up question" from feedback can be answered as a short extra turn, scored with the same rubric. | PRD §7.2 | Owner, 2026-11-05 |
+| D-79 | **Redesign.** New tokens and page designs from `docs/design/v2/` replace TRD §19.2 and the visual rules in PRD §9.1. Still no gradients, emoji, illustrations or new fonts. Allowed now: pill buttons, 16–20 px card radii, one soft shadow on the landing product card. | TRD §19.2; PRD §9.1 "Visual direction"; `AGENTS.md` §4 UI line on shadows and colours | Owner, 2026-11-05 |
+| D-80 | **Limits by edition.** `demo` has no LLM, so no LLM limits and no Upstash. `full` is single-user: the memory limiter is allowed in production, with no IP quotas, plus a monthly budget warning based on the existing cost tracking (`MONTHLY_BUDGET_USD`, warn only). | `AGENTS.md` §8 on `RATE_LIMIT_BACKEND=memory` in production; PRD §7.5 | Owner, 2026-11-05 |
+| D-81 | **Turkish (`full`, last milestone).** Turkish UI and Turkish interviews: prompts, rubric text, filler words and a separately written Turkish question bank (not a translation). | PRD §4 "Languages other than English" | Owner, 2026-11-05 |
+| D-82 | **`full` binds to localhost by default.** Docker Compose publishes `127.0.0.1:3000`. If someone exposes it, they set `APP_PASSWORD`, which enables HTTP basic auth on every route. | New | Owner, 2026-11-05 |
+| D-83 | V0 implementation clarifications under V2-GUIDE §0: Job post navigation opens `/setup#job-post` because `/job/[id]` needs an existing record; guide §4.4's shared demo copy and §3.1's tokens/control minima take precedence over illustrative screen variants. Use the existing owner $5 app budget as the default warning amount, never a full-edition hard cap. | Keeps the approved designs and edition decisions coherent without adding a feature. Exact new record schemas belong to their owning V-tasks; V0 documents responsibilities and migration constraints. Later-dependent acceptance remains visibly pending, not waived. | Documented interpretation under approved guide §0, 2026-11-05 |

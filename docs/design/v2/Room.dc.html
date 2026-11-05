@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Interview room</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D1412}
+a{color:#ECF2F0}a:hover{color:#5EE0B4}
+.r{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#ECF2F0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:#93A19C}
+.tbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:0;background:transparent;color:#BCC8C4;font-family:'Schibsted Grotesk',sans-serif;font-size:15px;cursor:pointer;text-decoration:none}
+.tbtn:hover{background:#1A2522;color:#ECF2F0}
+.big{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:60px;padding:0 32px;border-radius:999px;border:0;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:18px;cursor:pointer;text-decoration:none}
+.prog{display:block;height:4px;border-radius:2px;background:#24312D}
+</style>
+</helmet>
+<div class="r" style="min-height: 100vh; background: #0D1412; display: flex; flex-direction: column">
+
+<header style="border-bottom: 1px solid #1F2B28">
+<div style="max-width: 1200px; margin: 0 auto; padding: 18px 40px; display: flex; gap: 24px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 18px"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: #5EE0B4"></span>Rehearse</a>
+<div style="flex: 0 1 360px; display: flex; flex-direction: column; gap: 8px">
+<span class="mono" style="font-size: 12px; color: #93A19C; text-align: center">Question 2 of 5</span>
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px"><span class="prog" style="background: #ECF2F0"></span><span class="prog" style="background: #FF6B5E"></span><span class="prog"></span><span class="prog"></span><span class="prog"></span></div>
+</div>
+<button type="button" class="tbtn" style="border: 1px solid #2F3D39">End session</button>
+</div>
+</header>
+
+<main style="flex: 1; display: flex; justify-content: center; padding: 64px 40px 48px">
+<div style="width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<p class="lbl" style="margin: 0; color: #5EE0B4">Behavioral · From the job post</p>
+<h1 style="margin: 0; font-size: 40px; line-height: 1.18; letter-spacing: -.025em; font-weight: 600">Tell me about a time a design-system change broke something in production. What did you do?</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 4px"><button type="button" class="tbtn" style="padding-left: 0">Replay question</button><button type="button" class="tbtn">Show captions</button></div>
+</div>
+
+<sc-if value="{{ isSpeaking }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+<p role="status" style="margin: 0; display: inline-flex; gap: 10px; align-items: center; font-size: 17px; color: #BCC8C4"><span aria-hidden="true" class="mono" style="letter-spacing: 2px; color: #5EE0B4">▮▮▮▯▯</span>The interviewer is reading the question</p>
+<button type="button" class="big" style="background: #ECF2F0; color: #0D1412">I’m ready to answer</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isThinking }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+<div style="display: flex; align-items: baseline; gap: 14px"><span class="mono" aria-hidden="true" style="font-size: 64px; line-height: 1; color: #ECF2F0">0:09</span><span style="font-size: 17px; color: #BCC8C4">to think. Recording starts after.</span></div>
+<div style="width: 100%; height: 4px; background: #24312D; border-radius: 2px"><div style="width: 40%; height: 4px; background: #5EE0B4; border-radius: 2px"></div></div>
+<p style="margin: 0; color: #93A19C; font-size: 15px">Try: what happened, what you did, what changed.</p>
+<button type="button" class="big" style="background: #ECF2F0; color: #0D1412">Start now</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRecording }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center">
+<span style="display: inline-flex; gap: 10px; align-items: center; color: #FF8A7E; font-weight: 600"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #FF6B5E"></span>Recording</span>
+<span class="mono" style="font-size: 14px; color: #BCC8C4">0:48 <span style="color: #66736F">/ aim for 1:00–2:00</span></span>
+</div>
+<div aria-hidden="true" style="width: 100%; height: 4px; background: #24312D; border-radius: 2px; position: relative"><div style="width: 40%; height: 4px; background: #FF6B5E; border-radius: 2px"></div><div style="position: absolute; left: 50%; top: -4px; width: 1px; height: 12px; background: #66736F"></div></div>
+<div style="background: #15201D; border: 1px solid #24312D; border-radius: 16px; padding: 24px 26px; min-height: 160px; font-size: 19px; line-height: 1.7">
+<span>Last spring we renamed the spacing tokens in our design system, and the checkout team’s build pulled the new version on a Friday. The pay button lost its padding on Safari, so I</span> <span style="color: #7E8C88; font-style: italic">rolled the package back and wrote a</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: space-between">
+<a class="big" href="Feedback.dc.html" style="background: #ECF2F0; color: #0D1412"><span aria-hidden="true" style="width: 14px; height: 14px; background: #0D1412; border-radius: 3px"></span>Stop and review</a>
+<div style="display: flex; flex-wrap: wrap; gap: 4px"><button type="button" class="tbtn">Type instead</button><button type="button" class="tbtn">Skip question</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"phase":{"editor":"enum","options":["speaking","thinking","recording"],"default":"recording"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props.phase ?? 'recording';
+    return { isSpeaking: p === 'speaking', isThinking: p === 'thinking', isRecording: p === 'recording' };
+  }
+}
+</script>
+</body>
+</html>

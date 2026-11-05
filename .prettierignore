@@ -5,3 +5,4 @@ test-results
 eval/results
 pnpm-lock.yaml
 .eval-tmp
+docs/design

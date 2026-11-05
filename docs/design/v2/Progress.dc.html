@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F4F3}
+a{color:#0F1A18}a:hover{color:#0A7F66}
+.r{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#0F1A18}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:16px;letter-spacing:.06em;text-transform:uppercase;color:#5F6B68}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;border:1px solid #0F1A18;box-sizing:border-box;cursor:pointer;background:transparent;color:#0F1A18}
+.btn-p{background:#0A7F66;color:#FFFFFF;border-color:#0A7F66}
+.btn-p:hover{background:#086B56;border-color:#086B56;color:#FFFFFF}
+.nav a{text-decoration:none;font-size:15px;color:#3C4A47}
+.card{background:#FFFFFF;border:1px solid #E1E6E4;border-radius:18px;padding:28px}
+.dim{display:grid;grid-template-columns:120px minmax(0,1fr) 64px 56px;gap:16px;align-items:center;padding:12px 0;border-top:1px solid #EBEFEE;font-size:15px}
+.spark{display:flex;align-items:flex-end;gap:4px;height:28px}
+.spark span{display:block;width:10px;border-radius:2px;background:#D5DDDA}
+</style>
+</helmet>
+<div class="r" style="min-height: 100vh; background: #F2F4F3">
+
+<header style="border-bottom: 1px solid #E1E6E4">
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 20px; letter-spacing: -.02em"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #0A7F66"></span>Rehearse</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="Start.dc.html">Practise</a><a href="JobPost.dc.html">Job post</a><a href="Progress.dc.html" aria-current="page" style="color: #0F1A18; font-weight: 600">Progress</a><a href="Main.dc.html#how">How it works</a><a href="https://github.com/firatkill/rehearse">GitHub</a></nav>
+</div>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 56px 40px 96px; display: flex; flex-direction: column; gap: 32px">
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-size: 48px; line-height: 1.05; letter-spacing: -.03em">Progress</h1>
+<p style="margin: 0; font-size: 18px; color: #3C4A47">12 sessions · 47 answers · 3 h 10 min of practice</p>
+</div>
+<a class="btn btn-p" href="Start.dc.html">Practise now</a>
+</div>
+
+<section aria-labelledby="up" class="card" style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; border: 2px solid #0A7F66">
+<div style="display: flex; flex-direction: column; gap: 6px; flex: 1 1 420px">
+<p id="up" class="lbl" style="margin: 0; color: #0A7F66">Coming up · in 6 days</p>
+<h2 style="margin: 0; font-size: 26px; letter-spacing: -.02em">Northwind Pay · Senior Frontend Engineer</h2>
+<p style="margin: 0; color: #3C4A47">You’ve practised 6 of 8 questions from this post. Two have never been answered.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn btn-p" href="Room.dc.html">Practise the two left</a><a class="btn" href="JobPost.dc.html">Open questions</a></div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+<section aria-labelledby="trend" class="card" style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline"><h2 id="trend" style="margin: 0; font-size: 20px">Overall, by session</h2><span class="mono" style="font-size: 13px; color: #0A7F66">2.1 → 3.0 over 12 sessions</span></div>
+<svg viewBox="0 0 640 220" role="img" aria-label="Overall score by session, rising from 2.1 to 3.0" style="width: 100%; height: auto">
+<line x1="40" y1="20" x2="630" y2="20" stroke="#EBEFEE"></line>
+<line x1="40" y1="80" x2="630" y2="80" stroke="#EBEFEE"></line>
+<line x1="40" y1="140" x2="630" y2="140" stroke="#EBEFEE"></line>
+<line x1="40" y1="200" x2="630" y2="200" stroke="#E1E6E4"></line>
+<text x="8" y="24" font-family="JetBrains Mono" font-size="11" fill="#5F6B68">4</text>
+<text x="8" y="84" font-family="JetBrains Mono" font-size="11" fill="#5F6B68">3</text>
+<text x="8" y="144" font-family="JetBrains Mono" font-size="11" fill="#5F6B68">2</text>
+<text x="8" y="204" font-family="JetBrains Mono" font-size="11" fill="#5F6B68">1</text>
+<polyline fill="none" stroke="#0A7F66" stroke-width="2.5" stroke-linejoin="round" points="50,134 103,140 156,122 209,128 262,110 315,116 368,98 421,104 474,92 527,86 580,92 620,80"></polyline>
+<circle cx="620" cy="80" r="5" fill="#0A7F66"></circle>
+</svg>
+</section>
+
+<section aria-labelledby="dims" class="card" style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px"><h2 id="dims" style="margin: 0; font-size: 20px">By dimension</h2><span class="mono" style="font-size: 12px; color: #5F6B68">last 3 vs before</span></div>
+<div class="dim"><span>Structure</span><span class="spark" aria-hidden="true"><span style="height: 50%"></span><span style="height: 62%"></span><span style="height: 70%"></span><span style="height: 75%; background: #0A7F66"></span></span><span class="mono">3.2</span><span class="mono" style="color: #0A7F66">+0.4</span></div>
+<div class="dim"><span>Specificity</span><span class="spark" aria-hidden="true"><span style="height: 40%"></span><span style="height: 45%"></span><span style="height: 55%"></span><span style="height: 62%; background: #0A7F66"></span></span><span class="mono">2.6</span><span class="mono" style="color: #0A7F66">+0.5</span></div>
+<div class="dim"><span>Ownership</span><span class="spark" aria-hidden="true"><span style="height: 80%"></span><span style="height: 82%"></span><span style="height: 85%"></span><span style="height: 85%; background: #0A7F66"></span></span><span class="mono">3.5</span><span class="mono" style="color: #5F6B68">0.0</span></div>
+<div class="dim"><span style="color: #C93C34; font-weight: 600">Impact</span><span class="spark" aria-hidden="true"><span style="height: 30%"></span><span style="height: 35%"></span><span style="height: 32%"></span><span style="height: 40%; background: #C93C34"></span></span><span class="mono">1.8</span><span class="mono" style="color: #0A7F66">+0.2</span></div>
+<div class="dim"><span>Relevance</span><span class="spark" aria-hidden="true"><span style="height: 75%"></span><span style="height: 80%"></span><span style="height: 82%"></span><span style="height: 85%; background: #0A7F66"></span></span><span class="mono">3.6</span><span class="mono" style="color: #0A7F66">+0.2</span></div>
+<div class="dim"><span>Clarity</span><span class="spark" aria-hidden="true"><span style="height: 65%"></span><span style="height: 62%"></span><span style="height: 70%"></span><span style="height: 72%; background: #0A7F66"></span></span><span class="mono">3.1</span><span class="mono" style="color: #0A7F66">+0.1</span></div>
+</section>
+</div>
+
+<section aria-labelledby="hist" class="card" style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; padding-bottom: 10px"><h2 id="hist" style="margin: 0; font-size: 20px">Sessions</h2><div style="display: flex; gap: 20px; font-size: 14px"><a href="#export">Export</a><a href="#import">Import</a></div></div>
+<a href="Report.dc.html" style="text-decoration: none; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; padding: 16px 0; border-top: 1px solid #EBEFEE"><span style="font-weight: 600">Northwind Pay · Senior Frontend</span><span style="color: #3C4A47">5 questions · 3 retries</span><span class="mono">2.9</span><span class="mono" style="color: #5F6B68">4 Nov</span></a>
+<a href="Report.dc.html" style="text-decoration: none; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; padding: 16px 0; border-top: 1px solid #EBEFEE"><span style="font-weight: 600">Practise Impact</span><span style="color: #3C4A47">3 questions · 2 retries</span><span class="mono">2.7</span><span class="mono" style="color: #5F6B68">3 Nov</span></a>
+<a href="Report.dc.html" style="text-decoration: none; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; padding: 16px 0; border-top: 1px solid #EBEFEE"><span style="font-weight: 600">Full-stack · Mid-level</span><span style="color: #3C4A47">3 questions · no retries</span><span class="mono">2.6</span><span class="mono" style="color: #5F6B68">1 Nov</span></a>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
