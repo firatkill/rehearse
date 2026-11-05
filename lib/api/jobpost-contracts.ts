@@ -9,6 +9,7 @@ export const JobRequestSchema = z.discriminatedUnion('operation', [
   z.object({ operation: z.literal('get'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('updateText'), id: z.uuid(), text: JobTextSchema }).strict(),
   z.object({ operation: z.literal('generate'), id: z.uuid() }).strict(),
+  z.object({ operation: z.literal('more'), id: z.uuid() }).strict(),
 ]);
 export const JobResponseSchema = z
   .object({ post: JobPostRecordSchema, questions: z.array(GeneratedQuestionRecordSchema) })

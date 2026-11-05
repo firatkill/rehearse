@@ -43,19 +43,22 @@ export function JobPost({ initial }: { initial: JobResponse }) {
     } else setError(result.message);
     setBusy(null);
   }
-  async function generate() {
+  async function generate(operation: 'generate' | 'more' = 'generate') {
     if (busy) return;
-    setBusy('Generating grounded questions…');
+    setBusy(
+      operation === 'more' ? 'Generating five more questions…' : 'Generating grounded questions…',
+    );
     setError(null);
-    const result = await requestJob({ operation: 'generate', id: post.id });
+    const result = await requestJob({ operation, id: post.id });
     if (result.ok) {
       setData(result.data);
-      setSelected(
-        result.data.questions
-          .filter((q) => q.origin === 'generated')
-          .slice(0, SESSION.LENGTHS[1])
-          .map((q) => q.id),
-      );
+      if (operation === 'generate')
+        setSelected(
+          result.data.questions
+            .filter((q) => q.origin === 'generated')
+            .slice(0, SESSION.LENGTHS[1])
+            .map((q) => q.id),
+        );
     } else setError(result.message);
     setBusy(null);
   }
@@ -248,6 +251,21 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 </div>
               </div>
             ))}
+            {hasQuestions && (
+              <Button
+                variant="outline"
+                disabled={
+                  Boolean(busy) ||
+                  editing ||
+                  questions.length + JOBPOST.MORE_QUESTIONS > JOBPOST.MAX_STORED_QUESTIONS
+                }
+                onClick={() => {
+                  void generate('more');
+                }}
+              >
+                Generate 5 more
+              </Button>
+            )}
             <fieldset className="flex flex-wrap gap-4">
               <legend>Answer mode</legend>
               <label>

@@ -28,13 +28,23 @@ export async function POST(request: Request): Promise<Response> {
     else if (input.operation === 'updateText') post = repo.updateText(input.id, input.text);
     else post = repo.get(input.id);
     if (!post) throw new AppError('JOBPOST_NOT_FOUND');
-    if (input.operation === 'generate') {
-      if (repo.questions(post.id).some((question) => question.origin === 'generated'))
+    if (input.operation === 'generate' || input.operation === 'more') {
+      const stored = repo.questions(post.id);
+      const existing = stored
+        .filter((question) => question.origin === 'generated')
+        .map((question) => question.text);
+      const count = input.operation === 'more' ? JOBPOST.MORE_QUESTIONS : JOBPOST.INITIAL_QUESTIONS;
+      if (
+        (input.operation === 'generate' ? existing.length > 0 : existing.length === 0) ||
+        stored.length + count > JOBPOST.MAX_STORED_QUESTIONS
+      )
         throw new AppError('VALIDATION_FAILED');
       const provider = getProvider();
       const started = Date.now();
       const result = await generateJobQuestions({
         text: post.text,
+        count,
+        existing,
         provider,
         bankQuestions: getBank().questions.map((question) => question.prompt),
       });

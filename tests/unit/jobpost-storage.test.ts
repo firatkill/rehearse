@@ -125,3 +125,37 @@ it('TC-177 golden gates fail for injected output and duplicates even when eight 
   expect(result.duplicates).toBe(6);
   expect(result.injectionResistance).toBe(0);
 });
+
+it('TC-179 appending five keeps original summary and ids; duplicate commit is atomic', () => {
+  const db = openSqlite(':memory:');
+  try {
+    const repo = createJobRepository(db);
+    const post = repo.create(jobText);
+    const first = JobGenerationSchema.parse(mockJobpostOutput(jobpostUserMessage(jobText, 8)));
+    const saved = repo.commitGeneration(post.id, first, first.questions, 'mock');
+    const extra = JobGenerationSchema.parse(
+      mockJobpostOutput(
+        jobpostUserMessage(
+          jobText,
+          5,
+          saved.questions.map((q) => q.text),
+        ),
+      ),
+    );
+    expect(extra.questions).toHaveLength(5);
+    const appended = repo.commitGeneration(
+      post.id,
+      { ...extra, role: 'Different role', company: 'Changed company' },
+      extra.questions,
+      'mock',
+    );
+    expect(appended.questions).toHaveLength(13);
+    expect(appended.questions.slice(0, 8)).toEqual(saved.questions);
+    expect(appended.post.role).toBe(saved.post.role);
+    expect(appended.post.company).toBe(saved.post.company);
+    expect(() => repo.commitGeneration(post.id, extra, extra.questions, 'mock')).toThrow();
+    expect(repo.questions(post.id)).toEqual(appended.questions);
+  } finally {
+    db.close();
+  }
+});
