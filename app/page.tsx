@@ -23,6 +23,7 @@ const dimensions = [
   ['Clarity', 'Whether a listener follows it the first time.'],
 ];
 export default function Home() {
+  const demo = getEnv().APP_EDITION === 'demo';
   const data = SampleFileSchema.parse(sample);
   const answer = data.answers.find((a) => a.feedback !== null);
   const question = data.session.questions.find((q) => q.id === answer?.questionId);
@@ -61,7 +62,7 @@ export default function Home() {
           </div>
           <p className="landing-meta">No account · voice or typing · your sessions stay with you</p>
           <p className="landing-availability">
-            {getEnv().APP_EDITION === 'demo'
+            {demo
               ? 'Available now: role-based practice, retries and example job-post interviews in English. Practise with your own job posts in the self-hosted version; Turkish is coming later.'
               : 'Available now: role-based practice, retries and interviews based on your job posts in English. Turkish is coming later.'}
           </p>
@@ -99,8 +100,9 @@ export default function Home() {
               <span className="landing-meta">01</span>
               <h3>Bring the job, or pick a role</h3>
               <p>
-                Practise from a bank of hand-written questions by role and seniority. Job-post
-                questions are coming to the self-hosted version.
+                {demo
+                  ? 'Practise from hand-written questions by role and seniority, or try one of three example job posts. Use your own job posts in the self-hosted version.'
+                  : 'Practise from hand-written questions by role and seniority, or paste a job post or link to generate questions grounded in that role.'}
               </p>
               <div className="landing-inset">Frontend · Backend · Full-stack</div>
             </li>
@@ -109,8 +111,8 @@ export default function Home() {
               <h3>Answer out loud</h3>
               <p>
                 The interviewer reads the question. You get {SESSION.THINK_SECONDS} seconds to
-                think, then you speak and watch the transcript. Fix misheard words before it’s
-                scored.
+                think, then you speak and watch the transcript. Fix misheard words before you review
+                your answer.
               </p>
               <div className="landing-inset">Or type your answer. The same rubric applies.</div>
             </li>
@@ -118,8 +120,9 @@ export default function Home() {
               <span className="landing-meta">03</span>
               <h3>See what to say better</h3>
               <p>
-                Every scored answer gets six scores, quotes from what you said and a rewrite to try.
-                Start another session to practise what you learned.
+                {demo
+                  ? 'Explore pre-written sample feedback with six scores and a rewrite to try. Retry the question to practise your answer; the demo does not score your words.'
+                  : 'Every scored answer gets six scores, evidence from your answer and a rewrite to try. Retry the question to practise what you learned.'}
               </p>
               <div className="landing-inset">One concrete change for your next answer.</div>
             </li>
@@ -150,12 +153,13 @@ export default function Home() {
           <Eyebrow>Two ways to use it</Eyebrow>
           <h2>Try the demo. Run the full version on your machine.</h2>
           <p>
-            The two editions below are being built. This preview stores sessions in your browser;
-            the self-hosted setup guide will be added when it is ready.
+            The public demo uses pre-written feedback and keeps sessions in your browser. Run the
+            full version with your own OpenAI key and save sessions in SQLite on your machine. The
+            setup guide covers Docker and local installation.
           </p>
           <div className="landing-comparison">
             <table>
-              <caption>Planned demo and self-hosted editions</caption>
+              <caption>Demo and self-hosted editions</caption>
               <thead>
                 <tr>
                   <th scope="col">Feature</th>
@@ -171,7 +175,7 @@ export default function Home() {
                     'Three example posts',
                     'Any link or pasted text, with more questions on demand',
                   ],
-                  ['Language', 'English', 'English and Turkish'],
+                  ['Language', 'English', 'English; Turkish is coming later'],
                   ['History', 'This browser only', 'Saved on your machine, across browsers'],
                 ].map(([feature, demo, full]) => (
                   <tr key={feature}>

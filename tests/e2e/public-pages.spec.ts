@@ -30,7 +30,14 @@ for (const theme of ['light', 'dark'] as const) {
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
           true,
         );
+        await expect(page.locator('main')).not.toContainText(
+          /This preview|planned public demo|planned, not active|release preview/,
+        );
         if (route === '/how-it-works') {
+          await expect(
+            page.getByText(/You are using the full edition: live feedback/),
+          ).toBeVisible();
+          await expect(page.getByText(/latency has not been formally measured/)).toBeVisible();
           await page
             .locator('summary')
             .filter({ hasText: QUESTION_TYPE_LABELS.behavioral })
@@ -53,10 +60,19 @@ for (const theme of ['light', 'dark'] as const) {
             page.getByText(result.passed ? /All gates passed/ : /Some gates failed/),
           ).toBeVisible();
         }
-        if (route === '/privacy')
+        if (route === '/privacy') {
+          await expect(
+            page.getByText('You are using the full, self-hosted edition.'),
+          ).toBeVisible();
+          await expect(
+            page.getByText(
+              /The full edition stores sessions, answers, feedback and job posts in SQLite/,
+            ),
+          ).toBeVisible();
           await expect(
             page.getByText(/recognition sends your audio to Google’s servers/),
           ).toBeVisible();
+        }
       }
       const links = await page
         .locator('header a[href^="/"], footer a[href^="/"]')

@@ -267,9 +267,9 @@ Document title: “Rehearse: practise interviews out loud”. Approved Main.dc.h
 - Eyebrow: “Interview practice, out loud”. H1: “Rehearse the interview before you have it.” Lead: “Rehearse asks the questions, listens to your answer, and shows you what to say better.”
 - Actions: “Start practising” → /setup; “See a sample report” → /sample. Meta: “No account · voice or typing · your sessions stay with you”. Availability (D-133): demo — “Available now: role-based practice, retries and example job-post interviews in English. Practise with your own job posts in the self-hosted version; Turkish is coming later.” Full — “Available now: role-based practice, retries and interviews based on your job posts in English. Turkish is coming later.”
 - Sample labels: “From the sample session”, “Sample feedback”, “Change one thing”, “Try saying:”, “Read the full sample report”. Data is validated from content/sample/session.json; never replace it with design example scores.
-- “How a session works”; “Answer, see what to fix, practise again.” Steps: “Bring the job, or pick a role”, “Answer out loud”, “See what to say better”. Think time comes from SESSION.THINK_SECONDS. Current role practice is usable; job-post questions are explicitly coming to self-hosted.
+- “How a session works”; “Answer, see what to fix, practise again.” Steps: “Bring the job, or pick a role”, “Answer out loud”, “See what to say better”. Think time comes from SESSION.THINK_SECONDS. Answer-step ending: “Fix misheard words before you review your answer.” Job-post step: demo — “Practise from hand-written questions by role and seniority, or try one of three example job posts. Use your own job posts in the self-hosted version.” Full — “Practise from hand-written questions by role and seniority, or paste a job post or link to generate questions grounded in that role.” Feedback step: demo — “Explore pre-written sample feedback with six scores and a rewrite to try. Retry the question to practise your answer; the demo does not score your words.” Full — “Every scored answer gets six scores, evidence from your answer and a rewrite to try. Retry the question to practise what you learned.”
 - “What the feedback looks at”; “Six things interviewers listen for.” Dimension definitions match the approved Main design. “Pace, filler words and pauses are counted in your browser, not by the language model.”
-- #self-host: “Two ways to use it”; “Try the demo. Run the full version on your machine.” Disclosure: “The two editions below are being built. This preview stores sessions in your browser; the self-hosted setup guide will be added when it is ready.” Comparison caption: “Planned demo and self-hosted editions”; rows Feedback, Job posts, Language, History use the design’s edition capabilities. Links: “Read the setup guide” → repository README; “Where your words go” → /privacy.
+- #self-host: “Two ways to use it”; “Try the demo. Run the full version on your machine.” Disclosure: “The public demo uses pre-written feedback and keeps sessions in your browser. Run the full version with your own OpenAI key and save sessions in SQLite on your machine. The setup guide covers Docker and local installation.” Comparison caption: “Demo and self-hosted editions”; rows Feedback, Job posts, Language, History use the shipped edition capabilities. Language: demo “English”; full “English; Turkish is coming later”. Links: “Read the setup guide” → repository README; “Where your words go” → /privacy.
 
 ### 9.4 `/setup`
 
@@ -472,52 +472,78 @@ Document title: "Sample report · Rehearse"
 - Banner above the report: "This is a sample session with answers written for the demo. The candidate is fictional. No language model was called to show this page."
 - The report component (section 9.8) with sample data; actions limited to "Save as PDF", "Download Markdown", "Start a practice session".
 
-### 9.11 `/how-it-works`
+### 9.11 `/how-it-works` (D-164)
 
-Document title: "How it works · Rehearse"
-
-V-13 staged-edition copy (D-100): eyebrow “Behind the feedback”; H1 “How it works”; lead “A fixed rubric, your own words, and one useful thing to practise next.” Architecture banner: “This preview uses browser storage. The demo and self-hosted editions described below arrive in a later milestone.” Follow the current architecture with “The planned public demo uses pre-written feedback and browser storage. The full self-hosted edition will score answers live and save sessions in SQLite on your machine.” Browser support explicitly states “Support is feature-detected, not inferred from the browser name. Physical speech checks remain unverified on this release preview.” The table describes Chrome/Safari feature availability, Edge/other-browser detection, and Firefox text fallback without claiming a physical certification.
+Document title: “How it works · Rehearse”. Eyebrow “Behind the feedback”; H1 “How it works”; lead “A fixed rubric, your own words, and one useful thing to practise next.” Render the active edition’s copy on the server.
 
 Sections (H2), in order:
 
-1. "Architecture": the diagram from TRD §1.1 rendered as accessible HTML/SVG (each step is a list item for screen readers), then the steps: "1. Your browser picks up the session from the server: questions and a signed token. 2. The browser reads the question with its built-in speech synthesis. 3. The browser’s speech recognition turns your answer into text. 4. You edit the text; delivery numbers are counted in the browser. 5. The server checks the token and limits, sends the question and your answer to OpenAI with a fixed rubric, and validates the JSON it gets back. 6. The browser stores the result in IndexedDB. No session or answer is stored on the server in this preview."
-2. "The rubric": the six dimensions with anchors for scores 1 to 4 per question type (rendered from the same constant as the prompt, `lib/feedback/rubric.ts`).
-3. "How feedback is kept honest": "The answer is passed to the model as data, marked untrusted. The model is told to ignore instructions inside it and to use only facts you gave. Quotes in ‘What worked’ are checked against your answer and removed if they don’t match. Rewrites use placeholders like [metric] instead of making numbers up."
-4. "How it’s measured": eval description, the thresholds table (rendered from `eval/thresholds.json`), and the latest committed eval run's numbers (selected by date and numeric run suffix from `eval/results/*.json`) with date and model.
-5. "Privacy model" (anchor `#privacy`): short version of `/privacy` with a link.
-6. "Browser support": the table from TRD §9.1 (as verified at build time).
-7. "Limits": "Speech recognition quality depends on your browser, microphone and accent. Scores come from a language model and can vary slightly between runs. The question bank is in English and covers five roles. Rehearse doesn’t judge tone of voice, accent or appearance. Speech services often leave out sounds like ‘um’, so filler counts in voice answers are a lower bound. Pauses are estimated from when the browser reports words, to within about half a second, and are less accurate in browsers that report words less often."
-8. "Cost": "Live feedback uses the configured model and its token prices. The preview enforces request and spending limits. The planned demo will make no model calls; the self-hosted edition will use your key and budget." Link: “See the setup and limits in the README”.
+1. “Architecture”: banner, numbered steps and edition comparison below.
+2. “The rubric”: six dimensions and anchors from `lib/feedback/rubric.ts`; unchanged scoring text.
+3. “How feedback is kept honest”: edition-specific explanation below.
+4. “How it’s measured”: fictional golden-answer evaluation, thresholds from `eval/thresholds.json`, newest dated feedback result by date/numeric suffix, with date/model and actual gate outcome. Recorded results do not trigger a provider call.
+5. “Privacy model” (`#privacy`): edition-specific paragraph and “Read where your words go” link to /privacy.
+6. “Browser support”: owner verification statement below, feature-based Chrome/Safari/Edge/Firefox table, text fallback; no exhaustive device certification.
+7. “Limits”: browser/microphone/accent limitations; demo — “Demo scores are pre-written examples, not a judgement of your answer.” Full — “Scores come from a language model and can vary slightly between runs.” Existing English/five-role, tone/accent/appearance, filler lower-bound and estimated-pause limitations remain.
+8. “Cost”: edition-specific paragraph below; link “See the setup and limits in the README”.
 
-### 9.12 `/privacy` (V-13, D-100)
+Architecture banner:
 
-Document title: “Privacy · Rehearse”. Exact staged copy; demo/full storage is labelled planned until V4. Links: Progress → `/progress`; browser speech → MDN SpeechRecognition; provider policy → OpenAI API data controls. A-12 remains unverified, so the specified generic other-browser sentence is used. A-22 was verified on 2026-11-05.
+- Demo: “You are using the demo: feedback is pre-written, sessions stay in your browser and no AI is called.”
+- Full: “You are using the full edition: live feedback uses your OpenAI key, and sessions are saved in local SQLite.”
 
-- H1: “Privacy”
-- P: “Rehearse has no accounts, no cookies and no analytics. This page explains exactly where your words go.”
-- H2: “What stays in your browser”
-- P: “This preview stores your sessions, transcripts, feedback and reports in this browser’s IndexedDB on this device. Settings are stored locally. Saved sessions are not uploaded as a history; asking for live feedback sends the individual answer as described below. You can export or delete sessions on the Progress page.”
-- H2: “The two editions”
-- P: “The editions below are planned, not active in this preview.”
-- DT: “Demo, on the public site”
-- DD: “Sessions stay in this browser’s IndexedDB. Feedback is pre-written sample content; no answer is sent to a model provider.”
-- DT: “Full, self-hosted”
-- DD: “Sessions, transcripts, feedback, job posts and story notes are saved in SQLite on your machine. Live scoring uses your OpenAI key. The self-hosted server receives and stores these records so you can reopen them across browsers.”
-- H2: “Speech recognition”
-- P: “Voice answers are transcribed by your browser’s built-in speech recognition, not by Rehearse. In Google Chrome, recognition sends your audio to Google’s servers. In Safari, audio is sent to Apple’s servers unless your device transcribes on-device. Other browsers may send audio to their own speech services. These companies’ own privacy policies apply. Rehearse never receives your audio. If you don’t want your voice processed by these services, use text mode.”
-- H2: “Reading questions aloud”
-- P: “Questions are read with your system’s voices. Voices marked ‘online voice’ send the question text, not your answers, to the browser vendor to produce speech.”
-- H2: “Feedback”
-- P: “When you ask for live feedback, the text of that one answer and the question id are sent to the Rehearse server, which sends the question, the rubric and your answer to OpenAI to produce the scores. This preview does not store or log your answer or the feedback on the server. It logs only technical details: the time, the length of the answer in characters, how long the request took, token counts and estimated cost.”
-- P: “OpenAI’s API data is not used for model training by default. Abuse-monitoring logs may retain content for up to 30 days by default, with exceptions for legal and safety needs. Retention also depends on the endpoint and account controls.”
-- P: “For the session summary, only the scores and the short improvement points are sent, not your answers.”
-- H2: “Limits and your IP address”
-- P: “The preview counts sessions and feedback requests per visitor per day. In a hosted deployment, it identifies you by a one-way hash of your IP address with a secret that changes every day, stored in Upstash Redis for at most 2 days. The raw IP address is never stored. Local development can use an in-memory limiter. The planned demo needs no provider quota; full self-hosting will enforce your configured budget.”
-- H2: “Your choices”
-- P: “Use text mode to avoid browser speech services. Use ‘Save without feedback’ to keep an answer entirely in your browser in this preview. Delete everything at any time from the Progress page.”
-- H2: “Contact”
-- P: “Questions about privacy: open an issue on GitHub or email the address on firatkil.com.”
-- P: “Last updated 5 November 2026.”
+Steps 1–4: “Your browser picks up the session from the server: questions and a signed token.” “The browser reads the question with its built-in speech synthesis.” “The browser’s speech recognition turns your answer into text.” “You edit the text; delivery numbers are counted in the browser.”
+
+Step 5:
+
+- Demo: “The server receives your answer to select pre-written sample feedback, then returns it without storing your answer or calling an AI provider.”
+- Full: “The server checks the token and request limits, sends the question and your answer to OpenAI with a fixed rubric, and validates the JSON it gets back.”
+
+Step 6:
+
+- Demo: “The browser stores sessions, answers and sample feedback in IndexedDB. The demo does not store them on the server.”
+- Full: “The self-hosted server stores sessions, answers, feedback and job posts in SQLite on your machine so you can reopen them across browsers.”
+
+Comparison: “The public demo uses pre-written feedback and browser storage. The full self-hosted edition scores answers live and saves sessions in SQLite on your machine.”
+
+Feedback honesty:
+
+- Demo: “Demo feedback is pre-written for fictional example answers; it is not an assessment of your answer. The full edition validates live feedback against your words.”
+- Full: “The answer is passed to the model as data, marked untrusted. The model is told to ignore instructions inside it and to use only facts you gave. Quotes in ‘What worked’ are checked against your answer and removed if they don’t match. Rewrites use placeholders like [metric] instead of making numbers up.”
+
+Privacy model:
+
+- Demo: “Rehearse never receives your audio. Browser speech services may process it. Demo history is saved in your browser. The server receives answer text to select pre-written feedback without saving it or calling an AI provider.”
+- Full: “Rehearse never receives your audio. Browser speech services may process it. Live feedback sends your edited answer to OpenAI; sessions, answers and job posts are stored in local SQLite on your machine.”
+
+Browser verification: “Support is feature-detected, not inferred from the browser name. The owner confirmed microphone and voice preview in Chrome and Safari, and VoiceOver in Safari, on the deployed site on 6 November 2026. This is not an exhaustive device check; voice-preview latency has not been formally measured.”
+
+Cost:
+
+- Demo: “The demo makes no model calls and needs no provider key. Running the full edition uses your own OpenAI key and incurs provider charges.”
+- Full: “Live feedback and job-post generation use your OpenAI key and the configured model prices. Monthly budget warnings do not block practice; there are no daily IP quotas. Provider billing remains authoritative.”
+
+### 9.12 `/privacy` (D-164)
+
+Document title: “Privacy · Rehearse”. Active edition is rendered on the server. Links: Progress → /progress; browser speech → MDN SpeechRecognition; provider policy → OpenAI API data controls. Existing browser-service and provider-retention disclosures remain; owner browser checks do not establish on-device speech processing.
+
+- H1: “Privacy”. Lead: “Rehearse has no accounts, no cookies and no analytics. This page explains exactly where your words go.”
+- Storage H2: demo “What stays in your browser”; full “What stays on your machine”.
+- Storage demo: “The demo saves sessions, transcripts and sample feedback in this browser’s IndexedDB on this device. When you request sample feedback, your answer is sent to the demo server to select an example; it is not saved there or sent to an AI provider.”
+- Storage full: “The full edition stores sessions, answers, feedback and job posts in SQLite on the machine running your self-hosted server. These records can be reopened across browsers. Live feedback sends answer text to OpenAI as described below.”
+- Shared storage suffix: “Settings are stored locally in your browser. You can export or delete sessions on the Progress page.”
+- H2: “The two editions”. Active-edition line: demo “You are using the public demo.”; full “You are using the full, self-hosted edition.”
+- DT: “Demo, on the public site”. DD: “Sessions stay in this browser’s IndexedDB. Feedback is pre-written sample content; no answer is sent to a model provider.”
+- DT: “Full, self-hosted”. DD: “Sessions, answers, feedback and job posts are saved in SQLite on your machine. Live scoring uses your OpenAI key. The self-hosted server receives and stores these records so you can reopen them across browsers.”
+- H2: “Speech recognition”. P: “Voice answers are transcribed by your browser’s built-in speech recognition, not by Rehearse. In Google Chrome, recognition sends your audio to Google’s servers. In Safari, audio is sent to Apple’s servers unless your device transcribes on-device. Other browsers may send audio to their own speech services. These companies’ own privacy policies apply. Rehearse never receives your audio. If you don’t want your voice processed by these services, use text mode.”
+- H2: “Reading questions aloud”. P: “Questions are read with your system’s voices. Voices marked ‘online voice’ send the question text, not your answers, to the browser vendor to produce speech.”
+- H2: “Feedback”. Demo: “Demo feedback is pre-written sample content. The demo server receives your answer to select an example, but does not store or log your answer or feedback text. Your answer is not sent to a model or assessed by AI.” Full: “When you ask for live feedback, your self-hosted server sends the question, the rubric and your edited answer to OpenAI to produce the scores. Sessions, answers and feedback are saved in local SQLite. Application logs exclude answer and feedback text; they contain technical details such as lengths, timings, token counts and estimated cost.”
+- Provider P: “In the full edition, OpenAI’s API data is not used for model training by default. Abuse-monitoring logs may retain content for up to 30 days by default, with exceptions for legal and safety needs. Retention also depends on the endpoint and account controls.”
+- Summary demo: “The demo session summary is pre-written. Answer counts and delivery metrics are calculated from your session without an AI call.” Full: “For the session summary, only the scores and the short improvement points are sent to OpenAI, not your answers. Job-post generation sends the post text to OpenAI; fetching a job link contacts that website from your self-hosted server.”
+- H2: “Limits and your IP address”. Demo: “The demo makes no AI calls, has no daily provider quotas and needs no Upstash service. Rehearse does not store raw IP addresses.” Full: “The full edition has no daily IP quotas and uses an in-memory request limiter by default. Monthly budget warnings do not block practice. Rehearse does not store raw IP addresses or log answer text.”
+- H2: “Your choices”. Shared prefix: “Use text mode to avoid browser speech services.” Demo: “Use ‘Save without feedback’ to keep a demo answer in this browser without sending it to the demo server.” Full: “Use ‘Save without feedback’ to save an answer in local SQLite without sending it to OpenAI.” Shared suffix: “Export or delete sessions from the Progress page.”
+- H2: “Contact”. P: “Questions about privacy: open an issue on GitHub or email the address on firatkil.com.”
+- P: “Last updated 6 November 2026.”
 
 ### 9.13 Other states
 
@@ -868,3 +894,6 @@ V-33 exact warning copy: “You’ve used at least 80% of your monthly AI budget
 
 | D-162 | 2026-11-06 | Owner authorises V-53 and v2.0.0 publication after its PR and main CI pass. README leads with AI-free demo and full Docker/local setup. The explicitly requested small GIF is an allowed generated release asset: a 14-second production-demo text flow with fictional input, recorded using installed Playwright/FFmpeg, no dependencies or paid calls. This replaces the v1 20-second voice GIF prescription; native voice confirmation is owner evidence, and TC-194 timing remains a known gap. Package/build version is 2.0.0. No hosting/settings, registry publication or V7 work is included. |
 | D-163 | 2026-11-06 | Owner design review (V6 polish): shared control styling from tokens (select with chevron wrapper, range track/thumb at 44 px, checkbox/radio accent, date and file inputs), one disclosure chevron for every `summary`, text buttons aligned to the content edge, room phase actions in one row with the primary first, "Next question" and "Answer follow-up" as secondary pills, numbered architecture timeline, job-page requirement bullets/date card/start panel, report Delivery/Next practice/Answers cards and a Progress data panel. The interviewer legend becomes visually hidden (summary already names the section); the rate readout sits beside its label and gains the TRD §19.4 `aria-valuetext`. No colour, font, shadow or copy changes beyond the two `aria-hidden` range end labels. |
+
+| D-164 | 2026-11-06 | Owner release blocker: replace staged copy on landing/how-it-works/privacy with shipped demo/full behaviour and update §9.3/9.11/9.12. Demo history is browser-local, with pre-written feedback and no AI; the feedback route receives answer text transiently to select an example but does not store/log it; full stores sessions, answers, feedback and job posts in local SQLite, uses the owner key and warning-only budgets without daily IP quotas. Job-post generation is shipped in full; Turkish remains future work. Record owner Chrome/Safari microphone/preview and Safari VoiceOver confirmation without claiming measured latency or exhaustive device coverage. Based on owner-merged design PR #42; no edits to its components/CSS. |
+| D-165 | 2026-11-06 | Owner explicitly authorises replacing the already-published v2.0.0 tag and release (original commit 600b814) after design PR #42 and the release-copy fix are merged with green CI. Preserve main history; update only the authorised release tag, recording its old and new targets. No paid calls or V7 work. |

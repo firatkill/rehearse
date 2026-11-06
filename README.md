@@ -101,7 +101,7 @@ On 6 November 2026 the owner confirmed microphone and voice preview in Chrome an
 
 ## Privacy and contributing
 
-Rehearse does not record, store or upload audio. Browser speech recognition may use the browser vendor’s service. Demo text stays in your browser; full-edition sessions stay in your local SQLite database, while live feedback sends answer text to your configured provider. See [Privacy](https://rehearse.firatkil.com/privacy).
+Rehearse does not record, store or upload audio. Browser speech recognition may use the browser vendor’s service. Demo history is saved in your browser. Requesting sample feedback sends answer text to the demo server to select an example; the server does not store the text or call AI. Full-edition sessions stay in your local SQLite database, while live feedback sends answer text to your configured provider. See [Privacy](https://rehearse.firatkil.com/privacy).
 
 Hand-written bank questions live under `content/questions`; follow the schema and content rules in [TRD §6](docs/TRD.md) and run `pnpm questions:validate`. Do not generate the bank with an LLM. Generated job-post questions are separate, labelled content. See [AGENTS.md](AGENTS.md) for contribution and test rules.
 
