@@ -34,7 +34,7 @@ it('TC-207 Turkish rubric retains six dimensions, four anchors per type and impl
     for (const dimension of DIMENSIONS) expect(RUBRIC_TR[dimension].anchors[type]).toHaveLength(4);
     expect(renderRubricTr(type)).toContain('özne kişi ekinden anlaşılabilir');
   }
-  expect(feedbackPrompt('tr').version).toBe('feedback-tr-v2');
+  expect(feedbackPrompt('tr').version).toBe('feedback-tr-v3');
   expect(summaryPrompt('tr').version).toBe('summary-tr-v1');
   expect(jobpostPrompt('tr').version).toBe('jobpost-tr-v1');
   expect(feedbackPrompt().version).toBe('feedback-v8');
@@ -93,7 +93,7 @@ it('TC-207 mock eval uses Turkish version and all unchanged gates; failures rema
     runId: 'turkish-unit',
     gitSha: 'test',
   });
-  expect(result.results.promptVersion).toBe('feedback-tr-v2');
+  expect(result.results.promptVersion).toBe('feedback-tr-v3');
   expect(result.results.items).toHaveLength(27);
   expect(result.results.items.every((item) => item.ok)).toBe(true);
   expect(result.results.metrics['cost_usd.total']).toBe(0);
@@ -196,4 +196,32 @@ it('TC-207 English prompt files and versions retain their pre-V7 bytes', () => {
   };
   for (const [file, expected] of Object.entries(hashes))
     expect(createHash('sha256').update(readFileSync(file)).digest('hex'), file).toBe(expected);
+});
+
+it('TC-218 owner compact output and attack clarity rules are mandatory in Turkish only', () => {
+  const prompt = feedbackPrompt('tr').system;
+  expect(prompt).toContain('strengths: tam 1 madde yaz.');
+  expect(prompt).toContain('improvements: tam 1 madde yaz.');
+  expect(prompt).toContain('Bu tek iyileştirme en düşük puanlı boyutlardan birine');
+  expect(prompt).toContain('tek bir cümle ve en fazla 20 kelime');
+  expect(prompt).toContain('why en fazla 20 kelime');
+  expect(prompt).toContain('en fazla iki kısa cümledir');
+  expect(prompt).toContain('anlatan tam 3 kısa madde');
+  expect(prompt).toContain('Kısa tutmak zorunludur');
+  expect(prompt).toContain(
+    'geriye yalnızca açıklanmamış iddialar veya savlar kalıyorsa clarity en fazla 2',
+  );
+  expect(prompt).toContain('diğer puan sınırları da geçerlidir');
+  expect(prompt).not.toMatch(/1–3 madde|3–6 kısa madde|mümkünse bir madde|maddesini tercih et/);
+  const weak = golden.find((item) => item.id === 'g-15')!;
+  expect(weak.transcript.split(/\s+/).length).toBeGreaterThanOrEqual(40);
+  expect(weak.transcript).not.toContain('başvuru tarihine göre');
+  expect(weak.expected.ownership).toEqual([1, 2]);
+  const followUp = validateFollowUpGolden(
+    readFileSync('eval/follow-up-tr.jsonl', 'utf8'),
+    bank.questions,
+  ).find((item) => item.id === 'g-28')!;
+  expect(followUp.transcript).toContain('Önceki projemde');
+  expect(followUp.transcript).toContain('çünkü');
+  expect(followUp.expected.ownership).toEqual([3, 4]);
 });

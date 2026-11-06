@@ -102,7 +102,7 @@ describe('TC-217 owner TC-207 diagnostics and Turkish output budget', () => {
       calls: 1,
       maxAttempts: 2,
       maxOutputTokens: 1400,
-      promptVersion: 'feedback-tr-v2',
+      promptVersion: 'feedback-tr-v3',
     });
     expect(plan.estimate).toBeGreaterThan(0);
     const smaller = preflightEvaluation({

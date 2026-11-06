@@ -4619,3 +4619,7 @@ Turkish filler recognition additionally accepts initial yani/hani/işte before b
 ### Turkish feedback correction (D-184–D-187)
 
 `feedback-tr-v2` adds concise-length guidance within the existing rationale 240, point 160, why 200 and rewrite 400 character limits. No rubric/schema/threshold change. `feedbackOutputLimit` selects the Turkish env limit for signed Turkish sessions and Turkish evaluation; English stays at its original default. Three strong Turkish golden cases add personal experience and g-11 a vague consequence, with unchanged expected ranges. The 10,000 ms p95 ceiling includes retries and remains unchanged.
+
+### Turkish compact feedback (D-188–D-190)
+
+`feedback-tr-v3` requires exactly one strength, one improvement for a lowest final dimension, and three outline bullets. Rationales and why have at most 20 words; rewrite has at most two short sentences. Existing character limits and JSON schema stay unchanged. After excluding attack instructions, a remainder consisting only of unexplained claims/assertions receives clarity at most 2, with existing caps retained. Turkish output budget stays 1400 and p95 stays 10,000 ms. g-15 removes concrete queue steps; follow-up g-28 adds experience-based reasoning; ids/ranges stay unchanged. Validate both languages with mocks; all Turkish cases require an owner live rerun because the Turkish feedback prompt changed.
