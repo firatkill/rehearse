@@ -1,119 +1,125 @@
 {
   "questionId": "demo-harbour-health-2",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:49:36.632Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d observe several coordinators preparing appointment lists across different shifts, noting each step, tool, handoff, interruption, and exception. I’d ask them to explain decisions after the task so I didn’t disrupt their work, and compare what they say with what they do. I’d record de-identified examples and measure things like preparation time, corrections, and missed constraints. Then I’d turn recurring patterns into explicit assumptions—for example, “Coordinators need a reliable way to spot appointments with conflicting requirements”—and write each with a user, context, and observable outcome. I’d prioritize assumptions by risk and test them with a small prototype or workflow trial, defining success in advance, such as fewer corrections without increasing preparation time.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from observation through assumption writing to testing, but provide no specific situation or actual result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name useful observation details, measures, and a sample assumption, but give no concrete clinic context or observed findings."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly describe actions you would take, but the answer is hypothetical and does not distinguish your contribution in a real example."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose success measures and a validation plan, but report no observed outcome or completed test."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how you would observe coordinators and turn findings into testable assumptions."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and follows a clear sequence from observation to testing."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a clear, practical process for observing work without disrupting it.",
+            "evidence": "I’d ask them to explain decisions after the task so I didn’t disrupt their work"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add an observed finding and the result of a completed test, or label the answer as a proposed approach.",
+            "dimension": "impact",
+            "vague_phrases": ["a small prototype or workflow trial"],
+            "why": "The answer defines possible success measures but does not show what happened or what changed.",
+            "rewrite": "I’d compare preparation time, corrections, and missed constraints before and after the trial; the observed result was [outcome]. That would tell me whether the assumption held and what to change next."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What would you do if coordinators’ stated explanations differed from what you observed during preparation?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the clinic context, scope, and constraints for observing appointment-list preparation.",
+          "Explain how you would observe and document steps, decisions, handoffs, and exceptions while minimizing disruption.",
+          "Turn recurring evidence into a specific assumption with a user, context, and observable outcome.",
+          "Prioritize the riskiest assumption and test it with a defined measure and a reported result."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d watch coordinators prepare lists, ask questions about confusing or unusual cases, and document the steps and problems they encounter. I’d look for patterns across people and then write assumptions about what they need, such as making appointment constraints easier to see. I’d test the most important assumptions with a prototype and get feedback from coordinators.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline observation, synthesis, and testing, but provide no specific situation, constraint, or outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name useful activities and an example assumption, but give no concrete clinic context or test details."
           },
           "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly describe what you would do, though this is a proposed approach rather than a specific account of your contribution."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You mention getting feedback, but state no observable result or how it would validate an assumption."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address observing coordinators, identifying patterns, forming assumptions, and testing them."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to follow, but the assumption and prototype test remain underspecified."
           }
         },
-        "overall": 2,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You lay out a logical path from observing work to testing an assumption.",
+            "evidence": "look for patterns across people and then write assumptions about what they need"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the approach in a specific constraint and finish with an observable test outcome.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "confusing or unusual cases",
+              "the most important assumptions",
+              "get feedback from coordinators"
+            ],
+            "why": "Without context or a result, the listener cannot tell what you learned or whether the assumption held up.",
+            "rewrite": "I’d observe [number] coordinators preparing appointment lists under [constraint], noting where appointment constraints cause difficulty. I’d prototype a clearer way to show them, then check whether coordinators can identify relevant constraints accurately and record [result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific outcome would tell you that making appointment constraints easier to see solved a real problem?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the clinic context and observation constraint, including who prepares the lists and when.",
+          "Describe how you would observe and document concrete steps, exceptions, and friction points.",
+          "Explain how you would turn recurring observations into a specific, testable assumption.",
+          "Name the prototype or test and an observable outcome that would confirm or challenge the assumption."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +129,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d observe how they work and find out what they need. Then I’d make some assumptions and check whether they’re right.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe a general process but give no context, specific action sequence, or outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Observe how they work” and “make some assumptions” are generic and lack concrete details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use “I,” but do not explain what you would personally do beyond broad intentions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result or validation outcome."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address observing and checking assumptions, but do not explain how you would make them testable."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The sequence is understandable, but the unspecified assumptions and checks leave your method unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify observation followed by validation as the basic sequence.",
+            "evidence": "I’d observe how they work and find out what they need."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Give a concrete observation plan, turn findings into measurable hypotheses, and state how you would validate them.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "observe how they work",
+              "make some assumptions",
+              "check whether they’re right"
+            ],
+            "why": "A specific sequence and outcome would make your approach clear and demonstrate how the assumptions become testable.",
+            "rewrite": "I’d watch coordinators prepare appointment lists and note where they spend time, repeat work, or make errors. I’d turn those observations into hypotheses such as [specific workflow change] will reduce [measurable issue], then test them with [method] and compare [measure] before and after."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific behavior would you observe first, and how would you define a measurable test for it?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context, including the clinic workflow and any observation constraints.",
+          "Describe how you would observe coordinators preparing lists and record concrete behaviors or pain points.",
+          "Translate observed patterns into specific, measurable hypotheses.",
+          "Explain how you would test a hypothesis and identify an observable outcome."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

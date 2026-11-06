@@ -1,119 +1,121 @@
 {
   "questionId": "demo-northwind-pay-8",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:54:18.916Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first ask for the minimum details needed to locate the issue: approximate time, app version, device/browser, region, and the step where the refund review failed. I wouldn’t ask for names, payment details, or screenshots containing account data. I’d check whether support can share a redacted case ID or a synthetic test account, then compare the report with logs using an approved, access-controlled workflow. I’d write down exact reproduction steps, expected versus actual behavior, and any conditions such as refund type or review status. In a staging environment, I’d use synthetic data to repeat the flow, vary one condition at a time, and record the result. In one fictional example, this approach narrowed the failure to a particular review state; after a fix, the team verified it with 20 scripted cases and saw no recurrence in the next week’s monitored sample. I’d keep the case notes free of unnecessary personal data and follow retention and escalation rules.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain a clear investigation sequence and outcome, though you present it as a hypothetical approach rather than a completed STAR story."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name useful diagnostic details, controlled workflows, synthetic data, and 20 scripted cases, but the example is explicitly fictional."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe your own steps with “I,” but the example does not distinguish your contribution from the team’s."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You state a verifiable test count and no recurrence in a monitored week, though these results belong to a fictional example."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address turning a vague report into a reproducible case while protecting customer data."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The process is easy to follow, but it remains unclear which details describe real experience versus a proposed method."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a practical privacy-conscious method for gathering and reproducing a support issue.",
+            "evidence": "I wouldn’t ask for names, payment details, or screenshots containing account data."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Use a real incident, or clearly frame this as your approach when you lack a past example.",
+            "dimension": "structure",
+            "vague_phrases": ["In one fictional example"],
+            "why": "The fictional framing prevents the interviewer from assessing your actual actions and results.",
+            "rewrite": "When I receive a vague report, I ask for [minimum diagnostic details] and use [approved privacy-safe method] to reproduce it. In a real case, I [specific action], which led to [verified outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which part of this process have you personally carried out, and what evidence showed that the reproduction was reliable?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: what support reported and what made the refund review failure hard to reproduce.",
+          "Explain how you collected only necessary diagnostic details and protected customer information.",
+          "Describe your own steps to reproduce the issue with controlled or synthetic data.",
+          "Give the observable result, validation evidence, and any follow-up to prevent recurrence."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d clarify what the customer was doing, when the issue happened, and what they saw, while avoiding requests for sensitive information. I’d use a redacted ticket reference and check relevant logs through the approved tools. Then I’d reproduce the steps in a test environment with non-customer data and note the expected and actual behavior. If I found a likely cause, I’d share the reproduction steps with engineering and confirm the fix with a regression test. I’d also make sure any screenshots or logs were scrubbed and stored only where authorized.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline a sequence of actions, but give no specific situation, task context, or outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name redacted references, approved tools, and test data, but provide no concrete example or case details."
           },
           "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly describe your own steps, though no decision or collaboration boundaries are explained."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe how you would validate a fix, but state no observable result."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address creating a reproducible case while protecting customer data."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The steps are ordered and understandable, but the answer is hypothetical rather than a concrete example."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You balance reproducibility with customer-data protection.",
+            "evidence": "reproduce the steps in a test environment with non-customer data"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add the observable result of the reproduction and how the fix was verified.",
+            "dimension": "impact",
+            "vague_phrases": ["confirm the fix with a regression test"],
+            "why": "Without an outcome, the listener cannot tell whether your process resolved or clarified the reported issue.",
+            "rewrite": "I reproduced [specific behavior] using [steps] and shared the redacted case with engineering; after the fix, [regression test or observable result] confirmed the expected behavior."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific behavior did you reproduce, and what observable evidence showed the fix worked?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the support-report context and identify the privacy constraint.",
+          "Describe how you clarified the report and created a redacted, repeatable case in a safe environment.",
+          "Explain your personal role in sharing the evidence and validating the fix.",
+          "State an observable outcome and any change made to prevent recurrence."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +125,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d ask the customer for more information, look into the problem, and try to make it happen myself. I’d tell the team what I found and make sure the customer’s data stays safe.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name investigation steps, but provide no specific situation or observable result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give no concrete details about the report, reproduction steps, or data-protection methods."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe intended personal actions, but not a decision or contribution in a real case."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no outcome or way to verify that the case was reproduced."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address investigating the issue and protecting data, but do not explain how you would do either."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The sequence is understandable, but the investigation and data-safety methods remain unexplained."
           }
         },
-        "overall": 3,
+        "overall": 1.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize both investigation and customer-data protection as necessary.",
+            "evidence": "make sure the customer’s data stays safe"
           }
         ],
         "improvements": [
           {
+            "point": "Describe the exact information and safe reproduction method you would use, then name how you would verify success.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "ask the customer for more information",
+              "look into the problem",
+              "make it happen myself"
+            ],
+            "why": "Your answer gives no concrete steps for turning the vague report into a reproducible case while protecting customer data.",
+            "rewrite": "I’d ask for the steps, expected and actual behavior, and relevant timing, without requesting sensitive data. I’d reproduce it with [test account or sanitized data] and confirm the same behavior occurs."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific information would you collect from the customer, and how would you avoid exposing sensitive data while reproducing the issue?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: what was vague in the support report and what needed to be reproduced.",
+          "Explain your own steps to gather useful details, such as the sequence, expected behavior, and observed behavior.",
+          "Describe how you would minimize customer-data exposure while reproducing the flow.",
+          "State an observable check that confirms the case is reproducible and share the result with the relevant team."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

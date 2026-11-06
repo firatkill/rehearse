@@ -1,0 +1,710 @@
+{
+  "generatedAt": "2026-11-05T23:57:56.248Z",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v8",
+  "budgetUsd": 0.18,
+  "reservedOrSpentUsd": 0.044169619999999986,
+  "results": [
+    {
+      "operation": "job:cedar-tools",
+      "costUsd": 0.000283,
+      "status": "completed"
+    },
+    {
+      "operation": "job:harbour-health",
+      "costUsd": 0.00031689999999999995,
+      "status": "completed"
+    },
+    {
+      "operation": "job:northwind-pay",
+      "costUsd": 0.00029330000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-1",
+      "costUsd": 0.0001647,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:strong",
+      "costUsd": 0.0005995,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:medium",
+      "costUsd": 0.00032308000000000006,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:weak",
+      "costUsd": 0.00036418,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-2",
+      "costUsd": 0.0001089,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:strong",
+      "costUsd": 0.00038598,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:medium",
+      "costUsd": 0.00035788,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:weak",
+      "costUsd": 0.00029927999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-3",
+      "costUsd": 0.00012869999999999998,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:strong",
+      "costUsd": 0.00032398,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:medium",
+      "costUsd": 0.00038458000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:weak",
+      "costUsd": 0.00029948,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-4",
+      "costUsd": 0.00015240000000000002,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:strong",
+      "costUsd": 0.00033528,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:medium",
+      "costUsd": 0.00038518,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:weak",
+      "costUsd": 0.00030387999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-5",
+      "costUsd": 0.00019030000000000002,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:strong",
+      "costUsd": 0.00032808,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:medium",
+      "costUsd": 0.00039378,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:weak",
+      "costUsd": 0.00031468,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-6",
+      "costUsd": 0.0001719,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:strong",
+      "costUsd": 0.00038777999999999995,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:medium",
+      "costUsd": 0.00037638,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-6:weak",
+      "costUsd": 0.00034958000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-7",
+      "costUsd": 0.00016580000000000002,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:strong",
+      "costUsd": 0.00039378,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:medium",
+      "costUsd": 0.00037788,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-7:weak",
+      "costUsd": 0.00031948,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-8",
+      "costUsd": 0.000157,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-8:strong",
+      "costUsd": 0.00031808000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-8:medium",
+      "costUsd": 0.00032438,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-8:weak",
+      "costUsd": 0.00031098000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-1",
+      "costUsd": 0.0001517,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-1:strong",
+      "costUsd": 0.00032308000000000006,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-1:medium",
+      "costUsd": 0.00030548,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-1:weak",
+      "costUsd": 0.00035548000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-2",
+      "costUsd": 0.0001373,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-2:strong",
+      "costUsd": 0.00032977999999999995,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-2:medium",
+      "costUsd": 0.00032438,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-2:weak",
+      "costUsd": 0.00031227999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-3",
+      "costUsd": 0.00010520000000000001,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-3:strong",
+      "costUsd": 0.00037558000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-3:medium",
+      "costUsd": 0.00029688,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-3:weak",
+      "costUsd": 0.00029027999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-4",
+      "costUsd": 0.0001441,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:strong",
+      "costUsd": 0.00041977999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:medium",
+      "costUsd": 0.00031068000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-4:weak",
+      "costUsd": 0.00035677999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-5",
+      "costUsd": 0.000118,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-5:strong",
+      "costUsd": 0.00037358000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-5:medium",
+      "costUsd": 0.00037138,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-5:weak",
+      "costUsd": 0.00037778,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-6",
+      "costUsd": 0.0001494,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-6:strong",
+      "costUsd": 0.00036038,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-6:medium",
+      "costUsd": 0.00037668,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-6:weak",
+      "costUsd": 0.00036198000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-7",
+      "costUsd": 0.0001395,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-7:strong",
+      "costUsd": 0.00033328,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-7:medium",
+      "costUsd": 0.00038448000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-7:weak",
+      "costUsd": 0.00028478,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-harbour-health-8",
+      "costUsd": 0.000256,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:strong",
+      "costUsd": 0.00042258000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:medium",
+      "costUsd": 0.00038848,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-harbour-health-8:weak",
+      "costUsd": 0.00031258,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-1",
+      "costUsd": 0.00012179999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-1:strong",
+      "costUsd": 0.00032028,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-1:medium",
+      "costUsd": 0.00036318,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-1:weak",
+      "costUsd": 0.00037988,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-2",
+      "costUsd": 0.00010740000000000001,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-2:strong",
+      "costUsd": 0.00038088,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-2:medium",
+      "costUsd": 0.00034888,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-2:weak",
+      "costUsd": 0.00036858,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-3",
+      "costUsd": 0.00010279999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-3:strong",
+      "costUsd": 0.00041148000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-3:medium",
+      "costUsd": 0.00035258,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-3:weak",
+      "costUsd": 0.00033908000000000007,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-4",
+      "costUsd": 0.0001115,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-4:strong",
+      "costUsd": 0.00039458000000000006,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-4:medium",
+      "costUsd": 0.00029958000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-4:weak",
+      "costUsd": 0.00029627999999999995,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-5",
+      "costUsd": 0.00013680000000000002,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-5:strong",
+      "costUsd": 0.00039208000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-5:medium",
+      "costUsd": 0.00035418,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-5:weak",
+      "costUsd": 0.00034668,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-6",
+      "costUsd": 0.0001291,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-6:strong",
+      "costUsd": 0.00032837999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-6:medium",
+      "costUsd": 0.00029748000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-6:weak",
+      "costUsd": 0.00036838,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-7",
+      "costUsd": 0.000148,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-7:strong",
+      "costUsd": 0.00033258,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-7:medium",
+      "costUsd": 0.00032588,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-7:weak",
+      "costUsd": 0.00038528,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-northwind-pay-8",
+      "costUsd": 0.0001881,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-8:strong",
+      "costUsd": 0.00040468,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-8:medium",
+      "costUsd": 0.00036728,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-northwind-pay-8:weak",
+      "costUsd": 0.00032198000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:sdl-001",
+      "costUsd": 0.0002072,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-001:strong",
+      "costUsd": 0.00036168,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-001:medium",
+      "costUsd": 0.00040718,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-001:weak",
+      "costUsd": 0.00037698,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:sdl-002",
+      "costUsd": 0.0001949,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-002:strong",
+      "costUsd": 0.00036008000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-002:medium",
+      "costUsd": 0.00040318,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-002:weak",
+      "costUsd": 0.00032688,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:sdl-003",
+      "costUsd": 0.00023469999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-003:strong",
+      "costUsd": 0.00034658000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-003:medium",
+      "costUsd": 0.00039828,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-003:weak",
+      "costUsd": 0.00038388,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:sdl-004",
+      "costUsd": 0.00012109999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-004:strong",
+      "costUsd": 0.00038577999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-004:medium",
+      "costUsd": 0.00036627999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-004:weak",
+      "costUsd": 0.00030068,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:sdl-005",
+      "costUsd": 0.0001326,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-005:strong",
+      "costUsd": 0.0018686000000000002,
+      "status": "failed-reservation-retained",
+      "reasonCode": "INVALID_OUTPUT"
+    },
+    {
+      "operation": "feedback:sdl-005:strong",
+      "costUsd": 0.00025902,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-005:medium",
+      "costUsd": 0.00031477999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:sdl-005:weak",
+      "costUsd": 0.00036218000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:tec-001",
+      "costUsd": 0.000148,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-001:strong",
+      "costUsd": 0.00035948,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-001:medium",
+      "costUsd": 0.00039648,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-001:weak",
+      "costUsd": 0.00030577999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:tec-002",
+      "costUsd": 0.0001512,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-002:strong",
+      "costUsd": 0.00039068,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-002:medium",
+      "costUsd": 0.00034088,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-002:weak",
+      "costUsd": 0.00030958000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:tec-003",
+      "costUsd": 0.0001917,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-003:strong",
+      "costUsd": 0.00033938,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-003:medium",
+      "costUsd": 0.00034268,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-003:weak",
+      "costUsd": 0.00038238,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:tec-004",
+      "costUsd": 0.0001918,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-004:strong",
+      "costUsd": 0.00040098,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-004:medium",
+      "costUsd": 0.00039918,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-004:weak",
+      "costUsd": 0.00031248,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:tec-005",
+      "costUsd": 0.0001599,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-005:strong",
+      "costUsd": 0.00042818,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-005:medium",
+      "costUsd": 0.00040738,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:tec-005:weak",
+      "costUsd": 0.00033368,
+      "status": "completed"
+    }
+  ]
+}

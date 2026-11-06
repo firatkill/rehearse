@@ -1,119 +1,120 @@
 {
   "questionId": "demo-northwind-pay-7",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:53:56.687Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first reproduce the problem on a defined older-laptop profile and a representative dashboard, then record a baseline in the browser profiler: load time, time to first useful content, interaction latency, CPU, memory, and network activity. I’d inspect long tasks, layout and paint work, oversized data requests, and expensive chart rendering. Next I’d change one likely cause at a time—for example, reduce data fetched, defer off-screen charts, or memoize repeated calculations—and rerun the same test. I’d compare p50 and p95 results across repeated runs and check that the changes don’t affect correctness. In one fictional example, this approach reduced p95 time to interactive from 8.2 seconds to 4.9 seconds and cut peak memory use by 28% on the test laptop.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You present a clear investigate–diagnose–change–measure sequence, but provide no real situation or task context."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name measurable performance signals, profiler targets, interventions, and example metrics, but the dashboard and test setup remain unspecified."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly describe actions you would take, though this is a hypothetical plan rather than a concrete account of your own work."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The numerical outcome is explicitly fictional, so it does not establish an observed result or defined validation outcome."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to investigate older-laptop performance and what to measure."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The ordered steps and named metrics make the proposed investigation easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a practical, measurable investigation sequence.",
+            "evidence": "record a baseline in the browser profiler: load time, time to first useful content, interaction latency"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Replace the fictional result with a real outcome or state how you would validate the fix.",
+            "dimension": "impact",
+            "vague_phrases": ["In one fictional example"],
+            "why": "A fabricated example cannot demonstrate impact; the answer needs an observed result or a concrete validation plan.",
+            "rewrite": "I’d rerun the same test across repeated runs and compare p50 and p95 interaction and load metrics, while checking correctness. I’d report [observed result] from [test setup]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What performance issue have you personally diagnosed, and what changed in the measurements after your fix?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the older-laptop constraint and identify a representative dashboard and reproducible test conditions.",
+          "Establish a baseline for load and interaction responsiveness, CPU, memory, and network activity.",
+          "Use profiling evidence to identify the bottleneck, then describe your own targeted change.",
+          "Repeat comparable tests, verify correctness, and report an observed outcome or clearly defined validation plan."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d reproduce the issue on an older device, use browser profiling tools to see whether the bottleneck is JavaScript, rendering, or network requests, and test likely fixes such as reducing data or loading charts only when needed. I’d compare before-and-after load and interaction times, CPU use, and memory, using the same dashboard and test conditions.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe investigation steps and measurements, but give no specific situation, task outcome, or completed result."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name browser profiling, possible bottlenecks, and useful metrics, but provide no specific tools, device constraints, or thresholds."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer describes a proposed approach, but does not identify a personal decision or action taken in a real example."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose comparing before and after, but report no observable result or defined success threshold."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address how to investigate and what to measure, but do not give a concrete example or outcome."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence from reproducing to profiling and comparing is clear, though the proposed fixes and evaluation criteria remain broad."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a relevant, ordered investigation plan and identify performance dimensions to measure.",
+            "evidence": "compare before-and-after load and interaction times, CPU use, and memory"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the plan in a real case and state what the measurements showed.",
+            "dimension": "structure",
+            "vague_phrases": ["test likely fixes", "using the same dashboard and test conditions"],
+            "why": "A concrete context and result would turn a sound hypothetical approach into a complete behavioral answer.",
+            "rewrite": "On [dashboard] used on [older laptop], I reproduced the slowdown and profiled JavaScript, rendering, and network activity. After [change], I compared load and interaction times, CPU, and memory under the same conditions; [result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which bottleneck did your profiling reveal, and what specific change did you make in response?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the scene: identify the dashboard, older-device constraint, and user-visible symptom.",
+          "Explain your own reproduction and profiling steps, including how you separated JavaScript, rendering, and network costs.",
+          "Name the measurements and controlled test conditions, then connect a targeted change to a verifiable before-and-after result."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +124,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d check whether the dashboard is slow, look at the code, and try to make it faster. I’d measure performance before and after.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name an investigation and comparison, but give no context, concrete action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not name a tool, performance metric, older-laptop constraint, or particular part of the dashboard."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but the actions remain broad and no specific decision is yours."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose a before-and-after measurement, but state no outcome or what you would verify."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address investigation and measurement, but do not explain what you would measure or how older laptops shape the approach."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The answer is understandable, but generic actions leave the investigation and measurement plan unclear."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize that performance should be compared before and after an intervention.",
+            "evidence": "I’d measure performance before and after."
           }
         ],
         "improvements": [
           {
+            "point": "Name the test conditions, diagnostic tools, specific metrics, and how you would validate a change.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["look at the code", "make it faster", "measure performance"],
+            "why": "Specific measures and a repeatable older-laptop test make your investigation checkable and show whether a change helped.",
+            "rewrite": "I’d reproduce the slowdown on an older laptop and use [profiling tool] to check [rendering or main-thread metric] and [load-time metric]. After [change], I’d rerun the same scenario and compare the measurements."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which performance metrics would you track on an older laptop, and how would you reproduce the dashboard’s slow behavior?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context by identifying the dashboard behavior and the older-laptop constraint.",
+          "Describe how you would reproduce the issue under consistent conditions and profile it.",
+          "Name relevant observable metrics, such as load time, responsiveness, and rendering performance.",
+          "Explain how you would compare before and after, then state the result or validation plan."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

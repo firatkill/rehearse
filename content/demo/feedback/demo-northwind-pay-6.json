@@ -1,119 +1,120 @@
 {
   "questionId": "demo-northwind-pay-6",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:53:36.149Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first clarify the change, affected endpoints, compatibility requirements, and rollout deadline with the backend engineers. Then I’d agree on the contract in the API specification, including request and response examples, error cases, and versioning or deprecation plans. I’d share it with frontend, QA, and any other consumers, and flag breaking changes early. For verification, I’d add or update contract tests, test the endpoint against the agreed examples in a staging environment, and check both success and failure cases. On one project, this caught a mismatch in how an omitted field was handled before release; after we aligned the implementation and tests, all contract checks passed and we shipped without consumer-facing issues.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You present coordination, verification, and a result, though the project context and your specific task are thin."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name contract details, test cases, staging, and a specific omitted-field mismatch, but give no endpoint or test specifics."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but the project example uses “we” and does not clarify your personal contribution."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report that checks passed and the release had no consumer-facing issues, a concrete but unquantified outcome."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You address coordination with backend engineers and explain how you would verify both successful and failure behavior."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and ordered, moving clearly from contract agreement to testing and release outcome."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover both contract coordination and behavior verification.",
+            "evidence": "I’d add or update contract tests, test the endpoint against the agreed examples in a staging environment"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify your personal role in finding and resolving the omitted-field mismatch.",
+            "dimension": "ownership",
+            "vague_phrases": ["after we aligned the implementation and tests"],
+            "why": "Your example shows a team outcome, but not what you personally investigated, changed, or decided.",
+            "rewrite": "I traced the mismatch to how an omitted field was handled, then [describe your specific change or coordination action]; we updated the contract tests and confirmed all checks passed."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What did you personally do to identify and resolve the omitted-field mismatch?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: identify the API change, consumers, compatibility constraints, and rollout timing.",
+          "Explain your coordination: agree on request, response, error, and deprecation behavior with backend and other consumers.",
+          "Describe your personal verification steps, such as contract tests and staging checks for success and failure cases.",
+          "State an observable result and any follow-up change to prevent the mismatch recurring."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d discuss the change and its compatibility impact with the backend engineers, update the API documentation, and make sure other teams know what’s changing. I’d verify the behavior with integration or contract tests in staging, covering the main success and error cases, and check that existing consumers still work before release.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You list coordination and verification actions, but provide no situation, task context, or observed result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You mention documentation, staging, and test cases, but give no concrete API change, constraint, or system details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but this hypothetical phrasing does not establish your personal contribution to an example."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe checks before release but state no outcome or consequence."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address coordination and verification, but offer a plan rather than an example with an observable outcome."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The steps are easy to follow, though the answer remains a general plan without an actual example."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover both coordinating the contract change and validating behavior.",
+            "evidence": "update the API documentation, and make sure other teams know what’s changing"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add the observed validation result and what it meant for release.",
+            "dimension": "impact",
+            "vague_phrases": ["check that existing consumers still work"],
+            "why": "Your answer ends with planned checks, so the interviewer cannot tell whether the change worked.",
+            "rewrite": "I checked [success and error cases] in staging and confirmed [observable result], so we [release decision or follow-up]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What API contract change did you coordinate, and what result did your staging checks show?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: describe the contract change, compatibility constraint, and affected consumers.",
+          "Explain your coordination: how you aligned with backend engineers, documented the change, and informed other teams.",
+          "Describe your verification and state an observable result, including any compatibility issue or release decision."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +124,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d talk to the backend team about the change, update the docs, and test it to make sure it works.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name potential actions, but provide no context, task details, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "Talking, documenting, and testing are generic actions with no contract details or verification method."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use first person, but do not explain what you would personally decide or do."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable outcome from the change or tests."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address coordination and testing, but do not explain how you would verify the resulting behavior."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The proposed actions are easy to understand, though the testing approach is unspecified."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify coordination, documentation, and testing as relevant steps.",
+            "evidence": "talk to the backend team about the change, update the docs, and test it"
           }
         ],
         "improvements": [
           {
+            "point": "Specify the contract change, coordination steps, and checks for expected API behavior.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["the change", "test it to make sure it works"],
+            "why": "Concrete details would show how you prevent mismatches and verify the frontend behavior.",
+            "rewrite": "I’d align with backend engineers on [changed fields or response shape], update the contract documentation, and check [specific frontend flow] against the agreed response."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific checks would you run in the frontend to confirm the new API contract works?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: identify the API change and the frontend behavior or constraint it affects.",
+          "Explain how you would align with backend engineers on the contract, including fields, types, and compatibility or rollout expectations.",
+          "Describe your own documentation and implementation steps, then verify with relevant tests or an end-to-end flow.",
+          "State an observable result, such as expected UI behavior passing validation, and any follow-up action."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

@@ -1,119 +1,121 @@
 {
   "questionId": "demo-harbour-health-4",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:58:48.947Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d test the queue from arrival through check-in and handoff using only a keyboard, including while the desk is busy. I’d make sure focus follows a predictable order, is always visible, and never gets trapped; every action has a keyboard shortcut or a clear Tab/Enter path. I’d use semantic status labels rather than color alone, announce queue updates to assistive technology without interrupting staff constantly, and ensure controls have clear names. In a trial with two reception colleagues, we found the “call next” action was difficult to reach, so I moved it earlier in the tab order and added a documented shortcut. The median time to call the next person fell from 11 seconds to 7, and keyboard-only task completion rose from 6 of 10 attempts to 10 of 10. I’d also test interruptions, rapid arrivals, and error recovery, then repeat the checks with staff who rely on keyboard navigation.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You give a test approach, identify a trial finding, describe a change, and report results, but the context and task are implicit."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You name keyboard-accessibility checks, the specific call-next change, two reception colleagues, and measurable before-and-after results."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly say you moved the action and added a shortcut, though the trial and measurement are described collectively."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report a measurable time improvement and complete keyboard-only task success after your change."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address keyboard usability in a busy reception setting with practical checks and an observable outcome."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer moves clearly from accessibility checks to a trial, change, measurable result, and further validation."
           }
         },
-        "overall": 1,
+        "overall": 3.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You connect concrete keyboard-accessibility criteria to a change and measurable operational results.",
+            "evidence": "The median time to call the next person fell from 11 seconds to 7"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Briefly establish the queue context and your responsibility before describing the checks.",
+            "dimension": "structure",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "The answer is strong, but the situation and task are implied rather than explicitly set up.",
+            "rewrite": "During [busy reception shift/context], I was responsible for checking whether staff could operate the queue using only a keyboard. I tested the journey from arrival through check-in and handoff."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you measure the task-completion results and ensure the trial reflected a busy reception shift?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the busy reception context, queue task, and your responsibility.",
+          "Describe keyboard-only checks: focus order and visibility, controls, status announcements, shortcuts, and error recovery.",
+          "Explain a concrete issue found, your change, and how you tested it with reception staff.",
+          "Give an observable result and say how you would validate it further with keyboard users."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d check that staff can move through the queue, select a person, update their status, and call the next person without using a mouse. Focus should be visible and in a sensible order, and status should be conveyed with text as well as color. I’d test it during a realistic busy shift, since frequent updates or pop-ups could disrupt navigation, and ask reception staff where the workflow feels slow or confusing.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You list considerations and testing, but give no situation, implemented action, or outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name queue tasks and accessibility checks, but no concrete implementation or test details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would check, without stating a specific contribution or decision made."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You propose testing and staff feedback but report no result or validation outcome."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address keyboard-only navigation during a busy shift and relevant accessibility considerations."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "Your points are easy to follow, but the implementation and validation steps remain prospective."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify practical keyboard and accessibility needs for a reception workflow.",
+            "evidence": "move through the queue, select a person, update their status, and call the next person"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Report what you tested, the observed outcome, and any change made afterward.",
+            "dimension": "impact",
+            "vague_phrases": ["I’d test it during a realistic busy shift"],
+            "why": "A proposed test is not evidence that the keyboard workflow worked or improved.",
+            "rewrite": "I tested [workflow] during [busy-shift simulation] and observed [result]; I changed [issue] based on staff feedback."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific keyboard interaction or accessibility issue did your testing uncover, and what did you change in response?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the reception context and explain the constraints of a busy queue workflow.",
+          "Describe your own keyboard-navigation and focus-management decisions, including status communication.",
+          "Explain how you tested realistic updates and interruptions with reception staff.",
+          "Give an observable outcome and any resulting adjustment."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +125,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make sure there are keyboard shortcuts and that the queue is easy to use. I’d check that everything works and ask people if they like it.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name a possible action and check, but give no context, specific task, or outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Keyboard shortcuts,” “easy to use,” and “everything works” are generic without concrete controls or checks."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but do not specify your decisions or contribution beyond general intentions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result or defined validation outcome."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address keyboard usability and checking, but omit the busy-shift constraint and what you would consider in implementation."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The answer is understandable, but the proposed approach and what you would verify remain vague."
           }
         },
-        "overall": 3,
+        "overall": 1.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You mention both keyboard access and checking with users.",
+            "evidence": "I’d make sure there are keyboard shortcuts"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Name specific keyboard tasks and a concrete test with observable pass criteria.",
+            "dimension": "impact",
+            "vague_phrases": ["easy to use", "everything works", "ask people if they like it"],
+            "why": "Your answer gives no result, and broad approval questions do not establish whether reception staff can complete tasks efficiently.",
+            "rewrite": "I’d identify the queue tasks reception staff need to complete during a busy shift, then test them using only the keyboard. I’d verify that staff can complete [tasks] without a mouse and record [completion rate or observed issues]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which queue tasks would you test first, and how would you decide whether keyboard-only use was successful?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the busy-shift context and identify essential queue tasks.",
+          "Describe your own keyboard-accessibility decisions, such as focus order, visible focus, and shortcuts that do not replace standard navigation.",
+          "Explain how you would test with keyboard-only users in realistic reception workflows.",
+          "State observable success criteria and any issues found or changes made."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

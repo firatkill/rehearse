@@ -1,119 +1,61 @@
 {
   "questionId": "beh-003",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T16:49:33.306Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "On a payments project, a senior engineer proposed caching account balances for five minutes to reduce database load. I was concerned that stale balances could lead to incorrect spending decisions. I gathered metrics showing that balance reads accounted for only 8% of database load, then built a small test of a shorter-lived cache with explicit invalidation. I shared the results and suggested we first optimize a separate, heavier query. We agreed to try that approach behind a feature flag. In the following week, database load fell 12%, and we avoided serving stale balances. I also documented the trade-offs so the team could revisit the decision if traffic patterns changed.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You set up the decision, explain your actions, and give an explicit result and follow-through."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You identify the balance-caching proposal, an 8% load share, a test, and a 12% reduction, though technical constraints remain limited."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You clearly own gathering metrics, testing an alternative, presenting results, and documenting trade-offs."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report a measurable 12% load reduction and avoiding stale balances, but give no further validation or learning."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address a disagreement with a senior engineer and explain your evidence-based response and the agreed outcome."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The example is concise and ordered, with a clear concern, proposed alternative, decision, and outcome."
           }
         },
-        "overall": 1,
+        "overall": 3.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You make the disagreement technical and evidence-based rather than personal.",
+            "evidence": "I gathered metrics showing that balance reads accounted for only 8% of database load"
           }
         ],
         "improvements": [
           {
+            "point": "Specify the test setup and how you measured whether the alternative worked.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["a shorter-lived cache with explicit invalidation"],
+            "why": "Those details would make your evidence and the basis for the decision easier to verify.",
+            "rewrite": "I tested [cache duration] with explicit invalidation and measured [load and freshness checks]; the results supported optimizing [heavier query] first."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you validate that the shorter-lived cache and invalidation prevented stale balances in production?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
-        ],
-        "flags": {
-          "off_topic": false,
-          "too_short": true,
-          "injection_suspected": false
-        }
-      }
-    },
-    {
-      "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
-      "feedback": {
-        "scores": {
-          "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          }
-        },
-        "overall": 2,
-        "strengths": [
-          {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
-          }
-        ],
-        "improvements": [
-          {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
-          }
-        ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
-        "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the senior engineer’s technical decision and your specific concern.",
+          "Explain when and how you raised it, with concrete evidence and a feasible alternative.",
+          "Describe the final decision, how you supported it, and the observable result.",
+          "Reflect on what you learned about influencing technical decisions."
         ],
         "flags": {
           "off_topic": false,
@@ -123,56 +65,123 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "medium",
+      "answer": "A senior engineer wanted to use a new framework for a service, and I thought it would add complexity for a small team. I raised my concern in a design review and compared the framework with our existing approach, including maintenance and onboarding costs. We discussed the trade-offs and decided to build a small prototype before committing. The prototype helped us settle on the simpler option, and I supported that decision once the team agreed.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You explain the proposal, your action, and the decision, but give little context or detail about the final outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You identify a framework and comparison criteria, but leave the service, team constraints, and evidence from the prototype unspecified."
           },
           "ownership": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You clearly describe raising the concern and comparing options, though the prototype and final decision are attributed to the group."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The team chose a simpler option, but you do not explain what the prototype showed or any resulting consequence."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address disagreement and support for the final decision, but do not reflect on what you learned about influencing decisions."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The sequence is easy to follow, but the evidence behind the prototype's conclusion is left unstated."
           }
         },
-        "overall": 3,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You raised the concern in an appropriate setting and framed it around practical trade-offs.",
+            "evidence": "I raised my concern in a design review and compared the framework with our existing approach"
           }
         ],
         "improvements": [
           {
+            "point": "Specify what the prototype tested and what evidence supported the choice.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "including maintenance and onboarding costs",
+              "The prototype helped us settle on the simpler option"
+            ],
+            "why": "Concrete evidence would make your concern and the decision's outcome more credible and checkable.",
+            "rewrite": "I raised the concern in a design review and compared [specific maintenance or onboarding evidence] for the framework and our existing approach. Our prototype showed [finding], so we chose the simpler option."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What did the prototype test, and what specific evidence led the team to choose the simpler option?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Briefly describe the proposed technical decision and the constraint behind your concern.",
+          "Explain how you raised the concern, the evidence you presented, and how the team evaluated trade-offs.",
+          "State the decision and observable result, how you supported it, and what you learned about influencing technical choices."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "weak",
+      "answer": "I once disagreed with a senior person about a technical choice. I told them I didn’t think it was a good idea, and we talked about it. They made the final decision, so I went along with it. It worked out fine.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You mention a disagreement and its resolution, but provide no decision context or specific action beyond discussing it."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The technical choice, your concern, and what happened are all described in generic terms."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you raised your concern and accepted the decision, but your contribution to the discussion is vague."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "“It worked out fine” is an unverified, vague outcome with no concrete consequence or learning."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address disagreeing with a senior person and accepting their decision, but omit evidence and reflection."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "The sequence is easy to follow, but the disagreement and its resolution lack enough detail to understand the example."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You show that you accepted the senior person's final decision.",
+            "evidence": "They made the final decision, so I went along with it."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Name the decision, your evidence-based concern, how you raised it, and the observable outcome.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "a technical choice",
+              "I didn’t think it was a good idea",
+              "It worked out fine"
+            ],
+            "why": "Those details would make the disagreement concrete and show how you influenced the decision.",
+            "rewrite": "On [project], I disagreed with [senior person's] decision to [technical choice] because [specific concern]. I raised it in [setting], using [evidence]; after the decision, I [what you did], and [observable outcome]."
+          }
+        ],
+        "follow_up_question": "What specific evidence did you use to support your concern, and how did it affect the discussion?",
+        "model_answer_outline": [
+          "Briefly set up the project and the senior person's technical decision.",
+          "Explain your specific concern and the evidence you used to raise it at an appropriate time.",
+          "Describe the final decision, how you responded, and the concrete outcome.",
+          "Reflect on what you learned about influencing technical decisions."
         ],
         "flags": {
           "off_topic": false,

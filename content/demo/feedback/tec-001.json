@@ -1,119 +1,124 @@
 {
   "questionId": "tec-001",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:56:32.451Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "Server rendering means the server builds the page’s HTML for each request and sends it ready to display; browser rendering means the browser downloads JavaScript and builds much or all of the page there. For a product page, I’d choose server rendering when search visibility and a fast first view matter—especially for public product listings. In a fictional project, I moved product details and key metadata into server-rendered HTML, then kept filters interactive in the browser. Our measured median time to useful product content fell from 2.4 to 1.6 seconds, while search impressions rose 12% over the following quarter. I’d lean toward browser rendering for highly interactive, personalized views where SEO is less important, such as an authenticated product configurator, provided the initial loading experience remains acceptable.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You define both approaches, explain where rendering happens, and progress to a reasoned product-page recommendation and trade-off."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You give a hybrid example and concrete performance and search figures, but name no tools, constraints, or measurement method."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe a change you made and justify your recommendation, but do not explain when you would choose differently in more detail."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You connect the change to measured useful-content time and search impressions, though the measurement and attribution are not explained."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You address both rendering approaches, recommend choices for distinct product-page types, and relate them to SEO and initial experience."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The explanation is concise and ordered, with clear distinctions, a hybrid example, and a recommendation."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You clearly distinguish the rendering mechanisms and apply them to different product-page needs.",
+            "evidence": "the server builds the page’s HTML for each request and sends it ready to display"
           }
         ],
         "improvements": [
           {
+            "point": "Clarify how you measured the results and what other factors could explain the search change.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "Our measured median time to useful product content fell from 2.4 to 1.6 seconds",
+              "search impressions rose 12% over the following quarter"
+            ],
+            "why": "The figures are concrete, but without measurement details or attribution the results are hard to verify.",
+            "rewrite": "I measured useful-content time using [measurement method] before and after the change; search impressions rose 12% over the quarter, though [other factors] may also have contributed."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you handle personalized pricing or inventory on a server-rendered product page while keeping it cacheable?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define server rendering and browser rendering, including what HTML the user gets initially and when JavaScript runs.",
+          "Compare first-view experience, interactivity, SEO, and server or client costs for product-page needs.",
+          "Recommend an approach for a public product listing and explain when browser rendering suits a personalized, authenticated view.",
+          "Mention a hybrid such as static generation or streaming, and note caching or freshness constraints."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "Server rendering sends HTML that the server has already generated, while browser rendering relies more on JavaScript running on the user’s device to create the page. For a public product page, I’d generally favor server rendering for quicker initial content and search indexing, then use browser code for interactions like selecting a size. For an internal or personalized product tool, browser rendering might be a better fit.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You define both approaches and give use cases, but omit a hybrid option and fuller trade-offs."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name a product page and size selection, but the performance and indexing claims remain broad."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state a general preference, but do not explain your decision criteria in depth or draw on experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You mention faster initial content and search indexing, but not costs or concrete user or business consequences."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address the rendering difference and product-page choice, but leave out server cost and hybrid options."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The contrast and examples are easy to follow, though the reasoning behind the personalized-tool choice is unstated."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You clearly distinguish where the initial page is created and connect that distinction to a practical page choice.",
+            "evidence": "Server rendering sends HTML that the server has already generated"
           }
         ],
         "improvements": [
           {
+            "point": "Explain the trade-offs and identify when a hybrid approach is preferable.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["quicker initial content", "might be a better fit"],
+            "why": "Concrete criteria make your product-page recommendation more useful and address the question's requested trade-offs.",
+            "rewrite": "For a public product page, I’d choose server rendering when search visibility and useful content on first load matter; I’d use browser rendering for highly personalized, interaction-heavy tools. I’d consider static generation for cacheable product data and add client-side code for interactions."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you handle product-specific prices or availability that change often while keeping the page fast and search-friendly?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define server rendering and browser rendering by where HTML is generated and what appears on first load.",
+          "Compare first-load experience, interactivity, SEO, and server or client costs.",
+          "Recommend an approach for a public product page and justify it with its users and content.",
+          "Mention a hybrid option such as static generation or streaming, including when it fits."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "Server rendering happens on the server and browser rendering happens in the browser. I’d pick whichever is faster for the product page.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You define both approaches but do not explain how either renders the page or organize a recommendation."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give no concrete page characteristics, trade-offs, or checkable details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state a choice criterion but do not take a justified position or connect it to experience."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You mention speed generally without explaining a consequence or outcome."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address the comparison and choice, but omit how to choose for a product page."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The brief response is understandable, but “whichever is faster” leaves the key reasoning unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You distinguish where rendering happens.",
+            "evidence": "Server rendering happens on the server and browser rendering happens in the browser."
           }
         ],
         "improvements": [
           {
+            "point": "Explain what each approach sends first and recommend one for a specific product page.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["whichever is faster"],
+            "why": "The recommendation needs to connect page needs, such as SEO or personalization, to concrete trade-offs.",
+            "rewrite": "With server rendering, the server sends rendered HTML first; with browser rendering, the browser builds the page after receiving JavaScript. For a [public, SEO-focused product page], I’d choose [approach] because [reason], while considering [cost or interactivity trade-off]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What characteristics of a product page would make you choose server rendering over browser rendering?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Explain where HTML is produced and what the user sees first in each approach.",
+          "Compare first-load experience, interactivity, SEO, and server cost.",
+          "Recommend an approach for a specific product-page type and justify the trade-offs.",
+          "Mention a hybrid option such as static generation or streaming where appropriate."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

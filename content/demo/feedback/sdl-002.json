@@ -1,119 +1,122 @@
 {
   "questionId": "sdl-002",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:55:02.919Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d treat each new comment as an event and first verify that the post owner wants email notifications and that the commenter isn’t the owner. I’d write the comment and an outbox event in the same database transaction, then have workers process the outbox. For deduplication, I’d give each notification a stable key, such as recipient + comment ID + notification type, and enforce a unique constraint on it; retries would reuse that key. To avoid flooding, I’d aggregate comments per recipient and post over a short window—for example, send one email after five minutes saying “3 new comments,” then include links to each comment. I’d also cap frequency, defer low-priority mail, honor unsubscribes and bounces, and offer immediate notifications as a preference. I’d monitor duplicate-send rate, queue delay, and emails per user. In a rollout, I’d compare those metrics against a baseline; for example, a target could be fewer than 0.1% duplicate notifications and no recipient receiving more than one digest per post per window.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You outline the event, transactional outbox, worker flow, deduplication, and batching in a clear sequence, but omit scale and trade-offs."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name a stable key, unique constraint, five-minute aggregation window, and measurable targets, though no concrete systems or scale are given."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You recommend a design but do not connect it to your own experience or explain when you would choose a different approach."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You define measurable rollout targets and monitoring, but do not explain observed consequences or how the targets are validated."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address deduplication, reducing email volume, preferences, and monitoring at an appropriate level."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The ordered flow and concrete examples make the design easy to follow without distracting repetition."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You explain a robust write-to-send flow and concrete deduplication mechanism.",
+            "evidence": "I’d write the comment and an outbox event in the same database transaction, then have workers process the outbox."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "State why you prefer this design and when you would choose another approach.",
+            "dimension": "ownership",
+            "vague_phrases": ["I’d treat each new comment as an event"],
+            "why": "Your recommendation is clear, but its trade-offs and connection to your own judgment are not yet established.",
+            "rewrite": "I’d use a transactional outbox because it prevents losing notification work when a comment commits; for lower delivery guarantees, I’d consider [alternative] to reduce [cost or complexity]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If the email provider is unavailable for an hour, how would your workers retry without delaying or duplicating other notifications?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State delivery and notification requirements, including preferences and acceptable delay.",
+          "Trace comment creation through a transactional outbox or queue to notification workers.",
+          "Use a stable per-recipient, comment, and notification-type idempotency key; explain the send-boundary limitation.",
+          "Batch notifications and apply recipient-level rate limits while honoring unsubscribes and bounces.",
+          "Describe retry backoff, provider failure handling, and metrics or validation targets."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d create a notification when a comment is saved, then send it through a background queue so a mail outage doesn’t affect commenting. I’d use a unique notification ID to make retries idempotent and avoid sending the same alert twice. To reduce volume, I’d batch comments on the same post into a digest and add per-user rate limits and notification preferences. I’d track delivery failures and how many emails each user receives, then adjust the batching window if people still get too many messages.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe notification creation, queued sending, deduplication, volume controls, and monitoring, but omit concrete requirements and detailed flow."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name a queue, unique ID, digest, and rate limits, but do not define the idempotency key or operational limits."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You recommend an approach, but do not justify key choices or connect them to your own experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You explain general benefits and propose monitoring, but give no concrete consequences, targets, or validation results."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address decoupling, duplicate prevention, batching, rate limits, and preferences."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to follow, though retry behavior and the actual deduplication mechanism remain unexplained."
           }
         },
-        "overall": 2,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover the central design mechanisms for decoupling delivery and controlling email volume.",
+            "evidence": "send it through a background queue so a mail outage doesn’t affect commenting"
           }
         ],
         "improvements": [
           {
+            "point": "Define the idempotency key, delivery state, and a concrete per-user limit.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["a unique notification ID", "per-user rate limits"],
+            "why": "Those details make duplicate prevention and flood control implementable and testable.",
+            "rewrite": "I’d key each notification by [recipient ID, comment ID, notification type] and enforce uniqueness in storage; I’d cap delivery at [limit] per [time window] per user."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If the email provider is unavailable for an hour, how would your queue and retry policy prevent message loss or a retry storm?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Clarify delivery expectations, what counts as a duplicate, and acceptable notification delay.",
+          "Describe comment persistence, an outbox or queue, notification creation, and email-worker data flow.",
+          "Use a stable per-recipient notification key and persistent deduplication state to make retries safe.",
+          "Batch or rate-limit per recipient, honor stored preferences, and explain provider retries with backoff and monitoring."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +126,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d send an email whenever someone comments. I’d probably add some checks so it doesn’t send twice, and maybe limit how many emails people get. I’d test it and see if users complain.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention sending, checks, limits, and testing, but give no requirements, components, or data flow."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer uses general phrases like “some checks” and “limit how many emails” without mechanisms or constraints."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state a tentative approach, but do not justify it or connect it to your experience."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention testing for complaints, but provide no defined validation plan or concrete outcome."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address duplicate emails and limiting volume, but omit how notifications are delivered and handled on failure."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The broad intent is understandable, but the listener cannot tell what checks or limits you would implement."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognized both duplicate prevention and email volume as important concerns.",
+            "evidence": "so it doesn’t send twice, and maybe limit how many emails people get"
           }
         ],
         "improvements": [
           {
+            "point": "Name the delivery flow and concrete mechanisms for deduplication, batching, and provider failure.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "some checks",
+              "limit how many emails people get",
+              "test it and see if users complain"
+            ],
+            "why": "Specific mechanisms show how the design prevents duplicate sends and controls volume reliably.",
+            "rewrite": "I’d write the comment and a notification event to an outbox, then have a worker send email through a queue. I’d deduplicate with a key per notification, batch or rate-limit per recipient using their preferences, and retry provider failures with backoff."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you define the idempotency key so retries do not send the same notification twice?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State requirements for timely notifications, duplicate prevention, and acceptable email frequency.",
+          "Describe comment persistence and an outbox or queue that decouples email delivery from the write.",
+          "Explain per-notification idempotency, recipient preferences, and batching or rate limits.",
+          "Cover retries with backoff and how to validate delivery and user impact."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

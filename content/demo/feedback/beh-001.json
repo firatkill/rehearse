@@ -1,119 +1,60 @@
 {
   "questionId": "beh-001",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T16:48:48.705Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "At my last fictional role, I was coordinating a customer onboarding guide due Friday when a policy change on Tuesday made the original draft inaccurate. I met with the support lead and product manager that afternoon, identified the three steps that could cause customers to get stuck, and made those the release-critical scope. I cut the polished illustrations and a broader FAQ, keeping only the essential screenshots and linking to existing help articles. I also asked a teammate to verify the revised steps while I updated the guide. We published on time; in the following two weeks, onboarding-related support contacts were 18% lower than in the prior two weeks. I chose cuts based on customer risk and whether the material was necessary to complete the task—not on what was easiest to remove.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You establish the deadline and trigger, explain your actions, and finish with a clear result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name the deadline, content removed, decision criteria, and an 18% change, but omit audience scale and validation details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You identify your decisions and actions, though the stakeholder agreement and teammate's role are not fully described."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report an on-time release and a measurable decrease in support contacts, without establishing attribution or further follow-up."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain what you cut and the customer-risk criteria behind the decision."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and logically ordered, making the trade-off and outcome easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a clear decision rule and connect the cuts to customer needs.",
+            "evidence": "I chose cuts based on customer risk and whether the material was necessary to complete the task"
           }
         ],
         "improvements": [
           {
+            "point": "Clarify who depended on the guide, how stakeholders approved the scope, and what happened to deferred content.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["a customer onboarding guide", "We published on time"],
+            "why": "Those details show the stakes, communication, and consequences of the trade-off more fully.",
+            "rewrite": "The support lead and product manager agreed that I should prioritize the three steps most likely to block customers, and I told them that afternoon what I would defer. I moved the FAQ and illustrations to [follow-up plan or status]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Who agreed to defer the FAQ and illustrations, and what happened to those items after the guide shipped?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
-        ],
-        "flags": {
-          "off_topic": false,
-          "too_short": true,
-          "injection_suspected": false
-        }
-      }
-    },
-    {
-      "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
-      "feedback": {
-        "scores": {
-          "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          }
-        },
-        "overall": 2,
-        "strengths": [
-          {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
-          }
-        ],
-        "improvements": [
-          {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
-          }
-        ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
-        "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the deadline, policy change, stakes, and audience depending on delivery.",
+          "Explain the criteria for prioritizing essential content and cutting lower-risk scope.",
+          "Describe stakeholder communication and agreement, then state what shipped, the result, and the disposition of deferred work."
         ],
         "flags": {
           "off_topic": false,
@@ -123,56 +64,119 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "medium",
+      "answer": "On a fictional project, I had less than a week to prepare a progress report after the data source changed. I focused on the main findings and the decisions leadership needed to make, and cut some charts and background detail. I checked the numbers with a colleague and delivered the report on time. The meeting stayed focused, though I didn’t measure the impact afterward. I decided what to remove by asking whether it changed the main conclusion or next action.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You give the constraint, your prioritisation, the report delivery, and a meeting outcome, though the result is brief."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name the changed data source and cut content, but omit the deadline details, report context, and concrete scope."
           },
           "ownership": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You explain your decision rule and say you checked the numbers, though stakeholder decisions and communication are not described."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You report timely delivery and a focused meeting, but provide no verifiable outcome or follow-through."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address what you cut and your criterion, but omit how stakeholders were told and what happened to the cut material."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The account is easy to follow, but the stakes and consequences of the shortened report remain unstated."
           }
         },
-        "overall": 3,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a clear principle for deciding what to remove.",
+            "evidence": "whether it changed the main conclusion or next action"
           }
         ],
         "improvements": [
           {
+            "point": "Name the deadline, stakes, specific cuts, and who depended on the report.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["a progress report", "some charts and background detail"],
+            "why": "Those details let the interviewer judge the urgency and whether your trade-off protected the most important deliverable.",
+            "rewrite": "With less than a week after [data source] changed, I had to deliver [report] for [decision-makers] to decide [decision]. I kept [essential content] and cut [specific charts or detail] because they would not change the conclusion or next action."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Who needed to approve the cuts, how did you tell them, and what happened to the omitted charts and background?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set out the deadline, what changed, the stakes, and who depended on delivery.",
+          "Explain the criteria for protecting essential content and choosing specific cuts.",
+          "Describe stakeholder communication, what shipped, the outcome, and how the cut scope was handled afterward."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "weak",
+      "answer": "In a fictional job, something important came up at the last minute and I had to work quickly. I cut a few extra things and focused on the important parts. I got it done, and people seemed happy with it. I just used my judgment about what mattered most.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You give a compressed situation and action, but the deadline, specific decisions, and concrete result are missing."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The answer gives no concrete deadline, deliverable, cut scope, or criteria beyond general importance."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you cut items and used your judgment, but do not identify what you decided or how you involved others."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say it was done and people seemed happy, but provide no observable result or consequence."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "You address cutting scope under time pressure, but omit how you decided, stakeholder communication, and what happened to the cuts."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The response is understandable, but generic claims leave the actual example and decision process unclear."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You directly acknowledge a time-constrained delivery and a scope trade-off.",
+            "evidence": "I cut a few extra things and focused on the important parts."
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Name the deliverable, deadline, specific cuts, and criteria you used to prioritize.",
+            "dimension": "specificity",
+            "vague_phrases": [
+              "something important came up at the last minute",
+              "a few extra things",
+              "the important parts"
+            ],
+            "why": "Those details show how you made a sound trade-off rather than relying on an unexplained judgment.",
+            "rewrite": "I had [time remaining] to deliver [specific feature] for [stakeholder or users]. I kept [essential scope] and cut [specific items] because [criteria]."
+          }
+        ],
+        "follow_up_question": "Who did you tell about the scope cuts, and what happened to the deferred work?",
+        "model_answer_outline": [
+          "Set the scene with the deliverable, compressed deadline, stakes, and people depending on it.",
+          "Explain the criteria for preserving essential frontend functionality and simplifying or deferring lower-priority scope.",
+          "Describe your decision and stakeholder communication, then state what shipped, the outcome, and the plan for deferred work."
         ],
         "flags": {
           "off_topic": false,

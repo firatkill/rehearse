@@ -1,119 +1,124 @@
 {
   "questionId": "demo-northwind-pay-4",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:52:58.863Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d model availability separately from the numeric amount—for example, `balance: 0` with `status: available`, versus `balance: null` with `status: unavailable`. In the UI, I’d show “$0.00” for a confirmed zero and “Balance unavailable” for a failed or pending lookup, with a retry option where appropriate. On a billing screen I worked on, separating those states stopped users from mistaking a temporary lookup failure for an empty account; we saw 28% fewer balance-related support contacts over the next month.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the state distinction, give a billing-screen example, and report an outcome, though the context and your task are brief."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name distinct data states, UI labels, a retry option, and a support-contact metric, but omit implementation details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe the screen and its result, but do not say which parts of the solution you personally designed or implemented."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report 28% fewer balance-related support contacts over a month, a concrete outcome tied to the distinction."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how to distinguish zero from unavailable in both the data model and the UI."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The contrast between the two states and their user-facing messages is concise and easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You make the distinction concrete in both the data model and the interface.",
+            "evidence": "I’d model availability separately from the numeric amount"
+          },
+          {
+            "point": "You connect the design choice to a measurable user-support outcome.",
+            "evidence": "we saw 28% fewer balance-related support contacts over the next month"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "State what you personally designed, implemented, or validated.",
+            "dimension": "ownership",
+            "vague_phrases": ["I worked on"],
+            "why": "The example and result are clear, but your individual contribution is not.",
+            "rewrite": "On a billing screen, I [designed or implemented the state model and UI distinction]. We saw 28% fewer balance-related support contacts over the next month."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you verify that the new labels and retry option caused the reduction in balance-related support contacts?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Briefly describe the billing-screen context and why an unavailable balance could be mistaken for zero.",
+          "Explain your personal data-model and UI choices, including distinct states, labels, and appropriate retry behavior.",
+          "Give an observable outcome and explain how you checked that the distinction worked."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d avoid showing an unavailable balance as `$0.00`. I’d use a clear label such as “Balance unavailable,” while displaying `$0.00` only when the system has confirmed the balance is zero. I’d also include a retry option if the issue might be temporary.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You give a proposed design action, but provide no context or observable result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You distinguish the states and suggest a retry, but give no implementation or validation details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You state what you would do, but do not describe your contribution to a real example."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not state an outcome or how you would check whether the design worked."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly address how to distinguish unavailable from zero, but omit context and the requested observable outcome."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The distinction between the two balance states and the suggested retry option are concise and easy to understand."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
+            "point": "You make the key distinction explicit and suggest a recovery path.",
             "evidence": null
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Add how you would validate the distinction and what observable result you saw or would expect.",
+            "dimension": "impact",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "Without an outcome or validation method, the answer does not show whether the design works for users.",
+            "rewrite": "I’d test both states with [validation method] and check whether users can tell unavailable from zero; [observed result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you check that users understand the difference between an unavailable balance and a confirmed zero?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the context and constraint that make an unavailable balance possible.",
+          "Explain your personal design choice for distinguishing unavailable from confirmed zero.",
+          "Describe any recovery action, such as retry, and why it fits the situation.",
+          "Name how you validated the distinction and the observable outcome."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make them look different, maybe with different colors or text, so people can tell.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give a general suggestion but no situation, action sequence, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Different colors or text” is an unspecific option with no defined treatment or context."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You say what you would do, but give no concrete personal decision or contribution."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable outcome or way to check whether users can distinguish the balances."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address how to distinguish unavailable from zero, but leave the design and validation details unstated."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The suggestion is easy to understand, but it does not explain the specific distinction you would create."
           }
         },
-        "overall": 3,
+        "overall": 1.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the core need to make the two states visually distinct.",
+            "evidence": "different colors or text"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Describe the state treatment, your implementation, and how you would verify users understand it.",
+            "dimension": "structure",
+            "vague_phrases": ["look different", "maybe with different colors or text"],
+            "why": "A general suggestion does not show a complete example or an observable result.",
+            "rewrite": "I’d show an unavailable balance with [specific label or visual treatment], while displaying a true zero as “$0.00.” I’d check whether users distinguish the states through [usability test or other validation]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What label or visual treatment would you use for an unavailable balance, and how would you verify users distinguish it from zero?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the UI context and constraint that makes the balance unavailable.",
+          "Explain the specific visual and textual distinction from a genuine zero balance.",
+          "State your own implementation decisions and relevant accessibility considerations.",
+          "Give an observable validation result or describe how you would test comprehension."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

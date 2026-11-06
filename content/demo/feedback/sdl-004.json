@@ -1,119 +1,119 @@
 {
   "questionId": "sdl-004",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:55:44.192Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d keep a shared checklist with one task per line: owner, status (not started / in progress / done), due date, and a short “last update” note. For example, I set up a team checklist with 12 tasks, assigned an owner to each, and asked people to add initials and a timestamp when editing. When two people changed the same item, we kept both notes in the activity history, compared the latest changes with the task owner, and wrote one clear current status plus a brief resolution note. That reduced duplicate follow-ups from about five a week to one.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You list task fields and a conflict-handling process, but do not explain the system components or how updates flow."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You give a 12-task example, specific fields, and a measured change in follow-ups, but omit implementation details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe setting up the checklist and choosing initials, timestamps, and owner review for overlapping edits."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report duplicate follow-ups dropping from about five a week to one."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain what an item contains and how concurrent edits are reconciled, but omit loading and failure states."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The task fields and conflict resolution are understandable, though the update mechanism and user-visible conflict state remain implicit."
           }
         },
-        "overall": 1,
+        "overall": 2.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a concrete checklist shape and an understandable way to preserve both edits.",
+            "evidence": "we kept both notes in the activity history, compared the latest changes with the task owner"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain how edits are submitted, persisted, and surfaced when they overlap.",
+            "dimension": "structure",
+            "vague_phrases": ["asked people to add initials and a timestamp when editing"],
+            "why": "A clear data flow would show how the history and current status stay consistent, including when saving fails.",
+            "rewrite": "I’d send each edit to the shared store with its timestamp and keep an activity history; if a save fails or overlaps, I’d show the user the issue and preserve both versions for resolution."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "If two people edit the status at once, what would each person see, and how would you prevent a lost update?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the checklist requirements and define a minimal item record, including owner and status.",
+          "Describe the UI-to-server update flow and how the current value and activity history are refreshed.",
+          "Explain visible loading, failure, and conflict states, preserving both edits for an explicit resolution."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d use a shared list with a task, owner, status, and a notes field. If two people edit the same item, I’d keep a change history and ask them to agree on the current version, adding a short note explaining the decision. Clear ownership would help avoid conflicting updates.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name the record fields and a conflict approach, but do not explain the components or how updates flow."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The item fields and change history are concrete, but the conflict process and update behavior remain vague."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You take a position on keeping history and assigning ownership, but do not justify the choices or connect them to experience."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You suggest ownership could reduce conflicts, but give no concrete consequence or validation plan."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address checklist fields and concurrent edits, but omit loading, failure, and explicit conflict states."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposal is easy to follow, though it leaves unclear how edits are detected and presented to users."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify a useful minimal checklist record and recognize the value of preserving edit history.",
+            "evidence": "a task, owner, status, and a notes field"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Describe the update flow and how a conflict is detected, shown, and resolved.",
+            "dimension": "structure",
+            "vague_phrases": ["ask them to agree on the current version"],
+            "why": "Without that flow, it is unclear how concurrent edits avoid silently overwriting one another.",
+            "rewrite": "I’d save each item with a version number and show both edits if a save finds a newer version; the user can choose or combine changes, with the history retained."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would the interface alert someone to a conflict, and what choices would it offer?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define the checklist item fields, ownership, and how users submit updates.",
+          "Explain how the system detects concurrent edits and preserves both versions rather than silently overwriting one.",
+          "Describe the user-visible conflict, loading, and failure states, including how users recover."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +123,63 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make a checklist and have everyone update it. If two people change something, they can talk and fix it so it makes sense.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You name a shared checklist but give no record shape, components, or update flow."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "The answer uses general terms and gives no concrete conflict-handling details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not make a design decision or explain your reasoning."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You describe no consequences, user experience, or validation."
           },
           "relevance": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You address simultaneous changes, but leave the mechanism and loading or failure states unexplained."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The basic suggestion is understandable, but “talk and fix it” does not explain how the conflict is resolved."
           }
         },
-        "overall": 3,
+        "overall": 1.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You recognize that simultaneous edits need to be resolved rather than ignored.",
+            "evidence": "If two people change something, they can talk and fix it"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Describe the item fields, update flow, and a visible conflict-resolution path.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "have everyone update it",
+              "they can talk and fix it so it makes sense"
+            ],
+            "why": "The question asks how concurrent changes remain understandable, but your answer leaves the system behavior unspecified.",
+            "rewrite": "I’d give each item an ID, text, owner, completion status, and version. On a version mismatch, I’d show both edits and let the user choose which to keep; I’d also show loading and save-failure states."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What would users see when the server detects that two people edited the same checklist item?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define a small item record, such as ID, text, owner, completion status, and version.",
+          "Explain the update flow and how the client detects a version conflict rather than silently overwriting an edit.",
+          "Describe how users compare or resolve conflicting edits, plus loading and failure states."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

@@ -4,22 +4,22 @@
   "role": "Product engineer",
   "text": "Harbour Health is a fictional health product company for interview practice. Its example software helps community clinics coordinate appointment preparation and administrative follow-up, rather than make clinical decisions. This vacancy and company are invented. We are looking for a product engineer who can connect user research with reliable delivery and recognise when a seemingly small interface choice creates extra work for busy clinic teams.\n\nOur product uses TypeScript, React and Node.js, with PostgreSQL storing workflow records. A shared design system supports accessible forms and status messages. Engineers work with a product designer and clinic coordinators, taking prototypes into short research sessions before committing to a larger build. We use synthetic patient records in development and demonstrations; operational logs exclude patient names and free-text clinical notes.\n\nYou will observe how coordinators prepare appointment lists, prototype a follow-up task queue, and deliver changes across the interface and API. Responsibilities include making overdue and completed tasks clearly distinguishable, supporting keyboard-only use during busy reception shifts, and designing role-based access for coordinators and supervisors. You will preserve an audit trail when tasks change owner and provide a clear recovery path when a network interruption leaves a save uncertain.\n\nWe require experience shipping a web product, comfort discussing scope with non-technical colleagues, and an ability to turn observations into testable assumptions. You should understand relational data modelling, write useful automated tests, and explain how you would measure administrative time saved without collecting sensitive content. We value thoughtful disagreement and explicit trade-offs over adding features to satisfy every request.\n\nNice-to-haves include healthcare workflow research, accessibility testing with assistive technology, and experience rolling out software to small operational teams. Your first project would test whether a clearer follow-up queue reduces forgotten administrative tasks. You would agree success and rollback criteria with clinic coordinators, trial the change with one team, and review both completion rates and the reasons people still work around the product.",
   "requirements": [
-    "TypeScript product development across UI and APIs",
-    "User research with operational teams",
-    "Accessible workflows and clear status communication",
-    "Role-based access and audit trails",
-    "Outcome measurement without sensitive logs"
+    "Experience shipping a web product.",
+    "Comfort discussing scope with non-technical colleagues.",
+    "Ability to turn observations into testable assumptions.",
+    "Understanding of relational data modelling and useful automated tests.",
+    "Ability to explain how to measure administrative time saved without collecting sensitive content."
   ],
-  "about": "A fictional health product company helping community clinics coordinate appointment preparation and follow-up tasks.",
-  "provenance": "pending-owner-generation",
+  "about": "Fictional interview example for a product engineer role at Harbour Health.",
   "questions": [
     {
       "id": "demo-harbour-health-1",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-0",
-      "prompt": "Tell me about research that changed what you built. How would you learn from coordinators preparing appointment lists at Harbour Health?",
+      "prompt": "Tell us about a web product you shipped. How did you make decisions about scope and delivery?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -32,16 +32,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "observe how coordinators prepare appointment lists"
+      "groundingQuote": "We require experience shipping a web product, comfort discussing scope with non-technical colleagues, and an ability to turn observations into testable assumptions."
     },
     {
       "id": "demo-harbour-health-2",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-1",
-      "prompt": "Describe a prototype you used to test an assumption. What would you test before building this follow-up queue?",
+      "prompt": "How would you observe clinic coordinators preparing appointment lists and turn what you learn into testable assumptions?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -54,16 +54,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "prototype a follow-up task queue"
+      "groundingQuote": "You will observe how coordinators prepare appointment lists, prototype a follow-up task queue, and deliver changes across the interface and API."
     },
     {
       "id": "demo-harbour-health-3",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-2",
-      "prompt": "Tell me about clarifying status in a busy workflow. How would you distinguish overdue and completed tasks for reception staff?",
+      "prompt": "How would you design a follow-up task queue so overdue and completed tasks are easy to distinguish?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -76,16 +76,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "making overdue and completed tasks clearly distinguishable"
+      "groundingQuote": "Responsibilities include making overdue and completed tasks clearly distinguishable"
     },
     {
       "id": "demo-harbour-health-4",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-3",
-      "prompt": "Describe an accessibility improvement you shipped. How would you support keyboard-only work during a busy reception shift?",
+      "prompt": "What would you consider when making the queue usable by keyboard alone during a busy reception shift?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -98,7 +98,6 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "groundingQuote": "supporting keyboard-only use during busy reception shifts"
     },
     {
@@ -106,8 +105,9 @@
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-4",
-      "prompt": "Tell me about implementing access rules for different users. How would you separate coordinator and supervisor capabilities?",
+      "prompt": "How would you model task ownership and preserve a useful history when a task changes owner?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -120,16 +120,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "designing role-based access for coordinators and supervisors"
+      "groundingQuote": "You should understand relational data modelling"
     },
     {
       "id": "demo-harbour-health-6",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-5",
-      "prompt": "Describe how you made a workflow change traceable. How would you preserve the history when a follow-up task changes owner?",
+      "prompt": "A network interruption occurs while a coordinator saves a task update, and the result is uncertain. How would you design the recovery experience?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -142,16 +142,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "preserve an audit trail when tasks change owner"
+      "groundingQuote": "provide a clear recovery path when a network interruption leaves a save uncertain."
     },
     {
       "id": "demo-harbour-health-7",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-6",
-      "prompt": "Tell me about an uncertain save or interrupted request you handled. How would you help a coordinator recover without duplicating work?",
+      "prompt": "How would you measure whether the follow-up queue saves administrative time without collecting sensitive information?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -164,16 +164,16 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "provide a clear recovery path when a network interruption leaves a save uncertain"
+      "groundingQuote": "explain how you would measure administrative time saved without collecting sensitive content."
     },
     {
       "id": "demo-harbour-health-8",
       "type": "behavioral",
       "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
       "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-7",
-      "prompt": "Describe how you measured whether a product change helped users. How would you assess this queue without collecting sensitive content?",
+      "prompt": "How would you plan a one-team trial, including success and rollback criteria, and learn from people who continue to work around the product?",
       "follow_up_hints": [
         "What was your own contribution?",
         "How did you check whether it worked?"
@@ -186,8 +186,8 @@
       "time_limit_s": 120,
       "status": "active",
       "added_in": "1.0.0",
-      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
-      "groundingQuote": "measure administrative time saved without collecting sensitive content"
+      "groundingQuote": "You would agree success and rollback criteria with clinic coordinators, trial the change with one team, and review both completion rates and the reasons people still work around the product."
     }
-  ]
+  ],
+  "provenance": "live"
 }

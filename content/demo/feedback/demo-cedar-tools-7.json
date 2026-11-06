@@ -1,119 +1,119 @@
 {
   "questionId": "demo-cedar-tools-7",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:48:38.840Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first define the symptom: which queues are backing up, how quickly lag is growing, and whether consumers are falling behind or producers have spiked. I’d correlate queue depth and oldest-message age with publish and consume rates, consumer utilization, processing latency, retries, and error rates, then break those metrics down by partition, consumer group, and deployment. In one fictional incident, I found one consumer group’s processing time had jumped after a release while its replicas were CPU-saturated. I paused the rollout, scaled that group, and compared the same metrics before and after; lag stopped growing within 10 minutes and returned to its normal range in about 35. I’d also check broker health and dependencies so I don’t mistake a downstream slowdown for a queue problem, and verify recovery through sustained drain rates and alert status.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You move from diagnostic signals to a specific incident, intervention, and recovery, though the context and task are not clearly established."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name useful metrics, breakdowns, and recovery times, but the queue system and exact baseline remain unspecified."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe pausing the rollout and scaling the group, but do not distinguish your decisions from others' contributions."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You report lag stopped growing within 10 minutes and returned to its normal range in about 35."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how you would use observability data to diagnose queue lag and verify recovery."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The diagnostic sequence and response are concise, ordered, and understandable on first hearing."
           }
         },
-        "overall": 1,
+        "overall": 3.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You lay out a practical way to isolate whether the cause is producer load, consumer capacity, a release, or a dependency.",
+            "evidence": "I’d correlate queue depth and oldest-message age with publish and consume rates"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify whether this is a hypothetical procedure or a real incident, then state the incident context.",
+            "dimension": "structure",
+            "vague_phrases": ["In one fictional incident"],
+            "why": "The fictional framing makes the situation and task less concrete, weakening the story structure.",
+            "rewrite": "For a real incident, [queue/system] began accumulating lag after [trigger]. I checked [signals] to identify the cause, then [action]; if hypothetical, label it as a diagnostic approach."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What evidence showed that the release, rather than a downstream dependency, caused the consumer slowdown?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the incident context, the lag symptom, and the constraint or urgency.",
+          "Compare queue depth and age with publish/consume rates, consumer health, errors, and relevant deployment or dependency changes.",
+          "Explain your own diagnosis and intervention, then cite a measurable recovery check and any follow-up learning."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d compare queue depth and message age with producer and consumer rates, then check consumer errors, processing latency, resource usage, and broker health. I’d look for whether the issue affects all queues or a particular group, partition, or service, and correlate it with recent deployments or dependency incidents. Once I had a likely cause, I’d take a targeted action such as scaling consumers or rolling back a change, then confirm that consumption exceeds production and lag falls.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline diagnostic steps and a possible response, but provide no incident context or actual result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name useful signals and possible causes, but give no concrete system, observed values, or incident details."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but do not establish your role in a real incident or decision."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe how you would verify improvement, but report no observed outcome."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain how you would use observability data to diagnose queue lag and respond."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The diagnostic sequence is understandable, though the likely-cause-to-action link remains general."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify a useful range of observability signals and compare their patterns.",
+            "evidence": "I’d compare queue depth and message age with producer and consumer rates"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the method in a real incident, then state your action and the measured outcome.",
+            "dimension": "structure",
+            "vague_phrases": ["Once I had a likely cause", "a targeted action"],
+            "why": "A real example would complete the situation-action-result arc and make your diagnosis more credible.",
+            "rewrite": "During [incident], I compared [queue and rate metrics] and found [specific pattern]. I [action], then verified [observable outcome, such as lag falling to a defined level]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which specific signal would distinguish a consumer-processing bottleneck from a producer spike, and what would you do next?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the incident context and explain the constraint or impact of rising lag.",
+          "Compare lag, message age, producer and consumer rates, errors, latency, and resource or broker health to isolate the affected component.",
+          "State your own diagnostic decision and targeted action, then name the observable signal used to verify recovery."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +123,65 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d check the dashboards and logs to see what looks wrong. If the queue is behind, I’d probably add more workers or restart something, then keep watching it until it seems better.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name monitoring and possible actions, but provide no incident context or explicit result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "Dashboards, logs, workers, and the suspected issue are not identified or described concretely."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state possible actions in first person, but do not explain a specific decision or contribution."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give no observable outcome; watching until it seems better is not a defined validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address checking observability data and responding to queue lag, but omit how you would isolate its cause."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The response is easy to follow, but the diagnostic steps and basis for choosing an intervention are unclear."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You connect queue lag with monitoring and follow-up observation.",
+            "evidence": "keep watching it until it seems better"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Describe a measurable signal that would confirm the cause and show whether your intervention worked.",
+            "dimension": "impact",
+            "vague_phrases": [
+              "see what looks wrong",
+              "add more workers or restart something",
+              "until it seems better"
+            ],
+            "why": "Without a defined outcome, the interviewer cannot tell whether your diagnosis or response was effective.",
+            "rewrite": "I’d compare [queue depth and age] with [producer and consumer metrics] and inspect logs for errors or throttling. After [specific action], I’d verify that [lag metric] returned to [target] and stayed there."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Which specific metric or log signal would you check first, and how would it help distinguish a producer issue from a consumer issue?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the incident context and state the queue-lag constraint or user impact.",
+          "Compare queue depth and age with producer throughput, consumer throughput, errors, and resource saturation.",
+          "Use logs, traces, or relevant dashboards to identify where work is accumulating and form a testable cause.",
+          "Describe your own targeted intervention and verify it against a defined recovery signal."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

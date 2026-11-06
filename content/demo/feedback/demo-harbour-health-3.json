@@ -1,119 +1,121 @@
 {
   "questionId": "demo-harbour-health-3",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:49:55.037Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d make status unmistakable at a glance: use distinct labels and icons for “Overdue,” “Due today,” “Upcoming,” and “Completed,” with overdue tasks grouped at the top and completed tasks in a separate, collapsed section. I’d show due dates and how late a task is, preserve the completion date, and avoid relying on color alone. In a fictional project, I’d prototype the queue with users, track how often they misclassify task status, and revise the layout until that error rate falls.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe a design and a validation idea, but give no concrete situation, personal implementation, or actual result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You specify status labels, grouping, dates, and a proposed misclassification measure, but no real constraints or implementation details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You state what you would design, but provide no account of actions you personally took."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You propose measuring misclassification, but report no observed result; the scenario is explicitly fictional."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "Your queue design directly addresses overdue and completed tasks, but the answer is hypothetical rather than a concrete example."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The design is easy to follow, but the answer does not explain an actual implementation or outcome."
           }
         },
-        "overall": 1,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give practical ways to distinguish task states.",
+            "evidence": "use distinct labels and icons for “Overdue,” “Due today,” “Upcoming,” and “Completed,”"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the answer in a real project, then state your role, actions, and observed result.",
+            "dimension": "structure",
+            "vague_phrases": ["In a fictional project"],
+            "why": "A hypothetical design omits the behavioral evidence needed to assess your execution and outcome.",
+            "rewrite": "In [project and constraint], I designed the queue by [specific actions I took]. I checked it by [validation method], and [observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What design decision did you personally make, and what evidence would tell you the revised queue reduced status misclassification?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and explain the user or workflow constraint.",
+          "Describe your own frontend design and implementation decisions for overdue and completed states.",
+          "Explain how you made status differences accessible and easy to scan.",
+          "Name an observable validation result and any resulting change."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d separate overdue and completed tasks into clearly labeled groups, show due dates, and use different icons as well as colors so the distinction is accessible. I’d also keep completed tasks out of the active queue by default, while allowing users to view them when needed.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You list design choices, but provide no project context, implementation action, or outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name labels, due dates, icons, and colors, but give no concrete interaction or constraint."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but give no evidence of a decision or contribution in a real project."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result or plan for checking whether the design worked."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address how to distinguish task states, but do not describe a real example or how you validated it."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The design proposal is easy to follow, though its implementation and rationale are not explained."
           }
         },
-        "overall": 2,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You offer several relevant ways to distinguish task states.",
+            "evidence": "show due dates, and use different icons as well as colors"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add a concrete outcome or a defined check for whether users distinguish task states.",
+            "dimension": "impact",
+            "vague_phrases": ["clearly labeled groups", "allowing users to view them when needed"],
+            "why": "The answer describes a design but gives no evidence that it worked or how you would evaluate it.",
+            "rewrite": "I’d check whether users can identify overdue and completed tasks in [usability test or product data], and track [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you test whether users can reliably distinguish overdue tasks from completed ones?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context, users, and constraints for the queue.",
+          "Explain your design choices for overdue and completed states, including accessible cues and viewing behavior.",
+          "Describe your personal contribution and any trade-offs made.",
+          "State how you checked the design and the observable outcome."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +125,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make overdue tasks red and completed tasks green so people can tell them apart.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give a design suggestion but no situation, task context, implementation, or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "Red and green are concrete visual choices, but you give no details about task states or how the queue works."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You use “I’d make,” but provide no personal implementation or decision-making detail."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You predict users can distinguish tasks but state no observed or validated outcome."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address visual distinction between overdue and completed tasks, but do not explain a queue design."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The suggestion is easy to understand, though the design and reasoning are underexplained."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You directly identify a visual distinction for the two task states.",
+            "evidence": "I’d make overdue tasks red and completed tasks green"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain how you would implement and validate the distinction, then name an observable outcome.",
+            "dimension": "impact",
+            "vague_phrases": ["so people can tell them apart"],
+            "why": "Your answer proposes a visual treatment but gives no evidence that it works or how you would check it.",
+            "rewrite": "I’d distinguish overdue and completed tasks with [visual treatment] and validate it by [test or feedback method]; I’d track [observable outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you make the status distinction accessible to users who cannot distinguish red from green?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context and explain the queue’s user need or constraint.",
+          "Describe the status design, including clear labels and accessible cues beyond color.",
+          "State your individual frontend contribution and any relevant trade-offs.",
+          "Explain how you checked usability and report an observable result."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

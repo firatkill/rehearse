@@ -1,119 +1,64 @@
 {
   "questionId": "beh-004",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T16:49:58.485Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "At a logistics software company, I drove the decision to replace nightly full-table exports with a versioned event API. The old setup delayed inventory updates by up to 12 hours and was expensive to rerun, but three downstream teams had built around its file format. I mapped their dependencies, interviewed each team, and compared a few options using freshness, migration effort, and operating cost. Rather than impose a cutover, I published a compatibility plan: the old export would remain available for six months, the API would support the existing fields, and we’d migrate one consumer at a time. I built the first adapter with the most affected team and set up weekly migration reviews. All three teams moved before the deadline; inventory freshness fell to under 10 minutes, and export-related incidents dropped by 40% over the next two quarters. The key was making the long-term benefits clear while giving teams a safe, predictable path to adopt the change.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You establish the legacy problem, explain your decision and rollout actions, and finish with clear results."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name the options’ criteria, migration plan, timeline, and measurable outcomes, but omit the alternatives and technical details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You clearly own the decision, dependency mapping, team interviews, compatibility plan, and initial adapter."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report migration completion, freshness improving to under 10 minutes, and incidents dropping 40% over two quarters."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address the cross-team decision and adoption, but do not describe objections, how they changed your approach, or later costs."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The account is ordered and understandable, but does not explain the alternatives or specific team concerns."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You show a practical, low-risk path for teams to adopt a consequential change.",
+            "evidence": "the old export would remain available for six months, the API would support the existing fields"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Name the alternatives and a specific objection, then explain how input changed your plan.",
+            "dimension": "relevance",
+            "vague_phrases": [
+              "compared a few options using freshness, migration effort, and operating cost",
+              "The key was making the long-term benefits clear"
+            ],
+            "why": "The question asks how you got other teams on board; the answer describes consultation but not disagreement or persuasion in detail.",
+            "rewrite": "I compared [alternative options] against freshness, migration effort, and operating cost. When [team] raised [objection], I adjusted [decision or rollout detail] and documented the trade-off in [decision record]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific objection did a downstream team raise, and what did you change in response?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
-        ],
-        "flags": {
-          "off_topic": false,
-          "too_short": true,
-          "injection_suspected": false
-        }
-      }
-    },
-    {
-      "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
-      "feedback": {
-        "scores": {
-          "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          },
-          "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
-          }
-        },
-        "overall": 2,
-        "strengths": [
-          {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
-          }
-        ],
-        "improvements": [
-          {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
-          }
-        ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
-        "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the cross-team problem and explain why the technical decision mattered beyond your team.",
+          "Compare realistic options and state the trade-offs behind the chosen approach.",
+          "Describe how you gathered input, handled a concrete objection, and recorded and communicated the decision.",
+          "Explain the adoption plan, long-term results, and any later costs or changes."
         ],
         "flags": {
           "off_topic": false,
@@ -123,56 +68,118 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "medium",
+      "answer": "I led a decision to standardize our services on a shared authentication library, even though several teams had their own implementations. I first gathered concerns about migration effort and compatibility, then documented the security and maintenance trade-offs. We agreed on a staged rollout with a transition period, and I helped one team migrate first so others could reuse its guidance. The teams adopted the library over the following months, and it reduced duplicated maintenance work. I got buy-in by involving teams early and being clear about what support they’d receive.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe the decision, actions, and adoption, but the long-term result is thin."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name the shared authentication library and rollout approach, but omit systems, constraints, and measurable details."
           },
           "ownership": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You clearly led the decision, gathered concerns, documented trade-offs, and supported an initial migration."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You report reduced duplicated maintenance, but provide no observable evidence or detail on later costs."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You explain a cross-team decision and buy-in, but do not describe objections, communication, or long-term costs in detail."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The account is easy to follow, though the decision rationale and later outcome remain underspecified."
           }
         },
-        "overall": 3,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You show cross-team leadership and a practical way to reduce migration risk.",
+            "evidence": "I helped one team migrate first so others could reuse its guidance."
           }
         ],
         "improvements": [
           {
+            "point": "Name the alternatives, key objections, and concrete evidence of adoption or maintenance impact.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "the security and maintenance trade-offs",
+              "it reduced duplicated maintenance work"
+            ],
+            "why": "These details would make the decision and its long-term consequences credible and checkable.",
+            "rewrite": "I compared [alternative] with the shared library because [specific security or maintenance constraint]. After [number] teams adopted it, [observable maintenance outcome] showed the effect; the main later cost was [cost]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific objection did another team raise, and how did you change the rollout or decision in response?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the shared technical problem and explain why multiple teams were affected.",
+          "Compare options and trade-offs, then describe how you gathered input and addressed objections.",
+          "Explain how you documented and communicated the decision, and report adoption, later costs, and how you assessed the outcome."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "level": "weak",
+      "answer": "I decided we should use a different framework because it seemed like the best option. Some teams were hesitant, but I explained why it was better and asked them to switch. Eventually they did, and things improved. I think communication was the main reason it worked.",
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "You state a decision and adoption, but the situation, your process, and the result remain largely unexplained."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "The framework, alternatives, reasons, objections, and improvement are all unspecified."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "You say you chose and advocated for the framework, but give no detail about your contribution to gaining agreement."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "You say things improved, but identify no observable outcome or later cost."
+          },
+          "relevance": {
+            "score": 2,
+            "rationale": "You address a cross-team decision and adoption, but omit how you gathered input, documented it, and handled long-term consequences."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "The basic point is understandable, but generic claims leave the decision and its outcome unclear."
+          }
+        },
+        "overall": 1.8,
+        "strengths": [
+          {
+            "point": "You identify a cross-team technical decision and indicate that you took responsibility for advocating it.",
+            "evidence": "I decided we should use a different framework"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Name the framework, alternatives, objections, decision process, and verifiable long-term outcome.",
+            "dimension": "specificity",
+            "vague_phrases": ["a different framework", "the best option", "things improved"],
+            "why": "Without concrete details, the interviewer cannot assess your reasoning or how other teams were brought on board.",
+            "rewrite": "I chose [framework] over [alternative] because [constraint]. After hearing [team]'s concern about [issue], I [change or response], documented the decision in [place], and later checked [outcome or cost]."
+          }
+        ],
+        "follow_up_question": "Which team raised the strongest objection, and what did you change in response?",
+        "model_answer_outline": [
+          "Set the cross-team context and explain why the decision would have lasting consequences.",
+          "Compare the options and describe your reasoning, input gathered, and response to objections.",
+          "Explain how you documented and communicated the decision, then give the long-term outcome and any costs."
         ],
         "flags": {
           "off_topic": false,

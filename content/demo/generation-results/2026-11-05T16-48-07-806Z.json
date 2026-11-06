@@ -1,0 +1,214 @@
+{
+  "generatedAt": "2026-11-05T16:51:56.034Z",
+  "model": "gpt-6-luna",
+  "promptVersion": "feedback-v8",
+  "budgetUsd": 0.2,
+  "reservedOrSpentUsd": 0.011821259999999998,
+  "results": [
+    {
+      "operation": "job:cedar-tools",
+      "costUsd": 0.0001525,
+      "status": "completed"
+    },
+    {
+      "operation": "job:harbour-health",
+      "costUsd": 0.00017109999999999998,
+      "status": "completed"
+    },
+    {
+      "operation": "job:northwind-pay",
+      "costUsd": 0.0001656,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:beh-001",
+      "costUsd": 0.00016519999999999998,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-001:strong",
+      "costUsd": 0.000484,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-001:medium",
+      "costUsd": 0.00039537999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-001:weak",
+      "costUsd": 0.00038948,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:beh-002",
+      "costUsd": 0.00014890000000000001,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-002:strong",
+      "costUsd": 0.00033948,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-002:medium",
+      "costUsd": 0.00039068,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-002:weak",
+      "costUsd": 0.00037898,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:beh-003",
+      "costUsd": 0.0001483,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-003:strong",
+      "costUsd": 0.00032248000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-003:medium",
+      "costUsd": 0.00039358000000000004,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-003:weak",
+      "costUsd": 0.00032577999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:beh-004",
+      "costUsd": 0.0001906,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-004:strong",
+      "costUsd": 0.00035608000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-004:medium",
+      "costUsd": 0.00038848,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-004:weak",
+      "costUsd": 0.00038187999999999997,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:beh-005",
+      "costUsd": 0.0001365,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-005:strong",
+      "costUsd": 0.00033018,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-005:medium",
+      "costUsd": 0.00037248,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:beh-005:weak",
+      "costUsd": 0.00036728,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-1",
+      "costUsd": 0.00011590000000000001,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:strong",
+      "costUsd": 0.00035108000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:medium",
+      "costUsd": 0.00035758000000000003,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-1:weak",
+      "costUsd": 0.00035648,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-2",
+      "costUsd": 0.00016069999999999998,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:strong",
+      "costUsd": 0.00032688,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:medium",
+      "costUsd": 0.00031838,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-2:weak",
+      "costUsd": 0.00030928,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-3",
+      "costUsd": 0.00011159999999999999,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:strong",
+      "costUsd": 0.00037458000000000006,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:medium",
+      "costUsd": 0.00032278,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-3:weak",
+      "costUsd": 0.00029768,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-4",
+      "costUsd": 0.00014230000000000002,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:strong",
+      "costUsd": 0.00032338,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:medium",
+      "costUsd": 0.00036827999999999996,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-4:weak",
+      "costUsd": 0.00031158000000000005,
+      "status": "completed"
+    },
+    {
+      "operation": "answers:demo-cedar-tools-5",
+      "costUsd": 0.0001131,
+      "status": "completed"
+    },
+    {
+      "operation": "feedback:demo-cedar-tools-5:strong",
+      "costUsd": 0.00026478,
+      "status": "completed"
+    }
+  ]
+}

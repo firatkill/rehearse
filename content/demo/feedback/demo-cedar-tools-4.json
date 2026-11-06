@@ -1,119 +1,120 @@
 {
   "questionId": "demo-cedar-tools-4",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:47:35.421Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d first confirm whether the events are truly missing or just delayed, filtered, or attached to the wrong parcel. I’d compare the affected parcel IDs and time window across the event source, ingestion logs, queue retries, and downstream tables, then group gaps by carrier, event type, and ingestion path to find a common cause. In one fictional example, I found that a carrier’s timestamp format change caused 3.2% of scan events to fail parsing. I corrected the parser, replayed the affected raw records into a staging table, and checked for duplicates and ordering before merging them into the event stream. I reconciled counts and sampled parcel timelines afterward; the backfill restored 98% of the expected events, with the remainder documented as unavailable at the source. I’d also add a validation alert so a similar drop is detected sooner.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You move from confirming the gap to finding a cause, repairing and validating the data, and reporting the outcome."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name data sources, a timestamp-format cause, and a 3.2% failure rate, though the example is explicitly fictional."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe concrete actions in first person, but it is framed as what you would do rather than a real contribution."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You give a measurable recovery rate and explain how you would handle the remaining unavailable events."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address investigating, backfilling, validating, and preventing missing parcel events."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The sequence and checks are concise and easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You offer a clear, practical investigation and backfill sequence, including safeguards against duplicates and ordering problems.",
+            "evidence": "checked for duplicates and ordering before merging them into the event stream"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Replace the hypothetical example with a real incident and clarify which decisions and steps you personally owned.",
+            "dimension": "ownership",
+            "vague_phrases": ["In one fictional example"],
+            "why": "A fictional example demonstrates a sound approach but does not establish your contribution or judgment in practice.",
+            "rewrite": "In [real incident], I traced the missing events to [cause], chose [recovery approach], and personally [specific actions]. I validated the backfill by [check], restoring [measured outcome]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "Was the 98% recovery rate from a real incident, and how did you establish the expected event count?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: affected parcels, time window, and constraint or operational impact.",
+          "Explain your investigation across source records, ingestion path, and downstream data to isolate the cause.",
+          "Describe your own repair and replay decisions, including safeguards for duplicates and event ordering.",
+          "Report a verifiable reconciliation result, account for unrecoverable events, and name a prevention or monitoring change."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d identify the parcels and dates affected, then check the source feed and processing logs to see where events stopped appearing. After fixing the cause, I’d replay the missing records and verify that parcel timelines look correct and that the replay didn’t create duplicates. I’d compare event counts before and after and document any records that couldn’t be recovered.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe investigation steps and verification, but give no specific situation or observed outcome."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name feeds, logs, timelines, and event counts, but provide no concrete system, constraint, or example."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer says what you would do, but gives no evidence of your personal contribution to an actual case."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose comparing counts and recording unrecoverable events, but state no result from a completed backfill."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You directly cover investigating and backfilling missing parcel events, but present a process rather than a concrete example."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence from identifying affected records to validating the replay is clear, though it remains hypothetical."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You offer a sensible end-to-end approach, including safeguards against duplicate events.",
+            "evidence": "verify that parcel timelines look correct and that the replay didn’t create duplicates"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Turn this process into a past example with context, your actions, and a verified result.",
+            "dimension": "structure",
+            "vague_phrases": ["After fixing the cause"],
+            "why": "The answer has actions but no actual situation or outcome, so the listener cannot assess how the approach worked.",
+            "rewrite": "In [incident], I identified [affected parcels and dates] and traced the missing events to [cause]. I [specific fix and replay], then verified [observable result, such as reconciled counts and no duplicates]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific cause would you check for first, and how would you confirm the replay had not created duplicate events?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: how missing events were detected, affected parcel range, and constraints.",
+          "Describe how you traced the gap across the source feed and processing path, and what you personally did to address it.",
+          "Explain how you safely replayed events and checked reconciliation, duplicates, and any unrecoverable records."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +124,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d look for the missing events, ask the team what happened, and put them back in the system. Then I’d make sure everything looks okay.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name investigation, team discussion, backfill, and a check, but provide no specific situation or explicit result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give no system, event source, investigation method, constraint, or verifiable check."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You say you would investigate and restore events, but the actions and decisions remain vague."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observable result; saying you would check that things look okay is not an outcome."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address investigating and restoring missing parcel events, but leave the method and validation unclear."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The sequence is understandable, but generic actions leave how you would investigate and verify the backfill unclear."
           }
         },
-        "overall": 3,
+        "overall": 1.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify both investigation and backfill as necessary steps.",
+            "evidence": "look for the missing events, ask the team what happened, and put them back in the system"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Describe a concrete validation check and its observable result.",
+            "dimension": "impact",
+            "vague_phrases": ["make sure everything looks okay", "put them back in the system"],
+            "why": "Without a defined check or outcome, the listener cannot tell whether the backfill worked.",
+            "rewrite": "I’d compare the backfilled events against [source of truth] and verify [specific completeness or consistency check]; the check showed [observable result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What source of truth would you use to identify missing parcel events and verify the backfill?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: how missing events were detected and the constraint on restoring them.",
+          "Explain your own investigation, including the source of truth and how you identified gaps.",
+          "Describe how you backfilled events safely and handled duplicates or ordering concerns.",
+          "Give an observable validation result and any follow-up prevention or monitoring."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

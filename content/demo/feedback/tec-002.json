@@ -1,119 +1,120 @@
 {
   "questionId": "tec-002",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:56:52.561Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "An endpoint is idempotent when repeating the same request has the same effect as sending it once. For a payment-creation endpoint, I’d require an idempotency key for each intended payment. I’d store the key, a hash of the request, and the resulting payment ID and response in a durable database, with a unique constraint on the key. The first request creates the payment; a retry with the same key and same payload returns the original result without charging again. Reuse of the key with a different payload should return a conflict. I’d also make the payment record and key reservation atomic, and use the payment provider’s idempotency mechanism where available. In testing, I’d send concurrent and delayed retries and verify that each key produces exactly one charge and a stable response.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You define idempotency, then explain key storage, duplicate handling, conflicts, atomicity, and validation in a logical sequence."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name a durable database, request hash, unique constraint, payment ID, and provider support, but give no storage or retention details."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You recommend a concrete design and explain key decisions, though you do not connect them to your own experience."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain prevention of duplicate charges and propose verifying one charge and a stable response under retries."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly answer what idempotency means and how to make payment creation safe under retries."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and clearly distinguishes matching retries from reuse of a key with a different payload."
           }
         },
-        "overall": 1,
+        "overall": 3.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a complete, practical duplicate-request strategy, including concurrent handling.",
+            "evidence": "I’d also make the payment record and key reservation atomic"
           }
         ],
         "improvements": [
           {
+            "point": "Specify how long keys remain valid and how expired keys are handled.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["in a durable database"],
+            "why": "Retention affects whether late retries can create duplicate payments after key records are removed.",
+            "rewrite": "I’d retain each key and its result for [retention period], covering the expected retry window, and define how requests are handled after that period."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you choose the idempotency-key retention period, and what would happen to a retry after it expires?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define idempotency as repeated identical requests producing the same effect, and mention common retry causes.",
+          "Describe a unique key, payload matching, durable result storage, and atomic handling of concurrent requests.",
+          "Explain that matching retries return the original result, while key reuse with a different payload is rejected; note retention and provider support."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "Idempotent means a client can repeat a request without causing the operation to happen again. For payment creation, I’d accept an idempotency key, save it with the payment result, and return that result when the same key is retried. I’d also reject a retry if the key is reused with different payment details and use a database uniqueness constraint to handle concurrent requests.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You define idempotency, then describe key storage, repeat handling, and protection against conflicting or concurrent requests."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name a key and database uniqueness constraint, but do not specify storage scope, retention, or the saved response."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You take a position with “I’d,” but do not justify the design or connect it to your experience."
           },
           "impact": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not describe the consequences or user benefit of the retry-safe design."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address payment retries and concurrent duplicates, but do not explain why retries occur or what the duplicate response looks like."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to follow, but how the uniqueness constraint coordinates concurrent requests is left implicit."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a direct definition and a relevant payment-specific design.",
+            "evidence": "For payment creation, I’d accept an idempotency key, save it with the payment result"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain the user-facing consequence and how the original result is returned for simultaneous retries.",
+            "dimension": "impact",
+            "vague_phrases": ["save it with the payment result", "handle concurrent requests"],
+            "why": "That makes clear how your design prevents duplicate charges and what a retrying client receives.",
+            "rewrite": "I’d persist the key and payment result atomically; a uniqueness conflict would make the second request wait or read the existing result, so the client receives the original response without creating another payment."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you handle two requests with the same idempotency key arriving concurrently, and what would each client receive?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define idempotency as repeated identical requests having one effect; mention retries caused by timeouts or double clicks.",
+          "Describe a key scoped to the client or operation, stored durably with a uniqueness constraint and a retention policy.",
+          "Explain atomic handling of concurrent requests, checking that the request payload matches the key, and returning the original result.",
+          "Note trade-offs such as retention limits and behavior when the same key is reused with different payment details."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +124,60 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "It means the request is safe to send more than once. I’d add some checks so duplicate payment requests don’t charge the customer again.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You define repeated requests and mention a safeguard, but do not explain how the checks work."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Some checks” gives no concrete mechanism, storage approach, or response behavior."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You recommend adding checks, but do not justify the choice or describe implementation decisions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You identify avoiding a duplicate charge as a benefit, but give no further consequence or validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address the definition and payment retry safety, but omit why retries happen and how duplicates are handled."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The two sentences are easy to understand, but leave the implementation mechanism unexplained."
           }
         },
-        "overall": 3,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a concise definition and connect idempotency to preventing duplicate payment charges.",
+            "evidence": "duplicate payment requests don’t charge the customer again"
           }
         ],
         "improvements": [
           {
+            "point": "Name the idempotency-key mechanism, its uniqueness guarantee, and how duplicate requests get the original result.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": ["some checks"],
+            "why": "The key mechanism is what makes payment retries safe, especially when concurrent requests arrive.",
+            "rewrite": "I’d require an idempotency key for each payment attempt and store it with a uniqueness constraint. If the key already exists, I’d return the recorded result instead of charging again."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would your storage design handle two requests with the same idempotency key arriving concurrently?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Define idempotency as repeated requests producing the same effect, and mention timeout, network-error, or double-click retries.",
+          "Describe requiring a client-supplied idempotency key and enforcing uniqueness in durable storage alongside the payment result.",
+          "Explain handling concurrent duplicates atomically and returning the original outcome; mention key-retention limits or other trade-offs."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

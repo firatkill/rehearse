@@ -1,119 +1,124 @@
 {
   "questionId": "demo-harbour-health-7",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:51:18.316Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d compare administrative time before and after introducing the queue, using only aggregate operational data. For a representative sample of weeks, I’d record total staff minutes spent on follow-up tasks, the number of items handled, and how many were completed on time. I’d avoid storing names, case details, or message contents in the analysis. I’d also account for workload differences by reporting minutes per item and comparing similar periods or teams. In a pilot, I’d check whether average time per item fell while completion rates stayed steady or improved; for example, a 20% reduction in minutes per item with no drop in timely completion would be promising. I’d document the method and retention period, and report only grouped results.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You present a coherent measurement plan, but no specific situation, personal action taken, or actual result."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You specify aggregate measures, normalization, comparison periods, and privacy safeguards, but provide no concrete pilot data."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but give no evidence of actions or decisions you personally made."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "A 20% reduction is framed as a hypothetical success criterion, not an observed outcome."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address measuring time savings without sensitive information, but describe a proposed approach rather than a completed example."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The proposed measurement plan is concise, logically ordered, and easy to understand."
           }
         },
-        "overall": 1,
+        "overall": 2.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You propose an observable, privacy-conscious way to assess whether the queue saves time.",
+            "evidence": "I’d compare administrative time before and after introducing the queue, using only aggregate operational data."
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Ground the plan in a specific pilot, your contribution, and its observed outcome.",
+            "dimension": "structure",
+            "vague_phrases": ["In a pilot, I’d check whether average time per item fell"],
+            "why": "The question asks how you would measure success, but a concrete example would show how you applied the method and what it found.",
+            "rewrite": "For [pilot context], I chose to compare [similar periods or teams] using aggregate staff minutes per item and timely completion rates. We found [observed result], without collecting names, case details, or message contents."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What would you do if time per item fell but timely completion rates declined?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: the follow-up queue pilot and the constraint against collecting sensitive information.",
+          "Explain your contribution to defining an aggregate, privacy-conscious measurement method.",
+          "Compare staff minutes per item across representative, comparable periods or teams, while tracking timely completion.",
+          "State the observed result and how it informed the decision to continue or adjust the queue."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d track staff time spent on follow-ups and the number of items completed before and after the queue is introduced. I’d use totals or averages rather than personal or case-level details, and compare similar periods so changes in workload don’t distort the result. I’d also check that time savings don’t come at the cost of missed or delayed follow-ups.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe a measurement approach, but provide no situation, personal action taken, or observed result."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name aggregate measures and a comparison, but give no concrete measurement method, timeframe, or thresholds."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You outline what you would track, but do not describe a specific decision or action you personally took."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose checking time savings and missed follow-ups, but report no observed outcome or validation result."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address measuring administrative time while protecting sensitive data, but leave the actual check and result hypothetical."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The proposed measures and privacy constraint are clear, though the comparison and safeguards lack implementation detail."
           }
         },
-        "overall": 2,
+        "overall": 2.3,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify privacy-preserving measures and a relevant safety check.",
+            "evidence": "I’d use totals or averages rather than personal or case-level details"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Anchor the plan in your role, a defined comparison, and an observable result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "before and after the queue is introduced",
+              "check that time savings don’t come at the cost"
+            ],
+            "why": "A measurement proposal alone does not show your contribution or whether the queue actually saved time.",
+            "rewrite": "I would compare aggregate follow-up time and completed items across similar periods, using totals rather than personal or case-level data. I would also monitor missed or delayed follow-ups; the observed change was [result]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you collect or estimate staff time in a way that avoids recording patient or case-level information?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the follow-up queue context and the constraint against collecting sensitive information.",
+          "Describe a privacy-preserving method for estimating staff time, alongside completed follow-ups.",
+          "Compare similar periods and check for missed or delayed follow-ups as a guardrail.",
+          "Explain your contribution and report an observable result or a clear validation plan."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +128,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d ask staff whether the queue feels faster and look at whether the backlog seems smaller. I wouldn’t collect sensitive information, just general feedback.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You name a possible check, but provide no situation, action taken, or outcome."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention staff feedback and backlog size, but neither has a defined measurement method."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what you would do, but give no concrete personal actions or decisions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You state no observed result or validation outcome."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address measuring time savings without sensitive data, but leave the measurement approach underdeveloped."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The proposed checks are understandable, though how they indicate saved administrative time is unstated."
           }
         },
-        "overall": 3,
+        "overall": 2.2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You respect the privacy constraint and suggest two relevant signals.",
+            "evidence": "whether the backlog seems smaller"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Define a privacy-safe baseline and compare measurable queue handling time before and after.",
+            "dimension": "impact",
+            "vague_phrases": ["feels faster", "seems smaller", "general feedback"],
+            "why": "Anecdotal impressions or backlog size alone do not show whether administrative time was saved.",
+            "rewrite": "I’d compare aggregate time spent processing follow-ups before and after launch, without storing patient-level details, and validate the change through [measurement method]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you establish a reliable time-savings baseline without recording patient-level activity?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set context: explain the queue workflow and the privacy constraint.",
+          "Describe your own measurement design, using aggregated or de-identified operational data.",
+          "Compare a defined pre-launch baseline with post-launch results.",
+          "Report an observable outcome and explain how you would validate it without sensitive information."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

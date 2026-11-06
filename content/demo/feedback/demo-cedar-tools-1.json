@@ -1,119 +1,134 @@
 {
   "questionId": "demo-cedar-tools-1",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T23:46:37.599Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I’d treat uploads as at-least-once and make the endpoint idempotent. Each scanner would send a stable device ID, a unique upload or batch ID, and the records’ original timestamps. I’d enforce a uniqueness constraint on `(device_id, upload_id)`—and, if records can overlap across batches, on a stable record ID too—so retries return the prior result rather than creating duplicates. I’d validate and persist each batch transactionally, acknowledge only after durable storage, and return per-record results for partial failures. For offline scanners, I’d accept delayed events, preserve both event time and server receipt time, and define limits for batch size and retention. In one system I designed, we load-tested retries and replayed a week of queued uploads; duplicate records fell to zero, and the endpoint sustained about 1,200 records per second without losing acknowledged data.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You explain the design and validation result clearly, but provide little context about the original system or constraint."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You name stable identifiers, uniqueness constraints, transactional persistence, delayed-event handling, and measurable load-test results."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You say you designed the system, but do not distinguish your decisions and work from others’ contributions."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report zero duplicate records, throughput of about 1,200 records per second, and no loss of acknowledged data."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly address repeated and delayed scanner uploads with a concrete endpoint design and verification."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The design choices and outcomes are concise, ordered, and easy to follow."
           }
         },
-        "overall": 1,
+        "overall": 3.7,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You explain a robust strategy for retries and duplicate prevention.",
+            "evidence": "I’d treat uploads as at-least-once and make the endpoint idempotent."
+          },
+          {
+            "point": "You include concrete verification outcomes.",
+            "evidence": "duplicate records fell to zero, and the endpoint sustained about 1,200 records per second"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
+            "point": "Briefly establish the system context and the offline-upload constraint before describing your design.",
+            "dimension": "structure",
             "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "why": "That context would make the trade-offs and relevance of your design easier to assess.",
+            "rewrite": "In one system I designed, scanners could queue uploads while offline and replay them later. I needed to handle retries without duplicating records or acknowledging data that was not durably stored."
+          },
+          {
+            "point": "Clarify which design decisions and validation work you personally owned.",
+            "dimension": "ownership",
+            "vague_phrases": ["In one system I designed"],
+            "why": "The answer identifies a system you designed but does not separate your contribution from team work.",
+            "rewrite": "I chose the idempotency keys and persistence rules, then [describe your role] in the load test and replay test."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you verify that acknowledged uploads were durably stored and that retries did not create duplicates?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: scanners may queue batches offline and resend them later.",
+          "Explain the idempotency scheme, stable identifiers, and how overlapping records are deduplicated.",
+          "Describe persistence, acknowledgments, delayed timestamps, and handling of partial failures.",
+          "State your personal contribution and report observable validation outcomes."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I’d make the endpoint safe to retry by requiring a device identifier and idempotency key, then store those with a uniqueness constraint. I’d preserve the scanner’s event timestamp so delayed uploads aren’t mistaken for current events, and acknowledge only after the batch is saved. I’d also set batch-size limits and return clear errors for invalid records. I’d test repeated submissions and reconnect scenarios before rollout.",
       "feedback": {
         "scores": {
           "structure": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You give design actions and a test plan, but no context or observable result from an example."
           },
           "specificity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You name concrete mechanisms, including idempotency keys, a uniqueness constraint, timestamps, and batch limits."
           },
           "ownership": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You describe what you would do, but do not identify personal contribution to an implemented design."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You propose testing before rollout but report no result or defined validation criteria."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You address repeated and delayed scanner uploads, but the question asks how you would design the endpoint and the answer leaves key behavior unspecified."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The mechanisms are easy to follow, though the handling of duplicate requests and partial batch failures is not explained."
           }
         },
-        "overall": 2,
+        "overall": 2.5,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify useful retry-safety and delayed-upload concerns.",
+            "evidence": "make the endpoint safe to retry by requiring a device identifier and idempotency key"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Organize the response around the constraint, request handling, and a measurable validation result.",
+            "dimension": "structure",
+            "vague_phrases": [
+              "I’d test repeated submissions and reconnect scenarios before rollout."
+            ],
+            "why": "Your answer lists sound design choices but lacks context and an observable outcome, so the listener cannot assess whether they worked.",
+            "rewrite": "Because scanners may reconnect with delayed batches, I’d use a device identifier and idempotency key with a uniqueness constraint, preserve event timestamps, and acknowledge only saved batches. I’d validate [duplicate handling and reconnect results] before rollout."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How would you handle a batch where some records are valid and others fail validation?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the offline-upload constraint and explain the delivery and ordering requirements.",
+          "Describe idempotency, deduplication, timestamp preservation, validation, and acknowledgement behavior.",
+          "Explain how retries and partial failures are handled, including relevant trade-offs.",
+          "Give a concrete verification plan and an observable result or success criterion."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +138,61 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I’d make sure the endpoint can handle lots of uploads and avoid duplicates. The scanners could send their data when they come back online, and we’d add some validation and monitoring.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You identify the constraint and mention possible actions, but give no context or result."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "“Lots of uploads,” validation, and monitoring are generic, with no concrete design details."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You describe what “we’d” do, but do not clarify your own decisions or contribution."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You do not state an outcome or how you would verify that the endpoint worked."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address offline scanners and duplicate prevention, but do not explain how the endpoint handles repeated uploads."
           },
           "clarity": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "The answer is easy to follow, but the mechanism for avoiding duplicates is left unstated."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You identify the central reliability concern and connect it to scanners reconnecting after downtime.",
+            "evidence": "The scanners could send their data when they come back online"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Explain how you would verify delivery, duplicate handling, and validation after reconnects.",
+            "dimension": "impact",
+            "vague_phrases": ["add some validation and monitoring"],
+            "why": "The answer names monitoring but gives no observable outcome or defined validation plan.",
+            "rewrite": "I’d track accepted, rejected, and duplicate uploads, then test retries after a scanner reconnects. I’d verify [success criterion] using [monitoring or test results]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What identifier would you use to recognize a repeated upload, and how would you verify that retries are handled correctly?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set the context: scanners may buffer uploads while offline and retry after reconnecting.",
+          "Describe a concrete endpoint design for identifying duplicates and validating incoming data.",
+          "Explain your own decisions and how retries or failures are handled.",
+          "Give an observable outcome or a specific plan to test and monitor reliability."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }

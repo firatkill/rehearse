@@ -1,119 +1,123 @@
 {
   "questionId": "beh-005",
-  "provenance": "pending-owner-generation",
-  "model": null,
-  "generatedAt": null,
+  "provenance": "live",
+  "model": "gpt-6-luna",
+  "generatedAt": "2026-11-05T16:50:19.977Z",
   "variants": [
     {
-      "level": "weak",
-      "answer": "We worked on the project and it went well.",
+      "level": "strong",
+      "answer": "I shipped a bulk-invite flow for an internal collaboration tool. We expected admins to paste a list of email addresses and invite everyone at once; in practice, users thought the button would also add people to existing teams. I noticed the mismatch in support tickets, then reviewed session recordings and spoke with four admins. I changed the button label from “Invite” to “Send invitations,” added a preview showing which team each person would join, and made the team-selection step explicit. Over the next month, tickets about misplaced invitations fell from 18 to 5, and successful completion of the flow rose from 72% to 89%.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You establish the flow and user-expectation gap, explain your investigation and changes, then report clear results."
           },
           "specificity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You identify the feature, signal sources, four admins, exact UI changes, and month-over-month metrics."
           },
           "ownership": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe your investigation and changes with clear personal actions, but do not distinguish your role from others’."
           },
           "impact": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You report measurable reductions in misplaced-invitation tickets and increased flow completion after the changes."
           },
           "relevance": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain what users expected, how you discovered the mismatch, and what you changed."
           },
           "clarity": {
-            "score": 1,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "The answer is concise and ordered, with a clear gap, investigation, response, and outcome."
           }
         },
-        "overall": 1,
+        "overall": 3.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You give a concrete user-expectation mismatch and show how you investigated it.",
+            "evidence": "users thought the button would also add people to existing teams"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Clarify which decisions and implementation work you personally owned versus any team contributions.",
+            "dimension": "ownership",
+            "vague_phrases": [
+              "I changed the button label from “Invite” to “Send invitations,” added a preview showing which team each person would join, and made the team-selection step explicit."
+            ],
+            "why": "The answer uses “I” for the work, but the listener cannot tell whether you made the design decisions or implemented them.",
+            "rewrite": "I decided to clarify the button label and team choice after reviewing the recordings and speaking with four admins, then [describe what you personally implemented or coordinated]."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "How did you verify that the improvements held beyond the first month?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "State the feature’s intended behavior and the specific mismatch users experienced.",
+          "Name the evidence that revealed the mismatch and how you investigated it.",
+          "Explain the change you chose and your personal role in making it.",
+          "Report measurable outcomes and what you learned or would monitor next."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": true,
+          "too_short": false,
           "injection_suspected": false
         }
       }
     },
     {
       "level": "medium",
-      "answer": "I worked with my team to clarify the problem. I compared two approaches, explained the trade-off and delivered the smaller change. We checked the result together and agreed what to improve next.",
+      "answer": "I shipped a new onboarding checklist, but some users expected checking off a task to complete the underlying setup automatically. We learned this from support feedback and a few user interviews. I updated the checklist text to clarify what each task did and added links to the relevant setup screens. Afterward, we saw fewer questions about the checklist, though I didn’t have a clean measurement of how much it improved completion.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You describe the checklist, the expectation gap, the change, and an outcome, though the result is thin."
           },
           "specificity": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You name support feedback, interviews, and the copy and link changes, but provide no concrete counts or details."
           },
           "ownership": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "You clearly own the wording and link changes, but do not explain how you chose them."
           },
           "impact": {
             "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You report fewer questions but give no measurement, and acknowledge lacking a clear completion measure."
           },
           "relevance": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 4,
+            "rationale": "You directly explain what users expected, how you found out, and what you changed."
           },
           "clarity": {
-            "score": 2,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 3,
+            "rationale": "The sequence is easy to understand, but the evidence of improvement and its measurement remain unclear."
           }
         },
-        "overall": 2,
+        "overall": 2.8,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You clearly identify the mismatch between the checklist and users’ expectations.",
+            "evidence": "some users expected checking off a task to complete the underlying setup automatically"
           }
         ],
         "improvements": [
           {
-            "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "point": "Add a concrete signal or explain how you would validate the change.",
+            "dimension": "impact",
+            "vague_phrases": ["we saw fewer questions about the checklist"],
+            "why": "The reported improvement is not quantified, and you say completion was not measured cleanly.",
+            "rewrite": "After the change, [support question count or rate] shifted from [baseline] to [result]. I would also track checklist completion and setup completion to confirm the change helped users finish setup."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What signal would you track now to verify that the revised checklist helps users complete setup?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the checklist and the specific expectation users had.",
+          "Explain how support feedback or interviews revealed the mismatch.",
+          "Describe your decision and the specific copy or navigation changes.",
+          "Give an observable result or a clear plan to measure checklist and setup completion."
         ],
         "flags": {
           "off_topic": false,
@@ -123,60 +127,64 @@
       }
     },
     {
-      "level": "strong",
-      "answer": "I led a small team through a delivery problem. I measured the baseline, compared two approaches and chose the smaller reversible change. I tested it with 12 users and reduced completion time from 8 minutes to 3. I documented the limitations and checked the outcome again after two weeks.",
+      "level": "weak",
+      "answer": "I once shipped a feature that confused people. We found out from feedback and fixed it by making it clearer. Users seemed happier after that.",
       "feedback": {
         "scores": {
           "structure": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You mention a shipped feature, feedback, and a fix, but the change and its outcome are only implied."
           },
           "specificity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 1,
+            "rationale": "You give no feature details, concrete feedback, or description of what you changed."
           },
           "ownership": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You say the feature was shipped and fixed, but do not identify your own actions or decisions."
           },
           "impact": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "You report that users seemed happier, an unverified impression without a concrete result or validation."
           },
           "relevance": {
             "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "rationale": "You address a feature users found confusing and mention how you learned of it and responded, but omit meaningful detail."
           },
           "clarity": {
-            "score": 3,
-            "rationale": "Provisional sample: owner-generated feedback is pending."
+            "score": 2,
+            "rationale": "The sequence is understandable, but generic claims leave the actual user problem and fix unclear."
           }
         },
-        "overall": 3,
+        "overall": 2,
         "strengths": [
           {
-            "point": "Use a concrete example to explain your approach.",
-            "evidence": null
+            "point": "You cover the basic arc of discovering a mismatch and responding to it.",
+            "evidence": "We found out from feedback and fixed it"
           }
         ],
         "improvements": [
           {
+            "point": "Name the feature, the user signal, your change, and how you checked the result.",
             "dimension": "specificity",
-            "vague_phrases": [],
-            "point": "Add a concrete detail.",
-            "why": "A specific action makes your contribution easier to understand.",
-            "rewrite": "I compared two options, chose one for a stated reason and checked the result."
+            "vague_phrases": [
+              "a feature that confused people",
+              "from feedback",
+              "making it clearer"
+            ],
+            "why": "Those details would show what users expected, how you took ownership, and whether the fix worked.",
+            "rewrite": "I shipped [feature] so users could [intended action], but [specific feedback or observed behaviour] showed they expected [different behaviour]. I changed [specific interface or interaction] and checked whether [measurable outcome] improved."
           }
         ],
-        "follow_up_question": "What would you change if you faced the same situation again?",
+        "follow_up_question": "What specific feedback or user behaviour showed the feature was confusing?",
         "model_answer_outline": [
-          "Describe the context and constraint.",
-          "Explain your own action and the trade-off.",
-          "State the outcome and what you learned."
+          "Set up the feature and the intended user behaviour.",
+          "Describe the gap and the concrete signal that revealed it.",
+          "Explain your specific change and how you validated its effect."
         ],
         "flags": {
           "off_topic": false,
-          "too_short": false,
+          "too_short": true,
           "injection_suspected": false
         }
       }
