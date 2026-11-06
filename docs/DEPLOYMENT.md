@@ -18,3 +18,7 @@ The owner has APP_EDITION=demo, stable distinct 32+ character SESSION_SECRET and
 - Owner confirmed Chrome/Safari microphone and voice preview, and Safari VoiceOver, on the deployed site. No formal ≤500 ms voice-preview measurement was taken; TC-194 remains a known gap. Other browsers/devices are not claimed manually verified.
 
 All live work above was run by the owner. V-52 made no paid calls. The static sample report is a labelled fixture, separate from the live-provenance demo corpus. Rollback/toggle experiments were not performed because the owner authorised read-only production verification only.
+
+## v2.0.0 production recheck
+
+After PR #41 merged, health returned 200 at commit `600b814`, version 2.0.0, edition demo and llmMode none. The six public routes, fresh script nonces and a complete three-question Northwind text session passed again with Sample feedback/report and zero CSP violations, page errors or 5xx. Main CI 42138583562 passed before tagging and publishing v2.0.0. No hosting settings changed.
