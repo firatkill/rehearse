@@ -52,7 +52,7 @@ export function createOpenAiProvider(): LlmProvider {
           ...(env.CHAT_MODEL_SUPPORTS_TEMPERATURE ? { temperature: LLM.TEMPERATURE } : {}),
           providerOptions: {
             openai: {
-              strictJsonSchema: false,
+              strictJsonSchema: args.strictJsonSchema ?? false,
               ...(env.CHAT_REASONING_EFFORT ? { reasoningEffort: env.CHAT_REASONING_EFFORT } : {}),
             },
           },
