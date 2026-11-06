@@ -1,7 +1,10 @@
 'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { BUDGET } from '@/lib/config';
 export function BudgetBanner() {
+  const t = useT();
+
   const [level, setLevel] = useState('none');
   useEffect(() => {
     const controller = new AbortController();
@@ -36,10 +39,8 @@ export function BudgetBanner() {
   if (level === 'none') return null;
   return (
     <p role="status" className="bg-accent-tint px-4 py-3 text-center text-sm">
-      {level === '100'
-        ? 'You’ve reached your monthly AI budget.'
-        : 'You’ve used at least 80% of your monthly AI budget.'}{' '}
-      Practice remains available. Check your provider’s billing for the final amount.
+      {level === '100' ? t('ui.dynamic.38') : t('ui.dynamic.39')}{' '}
+      <T id="components.layout.budget.banner.1" />
     </p>
   );
 }

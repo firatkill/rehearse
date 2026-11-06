@@ -38,6 +38,7 @@ export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unkno
       }),
     };
   },
+  7: (file) => ({ ...EnvelopeSchema.parse(file), formatVersion: 8 }),
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({

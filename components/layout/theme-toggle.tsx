@@ -1,4 +1,6 @@
 'use client';
+import { useT } from '@/lib/i18n/context';
+
 import { useSyncExternalStore } from 'react';
 import { Moon, Sun } from 'lucide-react';
 
@@ -20,12 +22,14 @@ function snapshot() {
   );
 }
 export function ThemeToggle() {
+  const t = useT();
+
   const dark = useSyncExternalStore(subscribe, snapshot, () => false);
   return (
     <button
       type="button"
       className="theme-toggle"
-      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-label={dark ? t('ui.dynamic.41') : t('ui.dynamic.42')}
       onClick={() => {
         const theme = dark ? 'light' : 'dark';
         document.documentElement.dataset.theme = theme;

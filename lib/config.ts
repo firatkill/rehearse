@@ -1,3 +1,8 @@
+export const LANGUAGES = ['en', 'tr'] as const;
+export type Language = (typeof LANGUAGES)[number];
+export const LANGUAGE_LOCALES = { en: 'en-GB', tr: 'tr-TR' } as const;
+// Enable session creation once V-61–V-63 are complete.
+export const LANGUAGE_FEATURES = { turkishSessions: false };
 export const ROLES = [
   'frontend',
   'backend',
@@ -18,6 +23,7 @@ export const DIMENSIONS = [
 ] as const;
 
 export const SETUP_DEFAULTS = {
+  language: 'en',
   role: 'full-stack',
   seniority: 'mid',
   types: ['behavioral', 'technical-concepts'],
@@ -172,10 +178,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 7,
-  RECORD_SCHEMA_VERSION: 5, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 8,
+  RECORD_SCHEMA_VERSION: 6, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 7,
+  EXPORT_FORMAT_VERSION: 8,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 

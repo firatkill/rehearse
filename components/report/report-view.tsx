@@ -1,15 +1,11 @@
 'use client';
+import { useLabels } from '@/lib/i18n/use-labels';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 import { formatSessionDate } from '@/lib/date-time';
 import { LocalSessionTime } from '@/components/common/local-session-time';
 import { DIMENSIONS, STORAGE } from '@/lib/config';
-import {
-  DIMENSION_LABELS,
-  ROLE_LABELS,
-  SENIORITY_LABELS,
-  QUESTION_TYPE_LABELS,
-} from '@/lib/labels';
 import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
 import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
 import { bestAnswer } from '@/lib/storage/attempts';
@@ -37,6 +33,11 @@ export function ReportView({
   onRetry?: () => void;
   online?: boolean;
 }) {
+  const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS, DIMENSION_LABELS } = useLabels();
+
+  const t = useT();
+  const { language } = useI18n();
+
   const answers = allAnswers.map(bestAnswer);
   const practice = useDimensionPractice(session.setup);
   const root = useRef<HTMLDivElement>(null);
@@ -75,29 +76,39 @@ export function ReportView({
   };
   return (
     <div ref={root} className="report-view">
-      <h1 className="report-label">Session report</h1>
+      <h1 className="report-label">
+        <T id="components.report.report.view.1" />
+      </h1>
       <p className="font-mono text-sm">
         {source === 'sample' ? (
-          formatSessionDate(session.createdAt)
+          formatSessionDate(session.createdAt, language)
         ) : (
           <LocalSessionTime value={session.createdAt} />
         )}{' '}
         · {ROLE_LABELS[session.setup.role]}, {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
         {session.setup.types.map((t) => QUESTION_TYPE_LABELS[t]).join(', ')} · {answered}/
-        {session.questions.length} answered · Seed <SafeText text={session.seed} />
+        {session.questions.length}
+        <T id="components.report.report.view.2" />
+        <SafeText text={session.seed} />
       </p>
       {session.status === 'in_progress' && (
         <div className="banner">
-          <p>This session isn’t finished.</p>
+          <p>
+            <T id="components.report.report.view.3" />
+          </p>
           <Link className="inline-flex min-w-11 items-center" href={`/session/${session.id}`}>
-            Resume session
+            <T id="components.report.report.view.4" />
           </Link>
         </div>
       )}
       <section className="report-overview">
-        <h2 className="sr-only">Summary</h2>
+        <h2 className="sr-only">
+          <T id="components.report.report.view.5" />
+        </h2>
         {summaryLoading ? (
-          <p>Writing your summary…</p>
+          <p>
+            <T id="components.report.report.view.6" />
+          </p>
         ) : summary ? (
           <>
             <p className="report-headline">
@@ -106,38 +117,45 @@ export function ReportView({
             <p>
               <SafeText text={summary.paragraph} />
             </p>
-            <p className="report-meta">Written by the language model from your scores.</p>
+            <p className="report-meta">
+              <T id="components.report.report.view.7" />
+            </p>
           </>
         ) : (
           <>
             <p>
-              A written summary isn’t available for this session. The numbers below are calculated
-              from your answers.
+              <T id="components.report.report.view.8" />
             </p>
             {onRetry && (
               <Button data-print="hide" disabled={!online} onClick={onRetry}>
-                Try again
+                <T id="components.report.report.view.9" />
               </Button>
             )}
           </>
         )}
         <dl className="report-stats">
           <div>
-            <dt>Average</dt>
+            <dt>
+              <T id="components.history.progress.overview.17" />
+            </dt>
             <dd>
               {values.overallMean?.toFixed(1) ?? '—'}
               <span> / 4</span>
             </dd>
           </div>
           <div>
-            <dt>Answered</dt>
+            <dt>
+              <T id="components.report.report.view.11" />
+            </dt>
             <dd>
               {answered}
               <span> / {session.questions.length}</span>
             </dd>
           </div>
           <div>
-            <dt>Retries</dt>
+            <dt>
+              <T id="components.report.report.view.12" />
+            </dt>
             <dd>
               {answers.reduce(
                 (sum, answer) => sum + Math.max(0, answer.attemptRecords.length - 1),
@@ -146,23 +164,32 @@ export function ReportView({
             </dd>
           </div>
         </dl>
-        {values.overallMean === null && <p>No answers were scored in this session.</p>}
+        {values.overallMean === null && (
+          <p>
+            <T id="components.report.report.view.13" />
+          </p>
+        )}
         {values.scoredCount > 1 && values.best && values.lowest && (
           <p className="report-meta">
-            Best: Question {values.best.index + 1} ({values.best.overall.toFixed(1)}) · Lowest:
-            Question {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})
+            <T id="components.report.report.view.14" />
+            {values.best.index + 1} ({values.best.overall.toFixed(1)}
+            <T id="components.report.report.view.15" />
+            {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})
           </p>
         )}
       </section>
       {values.focus.length > 0 && (
-        <section className="report-practice" aria-label="Next practice priorities">
+        <section className="report-practice" aria-label={t('ui.dynamic.43')}>
           {values.focus.slice(0, 2).map((d, index) => (
             <article key={d} className={index === 0 ? 'report-focus stage' : 'report-focus'}>
               <h2 className="report-label">
-                {index === 0 ? 'Practise this next' : 'Also worth a session'}
+                {index === 0 ? t('ui.dynamic.44') : t('ui.dynamic.45')}
               </h2>
               <h3>{DIMENSION_LABELS[d]}</h3>
-              <p className="font-mono">Average {values.dimensionMeans[d]?.toFixed(1)} / 4</p>
+              <p className="font-mono">
+                <T id="components.report.report.view.16" />
+                {values.dimensionMeans[d]?.toFixed(1)} / 4
+              </p>
               <p>
                 <SafeText
                   text={
@@ -179,8 +206,8 @@ export function ReportView({
                 data-print="hide"
               >
                 {index === 0
-                  ? `Practise ${DIMENSION_LABELS[d]} · 3 questions`
-                  : `Practise ${DIMENSION_LABELS[d]}`}
+                  ? t('ui.template.10', { v0: DIMENSION_LABELS[d] })
+                  : t('ui.template.11', { v0: DIMENSION_LABELS[d] })}
               </Button>
             </article>
           ))}
@@ -190,32 +217,42 @@ export function ReportView({
         <div role="alert">
           <p>{practice.error}</p>
           <Link className="inline-flex min-h-11 items-center" href="/setup">
-            Open setup
+            <T id="components.report.report.view.17" />
           </Link>
         </div>
       )}
       <section className="report-heat" aria-labelledby="report-heat-heading">
         <div className="report-section-heading">
-          <h2 id="report-heat-heading">Every answer at a glance</h2>
-          <p>Best attempt shown · darker is better</p>
+          <h2 id="report-heat-heading">
+            <T id="components.report.report.view.18" />
+          </h2>
+          <p>
+            <T id="components.report.report.view.19" />
+          </p>
         </div>
         <div
           className="report-table-scroll"
           tabIndex={0}
           role="region"
-          aria-label="Scores by question and dimension, scroll horizontally"
+          aria-label={t('ui.dynamic.46')}
         >
           <table>
-            <caption className="sr-only">Scores by question and dimension</caption>
+            <caption className="sr-only">
+              <T id="components.report.report.view.20" />
+            </caption>
             <thead>
               <tr>
-                <th scope="col">Question</th>
+                <th scope="col">
+                  <T id="components.report.report.view.21" />
+                </th>
                 {DIMENSIONS.map((d) => (
                   <th key={d} scope="col">
                     {DIMENSION_LABELS[d]}
                   </th>
                 ))}
-                <th scope="col">Tries</th>
+                <th scope="col">
+                  <T id="components.report.report.view.22" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -251,35 +288,50 @@ export function ReportView({
         <TrendChart values={values} />
       </section>
       <section className="report-card">
-        <h2>Delivery</h2>
+        <h2>
+          <T id="components.report.report.view.23" />
+        </h2>
         <p>
-          Total words {values.delivery.totalWords}
+          <T id="components.report.report.view.24" />
+          {values.delivery.totalWords}
           {values.delivery.avgWpm !== null && (
-            <> · Average pace {values.delivery.avgWpm} words per minute</>
+            <>
+              <T id="components.report.report.view.25" />
+              {values.delivery.avgWpm}
+              <T id="components.report.report.view.26" />
+            </>
           )}{' '}
-          · Filler words {values.delivery.totalFillers}
+          <T id="components.report.report.view.27" />
+          {values.delivery.totalFillers}
           {values.delivery.longestPauseMs !== null && (
-            <> · Longest pause {(values.delivery.longestPauseMs / 1000).toFixed(1)} s</>
+            <>
+              <T id="components.report.report.view.28" />
+              {(values.delivery.longestPauseMs / 1000).toFixed(1)} s
+            </>
           )}
         </p>
       </section>
       {summary && (
         <section className="report-card">
-          <h2>Next practice</h2>
+          <h2>
+            <T id="components.report.report.view.29" />
+          </h2>
           <p>
             <SafeText text={summary.next_practice} />
           </p>
         </section>
       )}
       <section className="report-card report-answers">
-        <h2>Answers</h2>
+        <h2>
+          <T id="components.report.report.view.30" />
+        </h2>
         {session.questions.map((question, index) => {
           const answer = answers.find((a) => a.index === index);
           const label = answer?.feedback
             ? `${answer.feedback.overall.toFixed(1)} / 4`
             : answer?.status === 'skipped'
-              ? 'Skipped'
-              : 'Not scored';
+              ? t('components.report.report.view.32')
+              : t('ui.dynamic.47');
           return (
             <details
               id={`report-answer-${index}`}
@@ -287,7 +339,8 @@ export function ReportView({
               className="border-border border-b py-3"
             >
               <summary>
-                Question {index + 1}: <SafeText text={question.prompt.slice(0, 80)} />
+                <T id="components.report.report.view.31" />
+                {index + 1}: <SafeText text={question.prompt.slice(0, 80)} />
                 {question.prompt.length > 80 ? '…' : ''} · {label}
                 {answer &&
                   ` · ${answer.attemptRecords.length} ${answer.attemptRecords.length === 1 ? 'try' : 'tries'}`}
@@ -296,7 +349,9 @@ export function ReportView({
                 {answer?.feedback ? (
                   <FeedbackCard answer={answer} question={question} focus={false} />
                 ) : answer?.status === 'skipped' ? (
-                  <p>Skipped</p>
+                  <p>
+                    <T id="components.report.report.view.32" />
+                  </p>
                 ) : (
                   answer && (
                     <>
@@ -308,8 +363,11 @@ export function ReportView({
                   )
                 )}
                 {answer?.followUpRecords.map((item) => (
-                  <section key={item.id} aria-label={`Follow-up ${item.ordinal}`}>
-                    <h3>Follow-up {item.ordinal}</h3>
+                  <section key={item.id} aria-label={t('ui.template.13', { v0: item.ordinal })}>
+                    <h3>
+                      <T id="components.report.report.view.33" />
+                      {item.ordinal}
+                    </h3>
                     <p>
                       <SafeText text={item.prompt} />
                     </p>
@@ -340,14 +398,14 @@ export function ReportView({
             window.print();
           }}
         >
-          Save as PDF
+          <T id="components.report.report.view.34" />
         </Button>
         <Button data-print="hide" variant="text" onClick={download}>
-          Download Markdown
+          <T id="components.report.report.view.35" />
         </Button>
         {source === 'sample' ? (
           <Link className="ui-button report-main-action" data-variant="primary" href="/setup">
-            Start a practice session
+            <T id="components.history.history.list.4" />
           </Link>
         ) : (
           <>
@@ -363,10 +421,10 @@ export function ReportView({
                 }
               }}
             >
-              Practise the same questions again
+              <T id="components.report.report.view.37" />
             </Link>
             <Link className="ui-button report-new-action" data-variant="secondary" href="/setup">
-              New session
+              <T id="components.report.report.view.38" />
             </Link>
           </>
         )}

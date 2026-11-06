@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { randomUUID } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
@@ -31,7 +32,7 @@ it('TC-175 UT-14 upgrade from DB 5 preserves existing stores and adds job data s
   const old = await requestResult(request);
   old.close();
   const db = await openDb(name);
-  expect(db.version).toBe(7);
+  expect(db.version).toBe(STORAGE.DB_VERSION);
   expect([...db.objectStoreNames]).toEqual([
     'answers',
     'generatedQuestions',
@@ -53,7 +54,7 @@ it('TC-175 SQLite exports generated metadata; every repository imports it as rea
     const output = JobGenerationSchema.parse(mockJobpostOutput(jobpostUserMessage(jobText, 8)));
     const saved = jobs.commitGeneration(post.id, output, output.questions, 'mock');
     const source = await createSqliteRepository(db).exportAll('test');
-    expect(source.formatVersion).toBe(7);
+    expect(source.formatVersion).toBe(STORAGE.EXPORT_FORMAT_VERSION);
     expect(source.generatedQuestions).toHaveLength(8);
     for (const repo of [
       createMemoryRepository(),

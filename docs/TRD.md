@@ -1347,6 +1347,10 @@ SQLite migration 003 adds `job_posts(id PRIMARY KEY,value JSON)` and `generated_
 
 JobPostRecord schemaVersion=1: UUID id, ISO createdAt/updatedAt, text (1–20,000 trimmed chars), nullable sourceUrl, draft|ready status, role/company/location ≤160 chars, requirements ≤8 strings (1–250), about ≤1,000, practiceRole from existing ROLES. GeneratedQuestionRecord schemaVersion=1: `gen-UUID` id, UUID jobPostId, text 20–320, four-type enum, groundingQuote 1–1,000, listenFor exactly three strings 10–160, ISO createdAt, model 1–160, promptVersion, origin generated|import. Session/answer schema remains 5 and snapshots store the normal question shape. Editing ready post creates a new draft id.
 
+### 7.11 Session language (V-60, D-167)
+
+Current session/answer `schemaVersion=6`, IndexedDB `DB_VERSION=8`, export `formatVersion=8`. Append migrations; old validators remain versioned so shipped migrations retain their original interpretation. Session `setup.language` is `en | tr`, defaulting to `en` on legacy input; new persisted sessions always contain it. Answer records advance to 6 without changing answer contents. SQLite migration 005 updates v5 JSON records; validated reads also migrate old values. Export migration 7 advances the envelope and record migrations handle each bundle. Existing import provenance and proof stripping are unchanged.
+
 ## 8. Module boundaries
 
 | Module                                                                                                                                                                                                                                                                                                                  | May be imported by client code  | Notes                                                                                                                                                                                             |
@@ -1359,6 +1363,12 @@ JobPostRecord schemaVersion=1: UUID id, ISO createdAt/updatedAt, text (1–20,00
 | `lib/env.ts`, `lib/logger.ts`, `lib/request.ts`, `lib/hash.ts`, `lib/llm/**`, `lib/prompts/**`, `lib/ratelimit/**`, `lib/session/**`, `lib/questions/bank.ts`, `lib/questions/select.ts`, `lib/feedback/generate.ts`, `lib/feedback/normalize.ts`, `lib/feedback/evidence.ts`, `lib/summary/generate.ts`, `lib/cost/**` | No                              | Each starts with `import 'server-only'` (except pure helpers used by scripts, which are imported only by server modules; `normalize.ts` and `evidence.ts` are pure and also unit-tested directly) |
 
 ESLint enforces the "No" column with `no-restricted-imports` for files in `components/**`, `hooks/**` and `app/**/` client components (`'use client'` files are matched by a custom rule or by placing client components under `components/`). `lib/feedback/rubric.ts`, `lib/metrics/**` and `lib/speech/**` must not import `next/*`.
+
+### 8.1 Selected-language UI (V-60, D-166/D-168)
+
+`lib/i18n/language.ts`, `messages.ts`, `context.tsx`, `labels.ts`, `use-labels.ts`, `duration.ts` and `link.tsx` are client-safe; `server.ts` is server-only. Message keys derive from the English catalogue; Turkish must contain exactly those keys and matching interpolation names. Server rendering loads one catalogue and passes it to the provider. A user language change dynamically imports only the requested catalogue. No runtime i18n dependency; no `Accept-Language` or `navigator.language` inference. Proxy overwrites `x-rehearse-language` from the explicit query (`tr` only in full) and `x-rehearse-path`; server lookup uses persisted full session language where present. `rehearse-language` stores only the explicit setup preference, and `rehearse-setup` includes language. Session resume temporarily uses its stored language. Internal links carry the explicit full language; external links remain unchanged.
+
+Config: `LANGUAGES=['en','tr']`, `LANGUAGE_LOCALES={en:'en-GB',tr:'tr-TR'}`, `SETUP_DEFAULTS.language='en'`; `LANGUAGE_FEATURES.turkishSessions=false` until V-63 completes. NFR-07 stays 160,000/250,000 bytes. StartRequest accepts optional validated language; missing means English. Demo Turkish requests return `DEMO_ONLY`; staged full requests return `VALIDATION_FAILED`. Token payload gains optional `l` (`en|tr`), signed with the other scope fields. Existing tokens without it retain English semantics. Language must not change English prompt bytes or versions.
 
 ## 9. Speech recognition (Web Speech API)
 

@@ -1,6 +1,7 @@
+import { T } from '@/lib/i18n/context';
 import { demoJobs } from '@/lib/demo/content';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 import { getEnv } from '@/lib/env';
 import { SetupForm } from '@/components/setup/setup-form';
 
@@ -14,15 +15,27 @@ export default async function SetupPage({
   const query = await searchParams;
   return (
     <div className="setup-page">
-      <h1>What are you preparing for?</h1>
-      <p>Pick one. You can change the voice, speed and length before you start.</p>
+      <h1>
+        <T id="app.setup.page.1" />
+      </h1>
+      <p>
+        <T id="app.setup.page.2" />
+      </p>
       {env.DEMO_MODE === 'off' ? (
         <section className="space-y-4">
-          <h2>The practice room is offline for maintenance</h2>
-          <p>You can still read the sample report and your saved sessions.</p>
+          <h2>
+            <T id="app.setup.page.3" />
+          </h2>
+          <p>
+            <T id="app.setup.page.4" />
+          </p>
           <div className="flex gap-4">
-            <Link href="/sample">See the sample report</Link>
-            <Link href="/progress">Open progress</Link>
+            <Link href="/sample">
+              <T id="components.layout.banners.2" />
+            </Link>
+            <Link href="/progress">
+              <T id="app.setup.page.6" />
+            </Link>
           </div>
         </section>
       ) : (

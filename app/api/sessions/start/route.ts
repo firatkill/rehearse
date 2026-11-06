@@ -4,7 +4,7 @@ import { demoFeedback, demoJobs } from '@/lib/demo/content';
 import { randomUUID } from 'node:crypto';
 import { getEnv } from '@/lib/env';
 import { AppError } from '@/lib/errors';
-import { SESSION } from '@/lib/config';
+import { SESSION, LANGUAGE_FEATURES } from '@/lib/config';
 import { readJsonBody, checkOrigin, jsonError } from '@/lib/request';
 import { StartRequestSchema, StartResponseSchema } from '@/lib/api/contracts';
 import { getInterviewBank as getBank } from '@/lib/demo/catalog';
@@ -31,6 +31,10 @@ export async function POST(req: Request): Promise<Response> {
     const parsed = StartRequestSchema.safeParse(raw);
     if (!parsed.success) return jsonError('VALIDATION_FAILED', requestId);
     const body = parsed.data;
+    const language = body.language ?? 'en';
+    if (language === 'tr' && env.APP_EDITION === 'demo') return jsonError('DEMO_ONLY', requestId);
+    if (language === 'tr' && !LANGUAGE_FEATURES.turkishSessions)
+      return jsonError('VALIDATION_FAILED', requestId);
     const bank = getBank();
     const seed = body.seed ?? newSeed();
     const demoJob =
@@ -83,6 +87,7 @@ export async function POST(req: Request): Promise<Response> {
       token = signToken(
         {
           v: 1,
+          l: language,
           sid: sessionId,
           iat,
           exp,

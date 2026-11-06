@@ -5,10 +5,12 @@ import {
   LegacySessionRecordSchema,
   V3AnswerRecordSchema as AnswerRecordSchema,
   V4AnswerRecordSchema as CurrentAnswerRecordSchema,
-  AnswerRecordSchema as LatestAnswerRecordSchema,
+  V5AnswerRecordSchema as LatestAnswerRecordSchema,
+  AnswerRecordSchema as V6AnswerRecordSchema,
   V3SessionRecordSchema as SessionRecordSchema,
   V4SessionRecordSchema as CurrentSessionRecordSchema,
-  SessionRecordSchema as LatestSessionRecordSchema,
+  V5SessionRecordSchema as LatestSessionRecordSchema,
+  SessionRecordSchema as V6SessionRecordSchema,
 } from './schema';
 import { completeAttempt } from './attempts';
 export type Migration = {
@@ -107,6 +109,21 @@ export const MIGRATIONS: readonly Migration[] = [
       };
     },
   },
+  {
+    version: 8,
+    upgrade(_db, tx) {
+      for (const name of ['sessions', 'answers']) {
+        const request = tx.objectStore(name).openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          const migrated = migrateRecord(cursor.value);
+          if (migrated !== null) cursor.update(migrated);
+          cursor.continue();
+        };
+      }
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {
@@ -150,6 +167,19 @@ export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>
     return LatestAnswerRecordSchema.parse({
       ...CurrentAnswerRecordSchema.parse(input),
       schemaVersion: 5,
+    });
+  },
+  5: (input) => {
+    const session = LatestSessionRecordSchema.safeParse(input);
+    if (session.success)
+      return V6SessionRecordSchema.parse({
+        ...session.data,
+        schemaVersion: 6,
+        setup: { ...session.data.setup, language: 'en' },
+      });
+    return V6AnswerRecordSchema.parse({
+      ...LatestAnswerRecordSchema.parse(input),
+      schemaVersion: 6,
     });
   },
 };

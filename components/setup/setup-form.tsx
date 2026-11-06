@@ -1,4 +1,7 @@
 'use client';
+import { useLabels } from '@/lib/i18n/use-labels';
+import { T, useT, useI18n } from '@/lib/i18n/context';
+import { languageHref } from '@/lib/i18n/language';
 import { APP_EDITION } from '@/lib/edition';
 import { JobEntry } from '@/components/jobpost/job-entry';
 import { DemoJobEntry } from './demo-job-entry';
@@ -6,17 +9,16 @@ import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   ROLES,
+  LANGUAGE_FEATURES,
   SENIORITIES,
   QUESTION_TYPES,
   SESSION,
   SETUP_DEFAULTS,
   type QuestionType,
 } from '@/lib/config';
-import { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } from '@/lib/labels';
 import { startSession } from '@/lib/api/client';
 import { SetupSchema, type Setup } from '@/lib/storage/schema';
 import { newSessionRecord } from '@/lib/storage/new-session';
-import { DIMENSION_LABELS } from '@/lib/labels';
 import { useRepository } from '@/hooks/use-repository';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Button } from '@/components/ui/button';
@@ -45,11 +47,6 @@ function subscribe(listener: () => void) {
 function serverPreferences() {
   return null;
 }
-const descriptions: Record<QuestionType, string> = {
-  behavioral: 'Stories about your work: conflict, deadlines, mistakes, ownership.',
-  'technical-concepts': 'Explain an idea, its trade-offs, and when you would use it.',
-  'system-design-lite': 'Sketch a small system: requirements, parts, data flow, trade-offs.',
-};
 
 export function SetupForm({
   demoMode,
@@ -62,6 +59,16 @@ export function SetupForm({
   initialSeed: string | null;
   demoJob?: string;
 }) {
+  const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS, DIMENSION_LABELS } = useLabels();
+
+  const t = useT();
+  const { selectLanguage } = useI18n();
+
+  const descriptions: Record<QuestionType, string> = {
+    behavioral: t('ui.dynamic.122'),
+    'technical-concepts': t('ui.dynamic.123'),
+    'system-design-lite': t('ui.dynamic.124'),
+  };
   const router = useRouter();
   const repository = useRepository();
   const stored = useSyncExternalStore(subscribe, readPreferences, serverPreferences);
@@ -79,6 +86,10 @@ export function SetupForm({
   const selected = changed ?? preferences;
   const setup: Setup = {
     ...selected,
+    language:
+      APP_EDITION === 'demo' || !LANGUAGE_FEATURES.turkishSessions
+        ? 'en'
+        : (selected.language ?? 'en'),
     mode: capabilities && !capabilities.recognition ? 'text' : selected.mode,
     readAloud:
       (capabilities && !capabilities.synthesis) ||
@@ -105,6 +116,7 @@ export function SetupForm({
         : {}),
     };
     setChanged(next);
+    if (patch.language) void selectLanguage(patch.language);
     try {
       localStorage.setItem('rehearse-setup', JSON.stringify(next));
     } catch {
@@ -124,6 +136,7 @@ export function SetupForm({
     setPending(true);
     const result = await startSession({
       ...(demoJob ? { demoJob } : {}),
+      language: sessionSetup.language ?? 'en',
       role: sessionSetup.role,
       seniority: sessionSetup.seniority,
       types: sessionSetup.types,
@@ -144,7 +157,12 @@ export function SetupForm({
         setPanel({ kind: 'limiter_unavailable' });
       else
         setError(
-          `Couldn’t start the session. Check your connection and try again.${result.kind === 'http' ? ` (Reference ${result.error.requestId.slice(0, 8)})` : ''}`,
+          t('ui.template.38', {
+            v0:
+              result.kind === 'http'
+                ? t('ui.template.39', { v0: result.error.requestId.slice(0, 8) })
+                : '',
+          }),
         );
       return;
     }
@@ -152,9 +170,9 @@ export function SetupForm({
     const now = new Date().toISOString();
     try {
       await repository.createSession(newSessionRecord(data, sessionSetup, now, reason));
-      router.push(`/session/${data.sessionId}`);
+      router.push(languageHref(`/session/${data.sessionId}`, sessionSetup.language ?? 'en'));
     } catch {
-      setError('Couldn’t start the session. Check your connection and try again.');
+      setError(t('ui.dynamic.125'));
       setPending(false);
     }
   }
@@ -162,17 +180,22 @@ export function SetupForm({
     <>
       {setup.dimension && (
         <p className="banner">
-          Practising {DIMENSION_LABELS[setup.dimension]} · 3 questions. Changing the role, level,
-          types or length returns to all dimensions.
+          <T id="components.setup.setup.form.1" />
+          {DIMENSION_LABELS[setup.dimension]}
+          <T id="components.setup.setup.form.2" />
         </p>
       )}
       <section className="setup-warmup" aria-labelledby="warmup-heading">
         <div>
-          <h2 id="warmup-heading">Quick warm-up</h2>
+          <h2 id="warmup-heading">
+            <T id="components.setup.setup.form.3" />
+          </h2>
           <p>
-            {SESSION.LENGTHS[0]} questions with your last settings: {ROLE_LABELS[setup.role]} ·{' '}
-            {SENIORITY_LABELS[setup.seniority]} · {setup.mode === 'voice' ? 'Voice' : 'Typing'} ·
-            English
+            {SESSION.LENGTHS[0]}
+            <T id="components.setup.setup.form.4" />
+            {ROLE_LABELS[setup.role]} · {SENIORITY_LABELS[setup.seniority]} ·{' '}
+            {setup.mode === 'voice' ? t('components.setup.voice.picker.3') : t('ui.dynamic.126')}
+            <T id="components.setup.setup.form.5" />
           </p>
         </div>
         <Button
@@ -182,7 +205,7 @@ export function SetupForm({
             void submit(undefined, { ...setup, length: SESSION.LENGTHS[0] });
           }}
         >
-          Start in one click
+          <T id="components.setup.setup.form.6" />
         </Button>
       </section>
       <CapabilityNotice capabilities={capabilities} />
@@ -193,26 +216,69 @@ export function SetupForm({
           void submit();
         }}
       >
+        {(APP_EDITION === 'demo' || LANGUAGE_FEATURES.turkishSessions) && (
+          <fieldset className="setup-fieldset">
+            <legend>{t('language.label')}</legend>
+            <label className="setup-choice">
+              <input
+                type="radio"
+                name="language"
+                value="en"
+                checked={setup.language === 'en'}
+                onChange={() => {
+                  change({ language: 'en' });
+                }}
+              />
+              {t('language.en')}
+            </label>
+            <label className="setup-choice">
+              <input
+                type="radio"
+                name="language"
+                value="tr"
+                checked={setup.language === 'tr'}
+                disabled={APP_EDITION === 'demo'}
+                aria-describedby={APP_EDITION === 'demo' ? 'turkish-edition' : undefined}
+                onChange={() => {
+                  change({ language: 'tr' });
+                }}
+              />
+              {t('language.tr')}
+              {APP_EDITION === 'demo' && <> · {t('language.full')}</>}
+            </label>
+            {APP_EDITION === 'demo' && <p id="turkish-edition">{t('language.unavailable')}</p>}
+          </fieldset>
+        )}
         {demoJob && (
           <p>
-            Selected example job: <SafeText text={demoJob} />
+            <T id="components.setup.setup.form.7" />
+            <SafeText text={demoJob} />
           </p>
         )}
         <div className="setup-paths">
           <section className="setup-card setup-job" id="job-post" aria-labelledby="job-heading">
-            <Eyebrow>Got an interview?</Eyebrow>
-            <h2 id="job-heading">Practise for a job post</h2>
+            <Eyebrow>
+              <T id="components.setup.setup.form.8" />
+            </Eyebrow>
+            <h2 id="job-heading">
+              <T id="components.setup.setup.form.9" />
+            </h2>
             <p>
-              Paste the link or the text of the post. Rehearse will build questions from what the
-              role asks for.
+              <T id="components.setup.setup.form.10" />
             </p>
             {APP_EDITION === 'demo' ? <DemoJobEntry /> : <JobEntry />}
           </section>
           <section className="setup-card setup-role" aria-labelledby="role-heading">
-            <Eyebrow>General practice</Eyebrow>
-            <h2 id="role-heading">Practise by role</h2>
+            <Eyebrow>
+              <T id="components.setup.setup.form.11" />
+            </Eyebrow>
+            <h2 id="role-heading">
+              <T id="components.setup.setup.form.12" />
+            </h2>
             <fieldset className="setup-fieldset">
-              <legend>Role</legend>
+              <legend>
+                <T id="components.setup.setup.form.13" />
+              </legend>
               <div className="setup-choices">
                 {ROLES.map((role) => (
                   <label key={role} className="setup-choice">
@@ -231,7 +297,9 @@ export function SetupForm({
               </div>
             </fieldset>
             <fieldset className="setup-fieldset">
-              <legend>Seniority</legend>
+              <legend>
+                <T id="components.setup.setup.form.14" />
+              </legend>
               <div className="setup-choices">
                 {SENIORITIES.map((seniority) => (
                   <label key={seniority} className="setup-choice">
@@ -250,7 +318,9 @@ export function SetupForm({
               </div>
             </fieldset>
             <fieldset className="setup-fieldset setup-types">
-              <legend>Question types</legend>
+              <legend>
+                <T id="components.setup.setup.form.15" />
+              </legend>
               {QUESTION_TYPES.map((type, index) => (
                 <div key={type}>
                   <label className="setup-choice">
@@ -277,15 +347,17 @@ export function SetupForm({
               ))}
               {validation && (
                 <p id="question-types-error" role="alert">
-                  Choose at least one question type.
+                  <T id="components.setup.setup.form.16" />
                 </p>
               )}
             </fieldset>
           </section>
         </div>
-        <section className="setup-options" aria-label="Session options">
+        <section className="setup-options" aria-label={t('ui.dynamic.127')}>
           <fieldset className="setup-fieldset">
-            <legend>Length</legend>
+            <legend>
+              <T id="components.room.delivery.metrics.2" />
+            </legend>
             {SESSION.LENGTHS.map((length) => (
               <label key={length} className="setup-choice">
                 <input
@@ -296,19 +368,21 @@ export function SetupForm({
                     change({ length });
                   }}
                 />
-                {length === 3 ? '3 questions (about 10 minutes)' : '5 questions (about 20 minutes)'}
+                {t(length === 3 ? 'setup.length.short' : 'setup.length.long')}
               </label>
             ))}
           </fieldset>
           <fieldset className="setup-fieldset">
-            <legend>Answer by</legend>
+            <legend>
+              <T id="components.setup.setup.form.18" />
+            </legend>
             {(['voice', 'text'] as const).map((mode) => (
               <label key={mode} className="setup-choice">
                 <input
                   type="radio"
                   name="mode"
                   aria-label={
-                    mode === 'voice' ? 'Voice: answer out loud' : 'Text: type your answers'
+                    mode === 'voice' ? t('ui.dynamic.128') : t('components.jobpost.job.post.22')
                   }
                   disabled={mode === 'voice' && capabilities !== null && !capabilities.recognition}
                   aria-describedby={
@@ -321,9 +395,11 @@ export function SetupForm({
                     change({ mode });
                   }}
                 />
-                <span aria-hidden="true">{mode === 'voice' ? 'Voice' : 'Typing'}</span>
+                <span aria-hidden="true">
+                  {mode === 'voice' ? t('components.setup.voice.picker.3') : t('ui.dynamic.126')}
+                </span>
                 <span className="sr-only">
-                  {mode === 'voice' ? 'Voice: answer out loud' : 'Text: type your answers'}
+                  {mode === 'voice' ? t('ui.dynamic.128') : t('components.jobpost.job.post.22')}
                 </span>
               </label>
             ))}
@@ -331,24 +407,24 @@ export function SetupForm({
         </section>
         {capabilities !== null && !capabilities.recognition && (
           <p id="voice-unavailable" className="setup-note">
-            Not available in this browser.
+            <T id="components.setup.setup.form.19" />
           </p>
         )}
         {setup.mode === 'voice' && <MicCheck />}
         {capabilities?.synthesis && (
           <details className="setup-interviewer" open>
-            <summary>Interviewer voice and speed</summary>
+            <summary>
+              <T id="components.setup.setup.form.20" />
+            </summary>
             <VoicePicker setup={selected} {...voiceState} onChange={change} />
           </details>
         )}
         {initialSeed !== null && (
           <p className="setup-note">
             {validSeed ? (
-              <SafeText
-                text={`Using seed ${initialSeed}. You’ll get the same questions as the session that used it.`}
-              />
+              <SafeText text={t('ui.template.42', { v0: initialSeed })} />
             ) : (
-              'That seed isn’t valid, so a new one will be used.'
+              t('ui.dynamic.129')
             )}
           </p>
         )}
@@ -373,16 +449,14 @@ export function SetupForm({
         ) : (
           <div className="setup-submit">
             <p className="setup-note">
-              {APP_EDITION === 'demo'
-                ? 'Feedback is pre-written sample data. No AI is called.'
-                : 'No daily IP quotas. Monthly budget warnings never block practice.'}
+              {APP_EDITION === 'demo' ? t('ui.dynamic.130') : t('ui.dynamic.131')}
             </p>
             <Button className="min-h-11" type="submit" disabled={pending}>
               {pending
-                ? 'Starting…'
+                ? t('ui.dynamic.132')
                 : demoMode === 'readonly'
-                  ? 'Start session without feedback'
-                  : 'Start session'}
+                  ? t('ui.dynamic.133')
+                  : t('ui.dynamic.134')}
             </Button>
           </div>
         )}

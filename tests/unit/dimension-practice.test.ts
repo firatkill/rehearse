@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { expect, it, vi } from 'vitest';
 import { IDBFactory } from 'fake-indexeddb';
 import { DIMENSIONS, ROLES, SENIORITIES, QUESTION_TYPES } from '@/lib/config';
@@ -12,6 +13,8 @@ import { SessionRecordSchema } from '@/lib/storage/schema';
 import { createMemoryRepository } from '@/lib/storage/memory-repository';
 import { buildExport, readImport } from '@/lib/storage/export';
 import { record, answer } from '../fixtures/records';
+const { language: _language, ...legacySetup } = record.setup;
+expect(_language).toBe('en');
 import { startBody } from '../fixtures/api';
 it('TC-151 UT-03 every dimension has three eligible unique questions for every role and seniority', () => {
   const bank = getBank().questions;
@@ -59,7 +62,7 @@ it('TC-151 UT-14/15 v4 history upgrades and dimension setup survives export/impo
   const name = crypto.randomUUID();
   const old = await openDb(name, MIGRATIONS.slice(0, 4));
   const tx = old.transaction(['sessions', 'answers'], 'readwrite');
-  tx.objectStore('sessions').put({ ...record, schemaVersion: 4 });
+  tx.objectStore('sessions').put({ ...record, setup: legacySetup, schemaVersion: 4 });
   tx.objectStore('answers').put({ ...answer, schemaVersion: 4 });
   await transactionDone(tx);
   closeDb(old);
@@ -67,7 +70,7 @@ it('TC-151 UT-14/15 v4 history upgrades and dimension setup survives export/impo
   const migrated = SessionRecordSchema.parse(
     await requestResult(db.transaction('sessions').objectStore('sessions').get(record.id)),
   );
-  expect(migrated.schemaVersion).toBe(5);
+  expect(migrated.schemaVersion).toBe(STORAGE.RECORD_SCHEMA_VERSION);
   expect(migrated.setup.dimension).toBeNull();
   expect(migrated.questions).toEqual(record.questions);
   closeDb(db);
@@ -76,7 +79,7 @@ it('TC-151 UT-14/15 v4 history upgrades and dimension setup survives export/impo
   await repo.createSession({ ...record, setup: { ...record.setup, dimension: 'impact' } });
   await repo.putAnswer(answer);
   const exported = await buildExport(repo, 'test', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(7);
+  expect(exported.formatVersion).toBe(STORAGE.EXPORT_FORMAT_VERSION);
   const imported = await readImport(new File([JSON.stringify(exported)], 'focused.json'));
   expect(imported.invalid).toBe(0);
   expect(imported.bundles[0]?.session.setup.dimension).toBe('impact');

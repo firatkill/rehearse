@@ -86,7 +86,7 @@ it('TC-160 SQLite survives connection restart and retains migration version/WAL'
   try {
     expect(await createSqliteRepository(second).getSession(record.id)).toEqual(record);
     expect(second.pragma('journal_mode', { simple: true })).toBe('wal');
-    expect(second.pragma('user_version', { simple: true })).toBe(4);
+    expect(second.pragma('user_version', { simple: true })).toBe(5);
   } finally {
     second.close();
   }
@@ -117,7 +117,7 @@ it('TC-160 TC-164 UT-14 migration 2 preserves version-1 SQLite sessions', async 
   const upgraded = openSqlite(path);
   try {
     expect(await createSqliteRepository(upgraded).getSession(record.id)).toEqual(record);
-    expect(upgraded.pragma('user_version', { simple: true })).toBe(4);
+    expect(upgraded.pragma('user_version', { simple: true })).toBe(5);
     expect(upgraded.prepare('SELECT * FROM cost_events').all()).toEqual([]);
   } finally {
     upgraded.close();

@@ -1,4 +1,5 @@
 'use client';
+import { T } from '@/lib/i18n/context';
 import dynamic from 'next/dynamic';
 const BudgetBanner = dynamic(() => import('./budget-banner').then((m) => m.BudgetBanner));
 import {
@@ -70,7 +71,7 @@ export function Shell({
     <ShellContext.Provider value={api}>
       <div className={room ? 'stage room-shell' : undefined}>
         <a href="#main-content" className="skip-link">
-          Skip to content
+          <T id="components.layout.shell.1" />
         </a>
         <DemoBanner edition={edition} />
         {edition === 'full' && path !== '/sample' && <BudgetBanner />}
@@ -85,7 +86,7 @@ export function Shell({
                 disabled={!endHandler}
                 onClick={() => endHandler?.()}
               >
-                End session
+                <T id="components.layout.shell.2" />
               </button>
             )
           }
@@ -97,8 +98,7 @@ export function Shell({
           blocked={banners.blocked || storage === 'blocked'}
         />
         <noscript>
-          Rehearse needs JavaScript for the interview room. The sample report and the write-up work
-          without it.
+          <T id="components.layout.shell.3" />
         </noscript>
         <main
           id="main-content"

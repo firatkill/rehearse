@@ -1,8 +1,9 @@
 'use client';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { formatLocalTime } from '@/lib/date-time';
-import { DATE_TIME } from '@/lib/config';
+import { LANGUAGE_LOCALES } from '@/lib/config';
 import { useState } from 'react';
-import Link from 'next/link';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 import { Button } from '@/components/ui/button';
 import { SafeText } from '@/components/common/safe-text';
 import { SESSION } from '@/lib/config';
@@ -31,73 +32,74 @@ export function FeedbackError({
   onRetry: () => void;
   onSave: () => void;
 }) {
+  const t = useT();
+  const { language } = useI18n();
+
   const [now] = useState(() => Date.now());
   let reset = '';
   if (resetAt) {
     const date = new Date(resetAt);
     const minutes = (date.getTime() - now) / 60000;
-    const relative = new Intl.RelativeTimeFormat(DATE_TIME.LOCALE, { numeric: 'auto' }).format(
-      Math.ceil(minutes < 60 ? minutes : minutes / 60),
-      minutes < 60 ? 'minute' : 'hour',
-    );
-    reset = `${formatLocalTime(date)} (${relative})`;
+    const relative = new Intl.RelativeTimeFormat(LANGUAGE_LOCALES[language], {
+      numeric: 'auto',
+    }).format(Math.ceil(minutes < 60 ? minutes : minutes / 60), minutes < 60 ? 'minute' : 'hour');
+    reset = `${formatLocalTime(date, language)} (${relative})`;
   }
-  let title = 'Something went wrong on our side';
-  let body = `Your answer is saved. Try again in a minute. (Reference ${requestId?.slice(0, 8) ?? ''})`;
+  let title = t('ui.dynamic.53');
+  let body = t('ui.template.22', { v0: requestId?.slice(0, 8) ?? '' });
   let retry = true;
   let restart = false;
   let focus: 'heading' | 'retry' | 'save' = 'retry';
   if (network) {
-    title = 'Connection lost';
-    body = 'Your answer is saved. Check your connection and try again.';
+    title = t('ui.dynamic.54');
+    body = t('ui.dynamic.55');
   } else
     switch (code) {
       case 'PROVIDER_ERROR':
       case 'PROVIDER_TIMEOUT':
       case 'FEEDBACK_INVALID':
-        title = 'Feedback didn’t arrive';
-        body = `The language model didn’t respond in time or sent something we couldn’t use. Your answer is saved. ${retries > 0 ? `You have ${retries} retries left in this session.` : 'You have no spare retries left; trying again uses an attempt meant for a later question.'}`;
+        title = t('ui.dynamic.56');
+        body = t('ui.template.23', {
+          v0: retries > 0 ? t('ui.template.24', { v0: retries }) : t('ui.dynamic.57'),
+        });
         break;
       case 'LIMITER_UNAVAILABLE':
-        title = 'Feedback didn’t arrive';
-        body =
-          'The service that keeps the demo within its free limits isn’t responding. Your answer is saved.';
+        title = t('ui.dynamic.56');
+        body = t('ui.dynamic.58');
         break;
       case 'SESSION_FEEDBACK_EXHAUSTED':
-        title = 'No feedback attempts left in this session';
-        body =
-          'Your answer is saved. You can finish the session without feedback for the remaining questions.';
+        title = t('ui.dynamic.59');
+        body = t('ui.dynamic.60');
         retry = false;
         focus = 'save';
         break;
       case 'FEEDBACK_QUOTA_EXCEEDED':
-        title = 'You’ve reached today’s feedback limit';
-        body = `Each visitor can get ${feedbackPerDay} answers scored per day. It resets at ${reset}. Your answer is saved.`;
+        title = t('ui.dynamic.61');
+        body = t('ui.template.25', { v0: feedbackPerDay, v1: reset });
         retry = false;
         focus = 'heading';
         break;
       case 'GLOBAL_CAP_REACHED':
-        title = 'The demo has reached its daily limit';
-        body = `Rehearse scores up to ${globalPerDay} answers a day across all visitors so it stays free. It resets at ${reset}. Your answer is saved, and you can run Rehearse yourself from the GitHub repository.`;
+        title = t('ui.dynamic.62');
+        body = t('ui.template.26', { v0: globalPerDay, v1: reset });
         retry = false;
         focus = 'heading';
         break;
       case 'DEMO_ONLY':
-        title = 'Live AI is available in the full version';
-        body =
-          'The demo uses pre-written sample feedback. Run the full version yourself for live coaching.';
+        title = t('ui.dynamic.63');
+        body = t('ui.dynamic.64');
         retry = false;
         focus = 'heading';
         break;
       case 'DEMO_READONLY':
-        title = 'Feedback is paused on the live demo';
-        body = 'Your answer is saved. You can continue without feedback.';
+        title = t('ui.dynamic.65');
+        body = t('ui.dynamic.66');
         retry = false;
         focus = 'heading';
         break;
       case 'TOKEN_EXPIRED':
-        title = 'This session’s feedback window has closed';
-        body = `Feedback is available for ${SESSION.TOKEN_TTL_S / 3600} hours after a session starts. Your answer is saved; you can finish without feedback or start a new session.`;
+        title = t('ui.dynamic.67');
+        body = t('ui.template.27', { v0: SESSION.TOKEN_TTL_S / 3600 });
         retry = false;
         restart = true;
         focus = 'heading';
@@ -105,8 +107,8 @@ export function FeedbackError({
       case 'TOKEN_INVALID':
       case 'TOKEN_MISSING':
       case 'TOKEN_SCOPE':
-        title = 'Feedback isn’t available for this session';
-        body = 'Your answer is saved. You can finish without feedback or start a new session.';
+        title = t('ui.dynamic.68');
+        body = t('ui.dynamic.69');
         retry = false;
         restart = true;
         focus = 'heading';
@@ -129,15 +131,15 @@ export function FeedbackError({
             disabled={!online}
             onClick={onRetry}
           >
-            Try again
+            <T id="components.report.report.view.9" />
           </Button>
         )}
         <Button data-phase-focus={focus === 'save' || undefined} onClick={onSave}>
-          Save without feedback
+          <T id="components.room.feedback.error.2" />
         </Button>
         {restart && (
           <Link className="inline-flex min-w-11 items-center" href="/setup">
-            Start a new session
+            <T id="components.report.report.loader.4" />
           </Link>
         )}
       </div>

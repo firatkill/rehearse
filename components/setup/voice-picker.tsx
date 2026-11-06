@@ -1,4 +1,5 @@
 'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { TTS } from '@/lib/config';
 import type { Setup } from '@/lib/storage/schema';
 import { groupVoices, pickVoice, voiceAccentLabel } from '@/lib/speech/voices';
@@ -17,6 +18,8 @@ export function VoicePicker({
   loading: boolean;
   onChange: (patch: Partial<Setup>) => void;
 }) {
+  const t = useT();
+
   const { voice, fellBack } = pickVoice(voices, setup.voiceURI);
   const groups = groupVoices(voices);
   const empty = !loading && groups.length === 0;
@@ -24,7 +27,9 @@ export function VoicePicker({
   const [previewError, setPreviewError] = useState(false);
   return (
     <fieldset className="voice-picker">
-      <legend className="sr-only">Interviewer voice</legend>
+      <legend className="sr-only">
+        <T id="components.setup.voice.picker.1" />
+      </legend>
       <label className="voice-toggle">
         <input
           type="checkbox"
@@ -34,11 +39,13 @@ export function VoicePicker({
             onChange({ readAloud: event.target.checked });
           }}
         />
-        Read questions aloud
+        <T id="components.setup.voice.picker.2" />
       </label>
       <div className="voice-grid">
         <div className="voice-field">
-          <label htmlFor="interviewer-voice">Voice</label>
+          <label htmlFor="interviewer-voice">
+            <T id="components.setup.voice.picker.3" />
+          </label>
           <span className="select-wrap">
             <select
               id="interviewer-voice"
@@ -50,16 +57,18 @@ export function VoicePicker({
             >
               {loading ? (
                 <option value="" disabled>
-                  Loading voices…
+                  <T id="components.setup.voice.picker.4" />
                 </option>
               ) : empty ? (
-                <option value="">No English voices found</option>
+                <option value="">
+                  <T id="components.setup.voice.picker.5" />
+                </option>
               ) : (
                 groups.map((group) => (
                   <optgroup key={group.accent} label={voiceAccentLabel(group.accent)}>
                     {group.voices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>
-                        {v.name} ({v.lang}){v.localService ? '' : ' (online voice)'}
+                        {v.name} ({v.lang}){v.localService ? '' : t('voice.online')}
                       </option>
                     ))}
                   </optgroup>
@@ -70,7 +79,9 @@ export function VoicePicker({
         </div>
         <div className="voice-field">
           <div className="voice-rate-label">
-            <label htmlFor="speaking-rate">Speaking rate</label>
+            <label htmlFor="speaking-rate">
+              <T id="components.setup.voice.picker.6" />
+            </label>
             <p className="font-mono" aria-hidden="true">
               {setup.rate.toFixed(1)}×
             </p>
@@ -83,20 +94,24 @@ export function VoicePicker({
             max={TTS.RATE_MAX}
             step={TTS.RATE_STEP}
             value={setup.rate}
-            aria-valuetext={`${setup.rate.toFixed(1)} times speed`}
+            aria-valuetext={t('ui.template.43', { v0: setup.rate.toFixed(1) })}
             onChange={(event) => {
               onChange({ rate: Number(event.target.value) });
             }}
           />
           <div className="voice-range-scale" aria-hidden="true">
-            <span>Slower</span>
-            <span>Faster</span>
+            <span>
+              <T id="components.setup.voice.picker.7" />
+            </span>
+            <span>
+              <T id="components.setup.voice.picker.8" />
+            </span>
           </div>
         </div>
       </div>
       {!loading && fellBack && (
         <p className="voice-note">
-          Your saved voice isn’t available here, so the default voice is used.
+          <T id="components.setup.voice.picker.9" />
         </p>
       )}
       <div className="voice-actions">
@@ -117,11 +132,11 @@ export function VoicePicker({
               });
           }}
         >
-          {tts.speaking ? 'Stop preview' : 'Preview voice'}
+          {tts.speaking ? t('ui.dynamic.135') : t('ui.dynamic.136')}
         </Button>
         {previewError && (
           <p role="status" className="voice-note">
-            Your browser didn&apos;t start speaking. Try another voice, or restart the browser.
+            <T id="components.setup.voice.picker.10" />
           </p>
         )}
       </div>

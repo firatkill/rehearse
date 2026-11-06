@@ -6,8 +6,8 @@ afterEach(() => {
 });
 import Home from '@/app/page';
 import sample from '@/content/sample/session.json';
-it('TC-138 V-12 landing uses the committed sample and shipped edition copy', () => {
-  render(<Home />);
+it('TC-138 V-12 landing uses the committed sample and shipped edition copy', async () => {
+  render(await Home());
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
     'Rehearse the interview before you have it.',
   );
@@ -25,10 +25,10 @@ it('TC-138 V-12 landing uses the committed sample and shipped edition copy', () 
   ).toBeVisible();
 });
 
-it('TC-168 demo landing distinguishes examples from full-edition own-post interviews', () => {
+it('TC-168 demo landing distinguishes examples from full-edition own-post interviews', async () => {
   vi.stubEnv('APP_EDITION', 'demo');
   resetEnvForTests();
-  render(<Home />);
+  render(await Home());
   expect(
     screen.getByText(
       'Available now: role-based practice, retries and example job-post interviews in English. Practise with your own job posts in the self-hosted version; Turkish is coming later.',

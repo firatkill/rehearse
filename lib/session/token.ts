@@ -1,11 +1,12 @@
 import 'server-only';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
-import { ROLES, SENIORITIES, SESSION, TOKEN } from '@/lib/config';
+import { ROLES, SENIORITIES, SESSION, TOKEN, LANGUAGES } from '@/lib/config';
 
 export const TokenPayloadSchema = z
   .object({
     v: z.literal(1),
+    l: z.enum(LANGUAGES).optional(),
     // eslint-disable-next-line @typescript-eslint/no-deprecated -- Byte-exact normative schema in TRD 13.1.
     sid: z.string().uuid(),
     iat: z.number().int(),

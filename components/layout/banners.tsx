@@ -1,5 +1,6 @@
 'use client';
-import Link from 'next/link';
+import { T } from '@/lib/i18n/context';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 import { useSyncExternalStore } from 'react';
 
 function subscribe(listener: () => void) {
@@ -40,53 +41,54 @@ export function Banners({
       <div role="status">
         {mounted && demoMode === 'readonly' && (
           <div className="banner container">
-            Feedback is paused on the live demo. You can still practise with voice or text, and the
-            sample report shows what feedback looks like.{' '}
-            <Link href="/sample">See the sample report</Link>
+            <T id="components.layout.banners.1" />{' '}
+            <Link href="/sample">
+              <T id="components.layout.banners.2" />
+            </Link>
           </div>
         )}
       </div>
       <div role="status">
         {mounted && demoMode === 'off' && (
           <div className="banner container">
-            The practice room is offline for maintenance. Your saved sessions, the sample report and
-            the write-up are still available.
+            <T id="components.layout.banners.3" />
           </div>
         )}
       </div>
       <div role="status">
         {mounted && !online && (
           <div className="banner container">
-            You’re offline. You can keep answering; feedback needs a connection.
+            <T id="components.layout.banners.4" />
           </div>
         )}
       </div>
       <div role="status">
         {mounted && notSaving && (
           <div className="banner container">
-            This browser isn’t saving sessions, so they will be lost when you close the tab. Private
-            windows in some browsers block storage.
+            <T id="components.layout.banners.5" />
           </div>
         )}
       </div>
       <div role="status">
         {mounted && updatedElsewhere && (
           <div className="banner container">
-            Rehearse was updated in another tab. Reload this page to keep saving.{' '}
+            <T id="components.layout.banners.6" />{' '}
             <button
               type="button"
               onClick={() => {
                 window.location.reload();
               }}
             >
-              Reload
+              <T id="components.layout.banners.7" />
             </button>
           </div>
         )}
       </div>
       <div role="status">
         {mounted && blocked && (
-          <div className="banner container">Close other Rehearse tabs, then reload this page.</div>
+          <div className="banner container">
+            <T id="components.layout.banners.8" />
+          </div>
         )}
       </div>
     </div>

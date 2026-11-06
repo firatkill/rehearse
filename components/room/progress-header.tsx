@@ -1,6 +1,7 @@
+'use client';
+import { useLabels } from '@/lib/i18n/use-labels';
 import { SafeText } from '@/components/common/safe-text';
 import { ProgressSegments } from '@/components/ui/progress-segments';
-import { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } from '@/lib/labels';
 import type { SessionRecord } from '@/lib/storage/schema';
 export function ProgressHeader({
   session,
@@ -11,6 +12,8 @@ export function ProgressHeader({
   index: number;
   jobLabel?: string | null;
 }) {
+  const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS } = useLabels();
+
   const question = session.questions[index];
   if (!question) return null;
   return (

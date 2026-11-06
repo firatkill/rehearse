@@ -1,10 +1,14 @@
 'use client';
+import { jobErrorMessage } from '@/lib/i18n/job-error';
+import { T, useT } from '@/lib/i18n/context';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { JOBPOST } from '@/lib/config';
 import { requestJob } from '@/lib/api/jobpost-client';
 import { Button } from '@/components/ui/button';
 export function JobEntry() {
+  const t = useT();
+
   const router = useRouter();
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
@@ -27,7 +31,7 @@ export function JobEntry() {
     );
     if (result.ok) router.push(`/job/${result.data.post.id}`);
     else {
-      setError(result.message);
+      setError(jobErrorMessage(result.message, t));
       setBusy(false);
       if (link) {
         setPaste(true);
@@ -38,7 +42,7 @@ export function JobEntry() {
   return (
     <div className="space-y-3">
       <label htmlFor="job-post-input">
-        {paste ? 'Paste the job post text' : 'Job post link or text'}
+        {paste ? t('ui.dynamic.22') : t('components.setup.demo.job.entry.1')}
       </label>
       <textarea
         id="job-post-input"
@@ -52,8 +56,7 @@ export function JobEntry() {
         aria-describedby="job-input-help"
       />
       <p id="job-input-help">
-        Paste a public job post link or the text. You’ll review what we read before generating
-        questions.
+        <T id="components.jobpost.job.entry.1" />
       </p>
       <Button
         type="button"
@@ -62,7 +65,7 @@ export function JobEntry() {
           void read();
         }}
       >
-        {busy ? 'Reading the job post…' : 'Read the job post'}
+        {busy ? t('ui.dynamic.23') : t('components.setup.demo.job.entry.2')}
       </Button>
       {paste && (
         <Button
@@ -76,7 +79,7 @@ export function JobEntry() {
             input.current?.focus();
           }}
         >
-          Try another link
+          <T id="components.jobpost.job.entry.2" />
         </Button>
       )}
       {error && <p role="alert">{error}</p>}

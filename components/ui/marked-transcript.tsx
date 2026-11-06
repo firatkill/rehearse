@@ -1,7 +1,11 @@
+'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { SafeText } from '@/components/common/safe-text';
 export type TranscriptMark = { start: number; end: number; kind: 'strong' | 'vague' | 'filler' };
 /** Valid non-overlapping ranges only; strong/vague/filler states are text nodes, never HTML. */
 export function MarkedTranscript({ text, marks = [] }: { text: string; marks?: TranscriptMark[] }) {
+  const t = useT();
+
   const parts = [];
   let cursor = 0;
   for (const mark of [...marks].sort((a, b) => a.start - b.start)) {
@@ -26,15 +30,21 @@ export function MarkedTranscript({ text, marks = [] }: { text: string; marks?: T
   parts.push(<SafeText key={`tail-${cursor}`} text={text.slice(cursor)} />);
   return (
     <div>
-      <ul className="ui-mark-legend" aria-label="Transcript legend">
+      <ul className="ui-mark-legend" aria-label={t('ui.dynamic.137')}>
         <li>
-          <mark className="ui-mark-strong">Strong detail</mark>
+          <mark className="ui-mark-strong">
+            <T id="components.ui.marked.transcript.1" />
+          </mark>
         </li>
         <li>
-          <span className="ui-mark-vague">Vague</span>
+          <span className="ui-mark-vague">
+            <T id="components.ui.marked.transcript.2" />
+          </span>
         </li>
         <li>
-          <span className="ui-mark-filler">Filler</span>
+          <span className="ui-mark-filler">
+            <T id="components.ui.marked.transcript.3" />
+          </span>
         </li>
       </ul>
       <p className="ui-marked-text">{parts}</p>

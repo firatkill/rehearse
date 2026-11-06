@@ -1,4 +1,6 @@
 'use client';
+import { useT } from '@/lib/i18n/context';
+
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { QUESTION_TYPES, SESSION, type Dimension } from '@/lib/config';
@@ -7,6 +9,8 @@ import { newSessionRecord } from '@/lib/storage/new-session';
 import { startSession } from '@/lib/api/client';
 import { useRepository } from './use-repository';
 export function useDimensionPractice(setup: Setup) {
+  const t = useT();
+
   const router = useRouter();
   const repository = useRepository();
   const busy = useRef(false);
@@ -25,6 +29,7 @@ export function useDimensionPractice(setup: Setup) {
         types: [...QUESTION_TYPES],
       };
       const response = await startSession({
+        language: selected.language ?? 'en',
         role: selected.role,
         seniority: selected.seniority,
         types: selected.types,
@@ -36,8 +41,8 @@ export function useDimensionPractice(setup: Setup) {
       if (!response.ok) {
         setError(
           response.kind === 'http' && response.error.code === 'SESSION_QUOTA_EXCEEDED'
-            ? 'Today’s feedback session allowance is used. Open setup to practise without feedback.'
-            : 'Couldn’t start dimension practice. Try again, or open setup.',
+            ? t('ui.dynamic.138')
+            : t('ui.dynamic.139'),
         );
         return;
       }
@@ -45,7 +50,7 @@ export function useDimensionPractice(setup: Setup) {
       await repository.createSession(session);
       router.push(`/session/${session.id}`);
     } catch {
-      setError('Couldn’t start dimension practice. Try again, or open setup.');
+      setError(t('ui.dynamic.139'));
     } finally {
       busy.current = false;
       setPending(false);
