@@ -21,8 +21,8 @@ it('TC-139 V-13 shows shared rubric anchors and recorded evaluation provenance',
     '95%',
   );
 });
-it('TC-139 privacy explains shipped full storage and provider policy', () => {
-  render(<PrivacyPage />);
+it('TC-139 privacy explains shipped full storage and provider policy', async () => {
+  render(await PrivacyPage());
   expect(screen.getByText('You are using the full, self-hosted edition.')).toBeVisible();
   expect(screen.getByText(/recognition sends your audio to Google’s servers/)).toBeVisible();
   expect(screen.getByText(/saved in SQLite on your machine/)).toBeVisible();
@@ -36,7 +36,7 @@ for (const edition of ['demo', 'full'] as const) {
   it(`TC-203 ${edition} public pages describe shipped storage, AI and browser verification`, async () => {
     vi.stubEnv('APP_EDITION', edition);
     resetEnvForTests();
-    const privacy = render(<PrivacyPage />);
+    const privacy = render(await PrivacyPage());
     expect(
       screen.getByRole('heading', {
         name: edition === 'demo' ? 'What stays in your browser' : 'What stays on your machine',
@@ -92,7 +92,7 @@ for (const edition of ['demo', 'full'] as const) {
       /This preview|planned public demo|later milestone|release preview/,
     );
     how.unmount();
-    const home = render(<Home />);
+    const home = render(await Home());
     expect(screen.getByRole('table', { name: 'Demo and self-hosted editions' })).toBeVisible();
     expect(screen.getByRole('row', { name: /Language/ })).toHaveTextContent(
       'English; Turkish is coming later',

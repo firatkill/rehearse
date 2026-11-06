@@ -1,4 +1,6 @@
 'use client';
+import { useT } from '@/lib/i18n/context';
+
 import { useEffect, useRef, useState } from 'react';
 import { FOLLOW_UP } from '@/lib/config';
 import type {
@@ -23,6 +25,8 @@ export function AttemptFeedback({
   onRetry: (feedback: NonNullable<AnswerRecord['feedback']>) => void;
   onFollowUp?: (parentAttemptId: string) => void;
 }) {
+  const t = useT();
+
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
     panel.current?.querySelector<HTMLElement>('[data-phase-focus]')?.focus();
@@ -38,7 +42,7 @@ export function AttemptFeedback({
   const panelId = `attempt-panel-${answer.index}`;
   return (
     <>
-      <div role="tablist" aria-label="Answer attempts">
+      <div role="tablist" aria-label={t('attempts.label')}>
         {items.map((item, index) => (
           <button
             type="button"
@@ -68,7 +72,8 @@ export function AttemptFeedback({
               document.getElementById(`attempt-tab-${answer.index}-${next}`)?.focus();
             }}
           >
-            {'parentAttemptId' in item ? 'Follow-up' : 'Attempt'} {item.ordinal}
+            {'parentAttemptId' in item ? t('components.room.room.8') : t('ui.dynamic.48')}{' '}
+            {item.ordinal}
           </button>
         ))}
       </div>

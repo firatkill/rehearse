@@ -1,13 +1,18 @@
-import Link from 'next/link';
+import { T } from '@/lib/i18n/context';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 /** Persistent edition notice, rendered only when demo is explicitly selected. */
 export function DemoBanner({ edition }: { edition: 'demo' | 'full' }) {
   return edition === 'demo' ? (
     <div className="ui-demo-banner" role="status">
-      <span className="ui-demo-pill">DEMO</span>
-      <span>
-        You’re trying the demo. Feedback here is pre-written sample data and no AI is called.
+      <span className="ui-demo-pill">
+        <T id="components.ui.demo.banner.1" />
       </span>
-      <Link href="/#self-host">Run the full version yourself</Link>
+      <span>
+        <T id="components.ui.demo.banner.2" />
+      </span>
+      <Link href="/#self-host">
+        <T id="components.ui.demo.banner.3" />
+      </Link>
     </div>
   ) : null;
 }

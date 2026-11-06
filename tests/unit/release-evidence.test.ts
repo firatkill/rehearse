@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { EvalResultsSchema } from '@/lib/eval/results-schema';
 import { demoFeedback, demoJobs } from '@/lib/demo/content';
@@ -76,3 +76,5 @@ it('TC-200 owner demo corpus is live and every strong score exceeds medium then 
   }
   expect(demoJobs.every((job) => job.provenance === 'live')).toBe(true);
 });
+
+vi.mock('next/headers', () => ({ headers: () => Promise.resolve(new Headers()) }));

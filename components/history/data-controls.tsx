@@ -1,4 +1,5 @@
 'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { APP_EDITION } from '@/lib/edition';
 import { useRef, useState } from 'react';
 import { useRepository, useStorageStatus } from '@/hooks/use-repository';
@@ -16,6 +17,8 @@ export function DataControls({
   onChanged: () => Promise<void>;
   onDeleted: () => void;
 }) {
+  const t = useT();
+
   const repository = useRepository();
   const storage = useStorageStatus();
   const [open, setOpen] = useState(false);
@@ -32,11 +35,7 @@ export function DataControls({
     try {
       await repository.deleteAll();
       onDeleted();
-      setMessage(
-        APP_EDITION === 'full'
-          ? 'All Rehearse data was deleted from this server.'
-          : 'All Rehearse data was deleted from this browser.',
-      );
+      setMessage(APP_EDITION === 'full' ? t('ui.dynamic.4') : t('ui.dynamic.5'));
       title.current?.focus();
     } catch {
       if (storageStatus() !== 'updated') setStorageStatus('not-saving');
@@ -53,7 +52,7 @@ export function DataControls({
     try {
       const file = await repository.exportAll(version);
       downloadExport(file);
-      setMessage(`Exported ${file.sessions.length} sessions.`);
+      setMessage(t('ui.template.3', { v0: file.sessions.length }));
     } catch {
       if (storageStatus() !== 'updated') setStorageStatus('not-saving');
     } finally {
@@ -69,11 +68,9 @@ export function DataControls({
     try {
       const result = await repository.importAll(file);
       await onChanged();
-      setMessage(
-        `Imported ${result.imported} sessions. Skipped ${result.skipped} that were already here.`,
-      );
+      setMessage(t('ui.template.4', { v0: result.imported, v1: result.skipped }));
     } catch (error) {
-      if (error instanceof ImportFileError) setMessage(error.message);
+      if (error instanceof ImportFileError) setMessage(t(`import.${error.kind}`));
       else if (storageStatus() !== 'updated') setStorageStatus('not-saving');
     } finally {
       busy.current = false;
@@ -83,7 +80,7 @@ export function DataControls({
   return (
     <section className="data-controls">
       <h2 ref={title} tabIndex={-1}>
-        Your data
+        <T id="components.history.data.controls.1" />
       </h2>
       <Button
         variant="outline"
@@ -92,11 +89,11 @@ export function DataControls({
           void exportSessions();
         }}
       >
-        Export all sessions
+        <T id="components.history.data.controls.2" />
       </Button>
       <div className="data-import">
         <label className="block" htmlFor="import-sessions">
-          Import sessions from a file
+          <T id="components.history.data.controls.3" />
         </label>
         <input
           className="block min-h-11 max-w-full"
@@ -119,23 +116,17 @@ export function DataControls({
           setOpen(true);
         }}
       >
-        Delete all my data
+        <T id="components.history.data.controls.4" />
       </Button>
       <div role="status">
-        {pending && storage === 'delete-blocked'
-          ? 'Close other Rehearse tabs to finish deleting.'
-          : message}
+        {pending && storage === 'delete-blocked' ? t('ui.dynamic.6') : message}
       </div>
       <ConfirmDialog
         open={open}
-        title="Delete all your data?"
-        description={
-          APP_EDITION === 'full'
-            ? 'This removes every session and answer from this server, and Rehearse settings from this browser. It can’t be undone. Consider exporting first.'
-            : 'This removes every session, answer and setting stored by Rehearse in this browser. It can’t be undone. Consider exporting first.'
-        }
-        confirm="Delete everything"
-        cancel="Cancel"
+        title={t('ui.dynamic.7')}
+        description={APP_EDITION === 'full' ? t('ui.dynamic.8') : t('ui.dynamic.9')}
+        confirm={t('ui.dynamic.10')}
+        cancel={t('components.jobpost.job.post.9')}
         onConfirm={() => {
           void remove();
         }}

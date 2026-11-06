@@ -1,12 +1,15 @@
 'use client';
+import { T } from '@/lib/i18n/context';
 import { useState } from 'react';
-import Link from 'next/link';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 import { Button } from '@/components/ui/button';
 export function DemoJobEntry() {
   const [submitted, setSubmitted] = useState(false);
   return (
     <>
-      <label htmlFor="job-post-input">Job post link or text</label>
+      <label htmlFor="job-post-input">
+        <T id="components.setup.demo.job.entry.1" />
+      </label>
       <textarea id="job-post-input" rows={3} placeholder="https://… or paste the description" />
       <Button
         type="button"
@@ -14,11 +17,11 @@ export function DemoJobEntry() {
           setSubmitted(true);
         }}
       >
-        Read the job post
+        <T id="components.setup.demo.job.entry.2" />
       </Button>
       {submitted && (
         <p role="status">
-          Job-post interviews run in the self-hosted version. Try one of these example posts:
+          <T id="components.setup.demo.job.entry.3" />
         </p>
       )}
       <ul>

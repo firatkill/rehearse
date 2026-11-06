@@ -1,3 +1,5 @@
+'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { lengthVerdict, textLengthVerdict } from '@/lib/report/feedback-view';
 import { formatMmSs } from '@/lib/time';
 import { PACE, SPEECH, type AnswerMode } from '@/lib/config';
@@ -13,54 +15,85 @@ export function DeliveryMetrics({
   mode?: AnswerMode;
   recordingMs?: number | null;
 }) {
+  const t = useT();
+  const verdict = (value: string) =>
+    t(
+      value === 'Too short'
+        ? 'length.short'
+        : value === 'On target'
+          ? 'length.target'
+          : value === 'Long'
+            ? 'length.long'
+            : 'ui.dynamic.49',
+    );
+
   return (
     <section className="space-y-3">
-      <h3>Delivery</h3>
+      <h3>
+        <T id="components.report.report.view.23" />
+      </h3>
       <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 [&_dd]:font-mono">
         {(recordingMs !== undefined || mode === 'text') && (
           <>
-            <dt>Length</dt>
+            <dt>
+              <T id="components.room.delivery.metrics.2" />
+            </dt>
             <dd>
               {mode === 'text' ? (
-                textLengthVerdict(metrics.words)
+                verdict(textLengthVerdict(metrics.words))
               ) : recordingMs === null || recordingMs === undefined ? (
-                'Not available'
+                t('ui.dynamic.49')
               ) : (
                 <>
-                  {formatMmSs(recordingMs)} · {lengthVerdict(recordingMs)}
+                  {formatMmSs(recordingMs)} · {verdict(lengthVerdict(recordingMs))}
                 </>
               )}
             </dd>
           </>
         )}
-        <dt>Words</dt>
+        <dt>
+          <T id="components.room.delivery.metrics.3" />
+        </dt>
         <dd>{metrics.words}</dd>
-        <dt>Speaking time</dt>
-        <dd>
-          {mode === 'text' ? 'Not measured in text mode' : formatMmSs(metrics.speakingMs ?? 0)}
-        </dd>
-        <dt>Pace</dt>
+        <dt>
+          <T id="components.room.delivery.metrics.4" />
+        </dt>
+        <dd>{mode === 'text' ? t('ui.dynamic.50') : formatMmSs(metrics.speakingMs ?? 0)}</dd>
+        <dt>
+          <T id="components.room.delivery.metrics.5" />
+        </dt>
         <dd>
           {mode === 'text'
-            ? 'Not measured in text mode'
+            ? t('ui.dynamic.50')
             : metrics.wpm === null
-              ? 'Not enough speech to measure'
-              : `${metrics.wpm} words per minute`}
+              ? t('ui.dynamic.51')
+              : t('ui.template.19', { v0: metrics.wpm })}
         </dd>
-        <dt>Filler words</dt>
+        <dt>
+          <T id="components.room.delivery.metrics.6" />
+        </dt>
         <dd>
           {metrics.fillers.total} <span>{formatFillerBreakdown(metrics.fillers.byPhrase)}</span>
         </dd>
-        <dt>Longest pause</dt>
+        <dt>
+          <T id="components.room.delivery.metrics.7" />
+        </dt>
         <dd>
           {mode === 'text' || metrics.longestPauseMs === null || metrics.longPauses === null
-            ? 'Not available'
-            : `${(metrics.longestPauseMs / 1000).toFixed(1)} s (${metrics.longPauses} pauses of ${SPEECH.LONG_PAUSE_MS / 1000} s or more)`}
+            ? t('ui.dynamic.49')
+            : t('ui.template.20', {
+                v0: (metrics.longestPauseMs / 1000).toFixed(1),
+                v1: metrics.longPauses,
+                v2: SPEECH.LONG_PAUSE_MS / 1000,
+              })}
         </dd>
       </dl>
       <p>
-        Most listeners find {PACE.COMFORT_MIN_WPM} to {PACE.COMFORT_MAX_WPM} words per minute
-        comfortable. Filler words are counted by simple rules, so a few may be legitimate uses.
+        <T id="components.room.delivery.metrics.8" />
+        {PACE.COMFORT_MIN_WPM}
+        <T id="components.room.delivery.metrics.9" />
+        {PACE.COMFORT_MAX_WPM}
+        <T id="components.room.delivery.metrics.10" />
       </p>
     </section>
   );

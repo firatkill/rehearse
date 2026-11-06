@@ -1,4 +1,5 @@
 'use client';
+import { T } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { SESSION } from '@/lib/config';
 import { Button } from '@/components/ui/button';
@@ -42,7 +43,9 @@ export function TextAnswer({
         }}
       />
       <p>
-        <TimerDisplay ms={elapsed} /> / suggested <TimerDisplay ms={limit * 1000} />
+        <TimerDisplay ms={elapsed} />
+        <T id="components.room.text.answer.1" />
+        <TimerDisplay ms={limit * 1000} />
       </p>
       <Button
         variant="on-dark"
@@ -51,7 +54,7 @@ export function TextAnswer({
           onReview(text);
         }}
       >
-        Review answer
+        <T id="components.room.text.answer.2" />
       </Button>
     </div>
   );

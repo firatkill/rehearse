@@ -1,4 +1,5 @@
 'use client';
+import { T } from '@/lib/i18n/context';
 import { useLayoutEffect, useRef } from 'react';
 import { ANSWER } from '@/lib/config';
 export function AnswerEditor({
@@ -23,7 +24,9 @@ export function AnswerEditor({
   }, [value]);
   return (
     <div className="space-y-2">
-      <label htmlFor="answer-text">Your answer</label>
+      <label htmlFor="answer-text">
+        <T id="components.room.answer.editor.1" />
+      </label>
       <textarea
         ref={input}
         data-phase-focus

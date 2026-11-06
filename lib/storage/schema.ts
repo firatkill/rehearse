@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { JobDataSchema } from './jobpost-schema';
 import {
+  LANGUAGES,
   DIMENSIONS,
   ROLES,
   SENIORITIES,
@@ -40,9 +41,11 @@ export const LegacySetupSchema = z
   })
   .strict();
 
-export const SetupSchema = LegacySetupSchema.extend({
+export const V5SetupSchema = LegacySetupSchema.extend({
   dimension: z.enum(DIMENSIONS).nullable().optional(),
 });
+
+export const SetupSchema = V5SetupSchema.extend({ language: z.enum(LANGUAGES).optional() });
 
 export const LegacySessionRecordSchema = z
   .object({
@@ -220,16 +223,29 @@ export const V4AnswerRecordSchema = z
         ctx.addIssue({ code: 'custom', message: 'Follow-up ownership or sequence is invalid.' });
     }
   });
-export const SessionRecordSchema = V4SessionRecordSchema.extend({
+export const V5SessionRecordSchema = V4SessionRecordSchema.extend({
   schemaVersion: z.literal(5),
-  setup: SetupSchema,
+  setup: V5SetupSchema,
 });
-export const AnswerRecordSchema = z
+export const V5AnswerRecordSchema = z
   .object({ ...V4AnswerRecordSchema.shape, schemaVersion: z.literal(5) })
   .strict()
   .superRefine((answer, ctx) => {
     // V5 changes session setup only; retain every V4 answer ownership/refinement check.
     const previous = V4AnswerRecordSchema.safeParse({ ...answer, schemaVersion: 4 });
+    if (!previous.success)
+      for (const issue of previous.error.issues)
+        ctx.addIssue({ code: 'custom', message: issue.message, path: issue.path });
+  });
+export const SessionRecordSchema = V5SessionRecordSchema.extend({
+  schemaVersion: z.literal(6),
+  setup: SetupSchema.extend({ language: z.enum(LANGUAGES).default('en') }),
+});
+export const AnswerRecordSchema = z
+  .object({ ...V5AnswerRecordSchema.shape, schemaVersion: z.literal(6) })
+  .strict()
+  .superRefine((answer, ctx) => {
+    const previous = V5AnswerRecordSchema.safeParse({ ...answer, schemaVersion: 5 });
     if (!previous.success)
       for (const issue of previous.error.issues)
         ctx.addIssue({ code: 'custom', message: issue.message, path: issue.path });

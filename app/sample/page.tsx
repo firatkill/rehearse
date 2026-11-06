@@ -1,3 +1,4 @@
+import { T } from '@/lib/i18n/context';
 import sample from '@/content/sample/session.json';
 import { SampleFileSchema } from '@/lib/storage/sample-schema';
 import { Eyebrow } from '@/components/ui/eyebrow';
@@ -7,10 +8,11 @@ export default function SamplePage() {
   const data = SampleFileSchema.parse(sample);
   return (
     <div className="sample-page">
-      <Eyebrow>A practice session, start to finish</Eyebrow>
+      <Eyebrow>
+        <T id="app.sample.page.1" />
+      </Eyebrow>
       <p className="sample-notice">
-        This is a sample session with answers written for the demo. The candidate is fictional. No
-        language model was called to show this page.
+        <T id="app.sample.page.2" />
       </p>
       <ReportView {...data} source="sample" />
     </div>

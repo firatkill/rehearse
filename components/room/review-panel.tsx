@@ -1,10 +1,11 @@
 'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { countWords } from '@/lib/metrics/words';
 import { computeDelivery } from '@/lib/metrics/delivery';
 import type { AnswerRecord } from '@/lib/storage/schema';
 import { Button } from '@/components/ui/button';
-import { formatDurationWords } from '@/lib/time';
+import { durationWords } from '@/lib/i18n/duration';
 import { ANSWER } from '@/lib/config';
 import { AnswerEditor } from './answer-editor';
 import { DeliveryMetrics } from './delivery-metrics';
@@ -27,14 +28,16 @@ export function ReviewPanel({
   onSave: () => void;
   onRecordAgain: () => void;
 }) {
+  const t = useT();
+
   const [notice, setNotice] = useState('');
   const notices = {
-    time_limit: `Time’s up. Recording stopped at ${formatDurationWords(limit)}.`,
-    char_cap: `Recording stopped at the ${ANSWER.MAX_CHARS.toLocaleString('en-GB')}-character limit.`,
-    tab_hidden: 'Recording stopped because you left the tab.',
-    network: 'Speech recognition lost its connection. Your words so far are below.',
-    unexpected_stop: 'Recording stopped unexpectedly. Your words so far are below.',
-    restored: 'We restored your answer after the page reloaded.',
+    time_limit: t('ui.template.29', { v0: durationWords(limit, t) }),
+    char_cap: t('ui.template.30', { v0: ANSWER.MAX_CHARS.toLocaleString('en-GB') }),
+    tab_hidden: t('ui.dynamic.75'),
+    network: t('ui.dynamic.76'),
+    unexpected_stop: t('ui.dynamic.77'),
+    restored: t('ui.dynamic.78'),
   };
   const noticeText = answer.notice ? notices[answer.notice] : '';
   useEffect(() => {
@@ -49,12 +52,10 @@ export function ReviewPanel({
   const metrics = computeDelivery(answer);
   return (
     <section className="space-y-4">
-      <h2>Review your answer</h2>
-      <p>
-        {answer.mode === 'text'
-          ? 'Make any last changes. What you see here is what gets scored.'
-          : 'Fix any words the recognition got wrong. What you see here is what gets scored.'}
-      </p>
+      <h2>
+        <T id="components.room.review.panel.1" />
+      </h2>
+      <p>{answer.mode === 'text' ? t('ui.dynamic.79') : t('ui.dynamic.80')}</p>
       <div role="status">{notice}</div>
       <AnswerEditor
         value={answer.transcript}
@@ -65,9 +66,15 @@ export function ReviewPanel({
         }}
       />
       <DeliveryMetrics metrics={metrics} mode={answer.mode} />
-      {empty && feedbackEnabled && <p id="review-help">Say or type an answer first.</p>}
+      {empty && feedbackEnabled && (
+        <p id="review-help">
+          <T id="components.room.review.panel.2" />
+        </p>
+      )}
       {!online && feedbackEnabled && !empty && (
-        <p id="review-help">You’re offline. Feedback needs a connection.</p>
+        <p id="review-help">
+          <T id="components.room.review.panel.3" />
+        </p>
       )}
       <div className="flex flex-wrap gap-3">
         {feedbackEnabled ? (
@@ -78,20 +85,20 @@ export function ReviewPanel({
               aria-describedby={empty || !online ? 'review-help' : undefined}
               onClick={onSubmit}
             >
-              Get feedback
+              <T id="components.room.review.panel.4" />
             </Button>
             <Button className="min-h-11" variant="outline" onClick={onSave}>
-              Save without feedback
+              <T id="components.room.feedback.error.2" />
             </Button>
           </>
         ) : (
           <Button className="min-h-11" onClick={onSave}>
-            Save and continue
+            <T id="components.room.review.panel.6" />
           </Button>
         )}
         {answer.mode === 'voice' && (
           <Button className="min-h-11" variant="outline" onClick={onRecordAgain}>
-            Record again
+            <T id="components.room.review.panel.7" />
           </Button>
         )}
       </div>

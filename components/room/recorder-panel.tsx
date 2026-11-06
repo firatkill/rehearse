@@ -1,6 +1,8 @@
 'use client';
+import { durationWords } from '@/lib/i18n/duration';
+import { T, useT } from '@/lib/i18n/context';
 import { useEffect, useRef, useState } from 'react';
-import { formatMmSs, formatDurationWords } from '@/lib/time';
+import { formatMmSs } from '@/lib/time';
 import { ANNOUNCE, SESSION, RECORDING_GUIDE } from '@/lib/config';
 import type { TranscriptState } from '@/lib/speech/transcript';
 import { SafeText } from '@/components/common/safe-text';
@@ -23,6 +25,8 @@ export function RecorderPanel({
   onStop: () => void;
   onLimit: () => void;
 }) {
+  const t = useT();
+
   const [elapsed, setElapsed] = useState(0);
   const callbacks = useRef({ announce, onLimit });
   useEffect(() => {
@@ -40,7 +44,7 @@ export function RecorderPanel({
         if (threshold < limit && ms >= (limit - threshold) * 1000 && !announced.has(threshold)) {
           announced.add(threshold);
           callbacks.current.announce(
-            threshold === 60 ? '1 minute left.' : `${threshold} seconds left.`,
+            threshold === 60 ? '1 minute left.' : t('ui.template.28', { v0: threshold }),
           );
         }
       }
@@ -52,13 +56,14 @@ export function RecorderPanel({
     return () => {
       clearInterval(timer);
     };
-  }, [startedAt, limit]);
+  }, [startedAt, limit, t]);
   const final = [transcript.committed, transcript.runFinal].filter(Boolean).join(' ');
   return (
     <section className="room-recorder">
       <div className="recording-heading">
         <p className="recording-label">
-          <span aria-hidden="true">● </span>Recording
+          <span aria-hidden="true">● </span>
+          <T id="components.room.recorder.panel.1" />
         </p>
         <p className="recording-clock">
           <span aria-hidden="true">
@@ -66,10 +71,14 @@ export function RecorderPanel({
           </span>
           <span>
             {followUp ? (
-              <>Keep this follow-up under {formatMmSs(limit * 1000)}.</>
+              <>
+                <T id="components.room.recorder.panel.2" />
+                {formatMmSs(limit * 1000)}.
+              </>
             ) : (
               <>
-                aim for {formatMmSs(RECORDING_GUIDE.MIN_SECONDS * 1000)}–
+                <T id="components.room.recorder.panel.3" />
+                {formatMmSs(RECORDING_GUIDE.MIN_SECONDS * 1000)}–
                 {formatMmSs(RECORDING_GUIDE.MAX_SECONDS * 1000)}
               </>
             )}
@@ -81,10 +90,12 @@ export function RecorderPanel({
       </div>
       <section className="transcript-card" aria-labelledby="live-transcript" aria-live="off">
         <h2 id="live-transcript" className="sr-only">
-          Live transcript
+          <T id="components.room.recorder.panel.4" />
         </h2>
         {!final && !transcript.runInterim ? (
-          <p>Start speaking. Your words will appear here.</p>
+          <p>
+            <T id="components.room.recorder.panel.5" />
+          </p>
         ) : (
           <p>
             <SafeText text={final} />
@@ -96,11 +107,10 @@ export function RecorderPanel({
         )}
       </section>
       <p className="recording-help">
-        Speak naturally. You can fix any misheard words before you submit. Maximum{' '}
-        {formatDurationWords(limit)}.
+        <T id="components.room.recorder.panel.6" /> {durationWords(limit, t)}.
       </p>
       <Button className="recording-stop" variant="on-dark" data-phase-focus onClick={onStop}>
-        Stop and review
+        <T id="components.room.recorder.panel.7" />
       </Button>
     </section>
   );

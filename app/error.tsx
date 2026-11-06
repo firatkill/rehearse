@@ -1,19 +1,26 @@
 'use client';
-import Link from 'next/link';
+import { T } from '@/lib/i18n/context';
+import { LanguageLink as Link } from '@/lib/i18n/link';
 export default function ErrorPage() {
   return (
     <>
-      <h1>Something went wrong</h1>
-      <p>The page hit an error. Your saved sessions are safe in this browser.</p>
+      <h1>
+        <T id="app.error.1" />
+      </h1>
+      <p>
+        <T id="app.error.2" />
+      </p>
       <button
         type="button"
         onClick={() => {
           window.location.reload();
         }}
       >
-        Reload the page
+        <T id="app.error.3" />
       </button>
-      <Link href="/">Go to the start page</Link>
+      <Link href="/">
+        <T id="app.error.4" />
+      </Link>
     </>
   );
 }

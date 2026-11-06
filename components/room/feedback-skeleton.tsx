@@ -1,13 +1,18 @@
 'use client';
+import { useT } from '@/lib/i18n/context';
+
 import { useEffect, useState } from 'react';
 import { PROGRESS_COPY_AT_MS } from '@/lib/config';
-const copy = [
-  'Reading your answer…',
-  'Scoring six dimensions…',
-  'Writing suggestions…',
-  'Almost done…',
-] as const;
+
 export function FeedbackSkeleton() {
+  const t = useT();
+
+  const copy = [
+    t('ui.dynamic.70'),
+    t('ui.dynamic.71'),
+    t('ui.dynamic.72'),
+    t('ui.dynamic.73'),
+  ] as const;
   const [step, setStep] = useState(0);
   useEffect(() => {
     const timers = PROGRESS_COPY_AT_MS.map((at, index) =>

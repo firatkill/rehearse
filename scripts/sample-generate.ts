@@ -44,6 +44,7 @@ async function main() {
   const bank = getBank();
   const seed = '5a3c0e11';
   const setup: SessionRecord['setup'] = {
+    language: 'en',
     role: 'full-stack',
     seniority: 'mid',
     types: ['behavioral', 'technical-concepts', 'system-design-lite'],

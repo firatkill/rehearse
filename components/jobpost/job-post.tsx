@@ -1,4 +1,6 @@
 'use client';
+import { jobErrorMessage } from '@/lib/i18n/job-error';
+import { T, useT } from '@/lib/i18n/context';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { JOBPOST, SESSION, SETUP_DEFAULTS, type AnswerMode } from '@/lib/config';
@@ -13,6 +15,8 @@ import { Button } from '@/components/ui/button';
 import { SafeText } from '@/components/common/safe-text';
 import { InterviewDateSchema, jobFeedbackType } from '@/lib/storage/jobpost-schema';
 export function JobPost({ initial }: { initial: JobResponse }) {
+  const t = useT();
+
   const router = useRouter();
   const repository = useRepository();
   const capabilities = useCapabilities();
@@ -34,7 +38,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
   const hasQuestions = questions.some((q) => q.origin === 'generated');
   async function saveText() {
     if (busy) return;
-    setBusy('Saving text…');
+    setBusy(t('ui.dynamic.24'));
     setError(null);
     const result = await requestJob({ operation: 'updateText', id: post.id, text });
     if (result.ok) {
@@ -42,14 +46,12 @@ export function JobPost({ initial }: { initial: JobResponse }) {
       setEditing(false);
       setSelected([]);
       if (result.data.post.id !== post.id) router.replace(`/job/${result.data.post.id}`);
-    } else setError(result.message);
+    } else setError(jobErrorMessage(result.message, t));
     setBusy(null);
   }
   async function generate(operation: 'generate' | 'more' = 'generate') {
     if (busy) return;
-    setBusy(
-      operation === 'more' ? 'Generating five more questions…' : 'Generating grounded questions…',
-    );
+    setBusy(operation === 'more' ? t('ui.dynamic.25') : t('ui.dynamic.26'));
     setError(null);
     const result = await requestJob({ operation, id: post.id });
     if (result.ok) {
@@ -61,16 +63,16 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             .slice(0, SESSION.LENGTHS[1])
             .map((q) => q.id),
         );
-    } else setError(result.message);
+    } else setError(jobErrorMessage(result.message, t));
     setBusy(null);
   }
   async function saveDate(value: string | null) {
     if (busy) return;
     if (value !== null && !InterviewDateSchema.safeParse(value).success) {
-      setError('Choose a valid interview date.');
+      setError(t('ui.dynamic.27'));
       return;
     }
-    setBusy('Saving interview date…');
+    setBusy(t('ui.dynamic.28'));
     setError(null);
     setDateNotice(null);
     const result = await requestJob({
@@ -81,13 +83,13 @@ export function JobPost({ initial }: { initial: JobResponse }) {
     if (result.ok) {
       setData(result.data);
       setDate(result.data.post.interviewDate ?? '');
-      setDateNotice(value ? 'Interview date saved.' : 'Interview date cleared.');
-    } else setError(result.message);
+      setDateNotice(value ? t('ui.dynamic.29') : t('ui.dynamic.30'));
+    } else setError(jobErrorMessage(result.message, t));
     setBusy(null);
   }
   async function start() {
     if (busy || !SESSION.LENGTHS.some((length) => length === selected.length)) return;
-    setBusy('Starting your interview…');
+    setBusy(t('ui.dynamic.31'));
     setError(null);
     const setup = SetupSchema.parse({
       role: post.practiceRole,
@@ -121,17 +123,19 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         router.push(`/session/${result.data.sessionId}`);
         return;
       } catch {
-        setError('Couldn’t save the session. Check your connection and try again.');
+        setError(t('ui.dynamic.32'));
       }
-    } else setError('Couldn’t start the session. Check your selection and try again.');
+    } else setError(t('ui.dynamic.33'));
     setBusy(null);
   }
   return (
     <div className="job-layout">
       <aside className="job-aside" aria-labelledby="job-read-heading">
-        <p className="ui-eyebrow job-eyebrow">What we read</p>
+        <p className="ui-eyebrow job-eyebrow">
+          <T id="components.jobpost.job.post.1" />
+        </p>
         <h1 id="job-read-heading">
-          <SafeText text={post.role || 'Review the job post'} />
+          <SafeText text={post.role || t('ui.dynamic.34')} />
         </h1>
         {post.company && (
           <p>
@@ -151,7 +155,9 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         )}
         {post.requirements.length > 0 && (
           <section className="job-looking">
-            <h2>What they’re looking for</h2>
+            <h2>
+              <T id="components.jobpost.job.post.2" />
+            </h2>
             <ul className="job-requirements">
               {post.requirements.map((item, index) => (
                 <li key={index}>
@@ -161,8 +167,10 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             </ul>
           </section>
         )}
-        <section className="job-date" aria-label="Interview schedule">
-          <label htmlFor="interview-date">Interview date</label>
+        <section className="job-date" aria-label={t('ui.dynamic.35')}>
+          <label htmlFor="interview-date">
+            <T id="components.jobpost.job.post.3" />
+          </label>
           <input
             id="interview-date"
             type="date"
@@ -175,7 +183,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             }}
           />
           <p id="interview-date-help" className="job-help">
-            Add a date to see this interview on Progress.
+            <T id="components.jobpost.job.post.4" />
           </p>
           <div className="job-date-actions">
             <Button
@@ -186,7 +194,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 void saveDate(date);
               }}
             >
-              Save date
+              <T id="components.jobpost.job.post.5" />
             </Button>
             {post.interviewDate && (
               <Button
@@ -197,7 +205,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                   void saveDate(null);
                 }}
               >
-                Clear date
+                <T id="components.jobpost.job.post.6" />
               </Button>
             )}
           </div>
@@ -205,7 +213,9 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         </section>
         {editing ? (
           <div className="job-edit">
-            <label htmlFor="read-job-text">Edit what we read</label>
+            <label htmlFor="read-job-text">
+              <T id="components.jobpost.job.post.7" />
+            </label>
             <textarea
               id="read-job-text"
               rows={12}
@@ -221,7 +231,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 void saveText();
               }}
             >
-              Save text
+              <T id="components.jobpost.job.post.8" />
             </Button>
             <Button
               variant="text"
@@ -231,13 +241,15 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 setEditing(false);
               }}
             >
-              Cancel
+              <T id="components.jobpost.job.post.9" />
             </Button>
           </div>
         ) : (
           <>
             <details open={!hasQuestions}>
-              <summary>Job post text</summary>
+              <summary>
+                <T id="components.jobpost.job.post.10" />
+              </summary>
               <div className="job-source">
                 <SafeText text={post.text} />
               </div>
@@ -249,32 +261,40 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 setEditing(true);
               }}
             >
-              Something wrong? Edit what we read
+              <T id="components.jobpost.job.post.11" />
             </Button>
           </>
         )}
       </aside>
       <section className="job-questions" aria-labelledby="job-questions-heading">
-        <h2 id="job-questions-heading">Questions they’re likely to ask</h2>
-        <p>Each one points to the line in the post it comes from. Untick any you don’t want.</p>
+        <h2 id="job-questions-heading">
+          <T id="components.jobpost.job.post.12" />
+        </h2>
+        <p>
+          <T id="components.jobpost.job.post.13" />
+        </p>
         {!hasQuestions && (
           <>
-            <p>Check the text on the left, then generate eight questions grounded in this post.</p>
+            <p>
+              <T id="components.jobpost.job.post.14" />
+            </p>
             <Button
               disabled={Boolean(busy) || editing}
               onClick={() => {
                 void generate();
               }}
             >
-              Generate questions
+              <T id="components.jobpost.job.post.15" />
             </Button>
           </>
         )}
         {questions.length > 0 && (
           <>
             <p className="mono">
-              {selected.length} of {questions.filter((q) => q.origin === 'generated').length}{' '}
-              selected
+              {selected.length}
+              <T id="components.jobpost.job.post.16" />
+              {questions.filter((q) => q.origin === 'generated').length}{' '}
+              <T id="components.jobpost.job.post.17" />
             </p>
             {questions.map((question) => (
               <div className="job-question" key={question.id}>
@@ -297,14 +317,17 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                     <SafeText text={question.text} />
                   </label>
                   <span className="tag">
-                    {question.origin === 'import' ? 'Imported · read-only' : 'Generated'} ·{' '}
+                    {question.origin === 'import' ? t('ui.dynamic.36') : t('ui.dynamic.37')} ·{' '}
                     {question.type}
                   </span>
                   <p id={`${question.id}-quote`}>
-                    From the post: “<SafeText text={question.groundingQuote} />”
+                    <T id="components.jobpost.job.post.18" />
+                    <SafeText text={question.groundingQuote} />”
                   </p>
                   <details>
-                    <summary>What to cover</summary>
+                    <summary>
+                      <T id="components.jobpost.job.post.19" />
+                    </summary>
                     <ul>
                       {question.listenFor.map((item, index) => (
                         <li key={index}>
@@ -328,12 +351,14 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                   void generate('more');
                 }}
               >
-                Generate 5 more
+                <T id="components.jobpost.job.post.20" />
               </Button>
             )}
             <div className="job-start">
               <fieldset className="setup-fieldset">
-                <legend>Answer mode</legend>
+                <legend>
+                  <T id="components.jobpost.job.post.21" />
+                </legend>
                 <div className="setup-choices">
                   <label className="setup-choice">
                     <input
@@ -344,7 +369,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                         setMode('text');
                       }}
                     />
-                    Text: type your answers
+                    <T id="components.jobpost.job.post.22" />
                   </label>
                   <label className="setup-choice">
                     <input
@@ -356,12 +381,14 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                         setMode('voice');
                       }}
                     />
-                    Voice: speak your answers
+                    <T id="components.jobpost.job.post.23" />
                   </label>
                 </div>
               </fieldset>
               <div className="job-start-row">
-                <p className="job-help">Select 3 or 5 questions to start.</p>
+                <p className="job-help">
+                  <T id="components.jobpost.job.post.24" />
+                </p>
                 <Button
                   disabled={
                     Boolean(busy) ||
@@ -372,7 +399,9 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                     void start();
                   }}
                 >
-                  Start with {selected.length} questions
+                  <T id="components.jobpost.job.post.25" />
+                  {selected.length}
+                  <T id="components.jobpost.job.post.26" />
                 </Button>
               </div>
             </div>

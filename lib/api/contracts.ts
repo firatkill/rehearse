@@ -2,6 +2,7 @@
 import { FOLLOW_UP } from '@/lib/config';
 import { z } from 'zod';
 import {
+  LANGUAGES,
   ROLES,
   SENIORITIES,
   QUESTION_TYPES,
@@ -33,6 +34,7 @@ export const ErrorBodySchema = z
 
 export const StartRequestSchema = z
   .object({
+    language: z.enum(LANGUAGES).optional(),
     demoJob: z.string().max(100).optional(),
     jobPostId: z.uuid().optional(),
     questionIds: z

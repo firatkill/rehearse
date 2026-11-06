@@ -1,3 +1,6 @@
+import { I18nProvider } from '@/lib/i18n/context';
+import { loadMessages } from '@/lib/i18n/messages';
+import { requestLanguage } from '@/lib/i18n/server';
 import type { ReactNode } from 'react';
 import { headers } from 'next/headers';
 import { Schibsted_Grotesk, JetBrains_Mono } from 'next/font/google';
@@ -29,17 +32,22 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const nonce = (await headers()).get('x-nonce') ?? undefined;
+  const requestHeaders = await headers();
+  const nonce = requestHeaders.get('x-nonce') ?? undefined;
+  const language = await requestLanguage();
+  const messages = await loadMessages(language);
   return (
-    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
+    <html lang={language} suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
       <head>
         {/* eslint-disable-next-line react/no-danger -- constant theme script, TRD §19.3 */}
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>
-        <Shell demoMode={getEnv().DEMO_MODE} edition={getEnv().APP_EDITION}>
-          {children}
-        </Shell>
+        <I18nProvider initialLanguage={language} initialMessages={messages}>
+          <Shell demoMode={getEnv().DEMO_MODE} edition={getEnv().APP_EDITION}>
+            {children}
+          </Shell>
+        </I18nProvider>
       </body>
     </html>
   );

@@ -40,6 +40,11 @@ export function proxy(req: NextRequest) {
     https: req.nextUrl.protocol === 'https:',
   });
   const requestHeaders = new Headers(req.headers);
+  requestHeaders.set(
+    'x-rehearse-language',
+    env.APP_EDITION === 'full' && req.nextUrl.searchParams.get('language') === 'tr' ? 'tr' : 'en',
+  );
+  requestHeaders.set('x-rehearse-path', req.nextUrl.pathname);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('x-request-id', crypto.randomUUID());
   requestHeaders.set('Content-Security-Policy', csp);

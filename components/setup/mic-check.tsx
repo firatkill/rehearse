@@ -1,15 +1,19 @@
 'use client';
+import { T, useT } from '@/lib/i18n/context';
 import { useState } from 'react';
 import { checkMicrophone, type MicCheck as Result } from '@/lib/speech/microphone';
 import { Button } from '@/components/ui/button';
-const copy = {
-  pending: 'Waiting for permission…',
-  granted: 'Microphone ready.',
-  denied: 'Microphone access is blocked. Allow it in your browser’s site settings, or choose Text.',
-  'no-device': 'No microphone found. Connect one, or choose Text.',
-  error: 'Couldn’t open the microphone. Choose Text, or try again.',
-};
+
 export function MicCheck() {
+  const t = useT();
+
+  const copy = {
+    pending: t('ui.dynamic.114'),
+    granted: t('ui.dynamic.115'),
+    denied: t('ui.dynamic.116'),
+    'no-device': t('ui.dynamic.117'),
+    error: t('ui.dynamic.118'),
+  };
   const [result, setResult] = useState<Result | 'pending' | null>(null);
   async function check() {
     setResult('pending');
@@ -26,7 +30,7 @@ export function MicCheck() {
           void check();
         }}
       >
-        Check microphone
+        <T id="components.setup.mic.check.1" />
       </Button>
       <p role="status">{result ? copy[result] : ''}</p>
     </div>

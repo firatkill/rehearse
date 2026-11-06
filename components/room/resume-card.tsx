@@ -1,3 +1,4 @@
+import { T } from '@/lib/i18n/context';
 import { Button } from '@/components/ui/button';
 export function ResumeCard({
   index,
@@ -10,13 +11,20 @@ export function ResumeCard({
 }) {
   return (
     <section className="space-y-4">
-      <h1>Ready to continue</h1>
+      <h1>
+        <T id="components.room.resume.card.1" />
+      </h1>
       <p>
-        You’re on question {index + 1} of {total}.
+        <T id="components.room.resume.card.2" />
+        {index + 1}
+        <T id="components.jobpost.job.post.16" />
+        {total}.
       </p>
-      <p>We restored your session after the page reloaded.</p>
+      <p>
+        <T id="components.room.resume.card.4" />
+      </p>
       <Button className="min-h-11" data-phase-focus onClick={onContinue}>
-        Continue
+        <T id="components.room.resume.card.5" />
       </Button>
     </section>
   );

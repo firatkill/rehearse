@@ -4,7 +4,7 @@ import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
 import { sessionId } from './api';
 
 export const record: SessionRecord = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   id: sessionId,
   origin: 'live',
   createdAt: '2026-10-21T12:00:00.000Z',
@@ -12,6 +12,7 @@ export const record: SessionRecord = {
   completedAt: null,
   status: 'in_progress',
   setup: {
+    language: 'en',
     role: 'backend',
     seniority: 'mid',
     types: ['behavioral'],
@@ -33,7 +34,7 @@ export const record: SessionRecord = {
   summaryStatus: 'none',
 };
 export const answer: AnswerRecord = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   sessionId,
   index: 0,
   questionId: 'beh-001',

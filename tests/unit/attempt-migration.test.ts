@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { expect, test, vi } from 'vitest';
 import { IDBFactory } from 'fake-indexeddb';
 import { MIGRATIONS, migrateRecord } from '@/lib/storage/migrations';
@@ -10,9 +11,11 @@ import {
   LegacyAnswerRecordSchema,
 } from '@/lib/storage/schema';
 import { answer, record } from '../fixtures/records';
+const { language: _language, ...legacySetup } = record.setup;
+expect(_language).toBe('en');
 import { feedback } from '../fixtures/api';
 import { completeAttempt } from '@/lib/storage/attempts';
-const legacySession = { ...record, schemaVersion: 1 };
+const legacySession = { ...record, setup: legacySetup, schemaVersion: 1 };
 const oldAnswer = LegacyAnswerRecordSchema.strip().parse({ ...answer, schemaVersion: 1 });
 const legacyAnswer = { ...oldAnswer, schemaVersion: 1, status: 'scored', feedback };
 
@@ -43,7 +46,7 @@ test('TC-147 UT-14 actual v1 database upgrades without losing completed answers 
   const draft = AnswerRecordSchema.parse(
     await requestResult(read.objectStore('answers').get([record.id, 1])),
   );
-  expect(session.schemaVersion).toBe(5);
+  expect(session.schemaVersion).toBe(STORAGE.RECORD_SCHEMA_VERSION);
   expect(completed.attemptRecords[0]?.transcript).toBe(answer.transcript);
   expect(completed.bestAttemptId).toBe(completed.attemptRecords[0]?.id);
   expect(draft.transcript).toBe(answer.transcript);
@@ -74,7 +77,7 @@ test('TC-147 UT-15 old export migrates and new attempts round-trip', async () =>
   await repo.createSession(bundle.session);
   for (const a of bundle.answers) await repo.putAnswer(a);
   const exported = await buildExport(repo, '2', () => new Date(record.createdAt));
-  expect(exported.formatVersion).toBe(7);
+  expect(exported.formatVersion).toBe(STORAGE.EXPORT_FORMAT_VERSION);
   const roundtrip = await readImport(new File([JSON.stringify(exported)], 'new.json'));
   expect(roundtrip.bundles[0]?.answers).toEqual(bundle.answers);
   expect(migrateRecord({ schemaVersion: 1, malformed: true })).toBeNull();
@@ -98,7 +101,7 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
   expect(_history).toEqual([]);
   const first = await openDb(name, MIGRATIONS.slice(0, 2));
   const write = first.transaction(['sessions', 'answers'], 'readwrite');
-  write.objectStore('sessions').put({ ...record, schemaVersion: 2 });
+  write.objectStore('sessions').put({ ...record, setup: legacySetup, schemaVersion: 2 });
   write.objectStore('answers').put(historicAnswer);
   await transactionDone(write);
   closeDb(first);
@@ -108,7 +111,7 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
   );
   expect(stored).toEqual({
     ...historicAnswer,
-    schemaVersion: 5,
+    schemaVersion: STORAGE.RECORD_SCHEMA_VERSION,
     followUp: null,
     followUpRecords: [],
   });
@@ -122,7 +125,12 @@ test('TC-148 UT-14 v2 attempt history upgrades without inventing new feedback me
           formatVersion: 2,
           exportedAt: record.createdAt,
           appVersion: '2',
-          sessions: [{ session: { ...record, schemaVersion: 2 }, answers: [historicAnswer] }],
+          sessions: [
+            {
+              session: { ...record, setup: legacySetup, schemaVersion: 2 },
+              answers: [historicAnswer],
+            },
+          ],
         }),
       ],
       'v2.json',

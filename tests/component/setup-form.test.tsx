@@ -76,6 +76,7 @@ it('TC-033 CT-01 honours a seed and creates the session before navigating', asyn
     expect(mocks.push).toHaveBeenCalledWith(`/session/${record.id}`);
   });
   expect(startSession).toHaveBeenCalledWith({
+    language: 'en',
     role: 'full-stack',
     seniority: 'mid',
     types: ['behavioral', 'technical-concepts'],

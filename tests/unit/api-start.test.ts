@@ -118,3 +118,22 @@ it('TC-030 TC-164 D-80 full permits sessions beyond the former IP quota', async 
   );
   expect((await POST(request())).status).toBe(200); // Start no longer consumes an LLM/IP quota.
 });
+
+it('TC-206 V-60 demo rejects Turkish and full waits for the complete Turkish interview stack', async () => {
+  vi.stubEnv('APP_EDITION', 'demo');
+  resetEnvForTests();
+  await expectError(request({ ...startBody, language: 'tr' }), 403, 'DEMO_ONLY');
+  vi.stubEnv('APP_EDITION', 'full');
+  resetEnvForTests();
+  await expectError(request({ ...startBody, language: 'tr' }), 400, 'VALIDATION_FAILED');
+  const response = StartResponseSchema.parse(
+    await (await POST(request({ ...startBody, language: 'en' }))).json(),
+  );
+  expect(response.token).not.toBeNull();
+  const verified = verifyToken(
+    response.token!,
+    [getEnv().SESSION_SECRET],
+    Math.floor(Date.now() / 1000),
+  );
+  expect(verified.ok && verified.payload.l).toBe('en');
+});
