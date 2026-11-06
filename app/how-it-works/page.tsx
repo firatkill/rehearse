@@ -174,10 +174,10 @@ export default async function HowItWorksPage() {
       <section>
         <h2>Browser support</h2>
         <p>
-          Support is feature-detected, not inferred from the browser name. The owner confirmed
-          microphone and voice preview in Chrome and Safari, and VoiceOver in Safari, on the
-          deployed site on 6 November 2026. This is not an exhaustive device check; voice-preview
-          latency has not been formally measured.
+          Support is feature-detected, not inferred from the browser name. Microphone answers and
+          voice preview were tested on real devices in Chrome and Safari, including VoiceOver in
+          Safari, in November 2026. This is not an exhaustive device check; voice-preview latency
+          has not been formally measured.
         </p>
         <div className="info-table">
           <table>

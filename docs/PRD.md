@@ -516,7 +516,7 @@ Privacy model:
 - Demo: “Rehearse never receives your audio. Browser speech services may process it. Demo history is saved in your browser. The server receives answer text to select pre-written feedback without saving it or calling an AI provider.”
 - Full: “Rehearse never receives your audio. Browser speech services may process it. Live feedback sends your edited answer to OpenAI; sessions, answers and job posts are stored in local SQLite on your machine.”
 
-Browser verification: “Support is feature-detected, not inferred from the browser name. The owner confirmed microphone and voice preview in Chrome and Safari, and VoiceOver in Safari, on the deployed site on 6 November 2026. This is not an exhaustive device check; voice-preview latency has not been formally measured.”
+Browser verification: “Support is feature-detected, not inferred from the browser name. Microphone answers and voice preview were tested on real devices in Chrome and Safari, including VoiceOver in Safari, in November 2026. This is not an exhaustive device check; voice-preview latency has not been formally measured.”
 
 Cost:
 
