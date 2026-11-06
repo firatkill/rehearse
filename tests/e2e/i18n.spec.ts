@@ -15,7 +15,7 @@ test('TC-204 V-60 browser locale does not choose interview language; explicit fu
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('What are you preparing for?');
   await page.goto('/setup?language=tr');
   await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Neye hazırlanıyorsunuz?');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Neye hazırlanıyorsun?');
   await expect(page.getByLabel('3 soru (yaklaşık 10 dakika)')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Gelişim', exact: true })).toHaveAttribute(
     'href',

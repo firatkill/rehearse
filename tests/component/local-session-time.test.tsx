@@ -1,5 +1,5 @@
 import { I18nProvider } from '@/lib/i18n/context';
-import { messages } from '@/messages/en';
+import { messages } from '@/messages/en-complete';
 import { renderToString } from 'react-dom/server';
 import { render, screen } from '@testing-library/react';
 import { expect, it } from 'vitest';

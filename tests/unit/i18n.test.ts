@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { messages as en } from '@/messages/en';
+import { messages as en } from '@/messages/en-complete';
 import { messages as tr } from '@/messages/tr';
 import { formatMessage, loadMessages, type MessageKey } from '@/lib/i18n/messages';
 import { isLanguage, languageHref, languageOf } from '@/lib/i18n/language';

@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT, useI18n } from '@/lib/i18n/context';
 import { useEffect, useRef } from 'react';
@@ -35,6 +36,7 @@ export function ReportView({
   const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS, DIMENSION_LABELS } = useLabels();
 
   const t = useT();
+  const { number } = useNumbers();
   const { language } = useI18n();
 
   const answers = allAnswers.map(bestAnswer);
@@ -86,7 +88,7 @@ export function ReportView({
         )}{' '}
         · {ROLE_LABELS[session.setup.role]}, {SENIORITY_LABELS[session.setup.seniority]} ·{' '}
         {session.setup.types.map((t) => QUESTION_TYPE_LABELS[t]).join(', ')} · {answered}/
-        {session.questions.length}
+        {number(session.questions.length)}
         <T id="components.report.report.view.2" />
         <SafeText text={session.seed} />
       </p>
@@ -138,7 +140,7 @@ export function ReportView({
               <T id="components.history.progress.overview.17" />
             </dt>
             <dd>
-              {values.overallMean?.toFixed(1) ?? '—'}
+              {(values.overallMean == null ? undefined : number(values.overallMean, 1)) ?? '—'}
               <span> / 4</span>
             </dd>
           </div>
@@ -148,7 +150,7 @@ export function ReportView({
             </dt>
             <dd>
               {answered}
-              <span> / {session.questions.length}</span>
+              <span> / {number(session.questions.length)}</span>
             </dd>
           </div>
           <div>
@@ -171,9 +173,9 @@ export function ReportView({
         {values.scoredCount > 1 && values.best && values.lowest && (
           <p className="report-meta">
             <T id="components.report.report.view.14" />
-            {values.best.index + 1} ({values.best.overall.toFixed(1)}
+            {values.best.index + 1} ({number(values.best.overall, 1)}
             <T id="components.report.report.view.15" />
-            {values.lowest.index + 1} ({values.lowest.overall.toFixed(1)})
+            {values.lowest.index + 1} ({number(values.lowest.overall, 1)})
           </p>
         )}
       </section>
@@ -187,7 +189,10 @@ export function ReportView({
               <h3>{DIMENSION_LABELS[d]}</h3>
               <p className="font-mono">
                 <T id="components.report.report.view.16" />
-                {values.dimensionMeans[d]?.toFixed(1)} / 4
+                {values.dimensionMeans[d] == null
+                  ? undefined
+                  : number(values.dimensionMeans[d], 1)}{' '}
+                / 4
               </p>
               <p>
                 <SafeText
@@ -293,20 +298,20 @@ export function ReportView({
         </h2>
         <p>
           <T id="components.report.report.view.24" />
-          {values.delivery.totalWords}
+          {number(values.delivery.totalWords)}
           {values.delivery.avgWpm !== null && (
             <>
               <T id="components.report.report.view.25" />
-              {values.delivery.avgWpm}
+              {number(values.delivery.avgWpm)}
               <T id="components.report.report.view.26" />
             </>
           )}{' '}
           <T id="components.report.report.view.27" />
-          {values.delivery.totalFillers}
+          {number(values.delivery.totalFillers)}
           {values.delivery.longestPauseMs !== null && (
             <>
               <T id="components.report.report.view.28" />
-              {(values.delivery.longestPauseMs / 1000).toFixed(1)} s
+              {number(values.delivery.longestPauseMs / 1000, 1)} s
             </>
           )}
         </p>
@@ -328,7 +333,7 @@ export function ReportView({
         {session.questions.map((question, index) => {
           const answer = answers.find((a) => a.index === index);
           const label = answer?.feedback
-            ? `${answer.feedback.overall.toFixed(1)} / 4`
+            ? `${number(answer.feedback.overall, 1)} / 4`
             : answer?.status === 'skipped'
               ? t('components.report.report.view.32')
               : t('ui.dynamic.47');
@@ -343,7 +348,7 @@ export function ReportView({
                 {index + 1}: <SafeText text={question.prompt.slice(0, 80)} />
                 {question.prompt.length > 80 ? '…' : ''} · {label}
                 {answer &&
-                  ` · ${answer.attemptRecords.length} ${answer.attemptRecords.length === 1 ? 'try' : 'tries'}`}
+                  ` · ${number(answer.attemptRecords.length)} ${t(answer.attemptRecords.length === 1 ? 'markdown.try' : 'markdown.tries')}`}
               </summary>
               <div className="space-y-4 py-4">
                 {answer?.feedback ? (

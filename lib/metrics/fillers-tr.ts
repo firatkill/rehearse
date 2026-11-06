@@ -18,6 +18,12 @@ export function scanTurkishFillers(text: string, enabled: readonly string[] = FI
     const detached =
       (index === 0 || /[,;:.!?]/u.test(before)) && (!next || /[,;:.!?]/u.test(after));
     const repeated = previous?.w === token.w || next?.w === token.w;
+    const hesitation = (word: string) => /^(?:şey|yani|hani|işte|ı{2,}|e{2,})$/u.test(word);
+    const initial = index === 0 || /[.!?\n]/u.test(before) || hesitation(previous?.w ?? '');
+    // Unpunctuated speech: only clear clause starters, not explanatory/deictic uses.
+    const clauseStart =
+      ['ben', 'biz', 'önce', 'sonra', 'aslında'].includes(next?.w ?? '') &&
+      tokens[index + 2] !== undefined;
     let phrase: string | null = null;
     if (/^ı{2,}$/u.test(token.w) && !/^I+$/u.test(source.slice(token.start, token.end)))
       phrase = 'ııı';
@@ -25,7 +31,7 @@ export function scanTurkishFillers(text: string, enabled: readonly string[] = FI
     else if (token.w === 'şey') {
       if (
         !['bir', 'her', 'hiçbir', 'çok', 'tek', 'bu', 'şu', 'o'].includes(previous?.w ?? '') &&
-        (detached || repeated)
+        (detached || repeated || /[,;:.!?\n]/u.test(after) || hesitation(next?.w ?? ''))
       )
         phrase = token.w;
     } else if (['yani', 'hani', 'işte'].includes(token.w)) {
@@ -35,7 +41,7 @@ export function scanTurkishFillers(text: string, enabled: readonly string[] = FI
           ['dün', 'geçen', 'hatırlıyor', 'söylemiştin'].includes(next?.w ?? '')) ||
         (token.w === 'işte' &&
           ['bu', 'bunun', 'bundan', 'çalışırken', 'çalışıyorum'].includes(next?.w ?? ''));
-      if (!meaningful && (detached || repeated)) phrase = token.w;
+      if (!meaningful && (detached || repeated || (initial && clauseStart))) phrase = token.w;
     }
     if (phrase && allowed.has(phrase)) {
       byPhrase[phrase] = (byPhrase[phrase] ?? 0) + 1;

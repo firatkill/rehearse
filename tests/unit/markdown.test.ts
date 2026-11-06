@@ -1,9 +1,10 @@
 import { expect, it } from 'vitest';
 import { escapeMd, reportMarkdown, reportFilename } from '@/lib/report/markdown';
 import { chartSegments } from '@/lib/report/chart';
+import { feedback } from '../fixtures/api';
 import { answer, record } from '../fixtures/records';
 import { messages as tr } from '@/messages/tr';
-import { messages as en } from '@/messages/en';
+import { messages as en } from '@/messages/en-complete';
 import { formatMessage, type MessageKey, type MessageValues } from '@/lib/i18n/messages';
 it('TC-204 TC-211 selected catalogue localises report exports without translating answers or changing English output', () => {
   const translate = (key: MessageKey, values?: MessageValues) => formatMessage(tr, key, values);
@@ -185,4 +186,23 @@ it('TC-086 UT-28 full scored report follows the normative section order and esca
   );
   expect(text.indexOf('## Summary')).toBeLessThan(text.indexOf('## Focus on these next'));
   expect(text.indexOf('## Next practice')).toBeLessThan(text.indexOf('## Answers'));
+});
+it('TC-215 Turkish report export uses comma decimals, grouped totals and familiar role names', () => {
+  const text = reportMarkdown(
+    { ...record, setup: { ...record.setup, language: 'tr' } },
+    [
+      {
+        ...answer,
+        metrics: { ...answer.metrics, words: 4000 },
+        status: 'scored',
+        feedback: { ...feedback, overall: 3.8 },
+      },
+    ],
+    (key, values) => formatMessage(tr, key, values),
+  );
+  expect(text).toContain('Backend');
+  expect(text).toContain('Soru seti kodu');
+  expect(text).toContain('4.000');
+  expect(text).toContain('3,8 / 4');
+  expect(text).not.toContain('Tohum');
 });

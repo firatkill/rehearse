@@ -18,6 +18,7 @@ import {
   type MessageKey,
   type MessageValues,
 } from './messages';
+import { formatNumber } from './numbers';
 import { languageOf } from './language';
 type I18n = {
   language: Language;
@@ -65,10 +66,31 @@ export function I18nProvider({
   }, [initialLanguage, selectLanguage]);
   useEffect(() => {
     document.documentElement.lang = state.language;
-  }, [state.language]);
+    const path = location.pathname;
+    const key =
+      path === '/setup'
+        ? 'title.setup'
+        : path === '/progress'
+          ? 'title.progress'
+          : /^\/session\/[^/]+\/report$/.test(path)
+            ? 'title.report'
+            : null;
+    if (key) document.title = formatMessage(state.messages, key);
+  }, [state.language, state.messages]);
   const t = useCallback(
-    (key: MessageKey, values?: MessageValues) => formatMessage(state.messages, key, values),
-    [state.messages],
+    (key: MessageKey, values?: MessageValues) =>
+      formatMessage(
+        state.messages,
+        key,
+        values &&
+          Object.fromEntries(
+            Object.entries(values).map(([name, value]) => [
+              name,
+              typeof value === 'number' ? formatNumber(value, state.language) : value,
+            ]),
+          ),
+      ),
+    [state.messages, state.language],
   );
   const value = useMemo(
     () => ({ language: state.language, t, selectLanguage }),

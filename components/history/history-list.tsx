@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT } from '@/lib/i18n/context';
 import { ComingUp } from './coming-up';
@@ -30,6 +31,7 @@ export function HistoryList({
   const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS, DIMENSION_LABELS } = useLabels();
 
   const t = useT();
+  const { number } = useNumbers();
 
   const statusLabels = {
     completed: t('ui.dynamic.11'),
@@ -40,7 +42,7 @@ export function HistoryList({
     <>
       {skipped > 0 && (
         <p>
-          {skipped}
+          {number(skipped)}
           <T id="components.history.history.list.1" />
         </p>
       )}
@@ -102,15 +104,15 @@ export function HistoryList({
                   <span className="history-label" aria-hidden="true">
                     <T id="components.history.history.list.7" />
                   </span>
-                  {session.questions.length}
+                  {number(session.questions.length)}
                   <T id="components.history.history.list.8" />
-                  {retries} {t(retries === 1 ? 'common.retry.one' : 'common.retry.many')}
+                  {number(retries)} {t(retries === 1 ? 'common.retry.one' : 'common.retry.many')}
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">
                     <T id="components.history.history.list.9" />
                   </span>
-                  {overall === null ? '—' : overall.toFixed(1)}
+                  {overall === null ? '—' : number(overall, 1)}
                 </td>
                 <td>
                   <span className="history-label" aria-hidden="true">

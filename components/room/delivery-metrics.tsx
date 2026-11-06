@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { T, useT, useI18n } from '@/lib/i18n/context';
 import { lengthVerdict, textLengthVerdict } from '@/lib/report/feedback-view';
 import { formatMmSs } from '@/lib/time';
@@ -16,6 +17,7 @@ export function DeliveryMetrics({
   recordingMs?: number | null;
 }) {
   const t = useT();
+  const { number } = useNumbers();
   const { language } = useI18n();
   const verdict = (value: string) =>
     t(
@@ -55,7 +57,7 @@ export function DeliveryMetrics({
         <dt>
           <T id="components.room.delivery.metrics.3" />
         </dt>
-        <dd>{metrics.words}</dd>
+        <dd>{number(metrics.words)}</dd>
         <dt>
           <T id="components.room.delivery.metrics.4" />
         </dt>
@@ -74,7 +76,7 @@ export function DeliveryMetrics({
           <T id="components.room.delivery.metrics.6" />
         </dt>
         <dd>
-          {metrics.fillers.total}{' '}
+          {number(metrics.fillers.total)}{' '}
           <span>
             {formatFillerBreakdown(metrics.fillers.byPhrase, language, t('fillers.none'))}
           </span>
@@ -86,7 +88,7 @@ export function DeliveryMetrics({
           {mode === 'text' || metrics.longestPauseMs === null || metrics.longPauses === null
             ? t('ui.dynamic.49')
             : t('ui.template.20', {
-                v0: (metrics.longestPauseMs / 1000).toFixed(1),
+                v0: number(metrics.longestPauseMs / 1000, 1),
                 v1: metrics.longPauses,
                 v2: SPEECH.LONG_PAUSE_MS / 1000,
               })}

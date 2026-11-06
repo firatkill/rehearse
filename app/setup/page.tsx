@@ -1,11 +1,14 @@
+import { serverTranslator } from '@/lib/i18n/server';
 import { T } from '@/lib/i18n/context';
 import { demoJobs } from '@/lib/demo/content';
-import type { Metadata } from 'next';
 import { LanguageLink as Link } from '@/lib/i18n/link';
 import { getEnv } from '@/lib/env';
 import { SetupForm } from '@/components/setup/setup-form';
 
-export const metadata: Metadata = { title: 'Set up a session · Rehearse' };
+export async function generateMetadata() {
+  const t = await serverTranslator();
+  return { title: t('title.setup') };
+}
 export default async function SetupPage({
   searchParams,
 }: {

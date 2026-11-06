@@ -29,7 +29,7 @@ vi.mock('@testing-library/react', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@testing-library/react')>();
   const { createElement } = await import('react');
   const { I18nProvider } = await import('@/lib/i18n/context');
-  const { messages } = await import('@/messages/en');
+  const { messages } = await import('@/messages/en-complete');
   function wrap(
     Wrapper?: import('react').JSXElementConstructor<{ children: import('react').ReactNode }>,
   ) {

@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { T, useT } from '@/lib/i18n/context';
 import { TTS } from '@/lib/config';
 import type { Setup } from '@/lib/storage/schema';
@@ -19,6 +20,7 @@ export function VoicePicker({
   onChange: (patch: Partial<Setup>) => void;
 }) {
   const t = useT();
+  const { number } = useNumbers();
 
   const { voice, fellBack } = pickVoice(voices, setup.voiceURI, setup.language);
   const groups = groupVoices(voices, setup.language);
@@ -92,7 +94,7 @@ export function VoicePicker({
               <T id="components.setup.voice.picker.6" />
             </label>
             <p className="font-mono" aria-hidden="true">
-              {setup.rate.toFixed(1)}×
+              {number(setup.rate, 1)}×
             </p>
           </div>
           <input
@@ -103,7 +105,7 @@ export function VoicePicker({
             max={TTS.RATE_MAX}
             step={TTS.RATE_STEP}
             value={setup.rate}
-            aria-valuetext={t('ui.template.43', { v0: setup.rate.toFixed(1) })}
+            aria-valuetext={t('ui.template.43', { v0: number(setup.rate, 1) })}
             onChange={(event) => {
               onChange({ rate: Number(event.target.value) });
             }}

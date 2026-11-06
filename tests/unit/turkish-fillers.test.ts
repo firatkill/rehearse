@@ -84,3 +84,29 @@ it('TC-208 metrics and transcript marks use the same chosen-language scan', () =
   const edited = roomReducer(reviewed, { type: 'EDIT', transcript: 'Denedim.' }, Date.now());
   expect(edited.answers[0]?.metrics.fillers.total).toBe(0);
 });
+it.each([
+  ['yani ben önce kayıtları inceledim', { yani: 1 }],
+  ['hani biz sonra birlikte denedik', { hani: 1 }],
+  ['işte önce hatayı yeniden ürettim', { işte: 1 }],
+  ['şey eee sonra düzelttim', { şey: 1, eee: 1 }],
+  ['önce şey yani ben kayıtları açtım', { şey: 1, yani: 1 }],
+  ['önce şey\nsonra kayıtları açtım', { şey: 1 }],
+] satisfies [string, Record<string, number>][])(
+  'TC-216 unpunctuated Turkish hesitation: %s',
+  (text, byPhrase) => {
+    expect(countFillers(text, undefined, 'tr').byPhrase).toEqual(byPhrase);
+  },
+);
+it.each([
+  'atomik yani ya hepsi olur ya hiçbiri',
+  'kayıtları birleştirdim yani aynı işlem artık tek yerde',
+  'hani geçen hafta konuştuğumuz kayıt vardı ya onu buldum',
+  'işte bu yüzden bekledik',
+  'bu işte ben sorumluydum',
+  'bir şey yani küçük bir hata gördüm',
+  'her şey yolunda',
+  'yani kelimesinin anlamını açıkladım',
+  'şey olarak adlandırılan kayıt silindi',
+])('TC-216 meaningful unpunctuated Turkish stays unmarked: %s', (text) => {
+  expect(countFillers(text, undefined, 'tr').total).toBe(0);
+});
