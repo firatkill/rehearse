@@ -6,7 +6,7 @@ import { parseArgs } from 'node:util';
 import { getEnv } from '@/lib/env';
 import { getProvider } from '@/lib/llm';
 import { getBank } from '@/lib/questions/bank';
-import { runEvaluation } from '@/lib/eval/runner';
+import { preflightEvaluation, runEvaluation, type EvalOptions } from '@/lib/eval/runner';
 import { getTurkishEvalQuestions } from '@/lib/eval/turkish';
 import { EvalBudgetError } from '@/lib/eval/budget';
 
@@ -22,6 +22,7 @@ async function main() {
       language: { type: 'string', default: 'en' },
       mock: { type: 'boolean', default: false },
       ci: { type: 'boolean', default: false },
+      preflight: { type: 'boolean', default: false },
       'no-gate': { type: 'boolean', default: false },
       repeats: { type: 'string' },
       only: { type: 'string' },
@@ -46,6 +47,22 @@ async function main() {
     'utf8',
   );
   const thresholds: unknown = JSON.parse(await readFile('eval/thresholds.json', 'utf8'));
+  const options: EvalOptions = {
+    suite: values.suite,
+    language,
+    mock: values.mock,
+    noGate: values['no-gate'],
+    repeats: values.repeats === undefined ? env.EVAL_REPEATS : Number(values.repeats),
+    only: values.only?.split(','),
+    budget: values.budget === undefined ? env.EVAL_MAX_COST_USD : Number(values.budget),
+  };
+  const bank = language === 'tr' ? getTurkishEvalQuestions() : getBank();
+  if (values.preflight) {
+    console.log(
+      JSON.stringify(preflightEvaluation({ source, thresholds, bank, env, options }), null, 2),
+    );
+    return;
+  }
   const dir = values.out;
   await mkdir(dir, { recursive: true });
   const day = new Date().toISOString().slice(0, 10);
@@ -55,18 +72,10 @@ async function main() {
   const { results, estimate, exitCode } = await runEvaluation({
     source,
     thresholds,
-    bank: language === 'tr' ? getTurkishEvalQuestions() : getBank(),
+    bank,
     provider: getProvider(),
     env,
-    options: {
-      suite: values.suite,
-      language,
-      mock: values.mock,
-      noGate: values['no-gate'],
-      repeats: values.repeats === undefined ? env.EVAL_REPEATS : Number(values.repeats),
-      only: values.only?.split(','),
-      budget: values.budget === undefined ? env.EVAL_MAX_COST_USD : Number(values.budget),
-    },
+    options,
     runId,
     gitSha: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   });

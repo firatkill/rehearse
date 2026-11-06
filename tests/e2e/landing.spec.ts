@@ -21,7 +21,7 @@ for (const theme of ['light', 'dark'] as const)
         (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
           .violations,
       ).toEqual([]);
-      await page.screenshot({ path: `.git/v12-${theme}-${width}.png`, fullPage: true });
+      await page.screenshot({ path: info.outputPath(`v12-${theme}-${width}.png`), fullPage: true });
       await page.getByRole('link', { name: 'See a sample report', exact: true }).click();
       await expect(page).toHaveURL(/\/sample$/);
     });

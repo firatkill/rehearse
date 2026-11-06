@@ -260,3 +260,22 @@ export const PERFORMANCE = {
   RESULT_COMMIT_MS: 16,
   CLICK_TO_SPEECH_MS: 500,
 } as const;
+
+export const INVALID_OUTPUT_REASONS = [
+  'truncated',
+  'json_parse',
+  'schema_parse',
+  'score_range',
+  'empty_rationale',
+  'lowest_dimension_improvement_missing',
+  'final_schema',
+  'no_output',
+] as const;
+export const LLM_FINISH_REASONS = [
+  'stop',
+  'length',
+  'content-filter',
+  'tool-calls',
+  'error',
+  'other',
+] as const;

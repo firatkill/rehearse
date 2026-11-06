@@ -2,6 +2,8 @@ import 'server-only';
 import { createOpenAI } from '@ai-sdk/openai';
 import {
   APICallError,
+  JSONParseError,
+  type LanguageModelUsage,
   generateText,
   NoObjectGeneratedError,
   NoOutputGeneratedError,
@@ -11,10 +13,22 @@ import { LLM } from '@/lib/config';
 import { getEnv } from '@/lib/env';
 import {
   InvalidOutputError,
+  safeFinishReason,
+  type LlmUsage,
   ProviderError,
   ProviderTimeoutError,
   type LlmProvider,
 } from '@/lib/llm/provider';
+
+function usageOf(usage: LanguageModelUsage | undefined): LlmUsage | null {
+  return usage
+    ? {
+        inputTokens: usage.inputTokens ?? 0,
+        outputTokens: usage.outputTokens ?? 0,
+        cachedInputTokens: usage.inputTokenDetails.cacheReadTokens ?? 0,
+      }
+    : null;
+}
 
 export function createOpenAiProvider(): LlmProvider {
   const env = getEnv();
@@ -44,9 +58,17 @@ export function createOpenAiProvider(): LlmProvider {
           },
         });
         const parsed = args.schema.safeParse(result.output);
-        if (!parsed.success) throw new InvalidOutputError();
+        if (!parsed.success)
+          throw new InvalidOutputError(
+            result.finishReason === 'length' ? 'truncated' : 'schema_parse',
+            usageOf(result.usage),
+            safeFinishReason(result.finishReason),
+          );
         return {
           object: parsed.data,
+          ...(safeFinishReason(result.finishReason)
+            ? { finishReason: safeFinishReason(result.finishReason) ?? 'other' }
+            : {}),
           usage: {
             inputTokens: result.usage.inputTokens ?? 0,
             outputTokens: result.usage.outputTokens ?? 0,
@@ -60,13 +82,19 @@ export function createOpenAiProvider(): LlmProvider {
           (error instanceof Error && ['AbortError', 'TimeoutError'].includes(error.name))
         )
           throw new ProviderTimeoutError();
-        if (
-          error instanceof InvalidOutputError ||
-          NoObjectGeneratedError.isInstance(error) ||
-          NoOutputGeneratedError.isInstance(error)
-        ) {
-          throw new InvalidOutputError();
+        if (error instanceof InvalidOutputError) throw error;
+        if (NoObjectGeneratedError.isInstance(error)) {
+          throw new InvalidOutputError(
+            error.finishReason === 'length'
+              ? 'truncated'
+              : JSONParseError.isInstance(error.cause)
+                ? 'json_parse'
+                : 'schema_parse',
+            usageOf(error.usage),
+            safeFinishReason(error.finishReason),
+          );
         }
+        if (NoOutputGeneratedError.isInstance(error)) throw new InvalidOutputError('no_output');
         if (APICallError.isInstance(error)) {
           throw new ProviderError(
             'Provider request failed',

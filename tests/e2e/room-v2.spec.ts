@@ -48,11 +48,11 @@ for (const theme of ['light', 'dark'] as const) {
       (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
         .violations,
     ).toEqual([]);
-    await page.screenshot({ path: `.git/v15-${theme}-390.png`, fullPage: true });
+    await page.screenshot({ path: info.outputPath(`v15-${theme}-390.png`), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1000 });
     await expect(page.locator('.room-question')).toHaveCSS('font-size', '40px');
     await expect(page.locator('.room-question')).toHaveCSS('line-height', '47.2px');
-    await page.screenshot({ path: `.git/v15-${theme}-1440.png`, fullPage: true });
+    await page.screenshot({ path: info.outputPath(`v15-${theme}-1440.png`), fullPage: true });
     await page.getByRole('button', { name: 'Type instead' }).click();
     await expect(page.getByLabel('Your answer', { exact: true })).toBeFocused();
     await primary(page, 'Review answer');

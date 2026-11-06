@@ -21,6 +21,7 @@ const schema = z
     CHAT_MODEL_SUPPORTS_TEMPERATURE: boolean.default(true),
     CHAT_REASONING_EFFORT: optionalText,
     MAX_OUTPUT_TOKENS_FEEDBACK: z.coerce.number().int().min(300).max(4000).default(900),
+    MAX_OUTPUT_TOKENS_FEEDBACK_TR: z.coerce.number().int().min(300).max(4000).default(1400),
     MAX_OUTPUT_TOKENS_SUMMARY: z.coerce.number().int().min(150).max(2000).default(400),
     PRICE_INPUT_PER_MTOK: price,
     PRICE_OUTPUT_PER_MTOK: price,
