@@ -4533,3 +4533,7 @@ D-155–D-157 supersede eager loading: storage implementations, budget validatio
 ### V-52 existing demo deployment (D-160/161)
 
 On 6 November 2026 the owner-managed production deployment at https://rehearse.firatkil.com reported commit `8441dd0`, edition demo and llmMode none. Read-only verification covered health, six public/setup/job pages, fresh HTML nonces and all TRD security headers, plus a three-question text example-job session with Sample feedback and a completed report. No settings, DNS, env or provider calls changed. Details and owner live-eval evidence are in docs/DEPLOYMENT.md. TC-194's unmeasured native 500 ms target remains a known gap; owner Chrome/Safari/VoiceOver confirmation closes TC-192.
+
+### V-53 release documentation (D-162)
+
+V2 README opens with the AI-free demo, public links and full Docker/local instructions. docs/assets/rehearse-demo.gif records the real production demo text flow with fictional input: 720×547, 56 frames, 14 seconds, 859,280 bytes. Existing Playwright and FFmpeg only; no new dependency. The owner-authorised text recording supersedes §29’s v1 voice/20-second prescription. Package version 2.0.0 feeds the existing scalar build-time version; no package metadata is shipped to clients. Changelog/release notes retain TC-194 and native-device scope limitations.
