@@ -15,6 +15,7 @@ export interface LlmProvider {
   generateStructured<T>(args: {
     schema: z.ZodType<T>;
     schemaName: string;
+    strictJsonSchema?: boolean;
     system: string;
     prompt: string;
     maxOutputTokens: number;

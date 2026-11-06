@@ -83,6 +83,7 @@ export async function generateFeedback(args: {
       const response = await args.provider.generateStructured({
         schema: FeedbackLlmSchema,
         schemaName: selectedPrompt.schemaName,
+        strictJsonSchema: args.language === 'tr',
         system: selectedPrompt.system,
         prompt,
         maxOutputTokens: args.maxOutputTokens,

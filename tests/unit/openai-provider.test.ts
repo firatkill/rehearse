@@ -1,3 +1,8 @@
+import { generateFeedback } from '@/lib/feedback/generate';
+import { getBank } from '@/lib/questions/bank';
+import { feedbackLlm } from '../fixtures/feedback';
+import { Output } from 'ai';
+import { FeedbackLlmSchema } from '@/lib/feedback/schema';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { APICallError, JSONParseError, NoObjectGeneratedError, NoOutputGeneratedError } from 'ai';
@@ -195,3 +200,102 @@ it.each(['length', 'stop'] as const)(
     expect(error).not.toHaveProperty('cause');
   },
 );
+
+it.each(['en', 'tr'] as const)(
+  'TC-219 %s feedback sends the selected strict mode through the real adapter',
+  async (language) => {
+    sdk.generate.mockResolvedValue({
+      output: feedbackLlm(),
+      usage: { inputTokens: 100, outputTokens: 400, inputTokenDetails: {} },
+    });
+    await generateFeedback({
+      language,
+      question: getBank().questions[0]!,
+      role: 'backend',
+      seniority: 'mid',
+      mode: 'text',
+      transcript: 'I delivered the project. '.repeat(15),
+      provider: createOpenAiProvider(),
+      maxOutputTokens: language === 'tr' ? 1400 : 900,
+    });
+    expect(sdk.generate).toHaveBeenCalledOnce();
+    expect(sdk.generate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        maxRetries: 0,
+        providerOptions: { openai: { strictJsonSchema: language === 'tr' } },
+      }),
+    );
+  },
+);
+it.each(['interview_summary', 'interview_summary_tr', 'jobpost_questions', 'jobpost_questions_tr'])(
+  'TC-219 %s retains non-strict provider options',
+  async (schemaName) => {
+    sdk.generate.mockResolvedValue({
+      output: { ok: true },
+      usage: { inputTokens: 1, outputTokens: 1, inputTokenDetails: {} },
+    });
+    await createOpenAiProvider().generateStructured({ ...args(), schemaName });
+    expect(sdk.generate).toHaveBeenCalledWith(
+      expect.objectContaining({ providerOptions: { openai: { strictJsonSchema: false } } }),
+    );
+  },
+);
+it('TC-219 SDK-converted feedback schema uses only supported strict-schema keywords', async () => {
+  const format = await Output.object({ schema: FeedbackLlmSchema }).responseFormat;
+  expect(format?.type).toBe('json');
+  if (!format || format.type !== 'json') throw new Error('Expected JSON response format');
+  const root = z.record(z.string(), z.unknown()).parse(format.schema);
+  let objects = 0;
+  function inspect(value: unknown) {
+    const node = z.record(z.string(), z.unknown()).parse(value);
+    expect(
+      Object.keys(node).every((key) =>
+        [
+          '$schema',
+          'type',
+          'properties',
+          'required',
+          'additionalProperties',
+          'items',
+          'enum',
+        ].includes(key),
+      ),
+    ).toBe(true);
+    if (node.type === 'object') {
+      objects++;
+      const properties = z.record(z.string(), z.unknown()).parse(node.properties);
+      expect(node.additionalProperties).toBe(false);
+      expect(z.array(z.string()).parse(node.required).sort()).toEqual(
+        Object.keys(properties).sort(),
+      );
+      Object.values(properties).forEach(inspect);
+    } else if (node.type === 'array') inspect(node.items);
+    else expect(['string', 'number', 'boolean']).toContain(node.type);
+  }
+  expect(root.type).toBe('object');
+  inspect(root);
+  expect(objects).toBe(11);
+});
+it('TC-219 Turkish feedback retains strict mode on its single validation retry', async () => {
+  sdk.generate.mockRejectedValueOnce(new InvalidOutputError('json_parse')).mockResolvedValueOnce({
+    output: feedbackLlm(),
+    usage: { inputTokens: 100, outputTokens: 400, inputTokenDetails: {} },
+  });
+  const result = await generateFeedback({
+    language: 'tr',
+    question: getBank().questions[0]!,
+    role: 'backend',
+    seniority: 'mid',
+    mode: 'text',
+    transcript: 'I delivered the project. '.repeat(15),
+    provider: createOpenAiProvider(),
+    maxOutputTokens: 1400,
+  });
+  expect(result.attempts).toBe(2);
+  expect(sdk.generate).toHaveBeenCalledTimes(2);
+  for (const call of sdk.generate.mock.calls)
+    expect(call[0]).toMatchObject({
+      maxRetries: 0,
+      providerOptions: { openai: { strictJsonSchema: true } },
+    });
+});
