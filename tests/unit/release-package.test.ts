@@ -47,9 +47,9 @@ it('TC-201 release version and setup documentation agree', () => {
   const packageText = readFileSync('package.json', 'utf8');
   const readme = readFileSync('README.md', 'utf8');
   const changelog = readFileSync('CHANGELOG.md', 'utf8');
-  expect(packageText).toMatch(/"version": "2\.0\.0"/);
-  expect(changelog).toContain('## v2.0.0');
-  expect(readme).toContain('**v2.0.0**');
+  expect(packageText).toMatch(/"version": "1\.0\.0"/);
+  expect(changelog).toContain('## v1.0.0');
+  expect(readme).toContain('**v1.0.0**');
   expect(readme).toContain('docker compose up --build');
   expect(readme).toContain('pnpm dev --hostname 127.0.0.1');
   expect(readme).toContain('pnpm dev:mock --hostname 127.0.0.1');

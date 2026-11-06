@@ -111,4 +111,4 @@ Rehearse does not record, store or upload audio. Browser speech recognition may 
 
 Hand-written bank questions live under `content/questions`; follow the schema and content rules in [TRD §6](docs/TRD.md) and run `pnpm questions:validate`. Do not generate the bank with an LLM. Generated job-post questions are separate, labelled content. See [AGENTS.md](AGENTS.md) for contribution and test rules.
 
-Release: **v2.0.0**. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md). The current main branch also supports English and Turkish interviews in the full edition; the v2.0.0 tag predates Turkish support. No new release tag has been created.
+Release: **v1.0.0**, the first public release. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md).
