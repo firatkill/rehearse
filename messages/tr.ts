@@ -322,7 +322,7 @@ export const messages = {
   'app.how.it.works.page.25': 'Sözlerinizin nereye gittiğini okuyun',
   'app.how.it.works.page.26': 'Tarayıcı desteği',
   'app.how.it.works.page.27':
-    'Destek tarayıcı adına göre varsayılmaz, özellikler algılanır. Proje sahibi, 6 Kasım 2026 tarihinde yayındaki sitede Chrome ve Safari’de mikrofonu ve ses önizlemesini, Safari’de ise VoiceOver’ı doğruladı. Bu, tüm cihazları kapsayan bir kontrol değildir; ses önizlemesinin gecikmesi resmî olarak ölçülmedi.',
+    'Destek, tarayıcının adından çıkarılmak yerine özellikler algılanarak belirlenir. Mikrofonla yanıt verme ve ses önizlemesi, Safari’de VoiceOver dâhil olmak üzere Chrome ve Safari’de gerçek cihazlarda Kasım 2026’da test edildi. Bu, kapsamlı bir cihaz kontrolü değildir; ses önizlemesi gecikmesi resmî olarak ölçülmemiştir.',
   'app.how.it.works.page.28': 'Konuşma desteği ve alternatifler',
   'app.how.it.works.page.29': 'Tarayıcı',
   'app.how.it.works.page.30': 'Ne beklemelisiniz?',

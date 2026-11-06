@@ -319,7 +319,7 @@ export const messages = {
   'app.how.it.works.page.25': 'Read where your words go',
   'app.how.it.works.page.26': 'Browser support',
   'app.how.it.works.page.27':
-    'Support is feature-detected, not inferred from the browser name. The owner confirmed microphone and voice preview in Chrome and Safari, and VoiceOver in Safari, on the deployed site on 6 November 2026. This is not an exhaustive device check; voice-preview latency has not been formally measured.',
+    'Support is feature-detected, not inferred from the browser name. Microphone answers and voice preview were tested on real devices in Chrome and Safari, including VoiceOver in Safari, in November 2026. This is not an exhaustive device check; voice-preview latency has not been formally measured.',
   'app.how.it.works.page.28': 'Speech support and fallback',
   'app.how.it.works.page.29': 'Browser',
   'app.how.it.works.page.30': 'What to expect',
