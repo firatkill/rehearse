@@ -99,7 +99,7 @@ it('TC-217 TC-210 TC-211 signed Turkish feedback uses only the Turkish bank and 
   expect(call).toHaveBeenCalledWith(expect.objectContaining({ maxOutputTokens: 1400 }));
   expect(response.status).toBe(200);
   const parsed = FeedbackResponseSchema.parse(await response.json());
-  expect(parsed.meta.promptVersion).toBe('feedback-tr-v2');
+  expect(parsed.meta.promptVersion).toBe('feedback-tr-v3');
   expect(parsed.feedback.follow_up_question).toBe(
     'Bu kararı verirken hangi alternatifi eledin ve neden?',
   );
