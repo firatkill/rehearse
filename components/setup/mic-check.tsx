@@ -16,7 +16,7 @@ export function MicCheck() {
     setResult(await checkMicrophone());
   }
   return (
-    <div className="space-y-2">
+    <div className="mic-check">
       <Button
         type="button"
         variant="outline"

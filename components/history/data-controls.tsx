@@ -81,7 +81,7 @@ export function DataControls({
     }
   };
   return (
-    <section className="space-y-4">
+    <section className="data-controls">
       <h2 ref={title} tabIndex={-1}>
         Your data
       </h2>
@@ -94,7 +94,7 @@ export function DataControls({
       >
         Export all sessions
       </Button>
-      <div className="space-y-2">
+      <div className="data-import">
         <label className="block" htmlFor="import-sessions">
           Import sessions from a file
         </label>
@@ -113,7 +113,7 @@ export function DataControls({
       </div>
       <Button
         variant="outline"
-        className="text-[var(--warn)]"
+        className="data-delete"
         disabled={pending}
         onClick={() => {
           setOpen(true);

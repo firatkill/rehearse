@@ -76,7 +76,7 @@ export function FeedbackCard({
             <SafeText text={feedback.follow_up_question} />
           </p>
           {onFollowUp && (
-            <Button variant="text" onClick={onFollowUp}>
+            <Button variant="secondary" onClick={onFollowUp}>
               Answer follow-up
             </Button>
           )}

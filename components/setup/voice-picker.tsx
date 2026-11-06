@@ -23,9 +23,9 @@ export function VoicePicker({
   const tts = useTTS();
   const [previewError, setPreviewError] = useState(false);
   return (
-    <fieldset className="space-y-3">
-      <legend>Interviewer voice</legend>
-      <label className="flex min-h-11 items-center gap-2">
+    <fieldset className="voice-picker">
+      <legend className="sr-only">Interviewer voice</legend>
+      <label className="voice-toggle">
         <input
           type="checkbox"
           checked={!empty && setup.readAloud}
@@ -36,79 +36,95 @@ export function VoicePicker({
         />
         Read questions aloud
       </label>
-      <div>
-        <label className="block" htmlFor="interviewer-voice">
-          Voice
-        </label>
-        <select
-          id="interviewer-voice"
-          className="min-h-11 w-full border p-2"
-          value={voice?.voiceURI ?? ''}
-          disabled={loading || empty}
-          onChange={(event) => {
-            onChange({ voiceURI: event.target.value });
-          }}
-        >
-          {loading ? (
-            <option value="" disabled>
-              Loading voices…
-            </option>
-          ) : empty ? (
-            <option value="">No English voices found</option>
-          ) : (
-            groups.map((group) => (
-              <optgroup key={group.accent} label={voiceAccentLabel(group.accent)}>
-                {group.voices.map((v) => (
-                  <option key={v.voiceURI} value={v.voiceURI}>
-                    {v.name} ({v.lang}){v.localService ? '' : ' (online voice)'}
-                  </option>
-                ))}
-              </optgroup>
-            ))
-          )}
-        </select>
+      <div className="voice-grid">
+        <div className="voice-field">
+          <label htmlFor="interviewer-voice">Voice</label>
+          <span className="select-wrap">
+            <select
+              id="interviewer-voice"
+              value={voice?.voiceURI ?? ''}
+              disabled={loading || empty}
+              onChange={(event) => {
+                onChange({ voiceURI: event.target.value });
+              }}
+            >
+              {loading ? (
+                <option value="" disabled>
+                  Loading voices…
+                </option>
+              ) : empty ? (
+                <option value="">No English voices found</option>
+              ) : (
+                groups.map((group) => (
+                  <optgroup key={group.accent} label={voiceAccentLabel(group.accent)}>
+                    {group.voices.map((v) => (
+                      <option key={v.voiceURI} value={v.voiceURI}>
+                        {v.name} ({v.lang}){v.localService ? '' : ' (online voice)'}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))
+              )}
+            </select>
+          </span>
+        </div>
+        <div className="voice-field">
+          <div className="voice-rate-label">
+            <label htmlFor="speaking-rate">Speaking rate</label>
+            <p className="font-mono" aria-hidden="true">
+              {setup.rate.toFixed(1)}×
+            </p>
+          </div>
+          <input
+            id="speaking-rate"
+            className="voice-range"
+            type="range"
+            min={TTS.RATE_MIN}
+            max={TTS.RATE_MAX}
+            step={TTS.RATE_STEP}
+            value={setup.rate}
+            aria-valuetext={`${setup.rate.toFixed(1)} times speed`}
+            onChange={(event) => {
+              onChange({ rate: Number(event.target.value) });
+            }}
+          />
+          <div className="voice-range-scale" aria-hidden="true">
+            <span>Slower</span>
+            <span>Faster</span>
+          </div>
+        </div>
       </div>
       {!loading && fellBack && (
-        <p>Your saved voice isn’t available here, so the default voice is used.</p>
-      )}
-      <label className="block">
-        Speaking rate
-        <input
-          className="block min-h-11 w-full"
-          type="range"
-          min={TTS.RATE_MIN}
-          max={TTS.RATE_MAX}
-          step={TTS.RATE_STEP}
-          value={setup.rate}
-          onChange={(event) => {
-            onChange({ rate: Number(event.target.value) });
-          }}
-        />
-      </label>
-      <p className="font-mono">{setup.rate.toFixed(1)}×</p>
-      <Button
-        type="button"
-        disabled={loading || empty}
-        onClick={() => {
-          if (tts.speaking) {
-            void tts.cancel();
-            return;
-          }
-          setPreviewError(false);
-          void tts
-            .play(window.speechSynthesis, chunkForSpeech(TTS.PREVIEW_TEXT), voice, setup.rate)
-            .then((result) => {
-              setPreviewError(result === 'error');
-            });
-        }}
-      >
-        {tts.speaking ? 'Stop preview' : 'Preview voice'}
-      </Button>
-      {previewError && (
-        <p role="status">
-          Your browser didn&apos;t start speaking. Try another voice, or restart the browser.
+        <p className="voice-note">
+          Your saved voice isn’t available here, so the default voice is used.
         </p>
       )}
+      <div className="voice-actions">
+        <Button
+          type="button"
+          variant="secondary"
+          disabled={loading || empty}
+          onClick={() => {
+            if (tts.speaking) {
+              void tts.cancel();
+              return;
+            }
+            setPreviewError(false);
+            void tts
+              .play(window.speechSynthesis, chunkForSpeech(TTS.PREVIEW_TEXT), voice, setup.rate)
+              .then((result) => {
+                setPreviewError(result === 'error');
+              });
+          }}
+        >
+          {tts.speaking ? 'Stop preview' : 'Preview voice'}
+        </Button>
+        {previewError && (
+          <p role="status" className="voice-note">
+            Your browser didn&apos;t start speaking. Try another voice, or restart the browser.
+          </p>
+        )}
+      </div>
     </fieldset>
   );
 }

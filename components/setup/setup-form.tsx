@@ -330,22 +330,19 @@ export function SetupForm({
           </fieldset>
         </section>
         {capabilities !== null && !capabilities.recognition && (
-          <p id="voice-unavailable">Not available in this browser.</p>
+          <p id="voice-unavailable" className="setup-note">
+            Not available in this browser.
+          </p>
         )}
+        {setup.mode === 'voice' && <MicCheck />}
         {capabilities?.synthesis && (
           <details className="setup-interviewer" open>
             <summary>Interviewer voice and speed</summary>
             <VoicePicker setup={selected} {...voiceState} onChange={change} />
           </details>
         )}
-        {setup.mode === 'voice' && <MicCheck />}
-        <p>
-          {APP_EDITION === 'demo'
-            ? 'Feedback is pre-written sample data. No AI is called.'
-            : 'No daily IP quotas. Monthly budget warnings never block practice.'}
-        </p>
         {initialSeed !== null && (
-          <p>
+          <p className="setup-note">
             {validSeed ? (
               <SafeText
                 text={`Using seed ${initialSeed}. You’ll get the same questions as the session that used it.`}
@@ -374,13 +371,20 @@ export function SetupForm({
             }}
           />
         ) : (
-          <Button className="min-h-11" type="submit" disabled={pending}>
-            {pending
-              ? 'Starting…'
-              : demoMode === 'readonly'
-                ? 'Start session without feedback'
-                : 'Start session'}
-          </Button>
+          <div className="setup-submit">
+            <p className="setup-note">
+              {APP_EDITION === 'demo'
+                ? 'Feedback is pre-written sample data. No AI is called.'
+                : 'No daily IP quotas. Monthly budget warnings never block practice.'}
+            </p>
+            <Button className="min-h-11" type="submit" disabled={pending}>
+              {pending
+                ? 'Starting…'
+                : demoMode === 'readonly'
+                  ? 'Start session without feedback'
+                  : 'Start session'}
+            </Button>
+          </div>
         )}
       </form>
     </>

@@ -106,7 +106,7 @@ export function ReportView({
             <p>
               <SafeText text={summary.paragraph} />
             </p>
-            <p className="text-sm">Written by the language model from your scores.</p>
+            <p className="report-meta">Written by the language model from your scores.</p>
           </>
         ) : (
           <>
@@ -250,7 +250,7 @@ export function ReportView({
         </div>
         <TrendChart values={values} />
       </section>
-      <section className="space-y-3">
+      <section className="report-card">
         <h2>Delivery</h2>
         <p>
           Total words {values.delivery.totalWords}
@@ -264,14 +264,14 @@ export function ReportView({
         </p>
       </section>
       {summary && (
-        <section>
+        <section className="report-card">
           <h2>Next practice</h2>
           <p>
             <SafeText text={summary.next_practice} />
           </p>
         </section>
       )}
-      <section className="space-y-4">
+      <section className="report-card report-answers">
         <h2>Answers</h2>
         {session.questions.map((question, index) => {
           const answer = answers.find((a) => a.index === index);

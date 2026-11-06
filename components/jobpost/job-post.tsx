@@ -128,8 +128,8 @@ export function JobPost({ initial }: { initial: JobResponse }) {
   }
   return (
     <div className="job-layout">
-      <aside className="space-y-5" aria-labelledby="job-read-heading">
-        <p className="eyebrow">What we read</p>
+      <aside className="job-aside" aria-labelledby="job-read-heading">
+        <p className="ui-eyebrow job-eyebrow">What we read</p>
         <h1 id="job-read-heading">
           <SafeText text={post.role || 'Review the job post'} />
         </h1>
@@ -144,7 +144,24 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             )}
           </p>
         )}
-        <section className="space-y-2" aria-label="Interview schedule">
+        {post.about && (
+          <p>
+            <SafeText text={post.about} />
+          </p>
+        )}
+        {post.requirements.length > 0 && (
+          <section className="job-looking">
+            <h2>What they’re looking for</h2>
+            <ul className="job-requirements">
+              {post.requirements.map((item, index) => (
+                <li key={index}>
+                  <SafeText text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <section className="job-date" aria-label="Interview schedule">
           <label htmlFor="interview-date">Interview date</label>
           <input
             id="interview-date"
@@ -157,10 +174,13 @@ export function JobPost({ initial }: { initial: JobResponse }) {
               setDateNotice(null);
             }}
           />
-          <p id="interview-date-help">Add a date to see this interview on Progress.</p>
-          <div className="flex flex-wrap gap-2">
+          <p id="interview-date-help" className="job-help">
+            Add a date to see this interview on Progress.
+          </p>
+          <div className="job-date-actions">
             <Button
               type="button"
+              variant="secondary"
               disabled={!!busy || editing || !date || date === post.interviewDate}
               onClick={() => {
                 void saveDate(date);
@@ -183,25 +203,8 @@ export function JobPost({ initial }: { initial: JobResponse }) {
           </div>
           {dateNotice && <p role="status">{dateNotice}</p>}
         </section>
-        {post.about && (
-          <p>
-            <SafeText text={post.about} />
-          </p>
-        )}
-        {post.requirements.length > 0 && (
-          <section>
-            <h2>What they’re looking for</h2>
-            <ul>
-              {post.requirements.map((item, index) => (
-                <li key={index}>
-                  <SafeText text={item} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
         {editing ? (
-          <div className="space-y-3">
+          <div className="job-edit">
             <label htmlFor="read-job-text">Edit what we read</label>
             <textarea
               id="read-job-text"
@@ -251,7 +254,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
           </>
         )}
       </aside>
-      <section className="space-y-5" aria-labelledby="job-questions-heading">
+      <section className="job-questions" aria-labelledby="job-questions-heading">
         <h2 id="job-questions-heading">Questions they’re likely to ask</h2>
         <p>Each one points to the line in the post it comes from. Untick any you don’t want.</p>
         {!hasQuestions && (
@@ -328,45 +331,51 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                 Generate 5 more
               </Button>
             )}
-            <fieldset className="flex flex-wrap gap-4">
-              <legend>Answer mode</legend>
-              <label>
-                <input
-                  type="radio"
-                  name="job-mode"
-                  checked={mode === 'text'}
-                  onChange={() => {
-                    setMode('text');
+            <div className="job-start">
+              <fieldset className="setup-fieldset">
+                <legend>Answer mode</legend>
+                <div className="setup-choices">
+                  <label className="setup-choice">
+                    <input
+                      type="radio"
+                      name="job-mode"
+                      checked={mode === 'text'}
+                      onChange={() => {
+                        setMode('text');
+                      }}
+                    />
+                    Text: type your answers
+                  </label>
+                  <label className="setup-choice">
+                    <input
+                      type="radio"
+                      name="job-mode"
+                      checked={mode === 'voice'}
+                      disabled={!capabilities?.recognition}
+                      onChange={() => {
+                        setMode('voice');
+                      }}
+                    />
+                    Voice: speak your answers
+                  </label>
+                </div>
+              </fieldset>
+              <div className="job-start-row">
+                <p className="job-help">Select 3 or 5 questions to start.</p>
+                <Button
+                  disabled={
+                    Boolean(busy) ||
+                    editing ||
+                    !SESSION.LENGTHS.some((length) => length === selected.length)
+                  }
+                  onClick={() => {
+                    void start();
                   }}
-                />{' '}
-                Text: type your answers
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="job-mode"
-                  checked={mode === 'voice'}
-                  disabled={!capabilities?.recognition}
-                  onChange={() => {
-                    setMode('voice');
-                  }}
-                />{' '}
-                Voice: speak your answers
-              </label>
-            </fieldset>
-            <p>Select 3 or 5 questions to start.</p>
-            <Button
-              disabled={
-                Boolean(busy) ||
-                editing ||
-                !SESSION.LENGTHS.some((length) => length === selected.length)
-              }
-              onClick={() => {
-                void start();
-              }}
-            >
-              Start with {selected.length} questions
-            </Button>
+                >
+                  Start with {selected.length} questions
+                </Button>
+              </div>
+            </div>
           </>
         )}
         <p role="status">{busy ?? ''}</p>
