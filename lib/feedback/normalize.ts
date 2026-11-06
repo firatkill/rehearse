@@ -23,7 +23,7 @@ export function normalizeFeedback(
   ctx: { transcript: string; words: number; followUp?: boolean },
 ): { feedback: Feedback; evidenceRemoved: number } {
   const parsed = FeedbackLlmSchema.safeParse(raw);
-  if (!parsed.success) throw new InvalidOutputError();
+  if (!parsed.success) throw new InvalidOutputError('schema_parse');
   const data = parsed.data;
   for (const dimension of DIMENSIONS) {
     const item = data.scores[dimension];
@@ -33,9 +33,9 @@ export function normalizeFeedback(
       item.score < 1 ||
       item.score > 4
     )
-      throw new InvalidOutputError();
+      throw new InvalidOutputError('score_range');
     item.rationale = cleanText(item.rationale, FEEDBACK_LIMITS.RATIONALE_MAX_CHARS);
-    if (!item.rationale) throw new InvalidOutputError();
+    if (!item.rationale) throw new InvalidOutputError('empty_rationale');
   }
   let evidenceRemoved = 0;
   const strengths = data.strengths
@@ -97,7 +97,7 @@ export function normalizeFeedback(
     DIMENSIONS[0],
   );
   if (!improvements.some((item) => data.scores[item.dimension].score === data.scores[lowest].score))
-    throw new InvalidOutputError();
+    throw new InvalidOutputError('lowest_dimension_improvement_missing');
   const result = FeedbackSchema.safeParse({
     scores: data.scores,
     overall:
@@ -113,6 +113,6 @@ export function normalizeFeedback(
       .filter(Boolean)
       .slice(0, FEEDBACK_LIMITS.OUTLINE_MAX),
   });
-  if (!result.success) throw new InvalidOutputError();
+  if (!result.success) throw new InvalidOutputError('final_schema');
   return { feedback: result.data, evidenceRemoved };
 }

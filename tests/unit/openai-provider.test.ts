@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { APICallError, NoObjectGeneratedError, NoOutputGeneratedError } from 'ai';
+import { APICallError, JSONParseError, NoObjectGeneratedError, NoOutputGeneratedError } from 'ai';
 import { createOpenAiProvider } from '@/lib/llm/openai';
 import { resetEnvForTests } from '@/lib/env';
 import { InvalidOutputError, ProviderError, ProviderTimeoutError } from '@/lib/llm/provider';
@@ -134,7 +134,11 @@ describe('TC-070 TRD §14.0 OpenAI adapter', () => {
       }),
     );
     await expect(createOpenAiProvider().generateStructured(args())).rejects.toEqual(
-      new InvalidOutputError(),
+      new InvalidOutputError(
+        'schema_parse',
+        { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 },
+        'stop',
+      ),
     );
   });
   it('maps connection failures without status to retryable errors', async () => {
@@ -160,3 +164,34 @@ describe('TC-070 TRD §14.0 OpenAI adapter', () => {
     expect(sdk.generate).not.toHaveBeenCalled();
   });
 });
+
+it.each(['length', 'stop'] as const)(
+  'TC-217 preserves failed SDK usage and safe %s reason',
+  async (finishReason) => {
+    sdk.generate.mockRejectedValue(
+      new NoObjectGeneratedError({
+        text: 'private model output',
+        cause: new JSONParseError({ text: 'private', cause: new Error('private') }),
+        response: { id: 'test', modelId: 'test', timestamp: new Date(0) },
+        finishReason,
+        usage: {
+          inputTokens: 100,
+          outputTokens: 900,
+          totalTokens: 1000,
+          inputTokenDetails: { noCacheTokens: 80, cacheReadTokens: 20, cacheWriteTokens: 0 },
+          outputTokenDetails: { textTokens: 900, reasoningTokens: 0 },
+        },
+      }),
+    );
+    const error: unknown = await createOpenAiProvider()
+      .generateStructured(args())
+      .catch((value: unknown) => value);
+    expect(error).toMatchObject({
+      reason: finishReason === 'length' ? 'truncated' : 'json_parse',
+      finishReason,
+      usage: { inputTokens: 100, outputTokens: 900, cachedInputTokens: 20 },
+    });
+    expect(JSON.stringify(error)).not.toContain('private');
+    expect(error).not.toHaveProperty('cause');
+  },
+);

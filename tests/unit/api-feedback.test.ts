@@ -85,17 +85,21 @@ afterEach(() => {
   resetEnvForTests();
   limiterModule.resetLimiterForTests();
 });
-it('TC-210 TC-211 signed Turkish feedback uses only the Turkish bank and prompt', async () => {
+it('TC-217 TC-210 TC-211 signed Turkish feedback uses only the Turkish bank and prompt', async () => {
   const transcript =
     'Geçen ay ekipte kapsamı daralttım. Önce kullanıcı ihtiyacını inceledim ve teslim tarihini korumak için üç işi erteledim. Sonucu iki hafta ölçtüm.';
   const data = { ...body(), questionId: 'beh-501', transcript };
   const auth = {
     authorization: `Bearer ${token({ l: 'tr', q: ['beh-501', 'beh-502', 'beh-503'] })}`,
   };
+  const provider = providerModule.getProvider();
+  const call = vi.spyOn(provider, 'generateStructured');
+  vi.spyOn(providerModule, 'getProvider').mockReturnValue(provider);
   const response = await POST(request(data, auth));
+  expect(call).toHaveBeenCalledWith(expect.objectContaining({ maxOutputTokens: 1400 }));
   expect(response.status).toBe(200);
   const parsed = FeedbackResponseSchema.parse(await response.json());
-  expect(parsed.meta.promptVersion).toBe('feedback-tr-v1');
+  expect(parsed.meta.promptVersion).toBe('feedback-tr-v2');
   expect(parsed.feedback.follow_up_question).toBe(
     'Bu kararı verirken hangi alternatifi eledin ve neden?',
   );

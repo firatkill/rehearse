@@ -443,6 +443,8 @@ export const EVAL = { CONCURRENCY: 4, DEFAULT_MAX_COST_USD: 0.5 } as const;
 
 `JOBPOST`: MAX_CHARS 20,000; INITIAL_QUESTIONS 8; MORE_QUESTIONS 5; MAX_CANDIDATES 16; MAX_STORED_QUESTIONS 200 per post; MAX_POSTS 1,000; MAX_OUTPUT_TOKENS 4,000; GENERATION_TIMEOUT_MS 45,000; REQUEST_MAX_BYTES 100,000; DUPLICATE_THRESHOLD 0.75; MIN_GROUNDING_RATE 0.9; MAX_DUPLICATES 0; MIN_INJECTION_RESISTANCE 1. QUESTION_TYPES: behavioral, technical, system-design, motivation. FOLLOW_UP_HINTS: “What was your own contribution?”, “How would you measure the outcome?”. Current STORAGE.DB_VERSION and EXPORT_FORMAT_VERSION are 9; RECORD_SCHEMA_VERSION is 6 (V-61; §29).
 
+D-184 diagnostic constants in `lib/config.ts`: `INVALID_OUTPUT_REASONS` = truncated, json_parse, schema_parse, score_range, empty_rationale, lowest_dimension_improvement_missing, final_schema, no_output. `LLM_FINISH_REASONS` = stop, length, content-filter, tool-calls, error, other. These are fixed non-content values; unknown SDK reasons become null.
+
 ## 5. Environment variables
 
 `lib/env.ts` parses `process.env` with Zod on the first call of `getEnv()` (memoized), not at import time, so `next build` needs no runtime secrets. The module starts with `import 'server-only'`.
@@ -462,6 +464,7 @@ V2 scope (D-73, D-80): “When live” in this table means full edition with liv
 | `CHAT_MODEL_SUPPORTS_TEMPERATURE`                                                                         | No                                      | `true`                                           | `false` for models that reject `temperature` (A-02).                                                                                                                                                                                                                                        |
 | `CHAT_REASONING_EFFORT`                                                                                   | No                                      | _(empty)_                                        | For reasoning models only: the lowest supported effort value (for example `minimal` or `low`), passed as a provider option (A-02). Empty means not sent.                                                                                                                                    |
 | `MAX_OUTPUT_TOKENS_FEEDBACK`                                                                              | No                                      | `900`                                            | Integer 300–4000 (raise only for reasoning models, A-02).                                                                                                                                                                                                                                   |
+| `MAX_OUTPUT_TOKENS_FEEDBACK_TR`                                                                           | No                                      | `1400`                                           | Integer 300–4000. Turkish feedback only, including eval and preflight (D-185).                                                                                                                                                                                                              |
 | `MAX_OUTPUT_TOKENS_SUMMARY`                                                                               | No                                      | `400`                                            | Integer 150–2000.                                                                                                                                                                                                                                                                           |
 | `PRICE_INPUT_PER_MTOK`                                                                                    | When live                               | `0`                                              | USD per 1M input tokens for `CHAT_MODEL`, copied from the provider pricing page (A-03).                                                                                                                                                                                                     |
 | `PRICE_OUTPUT_PER_MTOK`                                                                                   | When live                               | `0`                                              | USD per 1M output tokens for `CHAT_MODEL`.                                                                                                                                                                                                                                                  |
@@ -493,7 +496,7 @@ The client never reads server env; `NEXT_PUBLIC_APP_VERSION` is derived from pac
 
 `.env.example` contains every row above (platform variables as comments) and works unchanged for the no-key path (`cp .env.example .env.local && pnpm dev:mock`): `LLM_MODE=mock`, `RATE_LIMIT_BACKEND=memory`, `NEXT_PUBLIC_SITE_URL=http://localhost:3000`, development-only secrets of at least 32 characters (`dev-only-session-secret-change-me-00000000000` and `dev-only-ip-hash-secret-change-me-00000000000`) with a comment that production values come from `openssl rand -hex 32`. `CHAT_MODEL` holds the id pinned in T-24 with a comment `# Pinned on <date> from <url>`.
 
-D-72 model selection (2026-11-05): `gpt-6-luna`, `CHAT_MODEL_SUPPORTS_TEMPERATURE=false`, `CHAT_REASONING_EFFORT=none`; standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. Existing feedback/summary output limits remain 900/400. Mock mode remains the automated-test default.
+D-72 model selection (2026-11-05): `gpt-6-luna`, `CHAT_MODEL_SUPPORTS_TEMPERATURE=false`, `CHAT_REASONING_EFFORT=none`; standard input/cached/output prices $0.10/$0.01/$0.50 per million tokens. English feedback/summary output limits remain 900/400; Turkish feedback defaults to 1400 (D-185). Mock mode remains the automated-test default.
 
 V2 edition validation (D-73, D-80, D-82; V-30/V-33/V-34): `APP_EDITION` is a Zod enum; `DATA_DIR` is non-empty; `MONTHLY_BUDGET_USD` is a positive finite number; unset/empty `APP_PASSWORD` leaves basic auth off, a non-empty value enables it. Demo ignores LLM_MODE entirely, including its value and validation; the demo command must not need LLM_MODE (D-84). Demo does not require model keys, prices or Upstash credentials and never constructs an LLM provider. A path attempting a provider call in demo throws `AppError('DEMO_ONLY')`. Full production rejects mock mode by `NODE_ENV`, not merely `VERCEL_ENV`. The full edition defaults to the memory limiter when V-33 lands; legacy IP/global quotas do not apply. API keys and prices remain server-only.
 
@@ -2405,7 +2408,9 @@ export function sanitizeUntrusted(text: string): string {
   return text
     .normalize('NFC')
     .replace(/\r\n?/g, '\n')
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F​-‏  ﻿]/g, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F​-‏
+
+﻿]/g, '')
     .replace(/</g, '‹')   // ‹  cannot open or close a tag
     .replace(/>/g, '›')   // ›
     .replace(/\n{3,}/g, '\n\n')
@@ -3354,6 +3359,28 @@ export const EvalResultsSchema = z.object({
       inRange: z.record(z.string(), z.boolean()).nullable(),
       canaryLeak: z.boolean().nullable(),
       attempts: z.number().int(),
+      // Optional for committed results produced before attempt diagnostics existed.
+      attemptDiagnostics: z
+        .array(
+          z
+            .object({
+              attempt: z.number().int().positive(),
+              outcome: z.enum(['valid', 'invalid', 'provider_error', 'timeout']),
+              invalidReason: z.enum(INVALID_OUTPUT_REASONS).nullable(),
+              finishReason: z.enum(LLM_FINISH_REASONS).nullable(),
+              usage: z
+                .object({
+                  inputTokens: z.number().int().nonnegative(),
+                  outputTokens: z.number().int().nonnegative(),
+                  cachedInputTokens: z.number().int().nonnegative(),
+                })
+                .strict()
+                .nullable(),
+              latencyMs: z.number().int().nonnegative(),
+            })
+            .strict(),
+        )
+        .optional(),
       latencyMs: z.number().int(),
       usage: z.object({ inputTokens: z.number().int(), outputTokens: z.number().int() }),
       costUsd: z.number(),
@@ -3366,9 +3393,11 @@ export const EvalResultsSchema = z.object({
 ### 18.7 Budget guard (`lib/eval/budget.ts`)
 
 1. Live mode with `PRICE_INPUT_PER_MTOK` or `PRICE_OUTPUT_PER_MTOK` equal to 0 → exit 2 ("Set PRICE_* to the current prices before a live eval").
-2. Before any call: `estimate = Σ over calls of FEEDBACK_MAX_ATTEMPTS × (ceil(promptChars / 3.5) × P_in + MAX_OUTPUT_TOKENS_FEEDBACK × P_out) / 1e6`, where `promptChars` is the system prompt plus the built user message. `estimate > budget` → exit 2 with the estimate printed.
+2. Before any call: `estimate = Σ over calls of FEEDBACK_MAX_ATTEMPTS × (ceil(promptChars / 3.5) × P_in + MAX_OUTPUT_TOKENS_FEEDBACK × P_out) / 1e6`, where `promptChars` is the system prompt plus the built user message; for Turkish substitute `MAX_OUTPUT_TOKENS_FEEDBACK_TR` for the output limit. `estimate > budget` → exit 2 with the estimate printed.
 3. During the run, after each call add the actual cost; when the running total exceeds the budget, stop scheduling calls, write a partial results file with `passed: false` and failure `budget_exceeded`, exit 2.
 4. Mock mode skips the guard.
+5. `--preflight` validates and prints call count, maximum provider attempts, selected output limit, prompt version and estimate, then exits before constructing a provider or writing a result. Use live mode for owner budget enforcement; no model call occurs.
+6. Per-attempt diagnostics retain safe invalid reason/finish codes, elapsed time and token usage. Known failed usage contributes exactly once to call usage/cost and `cost_usd.total`, including terminal failures. SDK errors without usage report null, not an invented measurement. Existing historical files need not contain diagnostics. Truncated requires a length finish; JSON/schema failures without that finish are not labelled truncation.
 
 At the expected token sizes (section 23) a full run of 54 calls costs a few cents at small-model prices; the default budget is $0.50.
 
@@ -4586,3 +4615,7 @@ The Turkish catalogue uses informal sen. `messages/en-complete.ts` combines the 
 `lib/i18n/numbers.ts` uses `LANGUAGE_LOCALES.tr` with Intl for Turkish display numbers; shared print/PDF rendering and Markdown use the same rules. English preserves each existing plain/decimal/grouped representation. Data, provider payloads, ids and chart geometry do not change. Context interpolation formats numeric Turkish values, and direct score/limit displays use the same small helpers.
 
 Turkish filler recognition additionally accepts initial yani/hani/işte before ben/biz/önce/sonra/aslında plus a following token, and non-determined şey before punctuation/newline or another hesitation. Existing meaningful-use exceptions remain. Missing punctuation/acoustic boundaries can still cause undercounting; this is disclosed in Turkish how-it-works. No English algorithm or prompt/version changes.
+
+### Turkish feedback correction (D-184–D-187)
+
+`feedback-tr-v2` adds concise-length guidance within the existing rationale 240, point 160, why 200 and rewrite 400 character limits. No rubric/schema/threshold change. `feedbackOutputLimit` selects the Turkish env limit for signed Turkish sessions and Turkish evaluation; English stays at its original default. Three strong Turkish golden cases add personal experience and g-11 a vague consequence, with unchanged expected ranges. The 10,000 ms p95 ceiling includes retries and remains unchanged.

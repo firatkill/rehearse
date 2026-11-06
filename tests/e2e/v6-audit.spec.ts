@@ -39,7 +39,10 @@ for (const theme of ['light', 'dark'] as const) {
       await page.setViewportSize({ width, height: 900 });
       await auditV6(page);
       await reducedMotionV6(page);
-      await page.screenshot({ path: `.git/v50-draft-${theme}-${width}.png`, fullPage: true });
+      await page.screenshot({
+        path: info.outputPath(`v50-draft-${theme}-${width}.png`),
+        fullPage: true,
+      });
     }
     await tabTo(page, page.getByRole('button', { name: 'Something wrong? Edit what we read' }));
     await page.keyboard.press('Enter');
@@ -60,7 +63,10 @@ for (const theme of ['light', 'dark'] as const) {
       await page.setViewportSize({ width, height: 900 });
       await auditV6(page);
       await reducedMotionV6(page);
-      await page.screenshot({ path: `.git/v50-questions-${theme}-${width}.png`, fullPage: true });
+      await page.screenshot({
+        path: info.outputPath(`v50-questions-${theme}-${width}.png`),
+        fullPage: true,
+      });
     }
   });
 }

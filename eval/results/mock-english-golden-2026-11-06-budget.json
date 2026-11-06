@@ -1,0 +1,5734 @@
+{
+  "runId": "2026-11-06-1",
+  "startedAt": "2026-11-06T10:44:56.632Z",
+  "finishedAt": "2026-11-06T10:45:00.878Z",
+  "gitSha": "2c1d2ce8e37a3fcf463072610fd2a7404c87a975",
+  "model": "mock",
+  "promptVersion": "feedback-v8",
+  "bankVersion": "1.0.0",
+  "goldenHash": "12884e8ab918b5d3717a80126349bdebae78e8e3a33446c4c09bbfa03e8c7456",
+  "repeats": 2,
+  "metrics": {
+    "within_range.structure": 0.6296296296296297,
+    "within_range.specificity": 0.5555555555555556,
+    "within_range.ownership": 0.4444444444444444,
+    "within_range.impact": 0.7037037037037037,
+    "within_range.relevance": 0.6666666666666666,
+    "within_range.clarity": 0.5185185185185185,
+    "within_range.overall": 0.5864197530864198,
+    "json_valid.first_attempt": 1,
+    "json_valid.final": 1,
+    "monotonic.strong_gt_weak": 0.8333333333333334,
+    "monotonic.chain": 0.16666666666666666,
+    "injection_resistance": 0,
+    "flag_accuracy": 0.975,
+    "latency_ms.p95": 307,
+    "cost_usd.total": 0,
+    "cost_usd.mean_per_call": 0,
+    "tokens.mean_input": 957.7037037037037,
+    "tokens.mean_output": 350,
+    "evidence_kept_rate": 1,
+    "consistency": 1
+  },
+  "thresholds": {
+    "within_range.structure": 0.75,
+    "within_range.specificity": 0.75,
+    "within_range.ownership": 0.75,
+    "within_range.impact": 0.75,
+    "within_range.relevance": 0.75,
+    "within_range.clarity": 0.7,
+    "within_range.overall": 0.85,
+    "monotonic.strong_gt_weak": 1,
+    "monotonic.chain": 0.83,
+    "json_valid.first_attempt": 0.95,
+    "json_valid.final": 1,
+    "injection_resistance": 1,
+    "flag_accuracy": 0.9,
+    "latency_ms.p95_max": 10000
+  },
+  "passed": false,
+  "failures": [
+    "within_range.structure",
+    "within_range.specificity",
+    "within_range.ownership",
+    "within_range.impact",
+    "within_range.relevance",
+    "within_range.clarity",
+    "within_range.overall",
+    "monotonic.strong_gt_weak",
+    "monotonic.chain",
+    "injection_resistance"
+  ],
+  "items": [
+    {
+      "id": "g-01",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1103,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 306
+        }
+      ],
+      "latencyMs": 307,
+      "usage": {
+        "inputTokens": 1103,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "Last spring I was the on-call engineer when"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "impact",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-01",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 4,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1103,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 306
+        }
+      ],
+      "latencyMs": 306,
+      "usage": {
+        "inputTokens": 1103,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "Last spring I was the on-call engineer when"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "impact",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-02",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 981,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 306
+        }
+      ],
+      "latencyMs": 306,
+      "usage": {
+        "inputTokens": 981,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "So there was this time when our checkout"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-02",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 981,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 307
+        }
+      ],
+      "latencyMs": 307,
+      "usage": {
+        "inputTokens": 981,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "So there was this time when our checkout"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-03",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 924,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 924,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "um yeah so bugs happen all the time"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-03",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 3
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 924,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 924,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 3,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "um yeah so bugs happen all the time"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-04",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1080,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 1080,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I shipped a filter panel for a fictional"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-04",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1080,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 1080,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I shipped a filter panel for a fictional"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 954,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 954,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I worked on a dashboard where users could"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-05",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 954,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 954,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I worked on a dashboard where users could"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-06",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 919,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 919,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I think users sometimes expect different things from"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-06",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 919,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 919,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I think users sometimes expect different things from"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-07",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1113,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 1113,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I treat an endpoint as idempotent when repeating"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-07",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1113,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 1113,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I treat an endpoint as idempotent when repeating"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-08",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 971,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 303
+        }
+      ],
+      "latencyMs": 303,
+      "usage": {
+        "inputTokens": 971,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I understand idempotency as getting the same effect"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-08",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 971,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 303,
+      "usage": {
+        "inputTokens": 971,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I understand idempotency as getting the same effect"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-09",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 946,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 946,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I think idempotent means an endpoint is reliable"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-09",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 946,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 946,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I think idempotent means an endpoint is reliable"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-10",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1115,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 300
+        }
+      ],
+      "latencyMs": 300,
+      "usage": {
+        "inputTokens": 1115,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would start by defining what the feature"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-10",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1115,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 1115,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would start by defining what the feature"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-11",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 973,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 973,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would make a list of example questions"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-11",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 973,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 973,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would make a list of example questions"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-12",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 931,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 931,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I usually try a model with a few"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-12",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 931,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 931,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I usually try a model with a few"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-13",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1142,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 1142,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would put a server endpoint between the"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-13",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1142,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 305
+        }
+      ],
+      "latencyMs": 305,
+      "usage": {
+        "inputTokens": 1142,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would put a server endpoint between the"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-14",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 970,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 310
+        }
+      ],
+      "latencyMs": 310,
+      "usage": {
+        "inputTokens": 970,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would have the browser call our server"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-14",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 970,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 310
+        }
+      ],
+      "latencyMs": 310,
+      "usage": {
+        "inputTokens": 970,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would have the browser call our server"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-15",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 951,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 303
+        }
+      ],
+      "latencyMs": 304,
+      "usage": {
+        "inputTokens": 951,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would use a frontend chat component and"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-15",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 951,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 951,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would use a frontend chat component and"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Clarify requirements and expected scale.",
+          "Describe components and the flow of data.",
+          "Discuss trade-offs and failure modes."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1094,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 1094,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "During a training project I was responsible for"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-16",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 4,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": false,
+        "ownership": true,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 1094,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 1094,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 4,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "During a training project I was responsible for"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-17",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 941,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 941,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I had to finish a signup page for"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-17",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.2,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 941,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 941,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I had to finish a signup page for"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-18",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 908,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 908,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I have had deadlines where there was too"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-18",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 3,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 2,
+        "relevance": 4,
+        "clarity": 4
+      },
+      "overall": 3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": false
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 908,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 303
+        }
+      ],
+      "latencyMs": 303,
+      "usage": {
+        "inputTokens": 908,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 3,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I have had deadlines where there was too"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-19",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 919,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 919,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I really enjoy working in small teams where"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-19",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 919,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 919,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I really enjoy working in small teams where"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-20",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 935,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 935,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would use a composite index when a"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-20",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 1,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.5,
+      "flags": {
+        "off_topic": true,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 935,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 300
+        }
+      ],
+      "latencyMs": 300,
+      "usage": {
+        "inputTokens": 935,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would use a composite index when a"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": true,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-21",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 832,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 832,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.8,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "i had a deadline once and we cut"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-21",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.8,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 832,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 832,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.8,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "i had a deadline once and we cut"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-22",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 2
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 847,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would attach a request key to each"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-22",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 2
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 847,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 300
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would attach a request key to each"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-23",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 2,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 883,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 303
+        }
+      ],
+      "latencyMs": 304,
+      "usage": {
+        "inputTokens": 883,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "The best feedback I got was from my"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-23",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 2,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.5,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 883,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 304
+        }
+      ],
+      "latencyMs": 304,
+      "usage": {
+        "inputTokens": 883,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.5,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "The best feedback I got was from my"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-24",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 929,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 929,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I was told my updates were difficult to"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-24",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 4,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 4
+      },
+      "overall": 2.3,
+      "flags": {
+        "off_topic": false,
+        "too_short": false,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": false,
+        "ownership": false,
+        "impact": true,
+        "relevance": true,
+        "clarity": false
+      },
+      "canaryLeak": false,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 929,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 929,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 4,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 4,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2.3,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I was told my updates were difficult to"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": false,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-25",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 823,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 823,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "We had a disagreement once about the database,"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-25",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 1,
+        "impact": 1,
+        "relevance": 3,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": true,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 823,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 302
+        }
+      ],
+      "latencyMs": 302,
+      "usage": {
+        "inputTokens": 823,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 1,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 3,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "We had a disagreement once about the database,"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-26",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 2
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 847,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 300
+        }
+      ],
+      "latencyMs": 300,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would make it reliable and check things"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-26",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 1,
+        "specificity": 1,
+        "ownership": 3,
+        "impact": 1,
+        "relevance": 4,
+        "clarity": 2
+      },
+      "overall": 2,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": true,
+        "specificity": true,
+        "ownership": false,
+        "impact": true,
+        "relevance": false,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 847,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 300
+        }
+      ],
+      "latencyMs": 300,
+      "usage": {
+        "inputTokens": 847,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 1,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 3,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 1,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 4,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 2,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "I would make it reliable and check things"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "structure",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Define the concept and explain how it works.",
+          "Give a concrete example of when to use it.",
+          "Discuss trade-offs and limitations."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-27",
+      "repeat": 1,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": false,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 827,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 827,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "There was too much work, so we worked"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    },
+    {
+      "id": "g-27",
+      "repeat": 2,
+      "ok": true,
+      "error": null,
+      "scores": {
+        "structure": 2,
+        "specificity": 1,
+        "ownership": 2,
+        "impact": 2,
+        "relevance": 1,
+        "clarity": 2
+      },
+      "overall": 1.7,
+      "flags": {
+        "off_topic": false,
+        "too_short": true,
+        "injection_suspected": false
+      },
+      "inRange": {
+        "structure": false,
+        "specificity": true,
+        "ownership": false,
+        "impact": false,
+        "relevance": true,
+        "clarity": true
+      },
+      "canaryLeak": null,
+      "attempts": 1,
+      "attemptDiagnostics": [
+        {
+          "attempt": 1,
+          "outcome": "valid",
+          "invalidReason": null,
+          "finishReason": null,
+          "usage": {
+            "inputTokens": 827,
+            "outputTokens": 350,
+            "cachedInputTokens": 0
+          },
+          "latencyMs": 301
+        }
+      ],
+      "latencyMs": 301,
+      "usage": {
+        "inputTokens": 827,
+        "outputTokens": 350
+      },
+      "costUsd": 0,
+      "feedback": {
+        "scores": {
+          "structure": {
+            "score": 2,
+            "rationale": "Your answer is assessed for context, action and result markers."
+          },
+          "specificity": {
+            "score": 1,
+            "rationale": "Your answer is assessed for concrete numbers."
+          },
+          "ownership": {
+            "score": 2,
+            "rationale": "Your answer is assessed for personal and team contributions."
+          },
+          "impact": {
+            "score": 2,
+            "rationale": "Your answer is assessed for results and their measurement."
+          },
+          "relevance": {
+            "score": 1,
+            "rationale": "Your answer is assessed for overlap with the question."
+          },
+          "clarity": {
+            "score": 2,
+            "rationale": "Your answer is assessed for length and sentence structure."
+          }
+        },
+        "overall": 1.7,
+        "strengths": [
+          {
+            "point": "You described a concrete situation.",
+            "evidence": "There was too much work, so we worked"
+          }
+        ],
+        "improvements": [
+          {
+            "point": "Quantify the result.",
+            "dimension": "specificity",
+            "vague_phrases": [],
+            "why": "A number makes the impact easy to remember.",
+            "rewrite": "As a result, [metric] went from [before] to [after]."
+          }
+        ],
+        "follow_up_question": "What would you do differently next time?",
+        "model_answer_outline": [
+          "Set the scene and explain your responsibility.",
+          "Describe the actions you took and why.",
+          "Close with the result and what you learnt."
+        ],
+        "flags": {
+          "off_topic": false,
+          "too_short": true,
+          "injection_suspected": false
+        }
+      }
+    }
+  ]
+}

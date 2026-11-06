@@ -27,7 +27,10 @@ for (const theme of ['light', 'dark'] as const) {
         await auditV6(page);
         await reducedMotionV6(page);
         if (path === '/job/northwind-pay')
-          await page.screenshot({ path: `.git/v50-demo-${theme}-${width}.png`, fullPage: true });
+          await page.screenshot({
+            path: info.outputPath(`v50-demo-${theme}-${width}.png`),
+            fullPage: true,
+          });
       }
     });
   }

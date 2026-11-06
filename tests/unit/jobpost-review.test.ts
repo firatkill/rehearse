@@ -149,7 +149,7 @@ it('TC-184 a per-case provider failure is recorded safely and cannot pass even a
 });
 it.each([
   { error: new AppError('JOBPOST_INVALID'), code: 'JOBPOST_INVALID' },
-  { error: new InvalidOutputError('invalid'), code: 'JOBPOST_INVALID' },
+  { error: new InvalidOutputError(), code: 'JOBPOST_INVALID' },
   { error: new ProviderTimeoutError('late'), code: 'PROVIDER_TIMEOUT' },
   { error: new Error('unknown'), code: 'INTERNAL_ERROR' },
 ])('TC-184 records $code and continues other fixtures', async ({ error, code }) => {

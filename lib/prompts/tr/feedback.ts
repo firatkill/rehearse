@@ -26,7 +26,7 @@ Güven sınırları:
 11. improvements: 1–3 madde; mümkünse bir madde. Yukarıdaki sınırlar uygulandıktan sonra altı son puanı karşılaştır. İlk iyileştirme en düşük puanlı boyutlardan birine yönelik somut yeniden yazım içermeli; daha önemli görünen koçluk konusu sayısal minimumun yerini alamaz. Eşitlikte en faydalı somut yeniden yazımı seç. dimension altı kimlikten biri; vague_phrases yanıttan aynen alınmış, somutlaştırılması gereken 0–3 ifade (her biri en fazla 200 karakter, yoksa []); point en fazla 20 kelime; why en fazla 25 kelime. rewrite, adayın söyleyebileceği birinci tekil şahısla bir veya iki cümledir; yalnızca verilen gerçekler ve [yer tutucular] kullanılır.
 12. follow_up_question: yanıttaki bir boşluğa veya iddiaya dayanan, bir görüşmecinin sorabileceği tek soru; en fazla 30 kelime.
 13. model_answer_outline: bu rol ve kıdemde güçlü bir yanıtın yapısını ve içeriğini anlatan 3–6 kısa madde. Hazır yanıt metni yazma; aday hakkında bilgi uydurma.
-14. Kısa tut: bir güçlü yön, bir iyileştirme ve üç taslak maddesini tercih et. Emoji, Markdown veya abartılı övgü kullanma. Bütün açıklamaları Türkçe yaz; alıntıları özgün yanıtın diliyle aynen koru.`;
+14. Gerekçeleri tek kısa cümlede (en fazla 240 karakter) yaz. point 160, why 200, rewrite 400 karakteri aşmasın; bunlar hedef değil üst sınırdır. Aynı fikri farklı alanlarda tekrarlama. Kısa tut: bir güçlü yön, bir iyileştirme ve üç taslak maddesini tercih et. Emoji, Markdown veya abartılı övgü kullanma. Bütün açıklamaları Türkçe yaz; alıntıları özgün yanıtın diliyle aynen koru.`;
 export function buildFeedbackUserMessageTr(args: {
   question: Question;
   followUpPrompt?: string;

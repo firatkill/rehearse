@@ -34,7 +34,7 @@ it('TC-207 Turkish rubric retains six dimensions, four anchors per type and impl
     for (const dimension of DIMENSIONS) expect(RUBRIC_TR[dimension].anchors[type]).toHaveLength(4);
     expect(renderRubricTr(type)).toContain('özne kişi ekinden anlaşılabilir');
   }
-  expect(feedbackPrompt('tr').version).toBe('feedback-tr-v1');
+  expect(feedbackPrompt('tr').version).toBe('feedback-tr-v2');
   expect(summaryPrompt('tr').version).toBe('summary-tr-v1');
   expect(jobpostPrompt('tr').version).toBe('jobpost-tr-v1');
   expect(feedbackPrompt().version).toBe('feedback-v8');
@@ -93,7 +93,7 @@ it('TC-207 mock eval uses Turkish version and all unchanged gates; failures rema
     runId: 'turkish-unit',
     gitSha: 'test',
   });
-  expect(result.results.promptVersion).toBe('feedback-tr-v1');
+  expect(result.results.promptVersion).toBe('feedback-tr-v2');
   expect(result.results.items).toHaveLength(27);
   expect(result.results.items.every((item) => item.ok)).toBe(true);
   expect(result.results.metrics['cost_usd.total']).toBe(0);

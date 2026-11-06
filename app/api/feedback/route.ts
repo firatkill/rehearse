@@ -1,3 +1,4 @@
+import { feedbackOutputLimit } from '@/lib/feedback/limits';
 import { recordCost } from '@/lib/cost/budget';
 import { DEMO } from '@/lib/config';
 import { signFollowUp, verifyFollowUp } from '@/lib/session/follow-up';
@@ -122,7 +123,7 @@ export async function POST(req: Request): Promise<Response> {
       seniority: token.payload.s,
       mode: body.mode,
       transcript: body.transcript,
-      maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
+      maxOutputTokens: feedbackOutputLimit(env, token.payload.l ?? 'en'),
     });
     attempts = result.attempts;
     const costUsd =

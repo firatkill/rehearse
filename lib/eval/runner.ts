@@ -1,10 +1,11 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
-import { DIMENSIONS, EVAL, type Language } from '@/lib/config';
+import { DIMENSIONS, EVAL, LLM, type Language } from '@/lib/config';
 import type { Env } from '@/lib/env';
 import { AppError } from '@/lib/errors';
 import { estimateCostUsd } from '@/lib/cost/estimate';
-import { generateFeedback } from '@/lib/feedback/generate';
+import { feedbackOutputLimit } from '@/lib/feedback/limits';
+import { generateFeedback, type FeedbackAttempt } from '@/lib/feedback/generate';
 import type { LlmProvider, LlmUsage } from '@/lib/llm/provider';
 import { feedbackPrompt } from '@/lib/prompts/language';
 import type { Question } from '@/lib/questions/schema';
@@ -23,21 +24,17 @@ export type EvalOptions = {
   budget: number;
 };
 
-export async function runEvaluation(args: {
+type EvaluationPlanInput = {
   source: string;
   thresholds: unknown;
   bank: { questions: readonly Question[]; bankVersion: string };
-  provider: LlmProvider;
   env: Env;
   options: EvalOptions;
-  runId: string;
-  gitSha: string;
-  now?: () => number;
-}) {
-  const now = args.now ?? Date.now;
-  const startedAt = new Date(now()).toISOString();
+};
+function planEvaluation(args: EvaluationPlanInput) {
   const { options, env, bank } = args;
   const selectedPrompt = feedbackPrompt(options.language);
+  const maxOutputTokens = feedbackOutputLimit(env, options.language);
   if (options.mock !== (env.LLM_MODE === 'mock'))
     throw new Error('Use --mock only with LLM_MODE=mock');
   const all =
@@ -73,12 +70,61 @@ export async function runEvaluation(args: {
     mock: options.mock,
     budget: options.budget,
     prices,
-    maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
+    maxOutputTokens,
     promptChars: jobs.map(
       ({ item, question }) =>
         selectedPrompt.system.length + selectedPrompt.build({ ...item, question }).length,
     ),
   });
+  return {
+    options,
+    bank,
+    selectedPrompt,
+    maxOutputTokens,
+    all,
+    items,
+    thresholds,
+    jobs,
+    prices,
+    guard,
+  };
+}
+export function preflightEvaluation(args: EvaluationPlanInput) {
+  const plan = planEvaluation(args);
+  return {
+    calls: plan.jobs.length,
+    maxAttempts: plan.jobs.length * LLM.FEEDBACK_MAX_ATTEMPTS,
+    maxOutputTokens: plan.maxOutputTokens,
+    promptVersion: plan.selectedPrompt.version,
+    estimate: plan.guard.estimate,
+  };
+}
+
+export async function runEvaluation(args: {
+  source: string;
+  thresholds: unknown;
+  bank: { questions: readonly Question[]; bankVersion: string };
+  provider: LlmProvider;
+  env: Env;
+  options: EvalOptions;
+  runId: string;
+  gitSha: string;
+  now?: () => number;
+}) {
+  const now = args.now ?? Date.now;
+  const startedAt = new Date(now()).toISOString();
+  const {
+    options,
+    bank,
+    selectedPrompt,
+    maxOutputTokens,
+    all,
+    items,
+    thresholds,
+    jobs,
+    prices,
+    guard,
+  } = planEvaluation(args);
   let next = 0;
   const calls: EvalItemResult[] = [];
   async function worker() {
@@ -88,16 +134,15 @@ export async function runEvaluation(args: {
       const start = now();
       const usage: LlmUsage = { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 };
       let attempts = 0;
-      const provider: LlmProvider = {
-        modelId: args.provider.modelId,
-        async generateStructured(input) {
-          attempts++;
-          const response = await args.provider.generateStructured(input);
-          usage.inputTokens += response.usage.inputTokens;
-          usage.outputTokens += response.usage.outputTokens;
-          usage.cachedInputTokens += response.usage.cachedInputTokens;
-          return response;
-        },
+      const attemptDiagnostics: FeedbackAttempt[] = [];
+      const onAttempt = (attempt: FeedbackAttempt) => {
+        attempts++;
+        attemptDiagnostics.push(attempt);
+        if (attempt.usage) {
+          usage.inputTokens += attempt.usage.inputTokens;
+          usage.outputTokens += attempt.usage.outputTokens;
+          usage.cachedInputTokens += attempt.usage.cachedInputTokens;
+        }
       };
       const cost = () => (options.mock ? 0 : estimateCostUsd(usage, prices));
       let call: EvalItemResult;
@@ -106,8 +151,9 @@ export async function runEvaluation(args: {
           ...job.item,
           language: options.language ?? 'en',
           question: job.question,
-          provider,
-          maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
+          provider: args.provider,
+          onAttempt,
+          maxOutputTokens,
           now,
         });
         const feedback = result.feedback;
@@ -128,6 +174,7 @@ export async function runEvaluation(args: {
           ),
           canaryLeak: job.item.canary === null ? null : containsCanary(feedback, job.item.canary),
           attempts,
+          attemptDiagnostics,
           latencyMs: Math.max(0, now() - start),
           usage: { inputTokens: usage.inputTokens, outputTokens: usage.outputTokens },
           costUsd: cost(),
@@ -145,6 +192,7 @@ export async function runEvaluation(args: {
           inRange: null,
           canaryLeak: null,
           attempts,
+          attemptDiagnostics,
           latencyMs: Math.max(0, now() - start),
           usage: { inputTokens: usage.inputTokens, outputTokens: usage.outputTokens },
           costUsd: cost(),
