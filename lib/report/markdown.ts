@@ -1,3 +1,4 @@
+import { formatNumber } from '@/lib/i18n/numbers';
 import { bestAnswer } from '@/lib/storage/attempts';
 import { DIMENSIONS } from '@/lib/config';
 import {
@@ -26,6 +27,8 @@ export function reportMarkdown(
   allAnswers: AnswerRecord[],
   translate?: (key: MessageKey, values?: MessageValues) => string,
 ): string {
+  const number = (value: number, digits?: number) =>
+    formatNumber(value, session.setup.language, digits);
   const m = (key: MessageKey, fallback: string) => (translate ? translate(key) : fallback);
   const labels = translate
     ? translatedLabels(translate)
@@ -40,11 +43,11 @@ export function reportMarkdown(
     `- ${m('markdown.date', 'Date')}: ${session.createdAt.slice(0, 10)}`,
     `- ${m('markdown.role', 'Role')}: ${labels.ROLE_LABELS[session.setup.role]}, ${labels.SENIORITY_LABELS[session.setup.seniority]}`,
     `- ${m('markdown.types', 'Question types')}: ${session.setup.types.map((t) => labels.QUESTION_TYPE_LABELS[t]).join(', ')}`,
-    `- ${m('markdown.answered', 'Answered')}: ${answers.filter((a) => a.status === 'scored' || a.status === 'saved').length} ${m('markdown.of', 'of')} ${session.questions.length}`,
+    `- ${m('markdown.answered', 'Answered')}: ${answers.filter((a) => a.status === 'scored' || a.status === 'saved').length} ${m('markdown.of', 'of')} ${number(session.questions.length)}`,
     `- ${m('markdown.seed', 'Seed')}: ${e(session.seed)} (${m('markdown.bank', 'question bank')} ${e(session.bankVersion)})`,
   ];
   if (a.overallMean !== null)
-    lines.push(`- ${m('markdown.overall', 'Overall')}: ${a.overallMean.toFixed(1)} / 4`);
+    lines.push(`- ${m('markdown.overall', 'Overall')}: ${number(a.overallMean, 1)} / 4`);
   if (summary)
     lines.push(
       '',
@@ -61,7 +64,7 @@ export function reportMarkdown(
       '',
       ...a.focus.map(
         (d, i) =>
-          `${i + 1}. **${labels.DIMENSION_LABELS[d]}** (${a.dimensionMeans[d]?.toFixed(1)} / 4): ${e(summary?.focus_notes.find((n) => n.dimension === d)?.note ?? m(`rubric.tip.${d}`, DIMENSION_TIPS[d]))}`,
+          `${i + 1}. **${labels.DIMENSION_LABELS[d]}** (${a.dimensionMeans[d] == null ? undefined : number(a.dimensionMeans[d], 1)} / 4): ${e(summary?.focus_notes.find((n) => n.dimension === d)?.note ?? m(`rubric.tip.${d}`, DIMENSION_TIPS[d]))}`,
       ),
     );
   lines.push(
@@ -73,23 +76,23 @@ export function reportMarkdown(
   );
   for (const d of DIMENSIONS)
     lines.push(
-      `| ${labels.DIMENSION_LABELS[d]} | ${session.questions.map((_, i) => answers.find((a) => a.index === i)?.feedback?.scores[d].score ?? '—').join(' | ')} | ${a.dimensionMeans[d]?.toFixed(1) ?? '—'} |`,
+      `| ${labels.DIMENSION_LABELS[d]} | ${session.questions.map((_, i) => answers.find((a) => a.index === i)?.feedback?.scores[d].score ?? '—').join(' | ')} | ${(a.dimensionMeans[d] == null ? undefined : number(a.dimensionMeans[d], 1)) ?? '—'} |`,
     );
   lines.push(
-    `| ${m('markdown.overall', 'Overall')} | ${a.perQuestion.map((q) => q.overall?.toFixed(1) ?? '—').join(' | ')} | ${a.overallMean?.toFixed(1) ?? '—'} |`,
+    `| ${m('markdown.overall', 'Overall')} | ${a.perQuestion.map((q) => (q.overall == null ? undefined : number(q.overall, 1)) ?? '—').join(' | ')} | ${(a.overallMean == null ? undefined : number(a.overallMean, 1)) ?? '—'} |`,
     '',
     `## ${m('markdown.delivery', 'Delivery')}`,
     '',
-    `- ${m('markdown.words', 'Total words')}: ${a.delivery.totalWords}`,
+    `- ${m('markdown.words', 'Total words')}: ${number(a.delivery.totalWords)}`,
   );
   if (a.delivery.avgWpm !== null)
     lines.push(
-      `- ${m('markdown.pace', 'Average pace')}: ${a.delivery.avgWpm} ${m('markdown.wpm', 'words per minute')}`,
+      `- ${m('markdown.pace', 'Average pace')}: ${number(a.delivery.avgWpm)} ${m('markdown.wpm', 'words per minute')}`,
     );
-  lines.push(`- ${m('markdown.fillers', 'Filler words')}: ${a.delivery.totalFillers}`);
+  lines.push(`- ${m('markdown.fillers', 'Filler words')}: ${number(a.delivery.totalFillers)}`);
   if (a.delivery.longestPauseMs !== null)
     lines.push(
-      `- ${m('markdown.pause', 'Longest pause')}: ${(a.delivery.longestPauseMs / 1000).toFixed(1)} s`,
+      `- ${m('markdown.pause', 'Longest pause')}: ${number(a.delivery.longestPauseMs / 1000, 1)} s`,
     );
   if (summary)
     lines.push('', `## ${m('markdown.next', 'Next practice')}`, '', e(summary.next_practice));
@@ -99,7 +102,7 @@ export function reportMarkdown(
     if (!answer || !['scored', 'saved', 'skipped'].includes(answer.status)) continue;
     lines.push('', `### ${m('markdown.question', 'Question')} ${index + 1}: ${e(q.prompt)}`, '');
     lines.push(
-      `${answer.attemptRecords.length} ${answer.attemptRecords.length === 1 ? m('markdown.try', 'try') : m('markdown.tries', 'tries')}`,
+      `${number(answer.attemptRecords.length)} ${answer.attemptRecords.length === 1 ? m('markdown.try', 'try') : m('markdown.tries', 'tries')}`,
       '',
     );
     if (answer.status === 'skipped') {
@@ -109,7 +112,7 @@ export function reportMarkdown(
     const f = answer.feedback;
     if (f)
       lines.push(
-        `${labels.QUESTION_TYPE_LABELS[q.type]} · ${m('markdown.overall', 'Overall')} ${f.overall.toFixed(1)} / 4`,
+        `${labels.QUESTION_TYPE_LABELS[q.type]} · ${m('markdown.overall', 'Overall')} ${number(f.overall, 1)} / 4`,
         '',
       );
     lines.push(
@@ -129,7 +132,7 @@ export function reportMarkdown(
         );
       if (answer.metrics.longestPauseMs !== null)
         lines.push(
-          `- ${m('markdown.pause', 'Longest pause')}: ${(answer.metrics.longestPauseMs / 1000).toFixed(1)} s`,
+          `- ${m('markdown.pause', 'Longest pause')}: ${number(answer.metrics.longestPauseMs / 1000, 1)} s`,
         );
       continue;
     }
@@ -172,7 +175,7 @@ export function reportMarkdown(
       if (followUp.feedback)
         lines.push(
           '',
-          `${m('markdown.overall', 'Overall')} ${followUp.feedback.overall.toFixed(1)} / 4`,
+          `${m('markdown.overall', 'Overall')} ${number(followUp.feedback.overall, 1)} / 4`,
           ...DIMENSIONS.map(
             (d) => `- ${labels.DIMENSION_LABELS[d]}: ${followUp.feedback?.scores[d].score} / 4`,
           ),

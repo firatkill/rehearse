@@ -11,11 +11,14 @@ import { ScoreStrip } from '@/components/ui/score-strip';
 import { MarkedTranscript } from '@/components/ui/marked-transcript';
 import { SafeText } from '@/components/common/safe-text';
 
-export const metadata: Metadata = {
-  title: 'Rehearse: practise interviews out loud',
-  description:
-    'Practise interviews out loud or by typing. Get clear feedback on six dimensions and see what to say better.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await serverTranslator();
+  return {
+    title: t('title.home'),
+    description:
+      'Practise interviews out loud or by typing. Get clear feedback on six dimensions and see what to say better.',
+  };
+}
 
 export default async function Home() {
   const t = await serverTranslator();

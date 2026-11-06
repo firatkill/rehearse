@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { useLabels } from '@/lib/i18n/use-labels';
 
 import { useT } from '@/lib/i18n/context';
@@ -9,6 +10,7 @@ export function ScoreStrip({ scores }: { scores: Record<Dimension, number | null
   const { DIMENSION_LABELS } = useLabels();
 
   const t = useT();
+  const { number } = useNumbers();
 
   return (
     <ul className="ui-score-strip" aria-label={t('components.room.feedback.card.22')}>
@@ -23,7 +25,7 @@ export function ScoreStrip({ scores }: { scores: Record<Dimension, number | null
           </span>
           <ScoreBar score={scores[d]} />
           <span aria-hidden="true" className="font-mono">
-            {scores[d] === null ? '—' : `${scores[d]} / 4`}
+            {scores[d] === null ? '—' : `${number(scores[d])} / 4`}
           </span>
         </li>
       ))}

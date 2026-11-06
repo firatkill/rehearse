@@ -132,7 +132,7 @@
     "seniority": ["junior", "mid", "senior"],
     "dimensions": ["structure", "relevance", "clarity"],
     "topic": "hata-mesaji-siniri",
-    "prompt": "Bir işlem başarısız olduğunda geliştiriciye tanı koyduracak bilgiyle kullanıcıya gösterilecek mesajı nasıl ayırırsın? Somut bir örnek üzerinden açıklar mısın?",
+    "prompt": "Bir işlem başarısız olduğunda geliştiricinin sorunun nedenini bulmak için ihtiyaç duyduğu bilgilerle kullanıcıya gösterilecek mesajı nasıl ayırırsın? Somut bir örnek üzerinden açıklar mısın?",
     "follow_up_hints": [
       "Hassas veriler kayda girerse ne olur?",
       "Kullanıcı destek talebini nasıl ilişkilendirir?"

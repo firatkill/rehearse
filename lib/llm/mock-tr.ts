@@ -119,7 +119,7 @@ export function mockSummaryTr(prompt: string) {
     .flatMap((value) => DIMENSIONS.filter((d) => d === value.trim()));
   const first = focus[0] ?? DIMENSIONS[0];
   return {
-    headline: `En güçlü alanın ${DIMENSION_LABELS_TR[ranked[0] ?? DIMENSIONS[0]]}; sırada ${DIMENSION_LABELS_TR[first]} var.`,
+    headline: `En güçlü alanın ${DIMENSION_LABELS_TR[ranked[0] ?? DIMENSIONS[0]]}; şimdi ${DIMENSION_LABELS_TR[first]} üzerine çalış.`,
     paragraph:
       'Puanlar, yanıtlarında kullanabileceğin güçlü yönleri ve geliştirebileceğin alanları gösteriyor. Sonraki alıştırmada bir kararını gerekçesi ve gözlenebilir sonucuyla anlatmayı dene.',
     focus_notes: focus.map((dimension) => ({ dimension, note: DIMENSION_TIPS_TR[dimension] })),

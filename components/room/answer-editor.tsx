@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { T } from '@/lib/i18n/context';
 import { useLayoutEffect, useRef } from 'react';
 import { ANSWER } from '@/lib/config';
@@ -11,6 +12,7 @@ export function AnswerEditor({
   onChange: (text: string) => void;
   onContinue?: () => void;
 }) {
+  const { count } = useNumbers();
   const input = useRef<HTMLTextAreaElement>(null);
   useLayoutEffect(() => {
     const element = input.current;
@@ -50,7 +52,7 @@ export function AnswerEditor({
         id="answer-count"
         className={value.length >= ANSWER.WARN_CHARS ? 'font-mono text-[var(--warn)]' : 'font-mono'}
       >
-        {value.length.toLocaleString('en-GB')} / {ANSWER.MAX_CHARS.toLocaleString('en-GB')}
+        {count(value.length)} / {count(ANSWER.MAX_CHARS)}
       </p>
     </div>
   );

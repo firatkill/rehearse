@@ -1,6 +1,9 @@
-import type { Metadata } from 'next';
+import { serverTranslator } from '@/lib/i18n/server';
 import { History } from '@/components/history/history-list';
-export const metadata: Metadata = { title: 'Progress · Rehearse' };
+export async function generateMetadata() {
+  const t = await serverTranslator();
+  return { title: t('title.progress') };
+}
 export default function ProgressPage() {
   return <History />;
 }

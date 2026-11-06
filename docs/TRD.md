@@ -4578,3 +4578,11 @@ JobPostRecord v3 adds required `language: 'en' | 'tr'`. Existing v1/v2 posts mig
 V-63 report export: the report view passes its selected typed translator to `reportMarkdown`; only static labels, role/type/dimension labels and fallback tips are localised. User/model content keeps the existing Markdown escaping. Legacy callers without a translator preserve byte-identical English output, checked against the normative snapshot. No additional catalogue is loaded for export.
 
 D-176: full RootLayout passes `initialBudgetLevel` from the validated local `getMonthlyBudget()` result. BudgetBanner renders that snapshot immediately and skips its redundant initial fetch; polling and focus still refresh through BudgetSchema. Missing legacy prop retains initial fetching. Demo does not read monthly budget data. This keeps the Zod boundary off landing first load without delaying an existing warning; failures never block the page.
+
+### V7 owner copy review (D-177–D-183)
+
+The Turkish catalogue uses informal sen. `messages/en-complete.ts` combines the byte-preserved English catalogue with previously inline close/title strings; only the selected language is loaded. Server metadata uses the selected request/session language; changing setup language also updates its document title. Report attempt counts reuse the existing Markdown try/tries translations. Register checks scan Turkish UI and actual prompt/mock literals, allowing only explicit lexical or quoted examples.
+
+`lib/i18n/numbers.ts` uses `LANGUAGE_LOCALES.tr` with Intl for Turkish display numbers; shared print/PDF rendering and Markdown use the same rules. English preserves each existing plain/decimal/grouped representation. Data, provider payloads, ids and chart geometry do not change. Context interpolation formats numeric Turkish values, and direct score/limit displays use the same small helpers.
+
+Turkish filler recognition additionally accepts initial yani/hani/işte before ben/biz/önce/sonra/aslında plus a following token, and non-determined şey before punctuation/newline or another hesitation. Existing meaningful-use exceptions remain. Missing punctuation/acoustic boundaries can still cause undercounting; this is disclosed in Turkish how-it-works. No English algorithm or prompt/version changes.

@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { T, useT, useI18n } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { countWords } from '@/lib/metrics/words';
@@ -29,12 +30,13 @@ export function ReviewPanel({
   onRecordAgain: () => void;
 }) {
   const t = useT();
+  const { count } = useNumbers();
   const { language } = useI18n();
 
   const [notice, setNotice] = useState('');
   const notices = {
     time_limit: t('ui.template.29', { v0: durationWords(limit, t) }),
-    char_cap: t('ui.template.30', { v0: ANSWER.MAX_CHARS.toLocaleString('en-GB') }),
+    char_cap: t('ui.template.30', { v0: count(ANSWER.MAX_CHARS) }),
     tab_hidden: t('ui.dynamic.75'),
     network: t('ui.dynamic.76'),
     unexpected_stop: t('ui.dynamic.77'),

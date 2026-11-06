@@ -1,3 +1,4 @@
+import { T } from '@/lib/i18n/context';
 import { chartSegments } from '@/lib/report/chart';
 import type { Aggregates } from '@/lib/report/aggregate';
 export function TrendChart({ values }: { values: Aggregates }) {
@@ -34,7 +35,8 @@ export function TrendChart({ values }: { values: Aggregates }) {
           className="font-mono"
           fontSize={12}
         >
-          Q{q.index + 1}
+          <T id="markdown.questionShort" />
+          {q.index + 1}
         </text>
       ))}
       {chartSegments(values.perQuestion).map((segment, i) => (

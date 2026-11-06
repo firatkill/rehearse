@@ -3,7 +3,10 @@ import { T } from '@/lib/i18n/context';
 import { getEnv } from '@/lib/env';
 import { LanguageLink as Link } from '@/lib/i18n/link';
 import { Eyebrow } from '@/components/ui/eyebrow';
-export const metadata = { title: 'Privacy · Rehearse' };
+export async function generateMetadata() {
+  const t = await serverTranslator();
+  return { title: t('title.privacy') };
+}
 export default async function PrivacyPage() {
   const t = await serverTranslator();
 

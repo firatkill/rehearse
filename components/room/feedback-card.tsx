@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT, useI18n } from '@/lib/i18n/context';
 import { APP_EDITION } from '@/lib/edition';
@@ -32,6 +33,7 @@ export function FeedbackCard({
   const { DIMENSION_LABELS } = useLabels();
 
   const t = useT();
+  const { number } = useNumbers();
   const { language } = useI18n();
 
   const feedback = answer.feedback;
@@ -57,7 +59,7 @@ export function FeedbackCard({
           <div className="feedback-overall">
             <p>
               <T id="components.room.feedback.card.3" />
-              {feedback.overall.toFixed(1)} / 4
+              {number(feedback.overall, 1)} / 4
             </p>
             {previous && <DeltaBadge value={feedback.overall - previous.overall} />}
           </div>
@@ -195,7 +197,7 @@ export function FeedbackCard({
                 <SafeText text={answer.feedbackMeta.model} />
                 <T id="components.room.feedback.card.19" />{' '}
                 <SafeText text={answer.feedbackMeta.promptVersion} /> ·{' '}
-                {(answer.feedbackMeta.latencyMs / 1000).toFixed(1)} s
+                {number(answer.feedbackMeta.latencyMs / 1000, 1)} s
               </p>
             )}
             <p>

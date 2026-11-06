@@ -12,7 +12,10 @@ import { RUBRIC, RUBRIC_SENIORITY_NOTE } from '@/lib/feedback/rubric';
 import { RUBRIC_TR, RUBRIC_SENIORITY_NOTE_TR } from '@/lib/feedback/rubric-tr';
 import { Eyebrow } from '@/components/ui/eyebrow';
 
-export const metadata = { title: 'How it works · Rehearse' };
+export async function generateMetadata() {
+  const t = await serverTranslator();
+  return { title: t('title.how') };
+}
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 

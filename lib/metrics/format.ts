@@ -1,3 +1,4 @@
+import { formatNumber } from '@/lib/i18n/numbers';
 import { FILLERS, FILLERS_TR, type Language } from '@/lib/config';
 export function formatFillerBreakdown(
   byPhrase: Record<string, number>,
@@ -15,5 +16,5 @@ export function formatFillerBreakdown(
     .sort((a, b) => b.count - a.count || a.index - b.index);
   return entries.length === 0
     ? empty
-    : `(${entries.map((f) => `${f.phrase} ${f.count}`).join(', ')})`;
+    : `(${entries.map((f) => `${f.phrase} ${formatNumber(f.count, language)}`).join(', ')})`;
 }

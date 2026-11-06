@@ -126,7 +126,7 @@
     "seniority": ["junior", "mid", "senior"],
     "dimensions": ["relevance", "specificity", "impact"],
     "topic": "kullanici-gozlemi",
-    "prompt": "Bir kullanıcıyı ürünü kullanırken izlemek fikrini değiştirdi mi? Değiştirdiği belirli bir olayı ve sonrasında yaptığını anlatır mısın?",
+    "prompt": "Bir kullanıcının ürünü nasıl kullandığını gözlemlediğinde, ürünle ilgili kendi görüşünün değiştiği bir olayı anlatır mısın? Ne fark ettin ve ardından ne yaptın?",
     "follow_up_hints": [
       "Söylenenle yapılan arasında fark var mıydı?",
       "Gözlemin tek kişiye özgü olmadığını nasıl araştırdın?"

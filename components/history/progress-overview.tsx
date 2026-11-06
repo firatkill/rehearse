@@ -1,4 +1,5 @@
 'use client';
+import { useNumbers } from '@/lib/i18n/use-numbers';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT } from '@/lib/i18n/context';
 import { PROGRESS } from '@/lib/config';
@@ -7,6 +8,7 @@ import { LocalSessionTime } from '@/components/common/local-session-time';
 import { DeltaBadge } from '@/components/ui/delta-badge';
 export function ProgressOverview({ entries }: { entries: ProgressEntry[] }) {
   const t = useT();
+  const { number } = useNumbers();
 
   const { DIMENSION_LABELS } = useLabels();
 
@@ -16,11 +18,11 @@ export function ProgressOverview({ entries }: { entries: ProgressEntry[] }) {
   return (
     <>
       <p className="progress-totals">
-        {entries.length}
+        {number(entries.length)}
         <T id="components.history.progress.overview.1" />
-        {stats.answers}
+        {number(stats.answers)}
         <T id="components.history.progress.overview.2" />
-        {stats.recordingMinutes}
+        {number(stats.recordingMinutes)}
         <T id="components.history.progress.overview.3" />
       </p>
       <p className="progress-note">
@@ -102,7 +104,7 @@ export function ProgressOverview({ entries }: { entries: ProgressEntry[] }) {
                         <th scope="row">
                           <LocalSessionTime value={point.session.createdAt} />
                         </th>
-                        <td>{point.overall?.toFixed(1)} / 4</td>
+                        <td>{point.overall == null ? undefined : number(point.overall, 1)} / 4</td>
                       </tr>
                     ))}
                   </tbody>
@@ -158,7 +160,7 @@ export function ProgressOverview({ entries }: { entries: ProgressEntry[] }) {
                       ))}
                     </span>
                   </td>
-                  <td>{item.value?.toFixed(1) ?? '—'}</td>
+                  <td>{(item.value == null ? undefined : number(item.value, 1)) ?? '—'}</td>
                   <td>
                     <DeltaBadge value={item.delta} />
                   </td>

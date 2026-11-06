@@ -1,7 +1,10 @@
+import { serverTranslator } from '@/lib/i18n/server';
 import { T } from '@/lib/i18n/context';
 import { LanguageLink as Link } from '@/lib/i18n/link';
-import type { Metadata } from 'next';
-export const metadata: Metadata = { title: 'Job-post interview · Rehearse' };
+export async function generateMetadata() {
+  const t = await serverTranslator();
+  return { title: t('title.job') };
+}
 import { z } from 'zod';
 import { getJobRepository } from '@/lib/jobpost/repository';
 import { JobPost } from '@/components/jobpost/job-post';

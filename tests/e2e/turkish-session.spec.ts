@@ -2,15 +2,55 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { installSpeechMock } from './speech-mock';
 import { scenarios, speech, uniqueIp } from './helpers';
+import { messages as english } from '@/messages/en-complete';
+import { messages as turkish } from '@/messages/tr';
 import { StartResponseSchema } from '@/lib/api/contracts';
 
+// Compare static text nodes and accessible strings against the complete English catalogue.
+async function expectTurkishOnly(page: Page) {
+  const properNames = new Set([
+    'Rehearse',
+    'GitHub',
+    'firatkil.com',
+    'Frontend',
+    'Backend',
+    'Full-stack',
+    'DEMO',
+  ]);
+  const forbidden = Object.entries(english)
+    .filter(([key, value]) => {
+      const translated = turkish[key as keyof typeof turkish];
+      return (
+        /[A-Za-z]/.test(value) &&
+        value.trim().length >= 3 &&
+        !value.includes('{') &&
+        value !== translated &&
+        !properNames.has(value.trim())
+      );
+    })
+    .map(([, value]) => value.trim());
+  const leaked = await page.evaluate((words) => {
+    const strings: string[] = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const parent = walker.currentNode.parentElement;
+      if (parent && !parent.closest('script, style, noscript'))
+        strings.push(walker.currentNode.textContent?.trim() ?? '');
+    }
+    for (const element of document.querySelectorAll('[aria-label], [placeholder], [title]'))
+      for (const attr of ['aria-label', 'placeholder', 'title'])
+        strings.push(element.getAttribute(attr)?.trim() ?? '');
+    return strings.filter((text) => words.includes(text));
+  }, forbidden);
+  expect(leaked).toEqual([]);
+}
 const answer =
   'Geçen ay ekipte kayıt akışını inceledim. Kullanıcıların aynı işlemi iki kez yaptığını gördüm. Önce hatayı yeniden ürettim, sonra sunucuda kontrol ekledim. Sonuçları iki hafta ölçtüm ve tekrar sayısı 12 yerine 2 oldu. Şey, bu değişikliği ekiple paylaştım.';
 async function beginAnswer(page: Page) {
   await page.getByRole('button', { name: /^(Yanıtlamaya hazırım|Şimdi başla)$/ }).click();
 }
 async function submitText(page: Page, text: string) {
-  await page.getByLabel('Yanıtınız', { exact: true }).fill(text);
+  await page.getByLabel('Yanıtın', { exact: true }).fill(text);
   await page.getByRole('button', { name: 'Yanıtı gözden geçir', exact: true }).click();
   await page.getByRole('button', { name: 'Geri bildirim al', exact: true }).click();
   await expect(
@@ -18,7 +58,7 @@ async function submitText(page: Page, text: string) {
   ).toBeVisible();
 }
 for (const mode of ['text', 'voice'] as const) {
-  test(`TC-206 TC-209 TC-211 full Turkish ${mode} session persists through feedback, report and progress`, async ({
+  test(`TC-206 TC-209 TC-211 TC-214 TC-215 full Turkish ${mode} session persists through feedback, report and progress`, async ({
     page,
   }, info) => {
     await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
@@ -42,6 +82,8 @@ for (const mode of ['text', 'voice'] as const) {
     await page.goto('/setup');
     await page.getByLabel('Türkçe', { exact: true }).check();
     await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
+    await expect(page).toHaveTitle('Oturum ayarları · Rehearse');
+    await expectTurkishOnly(page);
     await page.getByLabel('3 soru (yaklaşık 10 dakika)', { exact: true }).check();
     await page
       .getByLabel(mode === 'text' ? 'Yazılı: yanıtını yaz' : 'Sesli: yanıtını söyle', {
@@ -56,6 +98,11 @@ for (const mode of ['text', 'voice'] as const) {
     const session = StartResponseSchema.parse(await (await started).json());
     expect(session.questions.every((q) => /^(beh|tec|sdl)-5/.test(q.id))).toBe(true);
     await expect(page.getByRole('button', { name: 'Mülakata başla', exact: true })).toBeVisible();
+    await expect(page).toHaveTitle('Mülakat · Rehearse');
+    await expectTurkishOnly(page);
+    await page.getByRole('button', { name: 'Oturumu bitir', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Kapat', exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Kapat', exact: true }).click();
     await page.reload();
     await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
     await page.getByRole('button', { name: 'Mülakata başla', exact: true }).click();
@@ -68,7 +115,8 @@ for (const mode of ['text', 'voice'] as const) {
         await page.getByRole('button', { name: 'Durdur ve gözden geçir', exact: true }).click();
         await page.clock.runFor(25); // The mocked recognizer delivers its stop callback.
       } else {
-        await page.getByLabel('Yanıtınız', { exact: true }).fill(answer);
+        await page.getByLabel('Yanıtın', { exact: true }).fill(answer);
+        await expect(page.locator('#answer-count')).toContainText(' / 4.000');
         await page.getByRole('button', { name: 'Yanıtı gözden geçir', exact: true }).click();
       }
       const scored = page.waitForResponse((r) => r.url().endsWith('/api/feedback'));
@@ -77,6 +125,7 @@ for (const mode of ['text', 'voice'] as const) {
       await expect(
         page.getByRole('heading', { name: `Geri bildirim: soru ${index + 1}`, exact: true }),
       ).toBeVisible();
+      await expectTurkishOnly(page);
       await expect(page.getByText('(şey 1)', { exact: true })).toBeVisible();
       await expect(
         page.getByText('Bu kararı verirken hangi alternatifi eledin ve neden?', { exact: true }),
@@ -90,7 +139,7 @@ for (const mode of ['text', 'voice'] as const) {
         await page.getByRole('button', { name: 'Takip sorusunu yanıtla', exact: true }).click();
         await beginAnswer(page);
         await page
-          .getByLabel('Yanıtınız', { exact: true })
+          .getByLabel('Yanıtın', { exact: true })
           .fill(
             'Yalnızca düğmeyi kapatma seçeneğini eledim çünkü farklı cihazdan gelen tekrar isteği engellemiyordu.',
           );
@@ -108,7 +157,14 @@ for (const mode of ['text', 'voice'] as const) {
     await expect(page).toHaveURL(/\/report(?:\?|$)/);
     await expect(page.getByRole('heading', { name: 'Oturum raporu', exact: true })).toBeVisible();
     await expect(page.locator('details[id^="report-answer-"]')).toHaveCount(3);
-    await expect(page.getByText(/^En güçlü alanın /)).toBeVisible();
+    await expect(page.getByText(/^En güçlü alanın .*; şimdi .* üzerine çalış\.$/)).toBeVisible();
+    await expect(page).toHaveTitle('Oturum raporu · Rehearse');
+    await expectTurkishOnly(page);
+    await expect(page.locator('details[id^="report-answer-"]').first()).toContainText(/\d deneme/);
+    await expect(page.locator('main')).not.toContainText(/\btries?\b|\d\.\d \/ 4/);
+    await page.emulateMedia({ media: 'print' });
+    await expectTurkishOnly(page);
+    await page.emulateMedia({ media: 'screen' });
     await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
     const downloaded = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Markdown indir', exact: true }).click();
@@ -118,6 +174,9 @@ for (const mode of ['text', 'voice'] as const) {
     expect(markdown).toContain('# Rehearse oturum raporu');
     expect(markdown).toContain('## Sorulara göre puanlar');
     expect(markdown).toContain('Geçen ay ekipte');
+    expect(markdown).toContain('Soru seti kodu');
+    expect(markdown).toMatch(/\d,\d \/ 4/);
+    expect(markdown).not.toMatch(/\btries?\b|\d\.\d \/ 4/);
     if (mode === 'voice') {
       const languages = await page.evaluate(() => {
         const s = (
@@ -136,6 +195,8 @@ for (const mode of ['text', 'voice'] as const) {
     }
     await page.getByRole('link', { name: 'Gelişim', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Gelişim', exact: true })).toBeVisible();
+    await expect(page).toHaveTitle('Gelişim · Rehearse');
+    await expectTurkishOnly(page);
     await expect(page.locator(`a[href*="${session.sessionId}/report"]`).first()).toBeVisible();
   });
 }

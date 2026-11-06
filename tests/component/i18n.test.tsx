@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { I18nProvider, T, useI18n, useSessionLanguage } from '@/lib/i18n/context';
 import { LanguageLink } from '@/lib/i18n/link';
-import { messages as en } from '@/messages/en';
+import { messages as en } from '@/messages/en-complete';
 import { messages as tr } from '@/messages/tr';
 import type { Language } from '@/lib/config';
 
@@ -55,7 +55,7 @@ it('TC-204 V-60 ignores browser locale, changes only on choice and preserves exp
   );
   await act(async () => {
     fireEvent.click(screen.getByRole('button', { name: 'English' }));
-    await import('@/messages/en');
+    await import('@/messages/en-complete');
   });
   expect(screen.getByText('Language')).toBeVisible();
   expect(screen.getByRole('link', { name: 'Setup' })).toHaveAttribute(
@@ -71,7 +71,7 @@ it('TC-205 V-60 a saved English session overrides Turkish UI without replacing t
         <Controls sessionLanguage="en" />
       </I18nProvider>,
     );
-    await import('@/messages/en');
+    await import('@/messages/en-complete');
   });
   expect(screen.getByText('Language')).toBeVisible();
   expect(localStorage.getItem('rehearse-language')).toBe('tr');
