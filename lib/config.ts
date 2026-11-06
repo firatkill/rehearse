@@ -111,9 +111,12 @@ export const TTS = {
   RATE_STEP: 0.1,
   CHUNK_MAX_CHARS: 160,
   PREVIEW_TEXT: 'Tell me about a project you are proud of.',
+  PREVIEW_TEXT_TR: 'Çalışırken aldığın zor bir kararı anlatır mısın?',
 } as const;
 
 export const PACE = { COMFORT_MIN_WPM: 120, COMFORT_MAX_WPM: 160 } as const;
+
+export const FILLERS_TR = ['şey', 'yani', 'hani', 'işte', 'ııı', 'eee'] as const;
 
 export const FILLERS = [
   { phrase: 'um', rule: 'hesitation' },

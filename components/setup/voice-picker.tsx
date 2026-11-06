@@ -20,8 +20,8 @@ export function VoicePicker({
 }) {
   const t = useT();
 
-  const { voice, fellBack } = pickVoice(voices, setup.voiceURI);
-  const groups = groupVoices(voices);
+  const { voice, fellBack } = pickVoice(voices, setup.voiceURI, setup.language);
+  const groups = groupVoices(voices, setup.language);
   const empty = !loading && groups.length === 0;
   const tts = useTTS();
   const [previewError, setPreviewError] = useState(false);
@@ -61,11 +61,20 @@ export function VoicePicker({
                 </option>
               ) : empty ? (
                 <option value="">
-                  <T id="components.setup.voice.picker.5" />
+                  {setup.language === 'tr'
+                    ? t('voice.noTurkish')
+                    : t('components.setup.voice.picker.5')}
                 </option>
               ) : (
                 groups.map((group) => (
-                  <optgroup key={group.accent} label={voiceAccentLabel(group.accent)}>
+                  <optgroup
+                    key={group.accent}
+                    label={
+                      setup.language === 'tr'
+                        ? t('voice.turkishGroup')
+                        : voiceAccentLabel(group.accent)
+                    }
+                  >
                     {group.voices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>
                         {v.name} ({v.lang}){v.localService ? '' : t('voice.online')}
@@ -126,7 +135,13 @@ export function VoicePicker({
             }
             setPreviewError(false);
             void tts
-              .play(window.speechSynthesis, chunkForSpeech(TTS.PREVIEW_TEXT), voice, setup.rate)
+              .play(
+                window.speechSynthesis,
+                chunkForSpeech(setup.language === 'tr' ? TTS.PREVIEW_TEXT_TR : TTS.PREVIEW_TEXT),
+                voice,
+                setup.rate,
+                setup.language,
+              )
               .then((result) => {
                 setPreviewError(result === 'error');
               });

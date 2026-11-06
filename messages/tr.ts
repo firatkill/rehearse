@@ -788,4 +788,6 @@ export const messages = {
   'rubric.tip.relevance':
     'Yanıtlamadan önce soruyu içinden tekrar et; soruya hizmet etmeyen bölümleri çıkar.',
   'rubric.tip.clarity': 'Kısa cümleler kur ve yolu göster: İki sorun vardı. İlki… gibi.',
+  'voice.turkishGroup': 'Türkçe',
+  'voice.noTurkish': 'Türkçe ses bulunamadı',
 } satisfies Messages;

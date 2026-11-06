@@ -1,4 +1,4 @@
-import { SPEECH, TTS } from '@/lib/config';
+import { SPEECH, TTS, LANGUAGE_LOCALES, type Language } from '@/lib/config';
 import type { SpeakResult } from './types';
 export type { SpeakResult } from './types';
 
@@ -15,6 +15,7 @@ export async function speak(
   chunks: string[],
   opts: {
     voice: SpeechSynthesisVoice | null;
+    language?: Language;
     rate: number;
     onChunk(i: number): void;
     signal: AbortSignal;
@@ -33,7 +34,8 @@ export async function speak(
       const utterance = new SpeechSynthesisUtterance(chunk);
       currentUtterance = utterance;
       utterance.voice = opts.voice;
-      utterance.lang = opts.voice?.lang ?? SPEECH.LANG;
+      utterance.lang =
+        opts.voice?.lang ?? (opts.language === 'tr' ? LANGUAGE_LOCALES.tr : SPEECH.LANG);
       utterance.rate = opts.rate;
       utterance.pitch = 1;
       utterance.volume = 1;

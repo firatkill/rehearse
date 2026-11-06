@@ -77,3 +77,30 @@ it.each([
 ])('TC-134 D-96 readable accent %s', (tag, expected) => {
   expect(voiceAccentLabel(tag)).toBe(expected);
 });
+
+it('TC-209 Turkish selection ignores saved English voices, prefers local Turkish and safely handles absence', async () => {
+  const tr: SpeechSynthesisVoice = {
+    name: 'Yelda',
+    voiceURI: 'tr-local',
+    lang: 'tr-TR',
+    localService: true,
+    default: false,
+  };
+  const remote: SpeechSynthesisVoice = {
+    name: 'Turkish online',
+    voiceURI: 'tr-remote',
+    lang: 'tr_TR',
+    localService: false,
+    default: true,
+  };
+  const english = macosVoices.filter((voice) => voice.lang.startsWith('en'));
+  const voices = [...english, remote, tr];
+  expect(pickVoice(voices, 'Google US English', 'tr')).toEqual({ voice: tr, fellBack: true });
+  expect(pickVoice(voices, 'tr-remote', 'tr')).toEqual({ voice: remote, fellBack: false });
+  expect(pickVoice(english, null, 'tr')).toEqual({ voice: null, fellBack: false });
+  expect(pickVoice(english, 'Google US English', 'tr')).toEqual({ voice: null, fellBack: true });
+  expect(groupVoices(voices, 'tr').map((group) => group.accent)).toEqual(['tr-tr']);
+  expect(await loadVoices({ getVoices: () => voices } as SpeechSynthesis, undefined, 'tr')).toEqual(
+    [tr, remote],
+  );
+});

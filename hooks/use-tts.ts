@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Language } from '@/lib/config';
 import { speak } from '@/lib/speech/tts';
 import type { SpeakResult } from '@/lib/speech/types';
 export function useTTS() {
@@ -17,6 +18,7 @@ export function useTTS() {
       chunks: string[],
       voice: SpeechSynthesisVoice | null,
       rate: number,
+      language: Language = 'en',
     ) => {
       controller.current?.abort();
       const own = new AbortController();
@@ -26,6 +28,7 @@ export function useTTS() {
       const result = speak(synth, chunks, {
         voice,
         rate,
+        language,
         signal: own.signal,
         onChunk: setActiveChunk,
       }).finally(() => {

@@ -38,18 +38,23 @@ let base;
 async function ready() {
   const deadline = Date.now() + 60000;
   while (Date.now() < deadline) {
+    const controller = new AbortController();
+    // Keep startup polling alive even when fetch has no referenced socket yet.
+    const timeout = setTimeout(() => controller.abort(), 2000);
     try {
       if (
         (
           await fetch(`${base}/api/health`, {
             headers: { authorization },
-            signal: AbortSignal.timeout(2000),
+            signal: controller.signal,
           })
         ).ok
       )
         return;
     } catch {
       /* Startup only. */
+    } finally {
+      clearTimeout(timeout);
     }
     await new Promise((resolve) => setTimeout(resolve, 250));
   }

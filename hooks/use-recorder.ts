@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ANSWER, SPEECH } from '@/lib/config';
+import { ANSWER, SPEECH, type Language } from '@/lib/config';
 import { createRecognizer } from '@/lib/speech/recognizer';
 import {
   initialRecorder,
@@ -10,7 +10,11 @@ import {
 import { capText, fullText } from '@/lib/speech/transcript';
 import type { SpeechRecognitionCtor, StopReason } from '@/lib/speech/types';
 import type { Timing } from '@/lib/storage/schema';
-export function useRecorder(Ctor: SpeechRecognitionCtor | null, clock?: () => number) {
+export function useRecorder(
+  Ctor: SpeechRecognitionCtor | null,
+  clock?: () => number,
+  language: Language = 'en',
+) {
   // Keep the production clock callback stable even when the bundler inlines defaults.
   const now = useCallback(() => clock?.() ?? performance.now(), [clock]);
   const [snapshot, setSnapshot] = useState(initialRecorder);
@@ -58,27 +62,31 @@ export function useRecorder(Ctor: SpeechRecognitionCtor | null, clock?: () => nu
         const deliver = (e: RecorderEvent) => {
           if (ownGeneration === generation.current) dispatchEvent(e);
         };
-        const recognizer = createRecognizer(Ctor, {
-          onStart: () => {
-            deliver({ type: 'RUN_STARTED' });
+        const recognizer = createRecognizer(
+          Ctor,
+          {
+            onStart: () => {
+              deliver({ type: 'RUN_STARTED' });
+            },
+            onResult: (event) => {
+              const results: Array<{ transcript: string; isFinal: boolean }> = [];
+              for (let i = 0; i < event.results.length; i++) {
+                const result = event.results[i];
+                const alternative = result?.[0];
+                if (result && alternative)
+                  results.push({ transcript: alternative.transcript, isFinal: result.isFinal });
+              }
+              deliver({ type: 'RESULT', now: now(), results });
+            },
+            onError: (code) => {
+              deliver({ type: 'ERROR', code });
+            },
+            onEnd: () => {
+              deliver({ type: 'END' });
+            },
           },
-          onResult: (event) => {
-            const results: Array<{ transcript: string; isFinal: boolean }> = [];
-            for (let i = 0; i < event.results.length; i++) {
-              const result = event.results[i];
-              const alternative = result?.[0];
-              if (result && alternative)
-                results.push({ transcript: alternative.transcript, isFinal: result.isFinal });
-            }
-            deliver({ type: 'RESULT', now: now(), results });
-          },
-          onError: (code) => {
-            deliver({ type: 'ERROR', code });
-          },
-          onEnd: () => {
-            deliver({ type: 'END' });
-          },
-        });
+          language,
+        );
         instance.current = recognizer;
         try {
           recognizer.start();
@@ -99,13 +107,13 @@ export function useRecorder(Ctor: SpeechRecognitionCtor | null, clock?: () => nu
         instance.current?.stop();
       } else if (state.kind === 'stopped' || state.kind === 'failed') abort();
     },
-    [Ctor, now, clearTimers, abort],
+    [Ctor, language, now, clearTimers, abort],
   );
   useEffect(
     () => () => {
       abort();
     },
-    [abort],
+    [abort, language],
   );
   const start = useCallback(() => {
     finishedAt.current = null;

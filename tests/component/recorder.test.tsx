@@ -121,3 +121,21 @@ it('TC-051 UT-16 synchronous start failures and missing constructor surface unav
   });
   expect(absent.result.current.state).toEqual({ kind: 'failed', fail: 'unavailable' });
 });
+
+it('TC-209 Turkish recognition and automatic restarts retain tr-TR and abort on unmount', () => {
+  const view = renderHook(() => useRecorder(FakeRecognition, undefined, 'tr'));
+  act(() => {
+    view.result.current.start();
+  });
+  const first = FakeRecognition.instances[0]!;
+  expect(first.lang).toBe('tr-TR');
+  act(() => {
+    first.emit('Şey, kayıtları inceledim.');
+    first.onend?.();
+    vi.advanceTimersByTime(SPEECH.RESTART_DELAY_MS);
+  });
+  expect(FakeRecognition.instances[1]?.lang).toBe('tr-TR');
+  expect(view.result.current.rawTranscript).toBe('Şey, kayıtları inceledim.');
+  view.unmount();
+  expect(FakeRecognition.instances[1]?.abort).toHaveBeenCalled();
+});

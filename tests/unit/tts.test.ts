@@ -225,3 +225,19 @@ test('TC-145 UT-19 starts the long safety timeout only after speech starts', asy
   await vi.advanceTimersByTimeAsync(1);
   expect(await result).toBe('ended');
 });
+
+test('TC-209 Turkish synthesis fallback uses tr-TR synchronously and remains cancellable', async () => {
+  const { synth, spoken } = fakeSynth();
+  const controller = new AbortController();
+  const result = speak(synth, [TTS.PREVIEW_TEXT_TR], {
+    voice: null,
+    language: 'tr',
+    rate: 1,
+    signal: controller.signal,
+    onChunk: vi.fn(),
+  });
+  expect(spoken[0]?.lang).toBe('tr-TR');
+  expect(spoken[0]?.text).toBe(TTS.PREVIEW_TEXT_TR);
+  controller.abort();
+  await expect(result).resolves.toBe('cancelled');
+});
