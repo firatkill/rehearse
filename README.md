@@ -64,6 +64,12 @@ The owner sets these variables in the applicable Vercel environment:
 
 Generate each secret separately with `openssl rand -hex 32`. Do not publish the values. Hosted demo instances must share the signing key: when `VERCEL_ENV` is set, missing secrets fail validation. Random fallback is available only for local demo runs without `VERCEL_ENV`. No OpenAI key or Upstash is needed for the demo. The owner manages settings. The deployed demo at [rehearse.firatkil.com](https://rehearse.firatkil.com) was verified read-only on 6 November 2026 at commit `8441dd0`: health reports demo/none, public pages and a complete example-job text session pass with strict security headers. See [deployment evidence](docs/DEPLOYMENT.md). No Vercel settings were changed.
 
+## Turkish practice (full edition)
+
+Run `APP_EDITION=full pnpm dev:mock` for free local exploration, open `/setup`, and explicitly choose **Türkçe**. Choose text or a Turkish system voice, then start a session. The saved session retains its language through feedback, reports and progress. Recognition uses `tr-TR`; if speech is unavailable, type instead. Browser language does not select the interview language. The public demo stays English and calls no AI.
+
+Turkish UI copy is in `messages/tr.ts`; the independently written 120-question bank is in `content/questions-tr/`. Turkish prompts and rubric have separate versions. Mock checks pass structurally, but live Turkish quality and native Turkish speech review remain owner checks; see `docs/PROGRESS-V2.md`.
+
 ## Checks
 
 ```sh
@@ -105,4 +111,4 @@ Rehearse does not record, store or upload audio. Browser speech recognition may 
 
 Hand-written bank questions live under `content/questions`; follow the schema and content rules in [TRD §6](docs/TRD.md) and run `pnpm questions:validate`. Do not generate the bank with an LLM. Generated job-post questions are separate, labelled content. See [AGENTS.md](AGENTS.md) for contribution and test rules.
 
-Release: **v2.0.0**. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md). Turkish interviews are future work and are not included in this release.
+Release: **v2.0.0**. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md). The current main branch also supports English and Turkish interviews in the full edition; the v2.0.0 tag predates Turkish support. No new release tag has been created.

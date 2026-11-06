@@ -193,11 +193,14 @@ export function SetupForm({
             <T id="components.setup.setup.form.3" />
           </h2>
           <p>
-            {SESSION.LENGTHS[0]}
-            <T id="components.setup.setup.form.4" />
-            {ROLE_LABELS[setup.role]} · {SENIORITY_LABELS[setup.seniority]} ·{' '}
-            {setup.mode === 'voice' ? t('components.setup.voice.picker.3') : t('ui.dynamic.126')}
-            <T id="components.setup.setup.form.5" />
+            {t('setup.warmup', {
+              count: SESSION.LENGTHS[0],
+              role: ROLE_LABELS[setup.role],
+              seniority: SENIORITY_LABELS[setup.seniority],
+              mode:
+                setup.mode === 'voice' ? t('components.setup.voice.picker.3') : t('ui.dynamic.126'),
+              language: t(setup.language === 'tr' ? 'language.tr' : 'language.en'),
+            })}
           </p>
         </div>
         <Button

@@ -69,7 +69,7 @@ export async function POST(req: Request): Promise<Response> {
       body.items.some(
         (item) =>
           token.payload.q[item.answerIndex] !== item.questionId ||
-          !getInterviewQuestion(item.questionId),
+          !getInterviewQuestion(item.questionId, token.payload.l ?? 'en'),
       )
     )
       return fail('TOKEN_SCOPE');

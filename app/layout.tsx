@@ -7,6 +7,8 @@ import { Schibsted_Grotesk, JetBrains_Mono } from 'next/font/google';
 import type { Viewport } from 'next';
 import { getEnv } from '@/lib/env';
 import { Shell } from '@/components/layout/shell';
+import { getMonthlyBudget } from '@/lib/cost/budget';
+import type { BudgetLevel } from '@/lib/api/budget-contract';
 import './globals.css';
 import './print.css';
 
@@ -36,6 +38,15 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const nonce = requestHeaders.get('x-nonce') ?? undefined;
   const language = await requestLanguage();
   const messages = await loadMessages(language);
+  const env = getEnv();
+  let initialBudgetLevel: BudgetLevel = 'none';
+  if (env.APP_EDITION === 'full') {
+    try {
+      initialBudgetLevel = getMonthlyBudget().level;
+    } catch {
+      /* Budget warnings never block pages. */
+    }
+  }
   return (
     <html lang={language} suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
       <head>
@@ -44,7 +55,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </head>
       <body>
         <I18nProvider initialLanguage={language} initialMessages={messages}>
-          <Shell demoMode={getEnv().DEMO_MODE} edition={getEnv().APP_EDITION}>
+          <Shell
+            demoMode={env.DEMO_MODE}
+            edition={env.APP_EDITION}
+            initialBudgetLevel={initialBudgetLevel}
+          >
             {children}
           </Shell>
         </I18nProvider>

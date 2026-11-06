@@ -2,8 +2,12 @@ import { chromium, type Page } from '@playwright/test';
 import { gzipSync } from 'node:zlib';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { PERFORMANCE } from '../lib/config';
+import { languageOf } from '../lib/i18n/language';
 
 async function main() {
+  const language = languageOf(process.argv[3]);
+  const { messages } =
+    language === 'tr' ? await import('../messages/tr') : await import('../messages/en');
   const origin = new URL(process.argv[2] ?? 'http://localhost:3325');
   if (!['localhost', '127.0.0.1', '[::1]'].includes(origin.hostname) || origin.protocol !== 'http:')
     throw new Error('Performance measurement accepts local HTTP origins only');
@@ -45,24 +49,30 @@ async function main() {
       return { route, gzipBytes, budget, passed: gzipBytes <= budget, chunks };
     }
     const landing = await coldPage();
-    await landing.goto(origin.origin, { waitUntil: 'load' });
+    await landing.goto(`${origin.origin}/?language=${language}`, { waitUntil: 'load' });
     await landing.locator('main h1').waitFor();
     const home = await measure(landing, '/', PERFORMANCE.LANDING_JS_GZIP_BYTES);
     await landing.close();
     const setup = await context.newPage();
     setup.setDefaultTimeout(3000);
-    await setup.goto(new URL('/setup', origin).href);
-    await setup.getByLabel('Text: type your answers').check();
-    await setup.getByRole('button', { name: 'Start session', exact: true }).click();
-    await setup.getByRole('button', { name: 'Start the interview', exact: true }).waitFor();
+    await setup.goto(new URL(`/setup?language=${language}`, origin).href);
+    if (language === 'tr') await setup.getByLabel('Türkçe', { exact: true }).check();
+    await setup.getByLabel(messages['components.jobpost.job.post.22']).check();
+    await setup.getByRole('button', { name: messages['ui.dynamic.134'], exact: true }).click();
+    await setup
+      .getByRole('button', { name: messages['components.room.room.15'], exact: true })
+      .waitFor();
     const roomUrl = setup.url();
     await setup.close();
     const room = await coldPage();
     await room.goto(roomUrl, { waitUntil: 'load' });
-    await room.getByRole('button', { name: 'Start the interview', exact: true }).waitFor();
+    await room
+      .getByRole('button', { name: messages['components.room.room.15'], exact: true })
+      .waitFor();
     const interview = await measure(room, '/session/[id]', PERFORMANCE.ROOM_JS_GZIP_BYTES);
     const result = {
       measuredAt: new Date().toISOString(),
+      language,
       browser: browser.version(),
       method:
         'Cold modern-browser script resources through load/room readiness; Node default gzip; includes asynchronously required scripts, excludes unrequested nomodule fallbacks.',

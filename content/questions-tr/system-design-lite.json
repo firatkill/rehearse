@@ -1,0 +1,626 @@
+[
+  {
+    "id": "sdl-501",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "kontenjan-paylasimi",
+    "prompt": "Bir belediyenin ücretsiz kurslarında son kontenjana aynı anda çok sayıda kişi başvuruyor. Kayıt ve bekleme listesi akışını nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Bir kişi kaydını iptal ederse sırayı nasıl korursun?",
+      "Bildirim ulaşmazsa kontenjan ne kadar bekler?"
+    ],
+    "what_good_looks_like": [
+      "Kontenjan aşımını önleyen veri sınırını belirler.",
+      "Bekleme sırasını ve iptal geçişini açıklar.",
+      "Adalet, hata kurtarma ve bildirim maliyetini birlikte düşünür."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-502",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "baglantisiz-sayim",
+    "prompt": "Depoda bağlantı sık sık kesiliyor ama çalışanların ürün sayımına devam etmesi gerekiyor. Çevrimdışı kayıtları sunucuyla nasıl uzlaştırırsın?",
+    "follow_up_hints": [
+      "İki çalışan aynı ürünü farklı sayarsa ne olur?",
+      "Cihaz kaybolursa hangi kayıtlar kurtarılabilir?"
+    ],
+    "what_good_looks_like": [
+      "Yerel kalıcılık ve yeniden gönderim sınırını açıklar.",
+      "Çakışma kararını iş kuralına bağlar.",
+      "Veri kaybı riskini ve kullanıcıya gösterilecek durumu belirtir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-503",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "tamir-durumu",
+    "prompt": "Küçük bir tamir atölyesi müşterilerine cihazlarının durumunu tek kullanımlık bir bağlantıyla göstermek istiyor. Kayıt ve güvenli görüntüleme akışını nasıl kurarsın?",
+    "follow_up_hints": [
+      "Bağlantı başkasına iletilirse ne görünür?",
+      "Tamir tamamlanınca erişim ne kadar sürer?"
+    ],
+    "what_good_looks_like": [
+      "İş kaydı ve durum geçişlerini tanımlar.",
+      "Bağlantının kapsamını ve süresini sınırlar.",
+      "Personel güncellemesiyle müşteri görünümünü ayırır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-504",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "ortak-ekipman",
+    "prompt": "Bir çalışma alanında ortak projektör ve ekipmanlar saatlik ödünç veriliyor. Çakışan rezervasyonları ve geciken iadeleri yöneten küçük bir sistem nasıl kurarsın?",
+    "follow_up_hints": [
+      "İade gecikince sonraki kişiye ne gösterilir?",
+      "Rezervasyon değişikliği hangi koşulda kabul edilir?"
+    ],
+    "what_good_looks_like": [
+      "Kaynak, rezervasyon ve teslim durumlarını ayırır.",
+      "Çakışmayı sunucu tarafında önler.",
+      "Gecikme ve iptal için açık kullanıcı akışı önerir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-505",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "basvuru-taslagi",
+    "prompt": "Uzun bir başvuru formunun farklı günlerde tamamlanması gerekiyor. Taslak kaydetme, devam etme ve son gönderim akışını nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "İki sekme farklı değişiklik yaparsa ne olur?",
+      "Formun alanları sonradan değişirse eski taslak ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Taslak ve gönderilmiş kayıt durumlarını ayırır.",
+      "Sürüm veya çakışma kontrolü önerir.",
+      "Son gönderimde yeniden doğrulama ve tekrar güvenliği sağlar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-506",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "clarity", "relevance"],
+    "topic": "mahalle-duyurusu",
+    "prompt": "Bir mahalle derneği gönüllülere etkinlik duyurusu gönderecek; kişiler konu seçip bildirimden çıkabilmeli. Küçük bir duyuru sistemini nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Gönderim sürerken biri abonelikten çıkarsa ne olur?",
+      "Aynı duyurunun iki kez gitmesini nasıl önlersin?"
+    ],
+    "what_good_looks_like": [
+      "Tercih ve gönderim kayıtlarını ayırır.",
+      "Gönderim anında geçerli tercihi kontrol eder.",
+      "Tekrar güvenli işleme ve başarısız gönderim takibi önerir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-507",
+    "type": "system-design-lite",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "structure"],
+    "topic": "siparis-hazirlama-ekrani",
+    "prompt": "Küçük bir mutfakta siparişler hazırlama ekranına düşüyor ve çalışanlar durumlarını değiştiriyor. Bağlantı kopmalarında da anlaşılır kalan ekranı nasıl kurarsın?",
+    "follow_up_hints": [
+      "İki kişi aynı siparişi alırsa ne olur?",
+      "Yeniden bağlanınca eksik güncellemeler nasıl alınır?"
+    ],
+    "what_good_looks_like": [
+      "Durumların sahibi olan sunucu kaydını belirler.",
+      "Geçici bağlantı durumunu iş durumundan ayırır.",
+      "Çakışma ve yeniden eşitleme akışını açıklar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-508",
+    "type": "system-design-lite",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "katalog-filtreleri",
+    "prompt": "Birkaç bin ürünlü bir katalogda filtrelerin paylaşılabilir bağlantıda korunması isteniyor. Arama, filtre ve geri gezinme durumunu nasıl düzenlersin?",
+    "follow_up_hints": [
+      "Bağlantıda geçersiz filtre olursa ne gösterirsin?",
+      "Hızlı filtre değişimlerinde eski yanıtları nasıl ayırırsın?"
+    ],
+    "what_good_looks_like": [
+      "Paylaşılacak durumla geçici arayüz durumunu ayırır.",
+      "Adres parametrelerini doğrular ve kararlı hâle getirir.",
+      "Yanıt sırası ve gezinme beklentisini ele alır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-509",
+    "type": "system-design-lite",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "clarity", "structure"],
+    "topic": "belge-inceleme-ekrani",
+    "prompt": "Bir ekip yüklenen belgeleri sırayla inceleyip onaylayacak. Klavyeyle de hızlı kullanılabilen inceleme ekranını ve kayıt akışını nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Başka biri aynı belgeyi onaylarsa ne olur?",
+      "Onaydan sonra odak nereye gitmeli?"
+    ],
+    "what_good_looks_like": [
+      "İnceleme durumunu kalıcı kayda bağlar.",
+      "Eşzamanlı kararları güvenli biçimde ele alır.",
+      "Odak ve anlaşılır durum bildirimlerini akışa dâhil eder."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-510",
+    "type": "system-design-lite",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "ekran-tercihleri",
+    "prompt": "Kullanıcılar bir çalışma panosunda sütunları gizleyip sıralamak istiyor. Tercihleri cihazlar arasında koruyan, yeni sütunlara da uyum sağlayan bir çözüm nasıl kurarsın?",
+    "follow_up_hints": [
+      "Silinmiş bir sütun tercihlerde kalırsa ne olur?",
+      "İki cihaz aynı anda değişiklik yaparsa ne seçersin?"
+    ],
+    "what_good_looks_like": [
+      "Kararlı sütun kimlikleri ve tercih şeması belirler.",
+      "Varsayılanlarla kayıtlı tercihi güvenli biçimde birleştirir.",
+      "Çakışma ve sürüm geçişi politikasını açıklar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-511",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "servis-randevusu",
+    "prompt": "Bir bisiklet servisi günlük iş kapasitesine göre randevu kabul edecek. İş süreleri farklıyken aşırı rezervasyonu önleyen akışı nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Tahmini süre sonradan uzarsa ne olur?",
+      "İptal edilen kapasite ne zaman yeniden açılır?"
+    ],
+    "what_good_looks_like": [
+      "Kapasiteyi iş süresi ve günle ilişkilendirir.",
+      "Rezervasyon kararını atomik bir sınırda verir.",
+      "Değişen tahmin ve iptalleri görünür biçimde yönetir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-512",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "toplu-aktarim",
+    "prompt": "Bir işletme on bin satırlık ürün dosyasını içe aktaracak. Hatalı satırları açıklayan ve kesilince güvenle devam eden bir aktarımı nasıl kurarsın?",
+    "follow_up_hints": ["Aynı dosya yeniden verilirse ne olur?", "Kısmi başarı kabul ediliyor mu?"],
+    "what_good_looks_like": [
+      "Doğrulama ve yazma aşamalarını ayırır.",
+      "İş kimliği ve satır sonucu üzerinden devam etmeyi tasarlar.",
+      "Kısmi başarı veya geri alma kararını iş ihtiyacına bağlar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-513",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "teslimat-kaniti",
+    "prompt": "Yerel bir dağıtım ekibi paket teslimini saat ve kısa notla kaydedecek. Yanlış teslimi düzeltirken geçmişi kaybetmeyen bir kayıt sistemi nasıl tasarlarsın?",
+    "follow_up_hints": ["Çevrimdışı kayıtlar hangi saatle saklanır?", "Düzeltmeyi kim yapabilir?"],
+    "what_good_looks_like": [
+      "İlk kayıtla düzeltme geçmişini ayırır.",
+      "Yetki ve kayıt kaynağını belirtir.",
+      "Cihaz zamanı ile sunucuya ulaşma zamanını dikkate alır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-514",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "rapor-isi",
+    "prompt": "Bir raporun hazırlanması birkaç dakika sürüyor. Kullanıcıya ilerleme ve güvenli indirme sunan küçük bir arka plan iş sistemi nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "İşçi işlem ortasında kapanırsa ne olur?",
+      "İndirme bağlantısı ne kadar geçerli olur?"
+    ],
+    "what_good_looks_like": [
+      "İş durumlarını ve tekrar sınırını tanımlar.",
+      "Çıktı sahipliğini ve süreli erişimi korur.",
+      "Başarısız iş ile tamamlanmış dosya temizliğini ele alır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-515",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "clarity", "relevance"],
+    "topic": "kupon-siniri",
+    "prompt": "Küçük bir mağaza kişi başına bir kez kullanılabilen sınırlı sayıda kupon dağıtacak. Kuponu ayırma ve kullanma akışını nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Ödeme tamamlanmazsa kupon ne olur?",
+      "Aynı kişi iki sekmeden denerse ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Ayırma, kullanma ve süre sonu durumlarını ayırır.",
+      "Kişi ve toplam kullanım sınırlarını atomik uygular.",
+      "Başarısız ödeme ile yeniden denemeyi hesaba katar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-516",
+    "type": "system-design-lite",
+    "roles": ["backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "degisiklik-gunlugu",
+    "prompt": "Küçük bir yönetim panelinde kimin hangi fiyatı değiştirdiği görülebilmeli. İşlem kaydıyla değişiklik günlüğünün tutarlı kalmasını nasıl sağlarsın?",
+    "follow_up_hints": [
+      "Günlüğe yazma başarısız olursa fiyat değişmeli mi?",
+      "Hassas alanlar günlükte nasıl sınırlandırılır?"
+    ],
+    "what_good_looks_like": [
+      "İşlem ve denetim kaydı için tutarlılık sınırı belirler.",
+      "Kimlik, zaman ve değişen alanları yeterli ayrıntıyla saklar.",
+      "Erişim ve veri minimizasyonunu dikkate alır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-517",
+    "type": "system-design-lite",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "structure", "clarity"],
+    "topic": "gonullu-vardiya",
+    "prompt": "Bir etkinlikte gönüllüler boş vardiyalara yazılıyor ve yer değiştirebiliyor. Kontenjanı ve karşılıklı onayı koruyan bir değişim akışı nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Değişim isteği yanıtsız kalırsa ne olur?",
+      "Etkinlik saati yaklaşınca kurallar değişir mi?"
+    ],
+    "what_good_looks_like": [
+      "Kesin vardiyayla bekleyen isteği ayırır.",
+      "İki taraflı değişimi tutarlı bir işlemle tamamlar.",
+      "Süre sonu ve kullanıcı bildirimlerini açıklar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-518",
+    "type": "system-design-lite",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "relevance", "clarity"],
+    "topic": "geri-bildirim-kutusu",
+    "prompt": "Küçük bir ürün ekibi kullanıcı önerilerini toplayıp benzerlerini birleştirmek istiyor. İlk sürümde veri ve durum akışını nasıl kurarsın?",
+    "follow_up_hints": [
+      "Birleştirilen önerinin sahibi nasıl haberdar olur?",
+      "Hatalı birleştirme geri alınabilir mi?"
+    ],
+    "what_good_looks_like": [
+      "Özgün öneriyi birleşik başlıktan ayrı korur.",
+      "Durum ve sahiplik ilişkilerini açıklar.",
+      "Elle düzeltilebilir basit bir ilk sürüm önerir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-519",
+    "type": "system-design-lite",
+    "roles": ["product-engineer", "full-stack", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "impact"],
+    "topic": "hatirlatma-zamani",
+    "prompt": "Bir bakım uygulaması kullanıcıya seçtiği gün ve saatte hatırlatma gönderecek. Saat dilimi değişimlerini ve iptalleri nasıl yönetirsin?",
+    "follow_up_hints": [
+      "Kullanıcı seyahatteyken hangi saat geçerli?",
+      "Gönderim sırasında hatırlatma silinirse ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Yerel saat niyetini zaman anından ayırır.",
+      "Gönderim öncesi güncel durumu kontrol eder.",
+      "Tekrar ve saat değişimi için açık kurallar koyar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-520",
+    "type": "system-design-lite",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "structure", "clarity"],
+    "topic": "kisisel-hedef-takibi",
+    "prompt": "Kullanıcıların haftalık çalışma hedefi koyup ilerleme girdiği küçük bir uygulama tasarlıyorsun. Hedef değişince geçmişi yanıltmadan nasıl gösterirsin?",
+    "follow_up_hints": [
+      "Geçmiş haftaya kayıt eklenirse ne olur?",
+      "Eksik kayıtla sıfır çalışma aynı mı?"
+    ],
+    "what_good_looks_like": [
+      "Hedefin geçerli olduğu dönemleri saklar.",
+      "Eksik bilgi ile gerçek sıfırı ayırır.",
+      "Grafik ve toplamların hangi kayda dayandığını açıklar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-521",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "paylasilan-dosya",
+    "prompt": "Bir ekip küçük dosyaları süreli bağlantılarla paylaşacak. Yükleme, erişim iptali ve süresi dolan dosyaların temizliğini nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Bağlantıyı bilmek yeterli yetki mi?",
+      "Temizleme işi gecikirse erişim devam etmeli mi?"
+    ],
+    "what_good_looks_like": [
+      "Depolama ömrüyle erişim süresini ayırır.",
+      "Her indirmede geçerli yetki ve süreyi kontrol eder.",
+      "Boyut sınırı ve başarısız yükleme temizliğini düşünür."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-522",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "kucuk-oylama",
+    "prompt": "Bir ekip toplantı saatini seçmek için oylama yapacak. Kişi başına tek güncel oy ve kapanış anı olan bir akışı nasıl kurarsın?",
+    "follow_up_hints": [
+      "Oy değişikliği kapanışla aynı anda gelirse ne olur?",
+      "Sonucu kimler görebilir?"
+    ],
+    "what_good_looks_like": [
+      "Oy sahipliği ve güncelleme kuralını belirler.",
+      "Kapanışı sunucu zamanıyla tutarlı uygular.",
+      "Sonuç görünürlüğünü ayrı bir yetki olarak ele alır."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-523",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "yerel-yedek",
+    "prompt": "Tek kullanıcılı bir masaüstü web uygulamasının verisi yerel veritabanında duruyor. Güvenilir dışa aktarma ve geri yüklemeyi nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Yedek eski bir şemaya sahipse ne olur?",
+      "Geri yükleme yarıda kesilirse mevcut veri korunur mu?"
+    ],
+    "what_good_looks_like": [
+      "Dışa aktarımı tutarlı bir veri görünümünden üretir.",
+      "Sürüm, doğrulama ve geçiş adımlarını tanımlar.",
+      "Başarısız geri yüklemede mevcut veriyi korur."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-524",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "clarity", "structure"],
+    "topic": "teslim-alma-sirasi",
+    "prompt": "Bir kütüphane ayrılan kitaplar için teslim alma sırası tutacak. Sırası gelen kişi gelmezse sonraki kişiye geçişi nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Bildirim gönderilemezse süre başlamalı mı?",
+      "Kitap kaydı yanlışlıkla geri alınırsa ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Sıra, ayırma ve teslim durumlarını ayırır.",
+      "Süre sonunu açık iş kuralına bağlar.",
+      "Tekrarlanan görevler ve düzeltmeler için güvenli geçişler kurar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-525",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "relevance"],
+    "topic": "ai-destek-taslagi",
+    "prompt": "Küçük bir destek ekibi gelen talepler için yanıt taslağı üreten bir yardımcı istiyor. İnsan onayı olmadan gönderim yapmayan ilk sürümü nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Taslak hangi kaynaklara dayanır?",
+      "Talep değişirse eski taslak kullanılabilir mi?"
+    ],
+    "what_good_looks_like": [
+      "Taslağı gönderim yetkisinden ayırır.",
+      "Kaynak ve talep sürümünü çıktıyla ilişkilendirir.",
+      "İnsan incelemesi ve başarısız üretim akışını belirtir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-526",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "ai-belge-sorusu",
+    "prompt": "Bir ekip yalnızca kendi yüklediği kullanım belgelerinden yanıt veren bir yardımcı kuracak. Kaynak gösteren ve cevap yokken bunu söyleyen akışı nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Belge silinince arama içeriği ne olur?",
+      "Belgelerden gelen talimatları nasıl ele alırsın?"
+    ],
+    "what_good_looks_like": [
+      "Belge hazırlama, getirme ve üretim sınırlarını ayırır.",
+      "Kaynak erişimi ve alıntı doğruluğunu kontrol eder.",
+      "Kanıt yokluğu ve güvenilmeyen içerik için güvenli davranış belirler."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-527",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "impact", "clarity"],
+    "topic": "ai-deneme-karsilastirma",
+    "prompt": "Bir ekip iki istem sürümünü aynı örneklerle karşılaştırmak istiyor. Sonuçları, maliyeti ve hataları tekrar incelenebilir biçimde tutan küçük bir değerlendirme aracı nasıl kurarsın?",
+    "follow_up_hints": [
+      "Yarıda kalan çalıştırma nasıl devam eder?",
+      "Gizli veriler sonuçlara nasıl girmemeli?"
+    ],
+    "what_good_looks_like": [
+      "Örnek, istem ve model sürümlerini kaydeder.",
+      "Her örneğin sonucunu hata dâhil saklar.",
+      "Bütçe sınırı ve hassas veri minimizasyonu uygular."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-528",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "frontend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "structure", "clarity"],
+    "topic": "ai-metin-onerisi",
+    "prompt": "Bir düzenleyici seçili paragraf için daha açık bir anlatım önerecek. Kullanıcının özgün metnini kaybetmeden öneriyi inceleyip kabul etmesini nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Model çalışırken paragraf değişirse ne olur?",
+      "Öneri kabul edilince geri alınabilir mi?"
+    ],
+    "what_good_looks_like": [
+      "Özgün metin ve öneriyi ayrı saklar.",
+      "Öneriyi kaynak metnin sürümüne bağlar.",
+      "Açık kabul ve geri alma adımları sunar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-529",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "backend", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "ai-fatura-ayiklama",
+    "prompt": "Küçük bir işletme faturalardan tutar ve tarih çıkarmak istiyor. Belirsiz sonuçları insan incelemesine bırakan bir içe aktarma akışı nasıl kurarsın?",
+    "follow_up_hints": [
+      "Aynı fatura iki kez yüklenirse ne olur?",
+      "Modelin verdiği tutarı neyle doğrularsın?"
+    ],
+    "what_good_looks_like": [
+      "Dosya, çıkarılmış alan ve onay durumunu ayırır.",
+      "Şema ve belge kanıtı üzerinden doğrulama yapar.",
+      "Tekrar kayıt ile inceleme yükünü kontrol eder."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-530",
+    "type": "system-design-lite",
+    "roles": ["ai-product-engineer", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "ai-icerik-etiketi",
+    "prompt": "Bir ekip birkaç yüz öneriyi konularına göre etiketlemek istiyor. Model etiketlerini elle düzeltilebilir ve yeni sürümlerle karşılaştırılabilir biçimde nasıl saklarsın?",
+    "follow_up_hints": [
+      "Elle düzeltilmiş etiket yeniden üretimde değişmeli mi?",
+      "Yeni bir konu eklendiğinde eski kayıtlar ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Model önerisiyle insan kararını ayrı tutar.",
+      "Etiket sözlüğü ve üretim sürümünü kaydeder.",
+      "Yeniden işleme ve geri alma politikasını açıklar."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

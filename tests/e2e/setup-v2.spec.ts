@@ -55,7 +55,8 @@ for (const theme of ['light', 'dark'] as const) {
       .locator('a:visible')
       .evaluateAll((links) => links.map((link) => Math.round(link.getBoundingClientRect().top)));
     expect(new Set(navRows).size).toBe(1);
-    await expect(page.getByRole('group', { name: 'Language', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('group', { name: 'Language', exact: true })).toBeVisible();
+    await expect(page.getByLabel('Türkçe', { exact: true })).toBeEnabled();
     await page.getByLabel('Frontend', { exact: true }).check();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,

@@ -19,10 +19,11 @@ import { JOBPOST, type Role, type Language } from '@/lib/config';
 const row = z.object({ value: z.string() });
 export function practiceRole(title: string): Role {
   const value = title.toLowerCase();
-  if (/\bai\b|machine learning/.test(value)) return 'ai-product-engineer';
-  if (/front.?end/.test(value)) return 'frontend';
-  if (/back.?end/.test(value)) return 'backend';
-  if (/product/.test(value)) return 'product-engineer';
+  if (/\bai\b|machine learning|yapay zek[âa]|makine öğren/.test(value))
+    return 'ai-product-engineer';
+  if (/front.?end|ön\s*yüz|arayüz/.test(value)) return 'frontend';
+  if (/back.?end|arka\s*uç/.test(value)) return 'backend';
+  if (/product|ürün/.test(value)) return 'product-engineer';
   return 'full-stack';
 }
 export function createJobRepository(db: Database.Database, clock: () => Date = () => new Date()) {

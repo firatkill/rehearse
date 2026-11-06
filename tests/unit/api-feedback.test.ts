@@ -85,6 +85,28 @@ afterEach(() => {
   resetEnvForTests();
   limiterModule.resetLimiterForTests();
 });
+it('TC-210 TC-211 signed Turkish feedback uses only the Turkish bank and prompt', async () => {
+  const transcript =
+    'Geçen ay ekipte kapsamı daralttım. Önce kullanıcı ihtiyacını inceledim ve teslim tarihini korumak için üç işi erteledim. Sonucu iki hafta ölçtüm.';
+  const data = { ...body(), questionId: 'beh-501', transcript };
+  const auth = {
+    authorization: `Bearer ${token({ l: 'tr', q: ['beh-501', 'beh-502', 'beh-503'] })}`,
+  };
+  const response = await POST(request(data, auth));
+  expect(response.status).toBe(200);
+  const parsed = FeedbackResponseSchema.parse(await response.json());
+  expect(parsed.meta.promptVersion).toBe('feedback-tr-v1');
+  expect(parsed.feedback.follow_up_question).toBe(
+    'Bu kararı verirken hangi alternatifi eledin ve neden?',
+  );
+  await error(
+    request(data, {
+      authorization: `Bearer ${token({ l: 'en', q: ['beh-501', 'beh-502', 'beh-503'] })}`,
+    }),
+    403,
+    'TOKEN_SCOPE',
+  );
+});
 it('TC-076 UT-33 enforces media, size, JSON, origin, demo and token order', async () => {
   await error(
     request(

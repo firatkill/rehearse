@@ -14,6 +14,11 @@ import { MIGRATIONS } from '@/lib/storage/migrations';
 import { openDb, requestResult } from '@/lib/storage/idb';
 import { jobRecord } from '../fixtures/job-record';
 import { JobRequestSchema } from '@/lib/api/jobpost-contracts';
+import * as jobRepository from '@/lib/jobpost/repository';
+import { getInterviewQuestion } from '@/lib/demo/catalog';
+import { POST as start } from '@/app/api/sessions/start/route';
+import { resetEnvForTests } from '@/lib/env';
+import { startBody } from '../fixtures/api';
 afterEach(() => vi.unstubAllGlobals());
 const oldPost = () => V2JobPostRecordSchema.strip().parse({ ...jobRecord.post, schemaVersion: 2 });
 it('TC-207 UT-14 job record/export migrations retain old English semantics and explicit Turkish', () => {
@@ -76,5 +81,69 @@ it('TC-207 SQLite keeps explicit language across revisions and defaults older ca
     expect(repo.updateText(post.id, 'Düzeltilmiş Türkçe ilan').language).toBe('tr');
   } finally {
     db.close();
+  }
+});
+it('TC-210 TC-211 generated questions and job starts cannot cross the stored language boundary', async () => {
+  const db = openSqlite(':memory:');
+  const repo = createJobRepository(db);
+  vi.spyOn(jobRepository, 'getJobRepository').mockReturnValue(repo);
+  vi.stubEnv('APP_EDITION', 'full');
+  resetEnvForTests();
+  try {
+    const post = repo.create(
+      'Erişilebilir kullanıcı arayüzleri geliştirip otomatik testlerle doğrulayacaksın.',
+      null,
+      'tr',
+    );
+    const mismatch = await start(
+      new Request('http://localhost:3000/api/sessions/start', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', origin: 'http://localhost:3000' },
+        body: JSON.stringify({
+          ...startBody,
+          jobPostId: post.id,
+          questionIds: [
+            'gen-00000000-0000-4000-8000-000000000001',
+            'gen-00000000-0000-4000-8000-000000000002',
+            'gen-00000000-0000-4000-8000-000000000003',
+          ],
+          language: 'en',
+        }),
+      }),
+    );
+    expect(mismatch.status).toBe(403);
+    expect(await mismatch.json()).toMatchObject({ error: { code: 'TOKEN_SCOPE' } });
+    const question = {
+      schemaVersion: 1,
+      id: 'gen-00000000-0000-4000-8000-000000000001',
+      jobPostId: post.id,
+      text: 'Bu arayüzün erişilebilirliğini nasıl doğrularsın?',
+      type: 'technical',
+      groundingQuote: post.text,
+      listenFor: [
+        'Klavye akışını sınaması',
+        'Gözlenebilir bir sonuç belirtmesi',
+        'Kullanıcı engelini açıklaması',
+      ],
+      createdAt: post.createdAt,
+      model: 'mock',
+      promptVersion: 'jobpost-tr-v1',
+      origin: 'generated',
+    };
+    db.prepare('INSERT INTO generated_questions(id,job_post_id,value) VALUES (?,?,?)').run(
+      question.id,
+      post.id,
+      JSON.stringify({ ...question, jobPostId: post.id }),
+    );
+    expect(getInterviewQuestion(question.id, 'en')).toBeUndefined();
+    expect(getInterviewQuestion(question.id, 'tr')?.follow_up_hints).toEqual([
+      'Bu işte senin katkın neydi?',
+      'Sonucu nasıl ölçerdin?',
+    ]);
+  } finally {
+    db.close();
+    vi.restoreAllMocks();
+    vi.unstubAllEnvs();
+    resetEnvForTests();
   }
 });

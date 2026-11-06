@@ -7,3 +7,4 @@ export const BudgetSchema = z
     level: z.enum(['none', '80', '100']),
   })
   .strict();
+export type BudgetLevel = z.infer<typeof BudgetSchema>['level'];

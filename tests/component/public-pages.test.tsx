@@ -94,9 +94,7 @@ for (const edition of ['demo', 'full'] as const) {
     how.unmount();
     const home = render(await Home());
     expect(screen.getByRole('table', { name: 'Demo and self-hosted editions' })).toBeVisible();
-    expect(screen.getByRole('row', { name: /Language/ })).toHaveTextContent(
-      'English; Turkish is coming later',
-    );
+    expect(screen.getByRole('row', { name: /Language/ })).toHaveTextContent('English and Turkish');
     expect(
       screen.getByText(
         edition === 'demo'
@@ -105,7 +103,7 @@ for (const edition of ['demo', 'full'] as const) {
       ),
     ).toBeVisible();
     expect(home.container).not.toHaveTextContent(
-      /being built|Planned demo|English and Turkish|questions are coming/,
+      /being built|Planned demo|Turkish is coming later|questions are coming/,
     );
   });
 }

@@ -16,7 +16,9 @@ export function generatedToQuestion(
     dimensions: [...DIMENSIONS],
     topic: `job-${question.type}`,
     prompt: question.text,
-    follow_up_hints: [...JOBPOST.FOLLOW_UP_HINTS],
+    follow_up_hints: [
+      ...(post.language === 'tr' ? JOBPOST.FOLLOW_UP_HINTS_TR : JOBPOST.FOLLOW_UP_HINTS),
+    ],
     what_good_looks_like: question.listenFor,
     time_limit_s: QUESTION_BANK.DEFAULT_TIME_LIMIT_S[type],
     status: 'active',

@@ -65,7 +65,7 @@ export function ReportView({
   const answered = answers.filter((a) => a.status === 'scored' || a.status === 'saved').length;
   const download = () => {
     const url = URL.createObjectURL(
-      new Blob([reportMarkdown(session, answers)], { type: 'text/markdown;charset=utf-8' }),
+      new Blob([reportMarkdown(session, answers, t)], { type: 'text/markdown;charset=utf-8' }),
     );
     const anchor = document.createElement('a');
     anchor.href = url;
