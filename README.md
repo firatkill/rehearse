@@ -2,7 +2,15 @@
 
 Rehearse is a voice mock-interview coach with browser speech, text mode and structured rubric feedback. The public **demo** uses pre-written examples and makes no AI calls. The self-hosted **full** edition uses your OpenAI key and stores sessions and answers in local SQLite. Audio is never recorded or stored by Rehearse.
 
-## Run it yourself
+[Try the demo](https://rehearse.firatkil.com) · [Sample report](https://rehearse.firatkil.com/sample) · [How it works](https://rehearse.firatkil.com/how-it-works)
+
+Run the full version with [Docker Compose](#run-it-yourself-with-docker) or [locally with Node and pnpm](#local-development). Both use your own key; the public demo needs none.
+
+![The demo: choose a fictional job, type an answer and see pre-written sample feedback](docs/assets/rehearse-demo.gif)
+
+Recorded on the production demo with fictional text, 6 November 2026. The animation is 788 KB; no microphone or AI call was used.
+
+## Run it yourself with Docker
 
 Install Docker with Compose, then:
 
@@ -84,3 +92,17 @@ exits nonzero above the owner-approved 160/250 kB (decimal) limits: measured edi
 plus 10% headroom, rounded up to 5 kB (D-158). Lighthouse and mock UI timings do not prove live/native
 speech latency. Next startup compiles the existing `cn` merger for repository classes;
 restart `next dev` after introducing new Tailwind class groups so its tables refresh.
+
+## Feedback quality and browser checks
+
+The owner-run full [feedback-v8 eval](eval/results/2026-11-05-12.json) passed all gates ($0.0186). The [jobpost-v2 rerun](eval/results/jobposts-2026-11-05-2.json) passed all six cases: grounding 1.0, duplicates 0, injection resistance 1.0 ($0.0037). These are recorded results, not guarantees for every answer. See [deployment evidence](docs/DEPLOYMENT.md).
+
+On 6 November 2026 the owner confirmed microphone and voice preview in Chrome and Safari, plus VoiceOver in Safari, on the deployed site. Text mode is the fallback when speech is unavailable. Other browser/device combinations were not manually certified. Voice preview starts normally, but the formal ≤500 ms measurement (TC-194) remains a known gap.
+
+## Privacy and contributing
+
+Rehearse does not record, store or upload audio. Browser speech recognition may use the browser vendor’s service. Demo text stays in your browser; full-edition sessions stay in your local SQLite database, while live feedback sends answer text to your configured provider. See [Privacy](https://rehearse.firatkil.com/privacy).
+
+Hand-written bank questions live under `content/questions`; follow the schema and content rules in [TRD §6](docs/TRD.md) and run `pnpm questions:validate`. Do not generate the bank with an LLM. Generated job-post questions are separate, labelled content. See [AGENTS.md](AGENTS.md) for contribution and test rules.
+
+Release: **v2.0.0**. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md). Turkish interviews are future work and are not included in this release.
