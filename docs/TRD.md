@@ -1,8 +1,8 @@
 # Rehearse: Technical Requirements Document
 
-This document specifies how Rehearse is built. It implements the requirements in `docs/PRD.md` (IDs US-xx, FR-xx, NFR-xx, D-xx) and is executed in the order given by `docs/IMPLEMENTATION_PLAN.md` (IDs T-xx). Where this document and the PRD disagree, the PRD wins for behaviour and copy, and this document wins for technical detail. Report any contradiction as an issue instead of guessing.
+This document specifies how Rehearse is built. It implements the requirements in `docs/PRD.md` (IDs US-xx, FR-xx, NFR-xx, D-xx). Where this document and the PRD disagree, the PRD wins for behaviour and copy, and this document wins for technical detail. Report any contradiction as an issue instead of guessing.
 
-V2 authority (D-73–D-82): `docs/V2-GUIDE.md` defines V-task order, tracked in `docs/PROGRESS-V2.md`. V0 is documentation only. The v2 contracts in §5, §7 and §19.2 supersede corresponding v1 contracts; implementation follows in V2–V5. Other v1 normative interfaces remain the migration baseline until their owning task updates them. The v1 Vercel/Upstash architecture, quota, cost and deployment sections describe the old hosted live app: D-73/D-80 replace that deployment with a no-LLM demo and single-user full edition. Neither the retained v1 quota numbers nor the old production memory ban override those decisions.
+Version 2 (D-73–D-82): The v2 contracts in §5, §7 and §19.2 supersede corresponding v1 contracts; implementation follows in V2–V5. Other v1 normative interfaces remain the migration baseline until their owning task updates them. The v1 Vercel/Upstash architecture, quota, cost and deployment sections describe the old hosted live app: D-73/D-80 replace that deployment with a no-LLM demo and single-user full edition. Neither the retained v1 quota numbers nor the old production memory ban override those decisions.
 
 Conventions in this document:
 
@@ -184,7 +184,7 @@ rehearse/
 │  ├─ fixtures/   bank-small.json transcripts.ts sessions.ts export-v1.json
 │  └─ e2e/        *.spec.ts isolated.spec.ts helpers.ts speech-mock.ts global-setup.ts
 ├─ .github/workflows/ ci.yml eval.yml
-└─ docs/          PRD.md TRD.md IMPLEMENTATION_PLAN.md
+└─ docs/          PRD.md TRD.md DEPLOYMENT.md EVAL-RUNBOOK.md
 ```
 
 Prettier (`.prettierrc.json`): `{ "singleQuote": true, "semi": true, "trailingComma": "all", "printWidth": 100, "plugins": ["prettier-plugin-tailwindcss"] }`. `.prettierignore`: `.next`, `coverage`, `playwright-report`, `test-results`, `eval/results`, `pnpm-lock.yaml`, `.eval-tmp`.

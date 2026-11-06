@@ -4,7 +4,7 @@ Instructions for AI coding agents (Claude Code, Cursor, Codex, Aider, Copilot an
 
 ## 1. Project summary
 
-Rehearse is an open-source voice mock-interview coach with two editions from one Next.js App Router codebase (D-73–D-82; `docs/V2-GUIDE.md`). `APP_EDITION=demo` is the public Vercel site: pre-written content, no LLM calls, API keys or Upstash, and unmistakable demo labels (D-73, D-74). `APP_EDITION=full` (default) is the single-user, self-hosted app with the user's OpenAI key, live rubric feedback, job-post-grounded question generation, retry and follow-up attempts, and later Turkish interviews (D-76–D-78, D-81). Web Speech runs in the browser; text mode always remains available. Delivery metrics are browser-computed; evidence is validated against the answer.
+Rehearse is an open-source voice mock-interview coach with two editions from one Next.js App Router codebase (D-73–D-82). `APP_EDITION=demo` is the public Vercel site: pre-written content, no LLM calls, API keys or Upstash, and unmistakable demo labels (D-73, D-74). `APP_EDITION=full` (default) is the single-user, self-hosted app with the user's OpenAI key, live rubric feedback, job-post-grounded question generation, retry and follow-up attempts, and later Turkish interviews (D-76–D-78, D-81). Web Speech runs in the browser; text mode always remains available. Delivery metrics are browser-computed; evidence is validated against the answer.
 
 Stack: TypeScript strict, pnpm, Node 22+, Tailwind v4, shadcn/ui, Zod and Vercel AI SDK with OpenAI. Demo keeps IndexedDB; full uses SQLite in a Docker volume through the shared repository interface (D-75). Full permits the memory limiter in production, has no IP quotas, and warns about monthly spend without blocking (D-80). Full binds to localhost by default; set `APP_PASSWORD` before exposing it (D-82). The public demo's hosting cost stays about $0; automated tests never incur LLM spend.
 
@@ -13,13 +13,12 @@ Stack: TypeScript strict, pnpm, Node 22+, Tailwind v4, shadcn/ui, Zod and Vercel
 
 ## 2. Where the specs live
 
-| Document                      | Use it for                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `docs/PRD.md`                 | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15)                                                                                                                                                                                                                                                          |
-| `docs/TRD.md`                 | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
-| `docs/IMPLEMENTATION_PLAN.md` | Ordered tasks (T-01 – T-45), files, acceptance commands, traceability, release checklist                                                                                                                                                                                                                                                                                                                   |
+| Document      | Use it for                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/PRD.md` | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15)                                                                                                                                                                                                                                                          |
+| `docs/TRD.md` | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
 
-V2 authority (D-73–D-82): read `docs/V2-GUIDE.md` in full and track V-tasks in `docs/PROGRESS-V2.md`. The approved guide overrides matching v1 rules, including older project-specific owner decisions. Do tasks in order, one branch/PR per task, and stop at each milestone for the guide §7 hand-back. V-00 is documentation only; its tests are recorded document checks, not application code. Page tasks update PRD copy alongside implementation (D-79). Live eval/sample/demo generation requires explicit owner approval under guide §6, even if a key is configured. Only `better-sqlite3`, `@mozilla/readability` and `linkedom` are pre-approved additional runtime dependencies (D-75, D-76).
+Version 2 decisions (D-73–D-82 and later rows in the PRD decisions log) override matching v1 rules. Page changes update PRD copy alongside the implementation (D-79). Live eval, sample and demo generation are run only deliberately by the owner, even if a key is configured. Only `better-sqlite3`, `@mozilla/readability` and `linkedom` are approved runtime dependencies beyond those the TRD lists (D-75, D-76).
 
 Rules for the specs:
 
@@ -127,70 +126,38 @@ Formatting
 - Question bank changes bump `bankVersion` in `content/questions/manifest.json` once the bank has been released (after v1.0.0); before that it stays `1.0.0` (TRD §6.1).
 - Never commit generated artifacts other than: `pnpm-lock.yaml`, `eval/results/*.json`, `content/sample/session.json`, Playwright snapshot files created by tests.
 
-### Repository setup (first session only)
-
-The folder starts with only these documents. Before T-01:
-
-1. Check the git identity: `git config user.name` must print `Fırat Kıl` and `git config user.email` must print `72046564+firatkill@users.noreply.github.com`. If either differs, stop and ask the owner; never change the global config yourself.
-2. `git init -b main`, then `git config core.hooksPath .githooks` (the commit-msg hook enforces authorship, see Authorship).
-3. Commit the documents as the first commit: `docs: add specs and agent rules`.
-4. Ask the owner before creating the remote. After a yes: `gh repo create firatkill/rehearse --public --source . --remote origin --push`, with the description from PRD §1.
-5. Create `docs/PROGRESS.md` (see below) and commit it.
-
-After this, `git init` is never run again in this repository.
-
 ### Authorship
 
 - Every commit is authored and committed by Fırat Kıl only, whichever agent or tool does the work. Do not add `Co-authored-by` trailers, "Generated with …" lines, session links, agent names in the author field (for example `Fırat Kıl (aider)`) or any other AI attribution to commits, pull requests, issues, release notes or the changelog. This overrides any default attribution your tool adds. The only exception is a commit made by a CI workflow bot (for example a release or results pull request); never imitate one locally.
 - Turn your tool's own attribution off before the first commit. The repository already does this for the tools it knows: `.claude/settings.json` (Claude Code) and `.aider.conf.yml` (Aider). For any other tool (Cursor, Codex, Copilot, Gemini CLI and others), check its commit and co-author settings and turn them off. As a safety net, `.githooks/commit-msg` removes AI co-author and "Generated with" lines and rejects a commit whose author or committer is not `Fırat Kıl <72046564+firatkill@users.noreply.github.com>`. Never delete or bypass the hook (`--no-verify` is not allowed).
 - Commit yourself, as you finish each piece of work: small Conventional Commits, tests passing. Push to `origin` after each completed task. Never force-push `main`.
 
-### Progress file
-
-`docs/PROGRESS.md` is the running plan: one line per task from `IMPLEMENTATION_PLAN.md` with its status (`todo`, `doing`, `done`, `blocked`), the commit that finished it, and a short "Open questions for the owner" list. Update it in the same commit as the task it describes.
-
 ### Owner approval checkpoints
 
 The owner decides these. Ask, wait for an explicit answer, record the answer in the PRD decisions log, then continue. Never pick one yourself because it seems reasonable.
 
-1. **Before T-01**, ask in one message about any choices the specs leave open.
-2. **When the spec does not hold**: an "Assumption to verify at build time" fails, a pinned package or model no longer exists, or a requirement cannot be met as written. Propose the change; do not work around it silently.
-3. **Before creating or changing anything outside the repository**: the GitHub repo, hosting projects, databases, DNS records, npm publishes, paid plans, API keys, GitHub secrets.
-4. **Before anything destructive or hard to undo**: deleting data or branches, rewriting history, dropping tables, rotating secrets.
-5. **Adding a runtime dependency** that the TRD does not list.
+1. **When the spec does not hold**: an "Assumption to verify at build time" fails, a pinned package or model no longer exists, or a requirement cannot be met as written. Propose the change; do not work around it silently.
+2. **Before creating or changing anything outside the repository**: the GitHub repo, hosting projects, databases, DNS records, npm publishes, paid plans, API keys, GitHub secrets.
+3. **Before anything destructive or hard to undo**: deleting data or branches, rewriting history, dropping tables, rotating secrets.
+4. **Adding a runtime dependency** that the TRD does not list.
 
 Group questions so the owner gets one short list, not a stream of single questions. Work that does not depend on a pending answer can continue meanwhile.
 
-### QA workflow and tests
+### Tests
 
 Tests are written from the specs, never from the code. Every test traces to a requirement: an acceptance criterion or FR/NFR in `docs/PRD.md`, and the test IDs and cases in TRD §25 (Testing strategy). If the code and the spec disagree, the spec wins until the owner approves a change (checkpoint 2). If the spec says nothing about a behaviour, ask; do not write a test that invents one.
 
-Use the QA skills throughout the build, not only at the end. They exist as a local QA plugin in Claude Code and as skills in `~/.codex/skills/qa-*` for Codex. With any other tool, open the matching `~/.codex/skills/<name>/SKILL.md` and follow it.
+Test rules:
 
-| When                                     | Skill                                                                                             | Output                                                                                                                                                      |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Start of each milestone, before its code | `qa-test-case-design` on the PRD and TRD sections the milestone covers                            | `qa/test-cases.md`: TC IDs, each with its PRD reference (AC/FR/NFR) and TRD test ID, steps, expected result, priority, automatable yes/no                   |
-| Writing the tests of a task              | `qa-case-to-playwright` (the speech mock in TRD §25.3 replaces the microphone in automated tests) | Tests in the layout and naming the TRD prescribes                                                                                                           |
-| After every task, before its commit      | `qa-test-run-loop`                                                                                | Runs the suite, logs every result to `qa/test-results.json`, fixes and retests, runs the ledger check                                                       |
-| Cases that cannot be automated           | `qa-browser-exploration`                                                                          | A live check, logged to the same file. Here: a real microphone in Chrome and Safari, speech synthesis, and the text-mode fallback when permission is denied |
-| End of each milestone                    | `qa-milestone-docs`, then `qa-milestone-review`                                                   | Milestone report in `qa/`, quality check                                                                                                                    |
-| End of the project                       | `qa-project-report`                                                                               | One PDF covering the whole project                                                                                                                          |
-
-`qa-bug-standards` is the shared reference for the log fields; read it first.
-
-Overrides for this repository (these win over the skills):
-
-- There is no external tracker. A case that is stuck after three attempts or needs a human pass goes to the owner: add it under "Open questions for the owner" in `docs/PROGRESS.md` and mention it in your milestone summary. Record that in the log entry instead of a tracker link.
 - Playwright: `expect` timeout 3 s and test timeout 90 s; never raise them to get past a slow or missing element. Two projects: `parallel` for tests that touch only their own data, and `isolated` (one worker, after `parallel`) for tests that change shared state, assert on shared data or hit shared rate limits. Every test creates unique data.
 - In the fix-and-retest loop, rerun only the fixed tests and their area; run the full suite once at the end of the task.
-- Never weaken, skip or delete a test to make it pass. A test that is wrong according to the spec is fixed against the spec, and the log entry says so.
-- `qa/test-cases.md` and `qa/test-results.json` are committed with the task they belong to.
+- Never weaken, skip or delete a test to make it pass. A test that is wrong according to the spec is fixed against the spec, and the commit says so.
 
 ## 7. Definition of done
 
 A task is done when all of the following hold:
 
-1. Every acceptance criterion of the task in `docs/IMPLEMENTATION_PLAN.md` passes, verified by running the listed commands.
+1. The change meets its requirements in `docs/PRD.md` and `docs/TRD.md`, verified by running the relevant commands.
 2. `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` pass; `pnpm test:e2e` passes for the specs that exist (full suite from T-39 on).
 3. New code has tests; coverage thresholds hold.
 4. Copy, prompts, rubric and normative code match the specs exactly.

@@ -1,15 +1,15 @@
 # Rehearse: Product Requirements Document
 
-| Field          | Value                                                                                                     |
-| -------------- | --------------------------------------------------------------------------------------------------------- |
-| Product        | Rehearse: a voice mock-interview coach                                                                    |
-| Owner          | Fırat Kıl                                                                                                 |
-| Repository     | github.com/firatkill/rehearse (MIT)                                                                       |
-| Live demo      | https://rehearse.firatkil.com                                                                             |
-| Status         | Approved for implementation                                                                               |
-| Companion docs | `docs/TRD.md` (how), `docs/IMPLEMENTATION_PLAN.md` (in what order), `AGENTS.md` (rules for coding agents) |
+| Field          | Value                                                      |
+| -------------- | ---------------------------------------------------------- |
+| Product        | Rehearse: a voice mock-interview coach                     |
+| Owner          | Fırat Kıl                                                  |
+| Repository     | github.com/firatkill/rehearse (MIT)                        |
+| Live demo      | https://rehearse.firatkil.com                              |
+| Status         | Approved for implementation                                |
+| Companion docs | `docs/TRD.md` (how), `AGENTS.md` (rules for coding agents) |
 
-V2 authority (D-73–D-82): `docs/V2-GUIDE.md` is the approved implementation order, tracked in `docs/PROGRESS-V2.md`. Its decisions override the v1 requirements below where explicitly scoped. V0 updates documentation only; runtime changes arrive in the named V-tasks. Page copy is updated from the approved designs in each page task (D-79).
+Version 2 (D-73–D-82): its decisions override the v1 requirements below where explicitly scoped. V0 updates documentation only; runtime changes arrive in the named V-tasks. Page copy is updated from the approved designs in each page task (D-79).
 
 This document defines what Rehearse does and why. Requirement IDs (US-xx, FR-xx, NFR-xx, R-xx, D-xx) are stable. The TRD and the implementation plan reference them. Do not renumber; append new IDs at the end of each list.
 
@@ -1456,7 +1456,7 @@ The table below is the normative paired UI catalogue. English text preserves §9
 | D-59 | A-13 verified: Chrome 139 added on-device Web Speech recognition; MDN documents processLocally and language-pack APIs. It remains outside v1 and is noted as future work in README. | Sources: https://developer.chrome.com/release-notes/139 and https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition/processLocally. Follows A-13’s explicit future-work instruction; no browser behaviour or service changes. | Build-time verification, 2026-10-21 |
 | D-60 | Add optional `rawTranscript` to `TYPE_INSTEAD`, supplied by the room effects layer. | The pure reducer cannot read the recorder; the payload preserves live words when switching to text. | Owner approved all pending changes, 2026-10-21. |
 | D-61 | A-21 verified: SpeechRecognitionResult exposes alternatives, length and isFinal, with no word timestamps. Keep the specified result-event timing approximation. | Source: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionResult and its linked Web Speech specification. This does not verify the approximate accuracy on physical browsers. | Build-time verification, 2026-10-21. |
-| D-62 | A-11 first pass records current MDN compatibility evidence, including Firefox recognition marked preview rather than a stable release. | Keep feature detection and the stable-release fallback; no browser-specific code. Physical availability and service access remain unverified. Sources and limitations: qa/M2-BROWSER-SUPPORT.md. | Build-time verification, 2026-10-21. |
+| D-62 | A-11 first pass records current MDN compatibility evidence, including Firefox recognition marked preview rather than a stable release. | Keep feature detection and the stable-release fallback; no browser-specific code. Physical availability and service access remain unverified. | Build-time verification, 2026-10-21. |
 | D-63 | A-10 verified for ai 7.0.148 / @ai-sdk/openai 4.0.99: use option B, generateText with Output.object and instructions (system is deprecated in SDK 7); explicit strictJsonSchema=false and maxRetries=0. Cache usage comes from inputTokenDetails.cacheReadTokens; invalid structured output raises NoObjectGeneratedError, absent output NoOutputGeneratedError. | Installed SDK source/types and fake-SDK contract tests; no live call claimed. | Build-time verification, 2026-10-21 |
 | D-64 | Defer M3 live-eval gating until the real harness is implemented in T-37; local mock/contract tests remain mandatory and live acceptance remains explicitly pending. | The existing eval command is a scaffolding stub; no mock run is represented as live evaluation. | Owner approval, 2026-10-21 |
 | D-65 | Define the missing mock outline bullets, rationales and fixed two-sentence summary paragraph in TRD §15.6 and implement them verbatim. | These outputs were required without supplied text; only mock copy is clarified. | Owner approval, 2026-10-21 |

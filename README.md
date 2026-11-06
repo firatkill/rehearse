@@ -68,7 +68,7 @@ Generate each secret separately with `openssl rand -hex 32`. Do not publish the 
 
 Run `APP_EDITION=full pnpm dev:mock` for free local exploration, open `/setup`, and explicitly choose **Türkçe**. Choose text or a Turkish system voice, then start a session. The saved session retains its language through feedback, reports and progress. Recognition uses `tr-TR`; if speech is unavailable, type instead. Browser language does not select the interview language. The public demo stays English and calls no AI.
 
-Turkish UI copy is in `messages/tr.ts`; the independently written 120-question bank is in `content/questions-tr/`. Turkish prompts and rubric have separate versions. Mock checks pass structurally, but live Turkish quality and native Turkish speech review remain owner checks; see `docs/PROGRESS-V2.md`.
+Turkish UI copy is in `messages/tr.ts`; the independently written 120-question bank is in `content/questions-tr/`. Turkish prompts and rubric have separate versions. Live Turkish feedback is evaluated separately from English (`eval/results/turkish-*.json`); its reliability gap is recorded in the PRD decisions log (D-193).
 
 ## Checks
 
@@ -89,7 +89,7 @@ docker build -t rehearse-v4-test .
 node scripts/docker-smoke.mjs rehearse-v4-test
 ```
 
-Implementation and owner review checkpoints: [V2 progress](docs/PROGRESS-V2.md). MIT, copyright Fırat Kıl.
+MIT, copyright Fırat Kıl.
 
 Local performance checks: after a build, run `pnpm performance:bundle http://localhost:3325`
 against your local app, and `pnpm test:performance` against the full mock test build.
