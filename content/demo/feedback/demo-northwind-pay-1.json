@@ -45,9 +45,7 @@
           {
             "point": "Replace the hypothetical example with a real implementation and state exactly what you owned.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "In a fictional project"
-            ],
+            "vague_phrases": ["In a fictional project"],
             "why": "The answer describes a sensible approach, but the hypothetical framing provides no evidence of your contribution.",
             "rewrite": "In [project], I modeled transaction states as a discriminated union, added exhaustive UI handling and duplicate-submission prevention, and tested each transition. I checked the result by [validation method], which [observable outcome]."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Name how you would verify each state and the observable result.",
             "dimension": "impact",
-            "vague_phrases": [
-              "I’d test the main outcomes."
-            ],
+            "vague_phrases": ["I’d test the main outcomes."],
             "why": "The answer ends with a test claim but gives no criteria or evidence that the interface behaved correctly.",
             "rewrite": "I’d test that pending disables submission, success shows confirmation, and failure displays the error; [test result] confirmed each state."
           }
@@ -169,10 +165,7 @@
           {
             "point": "Give a brief context, your typed state design, how each state renders, and a checked outcome.",
             "dimension": "structure",
-            "vague_phrases": [
-              "add a status variable",
-              "use a few `if` statements"
-            ],
+            "vague_phrases": ["add a status variable", "use a few `if` statements"],
             "why": "Your answer has no example or result, and a clearer model would show how you handle all transaction states.",
             "rewrite": "For a transaction form, I’d model state as a TypeScript union such as pending, success, or error, with relevant data in each state. I’d render the spinner, confirmation, or error from that state and verify each path with [test or observed result]."
           }

@@ -45,9 +45,7 @@
           {
             "point": "Specify the test setup and how you measured whether the alternative worked.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a shorter-lived cache with explicit invalidation"
-            ],
+            "vague_phrases": ["a shorter-lived cache with explicit invalidation"],
             "why": "Those details would make your evidence and the basis for the decision easier to verify.",
             "rewrite": "I tested [cache duration] with explicit invalidation and measured [load and freshness checks]; the results supported optimizing [heavier query] first."
           }

@@ -105,9 +105,7 @@
           {
             "point": "State a recommendation and connect it to a decision or experience you can support.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "I’d test a candidate index and compare latency and rows scanned."
-            ],
+            "vague_phrases": ["I’d test a candidate index and compare latency and rows scanned."],
             "why": "Your process is clear, but the answer does not show a justified decision or reference to your own work.",
             "rewrite": "I’d add an index when the plan shows an important query scanning many unnecessary rows and a test improves latency without unacceptable write costs; in my work, [example]."
           }
@@ -167,9 +165,7 @@
           {
             "point": "Use query evidence and explain how you would verify the index helps.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "whether the query seems slow"
-            ],
+            "vague_phrases": ["whether the query seems slow"],
             "why": "A query plan and before-and-after measurements make the decision testable and account for write and storage costs.",
             "rewrite": "I’d check slow-query logs and the query plan to see whether an expensive lookup could benefit from an index. After adding one, I’d verify it is used and compare performance, while weighing write overhead and storage."
           }

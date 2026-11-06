@@ -45,9 +45,7 @@
           {
             "point": "Clarify what you personally implemented, decided, and monitored in the cited migration.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "For one migration, this staged approach kept dispatch available"
-            ],
+            "vague_phrases": ["For one migration, this staged approach kept dispatch available"],
             "why": "The answer presents a strong plan but does not connect your individual actions to the reported outcome.",
             "rewrite": "For the migration, I [describe your implementation or decision], then monitored [signals] during the backfill. Dispatch had no errors, and database latency stayed within alert thresholds."
           }
@@ -168,10 +166,7 @@
           {
             "point": "Define how you would verify dispatch stays available and what triggers rollback.",
             "dimension": "impact",
-            "vague_phrases": [
-              "keep an eye on things",
-              "If dispatch has a problem"
-            ],
+            "vague_phrases": ["keep an eye on things", "If dispatch has a problem"],
             "why": "The answer gives no observable success measure or specific check for interruption.",
             "rewrite": "I’d monitor [dispatch success measure] during and after the migration, and roll back if [failure threshold] is reached; I’d confirm dispatch remained available by [validation]."
           }

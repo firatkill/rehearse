@@ -107,9 +107,7 @@
           {
             "point": "Add a concrete signal or explain how you would validate the change.",
             "dimension": "impact",
-            "vague_phrases": [
-              "we saw fewer questions about the checklist"
-            ],
+            "vague_phrases": ["we saw fewer questions about the checklist"],
             "why": "The reported improvement is not quantified, and you say completion was not measured cleanly.",
             "rewrite": "After the change, [support question count or rate] shifted from [baseline] to [result]. I would also track checklist completion and setup completion to confirm the change helped users finish setup."
           }

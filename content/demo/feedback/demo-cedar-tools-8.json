@@ -108,9 +108,7 @@
           {
             "point": "Add an observed before-and-after result and explain how you verified the change.",
             "dimension": "impact",
-            "vague_phrases": [
-              "I’d compare those numbers after changes under similar traffic"
-            ],
+            "vague_phrases": ["I’d compare those numbers after changes under similar traffic"],
             "why": "The question asks how you decide whether delay is improving; a proposed method alone does not show a result.",
             "rewrite": "After [change], p50 moved from [baseline] to [result] and p95 from [baseline] to [result] under comparable traffic; error rates stayed [result], so I concluded [assessment]."
           }
@@ -170,10 +168,7 @@
           {
             "point": "Define the delay metric, measurement window, and comparison that would verify improvement.",
             "dimension": "impact",
-            "vague_phrases": [
-              "how long ingestion takes now",
-              "after we make improvements"
-            ],
+            "vague_phrases": ["how long ingestion takes now", "after we make improvements"],
             "why": "A lower number is meaningful only if you measure the same delay consistently before and after a change.",
             "rewrite": "I’d define ingestion delay as [start event to end event], record [baseline] over [time window], then compare the same measure over [post-change window] and check whether it stays lower."
           }

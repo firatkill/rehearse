@@ -105,9 +105,7 @@
           {
             "point": "Report what you tested, the observed outcome, and any change made afterward.",
             "dimension": "impact",
-            "vague_phrases": [
-              "I’d test it during a realistic busy shift"
-            ],
+            "vague_phrases": ["I’d test it during a realistic busy shift"],
             "why": "A proposed test is not evidence that the keyboard workflow worked or improved.",
             "rewrite": "I tested [workflow] during [busy-shift simulation] and observed [result]; I changed [issue] based on staff feedback."
           }
@@ -167,11 +165,7 @@
           {
             "point": "Name specific keyboard tasks and a concrete test with observable pass criteria.",
             "dimension": "impact",
-            "vague_phrases": [
-              "easy to use",
-              "everything works",
-              "ask people if they like it"
-            ],
+            "vague_phrases": ["easy to use", "everything works", "ask people if they like it"],
             "why": "Your answer gives no result, and broad approval questions do not establish whether reception staff can complete tasks efficiently.",
             "rewrite": "I’d identify the queue tasks reception staff need to complete during a busy shift, then test them using only the keyboard. I’d verify that staff can complete [tasks] without a mouse and record [completion rate or observed issues]."
           }

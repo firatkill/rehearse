@@ -16,26 +16,9 @@
     {
       "id": "demo-cedar-tools-1",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-0",
       "prompt": "How would you design an ingestion endpoint to handle repeated uploads from scanners that may have been offline?",
       "follow_up_hints": [
@@ -55,26 +38,9 @@
     {
       "id": "demo-cedar-tools-2",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-1",
       "prompt": "How would you preserve an accurate parcel history when delivery events arrive out of order?",
       "follow_up_hints": [
@@ -94,26 +60,9 @@
     {
       "id": "demo-cedar-tools-3",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-2",
       "prompt": "What design choices would help a Kafka consumer safely replay partner-feed events?",
       "follow_up_hints": [
@@ -133,26 +82,9 @@
     {
       "id": "demo-cedar-tools-4",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-3",
       "prompt": "Describe how you would investigate and backfill parcel events that appear to be missing.",
       "follow_up_hints": [
@@ -172,26 +104,9 @@
     {
       "id": "demo-cedar-tools-5",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-4",
       "prompt": "How would you approach improving a slow depot dashboard query, and what would you examine in PostgreSQL?",
       "follow_up_hints": [
@@ -211,26 +126,9 @@
     {
       "id": "demo-cedar-tools-6",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-5",
       "prompt": "How would you plan a PostgreSQL schema migration so dispatch can continue without interruption?",
       "follow_up_hints": [
@@ -250,26 +148,9 @@
     {
       "id": "demo-cedar-tools-7",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-6",
       "prompt": "If queue lag rises during an incident, how would you use observability data to diagnose the cause?",
       "follow_up_hints": [
@@ -289,26 +170,9 @@
     {
       "id": "demo-cedar-tools-8",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-7",
       "prompt": "How would you establish a measurable baseline for ingestion delay and decide whether it is improving?",
       "follow_up_hints": [

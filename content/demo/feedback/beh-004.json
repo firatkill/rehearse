@@ -170,11 +170,7 @@
           {
             "point": "Name the framework, alternatives, objections, decision process, and verifiable long-term outcome.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a different framework",
-              "the best option",
-              "things improved"
-            ],
+            "vague_phrases": ["a different framework", "the best option", "things improved"],
             "why": "Without concrete details, the interviewer cannot assess your reasoning or how other teams were brought on board.",
             "rewrite": "I chose [framework] over [alternative] because [constraint]. After hearing [team]'s concern about [issue], I [change or response], documented the decision in [place], and later checked [outcome or cost]."
           }

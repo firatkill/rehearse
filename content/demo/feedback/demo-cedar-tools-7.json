@@ -45,9 +45,7 @@
           {
             "point": "Clarify whether this is a hypothetical procedure or a real incident, then state the incident context.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In one fictional incident"
-            ],
+            "vague_phrases": ["In one fictional incident"],
             "why": "The fictional framing makes the situation and task less concrete, weakening the story structure.",
             "rewrite": "For a real incident, [queue/system] began accumulating lag after [trigger]. I checked [signals] to identify the cause, then [action]; if hypothetical, label it as a diagnostic approach."
           }
@@ -106,10 +104,7 @@
           {
             "point": "Anchor the method in a real incident, then state your action and the measured outcome.",
             "dimension": "structure",
-            "vague_phrases": [
-              "Once I had a likely cause",
-              "a targeted action"
-            ],
+            "vague_phrases": ["Once I had a likely cause", "a targeted action"],
             "why": "A real example would complete the situation-action-result arc and make your diagnosis more credible.",
             "rewrite": "During [incident], I compared [queue and rate metrics] and found [specific pattern]. I [action], then verified [observable outcome, such as lag falling to a defined level]."
           }

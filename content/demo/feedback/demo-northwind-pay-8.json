@@ -45,9 +45,7 @@
           {
             "point": "Use a real incident, or clearly frame this as your approach when you lack a past example.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In one fictional example"
-            ],
+            "vague_phrases": ["In one fictional example"],
             "why": "The fictional framing prevents the interviewer from assessing your actual actions and results.",
             "rewrite": "When I receive a vague report, I ask for [minimum diagnostic details] and use [approved privacy-safe method] to reproduce it. In a real case, I [specific action], which led to [verified outcome]."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Add the observable result of the reproduction and how the fix was verified.",
             "dimension": "impact",
-            "vague_phrases": [
-              "confirm the fix with a regression test"
-            ],
+            "vague_phrases": ["confirm the fix with a regression test"],
             "why": "Without an outcome, the listener cannot tell whether your process resolved or clarified the reported issue.",
             "rewrite": "I reproduced [specific behavior] using [steps] and shared the redacted case with engineering; after the fix, [regression test or observable result] confirmed the expected behavior."
           }

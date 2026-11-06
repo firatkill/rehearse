@@ -45,9 +45,7 @@
           {
             "point": "Clarify your personal design and implementation contribution.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "In one system I built"
-            ],
+            "vague_phrases": ["In one system I built"],
             "why": "The answer gives a strong model but leaves it unclear which decisions and work were yours.",
             "rewrite": "I designed and implemented [specific parts] of this ownership model, including [decision or trade-off]. I used one transaction to keep the current owner and appended history entry consistent."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Add how you would verify this design and report an observable outcome.",
             "dimension": "impact",
-            "vague_phrases": [
-              "That preserves a simple way to find who owns a task now"
-            ],
+            "vague_phrases": ["That preserves a simple way to find who owns a task now"],
             "why": "The answer gives intended benefits but no evidence that the approach worked or a defined check.",
             "rewrite": "I’d verify that reassignment updates the current owner and adds exactly one history entry, including when either update fails. In the project, this [validation result] showed [observable outcome]."
           }
@@ -168,9 +164,7 @@
           {
             "point": "Specify the history fields, how changes are recorded, and how you would verify the design.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "some notes about the old owner"
-            ],
+            "vague_phrases": ["some notes about the old owner"],
             "why": "The answer does not say what people could learn from the history or whether the approach worked.",
             "rewrite": "I’d store the current owner separately from an append-only change history recording the previous owner, new owner, timestamp, and reason. I’d check with users that they can trace who owned the task and when it changed."
           }

@@ -45,9 +45,7 @@
           {
             "point": "Name specific cost and abuse controls, such as rate limits and output-token caps.",
             "dimension": "relevance",
-            "vague_phrases": [
-              "set timeouts, limits, and monitoring"
-            ],
+            "vague_phrases": ["set timeouts, limits, and monitoring"],
             "why": "The question asks how to constrain cost and abuse; generic limits do not show the controls you would apply.",
             "rewrite": "I’d rate-limit requests per user and cap output tokens per generation to bound abuse and model spend; [additional cost control] would cover [risk]."
           }
@@ -170,9 +168,7 @@
           {
             "point": "Specify the transport, persistence point, and how a retry handles partial output.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "refresh or try again"
-            ],
+            "vague_phrases": ["refresh or try again"],
             "why": "These details make the design concrete and answer what the system does after a disconnect.",
             "rewrite": "I’d stream through [transport] from an API route to the browser, persist the user message before generation, and save assistant output in [chunks or on completion]. On disconnect, I’d [resume from a cursor or restart], avoiding duplicate messages."
           }

@@ -45,9 +45,7 @@
           {
             "point": "Anchor the design in a real situation, then state your role and a verifiable result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In one fictional project"
-            ],
+            "vague_phrases": ["In one fictional project"],
             "why": "The fictional example does not establish your experience or demonstrate that your choices worked.",
             "rewrite": "In [real project], we needed to replay [partner-feed events] without duplicating downstream effects. I chose [design decision], implemented [your contribution], and checked it by [validation]; the result was [verified outcome]."
           }
@@ -169,11 +167,7 @@
           {
             "point": "Give a concrete context, explain your design choices and actions, then state how you validated the result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "configured correctly",
-              "some monitoring",
-              "if something went wrong"
-            ],
+            "vague_phrases": ["configured correctly", "some monitoring", "if something went wrong"],
             "why": "The answer currently offers only broad intentions, so the listener cannot assess your approach or its outcome.",
             "rewrite": "For [partner-feed constraint], I chose [replay-safe design choice] and added [specific monitoring or validation]. I checked [observable outcome] to confirm replay worked without [failure mode]."
           }

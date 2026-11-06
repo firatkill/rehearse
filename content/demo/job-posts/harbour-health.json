@@ -15,26 +15,9 @@
     {
       "id": "demo-harbour-health-1",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-0",
       "prompt": "Tell us about a web product you shipped. How did you make decisions about scope and delivery?",
       "follow_up_hints": [
@@ -54,26 +37,9 @@
     {
       "id": "demo-harbour-health-2",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-1",
       "prompt": "How would you observe clinic coordinators preparing appointment lists and turn what you learn into testable assumptions?",
       "follow_up_hints": [
@@ -93,26 +59,9 @@
     {
       "id": "demo-harbour-health-3",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-2",
       "prompt": "How would you design a follow-up task queue so overdue and completed tasks are easy to distinguish?",
       "follow_up_hints": [
@@ -132,26 +81,9 @@
     {
       "id": "demo-harbour-health-4",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-3",
       "prompt": "What would you consider when making the queue usable by keyboard alone during a busy reception shift?",
       "follow_up_hints": [
@@ -171,26 +103,9 @@
     {
       "id": "demo-harbour-health-5",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-4",
       "prompt": "How would you model task ownership and preserve a useful history when a task changes owner?",
       "follow_up_hints": [
@@ -210,26 +125,9 @@
     {
       "id": "demo-harbour-health-6",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-5",
       "prompt": "A network interruption occurs while a coordinator saves a task update, and the result is uncertain. How would you design the recovery experience?",
       "follow_up_hints": [
@@ -249,26 +147,9 @@
     {
       "id": "demo-harbour-health-7",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-6",
       "prompt": "How would you measure whether the follow-up queue saves administrative time without collecting sensitive information?",
       "follow_up_hints": [
@@ -288,26 +169,9 @@
     {
       "id": "demo-harbour-health-8",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-7",
       "prompt": "How would you plan a one-team trial, including success and rollback criteria, and learn from people who continue to work around the product?",
       "follow_up_hints": [

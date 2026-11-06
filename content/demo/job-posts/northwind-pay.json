@@ -16,26 +16,9 @@
     {
       "id": "demo-northwind-pay-1",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-0",
       "prompt": "How would you model pending, successful, and failed transaction states in a React and TypeScript interface?",
       "follow_up_hints": [
@@ -55,26 +38,9 @@
     {
       "id": "demo-northwind-pay-2",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-1",
       "prompt": "What techniques would you use to prevent duplicate refund submissions when the network is slow?",
       "follow_up_hints": [
@@ -94,26 +60,9 @@
     {
       "id": "demo-northwind-pay-3",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-2",
       "prompt": "How would you preserve a merchant’s entered information when a form fails validation?",
       "follow_up_hints": [
@@ -133,26 +82,9 @@
     {
       "id": "demo-northwind-pay-4",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-3",
       "prompt": "How would you make a balance that is unavailable clearly distinct from a balance of zero?",
       "follow_up_hints": [
@@ -172,26 +104,9 @@
     {
       "id": "demo-northwind-pay-5",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-4",
       "prompt": "How do you approach accessibility for payment and refund forms, including keyboard navigation?",
       "follow_up_hints": [
@@ -211,26 +126,9 @@
     {
       "id": "demo-northwind-pay-6",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-5",
       "prompt": "Describe how you would coordinate an API contract change with backend engineers and verify the resulting behavior.",
       "follow_up_hints": [
@@ -250,26 +148,9 @@
     {
       "id": "demo-northwind-pay-7",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-6",
       "prompt": "How would you investigate dashboard performance problems on older laptops, and what would you measure?",
       "follow_up_hints": [
@@ -289,26 +170,9 @@
     {
       "id": "demo-northwind-pay-8",
       "type": "behavioral",
-      "roles": [
-        "frontend",
-        "backend",
-        "full-stack",
-        "product-engineer",
-        "ai-product-engineer"
-      ],
-      "seniority": [
-        "junior",
-        "mid",
-        "senior"
-      ],
-      "dimensions": [
-        "structure",
-        "specificity",
-        "ownership",
-        "impact",
-        "relevance",
-        "clarity"
-      ],
+      "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+      "seniority": ["junior", "mid", "senior"],
+      "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
       "topic": "demo-7",
       "prompt": "How would you turn a vague support report about the refund review flow into a reproducible case while protecting customer data?",
       "follow_up_hints": [

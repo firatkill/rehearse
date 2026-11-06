@@ -45,9 +45,7 @@
           {
             "point": "Set the system context, identify your specific changes, then state how you verified the result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In one system I worked on"
-            ],
+            "vague_phrases": ["In one system I worked on"],
             "why": "A brief context and clearer sequence would make the example more credible and easier to assess.",
             "rewrite": "In [system/context], slow networks risked duplicate refunds. I implemented [specific safeguards] and tested concurrent retries; monitoring showed zero duplicate refunds over [period] across [volume]."
           }
@@ -166,9 +164,7 @@
           {
             "point": "Name a specific submission guard, then explain how you would verify it prevents duplicate refunds.",
             "dimension": "structure",
-            "vague_phrases": [
-              "make the network more reliable"
-            ],
+            "vague_phrases": ["make the network more reliable"],
             "why": "The answer lacks an example, implementation steps, and a result, so the listener cannot assess your approach.",
             "rewrite": "I’d disable the refund button while a request is pending and use an idempotency key so retries cannot create a second refund. I’d verify this by testing repeated clicks and slow or retried requests, then check the resulting refund records."
           }

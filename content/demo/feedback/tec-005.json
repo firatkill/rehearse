@@ -111,10 +111,7 @@
           {
             "point": "Name the test profile, key metrics, and first checks you would run.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "use profiling tools",
-              "large assets, expensive startup work"
-            ],
+            "vague_phrases": ["use profiling tools", "large assets, expensive startup work"],
             "why": "Concrete tools and signals make your diagnostic plan checkable and show how you would separate different kinds of slowness.",
             "rewrite": "I’d use [device or throttled profile] and browser performance tools, checking load timings, long tasks, and interaction responsiveness. I’d first inspect JavaScript bundle size and image weight, then compare before and after under the same conditions."
           }

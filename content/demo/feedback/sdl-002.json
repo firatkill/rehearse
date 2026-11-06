@@ -45,9 +45,7 @@
           {
             "point": "State why you prefer this design and when you would choose another approach.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "I’d treat each new comment as an event"
-            ],
+            "vague_phrases": ["I’d treat each new comment as an event"],
             "why": "Your recommendation is clear, but its trade-offs and connection to your own judgment are not yet established.",
             "rewrite": "I’d use a transactional outbox because it prevents losing notification work when a comment commits; for lower delivery guarantees, I’d consider [alternative] to reduce [cost or complexity]."
           }
@@ -108,10 +106,7 @@
           {
             "point": "Define the idempotency key, delivery state, and a concrete per-user limit.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a unique notification ID",
-              "per-user rate limits"
-            ],
+            "vague_phrases": ["a unique notification ID", "per-user rate limits"],
             "why": "Those details make duplicate prevention and flood control implementable and testable.",
             "rewrite": "I’d key each notification by [recipient ID, comment ID, notification type] and enforce uniqueness in storage; I’d cap delivery at [limit] per [time window] per user."
           }

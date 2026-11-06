@@ -45,10 +45,7 @@
           {
             "point": "Clarify who depended on the guide, how stakeholders approved the scope, and what happened to deferred content.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a customer onboarding guide",
-              "We published on time"
-            ],
+            "vague_phrases": ["a customer onboarding guide", "We published on time"],
             "why": "Those details show the stakes, communication, and consequences of the trade-off more fully.",
             "rewrite": "The support lead and product manager agreed that I should prioritize the three steps most likely to block customers, and I told them that afternoon what I would defer. I moved the FAQ and illustrations to [follow-up plan or status]."
           }
@@ -107,10 +104,7 @@
           {
             "point": "Name the deadline, stakes, specific cuts, and who depended on the report.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a progress report",
-              "some charts and background detail"
-            ],
+            "vague_phrases": ["a progress report", "some charts and background detail"],
             "why": "Those details let the interviewer judge the urgency and whether your trade-off protected the most important deliverable.",
             "rewrite": "With less than a week after [data source] changed, I had to deliver [report] for [decision-makers] to decide [decision]. I kept [essential content] and cut [specific charts or detail] because they would not change the conclusion or next action."
           }

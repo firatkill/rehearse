@@ -45,9 +45,7 @@
           {
             "point": "Clarify your individual decisions and deliverables within the cross-functional work.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "I wrote acceptance criteria with design and engineering"
-            ],
+            "vague_phrases": ["I wrote acceptance criteria with design and engineering"],
             "why": "The answer shows initiative, but a clearer division of responsibilities would make your personal contribution easier to assess.",
             "rewrite": "I translated the research into acceptance criteria for the three launch tasks and aligned them with design and engineering; I personally [specific implementation or decision]."
           }

@@ -108,10 +108,7 @@
           {
             "point": "Explain the trade-offs and identify when a hybrid approach is preferable.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "quicker initial content",
-              "might be a better fit"
-            ],
+            "vague_phrases": ["quicker initial content", "might be a better fit"],
             "why": "Concrete criteria make your product-page recommendation more useful and address the question's requested trade-offs.",
             "rewrite": "For a public product page, I’d choose server rendering when search visibility and useful content on first load matter; I’d use browser rendering for highly personalized, interaction-heavy tools. I’d consider static generation for cacheable product data and add client-side code for interactions."
           }
@@ -171,9 +168,7 @@
           {
             "point": "Explain what each approach sends first and recommend one for a specific product page.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "whichever is faster"
-            ],
+            "vague_phrases": ["whichever is faster"],
             "why": "The recommendation needs to connect page needs, such as SEO or personalization, to concrete trade-offs.",
             "rewrite": "With server rendering, the server sends rendered HTML first; with browser rendering, the browser builds the page after receiving JavaScript. For a [public, SEO-focused product page], I’d choose [approach] because [reason], while considering [cost or interactivity trade-off]."
           }

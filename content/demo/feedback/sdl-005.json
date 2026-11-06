@@ -165,10 +165,7 @@
           {
             "point": "Specify an authoritative booking operation that atomically accepts one request and rejects conflicts.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "remove one after someone books it",
-              "calendar updates quickly"
-            ],
+            "vague_phrases": ["remove one after someone books it", "calendar updates quickly"],
             "why": "A fast display refresh cannot prevent two requests from booking the same slot at once.",
             "rewrite": "I’d treat the server as the source of truth and make booking an atomic operation: it reserves the slot only if it is still open, otherwise I show the visitor updated availability."
           }

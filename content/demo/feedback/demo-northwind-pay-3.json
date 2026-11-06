@@ -164,9 +164,7 @@
           {
             "point": "Give the context, your specific approach, and the outcome.",
             "dimension": "structure",
-            "vague_phrases": [
-              "make the form remember"
-            ],
+            "vague_phrases": ["make the form remember"],
             "why": "A one-line intention does not show how you handled validation failure or whether the solution worked.",
             "rewrite": "When [form] failed validation, I [specific change] so merchants’ entered values remained available. I checked it by [test or validation], and [observable result]."
           }

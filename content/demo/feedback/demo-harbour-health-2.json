@@ -45,9 +45,7 @@
           {
             "point": "Add an observed finding and the result of a completed test, or label the answer as a proposed approach.",
             "dimension": "impact",
-            "vague_phrases": [
-              "a small prototype or workflow trial"
-            ],
+            "vague_phrases": ["a small prototype or workflow trial"],
             "why": "The answer defines possible success measures but does not show what happened or what changed.",
             "rewrite": "I’d compare preparation time, corrections, and missed constraints before and after the trial; the observed result was [outcome]. That would tell me whether the assumption held and what to change next."
           }

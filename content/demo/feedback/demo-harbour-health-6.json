@@ -109,9 +109,7 @@
           {
             "point": "Explain how you would verify save status and what happens when the server remains unreachable.",
             "dimension": "structure",
-            "vague_phrases": [
-              "show that we’re checking whether the save completed"
-            ],
+            "vague_phrases": ["show that we’re checking whether the save completed"],
             "why": "That decision path makes the recovery mechanism actionable and clarifies how the user reaches a safe outcome.",
             "rewrite": "I’d preserve the edits and check the update’s status before offering a retry, using an idempotency key to avoid duplicate changes. If the status stayed unknown, I’d show [clear next step] and validate the flow by testing [interruption scenarios] against [success criteria]."
           }

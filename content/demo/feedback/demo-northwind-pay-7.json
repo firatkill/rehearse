@@ -45,9 +45,7 @@
           {
             "point": "Replace the fictional result with a real outcome or state how you would validate the fix.",
             "dimension": "impact",
-            "vague_phrases": [
-              "In one fictional example"
-            ],
+            "vague_phrases": ["In one fictional example"],
             "why": "A fabricated example cannot demonstrate impact; the answer needs an observed result or a concrete validation plan.",
             "rewrite": "I’d rerun the same test across repeated runs and compare p50 and p95 interaction and load metrics, while checking correctness. I’d report [observed result] from [test setup]."
           }
@@ -107,10 +105,7 @@
           {
             "point": "Anchor the plan in a real case and state what the measurements showed.",
             "dimension": "structure",
-            "vague_phrases": [
-              "test likely fixes",
-              "using the same dashboard and test conditions"
-            ],
+            "vague_phrases": ["test likely fixes", "using the same dashboard and test conditions"],
             "why": "A concrete context and result would turn a sound hypothetical approach into a complete behavioral answer.",
             "rewrite": "On [dashboard] used on [older laptop], I reproduced the slowdown and profiled JavaScript, rendering, and network activity. After [change], I compared load and interaction times, CPU, and memory under the same conditions; [result]."
           }
@@ -169,11 +164,7 @@
           {
             "point": "Name the test conditions, diagnostic tools, specific metrics, and how you would validate a change.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "look at the code",
-              "make it faster",
-              "measure performance"
-            ],
+            "vague_phrases": ["look at the code", "make it faster", "measure performance"],
             "why": "Specific measures and a repeatable older-laptop test make your investigation checkable and show whether a change helped.",
             "rewrite": "I’d reproduce the slowdown on an older laptop and use [profiling tool] to check [rendering or main-thread metric] and [load-time metric]. After [change], I’d rerun the same scenario and compare the measurements."
           }

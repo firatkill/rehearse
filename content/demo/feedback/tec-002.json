@@ -45,9 +45,7 @@
           {
             "point": "Specify how long keys remain valid and how expired keys are handled.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "in a durable database"
-            ],
+            "vague_phrases": ["in a durable database"],
             "why": "Retention affects whether late retries can create duplicate payments after key records are removed.",
             "rewrite": "I’d retain each key and its result for [retention period], covering the expected retry window, and define how requests are handled after that period."
           }
@@ -106,10 +104,7 @@
           {
             "point": "Explain the user-facing consequence and how the original result is returned for simultaneous retries.",
             "dimension": "impact",
-            "vague_phrases": [
-              "save it with the payment result",
-              "handle concurrent requests"
-            ],
+            "vague_phrases": ["save it with the payment result", "handle concurrent requests"],
             "why": "That makes clear how your design prevents duplicate charges and what a retrying client receives.",
             "rewrite": "I’d persist the key and payment result atomically; a uniqueness conflict would make the second request wait or read the existing result, so the client receives the original response without creating another payment."
           }
@@ -169,9 +164,7 @@
           {
             "point": "Name the idempotency-key mechanism, its uniqueness guarantee, and how duplicate requests get the original result.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "some checks"
-            ],
+            "vague_phrases": ["some checks"],
             "why": "The key mechanism is what makes payment retries safe, especially when concurrent requests arrive.",
             "rewrite": "I’d require an idempotency key for each payment attempt and store it with a uniqueness constraint. If the key already exists, I’d return the recorded result instead of charging again."
           }

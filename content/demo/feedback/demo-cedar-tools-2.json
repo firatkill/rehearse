@@ -45,9 +45,7 @@
           {
             "point": "Anchor the approach in a real example, then state your action and a verified result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In a fictional rollout"
-            ],
+            "vague_phrases": ["In a fictional rollout"],
             "why": "A hypothetical rollout cannot demonstrate what you personally delivered or whether the approach worked.",
             "rewrite": "In [project], out-of-order events could [constraint]. I implemented [specific change] and verified it by [test or metric], resulting in [observable outcome]."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Add an observable result and explain how you checked that parcel histories remained accurate.",
             "dimension": "impact",
-            "vague_phrases": [
-              "monitor cases where timestamps or statuses conflict"
-            ],
+            "vague_phrases": ["monitor cases where timestamps or statuses conflict"],
             "why": "Without a result or validation, the interviewer cannot tell whether the proposed approach worked.",
             "rewrite": "I checked accuracy by [validation method] and saw [observable result], while monitoring [specific conflict signal] for cases needing review."
           }
@@ -168,10 +164,7 @@
           {
             "point": "Explain the ordering rule, how you preserve event history, and how you verify the result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "sorting the events",
-              "fixing any mistakes"
-            ],
+            "vague_phrases": ["sorting the events", "fixing any mistakes"],
             "why": "Your answer states an intention but gives no concrete method, context, or outcome.",
             "rewrite": "I would order events using [event timestamp or sequence rule] while retaining the original records, then check that late arrivals update the displayed history correctly. I would verify this with [test or observable result]."
           }

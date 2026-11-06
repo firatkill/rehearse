@@ -49,9 +49,7 @@
           {
             "point": "State what you personally designed, implemented, or validated.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "I worked on"
-            ],
+            "vague_phrases": ["I worked on"],
             "why": "The example and result are clear, but your individual contribution is not.",
             "rewrite": "On a billing screen, I [designed or implemented the state model and UI distinction]. We saw 28% fewer balance-related support contacts over the next month."
           }
@@ -170,10 +168,7 @@
           {
             "point": "Describe the state treatment, your implementation, and how you would verify users understand it.",
             "dimension": "structure",
-            "vague_phrases": [
-              "look different",
-              "maybe with different colors or text"
-            ],
+            "vague_phrases": ["look different", "maybe with different colors or text"],
             "why": "A general suggestion does not show a complete example or an observable result.",
             "rewrite": "I’d show an unavailable balance with [specific label or visual treatment], while displaying a true zero as “$0.00.” I’d check whether users distinguish the states through [usability test or other validation]."
           }

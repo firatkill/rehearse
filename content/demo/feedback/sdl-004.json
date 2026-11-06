@@ -45,9 +45,7 @@
           {
             "point": "Explain how edits are submitted, persisted, and surfaced when they overlap.",
             "dimension": "structure",
-            "vague_phrases": [
-              "asked people to add initials and a timestamp when editing"
-            ],
+            "vague_phrases": ["asked people to add initials and a timestamp when editing"],
             "why": "A clear data flow would show how the history and current status stay consistent, including when saving fails.",
             "rewrite": "I’d send each edit to the shared store with its timestamp and keep an activity history; if a save fails or overlaps, I’d show the user the issue and preserve both versions for resolution."
           }
@@ -106,9 +104,7 @@
           {
             "point": "Describe the update flow and how a conflict is detected, shown, and resolved.",
             "dimension": "structure",
-            "vague_phrases": [
-              "ask them to agree on the current version"
-            ],
+            "vague_phrases": ["ask them to agree on the current version"],
             "why": "Without that flow, it is unclear how concurrent edits avoid silently overwriting one another.",
             "rewrite": "I’d save each item with a version number and show both edits if a save finds a newer version; the user can choose or combine changes, with the history retained."
           }

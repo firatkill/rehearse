@@ -56,9 +56,7 @@
           {
             "point": "Clarify which design decisions and validation work you personally owned.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "In one system I designed"
-            ],
+            "vague_phrases": ["In one system I designed"],
             "why": "The answer identifies a system you designed but does not separate your contribution from team work.",
             "rewrite": "I chose the idempotency keys and persistence rules, then [describe your role] in the load test and replay test."
           }
@@ -180,9 +178,7 @@
           {
             "point": "Explain how you would verify delivery, duplicate handling, and validation after reconnects.",
             "dimension": "impact",
-            "vague_phrases": [
-              "add some validation and monitoring"
-            ],
+            "vague_phrases": ["add some validation and monitoring"],
             "why": "The answer names monitoring but gives no observable outcome or defined validation plan.",
             "rewrite": "I’d track accepted, rejected, and duplicate uploads, then test retries after a scanner reconnects. I’d verify [success criterion] using [monitoring or test results]."
           }

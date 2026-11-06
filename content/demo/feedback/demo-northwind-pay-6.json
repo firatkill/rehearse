@@ -45,9 +45,7 @@
           {
             "point": "Clarify your personal role in finding and resolving the omitted-field mismatch.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "after we aligned the implementation and tests"
-            ],
+            "vague_phrases": ["after we aligned the implementation and tests"],
             "why": "Your example shows a team outcome, but not what you personally investigated, changed, or decided.",
             "rewrite": "I traced the mismatch to how an omitted field was handled, then [describe your specific change or coordination action]; we updated the contract tests and confirmed all checks passed."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Add the observed validation result and what it meant for release.",
             "dimension": "impact",
-            "vague_phrases": [
-              "check that existing consumers still work"
-            ],
+            "vague_phrases": ["check that existing consumers still work"],
             "why": "Your answer ends with planned checks, so the interviewer cannot tell whether the change worked.",
             "rewrite": "I checked [success and error cases] in staging and confirmed [observable result], so we [release decision or follow-up]."
           }
@@ -168,10 +164,7 @@
           {
             "point": "Specify the contract change, coordination steps, and checks for expected API behavior.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "the change",
-              "test it to make sure it works"
-            ],
+            "vague_phrases": ["the change", "test it to make sure it works"],
             "why": "Concrete details would show how you prevent mismatches and verify the frontend behavior.",
             "rewrite": "I’d align with backend engineers on [changed fields or response shape], update the contract documentation, and check [specific frontend flow] against the agreed response."
           }

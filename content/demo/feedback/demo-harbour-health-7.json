@@ -45,9 +45,7 @@
           {
             "point": "Ground the plan in a specific pilot, your contribution, and its observed outcome.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In a pilot, I’d check whether average time per item fell"
-            ],
+            "vague_phrases": ["In a pilot, I’d check whether average time per item fell"],
             "why": "The question asks how you would measure success, but a concrete example would show how you applied the method and what it found.",
             "rewrite": "For [pilot context], I chose to compare [similar periods or teams] using aggregate staff minutes per item and timely completion rates. We found [observed result], without collecting names, case details, or message contents."
           }
@@ -170,11 +168,7 @@
           {
             "point": "Define a privacy-safe baseline and compare measurable queue handling time before and after.",
             "dimension": "impact",
-            "vague_phrases": [
-              "feels faster",
-              "seems smaller",
-              "general feedback"
-            ],
+            "vague_phrases": ["feels faster", "seems smaller", "general feedback"],
             "why": "Anecdotal impressions or backlog size alone do not show whether administrative time was saved.",
             "rewrite": "I’d compare aggregate time spent processing follow-ups before and after launch, without storing patient-level details, and validate the change through [measurement method]."
           }

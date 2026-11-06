@@ -45,9 +45,7 @@
           {
             "point": "Make clear which evaluation choices you have made or would personally own.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "In one hypothetical launch"
-            ],
+            "vague_phrases": ["In one hypothetical launch"],
             "why": "The approach is sound, but hypothetical framing leaves your decision-making and experience unsubstantiated.",
             "rewrite": "I would own the release rubric and category-level gates with product and domain experts; in my experience, [specific evaluation decision] helped us [observed result]."
           }
@@ -169,11 +167,7 @@
           {
             "point": "Define feature-specific quality criteria, a representative test set, and measurable release thresholds.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "a bunch of prompts",
-              "look good",
-              "many complaints"
-            ],
+            "vague_phrases": ["a bunch of prompts", "look good", "many complaints"],
             "why": "Without concrete cases and pass criteria, neither answer quality nor regression risk can be checked consistently.",
             "rewrite": "I’d define success for the feature as [quality criteria], then test a set covering expected, edge, and adversarial cases. I’d block release if [threshold] fails and monitor [live measures] after launch."
           }

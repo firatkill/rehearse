@@ -45,9 +45,7 @@
           {
             "point": "Replace the hypothetical example with a real incident and clarify which decisions and steps you personally owned.",
             "dimension": "ownership",
-            "vague_phrases": [
-              "In one fictional example"
-            ],
+            "vague_phrases": ["In one fictional example"],
             "why": "A fictional example demonstrates a sound approach but does not establish your contribution or judgment in practice.",
             "rewrite": "In [real incident], I traced the missing events to [cause], chose [recovery approach], and personally [specific actions]. I validated the backfill by [check], restoring [measured outcome]."
           }
@@ -107,9 +105,7 @@
           {
             "point": "Turn this process into a past example with context, your actions, and a verified result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "After fixing the cause"
-            ],
+            "vague_phrases": ["After fixing the cause"],
             "why": "The answer has actions but no actual situation or outcome, so the listener cannot assess how the approach worked.",
             "rewrite": "In [incident], I identified [affected parcels and dates] and traced the missing events to [cause]. I [specific fix and replay], then verified [observable result, such as reconciled counts and no duplicates]."
           }
@@ -168,10 +164,7 @@
           {
             "point": "Describe a concrete validation check and its observable result.",
             "dimension": "impact",
-            "vague_phrases": [
-              "make sure everything looks okay",
-              "put them back in the system"
-            ],
+            "vague_phrases": ["make sure everything looks okay", "put them back in the system"],
             "why": "Without a defined check or outcome, the listener cannot tell whether the backfill worked.",
             "rewrite": "I’d compare the backfilled events against [source of truth] and verify [specific completeness or consistency check]; the check showed [observable result]."
           }

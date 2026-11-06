@@ -45,10 +45,7 @@
           {
             "point": "Add the incident’s scale and a concrete measure showing how the fix restored correct checkout behavior.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "returned to baseline",
-              "The investigation took about 25 minutes"
-            ],
+            "vague_phrases": ["returned to baseline", "The investigation took about 25 minutes"],
             "why": "The answer names the failure mechanism but gives no affected-customer count or measured change in errors or mismatches.",
             "rewrite": "I monitored the error rate and payment/order mismatches until they returned to baseline, falling from [starting rate] to [ending rate]; [number] transactions were reconciled."
           }
@@ -108,10 +105,7 @@
           {
             "point": "Name the release change, customer impact, and how you validated recovery.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "the relevant change",
-              "errors fell"
-            ],
+            "vague_phrases": ["the relevant change", "errors fell"],
             "why": "These details make the diagnosis and outcome more concrete and checkable.",
             "rewrite": "I compared [specific log signal] with provider events and found payments completed while our order service timed out before recording them. After rolling back [change], I verified recovery by [metric or check]."
           }
@@ -171,10 +165,7 @@
           {
             "point": "Describe the checkout symptom, your first checks, and the evidence that identified the cause.",
             "dimension": "specificity",
-            "vague_phrases": [
-              "looked around",
-              "found something wrong in the code"
-            ],
+            "vague_phrases": ["looked around", "found something wrong in the code"],
             "why": "Concrete diagnostic steps are central to the question, but the answer does not reveal how you found the cause.",
             "rewrite": "When [checkout symptom] affected [users or transactions], I first checked [signal or code path] because [reason]. I traced it to [specific cause] and helped [specific fix]."
           }

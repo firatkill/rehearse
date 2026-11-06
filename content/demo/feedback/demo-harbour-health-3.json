@@ -45,9 +45,7 @@
           {
             "point": "Anchor the answer in a real project, then state your role, actions, and observed result.",
             "dimension": "structure",
-            "vague_phrases": [
-              "In a fictional project"
-            ],
+            "vague_phrases": ["In a fictional project"],
             "why": "A hypothetical design omits the behavioral evidence needed to assess your execution and outcome.",
             "rewrite": "In [project and constraint], I designed the queue by [specific actions I took]. I checked it by [validation method], and [observable result]."
           }
@@ -107,10 +105,7 @@
           {
             "point": "Add a concrete outcome or a defined check for whether users distinguish task states.",
             "dimension": "impact",
-            "vague_phrases": [
-              "clearly labeled groups",
-              "allowing users to view them when needed"
-            ],
+            "vague_phrases": ["clearly labeled groups", "allowing users to view them when needed"],
             "why": "The answer describes a design but gives no evidence that it worked or how you would evaluate it.",
             "rewrite": "I’d check whether users can identify overdue and completed tasks in [usability test or product data], and track [observable outcome]."
           }
@@ -170,9 +165,7 @@
           {
             "point": "Explain how you would implement and validate the distinction, then name an observable outcome.",
             "dimension": "impact",
-            "vague_phrases": [
-              "so people can tell them apart"
-            ],
+            "vague_phrases": ["so people can tell them apart"],
             "why": "Your answer proposes a visual treatment but gives no evidence that it works or how you would check it.",
             "rewrite": "I’d distinguish overdue and completed tasks with [visual treatment] and validate it by [test or feedback method]; I’d track [observable outcome]."
           }
