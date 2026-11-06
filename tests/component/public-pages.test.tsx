@@ -83,7 +83,9 @@ for (const edition of ['demo', 'full'] as const) {
       ),
     ).toBeVisible();
     expect(
-      screen.getByText(/The owner confirmed microphone and voice preview in Chrome and Safari/),
+      screen.getByText(
+        /tested on real devices in Chrome and Safari, including VoiceOver in Safari/,
+      ),
     ).toBeVisible();
     expect(screen.getByText(/latency has not been formally measured/)).toBeVisible();
     expect(how.container).not.toHaveTextContent(
