@@ -169,7 +169,7 @@ export function Room({
         state.restoredNotice ? (
           <ResumeCard index={index} total={session.questions.length} onContinue={start} />
         ) : (
-          <section className="room-intro space-y-4">
+          <section className="room-intro">
             <h1>Ready when you are</h1>
             <p>
               {session.questions.length} questions ·{' '}
@@ -202,7 +202,16 @@ export function Room({
         question && <QuestionPanel prompt={question.prompt} activeChunk={activeChunk} />
       )}
       {phase.kind === 'asking' && (
-        <div className="flex flex-wrap gap-3">
+        <div className="room-actions">
+          <Button
+            variant="on-dark"
+            data-phase-focus
+            onClick={() => {
+              send({ type: 'START_ANSWERING', now: Date.now() });
+            }}
+          >
+            I’m ready to answer
+          </Button>
           {!phase.interrupted && (
             <Button
               variant="text"
@@ -213,18 +222,19 @@ export function Room({
               Stop reading
             </Button>
           )}
-          <Button
-            variant="on-dark"
-            data-phase-focus
-            onClick={() => {
-              send({ type: 'START_ANSWERING', now: Date.now() });
-            }}
-          >
-            I’m ready to answer
-          </Button>
+          {capabilities?.synthesis && (
+            <Button
+              variant="text"
+              onClick={() => {
+                send({ type: 'REPLAY' });
+              }}
+            >
+              Replay question
+            </Button>
+          )}
         </div>
       )}
-      {capabilities?.synthesis && (phase.kind === 'asking' || phase.kind === 'thinking') && (
+      {capabilities?.synthesis && phase.kind === 'thinking' && (
         <Button
           variant="text"
           onClick={() => {
@@ -334,14 +344,16 @@ export function Room({
               send({ type: 'RETRY_ANSWER' });
             }}
           />
-          <Button
-            variant="text"
-            onClick={() => {
-              send({ type: 'NEXT' });
-            }}
-          >
-            {index + 1 === session.questions.length ? 'Finish and see report' : 'Next question'}
-          </Button>
+          <div className="room-actions room-next">
+            <Button
+              variant="secondary"
+              onClick={() => {
+                send({ type: 'NEXT' });
+              }}
+            >
+              {index + 1 === session.questions.length ? 'Finish and see report' : 'Next question'}
+            </Button>
+          </div>
         </>
       )}
       {phase.kind === 'feedback-error' && (

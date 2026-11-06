@@ -10,7 +10,7 @@ const notices = {
 };
 export function CapabilityNotice({ capabilities }: { capabilities: Capabilities | null }) {
   return (
-    <p>
+    <p className="setup-capability">
       {capabilities
         ? notices[capabilityNotice(capabilities)]
         : 'Checking what this browser supports…'}
