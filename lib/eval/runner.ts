@@ -1,13 +1,12 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
-import { DIMENSIONS, EVAL } from '@/lib/config';
+import { DIMENSIONS, EVAL, type Language } from '@/lib/config';
 import type { Env } from '@/lib/env';
 import { AppError } from '@/lib/errors';
 import { estimateCostUsd } from '@/lib/cost/estimate';
 import { generateFeedback } from '@/lib/feedback/generate';
 import type { LlmProvider, LlmUsage } from '@/lib/llm/provider';
-import { FEEDBACK_SYSTEM_PROMPT, buildFeedbackUserMessage } from '@/lib/prompts/feedback';
-import { FEEDBACK_PROMPT_VERSION } from '@/lib/prompts/version';
+import { feedbackPrompt } from '@/lib/prompts/language';
 import type { Question } from '@/lib/questions/schema';
 import { createBudgetGuard } from './budget';
 import { validateGolden, validateFollowUpGolden } from './golden-schema';
@@ -15,6 +14,7 @@ import { computeMetrics, containsCanary, gateMetrics, ThresholdsSchema } from '.
 import { EvalResultsSchema, type EvalItemResult } from './results-schema';
 
 export type EvalOptions = {
+  language?: Language;
   suite?: 'golden' | 'follow-up';
   mock: boolean;
   noGate: boolean;
@@ -37,6 +37,7 @@ export async function runEvaluation(args: {
   const now = args.now ?? Date.now;
   const startedAt = new Date(now()).toISOString();
   const { options, env, bank } = args;
+  const selectedPrompt = feedbackPrompt(options.language);
   if (options.mock !== (env.LLM_MODE === 'mock'))
     throw new Error('Use --mock only with LLM_MODE=mock');
   const all =
@@ -75,7 +76,7 @@ export async function runEvaluation(args: {
     maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
     promptChars: jobs.map(
       ({ item, question }) =>
-        FEEDBACK_SYSTEM_PROMPT.length + buildFeedbackUserMessage({ ...item, question }).length,
+        selectedPrompt.system.length + selectedPrompt.build({ ...item, question }).length,
     ),
   });
   let next = 0;
@@ -103,6 +104,7 @@ export async function runEvaluation(args: {
       try {
         const result = await generateFeedback({
           ...job.item,
+          language: options.language ?? 'en',
           question: job.question,
           provider,
           maxOutputTokens: env.MAX_OUTPUT_TOKENS_FEEDBACK,
@@ -170,7 +172,7 @@ export async function runEvaluation(args: {
     finishedAt: new Date(now()).toISOString(),
     gitSha: args.gitSha,
     model: args.provider.modelId,
-    promptVersion: FEEDBACK_PROMPT_VERSION,
+    promptVersion: selectedPrompt.version,
     bankVersion: bank.bankVersion,
     goldenHash: createHash('sha256').update(args.source).digest('hex'),
     repeats: options.repeats,

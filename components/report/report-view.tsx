@@ -6,7 +6,6 @@ import { LanguageLink as Link } from '@/lib/i18n/link';
 import { formatSessionDate } from '@/lib/date-time';
 import { LocalSessionTime } from '@/components/common/local-session-time';
 import { DIMENSIONS, STORAGE } from '@/lib/config';
-import { DIMENSION_TIPS } from '@/lib/feedback/rubric';
 import type { SessionRecord, AnswerRecord } from '@/lib/storage/schema';
 import { bestAnswer } from '@/lib/storage/attempts';
 import { aggregate } from '@/lib/report/aggregate';
@@ -193,7 +192,8 @@ export function ReportView({
               <p>
                 <SafeText
                   text={
-                    summary?.focus_notes.find((n) => n.dimension === d)?.note ?? DIMENSION_TIPS[d]
+                    summary?.focus_notes.find((n) => n.dimension === d)?.note ??
+                    t(`rubric.tip.${d}`)
                   }
                 />
               </p>

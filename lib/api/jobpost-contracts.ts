@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { JOBPOST } from '@/lib/config';
+import { JOBPOST, LANGUAGES } from '@/lib/config';
 import {
   JobPostRecordSchema,
   GeneratedQuestionRecordSchema,
@@ -7,9 +7,19 @@ import {
   InterviewDateSchema,
 } from '@/lib/storage/jobpost-schema';
 export const JobRequestSchema = z.discriminatedUnion('operation', [
-  z.object({ operation: z.literal('create'), text: JobTextSchema }).strict(),
   z
-    .object({ operation: z.literal('fetch'), url: z.string().min(1).max(JOBPOST.MAX_CHARS) })
+    .object({
+      operation: z.literal('create'),
+      text: JobTextSchema,
+      language: z.enum(LANGUAGES).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      operation: z.literal('fetch'),
+      url: z.string().min(1).max(JOBPOST.MAX_CHARS),
+      language: z.enum(LANGUAGES).optional(),
+    })
     .strict(),
   z.object({ operation: z.literal('get'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('updateText'), id: z.uuid(), text: JobTextSchema }).strict(),

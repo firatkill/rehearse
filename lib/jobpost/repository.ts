@@ -13,9 +13,9 @@ import {
   type GeneratedQuestionRecord,
 } from '@/lib/storage/jobpost-schema';
 import type { JobGeneration } from './schema';
-import { JOBPOST_PROMPT_VERSION } from '@/lib/prompts/version';
+import { jobpostPrompt } from '@/lib/prompts/language';
 import { validateJobQuestions } from './validate';
-import { JOBPOST, type Role } from '@/lib/config';
+import { JOBPOST, type Role, type Language } from '@/lib/config';
 const row = z.object({ value: z.string() });
 export function practiceRole(title: string): Role {
   const value = title.toLowerCase();
@@ -43,13 +43,14 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
     ).run(parsed.id, JSON.stringify(parsed));
     return parsed;
   };
-  const create = (text: string, sourceUrl: string | null = null) => {
+  const create = (text: string, sourceUrl: string | null = null, language: Language = 'en') => {
     const total = z
       .object({ count: z.number() })
       .parse(db.prepare('SELECT count(*) AS count FROM job_posts').get()).count;
     if (total >= JOBPOST.MAX_POSTS) throw new AppError('VALIDATION_FAILED');
     return save({
-      schemaVersion: 2,
+      schemaVersion: 3,
+      language,
       interviewDate: null,
       id: randomUUID(),
       text: JobTextSchema.parse(text),
@@ -90,7 +91,7 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
       if (post.status !== 'ready')
         return save({ ...post, text: JobTextSchema.parse(text), updatedAt: clock().toISOString() });
       return db.transaction(() => {
-        const revised = create(text, post.sourceUrl);
+        const revised = create(text, post.sourceUrl, post.language);
         // The upcoming interview follows the new revision; historical questions remain intact.
         save({ ...post, interviewDate: null, updatedAt: clock().toISOString() });
         return save({ ...revised, interviewDate: post.interviewDate });
@@ -143,7 +144,7 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
             jobPostId: id,
             createdAt: now,
             model,
-            promptVersion: JOBPOST_PROMPT_VERSION,
+            promptVersion: jobpostPrompt(post.language).version,
             origin: 'generated',
           });
           db.prepare('INSERT INTO generated_questions(id,job_post_id,value) VALUES (?,?,?)').run(

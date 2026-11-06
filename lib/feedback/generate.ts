@@ -1,10 +1,10 @@
 import 'server-only';
-import { LLM, type Role, type Seniority, type AnswerMode } from '@/lib/config';
+import { LLM, type Role, type Seniority, type AnswerMode, type Language } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import type { Question } from '@/lib/questions/schema';
 import { countWords } from '@/lib/metrics/words';
 import { sanitizeUntrusted } from '@/lib/prompts/sanitize';
-import { buildFeedbackUserMessage, FEEDBACK_SYSTEM_PROMPT } from '@/lib/prompts/feedback';
+import { feedbackPrompt } from '@/lib/prompts/language';
 import {
   InvalidOutputError,
   ProviderError,
@@ -16,6 +16,7 @@ import { FeedbackLlmSchema, type Feedback } from './schema';
 import { normalizeFeedback } from './normalize';
 
 export async function generateFeedback(args: {
+  language?: Language;
   question: Question;
   followUpPrompt?: string;
   role: Role;
@@ -38,7 +39,8 @@ export async function generateFeedback(args: {
   const now = args.now ?? Date.now;
   const start = now();
   const deadline = start + LLM.FEEDBACK_DEADLINE_MS;
-  const prompt = buildFeedbackUserMessage({ ...args, transcript });
+  const selectedPrompt = feedbackPrompt(args.language);
+  const prompt = selectedPrompt.build({ ...args, transcript });
   const usage: LlmUsage = { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 };
   for (let attempts = 1; attempts <= LLM.FEEDBACK_MAX_ATTEMPTS; attempts++) {
     const timeout = Math.min(LLM.ATTEMPT_TIMEOUT_MS, deadline - now());
@@ -46,8 +48,8 @@ export async function generateFeedback(args: {
     try {
       const response = await args.provider.generateStructured({
         schema: FeedbackLlmSchema,
-        schemaName: 'interview_feedback',
-        system: FEEDBACK_SYSTEM_PROMPT,
+        schemaName: selectedPrompt.schemaName,
+        system: selectedPrompt.system,
         prompt,
         maxOutputTokens: args.maxOutputTokens,
         signal: AbortSignal.timeout(timeout),

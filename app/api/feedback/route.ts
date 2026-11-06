@@ -14,7 +14,7 @@ import { checkFeedback } from '@/lib/ratelimit/quotas';
 import { clientIp, visitorId } from '@/lib/ratelimit/visitor';
 import { LimiterUnavailableError } from '@/lib/ratelimit/types';
 import { getFeedbackSource } from '@/lib/demo/source';
-import { FEEDBACK_PROMPT_VERSION } from '@/lib/prompts/version';
+import { feedbackPrompt } from '@/lib/prompts/language';
 import { countWords } from '@/lib/metrics/words';
 import { estimateCostUsd } from '@/lib/cost/estimate';
 import { getLogger } from '@/lib/logger';
@@ -117,6 +117,7 @@ export async function POST(req: Request): Promise<Response> {
     const result = await provider.generate({
       question,
       ...(followUpPrompt === undefined ? {} : { followUpPrompt }),
+      language: token.payload.l ?? 'en',
       role: token.payload.r,
       seniority: token.payload.s,
       mode: body.mode,
@@ -148,7 +149,9 @@ export async function POST(req: Request): Promise<Response> {
       meta: {
         model: provider.modelId,
         promptVersion:
-          provider.modelId === 'sample' ? DEMO.PROMPT_VERSION : FEEDBACK_PROMPT_VERSION,
+          provider.modelId === 'sample'
+            ? DEMO.PROMPT_VERSION
+            : feedbackPrompt(token.payload.l).version,
         bankVersion: token.payload.b,
         latencyMs: result.latencyMs,
         attempts: result.attempts,
@@ -167,7 +170,10 @@ export async function POST(req: Request): Promise<Response> {
       transcriptChars: body.transcript.length,
       words: countWords(body.transcript),
       model: provider.modelId,
-      promptVersion: provider.modelId === 'sample' ? DEMO.PROMPT_VERSION : FEEDBACK_PROMPT_VERSION,
+      promptVersion:
+        provider.modelId === 'sample'
+          ? DEMO.PROMPT_VERSION
+          : feedbackPrompt(token.payload.l).version,
       attempts: result.attempts,
       latencyMs: result.latencyMs,
       inputTokens: result.usage.inputTokens,

@@ -16,6 +16,12 @@ export const requestLanguage = cache(async () => {
     const session = await getSqliteRepository().getSession(sessionId);
     if (session) return session.setup.language;
   }
+  const jobId = /^\/job\/([a-f0-9-]+)$/.exec(requestHeaders.get('x-rehearse-path') ?? '')?.[1];
+  if (jobId) {
+    const { getJobRepository } = await import('@/lib/jobpost/repository');
+    const post = getJobRepository().get(jobId);
+    if (post) return post.language;
+  }
   return languageOf(requestHeaders.get('x-rehearse-language'));
 });
 export async function serverTranslator() {

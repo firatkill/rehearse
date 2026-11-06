@@ -1,0 +1,128 @@
+[
+  {
+    "id": "beh-501",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "teslim-baskisi",
+    "prompt": "Teslim tarihi yaklaşırken kapsamı daraltman gereken bir işi anlatır mısın? Neyi korudun, neyden vazgeçtin ve bu kararı nasıl savundun?",
+    "follow_up_hints": [
+      "Kararın hangi kullanıcıları etkiledi?",
+      "Ertelediğin işi sonradan nasıl takip ettin?"
+    ],
+    "what_good_looks_like": [
+      "Kapsam kararını kendi katkısıyla ilişkilendirir.",
+      "Koruduğu kullanıcı ihtiyacını somutlaştırır.",
+      "Tercihin sonucunu ve kalan riski açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-502",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "sessiz-uyusmazlik",
+    "prompt": "Bir toplantıda herkes aynı fikirde görünürken önemli bir itirazının olduğu bir anı anlatır mısın? İtirazını nasıl ortaya koydun, sonrasında ne oldu?",
+    "follow_up_hints": [
+      "İtirazın kabul edilmeseydi nasıl ilerlerdin?",
+      "Diğer kişilerin kaygılarını nasıl öğrendin?"
+    ],
+    "what_good_looks_like": [
+      "İtirazını kişilere değil karara yöneltir.",
+      "Kullandığı kanıtı ve kendi eylemini ayırır.",
+      "Görüşmenin sonucunu ve öğrendiğini belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-501",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "tekrar-istek",
+    "prompt": "Bir kullanıcı ödeme düğmesine iki kez bastığında tek tahsilat yapılmasını nasıl sağlarsın? İstemci ve sunucudaki önlemlerin sınırlarını açıklar mısın?",
+    "follow_up_hints": [
+      "Yanıt kaybolur ama ödeme gerçekleşirse ne olur?",
+      "Aynı anahtar farklı tutarla gelirse nasıl davranırsın?"
+    ],
+    "what_good_looks_like": [
+      "Düğmeyi kapatmanın tek başına yeterli olmadığını açıklar.",
+      "Sunucuda kalıcı tekrar önleme mekanizması önerir.",
+      "Hata ve yeniden deneme durumunu örnekler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-502",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "eski-ekran-verisi",
+    "prompt": "Kullanıcı bir kaydı güncelledikten sonra listede eski değerini görüyor. Sorunun önbellekten mi, eşzamanlı isteklerden mi kaynaklandığını nasıl ayırırsın?",
+    "follow_up_hints": [
+      "Yavaş bir yanıt yeni sonucu ezerse ne yaparsın?",
+      "Düzeltmenin işe yaradığını nasıl sınarsın?"
+    ],
+    "what_good_looks_like": [
+      "Sorunu yeniden üretmek için gözlem noktaları seçer.",
+      "Önbellek ile yanıt sıralaması sorununu birbirinden ayırır.",
+      "Çözümün doğruluğunu kontrollü bir testle gösterir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-501",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "kontenjan-paylasimi",
+    "prompt": "Bir belediyenin ücretsiz kurslarında son kontenjana aynı anda çok sayıda kişi başvuruyor. Kayıt ve bekleme listesi akışını nasıl tasarlarsın?",
+    "follow_up_hints": [
+      "Bir kişi kaydını iptal ederse sırayı nasıl korursun?",
+      "Bildirim ulaşmazsa kontenjan ne kadar bekler?"
+    ],
+    "what_good_looks_like": [
+      "Kontenjan aşımını önleyen veri sınırını belirler.",
+      "Bekleme sırasını ve iptal geçişini açıklar.",
+      "Adalet, hata kurtarma ve bildirim maliyetini birlikte düşünür."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "sdl-502",
+    "type": "system-design-lite",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "baglantisiz-sayim",
+    "prompt": "Depoda bağlantı sık sık kesiliyor ama çalışanların ürün sayımına devam etmesi gerekiyor. Çevrimdışı kayıtları sunucuyla nasıl uzlaştırırsın?",
+    "follow_up_hints": [
+      "İki çalışan aynı ürünü farklı sayarsa ne olur?",
+      "Cihaz kaybolursa hangi kayıtlar kurtarılabilir?"
+    ],
+    "what_good_looks_like": [
+      "Yerel kalıcılık ve yeniden gönderim sınırını açıklar.",
+      "Çakışma kararını iş kuralına bağlar.",
+      "Veri kaybı riskini ve kullanıcıya gösterilecek durumu belirtir."
+    ],
+    "time_limit_s": 180,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

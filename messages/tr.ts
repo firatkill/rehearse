@@ -777,4 +777,15 @@ export const messages = {
   'job.error.PROVIDER_ERROR': 'Yapay zekâ sağlayıcısı bu isteği tamamlayamadı. Yeniden dene.',
   'job.error.PROVIDER_TIMEOUT': 'Soruların oluşturulması çok uzun sürdü. Yeniden dene.',
   'job.error.NETWORK': 'Rehearse’e ulaşılamadı. Bağlantını kontrol edip yeniden dene.',
+  'rubric.tip.structure':
+    'Bağlamı bir cümleyle kur, yanıtın çoğunu yaptıklarına ayır ve sonuçla bitir.',
+  'rubric.tip.specificity':
+    'Sistemi, sayıyı ve kısıtı belirt. Tek bir somut ayrıntı, üç sıfattan daha güçlüdür.',
+  'rubric.tip.ownership':
+    'Kendi yaptıklarını takımın yaptıklarından ayır. Görüşmeci senin katkını anlamak istiyor.',
+  'rubric.tip.impact':
+    'Ölçebileceğin veya kontrol edebileceğin bir sonuçla ve bunun neyi değiştirdiğiyle bitir.',
+  'rubric.tip.relevance':
+    'Yanıtlamadan önce soruyu içinden tekrar et; soruya hizmet etmeyen bölümleri çıkar.',
+  'rubric.tip.clarity': 'Kısa cümleler kur ve yolu göster: İki sorun vardı. İlki… gibi.',
 } satisfies Messages;
