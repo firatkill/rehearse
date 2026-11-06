@@ -41,7 +41,7 @@ For the demo, no provider key or Upstash is needed:
 APP_EDITION=demo pnpm dev --hostname 127.0.0.1
 ```
 
-Demo sessions stay in IndexedDB. Feedback is labelled “Sample feedback”; example jobs and answers are fictional. Owner live generation is still in progress for V4; pending files are explicitly marked. `pnpm demo:validate` checks the corpus. Only the owner runs `pnpm demo:generate --budget <approved-USD-cap>` in full/live mode, then `pnpm demo:validate --require-live` and reviews the output. The local generation cache is ignored by git; validated results are reused on resume.
+Demo sessions stay in IndexedDB. Feedback is labelled “Sample feedback”; example jobs and answers are fictional. The owner-generated live corpus contains 39 questions (three answer/feedback variants each) and three fictional posts. `pnpm demo:validate --require-live` validates all provenance and evidence. Only the owner runs `pnpm demo:generate --budget <approved-USD-cap>` in full/live mode, then `pnpm demo:validate --require-live` and reviews the output. The local generation cache is ignored by git; validated results are reused on resume.
 
 ## Vercel demo configuration
 
@@ -54,7 +54,7 @@ The owner sets these variables in the applicable Vercel environment:
 | `IP_HASH_SECRET`       | A distinct stable secret, 32+ characters. |
 | `NEXT_PUBLIC_SITE_URL` | `https://rehearse.firatkil.com`           |
 
-Generate each secret separately with `openssl rand -hex 32`. Do not publish the values. Hosted demo instances must share the signing key: when `VERCEL_ENV` is set, missing secrets fail validation. Random fallback is available only for local demo runs without `VERCEL_ENV`. No OpenAI key or Upstash is needed for the demo. The owner manages settings; this follow-up changes no Vercel configuration.
+Generate each secret separately with `openssl rand -hex 32`. Do not publish the values. Hosted demo instances must share the signing key: when `VERCEL_ENV` is set, missing secrets fail validation. Random fallback is available only for local demo runs without `VERCEL_ENV`. No OpenAI key or Upstash is needed for the demo. The owner manages settings. The deployed demo at [rehearse.firatkil.com](https://rehearse.firatkil.com) was verified read-only on 6 November 2026 at commit `8441dd0`: health reports demo/none, public pages and a complete example-job text session pass with strict security headers. See [deployment evidence](docs/DEPLOYMENT.md). No Vercel settings were changed.
 
 ## Checks
 
