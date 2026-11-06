@@ -20,6 +20,12 @@ import { chunkForSpeech } from '@/lib/speech/chunk';
 import { pickVoice } from '@/lib/speech/voices';
 
 export function useInterviewRoom(id: string) {
+  const [state, dispatch] = useReducer(
+    (s: typeof initialRoomState, action: { event: RoomEvent; now: number }) =>
+      roomReducer(s, action.event, action.now),
+    initialRoomState,
+  );
+  const language = state.session?.setup.language ?? 'en';
   const repository = useRepository();
   const router = useRouter();
   const online = useOnline();
@@ -28,7 +34,7 @@ export function useInterviewRoom(id: string) {
     () => (capabilities?.recognition ? getRecognitionCtor(window) : null),
     [capabilities],
   );
-  const recorder = useRecorder(ctor);
+  const recorder = useRecorder(ctor, undefined, language);
   const {
     start: startRecorder,
     stop: stopRecorder,
@@ -38,7 +44,7 @@ export function useInterviewRoom(id: string) {
     getTiming,
   } = recorder;
   const { play, cancel, activeChunk } = useTTS();
-  const { voices } = useVoices();
+  const { voices, loading: voicesLoading } = useVoices(language);
   const [readAloudError, setReadAloudError] = useState(false);
   const [feedbackTransport, setFeedbackTransport] = useState<{
     network: boolean;
@@ -46,11 +52,6 @@ export function useInterviewRoom(id: string) {
   }>({ network: false, resetAt: null });
   const micPending = useRef(false);
   const [replay, setReplay] = useState(0);
-  const [state, dispatch] = useReducer(
-    (s: typeof initialRoomState, action: { event: RoomEvent; now: number }) =>
-      roomReducer(s, action.event, action.now),
-    initialRoomState,
-  );
   const latest = useRef(state);
   const activeRepository = useRef(repository);
   const writes = useRef(Promise.resolve());
@@ -236,17 +237,20 @@ export function useInterviewRoom(id: string) {
       rawSend({ type: 'TTS_DONE', result: 'skipped' });
       return;
     }
+    if (language === 'tr' && voicesLoading) return;
+    const selectedVoice = pickVoice(voices, voiceURI, language).voice;
+    if (language === 'tr' && !selectedVoice) {
+      rawSend({ type: 'TTS_DONE', result: 'skipped' });
+      return;
+    }
     let alive = true;
-    void play(
-      window.speechSynthesis,
-      chunkForSpeech(prompt),
-      pickVoice(voices, voiceURI).voice,
-      rate,
-    ).then((result) => {
-      if (!alive) return;
-      if (result === 'error') setReadAloudError(true);
-      rawSend({ type: 'TTS_DONE', result });
-    });
+    void play(window.speechSynthesis, chunkForSpeech(prompt), selectedVoice, rate, language).then(
+      (result) => {
+        if (!alive) return;
+        if (result === 'error') setReadAloudError(true);
+        rawSend({ type: 'TTS_DONE', result });
+      },
+    );
     return () => {
       alive = false;
       void cancel();
@@ -255,11 +259,13 @@ export function useInterviewRoom(id: string) {
     kind,
     interrupted,
     replay,
+    language,
     prompt,
     capabilities,
     voiceURI,
     rate,
     voices,
+    voicesLoading,
     play,
     cancel,
     rawSend,
@@ -377,7 +383,7 @@ export function useInterviewRoom(id: string) {
       void persist((repo) =>
         repo.putAnswer({
           ...updated,
-          metrics: computeDelivery(updated),
+          metrics: computeDelivery(updated, undefined, latest.current.session?.setup.language),
         }),
       );
     }, ANSWER.DRAFT_SAVE_INTERVAL_MS);
@@ -414,7 +420,12 @@ export function useInterviewRoom(id: string) {
     online,
     recorder,
     activeChunk,
-    readAloudError,
+    readAloudError:
+      readAloudError ||
+      (language === 'tr' &&
+        !voicesLoading &&
+        voices.length === 0 &&
+        state.session?.setup.readAloud === true),
     capabilities,
     feedbackTransport,
   };

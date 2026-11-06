@@ -1,9 +1,15 @@
 'use client';
+import type { Language } from '@/lib/config';
 import { useEffect, useState } from 'react';
 import type { WindowWithSpeech } from '@/lib/speech/types';
 import { loadVoices } from '@/lib/speech/voices';
-export function useVoices() {
-  const [state, setState] = useState<{ voices: SpeechSynthesisVoice[]; loading: boolean }>({
+export function useVoices(language: Language = 'en') {
+  const [state, setState] = useState<{
+    voices: SpeechSynthesisVoice[];
+    loading: boolean;
+    language: Language;
+  }>({
+    language,
     voices: [],
     loading: true,
   });
@@ -13,8 +19,8 @@ export function useVoices() {
     const synth = speechWindow.speechSynthesis;
     if (!synth) return;
     const refresh = () => {
-      void loadVoices(synth).then((voices) => {
-        if (alive) setState({ voices, loading: false });
+      void loadVoices(synth, undefined, language).then((voices) => {
+        if (alive) setState({ voices, loading: false, language });
       });
     };
     refresh();
@@ -23,6 +29,6 @@ export function useVoices() {
       alive = false;
       synth.removeEventListener('voiceschanged', refresh);
     };
-  }, []);
-  return state;
+  }, [language]);
+  return state.language === language ? state : { voices: [], loading: true, language };
 }

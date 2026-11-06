@@ -1,5 +1,5 @@
 'use client';
-import { T, useT } from '@/lib/i18n/context';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { countWords } from '@/lib/metrics/words';
 import { computeDelivery } from '@/lib/metrics/delivery';
@@ -29,6 +29,7 @@ export function ReviewPanel({
   onRecordAgain: () => void;
 }) {
   const t = useT();
+  const { language } = useI18n();
 
   const [notice, setNotice] = useState('');
   const notices = {
@@ -49,7 +50,7 @@ export function ReviewPanel({
     };
   }, [noticeText]);
   const empty = countWords(answer.transcript) === 0;
-  const metrics = computeDelivery(answer);
+  const metrics = computeDelivery(answer, undefined, language);
   return (
     <section className="space-y-4">
       <h2>

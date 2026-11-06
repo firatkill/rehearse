@@ -82,8 +82,10 @@ export function SetupForm({
   }, [stored]);
   const [changed, setChanged] = useState<Setup | null>(null);
   const capabilities = useCapabilities();
-  const voiceState = useVoices();
   const selected = changed ?? preferences;
+  const language =
+    APP_EDITION === 'demo' || !LANGUAGE_FEATURES.turkishSessions ? 'en' : selected.language;
+  const voiceState = useVoices(language);
   const setup: Setup = {
     ...selected,
     language:

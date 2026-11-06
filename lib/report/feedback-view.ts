@@ -1,4 +1,10 @@
-import { DIMENSIONS, RECORDING_GUIDE, TEXT_LENGTH_GUIDE, type Dimension } from '@/lib/config';
+import {
+  DIMENSIONS,
+  RECORDING_GUIDE,
+  TEXT_LENGTH_GUIDE,
+  type Language,
+  type Dimension,
+} from '@/lib/config';
 import type { Feedback } from '@/lib/feedback/schema';
 import { fillerSpans } from '@/lib/metrics/fillers';
 export type AnswerMark = { start: number; end: number; kind: 'strong' | 'vague' | 'filler' };
@@ -16,8 +22,15 @@ export function lowestDimension(feedback: Feedback): Dimension {
     )?.dimension ?? lowest
   );
 }
-export function answerMarks(text: string, feedback: Feedback): AnswerMark[] {
-  const marks: AnswerMark[] = fillerSpans(text).map((span) => ({ ...span, kind: 'filler' }));
+export function answerMarks(
+  text: string,
+  feedback: Feedback,
+  language: Language = 'en',
+): AnswerMark[] {
+  const marks: AnswerMark[] = fillerSpans(text, language).map((span) => ({
+    ...span,
+    kind: 'filler',
+  }));
   const add = (phrase: string, kind: AnswerMark['kind']) => {
     if (!phrase) return;
     let start = text.indexOf(phrase);

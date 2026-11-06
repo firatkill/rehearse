@@ -1,4 +1,4 @@
-import { SPEECH } from '@/lib/config';
+import { SPEECH, LANGUAGE_LOCALES, type Language } from '@/lib/config';
 import type { SpeechRecognitionCtor, SpeechRecognitionEventLike } from './types';
 export type RecognizerHandlers = {
   onStart(): void;
@@ -10,9 +10,10 @@ export type RecognizerHandlers = {
 export function createRecognizer(
   Ctor: SpeechRecognitionCtor,
   h: RecognizerHandlers,
+  language: Language = 'en',
 ): { start(): void; stop(): void; abort(): void } {
   const r = new Ctor();
-  r.lang = SPEECH.LANG;
+  r.lang = language === 'tr' ? LANGUAGE_LOCALES.tr : SPEECH.LANG;
   r.continuous = true;
   r.interimResults = true;
   r.maxAlternatives = 1;

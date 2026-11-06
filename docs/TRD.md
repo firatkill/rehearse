@@ -336,9 +336,12 @@ export const TTS = {
   RATE_STEP: 0.1,
   CHUNK_MAX_CHARS: 160,
   PREVIEW_TEXT: 'Tell me about a project you are proud of.',
+  PREVIEW_TEXT_TR: 'Çalışırken aldığın zor bir kararı anlatır mısın?',
 } as const;
 
 export const PACE = { COMFORT_MIN_WPM: 120, COMFORT_MAX_WPM: 160 } as const;
+
+export const FILLERS_TR = ['şey', 'yani', 'hani', 'işte', 'ııı', 'eee'] as const;
 
 export const FILLERS = [
   { phrase: 'um', rule: 'hesitation' },
@@ -4555,3 +4558,11 @@ V2 README opens with the AI-free demo, public links and full Docker/local instru
 JobPostRecord v3 adds required `language: 'en' | 'tr'`. Existing v1/v2 posts migrate to English; new create/fetch accepts optional validated language (legacy default English), revisions retain it. Append SQLite 006, IDB 9 and export 8→9; session/answer record schema stays 6. A saved job page uses its stored language. Generation stores the matching prompt version. Both API and UI retain the V-60 staged Turkish creation guard until V-63.
 
 `eval/golden-tr.jsonl` contains 27 cases: six strong/average/weak triples across all three question types, two off-topic, five short and two injected answers, including recognition-style cases. `eval/follow-up-tr.jsonl` adds two focused follow-up cases. `eval/turkish/questions.json` supplies six independently authored, schema-valid evaluation questions pending V-63 bank integration. `pnpm eval:validate` validates both English and Turkish corpora. `pnpm eval --language tr --mock --no-gate --repeats 1 --budget 1` exercises the harness at zero spend; use `--suite follow-up` for the additional cases. The same range, monotonic, JSON, injection, flag and latency gates apply. Mock failures are preserved, not labelled live failures or suppressed in result files. Turkish filenames start with `turkish-` (and `mock-` for mock runs); English public evidence selection remains unchanged.
+
+## 30. Turkish delivery and speech contract (V-62)
+
+`countFillers(text, enabled?, language='en')`, `fillerSpans(text, language='en')`, `computeDelivery(answer, enabled?, language='en')` and `answerMarks(text, feedback, language='en')` keep legacy English defaults. The room uses `session.setup.language` for persisted metrics and previews; displayed marks use the active session language. Text metrics use edited text; voice metrics use the raw recognition transcript. Word count, pause and pace algorithms/thresholds do not change.
+
+`FILLERS_TR` is defined in §4. Turkish scanning uses locale-aware case folding on original token spans. Detached means start/clause boundary before and punctuation/end after; repetitions also count. Exclude şey after bir/her/hiçbir/çok/tek/bu/şu/o, hani before reminder cues dün/geçen/hatırlıyor/söylemiştin, and işte before bu/bunun/bundan/çalışırken/çalışıyorum. Standalone runs of at least two ı or e map to ııı/eee; ASCII Roman I runs are excluded. Meaningful mid-sentence explanations without detached pauses stay unmarked. NFKC length changes suppress highlights rather than applying wrong offsets. These are conservative lexical heuristics; recognition may omit fillers.
+
+`createRecognizer`/`useRecorder` take optional explicit language, default en; tr sets `LANGUAGE_LOCALES.tr` (tr-TR), en retains `SPEECH.LANG` (en-US). Restarts retain language and cleanup aborts recognition. `loadVoices`, `pickVoice`, `groupVoices`, and `useVoices` filter by selected language, preserve novelty exclusion and quality ranking, and ignore stale foreign-language saved voices. No eligible Turkish voice returns null/empty, disables read-aloud/preview and preserves text fallback. `speak`/`useTTS.play` receive language for null-voice fallback; no browser-language inference. Turkish preview text is `TTS.PREVIEW_TEXT_TR`; English remains byte-identical. User-gesture synchronous speech priming, cancellation and non-overlap rules are unchanged. Speech mock records recognition/utterance language for final V7 flow assertions; no real speech calls in tests.

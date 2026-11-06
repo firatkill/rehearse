@@ -165,7 +165,7 @@ function updateAnswer(state: RoomState, patch: Partial<AnswerRecord>, now: numbe
     updatedAt: at,
   };
   let answer = { ...base, ...patch, updatedAt: at };
-  answer.metrics = computeDelivery(answer);
+  answer.metrics = computeDelivery(answer, undefined, session.setup.language);
   if (patch.status === 'scored' || patch.status === 'saved') answer = completeAttempt(answer);
   return {
     ...state,

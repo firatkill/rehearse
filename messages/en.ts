@@ -775,4 +775,6 @@ export const messages = {
   'rubric.tip.relevance':
     'Repeat the question to yourself before answering, and cut parts that don’t serve it.',
   'rubric.tip.clarity': 'Use short sentences and signpost: ‘There were two problems. First…’.',
+  'voice.turkishGroup': 'Turkish',
+  'voice.noTurkish': 'No Turkish voices found',
 } as const;

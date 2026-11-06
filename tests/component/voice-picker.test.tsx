@@ -174,3 +174,61 @@ test.each(['stuck', 'normal'] as const)(
     expect(vi.getTimerCount()).toBe(0);
   },
 );
+
+test('TC-209 Turkish preview uses a Turkish voice synchronously; absence disables reading safely', () => {
+  class Utterance {
+    constructor(public text: string) {}
+    volume = 1;
+  }
+  vi.stubGlobal('SpeechSynthesisUtterance', Utterance);
+  const turkish: SpeechSynthesisVoice = {
+    localService: true,
+    default: true,
+    name: 'Yelda',
+    lang: 'tr-TR',
+    voiceURI: 'turkish',
+  };
+  const chosen = { ...setup, language: 'tr' as const, voiceURI: local.voiceURI };
+  const view = render(
+    <VoicePicker setup={chosen} voices={[local, turkish]} loading={false} onChange={vi.fn()} />,
+  );
+  expect(screen.queryByRole('option', { name: /Local/ })).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Voice')).toHaveValue('turkish');
+  fireEvent.click(screen.getByRole('button', { name: 'Preview voice' }));
+  expect(vi.mocked(window.speechSynthesis.speak).mock.calls[0]?.[0]).toMatchObject({
+    text: TTS.PREVIEW_TEXT_TR,
+    lang: 'tr-TR',
+    voice: turkish,
+  });
+  view.unmount();
+  render(<VoicePicker setup={chosen} voices={[local]} loading={false} onChange={vi.fn()} />);
+  expect(screen.getByRole('option', { name: 'No Turkish voices found' })).toBeVisible();
+  expect(screen.getByRole('checkbox')).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Preview voice' })).toBeDisabled();
+});
+
+test('TC-209 voice hook refreshes on explicit language changes and never returns the prior language inventory', async () => {
+  const turkish: SpeechSynthesisVoice = {
+    localService: true,
+    default: true,
+    name: 'Yelda',
+    lang: 'tr-TR',
+    voiceURI: 'turkish',
+  };
+  vi.mocked(window.speechSynthesis.getVoices).mockReturnValue([local, turkish]);
+  function Harness({ language }: { language: 'en' | 'tr' }) {
+    const { voices, loading } = useVoices(language);
+    return <p>{loading ? 'Loading' : voices.map((voice) => voice.name).join(',')}</p>;
+  }
+  const view = render(<Harness language="en" />);
+  await act(async () => {
+    await Promise.resolve();
+  });
+  expect(screen.getByText('Local')).toBeVisible();
+  view.rerender(<Harness language="tr" />);
+  expect(screen.queryByText('Local')).not.toBeInTheDocument();
+  await act(async () => {
+    await Promise.resolve();
+  });
+  expect(screen.getByText('Yelda')).toBeVisible();
+});

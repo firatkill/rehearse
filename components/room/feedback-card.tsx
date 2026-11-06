@@ -1,6 +1,6 @@
 'use client';
 import { useLabels } from '@/lib/i18n/use-labels';
-import { T, useT } from '@/lib/i18n/context';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { APP_EDITION } from '@/lib/edition';
 import { DIMENSIONS } from '@/lib/config';
 import type { AnswerRecord, SessionRecord } from '@/lib/storage/schema';
@@ -32,6 +32,7 @@ export function FeedbackCard({
   const { DIMENSION_LABELS } = useLabels();
 
   const t = useT();
+  const { language } = useI18n();
 
   const feedback = answer.feedback;
   if (!feedback) return null;
@@ -83,7 +84,7 @@ export function FeedbackCard({
           </h3>
           <MarkedTranscript
             text={answer.transcript}
-            marks={answerMarks(answer.transcript, feedback)}
+            marks={answerMarks(answer.transcript, feedback, language)}
           />
           <p className="feedback-note">
             <T id="components.room.feedback.card.8" />

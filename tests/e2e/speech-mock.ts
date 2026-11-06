@@ -26,6 +26,8 @@ export function installSpeechMock(s: SpeechScenario): void {
     runs: 0,
     overlaps: 0,
     spoken: [] as string[],
+    recognitionLanguages: [] as string[],
+    spokenLanguages: [] as string[],
     active: null as null | {
       emit(t: string, f: boolean): void;
       fail(c: string): void;
@@ -52,6 +54,7 @@ export function installSpeechMock(s: SpeechScenario): void {
         if (window.speechSynthesis?.speaking || window.speechSynthesis?.pending || ctl.active)
           ctl.overlaps += 1;
         ctl.runs += 1;
+        ctl.recognitionLanguages.push(this.lang);
         this.run = ctl.runs;
         ctl.active = {
           emit: (t, f) => this.emit(t, f),
@@ -140,7 +143,10 @@ export function installSpeechMock(s: SpeechScenario): void {
         if (ctl.active) ctl.overlaps += 1;
         const job = { cancelled: false, u };
         current = job;
-        if (u.text.trim()) ctl.spoken.push(u.text); // primeSynthesis(' ') is not recorded
+        if (u.text.trim()) {
+          ctl.spoken.push(u.text);
+          ctl.spokenLanguages.push(typeof u.lang === 'string' ? u.lang : '');
+        } // primeSynthesis(' ') is not recorded
         if (s.ttsNeverStarts) return;
         const call = (name: string, extra: Record<string, unknown> = {}) => {
           const fn = u[name];

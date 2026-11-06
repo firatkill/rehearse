@@ -1,4 +1,5 @@
-import { FILLERS } from '@/lib/config';
+import { scanTurkishFillers } from './fillers-tr';
+import { FILLERS, type Language } from '@/lib/config';
 import { tokenize } from './words';
 export const LIKE_NOT_FILLER_PREV = new Set([
   'i',
@@ -182,12 +183,17 @@ function scanFillers(
 export function countFillers(
   text: string,
   enabled?: readonly string[],
+  language: Language = 'en',
 ): { total: number; byPhrase: Record<string, number> } {
-  const { total, byPhrase } = scanFillers(text, enabled);
+  const { total, byPhrase } =
+    language === 'tr' ? scanTurkishFillers(text, enabled) : scanFillers(text, enabled);
   return { total, byPhrase };
 }
-export function fillerSpans(text: string): Array<{ start: number; end: number }> {
+export function fillerSpans(
+  text: string,
+  language: Language = 'en',
+): Array<{ start: number; end: number }> {
   // Avoid applying normalised offsets to a differently sized original string.
   if (text.normalize('NFKC').length !== text.length) return [];
-  return scanFillers(text).spans;
+  return (language === 'tr' ? scanTurkishFillers(text) : scanFillers(text)).spans;
 }

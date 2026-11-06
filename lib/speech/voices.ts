@@ -1,7 +1,8 @@
-import { SPEECH, VOICES } from '@/lib/config';
+import { SPEECH, VOICES, LANGUAGE_LOCALES, type Language } from '@/lib/config';
 export async function loadVoices(
   synth: SpeechSynthesis,
   waitMs = SPEECH.VOICES_WAIT_MS,
+  language: Language = 'en',
 ): Promise<SpeechSynthesisVoice[]> {
   let voices = synth.getVoices();
   if (voices.length === 0) {
@@ -18,14 +19,15 @@ export async function loadVoices(
       synth.addEventListener('voiceschanged', done);
     });
   }
-  return eligibleVoices(voices);
+  return eligibleVoices(voices, language);
 }
 
 export function pickVoice(
   voices: SpeechSynthesisVoice[],
   storedURI: string | null,
+  language: Language = 'en',
 ): { voice: SpeechSynthesisVoice | null; fellBack: boolean } {
-  const eligible = eligibleVoices(voices);
+  const eligible = eligibleVoices(voices, language);
   if (storedURI) {
     const v = eligible.find((x) => x.voiceURI === storedURI);
     if (v) return { voice: v, fellBack: false };
@@ -41,9 +43,9 @@ function normalizedName(value: string): string {
     .toLowerCase()
     .replace(/[^a-z]/g, '');
 }
-function isEligible(voice: SpeechSynthesisVoice): boolean {
+function isEligible(voice: SpeechSynthesisVoice, language: Language): boolean {
   return (
-    /^en([-_]|$)/i.test(voice.lang) &&
+    (language === 'tr' ? /^tr([-_]|$)/i : /^en([-_]|$)/i).test(voice.lang) &&
     !VOICES.NOVELTY_NAMES.some(
       (name) =>
         normalizedName(voice.name) === normalizedName(name) ||
@@ -61,30 +63,35 @@ function quality(voice: SpeechSynthesisVoice): number {
 function accent(voice: SpeechSynthesisVoice): string {
   return voice.lang.replaceAll('_', '-').toLowerCase();
 }
-function eligibleVoices(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice[] {
+function eligibleVoices(
+  voices: SpeechSynthesisVoice[],
+  language: Language = 'en',
+): SpeechSynthesisVoice[] {
   return voices
-    .filter(isEligible)
+    .filter((voice) => isEligible(voice, language))
     .sort(
       (a, b) =>
         quality(b) - quality(a) ||
         Number(b.default) - Number(a.default) ||
-        Number(accent(b) === 'en-us') - Number(accent(a) === 'en-us') ||
-        a.name.localeCompare(b.name, 'en-GB') ||
-        a.voiceURI.localeCompare(b.voiceURI, 'en-GB'),
+        Number(accent(b) === (language === 'tr' ? 'tr-tr' : 'en-us')) -
+          Number(accent(a) === (language === 'tr' ? 'tr-tr' : 'en-us')) ||
+        a.name.localeCompare(b.name, LANGUAGE_LOCALES[language]) ||
+        a.voiceURI.localeCompare(b.voiceURI, LANGUAGE_LOCALES[language]),
     );
 }
 export function groupVoices(
   voices: SpeechSynthesisVoice[],
+  language: Language = 'en',
 ): { accent: string; voices: SpeechSynthesisVoice[] }[] {
   const groups = new Map<string, SpeechSynthesisVoice[]>();
-  for (const voice of eligibleVoices(voices)) {
+  for (const voice of eligibleVoices(voices, language)) {
     const key = accent(voice);
     const group = groups.get(key) ?? [];
     group.push(voice);
     groups.set(key, group);
   }
   return [...groups]
-    .sort(([a], [b]) => a.localeCompare(b, 'en-GB'))
+    .sort(([a], [b]) => a.localeCompare(b, LANGUAGE_LOCALES[language]))
     .map(([key, entries]) => ({ accent: key, voices: entries }));
 }
 
