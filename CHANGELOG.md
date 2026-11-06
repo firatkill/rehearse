@@ -12,6 +12,11 @@ Rehearse now ships two editions from one codebase: an AI-free public demo and a 
 - Full-edition job-post question generation, additional question batches and guarded URL fetching with injection and SSRF defences.
 - Responsive and accessible flows, reduced motion, strict CSP nonces, measured bundle budgets and a recorded demo walkthrough.
 
+### Corrected before final release
+
+- Applied the owner’s design polish across setup, job posts, room and reports.
+- Replaced staged preview copy with shipped demo/full capabilities and accurate storage, provider and budget disclosures; Turkish remains future work.
+
 ### Verification
 
 - Full feedback-v8 live eval passed all gates; owner cost $0.0186.

@@ -1,3 +1,4 @@
+import { getEnv } from '@/lib/env';
 import Link from 'next/link';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -13,6 +14,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export default async function HowItWorksPage() {
+  const demo = getEnv().APP_EDITION === 'demo';
   const directory = path.join(process.cwd(), 'eval/results');
   const files = (await readdir(directory)).filter((file) =>
     /^\d{4}-\d{2}-\d{2}(?:-\d+)?\.json$/.test(file),
@@ -38,8 +40,9 @@ export default async function HowItWorksPage() {
       <section>
         <h2>Architecture</h2>
         <p className="banner">
-          This preview uses browser storage. The demo and self-hosted editions described below
-          arrive in a later milestone.
+          {demo
+            ? 'You are using the demo: feedback is pre-written, sessions stay in your browser and no AI is called.'
+            : 'You are using the full edition: live feedback uses your OpenAI key, and sessions are saved in local SQLite.'}
         </p>
         <ol className="architecture-steps">
           <li>Your browser picks up the session from the server: questions and a signed token.</li>
@@ -47,17 +50,19 @@ export default async function HowItWorksPage() {
           <li>The browser’s speech recognition turns your answer into text.</li>
           <li>You edit the text; delivery numbers are counted in the browser.</li>
           <li>
-            The server checks the token and limits, sends the question and your answer to OpenAI
-            with a fixed rubric, and validates the JSON it gets back.
+            {demo
+              ? 'The server receives your answer to select pre-written sample feedback, then returns it without storing your answer or calling an AI provider.'
+              : 'The server checks the token and request limits, sends the question and your answer to OpenAI with a fixed rubric, and validates the JSON it gets back.'}
           </li>
           <li>
-            The browser stores the result in IndexedDB. No session or answer is stored on the server
-            in this preview.
+            {demo
+              ? 'The browser stores sessions, answers and sample feedback in IndexedDB. The demo does not store them on the server.'
+              : 'The self-hosted server stores sessions, answers, feedback and job posts in SQLite on your machine so you can reopen them across browsers.'}
           </li>
         </ol>
         <p>
-          The planned public demo uses pre-written feedback and browser storage. The full
-          self-hosted edition will score answers live and save sessions in SQLite on your machine.
+          The public demo uses pre-written feedback and browser storage. The full self-hosted
+          edition scores answers live and saves sessions in SQLite on your machine.
         </p>
       </section>
       <section>
@@ -87,10 +92,9 @@ export default async function HowItWorksPage() {
       <section>
         <h2>How feedback is kept honest</h2>
         <p>
-          The answer is passed to the model as data, marked untrusted. The model is told to ignore
-          instructions inside it and to use only facts you gave. Quotes in ‘What worked’ are checked
-          against your answer and removed if they don’t match. Rewrites use placeholders like
-          [metric] instead of making numbers up.
+          {demo
+            ? 'Demo feedback is pre-written for fictional example answers; it is not an assessment of your answer. The full edition validates live feedback against your words.'
+            : 'The answer is passed to the model as data, marked untrusted. The model is told to ignore instructions inside it and to use only facts you gave. Quotes in ‘What worked’ are checked against your answer and removed if they don’t match. Rewrites use placeholders like [metric] instead of making numbers up.'}
         </p>
       </section>
       <section>
@@ -161,17 +165,19 @@ export default async function HowItWorksPage() {
       <section id="privacy">
         <h2>Privacy model</h2>
         <p>
-          Rehearse never receives your audio. Browser speech services may process it. Live feedback
-          sends your edited answer to OpenAI; the planned demo will use pre-written feedback without
-          a provider call.
+          {demo
+            ? 'Rehearse never receives your audio. Browser speech services may process it. Demo history is saved in your browser. The server receives answer text to select pre-written feedback without saving it or calling an AI provider.'
+            : 'Rehearse never receives your audio. Browser speech services may process it. Live feedback sends your edited answer to OpenAI; sessions, answers and job posts are stored in local SQLite on your machine.'}
         </p>
         <Link href="/privacy">Read where your words go</Link>
       </section>
       <section>
         <h2>Browser support</h2>
         <p>
-          Support is feature-detected, not inferred from the browser name. Physical speech checks
-          remain unverified on this release preview.
+          Support is feature-detected, not inferred from the browser name. The owner confirmed
+          microphone and voice preview in Chrome and Safari, and VoiceOver in Safari, on the
+          deployed site on 6 November 2026. This is not an exhaustive device check; voice-preview
+          latency has not been formally measured.
         </p>
         <div className="info-table">
           <table>
@@ -216,20 +222,23 @@ export default async function HowItWorksPage() {
       <section>
         <h2>Limits</h2>
         <p>
-          Speech recognition quality depends on your browser, microphone and accent. Scores come
-          from a language model and can vary slightly between runs. The question bank is in English
-          and covers five roles. Rehearse doesn’t judge tone of voice, accent or appearance. Speech
-          services often leave out sounds like ‘um’, so filler counts in voice answers are a lower
-          bound. Pauses are estimated from when the browser reports words, to within about half a
-          second, and are less accurate in browsers that report words less often.
+          Speech recognition quality depends on your browser, microphone and accent.{' '}
+          {demo
+            ? 'Demo scores are pre-written examples, not a judgement of your answer.'
+            : 'Scores come from a language model and can vary slightly between runs.'}{' '}
+          The question bank is in English and covers five roles. Rehearse doesn’t judge tone of
+          voice, accent or appearance. Speech services often leave out sounds like ‘um’, so filler
+          counts in voice answers are a lower bound. Pauses are estimated from when the browser
+          reports words, to within about half a second, and are less accurate in browsers that
+          report words less often.
         </p>
       </section>
       <section>
         <h2>Cost</h2>
         <p>
-          Live feedback uses the configured model and its token prices. The preview enforces request
-          and spending limits. The planned demo will make no model calls; the self-hosted edition
-          will use your key and budget.
+          {demo
+            ? 'The demo makes no model calls and needs no provider key. Running the full edition uses your own OpenAI key and incurs provider charges.'
+            : 'Live feedback and job-post generation use your OpenAI key and the configured model prices. Monthly budget warnings do not block practice; there are no daily IP quotas. Provider billing remains authoritative.'}
         </p>
         <a href="https://github.com/firatkill/rehearse#readme">
           See the setup and limits in the README
