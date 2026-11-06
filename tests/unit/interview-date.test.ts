@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { randomUUID } from 'node:crypto';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -39,7 +40,7 @@ it('TC-182 UT-14 SQLite migration 4 and export 6→7 retain old posts with no da
   old.close();
   const db = openSqlite(path);
   try {
-    expect(db.pragma('user_version', { simple: true })).toBe(5);
+    expect(db.pragma('user_version', { simple: true })).toBe(6);
     expect(createJobRepository(db).get(legacy.id)).toEqual(jobRecord.post);
     const imported = await readImport(
       new File(
@@ -83,7 +84,7 @@ it('TC-182 UT-14 IndexedDB migration 7 retains version-1 job records', async () 
   old.close();
   const db = await openDb(name);
   try {
-    expect(db.version).toBe(8);
+    expect(db.version).toBe(STORAGE.DB_VERSION);
     expect(
       await requestResult(db.transaction('jobPosts').objectStore('jobPosts').get(legacy.id)),
     ).toEqual(jobRecord.post);
@@ -106,7 +107,7 @@ it('TC-182 dates persist/clear/export; revisions transfer the date without chang
     expect(jobs.get(post.id)?.interviewDate).toBeNull();
     expect(jobs.questions(post.id)).toEqual(oldQuestions);
     const exported = await createSqliteRepository(db).exportAll('test');
-    expect(exported.formatVersion).toBe(8);
+    expect(exported.formatVersion).toBe(STORAGE.EXPORT_FORMAT_VERSION);
     const imported = await readImport(new File([JSON.stringify(exported)], 'date.json'));
     expect(imported.jobData.jobPosts.find((p) => p.id === revision.id)?.interviewDate).toBe(
       '2026-11-11',

@@ -1,4 +1,4 @@
-import { serverTranslator } from '@/lib/i18n/server';
+import { serverTranslator, requestLanguage } from '@/lib/i18n/server';
 import { T } from '@/lib/i18n/context';
 import { getEnv } from '@/lib/env';
 import { LanguageLink as Link } from '@/lib/i18n/link';
@@ -9,6 +9,7 @@ import { EvalResultsSchema } from '@/lib/eval/results-schema';
 import { DIMENSIONS, QUESTION_TYPES } from '@/lib/config';
 import { translatedLabels } from '@/lib/i18n/labels';
 import { RUBRIC, RUBRIC_SENIORITY_NOTE } from '@/lib/feedback/rubric';
+import { RUBRIC_TR, RUBRIC_SENIORITY_NOTE_TR } from '@/lib/feedback/rubric-tr';
 import { Eyebrow } from '@/components/ui/eyebrow';
 
 export const metadata = { title: 'How it works · Rehearse' };
@@ -17,6 +18,9 @@ export const dynamic = 'force-dynamic';
 
 export default async function HowItWorksPage() {
   const t = await serverTranslator();
+  const language = await requestLanguage();
+  const rubric = language === 'tr' ? RUBRIC_TR : RUBRIC;
+  const seniorityNote = language === 'tr' ? RUBRIC_SENIORITY_NOTE_TR : RUBRIC_SENIORITY_NOTE;
   const { DIMENSION_LABELS, QUESTION_TYPE_LABELS } = translatedLabels(t);
 
   const demo = getEnv().APP_EDITION === 'demo';
@@ -84,9 +88,9 @@ export default async function HowItWorksPage() {
             {DIMENSIONS.map((dimension) => (
               <section key={dimension}>
                 <h3>{DIMENSION_LABELS[dimension]}</h3>
-                <p>{RUBRIC[dimension].question}</p>
+                <p>{rubric[dimension].question}</p>
                 <ol>
-                  {RUBRIC[dimension].anchors[type].map((anchor) => (
+                  {rubric[dimension].anchors[type].map((anchor) => (
                     <li key={anchor}>{anchor}</li>
                   ))}
                 </ol>
@@ -94,7 +98,7 @@ export default async function HowItWorksPage() {
             ))}
           </details>
         ))}
-        <p>{RUBRIC_SENIORITY_NOTE}</p>
+        <p>{seniorityNote}</p>
       </section>
       <section>
         <h2>

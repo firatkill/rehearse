@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { migrateRecord } from '@/lib/storage/migrations';
 import { IDBFactory, IDBKeyRange, IDBObjectStore as FakeObjectStore } from 'fake-indexeddb';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -122,7 +123,9 @@ it('TC-100 UT-15 rejects oversize before reading and maps format/newer errors', 
     file({ ...exportFile, sessions: Array(1001).fill(null) }),
   ])
     await expect(readImport(input)).rejects.toMatchObject({ kind: 'format' });
-  await expect(readImport(file({ ...exportFile, formatVersion: 9 }))).rejects.toMatchObject({
+  await expect(
+    readImport(file({ ...exportFile, formatVersion: STORAGE.EXPORT_FORMAT_VERSION + 1 })),
+  ).rejects.toMatchObject({
     kind: 'newer',
   });
 });

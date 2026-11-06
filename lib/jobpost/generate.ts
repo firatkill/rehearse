@@ -1,23 +1,25 @@
 import 'server-only';
-import { JOBPOST } from '@/lib/config';
+import { JOBPOST, type Language } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import type { LlmProvider } from '@/lib/llm/provider';
 import { JobGenerationSchema } from './schema';
 import { validateJobQuestions } from './validate';
-import { JOBPOST_SYSTEM_PROMPT, jobpostUserMessage } from '@/lib/prompts/jobpost';
+import { jobpostPrompt } from '@/lib/prompts/language';
 export async function generateJobQuestions(args: {
+  language?: Language;
   text: string;
   provider: LlmProvider;
   existing?: readonly string[];
   bankQuestions: readonly string[];
   count?: number;
 }) {
+  const selectedPrompt = jobpostPrompt(args.language);
   const count = args.count ?? JOBPOST.INITIAL_QUESTIONS;
   const response = await args.provider.generateStructured({
     schema: JobGenerationSchema,
-    schemaName: 'jobpost_questions',
-    system: JOBPOST_SYSTEM_PROMPT,
-    prompt: jobpostUserMessage(
+    schemaName: selectedPrompt.schemaName,
+    system: selectedPrompt.system,
+    prompt: selectedPrompt.build(
       args.text,
       Math.min(count + JOBPOST.EXTRA_CANDIDATES, JOBPOST.MAX_CANDIDATES),
       args.existing,

@@ -764,4 +764,15 @@ export const messages = {
   'job.error.PROVIDER_ERROR': 'The AI provider could not complete that request. Try again.',
   'job.error.PROVIDER_TIMEOUT': 'Generating questions took too long. Try again.',
   'job.error.NETWORK': 'Couldn’t reach Rehearse. Check your connection and try again.',
+  'rubric.tip.structure':
+    'Open with one sentence of context, spend most of the answer on what you did, and end with the result.',
+  'rubric.tip.specificity':
+    'Name the system, the number and the constraint. One concrete detail beats three adjectives.',
+  'rubric.tip.ownership':
+    'Say ‘I’ for what you did and ‘the team’ for the rest. The interviewer is hiring you, not the team.',
+  'rubric.tip.impact':
+    'End with a result you can measure or check, and what changed because of it.',
+  'rubric.tip.relevance':
+    'Repeat the question to yourself before answering, and cut parts that don’t serve it.',
+  'rubric.tip.clarity': 'Use short sentences and signpost: ‘There were two problems. First…’.',
 } as const;

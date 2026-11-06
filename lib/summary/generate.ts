@@ -1,16 +1,17 @@
 import 'server-only';
+import { LANGUAGE_LOCALES } from '@/lib/config';
 import {
   DIMENSIONS,
   LLM,
   SUMMARY_LIMITS,
   type Dimension,
+  type Language,
   type Role,
   type Seniority,
 } from '@/lib/config';
 import type { SummaryRequest } from '@/lib/api/contracts';
 import { aggregate } from '@/lib/report/aggregate';
-import { buildSummaryUserMessage, SUMMARY_SYSTEM_PROMPT } from '@/lib/prompts/summary';
-import { SUMMARY_PROMPT_VERSION } from '@/lib/prompts/version';
+import { summaryPrompt } from '@/lib/prompts/language';
 import { cleanText } from '@/lib/feedback/normalize';
 import { AppError } from '@/lib/errors';
 import {
@@ -22,6 +23,7 @@ import {
 import { SummaryLlmSchema, SummarySchema } from './schema';
 
 export async function generateSummary(args: {
+  language?: Language;
   items: SummaryRequest['items'];
   role: Role;
   seniority: Seniority;
@@ -29,6 +31,7 @@ export async function generateSummary(args: {
   maxOutputTokens: number;
   now?: () => number;
 }) {
+  const selectedPrompt = summaryPrompt(args.language);
   const now = args.now ?? Date.now;
   const start = now();
   const items = [...args.items].sort((a, b) => a.answerIndex - b.answerIndex);
@@ -57,9 +60,9 @@ export async function generateSummary(args: {
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const result = await args.provider.generateStructured({
         schema: SummaryLlmSchema,
-        schemaName: 'interview_summary',
-        system: SUMMARY_SYSTEM_PROMPT,
-        prompt: buildSummaryUserMessage({
+        schemaName: selectedPrompt.schemaName,
+        system: selectedPrompt.system,
+        prompt: selectedPrompt.build({
           ...args,
           items,
           dimensionMeans: means,
@@ -91,7 +94,7 @@ export async function generateSummary(args: {
         }),
         generated_at: new Date(now()).toISOString(),
         model: args.provider.modelId,
-        prompt_version: SUMMARY_PROMPT_VERSION,
+        prompt_version: selectedPrompt.version,
       });
       if (!normalized.success) throw new InvalidOutputError();
       const summary = normalized.data;
@@ -101,6 +104,10 @@ export async function generateSummary(args: {
         summary.next_practice,
         ...summary.focus_notes.map((entry) => entry.note ?? ''),
       ];
+      if (args.language === 'tr' && texts.some(describesCandidateAsFailingTr)) {
+        if (attempt === 0) continue;
+        throw new InvalidOutputError();
+      }
       if (texts.some((text) => /\bfailing\b/i.test(text))) {
         if (attempt === 0) continue;
         if (texts.some(describesCandidateAsFailing)) throw new InvalidOutputError();
@@ -137,4 +144,9 @@ function describesCandidateAsFailing(text: string): boolean {
       /\bfailing\s+(?:candidate|answer|response|performance|interview)\b/i.test(context)
     );
   });
+}
+
+function describesCandidateAsFailingTr(text: string): boolean {
+  const value = text.toLocaleLowerCase(LANGUAGE_LOCALES.tr);
+  return /başarısızsın|yetersizsin|başarısız bir aday|başarısız aday|sen başarısız/.test(value);
 }

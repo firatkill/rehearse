@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { JOBPOST, ROLES } from '@/lib/config';
+import { JOBPOST, ROLES, LANGUAGES } from '@/lib/config';
 export const GeneratedQuestionIdSchema = z
   .string()
   .regex(/^gen-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
@@ -22,16 +22,28 @@ export const LegacyJobPostRecordSchema = z
     practiceRole: z.enum(ROLES),
   })
   .strict();
-export const JobPostRecordSchema = LegacyJobPostRecordSchema.extend({
+export const V2JobPostRecordSchema = LegacyJobPostRecordSchema.extend({
   schemaVersion: z.literal(2),
   interviewDate: InterviewDateSchema.nullable(),
+});
+export const JobPostRecordSchema = V2JobPostRecordSchema.extend({
+  schemaVersion: z.literal(3),
+  language: z.enum(LANGUAGES),
 });
 export function migrateJobRecord(input: unknown) {
   const current = JobPostRecordSchema.safeParse(input);
   if (current.success) return current.data;
+  const v2 = V2JobPostRecordSchema.safeParse(input);
+  if (v2.success)
+    return JobPostRecordSchema.parse({ ...v2.data, schemaVersion: 3, language: 'en' });
   const legacy = LegacyJobPostRecordSchema.safeParse(input);
   return legacy.success
-    ? JobPostRecordSchema.parse({ ...legacy.data, schemaVersion: 2, interviewDate: null })
+    ? JobPostRecordSchema.parse({
+        ...legacy.data,
+        schemaVersion: 3,
+        interviewDate: null,
+        language: 'en',
+      })
     : null;
 }
 export const GeneratedQuestionRecordSchema = z

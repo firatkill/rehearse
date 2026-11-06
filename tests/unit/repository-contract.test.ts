@@ -1,3 +1,4 @@
+import { STORAGE } from '@/lib/config';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -156,7 +157,10 @@ describe.each(['memory', 'indexeddb', 'sqlite'] as const)('%s repository', (kind
       new File(['x'.repeat(5_000_001)], 'huge.json'),
       new File(['{'], 'invalid.json'),
       new File(['{}'], 'bad-shape.json'),
-      new File([JSON.stringify({ ...file, formatVersion: 9 })], 'newer.json'),
+      new File(
+        [JSON.stringify({ ...file, formatVersion: STORAGE.EXPORT_FORMAT_VERSION + 1 })],
+        'newer.json',
+      ),
     ])
       await expect(imported.importAll(invalid)).rejects.toMatchObject({
         code: 'VALIDATION_FAILED',

@@ -403,10 +403,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 6,
-  RECORD_SCHEMA_VERSION: 5, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
+  DB_VERSION: 9,
+  RECORD_SCHEMA_VERSION: 6, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 6,
+  EXPORT_FORMAT_VERSION: 9,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -438,7 +438,7 @@ export const EVAL = { CONCURRENCY: 4, DEFAULT_MAX_COST_USD: 0.5 } as const;
 
 ### 4.2 V-40 job-post limits (D-140)
 
-`JOBPOST`: MAX_CHARS 20,000; INITIAL_QUESTIONS 8; MORE_QUESTIONS 5; MAX_CANDIDATES 16; MAX_STORED_QUESTIONS 200 per post; MAX_POSTS 1,000; MAX_OUTPUT_TOKENS 4,000; GENERATION_TIMEOUT_MS 45,000; REQUEST_MAX_BYTES 100,000; DUPLICATE_THRESHOLD 0.75; MIN_GROUNDING_RATE 0.9; MAX_DUPLICATES 0; MIN_INJECTION_RESISTANCE 1. QUESTION_TYPES: behavioral, technical, system-design, motivation. FOLLOW_UP_HINTS: “What was your own contribution?”, “How would you measure the outcome?”. STORAGE.DB_VERSION and EXPORT_FORMAT_VERSION are 6; RECORD_SCHEMA_VERSION stays 5.
+`JOBPOST`: MAX_CHARS 20,000; INITIAL_QUESTIONS 8; MORE_QUESTIONS 5; MAX_CANDIDATES 16; MAX_STORED_QUESTIONS 200 per post; MAX_POSTS 1,000; MAX_OUTPUT_TOKENS 4,000; GENERATION_TIMEOUT_MS 45,000; REQUEST_MAX_BYTES 100,000; DUPLICATE_THRESHOLD 0.75; MIN_GROUNDING_RATE 0.9; MAX_DUPLICATES 0; MIN_INJECTION_RESISTANCE 1. QUESTION_TYPES: behavioral, technical, system-design, motivation. FOLLOW_UP_HINTS: “What was your own contribution?”, “How would you measure the outcome?”. Current STORAGE.DB_VERSION and EXPORT_FORMAT_VERSION are 9; RECORD_SCHEMA_VERSION is 6 (V-61; §29).
 
 ## 5. Environment variables
 
@@ -1349,7 +1349,7 @@ JobPostRecord schemaVersion=1: UUID id, ISO createdAt/updatedAt, text (1–20,00
 
 ### 7.11 Session language (V-60, D-167)
 
-Current session/answer `schemaVersion=6`, IndexedDB `DB_VERSION=8`, export `formatVersion=8`. Append migrations; old validators remain versioned so shipped migrations retain their original interpretation. Session `setup.language` is `en | tr`, defaulting to `en` on legacy input; new persisted sessions always contain it. Answer records advance to 6 without changing answer contents. SQLite migration 005 updates v5 JSON records; validated reads also migrate old values. Export migration 7 advances the envelope and record migrations handle each bundle. Existing import provenance and proof stripping are unchanged.
+Current session/answer `schemaVersion=6`. V-60 introduced IndexedDB/export version 8; V-61 advances both to 9 for job-post language (§29). Append migrations; old validators remain versioned so shipped migrations retain their original interpretation. Session `setup.language` is `en | tr`, defaulting to `en` on legacy input; new persisted sessions always contain it. Answer records advance to 6 without changing answer contents. SQLite migration 005 updates v5 JSON records; validated reads also migrate old values. Export migration 7 advances the envelope and record migrations handle each bundle. Existing import provenance and proof stripping are unchanged.
 
 ## 8. Module boundaries
 
@@ -4547,3 +4547,11 @@ On 6 November 2026 the owner-managed production deployment at https://rehearse.f
 ### V-53 release documentation (D-162)
 
 V2 README opens with the AI-free demo, public links and full Docker/local instructions. docs/assets/rehearse-demo.gif records the real production demo text flow with fictional input: 720×547, 56 frames, 14 seconds, 859,280 bytes. Existing Playwright and FFmpeg only; no new dependency. The owner-authorised text recording supersedes §29’s v1 voice/20-second prescription. Package version 2.0.0 feeds the existing scalar build-time version; no package metadata is shipped to clients. Changelog/release notes retain TC-194 and native-device scope limitations.
+
+## 29. Turkish prompt and evaluation contract (V-61)
+
+`lib/prompts/language.ts` resolves `en` (default, legacy signed token without `l`) or explicit `tr`. English prompt source files and versions are immutable for V7. Turkish normative prompt text lives in `lib/prompts/tr/{feedback,summary,jobpost}.ts`, versions in `lib/prompts/tr/version.ts`, and the six-dimensional four-anchor rubric in `lib/feedback/rubric-tr.ts`. Turkish keeps canonical schema keys/types and verbatim evidence/grounding. Person suffixes count as clear personal ownership; an explicit “ben” is not required. Summary validation retries/rejects direct Turkish candidate failure labels while permitting technical failures. Client fallback tips come from the selected message catalogue; the full rubric is rendered on the server.
+
+JobPostRecord v3 adds required `language: 'en' | 'tr'`. Existing v1/v2 posts migrate to English; new create/fetch accepts optional validated language (legacy default English), revisions retain it. Append SQLite 006, IDB 9 and export 8→9; session/answer record schema stays 6. A saved job page uses its stored language. Generation stores the matching prompt version. Both API and UI retain the V-60 staged Turkish creation guard until V-63.
+
+`eval/golden-tr.jsonl` contains 27 cases: six strong/average/weak triples across all three question types, two off-topic, five short and two injected answers, including recognition-style cases. `eval/follow-up-tr.jsonl` adds two focused follow-up cases. `eval/turkish/questions.json` supplies six independently authored, schema-valid evaluation questions pending V-63 bank integration. `pnpm eval:validate` validates both English and Turkish corpora. `pnpm eval --language tr --mock --no-gate --repeats 1 --budget 1` exercises the harness at zero spend; use `--suite follow-up` for the additional cases. The same range, monotonic, JSON, injection, flag and latency gates apply. Mock failures are preserved, not labelled live failures or suppressed in result files. Turkish filenames start with `turkish-` (and `mock-` for mock runs); English public evidence selection remains unchanged.

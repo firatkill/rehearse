@@ -7,6 +7,7 @@ import { getEnv } from '@/lib/env';
 import { getProvider } from '@/lib/llm';
 import { getBank } from '@/lib/questions/bank';
 import { runEvaluation } from '@/lib/eval/runner';
+import { getTurkishEvalQuestions } from '@/lib/eval/turkish';
 import { EvalBudgetError } from '@/lib/eval/budget';
 
 async function main() {
@@ -18,6 +19,7 @@ async function main() {
   const { values } = parseArgs({
     options: {
       suite: { type: 'string', default: 'golden' },
+      language: { type: 'string', default: 'en' },
       mock: { type: 'boolean', default: false },
       ci: { type: 'boolean', default: false },
       'no-gate': { type: 'boolean', default: false },
@@ -30,8 +32,17 @@ async function main() {
   const env = getEnv();
   if (values.suite !== 'golden' && values.suite !== 'follow-up')
     throw new Error('Unknown eval suite');
+  if (values.language !== 'en' && values.language !== 'tr')
+    throw new Error('Unknown eval language');
+  const language = values.language;
   const source = await readFile(
-    values.suite === 'follow-up' ? 'eval/follow-up.jsonl' : 'eval/golden.jsonl',
+    language === 'tr'
+      ? values.suite === 'follow-up'
+        ? 'eval/follow-up-tr.jsonl'
+        : 'eval/golden-tr.jsonl'
+      : values.suite === 'follow-up'
+        ? 'eval/follow-up.jsonl'
+        : 'eval/golden.jsonl',
     'utf8',
   );
   const thresholds: unknown = JSON.parse(await readFile('eval/thresholds.json', 'utf8'));
@@ -39,15 +50,17 @@ async function main() {
   await mkdir(dir, { recursive: true });
   const day = new Date().toISOString().slice(0, 10);
   const files = await readdir(dir);
-  const runId = `${day}-${files.filter((file) => file.startsWith(`${day}-`) && /^\d{4}-\d{2}-\d{2}-\d+\.json$/.test(file)).length + 1}`;
+  const prefix = language === 'tr' ? `turkish-${values.mock ? 'mock-' : ''}` : '';
+  const runId = `${prefix}${day}-${files.filter((file) => file.startsWith(`${prefix}${day}-`) && /\d+\.json$/.test(file)).length + 1}`;
   const { results, estimate, exitCode } = await runEvaluation({
     source,
     thresholds,
-    bank: getBank(),
+    bank: language === 'tr' ? getTurkishEvalQuestions() : getBank(),
     provider: getProvider(),
     env,
     options: {
       suite: values.suite,
+      language,
       mock: values.mock,
       noGate: values['no-gate'],
       repeats: values.repeats === undefined ? env.EVAL_REPEATS : Number(values.repeats),

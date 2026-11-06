@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { fetchJobPost } from '@/lib/jobpost/fetch';
 import { z } from 'zod';
 import { getEnv } from '@/lib/env';
-import { JOBPOST } from '@/lib/config';
+import { JOBPOST, LANGUAGE_FEATURES } from '@/lib/config';
 import { AppError } from '@/lib/errors';
 import { checkOrigin, readJsonBody, jsonError } from '@/lib/request';
 import { JobRequestSchema, JobResponseSchema } from '@/lib/api/jobpost-contracts';
@@ -23,12 +23,14 @@ export async function POST(request: Request): Promise<Response> {
     if (env.APP_EDITION !== 'full') throw new AppError('DEMO_ONLY');
     checkOrigin(request, env);
     const input = JobRequestSchema.parse(await readJsonBody(request, JOBPOST.REQUEST_MAX_BYTES));
+    if ('language' in input && input.language === 'tr' && !LANGUAGE_FEATURES.turkishSessions)
+      throw new AppError('VALIDATION_FAILED');
     const repo = getJobRepository();
     let post;
     if (input.operation === 'fetch') {
       const fetched = await fetchJobPost(input.url);
-      post = repo.create(fetched.text, fetched.sourceUrl);
-    } else if (input.operation === 'create') post = repo.create(input.text);
+      post = repo.create(fetched.text, fetched.sourceUrl, input.language);
+    } else if (input.operation === 'create') post = repo.create(input.text, null, input.language);
     else if (input.operation === 'setInterviewDate')
       post = repo.setInterviewDate(input.id, input.interviewDate);
     else if (input.operation === 'updateText') post = repo.updateText(input.id, input.text);
@@ -49,6 +51,7 @@ export async function POST(request: Request): Promise<Response> {
       const started = Date.now();
       const result = await generateJobQuestions({
         text: post.text,
+        language: post.language,
         count,
         existing,
         provider,

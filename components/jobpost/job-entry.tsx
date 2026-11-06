@@ -1,6 +1,6 @@
 'use client';
 import { jobErrorMessage } from '@/lib/i18n/job-error';
-import { T, useT } from '@/lib/i18n/context';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { JOBPOST } from '@/lib/config';
@@ -8,6 +8,7 @@ import { requestJob } from '@/lib/api/jobpost-client';
 import { Button } from '@/components/ui/button';
 export function JobEntry() {
   const t = useT();
+  const { language } = useI18n();
 
   const router = useRouter();
   const [text, setText] = useState('');
@@ -27,7 +28,9 @@ export function JobEntry() {
       !/[\r\n]/.test(text.trim()) &&
       /^(?:[a-z][a-z\d+.-]*:\/\/|(?:https?|file|ftp|data|javascript):)/i.test(text.trim());
     const result = await requestJob(
-      link ? { operation: 'fetch', url: text.trim() } : { operation: 'create', text },
+      link
+        ? { operation: 'fetch', url: text.trim(), language }
+        : { operation: 'create', text, language },
     );
     if (result.ok) router.push(`/job/${result.data.post.id}`);
     else {

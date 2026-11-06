@@ -13,7 +13,7 @@ import { checkSummary } from '@/lib/ratelimit/quotas';
 import { LimiterUnavailableError } from '@/lib/ratelimit/types';
 import { getProvider } from '@/lib/llm';
 import { generateSummary } from '@/lib/summary/generate';
-import { SUMMARY_PROMPT_VERSION } from '@/lib/prompts/version';
+import { summaryPrompt } from '@/lib/prompts/language';
 import { estimateCostUsd } from '@/lib/cost/estimate';
 import { getLogger } from '@/lib/logger';
 
@@ -105,6 +105,7 @@ export async function POST(req: Request): Promise<Response> {
     model = provider.modelId;
     const result = await generateSummary({
       items: body.items,
+      language: token.payload.l ?? 'en',
       role: token.payload.r,
       seniority: token.payload.s,
       maxOutputTokens: env.MAX_OUTPUT_TOKENS_SUMMARY,
@@ -130,7 +131,7 @@ export async function POST(req: Request): Promise<Response> {
       summary: result.summary,
       meta: {
         model: provider.modelId,
-        promptVersion: SUMMARY_PROMPT_VERSION,
+        promptVersion: summaryPrompt(token.payload.l).version,
         latencyMs: result.latencyMs,
         usage: { inputTokens: result.usage.inputTokens, outputTokens: result.usage.outputTokens },
         costUsd,
@@ -142,7 +143,7 @@ export async function POST(req: Request): Promise<Response> {
       items,
       requestId,
       model: provider.modelId,
-      promptVersion: SUMMARY_PROMPT_VERSION,
+      promptVersion: summaryPrompt(token.payload.l).version,
       attempts,
       latencyMs: result.latencyMs,
       inputTokens: result.usage.inputTokens,
