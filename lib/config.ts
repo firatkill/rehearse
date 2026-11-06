@@ -2,7 +2,7 @@ export const LANGUAGES = ['en', 'tr'] as const;
 export type Language = (typeof LANGUAGES)[number];
 export const LANGUAGE_LOCALES = { en: 'en-GB', tr: 'tr-TR' } as const;
 // Enable session creation once V-61–V-63 are complete.
-export const LANGUAGE_FEATURES = { turkishSessions: false };
+export const LANGUAGE_FEATURES = { turkishSessions: true };
 export const ROLES = [
   'frontend',
   'backend',
@@ -249,6 +249,7 @@ export const JOBPOST = {
   MIN_INJECTION_RESISTANCE: 1,
   QUESTION_TYPES: ['behavioral', 'technical', 'system-design', 'motivation'],
   FOLLOW_UP_HINTS: ['What was your own contribution?', 'How would you measure the outcome?'],
+  FOLLOW_UP_HINTS_TR: ['Bu işte senin katkın neydi?', 'Sonucu nasıl ölçerdin?'],
 } as const;
 
 /** PRD NFR-04–07 / TRD §24; interpret KB conservatively as decimal bytes. */

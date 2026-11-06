@@ -2,10 +2,11 @@
 import { T, useT } from '@/lib/i18n/context';
 import { useEffect, useState } from 'react';
 import { BUDGET } from '@/lib/config';
-export function BudgetBanner() {
+import type { BudgetLevel } from '@/lib/api/budget-contract';
+export function BudgetBanner({ initialLevel }: { initialLevel?: BudgetLevel }) {
   const t = useT();
 
-  const [level, setLevel] = useState('none');
+  const [level, setLevel] = useState<BudgetLevel>(initialLevel ?? 'none');
   useEffect(() => {
     const controller = new AbortController();
     const refresh = async () => {
@@ -22,7 +23,8 @@ export function BudgetBanner() {
         /* A warning service must not block practice. */
       }
     };
-    void refresh();
+    // A validated server snapshot already covers the first paint. Poll/focus refreshes remain live.
+    if (initialLevel === undefined) void refresh();
     const timer = setInterval(() => {
       void refresh();
     }, BUDGET.POLL_MS);
@@ -35,7 +37,7 @@ export function BudgetBanner() {
       clearInterval(timer);
       window.removeEventListener('focus', onFocus);
     };
-  }, []);
+  }, [initialLevel]);
   if (level === 'none') return null;
   return (
     <p role="status" className="bg-accent-tint px-4 py-3 text-center text-sm">

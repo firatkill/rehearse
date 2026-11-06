@@ -35,7 +35,7 @@ export async function POST(req: Request): Promise<Response> {
     if (language === 'tr' && env.APP_EDITION === 'demo') return jsonError('DEMO_ONLY', requestId);
     if (language === 'tr' && !LANGUAGE_FEATURES.turkishSessions)
       return jsonError('VALIDATION_FAILED', requestId);
-    const bank = getBank();
+    const bank = getBank(language);
     const seed = body.seed ?? newSeed();
     const demoJob =
       body.demoJob === undefined ? undefined : demoJobs.find((job) => job.slug === body.demoJob);
@@ -45,6 +45,7 @@ export async function POST(req: Request): Promise<Response> {
     const jobRepo = body.jobPostId ? getJobRepository() : null;
     const job = body.jobPostId ? jobRepo?.get(body.jobPostId) : null;
     if (body.jobPostId && !job) return jsonError('JOBPOST_NOT_FOUND', requestId);
+    if (job && job.language !== language) return jsonError('TOKEN_SCOPE', requestId);
     const selected =
       job && jobRepo ? (body.questionIds ?? []).map((id) => jobRepo.generatedQuestion(id)) : [];
     if (job && selected.some((question) => !question || question.jobPostId !== job.id))

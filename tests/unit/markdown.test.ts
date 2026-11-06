@@ -2,6 +2,25 @@ import { expect, it } from 'vitest';
 import { escapeMd, reportMarkdown, reportFilename } from '@/lib/report/markdown';
 import { chartSegments } from '@/lib/report/chart';
 import { answer, record } from '../fixtures/records';
+import { messages as tr } from '@/messages/tr';
+import { messages as en } from '@/messages/en';
+import { formatMessage, type MessageKey, type MessageValues } from '@/lib/i18n/messages';
+it('TC-204 TC-211 selected catalogue localises report exports without translating answers or changing English output', () => {
+  const translate = (key: MessageKey, values?: MessageValues) => formatMessage(tr, key, values);
+  const text = reportMarkdown(
+    { ...record, setup: { ...record.setup, language: 'tr' } },
+    [{ ...answer, transcript: 'Ben <kaydı> düzelttim.' }],
+    translate,
+  );
+  expect(text).toContain('# Rehearse oturum raporu');
+  expect(text).toContain('## Sorulara göre puanlar');
+  expect(text).toContain('**Yanıtın**');
+  expect(text).toContain('> Ben \\<kaydı\\> düzelttim.');
+  expect(text).not.toContain('Your answer');
+  expect(reportMarkdown(record, [answer], (key, values) => formatMessage(en, key, values))).toBe(
+    reportMarkdown(record, [answer]),
+  );
+});
 it('TC-086 UT-28 escapes markup and line-leading list syntax', () => {
   expect(escapeMd('\\`*_[]<>#|~')).toBe('\\\\\\`\\*\\_\\[\\]\\<\\>\\#\\|\\~');
   expect(escapeMd('1. hello')).toBe('1\\. hello');

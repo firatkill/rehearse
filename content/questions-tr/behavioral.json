@@ -1,0 +1,992 @@
+[
+  {
+    "id": "beh-501",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "teslim-baskisi",
+    "prompt": "Teslim tarihi yaklaşırken kapsamı daraltman gereken bir işi anlatır mısın? Neyi korudun, neyden vazgeçtin ve bu kararı nasıl savundun?",
+    "follow_up_hints": [
+      "Kararın hangi kullanıcıları etkiledi?",
+      "Ertelediğin işi sonradan nasıl takip ettin?"
+    ],
+    "what_good_looks_like": [
+      "Kapsam kararını kendi katkısıyla ilişkilendirir.",
+      "Koruduğu kullanıcı ihtiyacını somutlaştırır.",
+      "Tercihin sonucunu ve kalan riski açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-502",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "sessiz-uyusmazlik",
+    "prompt": "Bir toplantıda herkes aynı fikirde görünürken önemli bir itirazının olduğu bir anı anlatır mısın? İtirazını nasıl ortaya koydun, sonrasında ne oldu?",
+    "follow_up_hints": [
+      "İtirazın kabul edilmeseydi nasıl ilerlerdin?",
+      "Diğer kişilerin kaygılarını nasıl öğrendin?"
+    ],
+    "what_good_looks_like": [
+      "İtirazını kişilere değil karara yöneltir.",
+      "Kullandığı kanıtı ve kendi eylemini ayırır.",
+      "Görüşmenin sonucunu ve öğrendiğini belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-503",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "specificity", "impact"],
+    "topic": "yanlis-varsayim",
+    "prompt": "İşe başladıktan sonra temel bir varsayımının yanlış çıktığı bir durumu anlatır mısın? Planını hangi kanıta dayanarak değiştirdin?",
+    "follow_up_hints": ["İlk varsayım neden makul görünüyordu?", "Değişikliği kimlerle paylaştın?"],
+    "what_good_looks_like": [
+      "Yanlış çıkan varsayımı açıkça belirtir.",
+      "Yeni kanıtla aldığı kararı ilişkilendirir.",
+      "Değişikliğin işe ve kullanıcılara etkisini anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-504",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "ownership", "clarity"],
+    "topic": "belirsiz-istek",
+    "prompt": "Sana verilen işin başarı ölçütü belirsizken ilerlediğin bir örnek anlatır mısın? Yapılacak işi nasıl netleştirdin?",
+    "follow_up_hints": [
+      "Hangi soruyu sormak en çok işe yaradı?",
+      "Netleşmeyen bir nokta kaldı mı?"
+    ],
+    "what_good_looks_like": [
+      "Belirsizliğin somut kaynağını gösterir.",
+      "Karar verecek kişileri sürece katar.",
+      "Üzerinde anlaşılmış bir sonuç ölçütü belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-505",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "impact", "relevance"],
+    "topic": "hatayi-sahiplenme",
+    "prompt": "Yaptığın bir değişiklik başkasının işini aksattığında ne yaptığını anlatır mısın? Sorunu gidermenin yanında güveni nasıl onardın?",
+    "follow_up_hints": ["Sorunu ilk kim fark etti?", "Tekrarını önlemek için ne değişti?"],
+    "what_good_looks_like": [
+      "Kendi sorumluluğunu açıkça ayırır.",
+      "Etkilenen kişilere zamanında bilgi verir.",
+      "Düzeltme ile kalıcı önlemi birbirinden ayırır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-506",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "clarity"],
+    "topic": "erken-yardim",
+    "prompt": "Tek başına uğraşmayı bırakıp yardım istemenin doğru olduğuna karar verdiğin bir işi anlatır mısın? Yardım talebini nasıl hazırladın?",
+    "follow_up_hints": [
+      "O ana kadar neleri denemiştin?",
+      "Benzer bir işte şimdi neyi farklı yaparsın?"
+    ],
+    "what_good_looks_like": [
+      "Tıkanmanın iş üzerindeki etkisini tanımlar.",
+      "Denediklerini ve açık sorusunu paylaşır.",
+      "Aldığı yardımdan ne öğrendiğini açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-507",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "impact"],
+    "topic": "kullanici-gozlemi",
+    "prompt": "Bir kullanıcıyı ürünü kullanırken izlemek fikrini değiştirdi mi? Değiştirdiği belirli bir olayı ve sonrasında yaptığını anlatır mısın?",
+    "follow_up_hints": [
+      "Söylenenle yapılan arasında fark var mıydı?",
+      "Gözlemin tek kişiye özgü olmadığını nasıl araştırdın?"
+    ],
+    "what_good_looks_like": [
+      "Gözlediği davranışı yorumundan ayırır.",
+      "Davranışın hangi kararı değiştirdiğini anlatır.",
+      "Sonucu başka kanıtlarla kontrol eder."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-508",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "structure", "impact"],
+    "topic": "yarim-kalan-devir",
+    "prompt": "Yarım kalmış ve yeterince belgelenmemiş bir işi devraldığın bir zamanı anlatır mısın? İlk güvenilir ilerlemeyi nasıl sağladın?",
+    "follow_up_hints": ["Önce hangi riski araştırdın?", "Sonraki kişiye ne bıraktın?"],
+    "what_good_looks_like": [
+      "Bilinenlerle bilinmeyenleri ayırır.",
+      "Küçük ve doğrulanabilir bir başlangıç seçer.",
+      "Devirdeki bilgi kaybını azaltan bir adım anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-509",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "specificity", "ownership"],
+    "topic": "inceleme-geribildirimi",
+    "prompt": "Kod incelemesinde ilk anda katılmadığın bir geri bildirim aldığın olayı anlatır mısın? Görüş ayrılığını nasıl çözdün?",
+    "follow_up_hints": ["Tercihle gerçek riski nasıl ayırdın?", "Son kararı ne belirledi?"],
+    "what_good_looks_like": [
+      "İtirazın teknik gerekçesini açıklar.",
+      "Karşı görüşü doğru anladığını gösterir.",
+      "Kararın sonucunu kişisel gerilimden ayrı anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-510",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "impact", "ownership"],
+    "topic": "sessiz-iyilestirme",
+    "prompt": "Kimsenin görev olarak vermediği küçük bir sorunu fark edip iyileştirdiğin bir örnek anlatır mısın? Buna zaman ayırmaya nasıl karar verdin?",
+    "follow_up_hints": [
+      "Sorunun maliyetini nasıl gördün?",
+      "İyileştirmenin işe yaradığını nasıl anladın?"
+    ],
+    "what_good_looks_like": [
+      "Sorunu somut bir iş akışına bağlar.",
+      "Harcanan zamanı beklenen faydayla tartar.",
+      "Kendi katkısını ve gözlenen sonucu belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-511",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "ownership", "relevance"],
+    "topic": "teknik-olmayan-anlatim",
+    "prompt": "Teknik bir kısıtı teknik olmayan bir çalışma arkadaşına anlatman gereken bir anı paylaşır mısın? Ortak bir karara nasıl vardınız?",
+    "follow_up_hints": [
+      "Hangi ayrıntıları dışarıda bıraktın?",
+      "Anlaşıldığını nasıl kontrol ettin?"
+    ],
+    "what_good_looks_like": [
+      "Kısıtı kullanıcı veya iş etkisiyle açıklar.",
+      "Dinleyenin karar vermesine yetecek seçenekler sunar.",
+      "Anlaşmanın nasıl doğrulandığını belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-512",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "impact", "ownership"],
+    "topic": "olcum-yanilgisi",
+    "prompt": "Başarılı göründüğünü düşündüğünüz bir ölçümün yanıltıcı olduğunu fark ettiğin bir işi anlatır mısın? Değerlendirmeyi nasıl düzelttin?",
+    "follow_up_hints": [
+      "Ölçüm hangi davranışı gözden kaçırıyordu?",
+      "Yeni ölçüm hangi kararı değiştirdi?"
+    ],
+    "what_good_looks_like": [
+      "Ölçümün sınırını somutlaştırır.",
+      "Ek kanıtla yorumunu destekler.",
+      "Düzeltilmiş sonucun karara etkisini anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-513",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "impact", "structure"],
+    "topic": "yayini-durdurma",
+    "prompt": "Yayına hazır görünen bir değişikliğin ertelenmesini önerdiğin bir durumu anlatır mısın? Hangi risk kararında belirleyiciydi?",
+    "follow_up_hints": [
+      "Ertelemenin maliyetini nasıl değerlendirdin?",
+      "Yeniden yayına çıkmak için ne beklediniz?"
+    ],
+    "what_good_looks_like": [
+      "Riski kanıtıyla birlikte ortaya koyar.",
+      "Erteleme ve yayın seçeneklerinin bedellerini tartar.",
+      "Yeniden değerlendirme koşulunu açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-514",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "clarity"],
+    "topic": "unutulan-hata",
+    "prompt": "Arada sırada oluştuğu için önemsenmeyen bir hatanın peşine düştüğün bir örnek anlatır mısın? Araştırmanı nasıl ilerlettin?",
+    "follow_up_hints": [
+      "Hangi gözlem seni doğru yöne götürdü?",
+      "Hatanın giderildiğini nasıl doğruladın?"
+    ],
+    "what_good_looks_like": [
+      "Belirtilerle olası nedenleri ayırır.",
+      "Kontrollü araştırma adımlarını anlatır.",
+      "Düzeltmeyi yeniden üretilebilir kanıtla doğrular."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-515",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "ownership", "impact"],
+    "topic": "erisilebilirlik-farki",
+    "prompt": "Bir akışın bazı kullanıcılar için zor olduğunu sonradan fark ettiğin bir olayı anlatır mısın? Çözümün kapsamını nasıl belirledin?",
+    "follow_up_hints": ["Sorunu nasıl doğruladın?", "Benzer akışlar için ne değişti?"],
+    "what_good_looks_like": [
+      "Engeli kişisel varsayım yerine gözlemle açıklar.",
+      "Somut bir kullanılabilirlik düzeltmesi anlatır.",
+      "Çözümün daha geniş etkisini değerlendirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-516",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "ownership", "clarity"],
+    "topic": "uzaktan-esgudum",
+    "prompt": "Yazışmaların uzadığı ve kararın çıkmadığı bir işte iletişim biçimini değiştirdiğin bir örnek anlatır mısın? Bunun ne faydası oldu?",
+    "follow_up_hints": ["Gecikmenin kaynağı neydi?", "Kararı sonradan erişilebilir kıldın mı?"],
+    "what_good_looks_like": [
+      "İletişim sorununu somutlaştırır.",
+      "İhtiyaca uygun bir yöntem seçer.",
+      "Kararı ve sorumlulukları görünür hâle getirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-517",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "specificity", "impact"],
+    "topic": "deneyden-vazgecme",
+    "prompt": "Emek verdiğin bir denemeyi sürdürmemenin daha doğru olduğunu gördüğün bir zamanı anlatır mısın? Vazgeçme kararını nasıl verdin?",
+    "follow_up_hints": [
+      "Başta hangi sonuç bekleniyordu?",
+      "Denemeden kalan bilgi nerede kullanıldı?"
+    ],
+    "what_good_looks_like": [
+      "Harcanmış emekten bağımsız karar ölçütü kurar.",
+      "Denemenin bulgusunu açıkça anlatır.",
+      "Öğrenilenleri sonraki işe taşır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-518",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership"],
+    "topic": "tahmin-duzeltme",
+    "prompt": "Verdiğin süre tahmininin tutmayacağını fark ettiğin bir işi anlatır mısın? Yeni durumu nasıl yönettin?",
+    "follow_up_hints": ["Bunu ne zaman haber verdin?", "Sonraki tahminlerinde ne değişti?"],
+    "what_good_looks_like": [
+      "Sapmanın nedenini açıklar.",
+      "Belirsizliği saklamadan seçenekleri paylaşır.",
+      "Tahmin sürecinde öğrendiği değişikliği belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-519",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "relevance", "impact"],
+    "topic": "guvenlik-bulgusu",
+    "prompt": "Bir güvenlik kaygısını gündelik geliştirme işinin önüne koyman gereken bir olayı anlatır mısın? Önceliği nasıl gerekçelendirdin?",
+    "follow_up_hints": ["Bulguyu kimlerle paylaştın?", "Gereksiz veri ifşasını nasıl önledin?"],
+    "what_good_looks_like": [
+      "Riskin kapsamını abartmadan açıklar.",
+      "Uygun kişileri güvenli biçimde bilgilendirir.",
+      "Düzeltme ve doğrulama adımlarını belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-520",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "specificity", "ownership"],
+    "topic": "destek-kaydindan-is",
+    "prompt": "Bir destek kaydının arkasında daha genel bir ürün sorunu bulduğun bir zamanı anlatır mısın? Tekil çözümden nasıl öteye geçtin?",
+    "follow_up_hints": [
+      "Başka kimlerin etkilendiğini nasıl öğrendin?",
+      "Düzeltmenin destek yüküne etkisi neydi?"
+    ],
+    "what_good_looks_like": [
+      "Tekil belirtiden ortak nedene nasıl ulaştığını anlatır.",
+      "Geçici yardım ile ürün düzeltmesini ayırır.",
+      "Etkiyi gözlenen verilerle destekler."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-521",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "ownership", "specificity"],
+    "topic": "yeni-alan-ogrenme",
+    "prompt": "Bilmediğin bir iş alanını kısa sürede öğrenerek katkı verdiğin bir örnek anlatır mısın? Öğrenmen gerekenleri nasıl seçtin?",
+    "follow_up_hints": [
+      "Hangi kaynağın güvenilir olduğunu nasıl anladın?",
+      "Bilgini gerçek bir işte nasıl sınadın?"
+    ],
+    "what_good_looks_like": [
+      "Öğrenme hedefini göreve bağlar.",
+      "Uzman görüşünü uygulamayla birleştirir.",
+      "Kalan bilgi sınırlarını dürüstçe belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-522",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "ownership", "impact"],
+    "topic": "bagimlilik-gecikmesi",
+    "prompt": "Başka bir ekibin gecikmesi senin işini durdurduğunda ilerleme yolu bulduğun bir olayı anlatır mısın? Bağımlılığı nasıl yönettin?",
+    "follow_up_hints": ["Hangi işi bağımsız ilerletebildin?", "Geçici çözümün sınırı neydi?"],
+    "what_good_looks_like": [
+      "Bağımlılığın gerçek sınırını belirler.",
+      "Koordinasyon ile geçici ilerlemeyi dengeler.",
+      "Geçici çözümün kalıcı borca dönüşmesini takip eder."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-523",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "ownership", "relevance"],
+    "topic": "gereksiz-ozellik",
+    "prompt": "İstenen bir özelliğin asıl sorunu çözmeyeceğini düşündüğün bir işi anlatır mısın? Daha uygun yaklaşımı nasıl buldun?",
+    "follow_up_hints": [
+      "İsteğin arkasındaki ihtiyacı nasıl öğrendin?",
+      "Alternatifin işe yaradığını nasıl sınadın?"
+    ],
+    "what_good_looks_like": [
+      "Çözüm talebiyle kullanıcı ihtiyacını ayırır.",
+      "Alternatifi kanıtla tartışır.",
+      "Sonuç ve varsa başarısız kalan yönleri açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-524",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "clarity"],
+    "topic": "eksik-test",
+    "prompt": "Testler geçmesine rağmen bir hata kaçırdığınız bir olayı anlatır mısın? Test yaklaşımında neyi değiştirdin?",
+    "follow_up_hints": [
+      "Hangi varsayım testlerde görünmüyordu?",
+      "Yeni testin aynı hatayı yakaladığını gösterdin mi?"
+    ],
+    "what_good_looks_like": [
+      "Test boşluğunu kök nedenle ilişkilendirir.",
+      "Gerçek davranışı sınayan bir kontrol anlatır.",
+      "Kendi katkısını ekip sonucundan ayırır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-525",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "structure", "impact"],
+    "topic": "geri-alma-karari",
+    "prompt": "Yayına çıkan bir değişikliği geri alma kararı verdiğin veya önerdiğin bir anı anlatır mısın? Düzeltmek yerine geri almayı neden seçtin?",
+    "follow_up_hints": [
+      "Etkilenen kullanıcıları nasıl belirledin?",
+      "Yeniden yayın için hangi kontrolü ekledin?"
+    ],
+    "what_good_looks_like": [
+      "Karar anındaki bilgiyi açıklar.",
+      "Geri alma ile yerinde düzeltmenin riskini karşılaştırır.",
+      "Toparlanmayı ve sonraki doğrulamayı anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-526",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "ownership", "impact"],
+    "topic": "belgeyi-kullanilir-kilma",
+    "prompt": "Kimsenin yararlanmadığı bir belgeyi işe yarar hâle getirdiğin bir örnek anlatır mısın? Kullanıcılarının ihtiyacını nasıl belirledin?",
+    "follow_up_hints": ["Belgenin hangi kısmı yanıltıyordu?", "Güncel kalması için ne yaptın?"],
+    "what_good_looks_like": [
+      "Belge sorununu somut kullanım üzerinden gösterir.",
+      "İçeriği görev ve okuyucuya göre düzenler.",
+      "Kullanım veya bakım sonucunu açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-527",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "specificity", "impact"],
+    "topic": "performans-onceligi",
+    "prompt": "Bir performans sorununun gerçekten öncelikli olup olmadığını araştırdığın bir işi anlatır mısın? Son kararı hangi bulgu belirledi?",
+    "follow_up_hints": ["Kimler hangi koşulda etkileniyordu?", "Hızlanmanın bedeli oldu mu?"],
+    "what_good_looks_like": [
+      "Gerçek kullanıcı etkisini ölçer.",
+      "Darboğazı tahmin yerine gözlemle belirler.",
+      "Faydayı maliyet ve bakım yüküyle birlikte tartar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-528",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "clarity", "ownership"],
+    "topic": "catisan-oncelikler",
+    "prompt": "Aynı anda iki acil iş istendiğinde öncelik sırasını netleştirdiğin bir zamanı anlatır mısın? Kararı nasıl görünür kıldın?",
+    "follow_up_hints": [
+      "Gecikecek işin bedelini kim değerlendirdi?",
+      "Yeni bilgi geldiğinde sıra değişti mi?"
+    ],
+    "what_good_looks_like": [
+      "Aciliyet ile etkiyi ayrı değerlendirir.",
+      "Karar yetkisi ve sorumluluğu netleştirir.",
+      "Geciken işin sonucunu takip eder."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-529",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "relevance", "clarity"],
+    "topic": "veri-minimizasyonu",
+    "prompt": "Bir özellik için istenen verinin gereğinden fazla olduğunu fark ettiğin bir örnek anlatır mısın? İhtiyacı daha az veriyle nasıl karşıladınız?",
+    "follow_up_hints": [
+      "Verinin hangi kısmı gerçekten gerekliydi?",
+      "Önerin ürün davranışını nasıl etkiledi?"
+    ],
+    "what_good_looks_like": [
+      "Veri ihtiyacını belirli bir amaçla sınırlar.",
+      "Daha az veri kullanan seçeneği açıklar.",
+      "Gizlilik ve kullanım arasındaki tercihi gerekçelendirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-530",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "impact"],
+    "topic": "kucuk-yayin",
+    "prompt": "Büyük bir işi küçük yayınlara bölerek riski azalttığın bir zamanı anlatır mısın? İlk parçayı nasıl seçtin?",
+    "follow_up_hints": [
+      "İlk yayın neyi öğrenmenizi sağladı?",
+      "Parçalar arasındaki uyumu nasıl korudun?"
+    ],
+    "what_good_looks_like": [
+      "Parçalama gerekçesini riske bağlar.",
+      "İlk parçanın bağımsız değerini açıklar.",
+      "Geri bildirimle sonraki planı nasıl değiştirdiğini anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-531",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "ownership", "impact"],
+    "topic": "karari-yazmak",
+    "prompt": "Sözlü alınan bir kararın farklı anlaşıldığını fark ettiğin bir işi anlatır mısın? Ortak anlayışı nasıl yeniden kurdun?",
+    "follow_up_hints": [
+      "Farklı yorumlar nerede ortaya çıktı?",
+      "Sonraki kararlar için ne değişti?"
+    ],
+    "what_good_looks_like": [
+      "Uyuşmazlığın somut etkisini anlatır.",
+      "Seçenek ve gerekçeleri açık biçimde kaydeder.",
+      "İlgili kişilerin aynı kararı anladığını doğrular."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-532",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "ownership"],
+    "topic": "eski-davranisi-koruma",
+    "prompt": "Bir iyileştirmenin mevcut kullanıcı alışkanlığını bozabileceğini fark ettiğin bir değişikliği anlatır mısın? Geçişi nasıl yönettin?",
+    "follow_up_hints": [
+      "Hangi kullanıcı grubunu kontrol ettin?",
+      "Yeni davranışa geçişi nasıl izledin?"
+    ],
+    "what_good_looks_like": [
+      "Mevcut kullanımın neden önemli olduğunu açıklar.",
+      "Geçiş için anlaşılır bir yol sunar.",
+      "Değişiklik sonrasındaki etkiyi takip eder."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-533",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "ownership", "impact"],
+    "topic": "islem-sonrasi-takip",
+    "prompt": "Bir işi teslim ettikten sonra beklenmedik bir sonuçla karşılaştığın bir zamanı anlatır mısın? Takibi nasıl üstlendin?",
+    "follow_up_hints": ["Sonucu hangi yoldan öğrendin?", "Bitti tanımınız sonradan değişti mi?"],
+    "what_good_looks_like": [
+      "Teslim ile sonuç arasındaki farkı gösterir.",
+      "Takipte yaptığı somut eylemi belirtir.",
+      "Öğrenilenleri sonraki teslimlere bağlar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-534",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "clarity", "specificity"],
+    "topic": "yanlis-anlasilan-geri-bildirim",
+    "prompt": "Verdiğin geri bildirimin niyetinden farklı anlaşıldığı bir olayı anlatır mısın? İletişimi nasıl düzelttin?",
+    "follow_up_hints": [
+      "Yanlış anlaşılmayı nasıl fark ettin?",
+      "Sonraki görüşmende neyi değiştirdin?"
+    ],
+    "what_good_looks_like": [
+      "Kendi iletişimindeki payı kabul eder.",
+      "Karşı tarafın yorumunu dinlediğini gösterir.",
+      "Somut bir iletişim düzeltmesi ve sonuç anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-535",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "relevance", "ownership"],
+    "topic": "is-akisi-sadelestirme",
+    "prompt": "Tekrarlanan bir iş akışından gereksiz bir adımı çıkardığın bir örnek anlatır mısın? O adımın gereksiz olduğuna nasıl karar verdin?",
+    "follow_up_hints": [
+      "Adımın geçmişte bir amacı var mıydı?",
+      "Kaldırınca hangi riski kontrol ettin?"
+    ],
+    "what_good_looks_like": [
+      "Adımın gerçek kullanımını araştırır.",
+      "Sadeleştirmenin riskini değerlendirir.",
+      "Zaman veya hata azalması gibi bir sonucu belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-536",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "clarity"],
+    "topic": "yeni-katilana-destek",
+    "prompt": "Ekibe yeni katılan birinin ilk işini tamamlamasına yardımcı olduğun bir zamanı anlatır mısın? Onun yerine işi yapmadan nasıl destek oldun?",
+    "follow_up_hints": ["Nerede zorlandığını nasıl öğrendin?", "Desteği ne zaman azalttın?"],
+    "what_good_looks_like": [
+      "Yardımı kişinin ihtiyacına göre ayarlar.",
+      "Bağımsız ilerlemeyi destekleyen bir yöntem anlatır.",
+      "Desteğin sonucunu gözlemle açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-537",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "ownership", "impact"],
+    "topic": "sinirli-arac",
+    "prompt": "İstediğin araca erişemediğin hâlde işi ilerlettiğin bir örnek anlatır mısın? Geçici çözümün yeterli olduğunu nasıl belirledin?",
+    "follow_up_hints": ["Hangi sınırlamayı kabul ettin?", "Geçici çözüm ne zaman değiştirildi?"],
+    "what_good_looks_like": [
+      "Asıl ihtiyacı araç tercihinden ayırır.",
+      "Çözümün sınırlarını görünür kılar.",
+      "Sonucu ve kalıcı bakım ihtiyacını değerlendirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-538",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "ownership"],
+    "topic": "itirazdan-ogrenme",
+    "prompt": "Kullanıcıların bir değişikliğe itiraz etmesi üzerine yaklaşımını değiştirdiğin bir zamanı anlatır mısın? Hangi itiraz kararını etkiledi?",
+    "follow_up_hints": [
+      "Tercihle gerçek kullanım sorununu nasıl ayırdın?",
+      "Değişen yaklaşımı nasıl duyurdun?"
+    ],
+    "what_good_looks_like": [
+      "İtirazın içeriğini somut örnekle anlatır.",
+      "Kararı farklı kanıtlarla destekler.",
+      "Yaptığı değişikliğin sonucunu açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-539",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["ownership", "impact", "clarity"],
+    "topic": "yetkisiz-etki",
+    "prompt": "Resmî karar yetkin olmadan birden fazla ekibin teknik yaklaşımını değiştirmeye katkı verdiğin bir işi anlatır mısın? Desteği nasıl kazandın?",
+    "follow_up_hints": ["En güçlü itiraz neydi?", "Ekiplerin bağımsızlığını nasıl korudun?"],
+    "what_good_looks_like": [
+      "Etkisini unvana değil kanıta bağlar.",
+      "Ekiplerin farklı ihtiyaçlarını dikkate alır.",
+      "Benimsenme sonucunu ve kendi katkısını açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-540",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["ownership", "specificity", "impact"],
+    "topic": "mentorluk-siniri",
+    "prompt": "Bir çalışma arkadaşının daha bağımsız karar verebilmesi için mentorluk yaklaşımını değiştirdiğin bir örnek anlatır mısın? İlerlemeyi nasıl gördün?",
+    "follow_up_hints": [
+      "Başta fazla müdahale ettiğin oldu mu?",
+      "Hata yapmasına hangi sınırlar içinde alan açtın?"
+    ],
+    "what_good_looks_like": [
+      "Gelişim ihtiyacını somutlaştırır.",
+      "Sorumluluğu aşamalı devreden bir yaklaşım anlatır.",
+      "Kişinin bağımsızlığına ilişkin gözlenebilir sonuç verir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-541",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["structure", "impact", "relevance"],
+    "topic": "teknik-yon-degisimi",
+    "prompt": "Ürünün yönü değişince teknik yatırım planını yeniden değerlendirdiğin bir işi anlatır mısın? Neyi sürdürüp neyi durdurdunuz?",
+    "follow_up_hints": [
+      "Uzun vadeli ihtiyaçları nasıl korudun?",
+      "Kararı hangi aralıklarla gözden geçirdiniz?"
+    ],
+    "what_good_looks_like": [
+      "Teknik yatırımı ürün hedefiyle ilişkilendirir.",
+      "Alternatiflerin fırsat maliyetini tartar.",
+      "Kararın sonucunu ve belirsizliklerini belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-542",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["specificity", "ownership", "clarity"],
+    "topic": "adil-degerlendirme",
+    "prompt": "Bir işe alım veya teknik değerlendirme sürecindeki tutarsızlığı gidermeye çalıştığın bir örnek anlatır mısın? Ortak ölçütü nasıl oluşturdunuz?",
+    "follow_up_hints": [
+      "Kişisel tercihler nasıl ayrıştırıldı?",
+      "Yeni yöntemin etkisini nasıl kontrol ettiniz?"
+    ],
+    "what_good_looks_like": [
+      "Tutarsızlığı somut davranış üzerinden açıklar.",
+      "İşle ilgili gözlenebilir ölçütler kullanır.",
+      "Değişikliğin sonucunu gizli kişisel veri vermeden anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-543",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["ownership", "impact", "relevance"],
+    "topic": "ekipler-arasi-bedel",
+    "prompt": "Bir ekibin işini kolaylaştıran çözümün başka ekibe yük getirdiği bir kararı anlatır mısın? Toplam faydayı nasıl değerlendirdiniz?",
+    "follow_up_hints": ["Bakım yükünü kim üstlendi?", "Karar sonrasında denge değişti mi?"],
+    "what_good_looks_like": [
+      "Her iki tarafın maliyetini görünür kılar.",
+      "Sorumlulukları açıkça belirler.",
+      "Toplam sonuç üzerinden kararı değerlendirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-544",
+    "type": "behavioral",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["senior"],
+    "dimensions": ["structure", "ownership", "impact"],
+    "topic": "borc-butcesi",
+    "prompt": "Teknik borç için ürün işlerinden zaman ayırmayı savunduğun bir örnek anlatır mısın? Yapılacak kısmın sınırını nasıl çizdin?",
+    "follow_up_hints": [
+      "Hangi borcu bilerek bıraktınız?",
+      "Yatırımın karşılığını nasıl izlediniz?"
+    ],
+    "what_good_looks_like": [
+      "Borcu somut geliştirme veya işletim maliyetine bağlar.",
+      "Sınırlı ve ölçülebilir bir kapsam seçer.",
+      "Ertelenen ürün işiyle kazanımı birlikte değerlendirir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-545",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "ownership", "impact"],
+    "topic": "ai-yaniltici-demo",
+    "prompt": "Bir model demosu iyi görünürken gerçek kullanımda sorun bulduğun bir işi anlatır mısın? Yayın kararını hangi kanıtla etkiledin?",
+    "follow_up_hints": ["Demo hangi durumları kapsamıyordu?", "Yeni örnekleri nasıl seçtin?"],
+    "what_good_looks_like": [
+      "Demo başarısıyla kullanım kalitesini ayırır.",
+      "Temsil edici sorun örnekleri oluşturur.",
+      "Değerlendirme sonucunun kararı nasıl değiştirdiğini açıklar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-546",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "clarity", "relevance"],
+    "topic": "ai-beklenti-siniri",
+    "prompt": "Bir yapay zekâ özelliğinden beklenen güvenilirliğin gerçekçi olmadığını gördüğün bir örnek anlatır mısın? Beklentiyi nasıl yeniden kurdun?",
+    "follow_up_hints": ["Hangi hata türü önemliydi?", "Kullanıcıya neyi farklı söylediniz?"],
+    "what_good_looks_like": [
+      "Sınırı somut çıktı örnekleriyle açıklar.",
+      "Beklentiyi görev riskine göre ayarlar.",
+      "İnsan kontrolü veya güvenli geri dönüş seçeneğini tartar."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-547",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "ownership", "specificity"],
+    "topic": "ai-maliyet-surprizi",
+    "prompt": "Bir model özelliğinin kullanım maliyeti beklenenden yüksek çıktığında yaptığın işi anlatır mısın? Kaliteyi koruyarak hangi değişikliği seçtin?",
+    "follow_up_hints": ["Maliyeti hangi bileşen artırıyordu?", "Kalite kaybını nasıl ölçtünüz?"],
+    "what_good_looks_like": [
+      "Maliyet artışını kullanım verisiyle açıklar.",
+      "Tasarrufu görev başarısıyla birlikte değerlendirir.",
+      "Kendi değişikliğinin sonucunu somutlaştırır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-548",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "backend", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "structure", "relevance"],
+    "topic": "ai-guvenilmeyen-girdi",
+    "prompt": "Modelin güvenilmeyen bir içerikteki talimatı izlediğini fark ettiğin bir denemeyi anlatır mısın? Ürün sınırlarını nasıl değiştirdiniz?",
+    "follow_up_hints": [
+      "Hangi yetkiyi modelden ayırdınız?",
+      "Düzeltmeyi hangi örneklerle sınadınız?"
+    ],
+    "what_good_looks_like": [
+      "Veri ile yetkili talimat arasındaki ayrımı açıklar.",
+      "Sadece istem metnine güvenmeyen bir önlem anlatır.",
+      "Saldırı örnekleriyle yapılan doğrulamayı belirtir."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-549",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "impact"],
+    "topic": "ai-etiket-uyusmazligi",
+    "prompt": "Model çıktılarının değerlendirilmesinde ekip üyelerinin farklı puan verdiği bir işi anlatır mısın? Değerlendirmeyi nasıl tutarlı hâle getirdiniz?",
+    "follow_up_hints": [
+      "Uyuşmazlık hangi ölçütte yoğunlaşıyordu?",
+      "Sınır örneklerini nasıl kaydettiniz?"
+    ],
+    "what_good_looks_like": [
+      "Uyuşmazlığı ölçüt düzeyinde inceler.",
+      "Somut örneklerle değerlendirme rehberini netleştirir.",
+      "Tutarlılık ve görev kalitesini ayrı izler."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "beh-550",
+    "type": "behavioral",
+    "roles": ["ai-product-engineer", "product-engineer", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["ownership", "impact", "relevance"],
+    "topic": "ai-insan-denetimi",
+    "prompt": "Otomatik bir model kararını insan onayına bağladığınız bir özelliği anlatır mısın? Onay gerektiren sınırı nasıl belirlediniz?",
+    "follow_up_hints": ["İnceleme yükü ne kadar arttı?", "Yanlış onayları nasıl fark ettiniz?"],
+    "what_good_looks_like": [
+      "Kararın geri alınabilirliğini ve riskini değerlendirir.",
+      "İnceleyene yeterli kanıt sunulduğunu açıklar.",
+      "Güvenlik ile iş yükünün sonucunu birlikte anlatır."
+    ],
+    "time_limit_s": 120,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

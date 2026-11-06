@@ -265,7 +265,7 @@ export default async function HowItWorksPage() {
         <p>
           <T id="app.how.it.works.page.41" />{' '}
           {demo ? t('public.dynamic.41') : t('public.dynamic.42')}{' '}
-          <T id="app.how.it.works.page.42" />
+          {t(demo ? 'app.how.it.works.page.42' : 'public.bank.full')}
         </p>
       </section>
       <section>

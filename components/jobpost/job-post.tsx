@@ -1,6 +1,7 @@
 'use client';
 import { jobErrorMessage } from '@/lib/i18n/job-error';
-import { T, useT } from '@/lib/i18n/context';
+import { T, useT, useSessionLanguage } from '@/lib/i18n/context';
+import { languageHref } from '@/lib/i18n/language';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { JOBPOST, SESSION, SETUP_DEFAULTS, type AnswerMode } from '@/lib/config';
@@ -35,6 +36,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
   );
   const [mode, setMode] = useState<AnswerMode>('text');
   const { post, questions } = data;
+  useSessionLanguage(post.language);
   const hasQuestions = questions.some((q) => q.origin === 'generated');
   async function saveText() {
     if (busy) return;
@@ -92,6 +94,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
     setBusy(t('ui.dynamic.31'));
     setError(null);
     const setup = SetupSchema.parse({
+      language: post.language,
       role: post.practiceRole,
       seniority: SETUP_DEFAULTS.seniority,
       types: [
@@ -106,6 +109,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
       rate: SETUP_DEFAULTS.rate,
     });
     const result = await startSession({
+      language: post.language,
       jobPostId: post.id,
       questionIds: selected,
       role: setup.role,
@@ -120,7 +124,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         await repository.createSession(
           newSessionRecord(result.data, setup, new Date().toISOString()),
         );
-        router.push(`/session/${result.data.sessionId}`);
+        router.push(languageHref(`/session/${result.data.sessionId}`, post.language));
         return;
       } catch {
         setError(t('ui.dynamic.32'));
@@ -399,9 +403,7 @@ export function JobPost({ initial }: { initial: JobResponse }) {
                     void start();
                   }}
                 >
-                  <T id="components.jobpost.job.post.25" />
-                  {selected.length}
-                  <T id="components.jobpost.job.post.26" />
+                  {t('job.startQuestions', { count: selected.length })}
                 </Button>
               </div>
             </div>

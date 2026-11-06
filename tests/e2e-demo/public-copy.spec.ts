@@ -8,12 +8,17 @@ test('TC-203 demo public copy describes shipped features and browser-stored hist
   for (const route of ['/', '/how-it-works', '/privacy']) {
     await page.goto(route);
     await expect(page.locator('main')).not.toContainText(
-      /This preview|planned public demo|planned, not active|release preview|being built|English and Turkish/,
+      /This preview|planned public demo|planned, not active|release preview|being built/,
     );
     if (route === '/') {
       await expect(
         page.getByRole('table', { name: 'Demo and self-hosted editions' }),
       ).toBeVisible();
+      await expect(
+        page
+          .getByRole('row')
+          .filter({ has: page.getByRole('rowheader', { name: 'Language', exact: true }) }),
+      ).toHaveText('LanguageEnglishEnglish and Turkish');
       await expect(page.getByText(/or try one of three example job posts/)).toBeVisible();
     } else if (route === '/how-it-works') {
       await expect(page.getByText(/You are using the demo: feedback is pre-written/)).toBeVisible();

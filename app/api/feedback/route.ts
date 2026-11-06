@@ -77,7 +77,7 @@ export async function POST(req: Request): Promise<Response> {
       token.payload.q[body.answerIndex] !== body.questionId
     )
       return fail('TOKEN_SCOPE');
-    const question = getInterviewQuestion(body.questionId);
+    const question = getInterviewQuestion(body.questionId, token.payload.l ?? 'en');
     if (!question) return fail('TOKEN_SCOPE');
     let followUpPrompt: string | undefined;
     if (body.followUpToken !== undefined) {

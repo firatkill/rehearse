@@ -1,0 +1,836 @@
+[
+  {
+    "id": "tec-501",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "tekrar-istek",
+    "prompt": "Bir kullanıcı ödeme düğmesine iki kez bastığında tek tahsilat yapılmasını nasıl sağlarsın? İstemci ve sunucudaki önlemlerin sınırlarını açıklar mısın?",
+    "follow_up_hints": [
+      "Yanıt kaybolur ama ödeme gerçekleşirse ne olur?",
+      "Aynı anahtar farklı tutarla gelirse nasıl davranırsın?"
+    ],
+    "what_good_looks_like": [
+      "Düğmeyi kapatmanın tek başına yeterli olmadığını açıklar.",
+      "Sunucuda kalıcı tekrar önleme mekanizması önerir.",
+      "Hata ve yeniden deneme durumunu örnekler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-502",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "ownership", "impact", "relevance", "clarity"],
+    "topic": "eski-ekran-verisi",
+    "prompt": "Kullanıcı bir kaydı güncelledikten sonra listede eski değerini görüyor. Sorunun önbellekten mi, eşzamanlı isteklerden mi kaynaklandığını nasıl ayırırsın?",
+    "follow_up_hints": [
+      "Yavaş bir yanıt yeni sonucu ezerse ne yaparsın?",
+      "Düzeltmenin işe yaradığını nasıl sınarsın?"
+    ],
+    "what_good_looks_like": [
+      "Sorunu yeniden üretmek için gözlem noktaları seçer.",
+      "Önbellek ile yanıt sıralaması sorununu birbirinden ayırır.",
+      "Çözümün doğruluğunu kontrollü bir testle gösterir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-503",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "yetki-kontrolu",
+    "prompt": "Bir kullanıcı adres çubuğundaki kayıt numarasını değiştirerek başka birinin belgesini açabiliyor. Bu açığı hangi sınırda ve nasıl kapatırsın?",
+    "follow_up_hints": [
+      "Listede kaydı gizlemek yeterli mi?",
+      "Paylaşılan belgeler için kural nasıl değişir?"
+    ],
+    "what_good_looks_like": [
+      "Kimlik doğrulama ile kaynak yetkisini ayırır.",
+      "Her sunucu isteğinde sahiplik veya paylaşım kontrolü önerir.",
+      "Başka kullanıcı ve yetkisiz erişim testlerini belirtir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-504",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "saat-ve-tarih",
+    "prompt": "Bir randevu bazı kullanıcılara bir gün önce görünüyorsa tarih ve saat verisini nasıl incelersin? Saklama ve gösterim kararını açıklar mısın?",
+    "follow_up_hints": [
+      "Yalnızca gün içeren kayıtlar nasıl ele alınır?",
+      "Yaz saati geçişini nasıl sınarsın?"
+    ],
+    "what_good_looks_like": [
+      "Takvim tarihi ile zaman anını ayırır.",
+      "Saat dilimi dönüşümünün yapıldığı yeri belirler.",
+      "Sınır saatleri ve farklı bölgelerle test önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-505",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "clarity", "specificity"],
+    "topic": "girdi-dogrulama",
+    "prompt": "Formdaki doğrulama geçiyor ama sunucu hatalı veri kaydediyor. İstemci ve sunucu doğrulamalarının görevlerini nasıl ayırırsın?",
+    "follow_up_hints": [
+      "Doğrudan API isteği gelirse ne olur?",
+      "İş kuralı değiştiğinde uyumu nasıl korursun?"
+    ],
+    "what_good_looks_like": [
+      "İstemci kontrolünü kullanım kolaylığı olarak konumlar.",
+      "Sunucuyu güven sınırı olarak tanımlar.",
+      "Biçim doğrulaması ile iş kurallarını ayırır."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-506",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "kesilen-yukleme",
+    "prompt": "Dosya yüklemesi yüzde doksanda kesildiğinde kullanıcıya güvenilir bir yeniden deneme nasıl sunarsın? Başarı durumunu ne zaman kesinleştirirsin?",
+    "follow_up_hints": [
+      "Dosya ulaşıp yanıt kaybolmuş olabilir mi?",
+      "Yarım dosyaları nasıl temizlersin?"
+    ],
+    "what_good_looks_like": [
+      "Aktarım ile tamamlanmış kaydı ayırır.",
+      "Tekrar ve kısmi yüklemeyi hesaba katar.",
+      "Sunucudan doğrulanmış bir son durum önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-507",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "hata-mesaji-siniri",
+    "prompt": "Bir işlem başarısız olduğunda geliştiriciye tanı koyduracak bilgiyle kullanıcıya gösterilecek mesajı nasıl ayırırsın? Somut bir örnek üzerinden açıklar mısın?",
+    "follow_up_hints": [
+      "Hassas veriler kayda girerse ne olur?",
+      "Kullanıcı destek talebini nasıl ilişkilendirir?"
+    ],
+    "what_good_looks_like": [
+      "Kullanıcıya uygulanabilir bir sonraki adım sunar.",
+      "Hata kodu ve ilişkilendirme kimliği kullanır.",
+      "Günlüklerde sır ve kişisel veri sınırını korur."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-508",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "impact"],
+    "topic": "iptal-edilen-islem",
+    "prompt": "Kullanıcı uzun süren bir işlemi iptal ettiğinde ekranda beklemeyi bitirmekle işi gerçekten durdurmak arasındaki farkı nasıl yönetirsin?",
+    "follow_up_hints": [
+      "İptal sırasında işlem tamamlanırsa ne gösterirsin?",
+      "Yan etkisi oluşmuş bir işlem geri alınabilir mi?"
+    ],
+    "what_good_looks_like": [
+      "İstemci iptali ile sunucu durumunu ayırır.",
+      "Yarış durumunda tek bir sonuç kaynağı belirler.",
+      "Geri alınamayan yan etkileri kullanıcıya açıklar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-509",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "odak-kaybi",
+    "prompt": "Bir iletişim kutusu kapanınca klavye odağı sayfanın başına gidiyor. Doğru odak davranışını nasıl belirlersin ve sınarsın?",
+    "follow_up_hints": [
+      "Kutuyu açan düğme artık yoksa ne olur?",
+      "Ekran okuyucuya hangi bilgi duyurulmalı?"
+    ],
+    "what_good_looks_like": [
+      "Açılış ve kapanış odak hedeflerini tanımlar.",
+      "Eksik tetikleyici için mantıklı bir hedef seçer.",
+      "Klavye ve erişilebilir adlarla doğrulama önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-510",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "liste-kimligi",
+    "prompt": "Bir listedeki satırlar sıralanınca düzenleme alanındaki değer başka kayda geçiyor. Bileşen kimliğiyle kayıt kimliğini nasıl ilişkilendirirsin?",
+    "follow_up_hints": [
+      "Dizinin sırası anahtar olabilir mi?",
+      "Yeni ve henüz kaydedilmemiş satırları nasıl ayırırsın?"
+    ],
+    "what_good_looks_like": [
+      "Kararlı kimliğin durum korumadaki rolünü açıklar.",
+      "Sıra numarası kullanımının riskini örnekler.",
+      "Ekleme ve sıralama içeren bir test önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-511",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "clarity"],
+    "topic": "bos-ve-yukleniyor",
+    "prompt": "Bir arama ekranında yükleniyor, sonuç yok ve hata durumları aynı boş alanı gösteriyor. Bu durumları veri modelinde ve arayüzde nasıl ayırırsın?",
+    "follow_up_hints": [
+      "Yeni arama sırasında eski sonuç kalmalı mı?",
+      "Yanıtlar ters sırada gelirse ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Birbirini dışlayan durumları açıkça modeller.",
+      "Kullanıcının bekleyiş ve hata kararlarını destekler.",
+      "Eski yanıtın yeni aramayı bozmamasını sağlar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-512",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["structure", "specificity", "impact"],
+    "topic": "ilk-yukleme-maliyeti",
+    "prompt": "Bir sayfanın ilk açılışında kullanılmayan ağır bir düzenleyici indiriliyor. Yüklemeyi ertelemeye nereden başlarsın ve kazanımı nasıl ölçersin?",
+    "follow_up_hints": [
+      "Paylaşılan bir import paketi yine yükleyebilir mi?",
+      "Düzenleyiciyi açarken beklemeyi nasıl gösterirsin?"
+    ],
+    "what_good_looks_like": [
+      "Aktarılan kaynakları ve bağımlılık yolunu ölçer.",
+      "İhtiyaç anına uygun bir yükleme sınırı seçer.",
+      "İlk yükleme ile sonraki etkileşim maliyetini birlikte ölçer."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-513",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "ekran-kaymasi",
+    "prompt": "Bir görsel yüklenince sayfanın altındaki düğme yer değiştiriyor. Yerleşim kaymasını önlemek için hangi bilgiyi önceden ayırırsın?",
+    "follow_up_hints": [
+      "Görsel boyutu önceden bilinmiyorsa ne yaparsın?",
+      "Mobil ekranda çözümü nasıl doğrularsın?"
+    ],
+    "what_good_looks_like": [
+      "Alan rezervasyonu ile yükleme zamanını ilişkilendirir.",
+      "Değişken boyut için kontrollü bir yerleşim önerir.",
+      "Gerçek yükleme koşulunda kaymayı ölçer."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-514",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["clarity", "specificity", "relevance"],
+    "topic": "turkce-arama",
+    "prompt": "Türkçe bir kişi listesinde büyük İ ve küçük ı içeren adlar aramada bulunamıyor. Metin karşılaştırmasını hangi kurallarla düzeltirsin?",
+    "follow_up_hints": [
+      "Gösterilen özgün adı değiştirir misin?",
+      "Aksan kaldırmak her durumda doğru mu?"
+    ],
+    "what_good_looks_like": [
+      "Yerel harf dönüşümü ile genel dönüşümü ayırır.",
+      "Arama anahtarıyla özgün gösterim metnini ayrı tutar.",
+      "İ ve ı içeren sınır örnekleriyle test eder."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-515",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["structure", "clarity", "specificity"],
+    "topic": "iyimser-guncelleme",
+    "prompt": "Bir beğeni ekranda hemen artıyor fakat sunucu isteği reddediyor. İyimser güncellemeyi tutarlı ve anlaşılır biçimde nasıl geri alırsın?",
+    "follow_up_hints": [
+      "Kullanıcı bu sırada ikinci kez tıklarsa ne olur?",
+      "Başka cihazdaki değişikliği nasıl ele alırsın?"
+    ],
+    "what_good_looks_like": [
+      "Geçici durumla doğrulanmış durumu ayırır.",
+      "Üst üste işlemlerin sırasını hesaba katar.",
+      "Başarısızlığı kullanıcıya anlaşılır biçimde gösterir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-516",
+    "type": "technical-concepts",
+    "roles": ["frontend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "etki-temizligi",
+    "prompt": "Bir sayfaya her dönüşte aynı olay iki kez işlenmeye başlıyor. Dinleyici veya abonelik yaşam döngüsünü nasıl araştırırsın?",
+    "follow_up_hints": [
+      "Bileşen kapanınca hangi kaynaklar bırakılmalı?",
+      "Geliştirme ortamının ek çağrılarını nasıl yorumlarsın?"
+    ],
+    "what_good_looks_like": [
+      "Kurulum ve temizliği eşleştirir.",
+      "Tekrar bağlanma durumunu yeniden üretir.",
+      "Çift yan etkiyi gizlemek yerine kaynağını giderir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-517",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "islem-butunlugu",
+    "prompt": "Bir siparişin kaydı oluşuyor ama stok düşme adımı başarısız oluyor. Bu iki değişikliğin tutarlılığını nasıl sağlarsın?",
+    "follow_up_hints": [
+      "İki veri farklı sistemlerdeyse ne değişir?",
+      "Yeniden deneme stoktan iki kez düşebilir mi?"
+    ],
+    "what_good_looks_like": [
+      "Tek veritabanındaki işlem sınırını açıklar.",
+      "Dağıtık durumda telafi ve tekrar güvenliğini tartar.",
+      "Yarım kalmış işlemin görünürlüğünü sağlar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-518",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "impact"],
+    "topic": "sorgu-yavaslamasi",
+    "prompt": "Kayıt sayısı arttıkça belirli bir liste sorgusu yavaşlıyor. İndeks eklemeden önce neyi inceler, ekledikten sonra neyi ölçersin?",
+    "follow_up_hints": [
+      "Yazma işlemlerine etkisi ne olur?",
+      "Filtre ve sıralama birlikte nasıl etkiler?"
+    ],
+    "what_good_looks_like": [
+      "Sorgu planını gerçek veri dağılımıyla inceler.",
+      "İndeksi erişim biçimine göre seçer.",
+      "Okuma kazancını yazma ve depolama maliyetiyle karşılaştırır."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-519",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "clarity", "specificity"],
+    "topic": "kuyrukta-tekrar",
+    "prompt": "Arka plan kuyruğu aynı e-posta işini iki kez teslim edebiliyor. İşleyicinin tekrar güvenli olmasını nasıl sağlarsın?",
+    "follow_up_hints": [
+      "Gönderimden sonra onay kaybolursa ne olur?",
+      "İş kaydı ne kadar saklanmalı?"
+    ],
+    "what_good_looks_like": [
+      "En az bir kez teslimin sonucunu açıklar.",
+      "Kalıcı iş kimliği ve tekrar kontrolü önerir.",
+      "Dış yan etkinin belirsiz sonucunu hesaba katar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-520",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["specificity", "structure", "impact"],
+    "topic": "baglanti-havuzu",
+    "prompt": "Trafik yükseldiğinde veritabanı bağlantıları tükeniyor ama işlemci boş görünüyor. Sorunu nasıl ayırır ve yükü nasıl sınırlarsın?",
+    "follow_up_hints": [
+      "Uzun işlemler havuzu nasıl etkiler?",
+      "Sadece havuzu büyütmek neden yetmeyebilir?"
+    ],
+    "what_good_looks_like": [
+      "Bekleyen bağlantı ve işlem sürelerini inceler.",
+      "Kaynak sınırını alttaki sistem kapasitesine bağlar.",
+      "Geri basınç ve zaman aşımı seçeneklerini tartar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-521",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "clarity", "specificity"],
+    "topic": "sayfalama-kaymasi",
+    "prompt": "Yeni kayıtlar eklenirken sayfalar arasında gezen kullanıcı bazı kayıtları tekrar görüyor. Sayfalama yaklaşımını nasıl seçersin?",
+    "follow_up_hints": ["Sıralama alanı eşitse ne olur?", "Rastgele sayfaya atlamak gerekli mi?"],
+    "what_good_looks_like": [
+      "Kaydırmalı sayfalamanın değişen verideki sınırını açıklar.",
+      "Kararlı sıralama ve imleç seçeneğini tartar.",
+      "Ürün ihtiyacıyla erişim biçimini ilişkilendirir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-522",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "sema-gecisi",
+    "prompt": "Çalışan bir uygulamada zorunlu yeni bir alan ekleyeceksin. Eski ve yeni sürümler kısa süre birlikte çalışırken geçişi nasıl yaparsın?",
+    "follow_up_hints": [
+      "Mevcut kayıtları ne zaman doldurursun?",
+      "Geri alma hangi aşamada güvenlidir?"
+    ],
+    "what_good_looks_like": [
+      "Şema genişletme ile zorunlu kılmayı ayırır.",
+      "Eski okuyucu ve yazıcı uyumunu korur.",
+      "Veri doldurma ve geri dönüş sınırını açıklar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-523",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "webhook-guveni",
+    "prompt": "Dış bir sistemin gönderdiği ödeme bildirimini kaydedeceksin. Bildirimin gerçekliğini ve tekrar işlenmemesini nasıl doğrularsın?",
+    "follow_up_hints": [
+      "Eski bir bildirim yeniden gönderilirse ne olur?",
+      "Bildirimler sıra dışı gelirse nasıl davranırsın?"
+    ],
+    "what_good_looks_like": [
+      "İmza ve zaman sınırı gibi kaynak kontrollerini açıklar.",
+      "Olay kimliğiyle tekrar işlemeyi önler.",
+      "Olay sırası ile güncel ödeme durumunu ayırır."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-524",
+    "type": "technical-concepts",
+    "roles": ["backend", "full-stack", "ai-product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "impact", "clarity"],
+    "topic": "yeniden-deneme-firtinasi",
+    "prompt": "Bir servis yavaşladığında bütün istemciler hemen yeniden deneyip yükü artırıyor. Yeniden deneme politikasını nasıl düzenlersin?",
+    "follow_up_hints": [
+      "Hangi hatalar tekrar denenmemeli?",
+      "Kullanıcı bekleme sınırı nasıl korunur?"
+    ],
+    "what_good_looks_like": [
+      "Tekrar edilebilir hata ve işlemleri ayırır.",
+      "Sınırlı deneme, artan bekleme ve rastgele yayılım önerir.",
+      "Toplam zaman ve yük bütçesini korur."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-525",
+    "type": "technical-concepts",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "clarity"],
+    "topic": "deney-payda",
+    "prompt": "Bir özellikte tıklamalar artıyor ama tamamlanan işler azalmış. Deneyin başarılı olup olmadığını anlamak için hangi ölçümleri birlikte incelersin?",
+    "follow_up_hints": [
+      "Hangi kullanıcılar deneye dâhil oldu?",
+      "Tekrar tıklamalar sonucu nasıl çarpıtır?"
+    ],
+    "what_good_looks_like": [
+      "Ara etkileşimle görev sonucunu ayırır.",
+      "Payda ve kullanıcı grubunu netleştirir.",
+      "Yan etki ve koruyucu ölçümleri dikkate alır."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-526",
+    "type": "technical-concepts",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "relevance", "clarity"],
+    "topic": "ozellik-bayragi",
+    "prompt": "Yeni bir akışı küçük bir kullanıcı grubuna açacaksın. Özellik bayrağının değerlendirme yerini ve kaldırılma koşulunu nasıl seçersin?",
+    "follow_up_hints": [
+      "Kullanıcı iki cihazda farklı akış görmeli mi?",
+      "Bayrak servisi çalışmazsa ne olur?"
+    ],
+    "what_good_looks_like": [
+      "Tutarlı grup ataması ve güvenli varsayılan belirler.",
+      "Yetki kontrolünü görünürlük bayrağından ayırır.",
+      "Geçici bayrağın bakım ve kaldırılma planını açıklar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-527",
+    "type": "technical-concepts",
+    "roles": ["product-engineer", "full-stack", "backend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "impact"],
+    "topic": "silme-anlami",
+    "prompt": "Kullanıcı hesabını sildiğinde yedekler ve dışa aktarımlar hâlâ bulunabiliyor. Silme işleminin kapsamını teknik olarak nasıl tanımlarsın?",
+    "follow_up_hints": [
+      "Geri alma süresi varsa nasıl açıklanır?",
+      "Silinmiş veri yedekten geri gelebilir mi?"
+    ],
+    "what_good_looks_like": [
+      "Aktif kayıt, yedek ve dış kopyaları ayırır.",
+      "Saklama ve geri yükleme davranışını açıklar.",
+      "Kullanıcıya verilebilecek doğru taahhüdü sınırlar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-528",
+    "type": "technical-concepts",
+    "roles": ["product-engineer", "full-stack", "frontend"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "clarity"],
+    "topic": "taslak-kaydetme",
+    "prompt": "Otomatik kaydetme göstergesi var ama sekme kapanınca son değişiklik kayboluyor. Kullanıcıya hangi durumda kaydedildi diyebilirsin?",
+    "follow_up_hints": [
+      "Yerel kayıtla sunucu kaydını nasıl ayırırsın?",
+      "Bağlantı yokken hangi durum gösterilir?"
+    ],
+    "what_good_looks_like": [
+      "Doğrulanmış kalıcılığı görsel durumdan ayırır.",
+      "Bekleyen ve başarısız kayıtları görünür kılar.",
+      "Kapanma ve bağlantı kaybını sınayan test önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-529",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "structure", "clarity"],
+    "topic": "para-yuvarlama",
+    "prompt": "Sepetteki kalemlerin toplamıyla ödeme tutarı bir kuruş farklı çıkıyor. Para hesabını ve yuvarlama noktasını nasıl düzenlersin?",
+    "follow_up_hints": [
+      "İndirim satır bazında mı uygulanır?",
+      "Farklı para birimleri neyi değiştirir?"
+    ],
+    "what_good_looks_like": [
+      "Hassasiyet ve temsil sorununu açıklar.",
+      "Yuvarlama kuralını iş kuralıyla birlikte belirler.",
+      "Sınır tutarlar ve toplamlarla doğrulama önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-530",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["structure", "clarity", "relevance"],
+    "topic": "surumlu-sozlesme",
+    "prompt": "Bir API yanıt alanının anlamı değişecek ama eski istemciler kullanımda. Sözleşmeyi bozmadan geçişi nasıl yaparsın?",
+    "follow_up_hints": [
+      "Alan adını korumak neden yeterli olmayabilir?",
+      "Eski kullanımın bittiğini nasıl anlarsın?"
+    ],
+    "what_good_looks_like": [
+      "Biçim uyumuyla anlam uyumunu ayırır.",
+      "Geçiş döneminde iki davranışı açıkça sürdürür.",
+      "Kullanım gözlemi ve kaldırma koşulu belirler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-531",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "impact"],
+    "topic": "sahte-saat",
+    "prompt": "Gece yarısında bazen başarısız olan bir süre sonu testin var. Testi gerçek saati beklemeden nasıl güvenilir hâle getirirsin?",
+    "follow_up_hints": ["Saat dilimini nerede sabitlersin?", "Tam süre sonu anını nasıl sınarsın?"],
+    "what_good_looks_like": [
+      "Zamanı bağımlılık olarak kontrol eder.",
+      "Sınırın hemen öncesi ve sonrasını ayrı sınar.",
+      "Üretim davranışını test için değiştirmez."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-532",
+    "type": "technical-concepts",
+    "roles": ["frontend", "backend", "full-stack", "product-engineer"],
+    "seniority": ["mid", "senior"],
+    "dimensions": ["relevance", "specificity", "clarity"],
+    "topic": "kaynak-tuketimi",
+    "prompt": "Küçük görünen bir dosya açıldığında sunucunun belleği tükeniyor. Dosya işleme sınırlarını yalnızca yükleme boyutuyla sınırlamak neden yeterli olmayabilir?",
+    "follow_up_hints": [
+      "Sıkıştırılmış içerik nasıl ele alınır?",
+      "İşlem süresini ve çıktıyı nasıl sınırlarsın?"
+    ],
+    "what_good_looks_like": [
+      "Girdi boyutu ile açılmış kaynak tüketimini ayırır.",
+      "Bellek, süre ve çıktı için sınır belirler.",
+      "Sınır aşımında güvenli temizleme önerir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-533",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "clarity"],
+    "topic": "ai-orneklem-kalitesi",
+    "prompt": "Bir model değişikliği beş örnekte daha iyi sonuç veriyor. Yayın kararına yetecek bir değerlendirme kümesini nasıl kurarsın?",
+    "follow_up_hints": [
+      "Zor ve nadir durumları nasıl seçersin?",
+      "Aynı örneklerle sürekli ayar yapmak neyi bozar?"
+    ],
+    "what_good_looks_like": [
+      "Temsil edici görevler ve hata türleri seçer.",
+      "Ayar örnekleriyle bağımsız kontrolü ayırır.",
+      "Kalite ve güvenlik ölçütlerini yayın öncesi belirler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-534",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "specificity", "clarity"],
+    "topic": "ai-belgede-talimat",
+    "prompt": "Özetlenecek belgede önceki kuralları yok saymasını isteyen bir cümle var. Bu metni işlerken modelin yetkisini nasıl sınırlandırırsın?",
+    "follow_up_hints": [
+      "Sadece uyarı yazmak yeterli mi?",
+      "Çıktı bir araç çağrısını tetikliyorsa ne değişir?"
+    ],
+    "what_good_looks_like": [
+      "Belgeyi güvenilmeyen veri olarak ele alır.",
+      "Yetki ve yan etkileri model dışındaki kontrollerle sınırlar.",
+      "Saldırı içeren örnekleri değerlendirmeye ekler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-535",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "clarity", "specificity"],
+    "topic": "ai-sema-ve-anlam",
+    "prompt": "Model geçerli JSON döndürüyor ama alıntıladığı cümle kaynakta yok. Biçim doğrulamasının yanına hangi anlam kontrollerini koyarsın?",
+    "follow_up_hints": [
+      "Başarısız çıktı tekrar denenmeli mi?",
+      "Kısmen geçerli sonuçları nasıl ele alırsın?"
+    ],
+    "what_good_looks_like": [
+      "Şema geçerliliğini kanıt doğruluğundan ayırır.",
+      "Kaynak eşleştirmesini sunucuda doğrular.",
+      "Sınırlı tekrar ve açık başarısızlık davranışı tanımlar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-536",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "frontend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["specificity", "clarity", "relevance"],
+    "topic": "ai-yarim-akis",
+    "prompt": "Akış hâlinde gelen model yanıtı yarıda kesiliyor. Kullanıcıya kısmi metni gösterirken tamamlanmış yanıtla farkını nasıl korursun?",
+    "follow_up_hints": [
+      "Yeniden deneme metni ikiye katlar mı?",
+      "Yapılandırılmış çıktı ne zaman kullanılabilir?"
+    ],
+    "what_good_looks_like": [
+      "Kısmi içerikle doğrulanmış son sonucu ayırır.",
+      "İptal ve yeniden denemenin durumunu açıkça modeller.",
+      "Yarım çıktıyla geri alınamaz işlem başlatmaz."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-537",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "backend", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "specificity", "clarity"],
+    "topic": "ai-gecikme-butcesi",
+    "prompt": "Bir yapay zekâ özelliği ucuz ama kullanıcıların bekleme süresi uzun. Gecikme ve maliyeti hangi parçalara ayırarak iyileştirme seçersin?",
+    "follow_up_hints": [
+      "İlk parça süresiyle toplam süre aynı mı?",
+      "Önbellek hangi durumlarda yanlış sonuç verir?"
+    ],
+    "what_good_looks_like": [
+      "İstek hazırlığı, ilk çıktı ve toplam süreyi ayırır.",
+      "Girdi ve çıktı uzunluğunu maliyetle ilişkilendirir.",
+      "İyileştirmeyi kaliteyi koruyan karşılaştırmayla sınar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-538",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "backend", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["structure", "specificity", "relevance"],
+    "topic": "ai-getirme-hatasi",
+    "prompt": "Belge destekli bir asistan yanlış yanıt veriyor. Sorunun ilgili belgeyi bulamamaktan mı, bulunan belgeyi kullanamamaktan mı kaynaklandığını nasıl ayırırsın?",
+    "follow_up_hints": [
+      "Arama sonucunu bağımsız nasıl değerlendirirsin?",
+      "Kaynakta cevap yoksa ne olmalı?"
+    ],
+    "what_good_looks_like": [
+      "Getirme ve üretim aşamalarını ayrı sınar.",
+      "İlgili kaynak ve alıntı doğruluğunu kontrol eder.",
+      "Kanıt yokken yanıt sınırını açıklar."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-539",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "backend", "product-engineer"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["relevance", "clarity", "specificity"],
+    "topic": "ai-arac-yetkisi",
+    "prompt": "Bir asistan kayıtları değiştiren bir aracı kullanacak. Modelin önerisiyle gerçekten izin verilen işlemi hangi kontrollerle ayırırsın?",
+    "follow_up_hints": [
+      "İşlem parametreleri sonradan değişirse ne olur?",
+      "İnsan onayı hangi işleme bağlanmalı?"
+    ],
+    "what_good_looks_like": [
+      "Yetkiyi model kararına bırakmaz.",
+      "Parametre doğrulaması ve işlem kapsamını sunucuda uygular.",
+      "Onayı belirli işlem ve sonuçla ilişkilendirir."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  },
+  {
+    "id": "tec-540",
+    "type": "technical-concepts",
+    "roles": ["ai-product-engineer", "product-engineer", "full-stack"],
+    "seniority": ["junior", "mid", "senior"],
+    "dimensions": ["impact", "structure", "clarity"],
+    "topic": "ai-model-karsilastirma",
+    "prompt": "Daha ucuz bir modele geçmeyi düşünüyorsun. Aynı görevi yapan iki modeli hangi kanıtlarla karşılaştırıp geçiş kararı verirsin?",
+    "follow_up_hints": [
+      "Nadir ama ağır hataları nasıl hesaba katarsın?",
+      "Model sürümü değişince neyi yeniden sınarsın?"
+    ],
+    "what_good_looks_like": [
+      "Göreve uygun sabit değerlendirme örnekleri kullanır.",
+      "Kalite, güvenlik, maliyet ve süreyi birlikte tartar.",
+      "Geçiş ve geri dönüş için açık ölçütler belirler."
+    ],
+    "time_limit_s": 90,
+    "status": "active",
+    "added_in": "1.0.0"
+  }
+]

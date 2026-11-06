@@ -1,5 +1,5 @@
 'use client';
-import { T, useT } from '@/lib/i18n/context';
+import { T, useT, useI18n } from '@/lib/i18n/context';
 import { lengthVerdict, textLengthVerdict } from '@/lib/report/feedback-view';
 import { formatMmSs } from '@/lib/time';
 import { PACE, SPEECH, type AnswerMode } from '@/lib/config';
@@ -16,6 +16,7 @@ export function DeliveryMetrics({
   recordingMs?: number | null;
 }) {
   const t = useT();
+  const { language } = useI18n();
   const verdict = (value: string) =>
     t(
       value === 'Too short'
@@ -73,7 +74,10 @@ export function DeliveryMetrics({
           <T id="components.room.delivery.metrics.6" />
         </dt>
         <dd>
-          {metrics.fillers.total} <span>{formatFillerBreakdown(metrics.fillers.byPhrase)}</span>
+          {metrics.fillers.total}{' '}
+          <span>
+            {formatFillerBreakdown(metrics.fillers.byPhrase, language, t('fillers.none'))}
+          </span>
         </dd>
         <dt>
           <T id="components.room.delivery.metrics.7" />

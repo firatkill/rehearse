@@ -19,6 +19,7 @@ import { Banners, type BannerProps } from './banners';
 import { LiveRegion } from '@/components/common/live-region';
 import { getRepository, useStorageStatus } from '@/hooks/use-repository';
 import { useAnnouncer } from '@/hooks/use-announcer';
+import type { BudgetLevel } from '@/lib/api/budget-contract';
 
 type ShellApi = {
   message: string;
@@ -39,12 +40,14 @@ export function Shell({
   room: roomOverride,
   endSession,
   edition = 'full',
+  initialBudgetLevel,
   ...banners
 }: BannerProps & {
   children: ReactNode;
   room?: boolean;
   endSession?: ReactNode;
   edition?: 'demo' | 'full';
+  initialBudgetLevel?: BudgetLevel;
 }) {
   const path = usePathname();
   const storage = useStorageStatus();
@@ -74,7 +77,11 @@ export function Shell({
           <T id="components.layout.shell.1" />
         </a>
         <DemoBanner edition={edition} />
-        {edition === 'full' && path !== '/sample' && <BudgetBanner />}
+        {edition === 'full' && path !== '/sample' && (
+          <BudgetBanner
+            {...(initialBudgetLevel === undefined ? {} : { initialLevel: initialBudgetLevel })}
+          />
+        )}
         <Header
           room={room}
           endSession={

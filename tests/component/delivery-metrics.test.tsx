@@ -3,7 +3,29 @@ import { expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { DeliveryMetrics } from '@/components/room/delivery-metrics';
 import { computeDelivery } from '@/lib/metrics/delivery';
+import { I18nProvider } from '@/lib/i18n/context';
+import { messages } from '@/messages/tr';
 const timing = { recordingMs: null, firstResultOffsetMs: null, resultOffsetsMs: [] };
+it('TC-208 TC-211 Turkish filler breakdown agrees with its total and localises the empty state', () => {
+  const metrics = computeDelivery(
+    { mode: 'text', transcript: 'Şey, yani, düşündüm.', rawTranscript: '', timing },
+    undefined,
+    'tr',
+  );
+  const view = render(
+    <I18nProvider initialLanguage="tr" initialMessages={messages}>
+      <DeliveryMetrics metrics={metrics} />
+    </I18nProvider>,
+  );
+  expect(screen.getByText('(şey 1, yani 1)')).toBeVisible();
+  expect(screen.getByText('Dolgu sözcükleri').nextElementSibling).toHaveTextContent('2');
+  view.rerender(
+    <I18nProvider initialLanguage="tr" initialMessages={messages}>
+      <DeliveryMetrics metrics={{ ...metrics, fillers: { total: 0, byPhrase: {} } }} />
+    </I18nProvider>,
+  );
+  expect(screen.getByText('Hiç sayılmadı')).toBeVisible();
+});
 it('TC-038 CT-04 text delivery uses edited words/fillers and shows unavailable speech metrics', () => {
   const metrics = computeDelivery({
     mode: 'text',

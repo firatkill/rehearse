@@ -55,7 +55,7 @@ export async function POST(request: Request): Promise<Response> {
         count,
         existing,
         provider,
-        bankQuestions: getBank().questions.map((question) => question.prompt),
+        bankQuestions: getBank(post.language).questions.map((question) => question.prompt),
       });
       const saved = repo.commitGeneration(
         post.id,
