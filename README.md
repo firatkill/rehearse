@@ -8,7 +8,7 @@ Run the full version with [Docker Compose](#run-it-yourself-with-docker) or [loc
 
 ![The demo: choose a fictional job, type an answer and see pre-written sample feedback](docs/assets/rehearse-demo.gif)
 
-Recorded on the production demo with fictional text, 6 November 2026. The animation is 788 KB; no microphone or AI call was used.
+Recorded on the production demo with fictional text, 6 November 2026. The animation is 859 KB; no microphone or AI call was used.
 
 ## Run it yourself with Docker
 
