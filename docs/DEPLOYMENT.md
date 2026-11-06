@@ -22,3 +22,7 @@ All live work above was run by the owner. V-52 made no paid calls. The static sa
 ## v2.0.0 production recheck
 
 After PR #41 merged, health returned 200 at commit `600b814`, version 2.0.0, edition demo and llmMode none. The six public routes, fresh script nonces and a complete three-question Northwind text session passed again with Sample feedback/report and zero CSP violations, page errors or 5xx. Main CI 42138583562 passed before tagging and publishing v2.0.0. No hosting settings changed.
+
+## Final v2.0.0 replacement
+
+Owner-approved replacement after PR #42 and #43: final tag target bf7a19e, main CI 42143969315 green. Production health reports 2.0.0/demo/none at that commit. Landing/how-it-works/privacy contain shipped edition copy and explicit demo transient-processing disclosure; six public routes, strict headers and a complete three-answer sample session pass without CSP/page/5xx errors. The original 600b814 publication above is historical. No Vercel/DNS/env changes or paid calls.
