@@ -8,9 +8,10 @@ import { serverUrl } from '../e2e/helpers';
 
 const require = createRequire(`${process.cwd()}/package.json`);
 
-export const test = base.extend<{ capOrigin: string }>({
+export const test = base.extend<{ capOrigin: string; ttsProvider: string }>({
+  ttsProvider: ['browser', { option: true }],
   capOrigin: [
-    async ({ playwright }, runTest, info) => {
+    async ({ playwright, ttsProvider }, runTest, info) => {
       const origin = serverUrl(info, 3);
       const dataDirectory = mkdtempSync(join(tmpdir(), 'rehearse-cap-'));
       const child = spawn(
@@ -23,6 +24,7 @@ export const test = base.extend<{ capOrigin: string }>({
             DATA_DIR: dataDirectory,
             NODE_ENV: 'test',
             LLM_MODE: 'mock',
+            TTS_PROVIDER: ttsProvider,
             RATE_LIMIT_BACKEND: 'memory',
             DEMO_MODE: 'on',
             NEXT_PUBLIC_SITE_URL: origin,

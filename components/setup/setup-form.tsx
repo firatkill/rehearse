@@ -1,4 +1,5 @@
 'use client';
+import { useProviderSpeech } from '@/lib/speech/provider-context';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT, useI18n } from '@/lib/i18n/context';
 import { languageHref } from '@/lib/i18n/language';
@@ -88,6 +89,7 @@ export function SetupForm({
   const language =
     APP_EDITION === 'demo' || !LANGUAGE_FEATURES.turkishSessions ? 'en' : selected.language;
   const voiceState = useVoices(language);
+  const providerSpeech = useProviderSpeech();
   const setup: Setup = {
     ...selected,
     language:
@@ -96,8 +98,9 @@ export function SetupForm({
         : (selected.language ?? 'en'),
     mode: capabilities && !capabilities.recognition ? 'text' : selected.mode,
     readAloud:
-      (capabilities && !capabilities.synthesis) ||
-      (!voiceState.loading && voiceState.voices.length === 0)
+      !providerSpeech &&
+      ((capabilities && !capabilities.synthesis) ||
+        (!voiceState.loading && voiceState.voices.length === 0))
         ? false
         : selected.readAloud,
   };
@@ -418,7 +421,7 @@ export function SetupForm({
           </p>
         )}
         {setup.mode === 'voice' && <MicCheck />}
-        {capabilities?.synthesis && (
+        {(capabilities?.synthesis || providerSpeech) && (
           <details className="setup-interviewer" open>
             <summary>
               <T id="components.setup.setup.form.20" />

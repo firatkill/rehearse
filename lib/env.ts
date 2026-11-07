@@ -18,6 +18,12 @@ const schema = z
     LLM_MODE: z.enum(['live', 'mock']).default('live'),
     OPENAI_API_KEY: optionalText,
     CHAT_MODEL: optionalText,
+    TTS_PROVIDER: z.enum(['browser', 'openai', 'gemini', 'elevenlabs']).default('browser'),
+    TTS_MODEL: optionalText,
+    TTS_VOICE: optionalText,
+    TTS_PRICE: price,
+    TTS_PRICE_UNIT: z.enum(['characters', 'minute']).default('characters'),
+    ELEVENLABS_API_KEY: optionalText,
     JOBPOST_PROVIDER: z.enum(['openai', 'anthropic', 'google']).default('openai'),
     JOBPOST_MODEL: optionalText,
     JOBPOST_PRICE_INPUT_PER_MTOK: price,
@@ -91,6 +97,17 @@ const schema = z
           invalid('JOBPOST_PRICE_OUTPUT_PER_MTOK');
       }
     }
+    if (env.LLM_MODE === 'live' && env.TTS_PROVIDER !== 'browser') {
+      for (const name of ['TTS_MODEL', 'TTS_VOICE', 'TTS_PRICE'] as const)
+        if (env[name] === undefined) invalid(name);
+      const key =
+        env.TTS_PROVIDER === 'elevenlabs'
+          ? 'ELEVENLABS_API_KEY'
+          : env.TTS_PROVIDER === 'gemini'
+            ? 'GOOGLE_GENERATIVE_AI_API_KEY'
+            : 'OPENAI_API_KEY';
+      if (!env[key]) invalid(key);
+    }
     if (env.RATE_LIMIT_BACKEND === 'upstash') {
       for (const name of ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'] as const) {
         if (env[name] === undefined) invalid(name);
@@ -120,6 +137,12 @@ export function getEnv(): Env {
   if (source.APP_EDITION === 'demo') {
     // Demo has no provider or remote limiter; even invalid unused values are ignored.
     for (const name of [
+      'TTS_PROVIDER',
+      'TTS_MODEL',
+      'TTS_VOICE',
+      'TTS_PRICE',
+      'TTS_PRICE_UNIT',
+      'ELEVENLABS_API_KEY',
       'JOBPOST_PROVIDER',
       'JOBPOST_MODEL',
       'JOBPOST_PRICE_INPUT_PER_MTOK',

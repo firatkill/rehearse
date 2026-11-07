@@ -1,3 +1,4 @@
+import { registerProviderVoices } from './provider-voices.cases';
 import { registerJobDate } from './jobdate.cases';
 import { registerHistory } from './history.cases';
 import { registerLocaleDates } from './locale-dates.cases';
@@ -93,3 +94,5 @@ test.describe('Full shared storage @isolated', () => {
     registerA11Y();
   });
 });
+
+registerProviderVoices();

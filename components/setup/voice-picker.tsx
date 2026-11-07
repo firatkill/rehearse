@@ -5,6 +5,7 @@ import { TTS } from '@/lib/config';
 import type { Setup } from '@/lib/storage/schema';
 import { groupVoices, pickVoice, voiceAccentLabel } from '@/lib/speech/voices';
 import { useState } from 'react';
+import { primeSynthesis } from '@/lib/speech/tts';
 import { chunkForSpeech } from '@/lib/speech/chunk';
 import { useTTS } from '@/hooks/use-tts';
 import { Button } from '@/components/ui/button';
@@ -24,8 +25,8 @@ export function VoicePicker({
 
   const { voice, fellBack } = pickVoice(voices, setup.voiceURI, setup.language);
   const groups = groupVoices(voices, setup.language);
-  const empty = !loading && groups.length === 0;
   const tts = useTTS();
+  const empty = !tts.provider && !loading && groups.length === 0;
   const [previewError, setPreviewError] = useState(false);
   return (
     <fieldset className="voice-picker">
@@ -51,13 +52,15 @@ export function VoicePicker({
           <span className="select-wrap">
             <select
               id="interviewer-voice"
-              value={voice?.voiceURI ?? ''}
-              disabled={loading || empty}
+              value={tts.provider ? '' : (voice?.voiceURI ?? '')}
+              disabled={tts.provider || loading || empty}
               onChange={(event) => {
                 onChange({ voiceURI: event.target.value });
               }}
             >
-              {loading ? (
+              {tts.provider ? (
+                <option value="">{t('speech.configuredVoice')}</option>
+              ) : loading ? (
                 <option value="" disabled>
                   <T id="components.setup.voice.picker.4" />
                 </option>
@@ -125,16 +128,29 @@ export function VoicePicker({
           <T id="components.setup.voice.picker.9" />
         </p>
       )}
+      {tts.provider && (
+        <p className="voice-note">
+          <T id="speech.provider" />
+        </p>
+      )}
+      {tts.fellBack && (
+        <p role="status" className="voice-note">
+          <T id="speech.fallback" />
+        </p>
+      )}
       <div className="voice-actions">
         <Button
           type="button"
           variant="secondary"
-          disabled={loading || empty}
+          disabled={(!tts.provider && loading) || empty}
           onClick={() => {
             if (tts.speaking) {
               void tts.cancel();
               return;
             }
+            tts.prime();
+            if (tts.provider && typeof window.speechSynthesis !== 'undefined')
+              primeSynthesis(window.speechSynthesis);
             setPreviewError(false);
             void tts
               .play(
@@ -143,6 +159,7 @@ export function VoicePicker({
                 voice,
                 setup.rate,
                 setup.language,
+                { input: { kind: 'preview', language: setup.language ?? 'en' } },
               )
               .then((result) => {
                 setPreviewError(result === 'error');

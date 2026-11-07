@@ -1,4 +1,9 @@
 export const messages = {
+  'speech.provider':
+    'Uses the configured AI voice provider. Question text is sent to that provider; usage counts towards your budget.',
+  'speech.fallback': 'The provider voice is unavailable. Using browser speech for this question.',
+  'speech.configuredVoice': 'Configured provider voice',
+
   'job.analysis.title': 'What the post asks for',
   'job.analysis.role': 'Role summary',
   'job.analysis.must': 'Must-haves',
@@ -424,7 +429,7 @@ export const messages = {
   'app.privacy.page.13': 'Read about browser speech recognition',
   'app.privacy.page.14': 'Reading questions aloud',
   'app.privacy.page.15':
-    'Questions are read with your system’s voices. Voices marked ‘online voice’ send the question text, not your answers, to the browser vendor to produce speech.',
+    'By default, questions are read with your system’s voices. Voices marked ‘online voice’ send question text to the browser vendor. In the full edition, you can configure OpenAI, Gemini or ElevenLabs voices: question or preview text is sent to that provider, whose retention policy applies. Rehearse never stores generated audio or sends your answer audio to these providers. Demo uses browser voices only.',
   'app.privacy.page.16': 'Feedback',
   'app.privacy.page.17':
     'In the full edition, OpenAI’s API data is not used for model training by default. Abuse-monitoring logs may retain content for up to 30 days by default, with exceptions for legal and safety needs. Retention also depends on the endpoint and account controls.',
