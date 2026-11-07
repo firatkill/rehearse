@@ -181,10 +181,10 @@ export const ANNOUNCE = {
 
 export const STORAGE = {
   DB_NAME: 'rehearse',
-  DB_VERSION: 9,
+  DB_VERSION: 10,
   RECORD_SCHEMA_VERSION: 6, // equals the z.literal in SessionRecordSchema and AnswerRecordSchema
   OPEN_TIMEOUT_MS: 3_000,
-  EXPORT_FORMAT_VERSION: 9,
+  EXPORT_FORMAT_VERSION: 10,
   LOCAL_KEYS: { theme: 'rehearse-theme', setup: 'rehearse-setup' },
 } as const;
 
@@ -225,6 +225,8 @@ export const BUDGET = {
 } as const;
 
 export const JOBPOST = {
+  ANALYSIS_MAX_POINTS: 8,
+  ANALYSIS_MAX_OUTPUT_TOKENS: 2000,
   AI_READ_TIMEOUT_MS: 30_000,
   AI_READ_MAX_OUTPUT_TOKENS: 6000,
   AI_READ_ESTIMATE_INPUT_TOKENS: 12000,

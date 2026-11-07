@@ -20,6 +20,8 @@ test('TC-176 pasted post is reviewed, generated and practised with server-owned 
     .getByLabel('Edit what we read', { exact: true })
     .fill(jobText + '\nMentor colleagues through constructive code reviews.');
   await page.getByRole('button', { name: 'Save text', exact: true }).click();
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'What the post asks for' })).toBeVisible();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -51,6 +53,8 @@ test('TC-179 five more questions preserve existing ids and the current selection
   await page.goto('/setup');
   await page.getByLabel('Job post link or text').fill(jobText);
   await page.getByRole('button', { name: 'Read the job post', exact: true }).click();
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'What the post asks for' })).toBeVisible();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
   await page.getByRole('checkbox').nth(3).uncheck();
@@ -93,6 +97,8 @@ test('TC-181 an unsafe link falls back to focused paste input and review before 
     page.getByRole('heading', { name: 'Review the job post', exact: true }),
   ).toBeVisible();
   await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'What the post asks for' })).toBeVisible();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
 });
@@ -123,6 +129,8 @@ test('TC-221 link response is reviewed before mock generation', async ({ page },
     page.getByRole('heading', { name: 'Review the job post', exact: true }),
   ).toBeVisible();
   await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'What the post asks for' })).toBeVisible();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
 });
@@ -168,6 +176,8 @@ test('TC-222 AI read is explicit and returns to review before generation', async
   ).toBeVisible();
   expect(paidActions).toBe(1);
   await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'What the post asks for' })).toBeVisible();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
 });

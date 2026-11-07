@@ -216,6 +216,8 @@ test('TC-211 Turkish job-post generation and start retain the stored language', 
   await expect(
     page.getByRole('heading', { name: 'İş ilanını gözden geçir', exact: true }),
   ).toBeVisible();
+  await page.getByRole('button', { name: 'İlanı analiz et', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'İlanın beklentileri' })).toBeVisible();
   await page.getByRole('button', { name: 'Soruları oluştur', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
   await page.getByRole('checkbox').nth(3).uncheck();

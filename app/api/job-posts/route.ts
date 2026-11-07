@@ -9,7 +9,9 @@ import { checkOrigin, readJsonBody, jsonError } from '@/lib/request';
 import { JobRequestSchema, JobResponseSchema } from '@/lib/api/jobpost-contracts';
 import { getJobRepository } from '@/lib/jobpost/repository';
 import { generateJobQuestions } from '@/lib/jobpost/generate';
-import { getProvider } from '@/lib/llm';
+import { getJobpostProvider, jobpostPrices } from '@/lib/jobpost/provider';
+import { analyzeJobPost } from '@/lib/jobpost/analyze';
+import { jobpostPrompt } from '@/lib/prompts/language';
 import { InvalidOutputError, ProviderTimeoutError, ProviderError } from '@/lib/llm/provider';
 import { getBank } from '@/lib/questions/bank';
 import { estimateCostUsd } from '@/lib/cost/estimate';
@@ -40,6 +42,29 @@ export async function POST(request: Request): Promise<Response> {
     else if (input.operation === 'updateText') post = repo.updateText(input.id, input.text);
     else post = repo.get(input.id);
     if (!post) throw new AppError('JOBPOST_NOT_FOUND');
+    if (
+      input.operation === 'analyze' ||
+      input.operation === 'generate' ||
+      input.operation === 'more'
+    ) {
+      if (!post.analysis) {
+        const provider = getJobpostProvider();
+        const result = await analyzeJobPost(post.text, post.language, provider);
+        recordCost(
+          `${requestId}:analysis`,
+          provider.modelId === 'mock' ? 0 : estimateCostUsd(result.usage, jobpostPrices()),
+        );
+        post = repo.saveAnalysis(
+          post.id,
+          {
+            ...result.analysis,
+            model: provider.modelId,
+            promptVersion: jobpostPrompt(post.language).version,
+          },
+          post.text,
+        );
+      }
+    }
     if (input.operation === 'generate' || input.operation === 'more') {
       const stored = repo.questions(post.id);
       const existing = stored
@@ -51,31 +76,26 @@ export async function POST(request: Request): Promise<Response> {
         stored.length + count > JOBPOST.MAX_STORED_QUESTIONS
       )
         throw new AppError('VALIDATION_FAILED');
-      const provider = getProvider();
+      const provider = getJobpostProvider();
       const started = Date.now();
       const result = await generateJobQuestions({
         text: post.text,
+        ...(post.analysis ? { analysis: post.analysis } : {}),
         language: post.language,
         count,
         existing,
         provider,
         bankQuestions: getBank(post.language).questions.map((question) => question.prompt),
       });
+      const costUsd =
+        provider.modelId === 'mock' ? 0 : estimateCostUsd(result.usage, jobpostPrices());
+      recordCost(requestId, costUsd);
       const saved = repo.commitGeneration(
         post.id,
         result.summary,
         result.questions,
         provider.modelId,
       );
-      const costUsd =
-        provider.modelId === 'mock'
-          ? 0
-          : estimateCostUsd(result.usage, {
-              input: env.PRICE_INPUT_PER_MTOK,
-              output: env.PRICE_OUTPUT_PER_MTOK,
-              cachedInput: env.PRICE_CACHED_INPUT_PER_MTOK,
-            });
-      recordCost(requestId, costUsd);
       getLogger().info({
         event: 'jobpost.generated',
         requestId,

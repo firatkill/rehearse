@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { StoredJobAnalysisSchema, groundedAnalysis } from './job-analysis';
 import { JOBPOST, ROLES, LANGUAGES } from '@/lib/config';
 export const GeneratedQuestionIdSchema = z
   .string()
@@ -26,21 +27,41 @@ export const V2JobPostRecordSchema = LegacyJobPostRecordSchema.extend({
   schemaVersion: z.literal(2),
   interviewDate: InterviewDateSchema.nullable(),
 });
-export const JobPostRecordSchema = V2JobPostRecordSchema.extend({
+export const V3JobPostRecordSchema = V2JobPostRecordSchema.extend({
   schemaVersion: z.literal(3),
   language: z.enum(LANGUAGES),
+});
+export const JobPostRecordSchema = V3JobPostRecordSchema.extend({
+  schemaVersion: z.literal(4),
+  analysis: StoredJobAnalysisSchema.nullable(),
+}).superRefine((post, ctx) => {
+  if (post.analysis && !groundedAnalysis(post.analysis, post.text))
+    ctx.addIssue({
+      code: 'custom',
+      path: ['analysis'],
+      message: 'Analysis quotes must match the post',
+    });
 });
 export function migrateJobRecord(input: unknown) {
   const current = JobPostRecordSchema.safeParse(input);
   if (current.success) return current.data;
+  const v3 = V3JobPostRecordSchema.safeParse(input);
+  if (v3.success)
+    return JobPostRecordSchema.parse({ ...v3.data, schemaVersion: 4, analysis: null });
   const v2 = V2JobPostRecordSchema.safeParse(input);
   if (v2.success)
-    return JobPostRecordSchema.parse({ ...v2.data, schemaVersion: 3, language: 'en' });
+    return JobPostRecordSchema.parse({
+      ...v2.data,
+      schemaVersion: 4,
+      analysis: null,
+      language: 'en',
+    });
   const legacy = LegacyJobPostRecordSchema.safeParse(input);
   return legacy.success
     ? JobPostRecordSchema.parse({
         ...legacy.data,
-        schemaVersion: 3,
+        schemaVersion: 4,
+        analysis: null,
         interviewDate: null,
         language: 'en',
       })

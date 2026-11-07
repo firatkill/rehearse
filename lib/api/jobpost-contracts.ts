@@ -37,6 +37,7 @@ export const JobRequestSchema = z.discriminatedUnion('operation', [
       interviewDate: InterviewDateSchema.nullable(),
     })
     .strict(),
+  z.object({ operation: z.literal('analyze'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('generate'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('more'), id: z.uuid() }).strict(),
 ]);

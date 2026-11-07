@@ -51,6 +51,15 @@ export function JobPost({ initial }: { initial: JobResponse }) {
     } else setError(jobErrorMessage(result.message, t));
     setBusy(null);
   }
+  async function analyze() {
+    if (busy) return;
+    setBusy(t('job.analysis.busy'));
+    setError(null);
+    const result = await requestJob({ operation: 'analyze', id: post.id });
+    if (result.ok) setData(result.data);
+    else setError(jobErrorMessage(result.message, t));
+    setBusy(null);
+  }
   async function generate(operation: 'generate' | 'more' = 'generate') {
     if (busy) return;
     setBusy(operation === 'more' ? t('ui.dynamic.25') : t('ui.dynamic.26'));
@@ -276,6 +285,37 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         )}
       </aside>
       <section className="job-questions" aria-labelledby="job-questions-heading">
+        {post.analysis && (
+          <section className="space-y-3" aria-labelledby="job-analysis-heading">
+            <h2 id="job-analysis-heading">{t('job.analysis.title')}</h2>
+            {(
+              [
+                ['job.analysis.role', [post.analysis.roleSummary]],
+                ['job.analysis.must', post.analysis.mustHaves],
+                ['job.analysis.nice', post.analysis.niceToHaves],
+                ['job.analysis.probes', post.analysis.likelyProbes],
+              ] as const
+            ).map(([label, points]) => (
+              <div key={label}>
+                <h3>{t(label)}</h3>
+                {points.length ? (
+                  points.map((point, index) => (
+                    <div key={index} className="space-y-1">
+                      <p>
+                        <SafeText text={point.text} />
+                      </p>
+                      <blockquote>
+                        <SafeText text={point.groundingQuote} />
+                      </blockquote>
+                    </div>
+                  ))
+                ) : (
+                  <p>{t('job.analysis.unspecified')}</p>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
         <h2 id="job-questions-heading">
           <T id="components.jobpost.job.post.12" />
         </h2>
@@ -287,14 +327,25 @@ export function JobPost({ initial }: { initial: JobResponse }) {
             <p>
               <T id="components.jobpost.job.post.14" />
             </p>
-            <Button
-              disabled={Boolean(busy) || editing}
-              onClick={() => {
-                void generate();
-              }}
-            >
-              <T id="components.jobpost.job.post.15" />
-            </Button>
+            {post.analysis ? (
+              <Button
+                disabled={Boolean(busy) || editing}
+                onClick={() => {
+                  void generate();
+                }}
+              >
+                <T id="components.jobpost.job.post.15" />
+              </Button>
+            ) : (
+              <Button
+                disabled={Boolean(busy) || editing}
+                onClick={() => {
+                  void analyze();
+                }}
+              >
+                {t('job.analysis.action')}
+              </Button>
+            )}
           </>
         )}
         {questions.length > 0 && (

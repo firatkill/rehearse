@@ -1,15 +1,8 @@
 import 'server-only';
 import { JOBPOST } from '@/lib/config';
 import type { JobGeneration } from './schema';
-export function normaliseJobText(text: string): string {
-  return text
-    .normalize('NFKC')
-    .replaceAll('‹', '<')
-    .replaceAll('›', '>')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toLocaleLowerCase('en');
-}
+import { normaliseJobText, groundedJobQuote } from '@/lib/storage/job-analysis';
+export { normaliseJobText } from '@/lib/storage/job-analysis';
 export function questionOverlap(a: string, b: string): number {
   const tokens = (text: string) => new Set(normaliseJobText(text).match(/[\p{L}\p{N}]+/gu) ?? []);
   const x = tokens(a),
@@ -25,21 +18,8 @@ export function validateJobQuestions(
   const accepted: JobGeneration['questions'] = [];
   let ungrounded = 0,
     duplicates = 0;
-  const source = normaliseJobText(text);
-  // Split after terminal punctuation followed by whitespace, preserving decimal points.
-  // Work on normalised text so case/spacing cannot change sentence membership.
-  const sentences = new Set(
-    source.split(/(?<=[.!?])\s+/u).filter((sentence) => /[.!?]$/u.test(sentence)),
-  );
   for (const question of questions) {
-    const quote = normaliseJobText(question.groundingQuote);
-    const words = quote.match(/[\p{L}\p{N}]+/gu) ?? [];
-    if (
-      !source.includes(quote) ||
-      words.length === 0 ||
-      (!sentences.has(quote) &&
-        (quote.length < JOBPOST.MIN_QUOTE_CHARS || words.length < JOBPOST.MIN_QUOTE_WORDS))
-    ) {
+    if (!groundedJobQuote(question.groundingQuote, text)) {
       ungrounded++;
       continue;
     }

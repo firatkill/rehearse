@@ -114,3 +114,7 @@ Hand-written bank questions live under `content/questions`; follow the schema an
 Release: **v1.0.0**, the first public release. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md).
 
 After a free job-link read fails, the full edition can offer **Read it with AI**. Set `PRICE_WEB_SEARCH_PER_CALL` to your current OpenAI web-search price to enable the cost-labelled action. It uses `CHAT_MODEL` and your OpenAI key, then opens the extracted text for review before question generation. The displayed cost is an estimate; provider-reported usage contributes to monthly budget warnings. The demo never uses this feature.
+
+For job-post analysis and question generation, set `JOBPOST_PROVIDER=openai|anthropic|google`, `JOBPOST_MODEL`, `JOBPOST_PRICE_INPUT_PER_MTOK` and `JOBPOST_PRICE_OUTPUT_PER_MTOK`. Configure the selected key (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY` or `GOOGLE_GENERATIVE_AI_API_KEY`). A custom model requires explicit prices so budget estimates do not reuse another model's rates. With these options unset, the app retains OpenAI and `CHAT_MODEL`.
+
+Question generation from job posts only. Feedback and scoring always use `CHAT_MODEL`; summaries and follow-ups do too. On a job's review page, choose **Analyse the job post**, review the quoted evidence, then generate questions. Analysis is saved locally and cleared when you edit the source text.

@@ -51,6 +51,8 @@ for (const theme of ['light', 'dark'] as const) {
     await auditV6(page);
     await tabTo(page, page.getByRole('button', { name: 'Save text', exact: true }));
     await page.keyboard.press('Enter');
+    await tabTo(page, page.getByRole('button', { name: 'Analyse the job post', exact: true }));
+    await page.keyboard.press('Enter');
     await tabTo(page, page.getByRole('button', { name: 'Generate questions', exact: true }));
     await page.keyboard.press('Enter');
     await expect(page.getByRole('checkbox')).toHaveCount(8);

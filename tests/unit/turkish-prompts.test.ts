@@ -36,10 +36,10 @@ it('TC-207 Turkish rubric retains six dimensions, four anchors per type and impl
   }
   expect(feedbackPrompt('tr').version).toBe('feedback-tr-v3');
   expect(summaryPrompt('tr').version).toBe('summary-tr-v1');
-  expect(jobpostPrompt('tr').version).toBe('jobpost-tr-v1');
+  expect(jobpostPrompt('tr').version).toBe('jobpost-tr-v2');
   expect(feedbackPrompt().version).toBe('feedback-v8');
   expect(summaryPrompt().version).toBe('summary-v2');
-  expect(jobpostPrompt().version).toBe('jobpost-v2');
+  expect(jobpostPrompt().version).toBe('jobpost-v3');
 });
 it('TC-207 Turkish golden corpus has independent eligible triples, edge cases and follow-up cases', () => {
   expect(golden).toHaveLength(27);
@@ -186,13 +186,13 @@ it('TC-207 Turkish job generation retains exact grounding quotes and canonical f
   expect(result.summary.role).toBe('Yazılım mühendisi');
 });
 
-it('TC-207 English prompt files and versions retain their pre-V7 bytes', () => {
+it('TC-207 English scoring prompts retain their bytes; job prompts match the approved analysis revision', () => {
   const hashes = {
     'lib/prompts/sanitize.ts': '90931721498eaaa99ee780fb98021d0c4e0a115603aa1041c06f72460f30b58e',
-    'lib/prompts/jobpost.ts': '05addd38ae649ef9f7076b4375ef5ed0b0e65dff6a33286ae2e69865d66ee755',
+    'lib/prompts/jobpost.ts': '434f6bc28bbd4145a2ad53c29ea7bb31047f285fefee5f4a990ef636104a5f8a',
     'lib/prompts/summary.ts': '15a21c7c84721834e02d2e21d2f74bb83e6bdb24cede216208d1bc6adb1c929f',
     'lib/prompts/feedback.ts': 'd266dfc6aacf16b5ed860f9dc80b99f08910f1d40a1a9a21a1c11e28b31f8f46',
-    'lib/prompts/version.ts': 'fa5633dc573b2e232888e70231bb715671e7ff9ac9488ceaf8d983dbb651abda',
+    'lib/prompts/version.ts': '789159a4d6bfda60cf367d2361d64ece2dbf746d70a8378c08bbeea529814169',
   };
   for (const [file, expected] of Object.entries(hashes))
     expect(createHash('sha256').update(readFileSync(file)).digest('hex'), file).toBe(expected);

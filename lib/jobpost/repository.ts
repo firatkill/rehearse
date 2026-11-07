@@ -12,6 +12,7 @@ import {
   type JobPostRecord,
   type GeneratedQuestionRecord,
 } from '@/lib/storage/jobpost-schema';
+import { StoredJobAnalysisSchema } from '@/lib/storage/job-analysis';
 import type { JobGeneration } from './schema';
 import { jobpostPrompt } from '@/lib/prompts/language';
 import { validateJobQuestions } from './validate';
@@ -50,7 +51,8 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
       .parse(db.prepare('SELECT count(*) AS count FROM job_posts').get()).count;
     if (total >= JOBPOST.MAX_POSTS) throw new AppError('VALIDATION_FAILED');
     return save({
-      schemaVersion: 3,
+      schemaVersion: 4,
+      analysis: null,
       language,
       interviewDate: null,
       id: randomUUID(),
@@ -76,6 +78,15 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
         .prepare('SELECT value FROM job_posts ORDER BY rowid DESC')
         .all()
         .map((value) => JobPostRecordSchema.parse(JSON.parse(row.parse(value).value))),
+    saveAnalysis(
+      id: string,
+      analysis: z.infer<typeof StoredJobAnalysisSchema>,
+      expectedText: string,
+    ) {
+      const post = get(id);
+      if (!post || post.text !== expectedText) throw new AppError('VALIDATION_FAILED');
+      return save({ ...post, analysis, updatedAt: clock().toISOString() });
+    },
     setInterviewDate(id: string, interviewDate: string | null) {
       const post = get(id);
       if (!post) throw new AppError('JOBPOST_NOT_FOUND');
@@ -90,7 +101,12 @@ export function createJobRepository(db: Database.Database, clock: () => Date = (
       if (!post) throw new AppError('JOBPOST_NOT_FOUND');
       // Editing a generated post creates a revision, preserving questions referenced by signed sessions.
       if (post.status !== 'ready')
-        return save({ ...post, text: JobTextSchema.parse(text), updatedAt: clock().toISOString() });
+        return save({
+          ...post,
+          analysis: null,
+          text: JobTextSchema.parse(text),
+          updatedAt: clock().toISOString(),
+        });
       return db.transaction(() => {
         const revised = create(text, post.sourceUrl, post.language);
         // The upcoming interview follows the new revision; historical questions remain intact.

@@ -1,5 +1,13 @@
 import type { Messages } from '@/lib/i18n/messages';
 export const messages = {
+  'job.analysis.title': 'İlanın beklentileri',
+  'job.analysis.role': 'Rol özeti',
+  'job.analysis.must': 'Zorunlu nitelikler',
+  'job.analysis.nice': 'Tercih edilen nitelikler',
+  'job.analysis.probes': 'Olası mülakat konuları',
+  'job.analysis.unspecified': 'İlanda belirtilmemiş.',
+  'job.analysis.action': 'İlanı analiz et',
+  'job.analysis.busy': 'İlan analiz ediliyor…',
   'job.sourceLink': 'İlanın kaynağı',
   'job.aiRead.action': 'Yapay zekâyla oku',
   'job.aiRead.cost':
@@ -420,7 +428,7 @@ export const messages = {
     'Oturumlar bu tarayıcının IndexedDB veritabanında kalır. Geri bildirim önceden yazılmış örnek içeriktir; hiçbir yanıt model sağlayıcısına gönderilmez.',
   'app.privacy.page.9': 'Kendi sunucundaki tam sürüm',
   'app.privacy.page.10':
-    'Oturumlar, yanıtlar, geri bildirimler ve iş ilanları makinendeki SQLite veritabanına kaydedilir. Canlı puanlama kendi OpenAI anahtarını kullanır. Kendi sunucun bu kayıtları alıp saklar; böylece farklı tarayıcılardan yeniden açabilirsin.',
+    'Oturumlar, yanıtlar, geri bildirimler ve iş ilanları makinendeki SQLite veritabanına kaydedilir. Canlı puanlama kendi OpenAI anahtarını kullanır. İş ilanı analizi ve soru oluşturma, ilanı yapılandırdığın OpenAI, Anthropic veya Google sağlayıcısına gönderir; o sağlayıcının gizlilik ve saklama politikaları geçerlidir. Kendi sunucun bu kayıtları alıp saklar; böylece farklı tarayıcılardan yeniden açabilirsin.',
   'app.privacy.page.11': 'Konuşma tanıma',
   'app.privacy.page.12':
     'Sesli yanıtları Rehearse değil, tarayıcının yerleşik konuşma tanıma özelliği yazıya çevirir. Google Chrome’da sesin Google’ın sunucularına gönderilir. Safari’de cihazın yerel olarak yazıya çevirmiyorsa sesin Apple’ın sunucularına gönderilir. Diğer tarayıcılar da kendi konuşma hizmetlerine ses gönderebilir. Bu şirketlerin gizlilik politikaları geçerlidir. Rehearse sesini hiçbir zaman almaz. Sesinin bu hizmetlerce işlenmesini istemiyorsan yazılı modu kullan.',

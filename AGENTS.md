@@ -18,7 +18,7 @@ Stack: TypeScript strict, pnpm, Node 22+, Tailwind v4, shadcn/ui, Zod and Vercel
 | `docs/PRD.md` | Behaviour, requirements (US-, FR-, NFR-), every page and state with exact copy (§9), prompt-injection requirements (§10), decisions log (D-, §15)                                                                                                                                                                                                                                                          |
 | `docs/TRD.md` | Architecture, config constants, env vars, question bank schema and selection, IndexedDB schema and migrations, Web Speech state machines, TTS, room state machine, API contracts, token and rate limits, exact prompts and rubric, structured-output schemas, metric algorithms, report and export formats, eval, error matrix, security, tests and mocks, CI YAML, deployment, assumptions to verify (A-) |
 
-Version 2 decisions (D-73–D-82 and later rows in the PRD decisions log) override matching v1 rules. Page changes update PRD copy alongside the implementation (D-79). Live eval, sample and demo generation are run only deliberately by the owner, even if a key is configured. Only `better-sqlite3`, `@mozilla/readability` and `linkedom` are approved runtime dependencies beyond those the TRD lists (D-75, D-76).
+Version 2 decisions (D-73–D-82 and later rows in the PRD decisions log) override matching v1 rules. Page changes update PRD copy alongside the implementation (D-79). Live eval, sample and demo generation are run only deliberately by the owner, even if a key is configured. Only `better-sqlite3`, `@mozilla/readability`, `linkedom`, `@ai-sdk/anthropic` and `@ai-sdk/google` are approved runtime dependencies beyond those the TRD lists (D-75, D-76).
 
 Rules for the specs:
 
@@ -172,6 +172,7 @@ A task is done when all of the following hold:
 - Call a real LLM, real speech service or Upstash from any test, or from CI outside `eval.yml`.
 - Store or log raw IPs or visitor ids, or log transcript text or model output. Demo never stores sessions or answers server-side; full may store sessions, attempts, job posts, generated questions and later story notes in its local SQLite database, with validated data APIs (D-75). Existing permitted live provider requests remain allowed in full (D-73).
 - Add a database other than full-edition SQLite (D-75), a paid service, a new runtime service, a paid speech API, third-party scripts, cookies, analytics or tracking. SQLite is local, not a hosted service.
+- Route feedback, scoring, summaries or follow-ups through JOBPOST_PROVIDER. Full-only job-post analysis/questions may use the configured OpenAI, Anthropic or Google provider with the user’s key; demo stays provider-free.
 - Automatically invoke paid job-link reading. Full permits an explicit cost-labelled OpenAI web-search action with the user’s key; demo never constructs a provider.
 - Log fetched job-page text, URL paths or query strings. Free link reading logs only a safe failure category and hostname (IP literals omitted), and keeps SSRF pinning and request limits for public API adapters.
 - Record, store or upload the visitor's audio.

@@ -32,6 +32,8 @@
     "test:performance": "playwright test -c playwright.performance.config.ts"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "4.0.85",
+    "@ai-sdk/google": "4.0.102",
     "@ai-sdk/openai": "4.0.99",
     "@mozilla/readability": "0.6.0",
     "@upstash/ratelimit": "2.2.0",

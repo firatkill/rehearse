@@ -40,7 +40,7 @@ it('TC-182 UT-14 SQLite migration 4 and export 6→7 retain old posts with no da
   old.close();
   const db = openSqlite(path);
   try {
-    expect(db.pragma('user_version', { simple: true })).toBe(6);
+    expect(db.pragma('user_version', { simple: true })).toBe(7);
     expect(createJobRepository(db).get(legacy.id)).toEqual(jobRecord.post);
     const imported = await readImport(
       new File(

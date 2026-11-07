@@ -1,4 +1,5 @@
 import 'server-only';
+import { jobAnalysisMigration } from './migrations/007-job-analysis';
 import { jobLanguageMigration } from './migrations/006-job-language';
 import { sessionLanguageMigration } from './migrations/005-session-language';
 import { interviewDateMigration } from './migrations/004-interview-date';
@@ -24,6 +25,7 @@ const migrations = [
   interviewDateMigration,
   sessionLanguageMigration,
   jobLanguageMigration,
+  jobAnalysisMigration,
 ];
 const rowSchema = z.object({ value: z.string() });
 function value(row: unknown): unknown {

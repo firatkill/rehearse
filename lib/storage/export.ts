@@ -51,6 +51,18 @@ export const EXPORT_MIGRATIONS: Readonly<Record<number, (file: unknown) => unkno
       }),
     };
   },
+  9: (file) => {
+    const legacy = EnvelopeSchema.extend({ jobPosts: z.array(z.unknown()) }).parse(file);
+    return {
+      ...legacy,
+      formatVersion: 10,
+      jobPosts: legacy.jobPosts.map((post) => {
+        const migrated = migrateJobRecord(post);
+        if (!migrated) throw new ImportFileError('format');
+        return migrated;
+      }),
+    };
+  },
 };
 const PrefixSchema = ExportFileSchema.pick({ format: true, formatVersion: true });
 const EnvelopeSchema = ExportFileSchema.omit({ sessions: true }).extend({

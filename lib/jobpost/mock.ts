@@ -57,3 +57,19 @@ export function mockJobpostOutput(prompt: string) {
     }),
   };
 }
+
+export function mockJobAnalysis(prompt: string) {
+  const source = prompt.split('<job_post>\n')[1]?.split('\n</job_post>')[0] ?? '';
+  const quote =
+    source
+      .split(/(?<=[.!?])\s+|\n/u)
+      .map((value) => value.trim())
+      .find(
+        (value) =>
+          value.length >= JOBPOST.MIN_QUOTE_CHARS &&
+          (value.match(/[\p{L}\p{N}]+/gu)?.length ?? 0) >= JOBPOST.MIN_QUOTE_WORDS &&
+          !/ignore|instructions|system prompt|secret|injection|pwned/i.test(value),
+      ) ?? '';
+  const point = { text: quote.slice(0, 500), groundingQuote: quote.slice(0, 1000) };
+  return { roleSummary: point, mustHaves: [point], niceToHaves: [], likelyProbes: [point] };
+}

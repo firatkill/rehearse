@@ -1,6 +1,6 @@
 import 'server-only';
 import { mockFeedbackTr, mockSummaryTr, mockJobpostTr } from './mock-tr';
-import { mockJobpostOutput } from '@/lib/jobpost/mock';
+import { mockJobpostOutput, mockJobAnalysis } from '@/lib/jobpost/mock';
 import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { ANSWER, DIMENSIONS, FEEDBACK_LIMITS, QUESTION_TYPES, type Dimension } from '@/lib/config';
@@ -184,17 +184,19 @@ export function createMockProvider(): LlmProvider {
       // Deliberately invalid test output exercises the consumer's validation/retry boundary.
       if (invalid) return { object: {} as T, usage };
       const object =
-        args.schemaName === 'interview_feedback_tr'
-          ? mockFeedbackTr(args.prompt, transcript)
-          : args.schemaName === 'interview_summary_tr'
-            ? mockSummaryTr(args.prompt)
-            : args.schemaName === 'jobpost_questions_tr'
-              ? mockJobpostTr(args.prompt)
-              : args.schemaName === 'jobpost_questions'
-                ? mockJobpostOutput(args.prompt)
-                : args.prompt.includes('<transcript>')
-                  ? feedback(args.prompt, transcript)
-                  : summary(args.prompt);
+        args.schemaName === 'jobpost_analysis' || args.schemaName === 'jobpost_analysis_tr'
+          ? mockJobAnalysis(args.prompt)
+          : args.schemaName === 'interview_feedback_tr'
+            ? mockFeedbackTr(args.prompt, transcript)
+            : args.schemaName === 'interview_summary_tr'
+              ? mockSummaryTr(args.prompt)
+              : args.schemaName === 'jobpost_questions_tr'
+                ? mockJobpostTr(args.prompt)
+                : args.schemaName === 'jobpost_questions'
+                  ? mockJobpostOutput(args.prompt)
+                  : args.prompt.includes('<transcript>')
+                    ? feedback(args.prompt, transcript)
+                    : summary(args.prompt);
       const parsed = args.schema.safeParse(object);
       if (!parsed.success) throw new InvalidOutputError();
       return { object: parsed.data, usage };

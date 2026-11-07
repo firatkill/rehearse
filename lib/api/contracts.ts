@@ -178,6 +178,8 @@ export const SummaryResponseSchema = z
 export const HealthResponseSchema = z
   .object({
     status: z.literal('ok'),
+    jobpostProvider: z.enum(['openai', 'anthropic', 'google']).optional(),
+    jobpostModel: z.string().optional(),
     edition: z.enum(['demo', 'full']),
     version: z.string(),
     commit: z.string(),

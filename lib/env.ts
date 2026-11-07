@@ -18,6 +18,12 @@ const schema = z
     LLM_MODE: z.enum(['live', 'mock']).default('live'),
     OPENAI_API_KEY: optionalText,
     CHAT_MODEL: optionalText,
+    JOBPOST_PROVIDER: z.enum(['openai', 'anthropic', 'google']).default('openai'),
+    JOBPOST_MODEL: optionalText,
+    JOBPOST_PRICE_INPUT_PER_MTOK: price,
+    JOBPOST_PRICE_OUTPUT_PER_MTOK: price,
+    ANTHROPIC_API_KEY: optionalText,
+    GOOGLE_GENERATIVE_AI_API_KEY: optionalText,
     CHAT_MODEL_SUPPORTS_TEMPERATURE: boolean.default(true),
     CHAT_REASONING_EFFORT: optionalText,
     MAX_OUTPUT_TOKENS_FEEDBACK: z.coerce.number().int().min(300).max(4000).default(900),
@@ -70,6 +76,21 @@ const schema = z
         if (env[name] === undefined) invalid(name);
       }
     }
+    if (env.LLM_MODE === 'live') {
+      const key =
+        env.JOBPOST_PROVIDER === 'anthropic'
+          ? 'ANTHROPIC_API_KEY'
+          : env.JOBPOST_PROVIDER === 'google'
+            ? 'GOOGLE_GENERATIVE_AI_API_KEY'
+            : 'OPENAI_API_KEY';
+      if (!env[key]) invalid(key);
+      if (env.JOBPOST_PROVIDER !== 'openai' && !env.JOBPOST_MODEL) invalid('JOBPOST_MODEL');
+      if (env.JOBPOST_PROVIDER !== 'openai' || env.JOBPOST_MODEL) {
+        if (env.JOBPOST_PRICE_INPUT_PER_MTOK === undefined) invalid('JOBPOST_PRICE_INPUT_PER_MTOK');
+        if (env.JOBPOST_PRICE_OUTPUT_PER_MTOK === undefined)
+          invalid('JOBPOST_PRICE_OUTPUT_PER_MTOK');
+      }
+    }
     if (env.RATE_LIMIT_BACKEND === 'upstash') {
       for (const name of ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'] as const) {
         if (env[name] === undefined) invalid(name);
@@ -82,6 +103,10 @@ const schema = z
   .transform((env) => ({
     ...env,
     CHAT_MODEL: env.LLM_MODE === 'mock' ? 'mock' : env.CHAT_MODEL,
+    JOBPOST_MODEL: env.LLM_MODE === 'mock' ? 'mock' : (env.JOBPOST_MODEL ?? env.CHAT_MODEL),
+    JOBPOST_PRICE_INPUT_PER_MTOK: env.JOBPOST_PRICE_INPUT_PER_MTOK ?? env.PRICE_INPUT_PER_MTOK ?? 0,
+    JOBPOST_PRICE_OUTPUT_PER_MTOK:
+      env.JOBPOST_PRICE_OUTPUT_PER_MTOK ?? env.PRICE_OUTPUT_PER_MTOK ?? 0,
     PRICE_INPUT_PER_MTOK: env.PRICE_INPUT_PER_MTOK ?? 0,
     PRICE_OUTPUT_PER_MTOK: env.PRICE_OUTPUT_PER_MTOK ?? 0,
     PRICE_CACHED_INPUT_PER_MTOK: env.PRICE_CACHED_INPUT_PER_MTOK ?? env.PRICE_INPUT_PER_MTOK ?? 0,
@@ -95,6 +120,12 @@ export function getEnv(): Env {
   if (source.APP_EDITION === 'demo') {
     // Demo has no provider or remote limiter; even invalid unused values are ignored.
     for (const name of [
+      'JOBPOST_PROVIDER',
+      'JOBPOST_MODEL',
+      'JOBPOST_PRICE_INPUT_PER_MTOK',
+      'JOBPOST_PRICE_OUTPUT_PER_MTOK',
+      'ANTHROPIC_API_KEY',
+      'GOOGLE_GENERATIVE_AI_API_KEY',
       'OPENAI_API_KEY',
       'CHAT_MODEL',
       'CHAT_MODEL_SUPPORTS_TEMPERATURE',
