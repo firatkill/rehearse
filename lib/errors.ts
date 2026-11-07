@@ -20,6 +20,8 @@ export const ERROR_CODES = [
   'JOBPOST_INVALID',
   'JOBPOST_NOT_FOUND',
   'JOBPOST_FETCH_FAILED',
+  'JOBPOST_AI_READ_FAILED',
+  'JOBPOST_AI_READ_UNAVAILABLE',
   'DEMO_ONLY',
   'DEMO_OFF',
   'DEMO_READONLY',
@@ -49,6 +51,8 @@ const statuses: Record<ErrorCode, number> = {
   JOBPOST_INVALID: 502,
   JOBPOST_NOT_FOUND: 404,
   JOBPOST_FETCH_FAILED: 502,
+  JOBPOST_AI_READ_FAILED: 502,
+  JOBPOST_AI_READ_UNAVAILABLE: 503,
   DEMO_ONLY: 403,
   DEMO_OFF: 503,
   DEMO_READONLY: 503,
@@ -72,6 +76,8 @@ export function errorLogLevel(code: ErrorCode): 'info' | 'warn' | 'error' {
     case 'GLOBAL_CAP_REACHED':
     case 'PROVIDER_TIMEOUT':
       return 'warn';
+    case 'JOBPOST_AI_READ_FAILED':
+    case 'JOBPOST_AI_READ_UNAVAILABLE':
     case 'JOBPOST_FETCH_FAILED':
     case 'JOBPOST_NOT_FOUND':
     case 'VALIDATION_FAILED':

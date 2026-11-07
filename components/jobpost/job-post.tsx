@@ -141,6 +141,11 @@ export function JobPost({ initial }: { initial: JobResponse }) {
         <h1 id="job-read-heading">
           <SafeText text={post.role || t('ui.dynamic.34')} />
         </h1>
+        {post.sourceUrl && /^https?:\/\//.test(post.sourceUrl) && (
+          <a href={post.sourceUrl} target="_blank" rel="noopener noreferrer">
+            {t('job.sourceLink')}
+          </a>
+        )}
         {post.company && (
           <p>
             <SafeText text={post.company} />

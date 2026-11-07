@@ -2,6 +2,7 @@ import { serverTranslator } from '@/lib/i18n/server';
 import { T } from '@/lib/i18n/context';
 import { demoJobs } from '@/lib/demo/content';
 import { LanguageLink as Link } from '@/lib/i18n/link';
+import { aiReadEstimate } from '@/lib/jobpost/ai-reader';
 import { getEnv } from '@/lib/env';
 import { SetupForm } from '@/components/setup/setup-form';
 
@@ -46,6 +47,7 @@ export default async function SetupPage({
           {...(env.APP_EDITION === 'demo' && demoJobs.some((job) => job.slug === query.demoJob)
             ? { demoJob: query.demoJob }
             : {})}
+          aiReadCost={aiReadEstimate(env)}
           demoMode={env.DEMO_MODE}
           sessionsPerDay={env.RATE_LIMIT_SESSIONS_PER_IP_DAILY}
           initialSeed={

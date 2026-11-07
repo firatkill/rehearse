@@ -53,11 +53,13 @@ export function SetupForm({
   sessionsPerDay,
   initialSeed,
   demoJob,
+  aiReadCost = null,
 }: {
   demoMode: 'on' | 'readonly';
   sessionsPerDay: number;
   initialSeed: string | null;
   demoJob?: string;
+  aiReadCost?: number | null;
 }) {
   const { ROLE_LABELS, SENIORITY_LABELS, QUESTION_TYPE_LABELS, DIMENSION_LABELS } = useLabels();
 
@@ -271,7 +273,7 @@ export function SetupForm({
             <p>
               <T id="components.setup.setup.form.10" />
             </p>
-            {APP_EDITION === 'demo' ? <DemoJobEntry /> : <JobEntry />}
+            {APP_EDITION === 'demo' ? <DemoJobEntry /> : <JobEntry aiReadCost={aiReadCost} />}
           </section>
           <section className="setup-card setup-role" aria-labelledby="role-heading">
             <Eyebrow>

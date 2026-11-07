@@ -112,3 +112,5 @@ Rehearse does not record, store or upload audio. Browser speech recognition may 
 Hand-written bank questions live under `content/questions`; follow the schema and content rules in [TRD §6](docs/TRD.md) and run `pnpm questions:validate`. Do not generate the bank with an LLM. Generated job-post questions are separate, labelled content. See [AGENTS.md](AGENTS.md) for contribution and test rules.
 
 Release: **v1.0.0**, the first public release. Changes and known gaps are in [CHANGELOG.md](CHANGELOG.md).
+
+After a free job-link read fails, the full edition can offer **Read it with AI**. Set `PRICE_WEB_SEARCH_PER_CALL` to your current OpenAI web-search price to enable the cost-labelled action. It uses `CHAT_MODEL` and your OpenAI key, then opens the extracted text for review before question generation. The displayed cost is an estimate; provider-reported usage contributes to monthly budget warnings. The demo never uses this feature.
