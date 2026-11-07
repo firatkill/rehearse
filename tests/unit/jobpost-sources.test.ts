@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, it, vi } from 'vitest';
 import { fetchJobPost } from '@/lib/jobpost/fetch';
 import type { PageTransport } from '@/lib/jobpost/fetch-page';
@@ -8,7 +9,11 @@ vi.mock('@/lib/logger', () => ({ getLogger: () => ({ info: log }) }));
 const resolve = () => Promise.resolve([{ address: '8.8.8.8', family: 4 }]);
 const description =
   '<p>Build accessible payment interfaces.</p><p>Maintain reliable tests and document operational runbooks.</p>';
-const guest = `<div class="show-more-less-html__markup">${description}</div><a>Sign in to apply</a>`;
+const fixture = (name: string) => readFileSync(`tests/fixtures/${name}.html`, 'utf8');
+const guest = fixture('linkedin-guest');
+function expectPlainText(text: string) {
+  expect(text).not.toMatch(/<[^>]+>|&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]+);/i);
+}
 function response(body: string, contentType = 'text/html') {
   return { status: 200, location: null, encoding: 'identity', body, contentType };
 }
@@ -20,18 +25,26 @@ it.each([
 ])('TC-221 normalises %s to the guest endpoint without login navigation', async (source) => {
   const transport = vi.fn<PageTransport>().mockResolvedValue(response(guest));
   const result = await fetchJobPost(source, { resolve, transport });
+  expectPlainText(result.text);
+  expect(transport).toHaveBeenCalledTimes(1);
   expect(transport.mock.calls[0]?.[0].href).toBe(
     'https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/12345',
   );
   expect(result.text).toBe(
-    'Build accessible payment interfaces. Maintain reliable tests and document operational runbooks.',
+    'Frontend Engineer — Example & Company\n\nBuild accessible payment interfaces. Maintain reliable tests and document operational runbooks.',
   );
 });
 it.each([
   [
     'https://job-boards.greenhouse.io/example/jobs/123',
     'https://boards-api.greenhouse.io/v1/boards/example/jobs/123',
-    { title: 'Engineer', content: description },
+    {
+      title: 'Engineer',
+      content:
+        '&lt;div class=&quot;content-intro&quot;&gt;&lt;h2&gt;Engineering &amp;amp; payments&lt;/h2&gt;' +
+        description.replaceAll('<', '&lt;').replaceAll('>', '&gt;') +
+        '&lt;/div&gt;',
+    },
   ],
   [
     'https://jobs.lever.co/example/abc-123',
@@ -86,6 +99,7 @@ it.each([
     expect(transport.mock.calls[0]?.[0].href).toBe(endpoint);
     expect(result.text).toContain('Build accessible payment interfaces.');
     expect(result.text).not.toMatch(/Wrong|<p>/);
+    expectPlainText(result.text);
   },
 );
 it('TC-221 prefers JobPosting JSON-LD over unrelated visible page text', () => {
@@ -100,11 +114,11 @@ it('TC-221 prefers JobPosting JSON-LD over unrelated visible page text', () => {
       },
     ],
   };
-  expect(
-    extractJobText(
-      `<html><head><script type="application/ld+json">${JSON.stringify(metadata)}</script></head><body><article>Unrelated navigation</article></body></html>`,
-    ),
-  ).toBe(
+  const text = extractJobText(
+    `<html><head><script type="application/ld+json">${JSON.stringify(metadata)}</script></head><body><article>Unrelated navigation</article></body></html>`,
+  );
+  expectPlainText(text);
+  expect(text).toBe(
     'Engineer Example Build accessible payment interfaces. Maintain reliable tests and document operational runbooks.',
   );
 });
@@ -146,4 +160,31 @@ it('TC-221 API destinations still require globally routable DNS', async () => {
     host: 'www.linkedin.com',
     reason: 'blocked_address',
   });
+});
+
+it.each([429, 999])('TC-221 LinkedIn status %s logs rate_limited without retry', async (status) => {
+  const transport = vi
+    .fn<PageTransport>()
+    .mockResolvedValue({ ...response(fixture('linkedin-rate-limited')), status });
+  await expect(
+    fetchJobPost('https://www.linkedin.com/jobs/view/12345?private=secret', { resolve, transport }),
+  ).rejects.toMatchObject({ code: 'JOBPOST_FETCH_FAILED' });
+  expect(transport).toHaveBeenCalledTimes(1);
+  expect(log).toHaveBeenLastCalledWith({
+    event: 'jobpost.fetch_failed',
+    host: 'www.linkedin.com',
+    reason: 'rate_limited',
+  });
+});
+it('TC-221 a true LinkedIn login wall still fails; generic pages retain the password heuristic', async () => {
+  const transport = vi.fn<PageTransport>().mockResolvedValue(response(fixture('linkedin-login')));
+  await expect(
+    fetchJobPost('https://www.linkedin.com/jobs/view/12345', { resolve, transport }),
+  ).rejects.toMatchObject({ code: 'JOBPOST_FETCH_FAILED' });
+  expect(log).toHaveBeenLastCalledWith({
+    event: 'jobpost.fetch_failed',
+    host: 'www.linkedin.com',
+    reason: 'redirect_login',
+  });
+  expect(() => extractJobText(guest)).toThrow('FETCH_LOGIN');
 });

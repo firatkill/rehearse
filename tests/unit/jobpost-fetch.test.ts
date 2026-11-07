@@ -199,7 +199,7 @@ it('TC-181 local HTML extraction retains post text, strips markup and fetches no
   expect(result.text).toContain(
     'Build an accessible dashboard for operators working across three shifts.',
   );
-  expect(result.text).not.toContain('<');
+  expect(result.text).not.toMatch(/<[^>]+>|&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]+);/i);
   expect(result.text).not.toContain('__jobScriptRan');
   expect('__jobScriptRan' in globalThis).toBe(false);
   expect(result.sourceUrl).toBe(`${base}/article`);

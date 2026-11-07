@@ -36,8 +36,18 @@ function jsonLdText(value: unknown): string | undefined {
     if (node['@graph']) queue.push(node['@graph']);
   }
 }
-export function extractJobText(html: string): string {
+export function extractJobText(html: string, linkedinGuest = false): string {
   const { document } = parseHTML(html);
+  if (linkedinGuest) {
+    const title = document.querySelector('.top-card-layout__title');
+    const company = document.querySelector('.topcard__org-name-link');
+    const description = document.querySelector('.show-more-less-html__markup');
+    if (title && company && description) {
+      const heading = `${htmlText(title.innerHTML)} — ${htmlText(company.innerHTML)}`;
+      const text = `${heading}\n\n${htmlText(description.innerHTML)}`;
+      if (JobTextSchema.safeParse(text).success) return text;
+    }
+  }
   if (
     document.querySelector('input[type="password"]') ||
     /sign in|log in|access denied|captcha|just a moment|verify you are human/i.test(document.title)

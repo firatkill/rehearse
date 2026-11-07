@@ -76,7 +76,7 @@ export function extractApiJob(body: string, source: JobSource): string {
   let fields: string[] = [];
   switch (source.kind) {
     case 'greenhouse':
-      fields = [string(data.title), description(data.content)];
+      fields = [string(data.title), htmlText(description(data.content))];
       break;
     case 'lever': {
       const lists = z.array(object).optional().parse(data.lists) ?? [];
