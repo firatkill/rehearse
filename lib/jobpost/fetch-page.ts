@@ -37,7 +37,7 @@ export const requestPage: PageTransport = (url, address, signal) =>
         lookup: pinnedLookup,
         headers: {
           'User-Agent': JOBPOST.FETCH_USER_AGENT,
-          Accept: 'text/html, application/xhtml+xml',
+          Accept: 'text/html, application/xhtml+xml, application/json',
           'Accept-Encoding': 'identity',
         },
       },

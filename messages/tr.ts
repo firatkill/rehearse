@@ -1,5 +1,8 @@
 import type { Messages } from '@/lib/i18n/messages';
 export const messages = {
+  'privacy.jobLinks.title': 'İlan bağlantılarını okuma',
+  'privacy.jobLinks.body':
+    'Bir ilan bağlantısını okuttuğunda kendi sunucun herkese açık sayfayı veya ilan API’sini ister. Tarayıcı çerezlerini veya giriş bilgilerini göndermez. Başarısız okumalar için yalnızca alan adı ve hata türü kaydedilir; bağlantının yolu, sorgusu veya sayfa metni kaydedilmez.',
   'dialog.close': 'Kapat',
   'title.privacy': 'Gizlilik · Rehearse',
   'title.how': 'Nasıl çalışır? · Rehearse',
