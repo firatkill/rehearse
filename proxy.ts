@@ -54,7 +54,7 @@ export function proxy(req: NextRequest) {
   res.headers.set('Cache-Control', 'no-store');
   res.headers.set(
     'Permissions-Policy',
-    'microphone=(self), camera=(), geolocation=(), payment=(), usb=()',
+    'microphone=(self), camera=(self), geolocation=(), payment=(), usb=()',
   );
   res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.headers.set('X-Content-Type-Options', 'nosniff');

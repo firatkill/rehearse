@@ -1,4 +1,10 @@
 export const messages = {
+  'camera.title': 'Camera preview',
+  'camera.toggle': 'Show my camera',
+  'camera.local': 'Your camera stays on this device. Nothing is recorded, uploaded or analysed.',
+  'camera.preview': 'Your mirrored camera preview',
+  'camera.unavailable': 'Your camera is unavailable. You can keep practising without it.',
+
   'speech.provider':
     'Uses the configured AI voice provider. Question text is sent to that provider; usage counts towards your budget.',
   'speech.fallback': 'The provider voice is unavailable. Using browser speech for this question.',

@@ -58,6 +58,14 @@ export default async function PrivacyPage() {
           </div>
         </dl>
       </section>
+      <section>
+        <h2>
+          <T id="camera.title" />
+        </h2>
+        <p>
+          <T id="camera.local" />
+        </p>
+      </section>
       {!demo && (
         <section>
           <h2>{t('privacy.jobLinks.title')}</h2>

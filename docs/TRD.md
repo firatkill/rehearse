@@ -3548,7 +3548,7 @@ V-40 error matrix additions: JOBPOST_INVALID → HTTP 502, error log; JOBPOST_NO
 2. **Tokens**: HMAC-SHA256, constant-time compare, short TTL, scoped to session and questions, usage-capped (section 13).
 3. **Headers** set in `proxy.ts` on every matched response:
    - `Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-{nonce}' 'strict-dynamic'{dev: ' 'unsafe-eval''}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'{https: '; upgrade-insecure-requests'}`. `upgrade-insecure-requests` is added only when the request URL is `https:` (`req.nextUrl.protocol`): on `http://localhost` (E2E servers, `pnpm start`) some browsers would upgrade same-origin script URLs to `https://localhost` and break the page. `'unsafe-inline'` in `style-src` is accepted (Next.js and Radix inject inline styles); scripts never get it.
-   - `Permissions-Policy: microphone=(self), camera=(), geolocation=(), payment=(), usb=()` (the microphone must be allowed for the site itself, A-17)
+   - `Permissions-Policy: microphone=(self), camera=(self), geolocation=(), payment=(), usb=()` (the microphone must be allowed for the site itself, A-17)
    - `Referrer-Policy: strict-origin-when-cross-origin`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Cross-Origin-Opener-Policy: same-origin`, `Strict-Transport-Security: max-age=63072000; includeSubDomains` (production only).
 4. **Nonce on the request too** (normative pattern; follow the installed Next.js docs, A-09):
 
@@ -4694,3 +4694,11 @@ The audio element is primed synchronously inside the start/preview/replay click,
 §20: invalid body → VALIDATION_FAILED; missing/invalid/expired/out-of-scope tokens retain existing TOKEN_* errors; provider/audio errors → PROVIDER_ERROR; demo/browser route → DEMO_ONLY. Client handles all failures with browser fallback rather than exposing provider text.
 
 §21/privacy: media-src adds only blob: for ephemeral audio playback. Provider requests contain question or preview text, never recorded audio. App logs only request id, chars, latency, cost or safe error code. Provider retention policies apply: ElevenLabs' zero-retention enable_logging=false is enterprise-only, so the app does not promise provider-side deletion. Successful generated-audio costs are recorded in monthly warnings even if client playback later fails. Character mode counts Unicode code points; minute mode measures generated PCM duration. Token-billed speech uses a configured effective rate, explicitly an estimate. Failure before usable audio/usage arrives can leave billed provider cost unknown.
+
+### Local camera preview (D-205–D-206)
+
+§4/§5: no new environment variables, provider or data-store fields. Camera choice is in-memory, off by default, shared between setup and room for the current page lifecycle. It is never inferred from browser preferences or persisted in an export/session.
+
+§10/§21: only an explicit Show my camera toggle calls `getUserMedia({video:true})`. Render a muted, playsInline, mirrored local video using srcObject, in normal document flow so it cannot cover transcript/controls. No MediaRecorder, canvas capture, screenshots, frame analysis or upload. Permission denial/unavailable device shows an inline status and leaves practice available. Every acquired track stops on toggle-off, session end, pagehide, document hidden, unmount, video error or track ending. A permission result arriving after cleanup is immediately stopped. Setup→room navigation releases the old stream and reacquires only if the in-memory choice is still on. End/hide/error turns that choice off.
+
+§20: camera denial/unavailability is a browser-local state, not a server error. EN/TR inline copy is in PRD §9.20. The toggle is keyboard operable, has an accessible name and description, and the video has an accessible name. No motion is added. Permissions-Policy permits camera=(self) and retains microphone=(self); all other security headers remain. Both editions behave identically, with no camera provider calls.

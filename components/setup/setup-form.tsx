@@ -1,4 +1,5 @@
 'use client';
+import { CameraPreview } from '@/components/common/camera-preview';
 import { useProviderSpeech } from '@/lib/speech/provider-context';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT, useI18n } from '@/lib/i18n/context';
@@ -429,6 +430,7 @@ export function SetupForm({
             <VoicePicker setup={selected} {...voiceState} onChange={change} />
           </details>
         )}
+        <CameraPreview />
         {initialSeed !== null && (
           <p className="setup-note">
             {validSeed ? (
