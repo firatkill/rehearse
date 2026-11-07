@@ -1,4 +1,5 @@
 'use client';
+import { CameraPreview } from '@/components/common/camera-preview';
 import { useLabels } from '@/lib/i18n/use-labels';
 import { T, useT, useSessionLanguage } from '@/lib/i18n/context';
 import type { Feedback } from '@/lib/feedback/schema';
@@ -184,6 +185,7 @@ export function Room({
   return (
     <div ref={root} className="room-stage" data-phase={kind}>
       <ProgressHeader session={session} index={index} jobLabel={jobLabel} />
+      <CameraPreview ended={kind === 'done'} />
       {providerSpeech && kind === 'intro' && (
         <p>
           <T id="speech.provider" />

@@ -85,7 +85,7 @@ Speech
 - Recognition and synthesis never overlap. Always abort recognition on unmount; never leave the microphone open.
 - Feature-detect; never sniff the user agent. Every voice state before review offers "Type instead".
 - The first `speechSynthesis.speak()` of a page runs synchronously inside a click handler (`primeSynthesis`, TRD §10.3); never `await` before it. The AI SDK call sets `maxRetries: 0`; retries belong to `generateFeedback`.
-- The `getUserMedia` stream is only for the permission check and is stopped immediately. Never record, store or upload audio.
+- Audio `getUserMedia` streams are only for the permission check and stop immediately. Optional camera preview uses `{video:true}` only, never audio; stop every track on toggle-off, session end, page hide, unmount and errors. Never record, store, upload, screenshot or analyse camera frames or visitor audio.
 
 Storage
 
@@ -176,7 +176,7 @@ A task is done when all of the following hold:
 - Automatically invoke paid job-link reading. Full permits an explicit cost-labelled OpenAI web-search action with the user’s key; demo never constructs a provider.
 - Log fetched job-page text, URL paths or query strings. Free link reading logs only a safe failure category and hostname (IP literals omitted), and keeps SSRF pinning and request limits for public API adapters.
 - Full may optionally use the owner's configured OpenAI, Gemini or ElevenLabs speech API (D-202), with the owner's own key. Only server-known question/preview text may be sent; never send answer audio. Demo stays provider-free. Tests use mocked providers only; live checks need explicit approval.
-- Record, store or upload the visitor's audio, or store/log generated speech text or audio.
+- Record, store or upload the visitor's audio, or store/log generated speech text or audio. Optional camera preview is local-only in both editions; never record, store, upload, screenshot or analyse frames (D-205). Keep camera off by default.
 - Ship the question bank to the client, or accept question text, role or seniority for scoring from the client.
 - Generate or modify the hand-written bank with an LLM, or copy questions from published interview-question lists. D-76 permits separately stored, labelled, job-post-grounded generated questions in full; demo uses owner-generated pre-written examples.
 - Render model or visitor text as HTML or Markdown, or weaken the CSP (`unsafe-inline` scripts, `unsafe-eval` outside development), or drop `microphone=(self)` from `Permissions-Policy`.

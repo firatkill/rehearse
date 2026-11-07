@@ -55,6 +55,14 @@ export default async function HowItWorksPage() {
       </header>
       <section>
         <h2>
+          <T id="camera.title" />
+        </h2>
+        <p>
+          <T id="camera.local" />
+        </p>
+      </section>
+      <section>
+        <h2>
           <T id="app.how.it.works.page.4" />
         </h2>
         <p className="banner">{demo ? t('public.dynamic.29') : t('public.dynamic.30')}</p>

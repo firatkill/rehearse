@@ -2663,3 +2663,30 @@ input[type='file']::file-selector-button:hover {
     padding: 20px;
   }
 }
+
+/* Local camera preview stays in document flow, clear of transcript and controls. */
+.camera-panel {
+  display: grid;
+  gap: 0.5rem;
+  margin-block: 1rem;
+}
+.camera-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.camera-note {
+  color: var(--ink-3);
+  font-size: 0.875rem;
+  max-width: 42rem;
+}
+.camera-video {
+  display: block;
+  width: min(100%, 18rem);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transform: scaleX(-1);
+  border-radius: 1rem;
+  background: #0d1412;
+}

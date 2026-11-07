@@ -1,5 +1,12 @@
 import type { Messages } from '@/lib/i18n/messages';
 export const messages = {
+  'camera.title': 'Kamera önizlemesi',
+  'camera.toggle': 'Kameramı göster',
+  'camera.local':
+    'Kameran bu cihazda kalır. Hiçbir görüntü kaydedilmez, yüklenmez veya analiz edilmez.',
+  'camera.preview': 'Aynalanmış kamera önizlemen',
+  'camera.unavailable': 'Kameran kullanılamıyor. Kamera olmadan çalışmaya devam edebilirsin.',
+
   'speech.provider':
     'Yapılandırılan yapay zekâ ses sağlayıcısını kullanır. Soru metni o sağlayıcıya gönderilir; kullanım bütçene eklenir.',
   'speech.fallback': 'Sağlayıcının sesi kullanılamıyor. Bu soru için tarayıcı sesini kullanıyoruz.',
