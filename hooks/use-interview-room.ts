@@ -43,7 +43,14 @@ export function useInterviewRoom(id: string) {
     getTranscript,
     getTiming,
   } = recorder;
-  const { play, cancel, activeChunk } = useTTS();
+  const {
+    play,
+    cancel,
+    prime,
+    provider: providerSpeech,
+    fellBack: speechFellBack,
+    activeChunk,
+  } = useTTS();
   const { voices, loading: voicesLoading } = useVoices(language);
   const [readAloudError, setReadAloudError] = useState(false);
   const [feedbackTransport, setFeedbackTransport] = useState<{
@@ -84,6 +91,7 @@ export function useInterviewRoom(id: string) {
       if (event.type === 'SUBMIT') setFeedbackTransport({ network: false, resetAt: null });
       if (event.type === 'START_INTERVIEW') {
         if (micPending.current) return;
+        prime();
         if (capabilities?.synthesis) primeSynthesis(window.speechSynthesis);
         if (current.mode === 'voice' && current.online) {
           micPending.current = true;
@@ -110,6 +118,8 @@ export function useInterviewRoom(id: string) {
         return;
       }
       if (event.type === 'RETRY_ANSWER' || event.type === 'FOLLOW_UP') resetRecorder();
+      if (event.type === 'FOLLOW_UP') prime();
+      if (event.type === 'REPLAY') prime();
       if (event.type === 'FOLLOW_UP' && capabilities?.synthesis)
         primeSynthesis(window.speechSynthesis);
       if (event.type === 'REPLAY') setReplay((value) => value + 1);
@@ -126,7 +136,16 @@ export function useInterviewRoom(id: string) {
       }
       rawSend(event);
     },
-    [capabilities, getTranscript, abortRecorder, cancel, rawSend, resetRecorder, startRecorder],
+    [
+      capabilities,
+      getTranscript,
+      abortRecorder,
+      cancel,
+      prime,
+      rawSend,
+      resetRecorder,
+      startRecorder,
+    ],
   );
   useEffect(() => {
     latest.current = state;
@@ -233,24 +252,45 @@ export function useInterviewRoom(id: string) {
   const rate = state.session?.setup.rate ?? 1;
   useEffect(() => {
     if (kind !== 'asking' || interrupted) return;
-    if (!capabilities?.synthesis) {
+    if (!capabilities?.synthesis && !providerSpeech) {
       rawSend({ type: 'TTS_DONE', result: 'skipped' });
       return;
     }
-    if (language === 'tr' && voicesLoading) return;
+    if (language === 'tr' && voicesLoading && !providerSpeech) return;
     const selectedVoice = pickVoice(voices, voiceURI, language).voice;
-    if (language === 'tr' && !selectedVoice) {
+    if (language === 'tr' && !selectedVoice && !providerSpeech) {
       rawSend({ type: 'TTS_DONE', result: 'skipped' });
       return;
     }
     let alive = true;
-    void play(window.speechSynthesis, chunkForSpeech(prompt), selectedVoice, rate, language).then(
-      (result) => {
-        if (!alive) return;
-        if (result === 'error') setReadAloudError(true);
-        rawSend({ type: 'TTS_DONE', result });
-      },
-    );
+    const session = latest.current.session;
+    const answer = latest.current.answers.find((item) => item.index === latest.current.index);
+    const question = session?.questions[latest.current.index];
+    const source =
+      question && session.token
+        ? {
+            input: {
+              kind: 'question' as const,
+              questionId: question.id,
+              index: latest.current.index,
+              language,
+              ...(answer?.followUp?.token ? { followUpToken: answer.followUp.token } : {}),
+            },
+            token: session.token,
+          }
+        : undefined;
+    void play(
+      window.speechSynthesis,
+      chunkForSpeech(prompt),
+      selectedVoice,
+      rate,
+      language,
+      source,
+    ).then((result) => {
+      if (!alive) return;
+      if (result === 'error') setReadAloudError(true);
+      rawSend({ type: 'TTS_DONE', result });
+    });
     return () => {
       alive = false;
       void cancel();
@@ -266,6 +306,7 @@ export function useInterviewRoom(id: string) {
     rate,
     voices,
     voicesLoading,
+    providerSpeech,
     play,
     cancel,
     rawSend,
@@ -420,9 +461,12 @@ export function useInterviewRoom(id: string) {
     online,
     recorder,
     activeChunk,
+    speechFellBack,
+    providerSpeech,
     readAloudError:
       readAloudError ||
-      (language === 'tr' &&
+      (!providerSpeech &&
+        language === 'tr' &&
         !voicesLoading &&
         voices.length === 0 &&
         state.session?.setup.readAloud === true),

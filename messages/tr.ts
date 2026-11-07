@@ -1,5 +1,10 @@
 import type { Messages } from '@/lib/i18n/messages';
 export const messages = {
+  'speech.provider':
+    'Yapılandırılan yapay zekâ ses sağlayıcısını kullanır. Soru metni o sağlayıcıya gönderilir; kullanım bütçene eklenir.',
+  'speech.fallback': 'Sağlayıcının sesi kullanılamıyor. Bu soru için tarayıcı sesini kullanıyoruz.',
+  'speech.configuredVoice': 'Yapılandırılan sağlayıcı sesi',
+
   'job.analysis.title': 'İlanın beklentileri',
   'job.analysis.role': 'Rol özeti',
   'job.analysis.must': 'Zorunlu nitelikler',
@@ -435,7 +440,7 @@ export const messages = {
   'app.privacy.page.13': 'Tarayıcıda konuşma tanımayı oku',
   'app.privacy.page.14': 'Soruların sesli okunması',
   'app.privacy.page.15':
-    'Sorular sistemindeki seslerle okunur. ‘Çevrimiçi ses’ olarak işaretlenen sesler, konuşmayı üretmek için yanıtlarını değil, soru metnini tarayıcı sağlayıcısına gönderir.',
+    'Varsayılan olarak sorular sistemindeki seslerle okunur. ‘Çevrimiçi ses’ soru metnini tarayıcı sağlayıcısına gönderir. Tam sürümde OpenAI, Gemini veya ElevenLabs seslerini yapılandırabilirsin: soru veya önizleme metni o sağlayıcıya gönderilir ve onun saklama politikası geçerlidir. Rehearse üretilen sesi saklamaz ve yanıt sesini bu sağlayıcılara göndermez. Demo yalnızca tarayıcı seslerini kullanır.',
   'app.privacy.page.16': 'Geri bildirim',
   'app.privacy.page.17':
     'Tam sürümde kullanılan OpenAI API verileri varsayılan olarak model eğitiminde kullanılmaz. Kötüye kullanım izleme kayıtları, yasal ve güvenlik istisnaları saklı kalmak üzere içeriği varsayılan olarak 30 güne kadar tutabilir. Saklama süresi kullanılan uç noktaya ve hesap denetimlerine de bağlıdır.',

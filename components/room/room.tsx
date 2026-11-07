@@ -54,6 +54,8 @@ export function Room({
     online,
     recorder,
     activeChunk,
+    speechFellBack,
+    providerSpeech,
     readAloudError,
     capabilities,
     feedbackTransport,
@@ -182,6 +184,16 @@ export function Room({
   return (
     <div ref={root} className="room-stage" data-phase={kind}>
       <ProgressHeader session={session} index={index} jobLabel={jobLabel} />
+      {providerSpeech && kind === 'intro' && (
+        <p>
+          <T id="speech.provider" />
+        </p>
+      )}
+      {speechFellBack && (
+        <p role="status">
+          <T id="speech.fallback" />
+        </p>
+      )}
       {answer?.followUp && (
         <p>
           <T id="components.room.room.8" />

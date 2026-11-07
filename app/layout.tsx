@@ -1,3 +1,4 @@
+import { SpeechProvider } from '@/lib/speech/provider-context';
 import { I18nProvider } from '@/lib/i18n/context';
 import { loadMessages } from '@/lib/i18n/messages';
 import { requestLanguage } from '@/lib/i18n/server';
@@ -55,13 +56,15 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </head>
       <body>
         <I18nProvider initialLanguage={language} initialMessages={messages}>
-          <Shell
-            demoMode={env.DEMO_MODE}
-            edition={env.APP_EDITION}
-            initialBudgetLevel={initialBudgetLevel}
-          >
-            {children}
-          </Shell>
+          <SpeechProvider enabled={env.APP_EDITION === 'full' && env.TTS_PROVIDER !== 'browser'}>
+            <Shell
+              demoMode={env.DEMO_MODE}
+              edition={env.APP_EDITION}
+              initialBudgetLevel={initialBudgetLevel}
+            >
+              {children}
+            </Shell>
+          </SpeechProvider>
         </I18nProvider>
       </body>
     </html>

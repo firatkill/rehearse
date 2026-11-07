@@ -171,11 +171,12 @@ A task is done when all of the following hold:
 - Commit secrets, `.env.local`, API keys, Upstash tokens or real secrets.
 - Call a real LLM, real speech service or Upstash from any test, or from CI outside `eval.yml`.
 - Store or log raw IPs or visitor ids, or log transcript text or model output. Demo never stores sessions or answers server-side; full may store sessions, attempts, job posts, generated questions and later story notes in its local SQLite database, with validated data APIs (D-75). Existing permitted live provider requests remain allowed in full (D-73).
-- Add a database other than full-edition SQLite (D-75), a paid service, a new runtime service, a paid speech API, third-party scripts, cookies, analytics or tracking. SQLite is local, not a hosted service.
+- Add a database other than full-edition SQLite (D-75), a paid service, a new runtime service, third-party scripts, cookies, analytics or tracking. SQLite is local, not a hosted service.
 - Route feedback, scoring, summaries or follow-ups through JOBPOST_PROVIDER. Full-only job-post analysis/questions may use the configured OpenAI, Anthropic or Google provider with the user’s key; demo stays provider-free.
 - Automatically invoke paid job-link reading. Full permits an explicit cost-labelled OpenAI web-search action with the user’s key; demo never constructs a provider.
 - Log fetched job-page text, URL paths or query strings. Free link reading logs only a safe failure category and hostname (IP literals omitted), and keeps SSRF pinning and request limits for public API adapters.
-- Record, store or upload the visitor's audio.
+- Full may optionally use the owner's configured OpenAI, Gemini or ElevenLabs speech API (D-202), with the owner's own key. Only server-known question/preview text may be sent; never send answer audio. Demo stays provider-free. Tests use mocked providers only; live checks need explicit approval.
+- Record, store or upload the visitor's audio, or store/log generated speech text or audio.
 - Ship the question bank to the client, or accept question text, role or seniority for scoring from the client.
 - Generate or modify the hand-written bank with an LLM, or copy questions from published interview-question lists. D-76 permits separately stored, labelled, job-post-grounded generated questions in full; demo uses owner-generated pre-written examples.
 - Render model or visitor text as HTML or Markdown, or weaken the CSP (`unsafe-inline` scripts, `unsafe-eval` outside development), or drop `microphone=(self)` from `Permissions-Policy`.
