@@ -126,3 +126,48 @@ test('TC-221 link response is reviewed before mock generation', async ({ page },
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
 });
+
+test('TC-222 AI read is explicit and returns to review before generation', async ({
+  page,
+}, info) => {
+  await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
+  let paidActions = 0;
+  await page.route('**/api/job-posts', async (route) => {
+    const input: unknown = route.request().postDataJSON();
+    if (typeof input === 'object' && input !== null && 'operation' in input) {
+      if (input.operation === 'fetch') {
+        await route.fulfill({
+          status: 502,
+          json: {
+            error: { code: 'JOBPOST_FETCH_FAILED', message: 'Unavailable', requestId: 'mock-read' },
+          },
+        });
+        return;
+      }
+      if (input.operation === 'readAi') {
+        paidActions++;
+        // No external URL resolution or provider call: retain real local draft storage.
+        const response = await route.fetch({
+          postData: JSON.stringify({ operation: 'create', text: jobText }),
+        });
+        await route.fulfill({ response });
+        return;
+      }
+    }
+    await route.continue();
+  });
+  await page.goto('/setup');
+  await page.getByLabel('Job post link or text').fill('https://example.com/jobs/123');
+  await page.getByRole('button', { name: 'Read the job post', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Read it with AI', exact: true })).toBeVisible();
+  await expect(page.getByText(/Uses your OpenAI key and costs about/)).toBeVisible();
+  expect(paidActions).toBe(0);
+  await page.getByRole('button', { name: 'Read it with AI', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Review the job post', exact: true }),
+  ).toBeVisible();
+  expect(paidActions).toBe(1);
+  await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
+  await expect(page.getByRole('checkbox')).toHaveCount(8);
+});

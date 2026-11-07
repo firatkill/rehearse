@@ -1,8 +1,16 @@
 import type { Messages } from '@/lib/i18n/messages';
 export const messages = {
+  'job.sourceLink': 'İlanın kaynağı',
+  'job.aiRead.action': 'Yapay zekâyla oku',
+  'job.aiRead.cost':
+    'OpenAI anahtarını kullanır ve yaklaşık {cost} tutar. Soru üretmeden önce metni gözden geçirip düzenleyebilirsin.',
+  'job.error.JOBPOST_AI_READ_FAILED':
+    'Yapay zekâ bu ilanın metnini okuyamadı. Metni kendin yapıştır.',
+  'job.error.JOBPOST_AI_READ_UNAVAILABLE':
+    'Yapay zekâyla okumayı açmak için sunucu yapılandırmanda PRICE_WEB_SEARCH_PER_CALL değerini ayarla.',
   'privacy.jobLinks.title': 'İlan bağlantılarını okuma',
   'privacy.jobLinks.body':
-    'Bir ilan bağlantısını okuttuğunda kendi sunucun herkese açık sayfayı veya ilan API’sini ister. Tarayıcı çerezlerini veya giriş bilgilerini göndermez. Başarısız okumalar için yalnızca alan adı ve hata türü kaydedilir; bağlantının yolu, sorgusu veya sayfa metni kaydedilmez.',
+    'Bir ilan bağlantısını okuttuğunda kendi sunucun herkese açık sayfayı veya ilan API’sini ister. Tarayıcı çerezlerini veya giriş bilgilerini göndermez. Başarısız okumalar için yalnızca alan adı ve hata türü kaydedilir; bağlantının yolu, sorgusu veya sayfa metni kaydedilmez. Yapay zekâyla oku seçeneğini kullanırsan seçtiğin bağlantı ücretli web okuması için OpenAI’a gönderilir. Soru üretmeden önce dönen metni gözden geçirirsin.',
   'dialog.close': 'Kapat',
   'title.privacy': 'Gizlilik · Rehearse',
   'title.how': 'Nasıl çalışır? · Rehearse',

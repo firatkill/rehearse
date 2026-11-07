@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { readJobWithAi } from '@/lib/jobpost/ai-reader';
 import { fetchJobPost } from '@/lib/jobpost/fetch';
 import { z } from 'zod';
 import { getEnv } from '@/lib/env';
@@ -27,7 +28,10 @@ export async function POST(request: Request): Promise<Response> {
       throw new AppError('VALIDATION_FAILED');
     const repo = getJobRepository();
     let post;
-    if (input.operation === 'fetch') {
+    if (input.operation === 'readAi') {
+      const fetched = await readJobWithAi(input.url, requestId);
+      post = repo.create(fetched.text, fetched.sourceUrl, input.language);
+    } else if (input.operation === 'fetch') {
       const fetched = await fetchJobPost(input.url);
       post = repo.create(fetched.text, fetched.sourceUrl, input.language);
     } else if (input.operation === 'create') post = repo.create(input.text, null, input.language);

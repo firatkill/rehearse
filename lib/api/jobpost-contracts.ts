@@ -21,6 +21,13 @@ export const JobRequestSchema = z.discriminatedUnion('operation', [
       language: z.enum(LANGUAGES).optional(),
     })
     .strict(),
+  z
+    .object({
+      operation: z.literal('readAi'),
+      url: z.string().min(1).max(JOBPOST.MAX_CHARS),
+      language: z.enum(LANGUAGES).optional(),
+    })
+    .strict(),
   z.object({ operation: z.literal('get'), id: z.uuid() }).strict(),
   z.object({ operation: z.literal('updateText'), id: z.uuid(), text: JobTextSchema }).strict(),
   z
@@ -39,6 +46,9 @@ export const JobResponseSchema = z
 export type JobRequest = z.infer<typeof JobRequestSchema>;
 export type JobResponse = z.infer<typeof JobResponseSchema>;
 export const JOBPOST_ERROR_COPY = {
+  JOBPOST_AI_READ_FAILED: 'AI couldn’t read that exact job post. Paste the text instead.',
+  JOBPOST_AI_READ_UNAVAILABLE:
+    'Set PRICE_WEB_SEARCH_PER_CALL in your server configuration to enable AI reading.',
   JOBPOST_FETCH_FAILED: 'We couldn’t read that link. Paste the job post text below.',
   JOBPOST_INVALID:
     'We couldn’t produce enough grounded, distinct questions. Edit the post and try again.',

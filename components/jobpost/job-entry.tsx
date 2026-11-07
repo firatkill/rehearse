@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { JOBPOST } from '@/lib/config';
 import { requestJob } from '@/lib/api/jobpost-client';
 import { Button } from '@/components/ui/button';
-export function JobEntry() {
+export function JobEntry({ aiReadCost = null }: { aiReadCost?: number | null }) {
   const t = useT();
   const { language } = useI18n();
 
@@ -15,6 +15,7 @@ export function JobEntry() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [paste, setPaste] = useState(false);
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
   const input = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     if (paste) input.current?.focus();
@@ -37,6 +38,7 @@ export function JobEntry() {
       setError(jobErrorMessage(result.message, t));
       setBusy(false);
       if (link) {
+        setFailedUrl(text.trim());
         setPaste(true);
         setText('');
       }
@@ -76,6 +78,7 @@ export function JobEntry() {
           variant="text"
           disabled={busy}
           onClick={() => {
+            setFailedUrl(null);
             setPaste(false);
             setText('');
             setError(null);
@@ -84,6 +87,37 @@ export function JobEntry() {
         >
           <T id="components.jobpost.job.entry.2" />
         </Button>
+      )}
+      {failedUrl && aiReadCost !== null && (
+        <div>
+          <p>
+            {t('job.aiRead.cost', {
+              cost: new Intl.NumberFormat(language === 'tr' ? 'tr-TR' : 'en-GB', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 3,
+              }).format(aiReadCost),
+            })}
+          </p>
+          <Button
+            type="button"
+            disabled={busy}
+            onClick={() => {
+              if (busy) return;
+              setBusy(true);
+              setError(null);
+              void requestJob({ operation: 'readAi', url: failedUrl, language }).then((result) => {
+                if (result.ok) router.push(`/job/${result.data.post.id}`);
+                else {
+                  setError(jobErrorMessage(result.message, t));
+                  setBusy(false);
+                }
+              });
+            }}
+          >
+            {t('job.aiRead.action')}
+          </Button>
+        </div>
       )}
       {error && <p role="alert">{error}</p>}
     </div>

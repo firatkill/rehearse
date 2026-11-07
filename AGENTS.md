@@ -172,6 +172,7 @@ A task is done when all of the following hold:
 - Call a real LLM, real speech service or Upstash from any test, or from CI outside `eval.yml`.
 - Store or log raw IPs or visitor ids, or log transcript text or model output. Demo never stores sessions or answers server-side; full may store sessions, attempts, job posts, generated questions and later story notes in its local SQLite database, with validated data APIs (D-75). Existing permitted live provider requests remain allowed in full (D-73).
 - Add a database other than full-edition SQLite (D-75), a paid service, a new runtime service, a paid speech API, third-party scripts, cookies, analytics or tracking. SQLite is local, not a hosted service.
+- Automatically invoke paid job-link reading. Full permits an explicit cost-labelled OpenAI web-search action with the user’s key; demo never constructs a provider.
 - Log fetched job-page text, URL paths or query strings. Free link reading logs only a safe failure category and hostname (IP literals omitted), and keeps SSRF pinning and request limits for public API adapters.
 - Record, store or upload the visitor's audio.
 - Ship the question bank to the client, or accept question text, role or seniority for scoring from the client.

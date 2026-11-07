@@ -1,7 +1,15 @@
 export const messages = {
+  'job.sourceLink': 'Original job post',
+  'job.aiRead.action': 'Read it with AI',
+  'job.aiRead.cost':
+    'Uses your OpenAI key and costs about {cost}. You can review and edit the text before generating questions.',
+  'job.error.JOBPOST_AI_READ_FAILED':
+    'AI couldn’t read that exact job post. Paste the text instead.',
+  'job.error.JOBPOST_AI_READ_UNAVAILABLE':
+    'Set PRICE_WEB_SEARCH_PER_CALL in your server configuration to enable AI reading.',
   'privacy.jobLinks.title': 'Reading job links',
   'privacy.jobLinks.body':
-    'When you read a job link, your self-hosted server requests the public page or its public job API. It sends no browser cookies or sign-in credentials. Failed reads log only the hostname and a reason category, never the URL path, query or page text.',
+    'When you read a job link, your self-hosted server requests the public page or its public job API. It sends no browser cookies or sign-in credentials. Failed reads log only the hostname and a reason category, never the URL path, query or page text. If you choose Read it with AI, the selected URL is sent to OpenAI for paid web reading. You review the returned text before generating questions.',
   'language.label': 'Language',
   'language.en': 'English',
   'language.tr': 'Türkçe',
