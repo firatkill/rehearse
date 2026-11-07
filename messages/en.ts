@@ -1,4 +1,7 @@
 export const messages = {
+  'privacy.jobLinks.title': 'Reading job links',
+  'privacy.jobLinks.body':
+    'When you read a job link, your self-hosted server requests the public page or its public job API. It sends no browser cookies or sign-in credentials. Failed reads log only the hostname and a reason category, never the URL path, query or page text.',
   'language.label': 'Language',
   'language.en': 'English',
   'language.tr': 'Türkçe',

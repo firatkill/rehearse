@@ -58,6 +58,12 @@ export default async function PrivacyPage() {
           </div>
         </dl>
       </section>
+      {!demo && (
+        <section>
+          <h2>{t('privacy.jobLinks.title')}</h2>
+          <p>{t('privacy.jobLinks.body')}</p>
+        </section>
+      )}
       <section>
         <h2>
           <T id="app.privacy.page.11" />

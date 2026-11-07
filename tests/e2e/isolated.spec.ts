@@ -2,7 +2,7 @@ import { registerJobDate } from './jobdate.cases';
 import { registerHistory } from './history.cases';
 import { registerLocaleDates } from './locale-dates.cases';
 import { registerExportImport } from './export-import.cases';
-import { registerProgressV2 } from './progress-v2.cases';
+import { registerProgressV2 } from './progress-history.cases';
 import { registerA11Y } from './a11y.cases';
 import { expect } from '@playwright/test';
 import { test } from '../setup/cap-server';
@@ -86,7 +86,7 @@ test.describe('Full shared storage @isolated', () => {
   test.describe('export-import @isolated', () => {
     registerExportImport();
   });
-  test.describe('progress-v2 @isolated', () => {
+  test.describe('progress-history @isolated', () => {
     registerProgressV2();
   });
   test.describe('a11y @isolated', () => {

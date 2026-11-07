@@ -96,3 +96,33 @@ test('TC-181 an unsafe link falls back to focused paste input and review before 
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
 });
+
+test('TC-221 link response is reviewed before mock generation', async ({ page }, info) => {
+  await page.setExtraHTTPHeaders({ 'x-real-ip': uniqueIp(info) });
+  // The external reader boundary is stubbed; create a real local draft so generation uses SQLite.
+  await page.route('**/api/job-posts', async (route) => {
+    const input: unknown = route.request().postDataJSON();
+    if (
+      typeof input === 'object' &&
+      input !== null &&
+      'operation' in input &&
+      input.operation === 'fetch'
+    ) {
+      const response = await route.fetch({
+        postData: JSON.stringify({ operation: 'create', text: jobText }),
+      });
+      await route.fulfill({ response });
+    } else await route.continue();
+  });
+  await page.goto('/setup');
+  await page
+    .getByLabel('Job post link or text')
+    .fill('https://www.linkedin.com/jobs/search/?currentJobId=12345');
+  await page.getByRole('button', { name: 'Read the job post', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Review the job post', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('checkbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
+  await expect(page.getByRole('checkbox')).toHaveCount(8);
+});
