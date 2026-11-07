@@ -65,6 +65,13 @@ export async function fetchJobPost(
           throw new Error('FETCH_LOGIN');
         continue;
       }
+      const linkedinGuest =
+        url.hostname === 'www.linkedin.com' &&
+        /^\/jobs-guest\/jobs\/api\/jobPosting\/\d+$/.test(url.pathname);
+      if (linkedinGuest && [429, 999].includes(page.status)) {
+        reason = 'rate_limited';
+        throw new Error('FETCH_STATUS');
+      }
       if (page.status < 200 || page.status >= 300) throw new Error('FETCH_STATUS');
       reason = 'content_type';
       if (!['', 'identity'].includes(page.encoding.toLowerCase())) throw new Error('FETCH_TYPE');
@@ -75,7 +82,9 @@ export async function fetchJobPost(
       )
         throw new Error('FETCH_TYPE');
       reason = 'empty_text';
-      const text = json ? extractApiJob(page.body, target) : extractJobText(page.body);
+      const text = json
+        ? extractApiJob(page.body, target)
+        : extractJobText(page.body, linkedinGuest);
       return { text, sourceUrl: target.kind === 'html' ? url.href : jobUrl(source).href };
     }
   } catch (error) {
