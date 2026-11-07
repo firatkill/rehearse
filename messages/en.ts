@@ -1,4 +1,12 @@
 export const messages = {
+  'job.analysis.title': 'What the post asks for',
+  'job.analysis.role': 'Role summary',
+  'job.analysis.must': 'Must-haves',
+  'job.analysis.nice': 'Nice-to-haves',
+  'job.analysis.probes': 'Likely interview topics',
+  'job.analysis.unspecified': 'Not specified in the post.',
+  'job.analysis.action': 'Analyse the job post',
+  'job.analysis.busy': 'Analysing the job post…',
   'job.sourceLink': 'Original job post',
   'job.aiRead.action': 'Read it with AI',
   'job.aiRead.cost':
@@ -409,7 +417,7 @@ export const messages = {
     'Sessions stay in this browser’s IndexedDB. Feedback is pre-written sample content; no answer is sent to a model provider.',
   'app.privacy.page.9': 'Full, self-hosted',
   'app.privacy.page.10':
-    'Sessions, answers, feedback and job posts are saved in SQLite on your machine. Live scoring uses your OpenAI key. The self-hosted server receives and stores these records so you can reopen them across browsers.',
+    'Sessions, answers, feedback and job posts are saved in SQLite on your machine. Live scoring uses your OpenAI key. Job-post analysis and question generation send the post to your configured OpenAI, Anthropic or Google provider; that provider’s privacy and retention policies apply. The self-hosted server receives and stores these records so you can reopen them across browsers.',
   'app.privacy.page.11': 'Speech recognition',
   'app.privacy.page.12':
     'Voice answers are transcribed by your browser’s built-in speech recognition, not by Rehearse. In Google Chrome, recognition sends your audio to Google’s servers. In Safari, audio is sent to Apple’s servers unless your device transcribes on-device. Other browsers may send audio to their own speech services. These companies’ own privacy policies apply. Rehearse never receives your audio. If you don’t want your voice processed by these services, use text mode.',

@@ -137,6 +137,19 @@ export const MIGRATIONS: readonly Migration[] = [
       };
     },
   },
+  {
+    version: 10,
+    upgrade(_db, tx) {
+      const request = tx.objectStore('jobPosts').openCursor();
+      request.onsuccess = () => {
+        const cursor = request.result;
+        if (!cursor) return;
+        const migrated = migrateJobRecord(cursor.value);
+        if (migrated) cursor.update(migrated);
+        cursor.continue();
+      };
+    },
+  },
 ];
 export const RECORD_MIGRATIONS: Readonly<Record<number, (r: unknown) => unknown>> = {
   1: (input) => {

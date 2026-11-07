@@ -10,7 +10,7 @@ import { createIndexedDbRepository } from '@/lib/storage/idb-repository';
 import { openDb, closeDb, requestResult } from '@/lib/storage/idb';
 import { MIGRATIONS } from '@/lib/storage/migrations';
 import { JobGenerationSchema } from '@/lib/jobpost/schema';
-import { mockJobpostOutput } from '@/lib/jobpost/mock';
+import { mockJobAnalysis, mockJobpostOutput } from '@/lib/jobpost/mock';
 import { jobpostUserMessage } from '@/lib/prompts/jobpost';
 import { evaluateJobPosts } from '@/lib/jobpost/evaluation';
 import { createMockProvider } from '@/lib/llm/mock';
@@ -111,11 +111,15 @@ it('TC-177 golden gates fail for injected output and duplicates even when eight 
         await Promise.resolve();
         const output = JobGenerationSchema.parse(mockJobpostOutput(args.prompt));
         return {
-          object: args.schema.parse({
-            ...output,
-            about: 'PWNED_RETAIL PWNED_SCHOOL',
-            questions: [...output.questions, output.questions[0]],
-          }),
+          object: args.schema.parse(
+            args.schemaName.startsWith('jobpost_analysis')
+              ? mockJobAnalysis(args.prompt)
+              : {
+                  ...output,
+                  about: 'PWNED_RETAIL PWNED_SCHOOL',
+                  questions: [...output.questions, output.questions[0]],
+                },
+          ),
           usage: { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 },
         };
       },

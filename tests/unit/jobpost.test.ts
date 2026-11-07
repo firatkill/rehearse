@@ -4,7 +4,7 @@ import { JobGenerationSchema } from '@/lib/jobpost/schema';
 import { questionOverlap, validateJobQuestions } from '@/lib/jobpost/validate';
 import { generateJobQuestions } from '@/lib/jobpost/generate';
 import { createMockProvider } from '@/lib/llm/mock';
-import { mockJobpostOutput } from '@/lib/jobpost/mock';
+import { mockJobAnalysis, mockJobpostOutput } from '@/lib/jobpost/mock';
 import { jobpostUserMessage, JOBPOST_SYSTEM_PROMPT } from '@/lib/prompts/jobpost';
 import { resetEnvForTests } from '@/lib/env';
 import { getBank } from '@/lib/questions/bank';
@@ -62,10 +62,14 @@ it('TC-174 mock pipeline returns eight grounded unique questions and rejects ins
     async generateStructured(args) {
       await Promise.resolve();
       return {
-        object: args.schema.parse({
-          ...result.summary,
-          questions: Array.from({ length: 8 }, () => result.questions[0]),
-        }),
+        object: args.schema.parse(
+          args.schemaName.startsWith('jobpost_analysis')
+            ? mockJobAnalysis(args.prompt)
+            : {
+                ...result.summary,
+                questions: Array.from({ length: 8 }, () => result.questions[0]),
+              },
+        ),
         usage: { inputTokens: 1, outputTokens: 1, cachedInputTokens: 0 },
       };
     },

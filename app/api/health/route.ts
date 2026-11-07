@@ -16,6 +16,9 @@ export function GET(req: Request): Response {
     const env = getEnv();
     const data = HealthResponseSchema.parse({
       status: 'ok',
+      ...(env.APP_EDITION === 'full'
+        ? { jobpostProvider: env.JOBPOST_PROVIDER, jobpostModel: env.JOBPOST_MODEL }
+        : {}),
       edition: env.APP_EDITION,
       version: APP_VERSION,
       commit: env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev',

@@ -5,7 +5,7 @@ import { generateJobQuestions } from '@/lib/jobpost/generate';
 import { validateJobQuestions } from '@/lib/jobpost/validate';
 import { evaluateJobPosts, JobGoldenSchema } from '@/lib/jobpost/evaluation';
 import { JobGenerationSchema } from '@/lib/jobpost/schema';
-import { mockJobpostOutput } from '@/lib/jobpost/mock';
+import { mockJobAnalysis, mockJobpostOutput } from '@/lib/jobpost/mock';
 import { jobpostUserMessage } from '@/lib/prompts/jobpost';
 import { JOBPOST_PROMPT_VERSION } from '@/lib/prompts/version';
 import {
@@ -22,7 +22,14 @@ function provider(transform: (prompt: string) => unknown): LlmProvider {
     modelId: 'fake',
     async generateStructured(args) {
       await Promise.resolve();
-      return { object: args.schema.parse(transform(args.prompt)), usage };
+      return {
+        object: args.schema.parse(
+          args.schemaName.startsWith('jobpost_analysis')
+            ? mockJobAnalysis(args.prompt)
+            : transform(args.prompt),
+        ),
+        usage,
+      };
     },
   };
 }
@@ -53,7 +60,7 @@ it('TC-183 spare candidates survive grounding/duplicate drops and retain first a
     }),
   });
   expect(prompt).toMatch(/^Return 11 questions/);
-  expect(JOBPOST_PROMPT_VERSION).toBe('jobpost-v2');
+  expect(JOBPOST_PROMPT_VERSION).toBe('jobpost-v3');
   expect(result.questions).toEqual([raw.questions[2], ...raw.questions.slice(4)]);
   expect(result.questions).toHaveLength(8);
   expect(result.validation.ungrounded).toBe(2);
@@ -180,7 +187,7 @@ it('TC-197 empty about is valid when the source has no company description', asy
   expect(result.questions).toHaveLength(8);
   expect(JobGenerationSchema.safeParse({ ...raw, about: 'x'.repeat(1001) }).success).toBe(false);
   expect(JobGenerationSchema.safeParse({ ...raw, about: null }).success).toBe(false);
-  expect(JOBPOST_PROMPT_VERSION).toBe('jobpost-v2');
+  expect(JOBPOST_PROMPT_VERSION).toBe('jobpost-v3');
 });
 
 it.each(['Document operational runbooks.', 'Run tests.', 'Deploy safely!', 'Handle incidents?'])(

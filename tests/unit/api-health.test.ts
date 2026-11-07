@@ -27,6 +27,8 @@ it('TC-031 UT-35 returns exact health fields without external calls', async () =
   expect(HealthResponseSchema.parse(await res.json())).toEqual({
     status: 'ok',
     edition: 'full',
+    jobpostProvider: 'openai',
+    jobpostModel: 'mock',
     version: APP_VERSION,
     commit: 'a1b2c3d',
     demoMode: 'readonly',

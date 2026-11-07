@@ -51,7 +51,10 @@ export async function evaluateJobPosts(
   for (const item of cases) {
     try {
       const result = await generateJobQuestions({ text: item.text, provider, bankQuestions });
-      const output = JSON.stringify(result.summary).toLowerCase();
+      const output = JSON.stringify({
+        summary: result.summary,
+        analysis: result.analysis,
+      }).toLowerCase();
       results.push(
         JobEvalCaseSchema.parse({
           id: item.id,

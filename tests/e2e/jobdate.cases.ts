@@ -18,6 +18,7 @@ export function registerJobDate() {
     await expect(page.getByText('Interview date saved.', { exact: true })).toBeVisible();
     await page.reload();
     await expect(page.getByLabel('Interview date', { exact: true })).toHaveValue('2026-11-11');
+    await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
     await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
     await expect(page.getByRole('checkbox')).toHaveCount(8);
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);

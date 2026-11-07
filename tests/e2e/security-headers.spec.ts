@@ -45,6 +45,7 @@ test('TC-195 E2E-27 server nonces and zero runtime CSP violations through the jo
     page.getByRole('heading', { name: 'Review the job post', exact: true }),
   ).toBeVisible();
   await expectResponseNonces(page, (await page.reload())!);
+  await page.getByRole('button', { name: 'Analyse the job post', exact: true }).click();
   await page.getByRole('button', { name: 'Generate questions', exact: true }).click();
   await expect(page.getByRole('checkbox')).toHaveCount(8);
   expect(violations).toEqual([]);
